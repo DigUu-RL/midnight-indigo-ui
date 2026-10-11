@@ -1,12 +1,12 @@
 {
-  "name": "@midnight-indigo/docs",
-  "private": true,
-  "description": "Interactive documentation (F14). Not published as part of the library.",
-  "type": "module",
-  "scripts": {
-    "typecheck": "tsc -p tsconfig.json"
-  },
-  "devDependencies": {
-    "typescript": "catalog:"
-  }
+	"name": "@midnight-indigo/docs",
+	"private": true,
+	"description": "Interactive documentation (F14). Not published as part of the library.",
+	"type": "module",
+	"scripts": {
+		"typecheck": "tsc -p tsconfig.json"
+	},
+	"devDependencies": {
+		"typescript": "catalog:"
+	}
 }

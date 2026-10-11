@@ -12,15 +12,15 @@ import * as theme from '@midnight-indigo/ui/theme';
 import * as tokens from '@midnight-indigo/ui/tokens';
 
 export const publicModules: readonly object[] = [
-  root,
-  tokens,
-  theme,
-  buttons,
-  forms,
-  feedback,
-  navigation,
-  dataDisplay,
-  charts,
-  internationalization,
-  dashboard,
+	root,
+	tokens,
+	theme,
+	buttons,
+	forms,
+	feedback,
+	navigation,
+	dataDisplay,
+	charts,
+	internationalization,
+	dashboard,
 ];
