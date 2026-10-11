@@ -1,7 +1,7 @@
-# Dependências
+# Dependencies
 node_modules/
 
-# Artefatos de build e testes
+# Build and test artifacts
 dist/
 coverage/
 *.tsbuildinfo
@@ -10,11 +10,11 @@ coverage/
 # Logs
 *.log
 
-# Ambiente local
+# Local environment
 .env
 .env.*
 !.env.example
 
-# Editores e SO
+# Editors and operating system
 .DS_Store
 Thumbs.db
