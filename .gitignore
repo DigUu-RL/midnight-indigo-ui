@@ -1,1 +1,22 @@
 .roadmap
+
+# Dependências
+node_modules/
+
+# Artefatos de build e testes
+dist/
+coverage/
+*.tsbuildinfo
+*.tgz
+
+# Logs
+*.log
+
+# Ambiente local
+.env
+.env.*
+!.env.example
+
+# Editores e SO
+.DS_Store
+Thumbs.db
