@@ -183,6 +183,7 @@ describe('UiProvider on the server', (): void => {
 		await stream.allReady;
 		const html: string = await new Response(stream).text();
 		const serverDocument: Document = new DOMParser().parseFromString(html, 'text/html');
+
 		document.replaceChild(
 			document.importNode(serverDocument.documentElement, true),
 			document.documentElement,
@@ -196,6 +197,7 @@ describe('UiProvider on the server', (): void => {
 					recoverableErrors.push(error);
 				},
 			});
+
 			await Promise.resolve();
 		});
 

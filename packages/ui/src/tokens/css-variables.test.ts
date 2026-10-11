@@ -15,6 +15,7 @@ describe('CSS variable names', (): void => {
 		expect(cssVariableName(['intent', 'official', 'contrastText'])).toBe(
 			'--mi-intent-official-contrast-text',
 		);
+
 		expect(cssVariableReference(['surface', 'canvas'])).toBe('var(--mi-surface-canvas)');
 	});
 

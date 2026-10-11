@@ -34,11 +34,13 @@ const serverStartTimeoutInMilliseconds: number = 30_000;
 
 const findFreePort = async (): Promise<number> => {
 	const server: Server = createServer();
+
 	await new Promise<void>((resolve: () => void): void => {
 		server.listen(0, resolve);
 	});
 
 	const { port }: AddressInfo = server.address() as AddressInfo;
+
 	await new Promise<void>((resolve: () => void): void => {
 		server.close((): void => {
 			resolve();
@@ -137,6 +139,7 @@ test('the late chunk is streamed after the shell', (): void => {
 		!page.shell.includes(streamedContent),
 		'The panel was not streamed: it is already in the shell.',
 	);
+
 	assert.ok(page.html.includes(streamedContent));
 });
 

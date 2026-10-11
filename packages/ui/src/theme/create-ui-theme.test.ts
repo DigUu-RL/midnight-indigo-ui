@@ -64,6 +64,7 @@ describe('createUiTheme', (): void => {
 
 		expect(theme.warnings.length).toBeGreaterThan(0);
 		expect(onWarning).toHaveBeenCalledTimes(theme.warnings.length);
+
 		expect(theme.warnings[0]).toMatch(
 			/^[\w.]+ on [\w.]+ FAILS [\d.]+:1 \(\w+\): [\d.]+:1\. Used for: /,
 		);
@@ -76,6 +77,7 @@ describe('createUiTheme', (): void => {
 		expect(consoleWarning).toHaveBeenCalledWith(
 			expect.stringMatching(/^\[Midnight Indigo: UI\] Theme contrast warning: /),
 		);
+
 		consoleWarning.mockRestore();
 	});
 

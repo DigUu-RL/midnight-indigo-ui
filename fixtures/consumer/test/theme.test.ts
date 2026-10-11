@@ -28,10 +28,12 @@ test('a configured official.main reaches the tokens, the stylesheet and Material
 	const theme: UiTheme = createUiTheme({ palette: { official: { main: customMain } } }, silent);
 
 	assert.equal(theme.tokens.intent.official.main, customMain);
+
 	assert.match(
 		createThemeStylesheet(theme),
 		new RegExp(`--mi-intent-official-main: ${customMain};`),
 	);
+
 	assert.equal(toMuiTheme(theme).palette.primary.main, customMain);
 });
 

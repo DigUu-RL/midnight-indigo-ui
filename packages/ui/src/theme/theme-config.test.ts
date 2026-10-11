@@ -77,6 +77,7 @@ describe('parseUiThemeConfig', (): void => {
 			'palette.primary',
 			'palette.info.mian',
 		]);
+
 		expect(issues[1]?.message).toContain('official, default, success, warning, error, info');
 		expect(issues[2]?.message).toContain('main, light, dark');
 	});

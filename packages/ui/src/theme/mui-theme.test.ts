@@ -19,6 +19,7 @@ describe('toMuiTheme', (): void => {
 			dark: intent.official.dark,
 			contrastText: intent.official.contrastText,
 		});
+
 		expect(muiTheme.palette.secondary.main).toBe(intent.default.main);
 		expect(muiTheme.palette.success.main).toBe(intent.success.main);
 		expect(muiTheme.palette.warning.main).toBe(intent.warning.main);

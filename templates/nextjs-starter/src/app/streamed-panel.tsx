@@ -7,6 +7,7 @@ const streamingDelayInMilliseconds: number = 300;
 
 export const StreamedPanel = async (): Promise<ReactElement> => {
 	await connection();
+
 	await new Promise((resolve: (value: unknown) => void): void => {
 		setTimeout(resolve, streamingDelayInMilliseconds);
 	});

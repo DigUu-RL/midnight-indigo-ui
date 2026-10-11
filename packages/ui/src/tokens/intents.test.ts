@@ -79,6 +79,7 @@ describe('deriveIntentTokens', (): void => {
 
 		expect(contrastRatio(derived.text, context.lightestSurface)).toBeGreaterThanOrEqual(4.5);
 		expect(contrastRatio(derived.border, context.lightestSurface)).toBeGreaterThanOrEqual(3);
+
 		expect(contrastRatio(derived.onContainer, derived.containerPressed)).toBeGreaterThanOrEqual(
 			4.5,
 		);

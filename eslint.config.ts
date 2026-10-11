@@ -5,6 +5,14 @@ import typescriptEslint from 'typescript-eslint';
 
 import { requireBracesForMultilineArrowBody } from './eslint-rules/require-braces-for-multiline-arrow-body.ts';
 
+// Statements spanning more than one line are always set apart from their neighbors by blank lines.
+const multilineStatements: string[] = [
+	'multiline-block-like',
+	'multiline-const',
+	'multiline-let',
+	'multiline-expression',
+];
+
 export default defineConfig(
 	{
 		ignores: [
@@ -79,8 +87,8 @@ export default defineConfig(
 				'error',
 				{ blankLine: 'always', prev: 'import', next: '*' },
 				{ blankLine: 'any', prev: 'import', next: 'import' },
-				{ blankLine: 'always', prev: '*', next: ['multiline-block-like', 'multiline-const'] },
-				{ blankLine: 'always', prev: ['multiline-block-like', 'multiline-const'], next: '*' },
+				{ blankLine: 'always', prev: '*', next: multilineStatements },
+				{ blankLine: 'always', prev: multilineStatements, next: '*' },
 			],
 		},
 	},

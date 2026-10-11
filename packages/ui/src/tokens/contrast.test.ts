@@ -67,6 +67,7 @@ describe('resolveTokenPath', (): void => {
 		expect((): unknown => resolveTokenPath(tokens, 'intent.brand.main')).toThrow(
 			'Unknown token path "intent.brand.main".',
 		);
+
 		expect((): unknown => resolveTokenPath(tokens, 'surface')).toThrow(/Unknown token path/);
 	});
 
