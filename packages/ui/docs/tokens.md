@@ -9,6 +9,8 @@ Every token is exported by `@midnight-indigo/ui/tokens` and declared as a CSS cu
 `intent.official.main` is the exact Midnight Indigo keyword pink, `#FF6AC1`. The other intent `main`
 values are provisional proposals until the stable API.
 
+How to apply the typography, icon and motion tokens: [foundations.md](./foundations.md).
+
 ## Tokens
 
 ### `surface`
@@ -199,6 +201,55 @@ Durations and easing curves. Durations become 0ms under `prefers-reduced-motion:
 | `motion.easing.standard` | `--mi-motion-easing-standard` | `cubic-bezier(0.2, 0, 0, 1)` |  |
 | `motion.easing.enter` | `--mi-motion-easing-enter` | `cubic-bezier(0, 0, 0, 1)` |  |
 | `motion.easing.exit` | `--mi-motion-easing-exit` | `cubic-bezier(0.3, 0, 1, 1)` |  |
+
+### `fontFamily`
+
+Font stacks. Inter is self-hosted by the application; the system fonts after it are the fallback.
+
+| Token | CSS variable | Value | Purpose |
+| --- | --- | --- | --- |
+| `fontFamily.sans` | `--mi-font-family-sans` | `'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif` | Interface text: every role except `code`. |
+| `fontFamily.mono` | `--mi-font-family-mono` | `ui-monospace, SFMono-Regular, 'Cascadia Mono', 'Roboto Mono', Menlo, Consolas, 'Liberation Mono', monospace` | Code, identifiers and values that must align character by character. |
+
+### `fontWeight`
+
+Font weights used by the typographic roles.
+
+| Token | CSS variable | Value | Purpose |
+| --- | --- | --- | --- |
+| `fontWeight.regular` | `--mi-font-weight-regular` | `400` | Body text, captions and code. |
+| `fontWeight.medium` | `--mi-font-weight-medium` | `500` | Labels of controls, tabs and menu items. |
+| `fontWeight.semibold` | `--mi-font-weight-semibold` | `600` | Headings. |
+| `fontWeight.bold` | `--mi-font-weight-bold` | `700` | Display text. |
+
+### `typography`
+
+Typographic roles. Sizes are in rem, so they follow the browser text size and zoom; line heights are unitless.
+
+Every role has the fields `fontFamily`, `fontSize`, `fontWeight`, `lineHeight` and `letterSpacing`, declared as
+`--mi-typography-<role>-<field>`, e.g. `--mi-typography-body-font-size`.
+
+| Role | Font | Size | Line height | Weight | Letter spacing | Usage |
+| --- | --- | --- | --- | --- | --- | --- |
+| `display` | `sans` | `2.25rem` | `1.2` | `700` | `-0.02em` | Key figures and hero titles; at most one per view. |
+| `headingLarge` | `sans` | `1.75rem` | `1.25` | `600` | `-0.015em` | Page title (`h1`). |
+| `headingMedium` | `sans` | `1.375rem` | `1.3` | `600` | `-0.01em` | Section title (`h2`). |
+| `headingSmall` | `sans` | `1.125rem` | `1.4` | `600` | `0` | Card, panel and dialog title (`h3`). |
+| `body` | `sans` | `1rem` | `1.5` | `400` | `0` | Default text of the document, paragraphs and form fields. |
+| `bodySmall` | `sans` | `0.875rem` | `1.5` | `400` | `0` | Dense text: table cells, secondary list text and helper text. |
+| `label` | `sans` | `0.875rem` | `1.4` | `500` | `0.01em` | Buttons, form labels, tabs and menu items. |
+| `caption` | `sans` | `0.75rem` | `1.4` | `400` | `0.02em` | Timestamps, footnotes and annotations; never the only place of essential content. |
+| `code` | `mono` | `0.875rem` | `1.5` | `400` | `0` | Inline code, identifiers and monospace values. |
+
+### `iconSize`
+
+Fixed icon sizes. Icons inline with text use `1em` instead, to follow the text size.
+
+| Token | CSS variable | Value | Purpose |
+| --- | --- | --- | --- |
+| `iconSize.small` | `--mi-icon-size-small` | `1rem` | Dense controls and inline status icons. |
+| `iconSize.medium` | `--mi-icon-size-medium` | `1.25rem` | Default size inside buttons, inputs and menu items. |
+| `iconSize.large` | `--mi-icon-size-large` | `1.5rem` | Standalone icons, empty states and icon-only toolbars. |
 
 ## Contrast pairs
 

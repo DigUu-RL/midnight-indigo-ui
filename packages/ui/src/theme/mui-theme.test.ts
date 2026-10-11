@@ -33,6 +33,52 @@ describe('toMuiTheme', (): void => {
 		expect(muiTheme.shape.borderRadius).toBe(8);
 	});
 
+	it('maps the typographic roles to the Material UI variants', (): void => {
+		const { typography, fontFamily } = defaultUiTheme.tokens;
+
+		expect(muiTheme.typography.fontFamily).toBe(fontFamily.sans);
+		expect(muiTheme.typography.h1).toMatchObject(typography.display);
+		expect(muiTheme.typography.h2).toMatchObject(typography.headingLarge);
+		expect(muiTheme.typography.h3).toMatchObject(typography.headingMedium);
+		expect(muiTheme.typography.body1).toMatchObject(typography.body);
+		expect(muiTheme.typography.body2).toMatchObject(typography.bodySmall);
+		expect(muiTheme.typography.caption).toMatchObject(typography.caption);
+
+		expect(muiTheme.typography.button).toMatchObject({
+			...typography.label,
+			textTransform: 'none',
+		});
+	});
+
+	it('styles code elements with the monospace stack in the baseline', (): void => {
+		expect(muiTheme.components?.MuiCssBaseline?.styleOverrides).toEqual({
+			'code, kbd, pre, samp': { fontFamily: defaultUiTheme.tokens.fontFamily.mono },
+		});
+	});
+
+	it('maps the motion tokens to the transitions', (): void => {
+		expect(muiTheme.transitions.duration).toMatchObject({
+			shortest: 120,
+			standard: 320,
+			enteringScreen: 200,
+			leavingScreen: 120,
+		});
+
+		expect(muiTheme.transitions.easing.easeOut).toBe(defaultUiTheme.tokens.motion.easing.enter);
+		expect(muiTheme.components?.MuiButtonBase?.defaultProps?.disableRipple).toBe(false);
+	});
+
+	it('removes every transition and the ripple under reduced motion', (): void => {
+		const reducedMotionTheme: Theme = toMuiTheme(defaultUiTheme, { reducedMotion: true });
+
+		expect(Object.values(reducedMotionTheme.transitions.duration)).toEqual(
+			Object.values(reducedMotionTheme.transitions.duration).map((): number => 0),
+		);
+
+		expect(reducedMotionTheme.transitions.create('opacity')).toMatch(/^opacity 0ms /);
+		expect(reducedMotionTheme.components?.MuiButtonBase?.defaultProps?.disableRipple).toBe(true);
+	});
+
 	it('follows a configured official.main', (): void => {
 		const theme = createUiTheme(
 			{ palette: { official: { main: '#3D8BFF' } } },

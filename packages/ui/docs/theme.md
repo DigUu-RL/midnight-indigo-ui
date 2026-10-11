@@ -37,6 +37,7 @@ derived fields listed in [tokens.md](./tokens.md#intent) (`light`, `dark`, `cont
 | `main` of a configured intent            | The default `main` of that intent is used; the configured fields still apply. |
 | A derived field (`light`, `border`, ...) | Derived from `main` deterministically: same input, same output.               |
 | Surfaces, text, borders, spacing, motion | Not configurable yet; always the official values.                             |
+| Typography and icon sizes                | Not configurable yet; always the official values.                             |
 
 ### JSON
 
@@ -81,7 +82,12 @@ Pass `{ onWarning: () => {} }` to silence the console, or throw from it to make 
 | `theme`    | `defaultUiTheme` | Theme created by `createUiTheme`.                                     |
 | `baseline` | `true`           | Base document styles: dark canvas background, text color, box sizing. |
 
+With `baseline`, `body` also receives the `body` typographic role and `code, kbd, pre, samp` the monospace stack;
+nothing else is styled globally (see [foundations.md](./foundations.md#global-styles)).
+
 `useUiTheme()` returns the theme of the nearest provider, or the official theme outside of one.
+`usePrefersReducedMotion()` returns the reduced motion preference of the user; the provider uses it to remove the
+Material UI transitions.
 
 A theme is frozen plain data without functions, so a Server Component can create it and pass it to `UiProvider`.
 
@@ -116,7 +122,8 @@ write it to a static file at build time.
 `UiProvider` configures Material UI from the theme, so Material UI components rendered inside it follow the palette.
 Material UI stays an implementation detail: the public API is `UiTheme`, not the Material UI theme. When an
 application deliberately renders Material UI components with its own `ThemeProvider`, `toMuiTheme(theme)` returns the
-equivalent theme:
+equivalent theme; pass `{ reducedMotion: true }` to zero its transitions and disable the ripple, as the provider does
+when the user prefers reduced motion:
 
 | Material UI                                   | Theme                                                                          |
 | --------------------------------------------- | ------------------------------------------------------------------------------ |
@@ -129,6 +136,15 @@ equivalent theme:
 | `palette.divider`                             | `border.default`                                                               |
 | `palette.action`                              | `state.hover`, `state.selected`, `state.disabledText`, `state.disabledSurface` |
 | `shape.borderRadius`                          | `radius.medium`                                                                |
+| `typography.fontFamily`                       | `fontFamily.sans`                                                              |
+| `typography.h1`, `h2`, `h3`                   | `typography.display`, `headingLarge`, `headingMedium`                          |
+| `typography.h4`, `h5`, `h6`                   | `typography.headingSmall`                                                      |
+| `typography.subtitle1`, `subtitle2`           | `typography.body` (medium weight), `typography.label`                          |
+| `typography.body1`, `body2`                   | `typography.body`, `typography.bodySmall`                                      |
+| `typography.button`                           | `typography.label`, without uppercase                                          |
+| `typography.caption`, `overline`              | `typography.caption` (`overline` uppercase)                                    |
+| `transitions.duration`                        | `motion.duration` `fast`, `moderate`, `slow`; all `0` under reduced motion     |
+| `transitions.easing`                          | `easeInOut`, `sharp`: `standard`; `easeOut`: `enter`; `easeIn`: `exit`         |
 
 ## Next.js App Router
 

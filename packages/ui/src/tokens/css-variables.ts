@@ -56,6 +56,9 @@ export const cssLayers = {
 
 export type CssLayer = (typeof cssLayers)[keyof typeof cssLayers];
 
+/** Media query of users who asked the system to minimize non-essential motion. */
+export const reducedMotionMediaQuery: string = '(prefers-reduced-motion: reduce)';
+
 export interface TokenStylesheetOptions {
 	/** Element that receives the custom properties. Defaults to `:root`. */
 	selector?: string;
@@ -89,7 +92,7 @@ export const createTokenStylesheet = (
 		...declarations,
 		'}',
 		'',
-		'@media (prefers-reduced-motion: reduce) {',
+		`@media ${reducedMotionMediaQuery} {`,
 		`  ${selector} {`,
 		...reducedMotionDurations,
 		'  }',
