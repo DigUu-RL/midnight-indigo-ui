@@ -1,0 +1,12 @@
+{
+  "name": "@midnight-indigo/playground",
+  "private": true,
+  "description": "Playground and visual fixtures (F14). Not published as part of the library.",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "typescript": "catalog:"
+  }
+}

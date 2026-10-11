@@ -1,0 +1,12 @@
+{
+  "name": "@midnight-indigo/nextjs-starter",
+  "private": true,
+  "description": "Next.js starter (F13). Not published as part of the library.",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "typescript": "catalog:"
+  }
+}
