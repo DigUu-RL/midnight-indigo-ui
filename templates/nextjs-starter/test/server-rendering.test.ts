@@ -88,8 +88,15 @@ const countOccurrences = (text: string, fragment: string): number => {
 	return text.split(fragment).length - 1;
 };
 
+const listStylesheetUrls = (html: string, origin: string): URL[] => {
+	return [...html.matchAll(/<link[^>]*rel="stylesheet"[^>]*href="([^"]+)"/g)].map(
+		(match: RegExpExecArray): URL => new URL(match[1] ?? '', origin),
+	);
+};
+
 let server: ChildProcess | undefined;
 let page: StreamedPage;
+let origin: string;
 
 before(async (): Promise<void> => {
 	assert.ok(existsSync(`${starterRoot}/.next/BUILD_ID`), 'Build the starter first: pnpm build.');
@@ -102,9 +109,9 @@ before(async (): Promise<void> => {
 		stdio: 'ignore',
 	});
 
-	const url: string = `http://localhost:${String(port)}/`;
-	await waitForServer(url, Date.now() + serverStartTimeoutInMilliseconds);
-	page = await readStreamedPage(url);
+	origin = `http://localhost:${String(port)}`;
+	await waitForServer(`${origin}/`, Date.now() + serverStartTimeoutInMilliseconds);
+	page = await readStreamedPage(`${origin}/`);
 });
 
 after((): void => {
@@ -132,6 +139,63 @@ test('Material UI styles are rendered on the server, so the dark canvas paints w
 
 	assert.match(head, /<style data-emotion="mui-global /);
 	assert.match(head, canvasBackground);
+});
+
+test('the body typography comes from the tokens and is rendered on the server', (): void => {
+	const head: string = page.shell.slice(0, page.shell.indexOf('</head>'));
+	const { fontFamily, fontSize, lineHeight } = tokens.typography.body;
+	const minifiedFontFamily: string = fontFamily.replaceAll(', ', ',');
+
+	assert.ok(head.includes(`font-family:${minifiedFontFamily}`), 'The body font stack is missing.');
+	assert.match(head, new RegExp(`body\\{[^}]*font-size:${fontSize}[^}]*line-height:${lineHeight}`));
+});
+
+test('Inter is self-hosted: no font is requested from another origin', async (): Promise<void> => {
+	const stylesheets: URL[] = listStylesheetUrls(page.html, origin);
+
+	assert.doesNotMatch(page.html, /fonts\.googleapis\.com|fonts\.gstatic\.com/);
+	assert.ok(stylesheets.length > 0, 'The page links no stylesheet.');
+
+	// Font URLs are relative to the stylesheet that declares them.
+	const fontFacesByStylesheet: [URL, string[]][] = await Promise.all(
+		stylesheets.map(async (url: URL): Promise<[URL, string[]]> => {
+			const css: string = await (await fetch(url)).text();
+			return [url, css.match(/@font-face\{[^}]*\}/g) ?? []];
+		}),
+	);
+
+	const fontFaces: string[] = fontFacesByStylesheet.flatMap(
+		([, faces]: [URL, string[]]): string[] => faces,
+	);
+
+	const fontUrls: URL[] = fontFacesByStylesheet.flatMap(
+		([stylesheet, faces]: [URL, string[]]): URL[] => {
+			return faces.flatMap((fontFace: string): URL[] => {
+				return [...fontFace.matchAll(/url\(([^)]+)\)/g)].map((match: RegExpExecArray): URL => {
+					return new URL((match[1] ?? '').replaceAll(/["']/g, ''), stylesheet);
+				});
+			});
+		},
+	);
+
+	assert.ok(
+		fontFaces.some((fontFace: string): boolean => fontFace.includes('Inter Variable')),
+		'No @font-face declares Inter.',
+	);
+
+	assert.deepEqual(
+		fontUrls.filter((url: URL): boolean => url.origin !== origin),
+		[],
+	);
+
+	const fontResponse: Response = await fetch(fontUrls[0] ?? origin);
+	assert.equal(fontResponse.status, 200);
+	assert.equal(fontResponse.headers.get('content-type'), 'font/woff2');
+});
+
+test('functional icons are named and decorative icons are hidden', (): void => {
+	assert.match(page.html, /<svg[^>]*role="img"[^>]*aria-label="Completed"/);
+	assert.match(page.html, /<svg[^>]*aria-hidden="true"[^>]*focusable="false"/);
 });
 
 test('the late chunk is streamed after the shell', (): void => {

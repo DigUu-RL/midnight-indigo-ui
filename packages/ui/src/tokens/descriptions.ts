@@ -6,10 +6,14 @@ import type {
 	DesignTokens,
 	ElevationTokens,
 	FocusTokens,
+	FontFamilyTokens,
+	FontWeightTokens,
+	IconSizeTokens,
 	RadiusTokens,
 	StateTokens,
 	SurfaceTokens,
 	TextTokens,
+	TypographyRole,
 } from './design-tokens.ts';
 import type { IntentTokens, SemanticIntent } from './intents.ts';
 
@@ -26,6 +30,10 @@ export interface TokenDescriptions {
 	chart: Record<keyof ChartTokens, string>;
 	radius: Record<keyof RadiusTokens, string>;
 	elevation: Record<keyof ElevationTokens, string>;
+	fontFamily: Record<keyof FontFamilyTokens, string>;
+	fontWeight: Record<keyof FontWeightTokens, string>;
+	typography: Record<TypographyRole, string>;
+	iconSize: Record<keyof IconSizeTokens, string>;
 }
 
 export const tokenDescriptions: Readonly<TokenDescriptions> = {
@@ -47,6 +55,13 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 			'Shadows calibrated for the dark canvas; pair them with a lighter surface and a border.',
 		motion:
 			'Durations and easing curves. Durations become 0ms under `prefers-reduced-motion: reduce`.',
+		fontFamily:
+			'Font stacks. Inter is self-hosted by the application; the system fonts after it are the fallback.',
+		fontWeight: 'Font weights used by the typographic roles.',
+		typography:
+			'Typographic roles. Sizes are in rem, so they follow the browser text size and zoom; line heights are unitless.',
+		iconSize:
+			'Fixed icon sizes. Icons inline with text use `1em` instead, to follow the text size.',
 	},
 	surface: {
 		canvas: 'Main application background.',
@@ -130,5 +145,31 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 		low: 'Raised cards and controls.',
 		medium: 'Menus and popovers.',
 		high: 'Dialogs.',
+	},
+	fontFamily: {
+		sans: 'Interface text: every role except `code`.',
+		mono: 'Code, identifiers and values that must align character by character.',
+	},
+	fontWeight: {
+		regular: 'Body text, captions and code.',
+		medium: 'Labels of controls, tabs and menu items.',
+		semibold: 'Headings.',
+		bold: 'Display text.',
+	},
+	typography: {
+		display: 'Key figures and hero titles; at most one per view.',
+		headingLarge: 'Page title (`h1`).',
+		headingMedium: 'Section title (`h2`).',
+		headingSmall: 'Card, panel and dialog title (`h3`).',
+		body: 'Default text of the document, paragraphs and form fields.',
+		bodySmall: 'Dense text: table cells, secondary list text and helper text.',
+		label: 'Buttons, form labels, tabs and menu items.',
+		caption: 'Timestamps, footnotes and annotations; never the only place of essential content.',
+		code: 'Inline code, identifiers and monospace values.',
+	},
+	iconSize: {
+		small: 'Dense controls and inline status icons.',
+		medium: 'Default size inside buttons, inputs and menu items.',
+		large: 'Standalone icons, empty states and icon-only toolbars.',
 	},
 };

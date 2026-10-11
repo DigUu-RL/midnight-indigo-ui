@@ -8,12 +8,15 @@ import {
 	semanticIntents,
 	tokenDescriptions,
 	tokens,
+	typographyRoles,
 } from '../src/tokens/index.ts';
 import type {
 	ContrastResult,
 	DesignTokens,
 	IntentTokens,
 	SemanticIntent,
+	TypographyRole,
+	TypographyStyle,
 } from '../src/tokens/index.ts';
 
 export const generationCommand: string = 'pnpm --filter @midnight-indigo/ui generate:tokens';
@@ -53,6 +56,9 @@ const tokenPurposes: Partial<Record<TokenGroup, Readonly<Record<string, string>>
 	chart: tokenDescriptions.chart,
 	radius: tokenDescriptions.radius,
 	elevation: tokenDescriptions.elevation,
+	fontFamily: tokenDescriptions.fontFamily,
+	fontWeight: tokenDescriptions.fontWeight,
+	iconSize: tokenDescriptions.iconSize,
 };
 
 const describeToken = (group: TokenGroup, name: string): string => {
@@ -123,6 +129,41 @@ const renderIntents = (): string[] => {
 	];
 };
 
+const describeFontFamily = (fontFamily: string): string => {
+	return fontFamily === tokens.fontFamily.mono ? code('mono') : code('sans');
+};
+
+const renderTypography = (): string[] => {
+	const rows: string[][] = typographyRoles.map((role: TypographyRole): string[] => {
+		const style: TypographyStyle = tokens.typography[role];
+
+		return [
+			code(role),
+			describeFontFamily(style.fontFamily),
+			code(style.fontSize),
+			code(style.lineHeight),
+			code(style.fontWeight),
+			code(style.letterSpacing),
+			tokenDescriptions.typography[role],
+		];
+	});
+
+	return [
+		`### ${code('typography')}`,
+		'',
+		tokenDescriptions.groups.typography,
+		'',
+		'Every role has the fields `fontFamily`, `fontSize`, `fontWeight`, `lineHeight` and `letterSpacing`, declared as',
+		`${code(cssVariableName(['typography', '<role>', '<field>']))}, e.g. ${code(cssVariableName(['typography', 'body', 'fontSize']))}.`,
+		'',
+		...renderTable(
+			['Role', 'Font', 'Size', 'Line height', 'Weight', 'Letter spacing', 'Usage'],
+			rows,
+		),
+		'',
+	];
+};
+
 const renderContrast = (): string[] => {
 	const results: ContrastResult[] = auditContrast(tokens);
 
@@ -160,6 +201,8 @@ const documentedGroups: readonly TokenGroup[] = [
 	'spacing',
 	'elevation',
 	'motion',
+	'fontFamily',
+	'fontWeight',
 ];
 
 export const renderTokenDocument = (): string => {
@@ -175,11 +218,15 @@ export const renderTokenDocument = (): string => {
 		'`intent.official.main` is the exact Midnight Indigo keyword pink, `#FF6AC1`. The other intent `main`',
 		'values are provisional proposals until the stable API.',
 		'',
+		'How to apply the typography, icon and motion tokens: [foundations.md](./foundations.md).',
+		'',
 		'## Tokens',
 		'',
 		...documentedGroups.slice(0, 6).flatMap(renderGroup),
 		...renderIntents(),
 		...documentedGroups.slice(6).flatMap(renderGroup),
+		...renderTypography(),
+		...renderGroup('iconSize'),
 		...renderContrast(),
 	].join('\n');
 };

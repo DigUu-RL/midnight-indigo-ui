@@ -6,8 +6,9 @@ import type { ReactElement, ReactNode } from 'react';
 import { createRoot, hydrateRoot } from 'react-dom/client';
 import type { Root } from 'react-dom/client';
 import { renderToReadableStream } from 'react-dom/server';
-import { afterEach, beforeAll, describe, expect, it } from 'vitest';
+import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 
+import { reducedMotionMediaQuery } from '../tokens/index.ts';
 import type { HexColor } from '../tokens/index.ts';
 import { createUiTheme, defaultUiTheme } from './create-ui-theme.ts';
 import type { CreateUiThemeOptions, UiTheme } from './create-ui-theme.ts';
@@ -130,6 +131,57 @@ describe('UiProvider in the browser', (): void => {
 		expect(uniqueStyles).toHaveLength(1);
 		expect(uniqueStyles[0]?.textContent).toContain(`--mi-intent-official-main: ${uniqueMain};`);
 		expect(uniqueStyles[0]?.textContent).toContain('@layer midnight-indigo.theme {');
+	});
+});
+
+describe('UiProvider and reduced motion', (): void => {
+	const stubMatchMedia = (reducedMotion: boolean): void => {
+		vi.stubGlobal('matchMedia', (query: string): MediaQueryList => {
+			const ignore = (): void => undefined;
+
+			return {
+				matches: reducedMotion && query === reducedMotionMediaQuery,
+				media: query,
+				onchange: null,
+				addEventListener: ignore,
+				removeEventListener: ignore,
+				addListener: ignore,
+				removeListener: ignore,
+				dispatchEvent: (): boolean => false,
+			};
+		});
+	};
+
+	afterEach((): void => {
+		vi.unstubAllGlobals();
+	});
+
+	it('removes Material UI transitions when the user prefers reduced motion', async (): Promise<void> => {
+		stubMatchMedia(true);
+
+		await renderInBrowser(
+			<UiProvider>
+				<ThemeProbe />
+			</UiProvider>,
+		);
+
+		expect(snapshots.at(-1)?.muiTheme.transitions.duration.standard).toBe(0);
+
+		expect(snapshots.at(-1)?.muiTheme.components?.MuiButtonBase?.defaultProps?.disableRipple).toBe(
+			true,
+		);
+	});
+
+	it('keeps the motion tokens otherwise', async (): Promise<void> => {
+		stubMatchMedia(false);
+
+		await renderInBrowser(
+			<UiProvider>
+				<ThemeProbe />
+			</UiProvider>,
+		);
+
+		expect(snapshots.at(-1)?.muiTheme.transitions.duration.standard).toBe(320);
 	});
 });
 

@@ -25,12 +25,13 @@ export {
 	cssVariablePrefix,
 	cssVariableReference,
 	listTokenEntries,
+	reducedMotionMediaQuery,
 	toCssVariables,
 } from './css-variables.ts';
 export type { CssLayer, TokenStylesheetOptions } from './css-variables.ts';
 export { tokenDescriptions } from './descriptions.ts';
 export type { TokenDescriptions } from './descriptions.ts';
-export { createDesignTokens, tokens } from './design-tokens.ts';
+export { createDesignTokens, tokens, typographyRoles } from './design-tokens.ts';
 export type {
 	AccentTokens,
 	BorderTokens,
@@ -38,6 +39,9 @@ export type {
 	DesignTokens,
 	ElevationTokens,
 	FocusTokens,
+	FontFamilyTokens,
+	FontWeightTokens,
+	IconSizeTokens,
 	MotionTokens,
 	RadiusTokens,
 	SpacingStep,
@@ -45,6 +49,9 @@ export type {
 	StateTokens,
 	SurfaceTokens,
 	TextTokens,
+	TypographyRole,
+	TypographyStyle,
+	TypographyTokens,
 } from './design-tokens.ts';
 export {
 	defaultIntentSources,

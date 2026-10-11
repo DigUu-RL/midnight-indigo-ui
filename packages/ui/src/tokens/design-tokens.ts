@@ -89,6 +89,50 @@ export interface MotionTokens {
 	};
 }
 
+export interface FontFamilyTokens {
+	sans: string;
+	mono: string;
+}
+
+export interface FontWeightTokens {
+	regular: string;
+	medium: string;
+	semibold: string;
+	bold: string;
+}
+
+/** Typographic roles, from the largest to the smallest, plus monospace code. */
+export const typographyRoles = [
+	'display',
+	'headingLarge',
+	'headingMedium',
+	'headingSmall',
+	'body',
+	'bodySmall',
+	'label',
+	'caption',
+	'code',
+] as const;
+
+export type TypographyRole = (typeof typographyRoles)[number];
+
+/** Field names match the CSS properties, so a role can be spread into a style object. */
+export interface TypographyStyle {
+	fontFamily: string;
+	fontSize: string;
+	fontWeight: string;
+	lineHeight: string;
+	letterSpacing: string;
+}
+
+export type TypographyTokens = Record<TypographyRole, TypographyStyle>;
+
+export interface IconSizeTokens {
+	small: string;
+	medium: string;
+	large: string;
+}
+
 export interface DesignTokens {
 	surface: SurfaceTokens;
 	text: TextTokens;
@@ -102,6 +146,10 @@ export interface DesignTokens {
 	spacing: SpacingTokens;
 	elevation: ElevationTokens;
 	motion: MotionTokens;
+	fontFamily: FontFamilyTokens;
+	fontWeight: FontWeightTokens;
+	typography: TypographyTokens;
+	iconSize: IconSizeTokens;
 }
 
 export const surfaceTokens: Readonly<SurfaceTokens> = {
@@ -186,6 +234,55 @@ export const motionTokens: Readonly<MotionTokens> = {
 	},
 };
 
+// Inter is the provisional typeface (decision D02). The library ships no font file: the application self-hosts
+// it, and the system fonts that follow keep the interface usable while it loads or when it is absent.
+export const fontFamilyTokens: Readonly<FontFamilyTokens> = {
+	sans: "'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+	mono: "ui-monospace, SFMono-Regular, 'Cascadia Mono', 'Roboto Mono', Menlo, Consolas, 'Liberation Mono', monospace",
+};
+
+export const fontWeightTokens: Readonly<FontWeightTokens> = {
+	regular: '400',
+	medium: '500',
+	semibold: '600',
+	bold: '700',
+};
+
+const createTypographyStyle = (
+	fontSize: string,
+	lineHeight: string,
+	fontWeight: string,
+	letterSpacing: string = '0',
+	fontFamily: string = fontFamilyTokens.sans,
+): TypographyStyle => {
+	return { fontFamily, fontSize, fontWeight, lineHeight, letterSpacing };
+};
+
+// Sizes in rem follow the browser text size and zoom; unitless line heights scale with them.
+export const typographyTokens: Readonly<TypographyTokens> = {
+	display: createTypographyStyle('2.25rem', '1.2', fontWeightTokens.bold, '-0.02em'),
+	headingLarge: createTypographyStyle('1.75rem', '1.25', fontWeightTokens.semibold, '-0.015em'),
+	headingMedium: createTypographyStyle('1.375rem', '1.3', fontWeightTokens.semibold, '-0.01em'),
+	headingSmall: createTypographyStyle('1.125rem', '1.4', fontWeightTokens.semibold),
+	body: createTypographyStyle('1rem', '1.5', fontWeightTokens.regular),
+	bodySmall: createTypographyStyle('0.875rem', '1.5', fontWeightTokens.regular),
+	label: createTypographyStyle('0.875rem', '1.4', fontWeightTokens.medium, '0.01em'),
+	caption: createTypographyStyle('0.75rem', '1.4', fontWeightTokens.regular, '0.02em'),
+	code: createTypographyStyle(
+		'0.875rem',
+		'1.5',
+		fontWeightTokens.regular,
+		'0',
+		fontFamilyTokens.mono,
+	),
+};
+
+export const iconSizeTokens: Readonly<IconSizeTokens> = {
+	small: '1rem',
+	medium: '1.25rem',
+	large: '1.5rem',
+};
+
 const chartSeries: readonly HexColor[] = [
 	'#FF6AC1',
 	'#65BDEB',
@@ -245,6 +342,14 @@ export const createDesignTokens = (
 			duration: { ...motionTokens.duration },
 			easing: { ...motionTokens.easing },
 		},
+		fontFamily: { ...fontFamilyTokens },
+		fontWeight: { ...fontWeightTokens },
+		typography: Object.fromEntries(
+			typographyRoles.map((role: TypographyRole): [TypographyRole, TypographyStyle] => {
+				return [role, { ...typographyTokens[role] }];
+			}),
+		) as TypographyTokens,
+		iconSize: { ...iconSizeTokens },
 	});
 };
 

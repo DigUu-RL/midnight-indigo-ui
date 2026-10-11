@@ -19,3 +19,40 @@
 .official-text {
 	color: var(--mi-intent-official-text);
 }
+
+.specimen {
+	display: grid;
+	gap: var(--mi-spacing-3);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/* Wraps the role name above the sample on narrow viewports and at high zoom. */
+.specimen-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--mi-spacing-1) var(--mi-spacing-4);
+	align-items: baseline;
+}
+
+.specimen-row > code {
+	flex: 0 0 8rem;
+	color: var(--mi-text-muted);
+}
+
+/* Truncation keeps the full text reachable: the element also carries it in `title`. */
+.truncate {
+	flex: 1 1 12rem;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.status {
+	display: flex;
+	gap: var(--mi-spacing-2);
+	align-items: center;
+	margin: var(--mi-spacing-4) 0 0;
+}

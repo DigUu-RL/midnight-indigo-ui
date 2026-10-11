@@ -9,11 +9,15 @@ import type { Context, ReactElement, ReactNode } from 'react';
 import { createThemeStylesheet, defaultUiTheme } from './create-ui-theme.ts';
 import type { UiTheme } from './create-ui-theme.ts';
 import { toMuiTheme } from './mui-theme.ts';
+import { usePrefersReducedMotion } from './use-prefers-reduced-motion.ts';
 
 export interface UiProviderProps {
 	/** Theme created by `createUiTheme`. Defaults to the official theme. */
 	theme?: UiTheme;
-	/** Applies the base document styles: dark canvas background, text color and box sizing. Defaults to `true`. */
+	/**
+	 * Applies the base document styles: dark canvas background, text color, body typography, monospace code and box
+	 * sizing. Defaults to `true`.
+	 */
 	baseline?: boolean;
 	children?: ReactNode;
 }
@@ -39,15 +43,21 @@ const hashText = (text: string): string => {
 /**
  * Root provider of Midnight Indigo: UI. The theme stylesheet is rendered as a React 19 hoistable `<style>`:
  * it lands in the `<head>` of the server HTML before any content (no unstyled flash), and React deduplicates it
- * by `href` across streamed chunks, nested providers and hydration.
+ * by `href` across streamed chunks, nested providers and hydration. Material UI transitions follow the reduced motion
+ * preference of the user.
  */
 export const UiProvider = ({
 	theme = defaultUiTheme,
 	baseline = true,
 	children,
 }: UiProviderProps): ReactElement => {
+	const reducedMotion: boolean = usePrefersReducedMotion();
 	const stylesheet: string = useMemo((): string => createThemeStylesheet(theme), [theme]);
-	const muiTheme: Theme = useMemo((): Theme => toMuiTheme(theme), [theme]);
+
+	const muiTheme: Theme = useMemo(
+		(): Theme => toMuiTheme(theme, { reducedMotion }),
+		[theme, reducedMotion],
+	);
 
 	return (
 		<UiThemeContext value={theme}>

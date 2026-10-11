@@ -71,6 +71,21 @@ describe('semantic tokens instead of scattered values', (): void => {
 	);
 });
 
+describe('typography tokens instead of literal fonts and sizes', (): void => {
+	// A literal string or number right after a font property, in CSS or in a style object.
+	const literalFontPattern: RegExp = /font-?(?:family|size|weight)\s*:\s*['"`\d]/gi;
+
+	it.each(productionFiles.filter((file: string): boolean => !isTokenSource(file)))(
+		'%s takes font values from tokens',
+		(file: string): void => {
+			expect(
+				readSource(file).match(literalFontPattern) ?? [],
+				'Reference `tokens.typography` or `themeVariables.typography` instead',
+			).toEqual([]);
+		},
+	);
+});
+
 describe('dark-only', (): void => {
 	const lightModePattern: RegExp =
 		/prefers-color-scheme|color-scheme:\s*light|lightTheme|lightPalette|colorMode|toggleTheme/i;
