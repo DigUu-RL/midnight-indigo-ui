@@ -1,0 +1,10 @@
+{
+	"palette": {
+		"official": { "main": "#FF6AC1" },
+		"default": { "main": "#9290A8" },
+		"success": { "main": "#36C995" },
+		"warning": { "main": "#F2B84B" },
+		"error": { "main": "#F2545B" },
+		"info": { "main": "#65BDEB" }
+	}
+}

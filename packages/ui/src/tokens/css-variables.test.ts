@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import {
 	createTokenStylesheet,
+	cssLayers,
 	cssVariableName,
 	cssVariableReference,
 	listTokenEntries,
@@ -14,6 +15,7 @@ describe('CSS variable names', (): void => {
 		expect(cssVariableName(['intent', 'official', 'contrastText'])).toBe(
 			'--mi-intent-official-contrast-text',
 		);
+
 		expect(cssVariableReference(['surface', 'canvas'])).toBe('var(--mi-surface-canvas)');
 	});
 
@@ -47,6 +49,18 @@ describe('createTokenStylesheet', (): void => {
 	});
 
 	it('accepts a custom selector', (): void => {
-		expect(createTokenStylesheet(tokens, '.app')).toMatch(/^\.app \{/);
+		expect(createTokenStylesheet(tokens, { selector: '.app' })).toMatch(/^ {2}\.app \{$/m);
+	});
+
+	it('declares the layer order before wrapping the declarations in the defaults layer', (): void => {
+		expect(stylesheet).toMatch(
+			/^@layer midnight-indigo\.defaults, midnight-indigo\.theme;\n\n@layer midnight-indigo\.defaults \{\n/,
+		);
+	});
+
+	it('wraps the declarations in the requested layer', (): void => {
+		expect(createTokenStylesheet(tokens, { layer: cssLayers.theme })).toContain(
+			'@layer midnight-indigo.theme {',
+		);
 	});
 });

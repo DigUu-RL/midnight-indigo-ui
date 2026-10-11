@@ -65,10 +65,25 @@
 		"test": "vitest run",
 		"check:package": "publint --strict && attw --pack --profile esm-only --exclude-entrypoints ./styles.css"
 	},
+	"peerDependencies": {
+		"@emotion/react": "^11.14.0",
+		"@emotion/styled": "^11.14.0",
+		"@mui/material": "^9.5.0",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0"
+	},
 	"devDependencies": {
 		"@arethetypeswrong/cli": "catalog:",
+		"@emotion/react": "catalog:",
+		"@emotion/styled": "catalog:",
+		"@mui/material": "catalog:",
 		"@types/node": "catalog:",
+		"@types/react": "catalog:",
+		"@types/react-dom": "catalog:",
+		"jsdom": "catalog:",
 		"publint": "catalog:",
+		"react": "catalog:",
+		"react-dom": "catalog:",
 		"tsdown": "catalog:",
 		"typescript": "catalog:",
 		"vite": "catalog:",

@@ -31,6 +31,11 @@ const sourceFiles: string[] = listFilesRecursively(sourceDirectory).map((file: s
 
 const readSource = (file: string): string => readFileSync(join(sourceDirectory, file), 'utf8');
 
+// Tests are skipped by the rules below: they spell out colors and forbidden patterns as fixtures.
+const productionFiles: string[] = sourceFiles.filter(
+	(file: string): boolean => !/\.test\.tsx?$/.test(file),
+);
+
 // `src/tokens` owns color values; `styles.css` is generated from it.
 const isTokenSource = (file: string): boolean => {
 	return file.startsWith('tokens/') || file === 'styles.css';
@@ -55,7 +60,7 @@ describe('generated token artifacts', (): void => {
 describe('semantic tokens instead of scattered values', (): void => {
 	const hexColorPattern: RegExp = /#[0-9a-f]{3,8}\b/gi;
 
-	it.each(sourceFiles.filter((file: string): boolean => !isTokenSource(file)))(
+	it.each(productionFiles.filter((file: string): boolean => !isTokenSource(file)))(
 		'%s has no hexadecimal color',
 		(file: string): void => {
 			expect(
@@ -69,11 +74,6 @@ describe('semantic tokens instead of scattered values', (): void => {
 describe('dark-only', (): void => {
 	const lightModePattern: RegExp =
 		/prefers-color-scheme|color-scheme:\s*light|lightTheme|lightPalette|colorMode|toggleTheme/i;
-
-	// Tests are skipped: they spell out the forbidden patterns to assert their absence.
-	const productionFiles: string[] = sourceFiles.filter(
-		(file: string): boolean => !/\.test\.tsx?$/.test(file),
-	);
 
 	it.each(productionFiles)('%s has no light palette or theme toggle', (file: string): void => {
 		expect(readSource(file)).not.toMatch(lightModePattern);

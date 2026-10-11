@@ -14,6 +14,8 @@ const buildConfiguration: UserConfig = defineConfig({
 	sourcemap: true,
 	clean: true,
 	copy: [{ from: 'src/styles.css', to: 'dist' }],
+	// With `unbundle` each module keeps its own file, so `'use client'` survives; a consumer test asserts it.
+	checks: { moduleLevelDirective: false },
 });
 
 export default buildConfiguration;
