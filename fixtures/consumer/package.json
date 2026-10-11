@@ -1,16 +1,16 @@
 {
-  "name": "@midnight-indigo/consumer-fixture",
-  "private": true,
-  "description": "Simulated external consumer: imports @midnight-indigo/ui by name from the compiled output.",
-  "type": "module",
-  "scripts": {
-    "test": "tsc -p tsconfig.json && tsc -p tsconfig.bundler.json && node --test \"test/**/*.test.ts\""
-  },
-  "dependencies": {
-    "@midnight-indigo/ui": "workspace:*"
-  },
-  "devDependencies": {
-    "@types/node": "catalog:",
-    "typescript": "catalog:"
-  }
+	"name": "@midnight-indigo/consumer-fixture",
+	"private": true,
+	"description": "Simulated external consumer: imports @midnight-indigo/ui by name from the compiled output.",
+	"type": "module",
+	"scripts": {
+		"test": "tsc -p tsconfig.json && tsc -p tsconfig.bundler.json && node --test \"test/**/*.test.ts\""
+	},
+	"dependencies": {
+		"@midnight-indigo/ui": "workspace:*"
+	},
+	"devDependencies": {
+		"@types/node": "catalog:",
+		"typescript": "catalog:"
+	}
 }

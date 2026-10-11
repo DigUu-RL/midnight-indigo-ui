@@ -1,31 +1,31 @@
 {
-  "name": "midnight-indigo-ui-monorepo",
-  "private": true,
-  "type": "module",
-  "packageManager": "pnpm@12.11.2",
-  "engines": {
-    "node": ">=22.18.0"
-  },
-  "scripts": {
-    "build": "pnpm -r run build",
-    "typecheck": "tsc -p tsconfig.json && pnpm -r run typecheck",
-    "lint": "eslint .",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "test": "pnpm -r run test",
-    "check:package": "pnpm --filter @midnight-indigo/ui run check:package",
-    "check:source": "node scripts/check-source-clean.ts",
-    "check": "pnpm build && pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm check:package && pnpm check:source"
-  },
-  "devDependencies": {
-    "@eslint/js": "catalog:",
-    "@stylistic/eslint-plugin": "catalog:",
-    "@types/estree": "catalog:",
-    "@types/node": "catalog:",
-    "eslint": "catalog:",
-    "jiti": "catalog:",
-    "prettier": "catalog:",
-    "typescript": "catalog:",
-    "typescript-eslint": "catalog:"
-  }
+	"name": "midnight-indigo-ui-monorepo",
+	"private": true,
+	"type": "module",
+	"packageManager": "pnpm@12.11.2",
+	"engines": {
+		"node": ">=22.18.0"
+	},
+	"scripts": {
+		"build": "pnpm -r run build",
+		"typecheck": "tsc -p tsconfig.json && pnpm -r run typecheck",
+		"lint": "eslint .",
+		"format": "prettier --write .",
+		"format:check": "prettier --check .",
+		"test": "pnpm -r run test",
+		"check:package": "pnpm --filter @midnight-indigo/ui run check:package",
+		"check:source": "node scripts/check-source-clean.ts",
+		"check": "pnpm build && pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm check:package && pnpm check:source"
+	},
+	"devDependencies": {
+		"@eslint/js": "catalog:",
+		"@stylistic/eslint-plugin": "catalog:",
+		"@types/estree": "catalog:",
+		"@types/node": "catalog:",
+		"eslint": "catalog:",
+		"jiti": "catalog:",
+		"prettier": "catalog:",
+		"typescript": "catalog:",
+		"typescript-eslint": "catalog:"
+	}
 }
