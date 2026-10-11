@@ -75,6 +75,21 @@ export interface ElevationTokens {
 	high: string;
 }
 
+/** Stacking order (`z-index`) of the layers above the page, from the lowest to the highest. */
+export interface LayerTokens {
+	base: string;
+	sticky: string;
+	drawer: string;
+	dialog: string;
+	popover: string;
+	toast: string;
+	tooltip: string;
+}
+
+export interface BackdropTokens {
+	scrim: string;
+}
+
 export interface MotionTokens {
 	duration: {
 		instant: string;
@@ -145,6 +160,8 @@ export interface DesignTokens {
 	radius: RadiusTokens;
 	spacing: SpacingTokens;
 	elevation: ElevationTokens;
+	layer: LayerTokens;
+	backdrop: BackdropTokens;
 	motion: MotionTokens;
 	fontFamily: FontFamilyTokens;
 	fontWeight: FontWeightTokens;
@@ -218,6 +235,23 @@ export const elevationTokens: Readonly<ElevationTokens> = {
 	low: '0 1px 2px 0 rgb(0 0 0 / 0.6)',
 	medium: '0 4px 12px -2px rgb(0 0 0 / 0.7)',
 	high: '0 12px 32px -4px rgb(0 0 0 / 0.8)',
+};
+
+// Spaced by 100 so an application can slot its own layer in between. A popover or a menu opened inside a dialog
+// stays above it, toasts stay above dialogs, and tooltips above everything.
+export const layerTokens: Readonly<LayerTokens> = {
+	base: '0',
+	sticky: '1100',
+	drawer: '1200',
+	dialog: '1300',
+	popover: '1400',
+	toast: '1500',
+	tooltip: '1600',
+};
+
+// The canvas at 72%: the page behind a dialog stays recognizable but recedes.
+export const backdropTokens: Readonly<BackdropTokens> = {
+	scrim: 'rgb(2 1 8 / 0.72)',
 };
 
 export const motionTokens: Readonly<MotionTokens> = {
@@ -338,6 +372,8 @@ export const createDesignTokens = (
 		radius: { ...radiusTokens },
 		spacing: { ...spacingTokens },
 		elevation: { ...elevationTokens },
+		layer: { ...layerTokens },
+		backdrop: { ...backdropTokens },
 		motion: {
 			duration: { ...motionTokens.duration },
 			easing: { ...motionTokens.easing },

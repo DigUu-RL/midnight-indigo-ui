@@ -45,6 +45,25 @@ export const styleRulesOf = (element: Element): string[] => {
 	});
 };
 
+/**
+ * Every rule of an element styled by a Material UI component (with `sx` or theme overrides), joined. Their Emotion
+ * classes carry the component name after the hash (`css-1abc-MuiTooltip-tooltip`).
+ */
+export const materialRulesOf = (element: Element): string => {
+	const classNames: string[] = [...element.classList].filter((className: string): boolean => {
+		return className.startsWith('css-');
+	});
+
+	expect(classNames, 'The element has no Emotion class.').not.toHaveLength(0);
+
+	return [...document.querySelectorAll('style[data-emotion]')]
+		.map((style: Element): string => style.textContent)
+		.filter((rule: string): boolean => {
+			return classNames.some((className: string): boolean => rule.includes(`.${className}`));
+		})
+		.join('\n');
+};
+
 /** The declarations of the first rule whose selector (with `&` for the element) is exactly `selector`. */
 export const declarationsOf = (element: Element, selector: string): string => {
 	const prefix: string = `${selector}{`;

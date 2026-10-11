@@ -188,6 +188,28 @@ Shadows calibrated for the dark canvas; pair them with a lighter surface and a b
 | `elevation.medium` | `--mi-elevation-medium` | `0 4px 12px -2px rgb(0 0 0 / 0.7)` | Menus and popovers. |
 | `elevation.high` | `--mi-elevation-high` | `0 12px 32px -4px rgb(0 0 0 / 0.8)` | Dialogs. |
 
+### `layer`
+
+Stacking order (`z-index`) of the layers above the page. Overlays take them already; use them for your own layers.
+
+| Token | CSS variable | Value | Purpose |
+| --- | --- | --- | --- |
+| `layer.base` | `--mi-layer-base` | `0` | Content of the page. |
+| `layer.sticky` | `--mi-layer-sticky` | `1100` | Sticky headers and toolbars, above the content they scroll over. |
+| `layer.drawer` | `--mi-layer-drawer` | `1200` | Drawers. |
+| `layer.dialog` | `--mi-layer-dialog` | `1300` | Dialogs and confirmation dialogs. |
+| `layer.popover` | `--mi-layer-popover` | `1400` | Popovers and menus, also when opened inside a dialog or a drawer. |
+| `layer.toast` | `--mi-layer-toast` | `1500` | Toast notifications, above every overlay so they are never hidden. |
+| `layer.tooltip` | `--mi-layer-tooltip` | `1600` | Tooltips, the highest layer. |
+
+### `backdrop`
+
+Scrim behind modal overlays, which keeps the page visible but out of reach.
+
+| Token | CSS variable | Value | Purpose |
+| --- | --- | --- | --- |
+| `backdrop.scrim` | `--mi-backdrop-scrim` | `rgb(2 1 8 / 0.72)` | Translucent canvas behind dialogs and drawers. |
+
 ### `motion`
 
 Durations and easing curves. Durations become 0ms under `prefers-reduced-motion: reduce`.

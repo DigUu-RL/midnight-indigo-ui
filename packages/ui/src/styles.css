@@ -136,6 +136,14 @@
     --mi-elevation-low: 0 1px 2px 0 rgb(0 0 0 / 0.6);
     --mi-elevation-medium: 0 4px 12px -2px rgb(0 0 0 / 0.7);
     --mi-elevation-high: 0 12px 32px -4px rgb(0 0 0 / 0.8);
+    --mi-layer-base: 0;
+    --mi-layer-sticky: 1100;
+    --mi-layer-drawer: 1200;
+    --mi-layer-dialog: 1300;
+    --mi-layer-popover: 1400;
+    --mi-layer-toast: 1500;
+    --mi-layer-tooltip: 1600;
+    --mi-backdrop-scrim: rgb(2 1 8 / 0.72);
     --mi-motion-duration-instant: 0ms;
     --mi-motion-duration-fast: 120ms;
     --mi-motion-duration-moderate: 200ms;

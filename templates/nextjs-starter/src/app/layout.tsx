@@ -2,6 +2,7 @@
 // are collected during server rendering and streamed into the `<head>` instead of being injected after hydration.
 // Inter is self-hosted: the font package ships the files, the bundler serves them and no request leaves the origin.
 import '@fontsource-variable/inter';
+import { ToastProvider } from '@midnight-indigo/ui/feedback';
 import { UiProvider } from '@midnight-indigo/ui/theme';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
 import type { Metadata } from 'next';
@@ -23,7 +24,9 @@ const RootLayout = ({ children }: Readonly<RootLayoutProps>): ReactElement => {
 		<html lang='en'>
 			<body>
 				<AppRouterCacheProvider>
-					<UiProvider theme={theme}>{children}</UiProvider>
+					<UiProvider theme={theme}>
+						<ToastProvider>{children}</ToastProvider>
+					</UiProvider>
 				</AppRouterCacheProvider>
 			</body>
 		</html>

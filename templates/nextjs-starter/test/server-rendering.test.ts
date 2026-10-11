@@ -222,6 +222,14 @@ test('the form is rendered on the server with labelled fields and a described sw
 	assert.match(page.html, /<button type="submit"[^>]*>.*?Save profile<\/button>/);
 });
 
+test('the alerts and overlay triggers are rendered on the server, the overlays themselves are not', (): void => {
+	assert.match(page.html, /Two invoices are overdue/);
+	assert.match(page.html, /aria-haspopup="menu" aria-expanded="false"[^>]*>.*?More actions/);
+	assert.match(page.html, /aria-haspopup="dialog" aria-expanded="false"[^>]*>.*?Filters/);
+	assert.match(page.html, /aria-label="Copy link"/);
+	assert.doesNotMatch(page.html, /role="(?:dialog|alertdialog|menu|tooltip)"/);
+});
+
 test('the component styles arrive in the head of the first flush, so controls paint styled', (): void => {
 	const head: string = page.shell.slice(0, page.shell.indexOf('</head>'));
 
