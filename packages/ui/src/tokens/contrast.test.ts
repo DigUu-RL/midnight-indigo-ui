@@ -5,11 +5,11 @@ import {
 	createContrastPairs,
 	evaluateContrastPair,
 	resolveTokenPath,
-} from './contrast.ts';
-import type { ContrastPair, ContrastResult } from './contrast.ts';
-import { createDesignTokens, tokens } from './design-tokens.ts';
-import type { DesignTokens } from './design-tokens.ts';
-import { defaultIntentSources } from './intents.ts';
+} from '#src/tokens/contrast.ts';
+import type { ContrastPair, ContrastResult } from '#src/tokens/contrast.ts';
+import { createDesignTokens, tokens } from '#src/tokens/design-tokens.ts';
+import type { DesignTokens } from '#src/tokens/design-tokens.ts';
+import { defaultIntentSources } from '#src/tokens/intents.ts';
 
 describe('official contrast pairs', (): void => {
 	const namedResults: [string, ContrastResult][] = auditContrast(tokens).map(

@@ -1,6 +1,6 @@
 // Typed accessors to the token CSS custom properties, for CSS-in-JS, inline styles and component code.
-import { cssVariableReference, tokens } from '../tokens/index.ts';
-import type { DesignTokens } from '../tokens/index.ts';
+import { cssVariableReference, tokens } from '#src/tokens/index.ts';
+import type { DesignTokens } from '#src/tokens/index.ts';
 
 type VariableTree<Node> = Node extends string
 	? string

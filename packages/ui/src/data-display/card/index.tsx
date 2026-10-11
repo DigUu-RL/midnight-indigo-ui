@@ -5,8 +5,8 @@ import type { CSSObject } from '@mui/material/styles';
 import { createContext, use, useId } from 'react';
 import type { ComponentPropsWithRef, Context, ReactElement, ReactNode } from 'react';
 
-import { forwardAllBut } from '../../shared/appearance.ts';
-import { themeVariables } from '../../theme/theme-variables.ts';
+import { forwardAllBut } from '#src/shared/appearance.ts';
+import { themeVariables } from '#src/theme/theme-variables.ts';
 
 const { spacing, typography, surface, border, text, radius, elevation }: typeof themeVariables =
 	themeVariables;

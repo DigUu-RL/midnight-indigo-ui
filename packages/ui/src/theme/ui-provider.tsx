@@ -6,10 +6,10 @@ import type { Theme } from '@mui/material/styles';
 import { createContext, use, useMemo } from 'react';
 import type { Context, ReactElement, ReactNode } from 'react';
 
-import { createThemeStylesheet, defaultUiTheme } from './create-ui-theme.ts';
-import type { UiTheme } from './create-ui-theme.ts';
-import { toMuiTheme } from './mui-theme.ts';
-import { usePrefersReducedMotion } from './use-prefers-reduced-motion.ts';
+import { createThemeStylesheet, defaultUiTheme } from '#src/theme/create-ui-theme.ts';
+import type { UiTheme } from '#src/theme/create-ui-theme.ts';
+import { toMuiTheme } from '#src/theme/mui-theme.ts';
+import { usePrefersReducedMotion } from '#src/theme/use-prefers-reduced-motion.ts';
 
 export interface UiProviderProps {
 	/** Theme created by `createUiTheme`. Defaults to the official theme. */

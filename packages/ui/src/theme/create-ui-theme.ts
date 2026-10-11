@@ -6,16 +6,16 @@ import {
 	cssLayers,
 	defaultIntentSources,
 	semanticIntents,
-} from '../tokens/index.ts';
+} from '#src/tokens/index.ts';
 import type {
 	ContrastResult,
 	DesignTokens,
 	IntentSource,
 	IntentSources,
 	SemanticIntent,
-} from '../tokens/index.ts';
-import { parseUiThemeConfig } from './theme-config.ts';
-import type { PaletteConfig, UiThemeConfig } from './theme-config.ts';
+} from '#src/tokens/index.ts';
+import { parseUiThemeConfig } from '#src/theme/theme-config.ts';
+import type { PaletteConfig, UiThemeConfig } from '#src/theme/theme-config.ts';
 
 /**
  * A resolved theme. Plain, frozen data without functions, so a Server Component can create it and pass it to

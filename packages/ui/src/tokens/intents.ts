@@ -1,6 +1,11 @@
 // Semantic intents and the deterministic derivation of their full token set from a `main` color.
-import { ensureContrast, mixColors, normalizeHexColor, pickHighestContrast } from './color.ts';
-import type { HexColor } from './color.ts';
+import {
+	ensureContrast,
+	mixColors,
+	normalizeHexColor,
+	pickHighestContrast,
+} from '#src/tokens/color.ts';
+import type { HexColor } from '#src/tokens/color.ts';
 
 export const semanticIntents = [
 	'official',

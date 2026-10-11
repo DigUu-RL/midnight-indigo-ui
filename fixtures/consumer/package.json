@@ -11,13 +11,17 @@
 		"@emotion/styled": "catalog:",
 		"@midnight-indigo/ui": "workspace:*",
 		"@mui/material": "catalog:",
+		"@mui/x-date-pickers": "catalog:",
+		"date-fns": "catalog:",
 		"react": "catalog:",
-		"react-dom": "catalog:"
+		"react-dom": "catalog:",
+		"react-hook-form": "catalog:"
 	},
 	"devDependencies": {
 		"@types/node": "catalog:",
 		"@types/react": "catalog:",
 		"@types/react-dom": "catalog:",
+		"@types/react-transition-group": "catalog:",
 		"typescript": "catalog:"
 	}
 }

@@ -2,10 +2,10 @@
 // Action with a visible text label.
 import type { ReactElement, ReactNode } from 'react';
 
-import type { Appearance, ControlSize } from '../../shared/appearance.ts';
-import type { SemanticIntent } from '../../tokens/index.ts';
-import { ButtonRoot, ButtonSlot, LoadingIndicator } from '../button-root/index.tsx';
-import type { NativeButtonAttributes } from '../button-root/index.tsx';
+import type { Appearance, ControlSize } from '#src/shared/appearance.ts';
+import type { SemanticIntent } from '#src/tokens/index.ts';
+import { ButtonRoot, ButtonSlot, LoadingIndicator } from '#src/buttons/button-root/index.tsx';
+import type { NativeButtonAttributes } from '#src/buttons/button-root/index.tsx';
 
 export type ButtonVariant = Appearance;
 

@@ -1,8 +1,8 @@
 // Contrast pairs that the token set must satisfy (WCAG 2.2 AA) and an audit with explanatory failures.
-import { contrastRatio, formatContrastRatio } from './color.ts';
-import type { DesignTokens, SurfaceTokens } from './design-tokens.ts';
-import { semanticIntents } from './intents.ts';
-import type { IntentTokens, SemanticIntent } from './intents.ts';
+import { contrastRatio, formatContrastRatio } from '#src/tokens/color.ts';
+import type { DesignTokens, SurfaceTokens } from '#src/tokens/design-tokens.ts';
+import { semanticIntents } from '#src/tokens/intents.ts';
+import type { IntentTokens, SemanticIntent } from '#src/tokens/intents.ts';
 
 /** Minimum ratios: 4.5:1 for normal text; 3:1 for large text and required non-text indicators. */
 export const contrastMinimums = {

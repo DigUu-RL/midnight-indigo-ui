@@ -8,16 +8,16 @@ export {
 	normalizeHexColor,
 	parseHexColor,
 	relativeLuminance,
-} from './color.ts';
-export type { HexColor, RgbColor } from './color.ts';
+} from '#src/tokens/color.ts';
+export type { HexColor, RgbColor } from '#src/tokens/color.ts';
 export {
 	auditContrast,
 	contrastMinimums,
 	createContrastPairs,
 	evaluateContrastPair,
 	resolveTokenPath,
-} from './contrast.ts';
-export type { ContrastPair, ContrastRequirement, ContrastResult } from './contrast.ts';
+} from '#src/tokens/contrast.ts';
+export type { ContrastPair, ContrastRequirement, ContrastResult } from '#src/tokens/contrast.ts';
 export {
 	createTokenStylesheet,
 	cssLayers,
@@ -27,11 +27,11 @@ export {
 	listTokenEntries,
 	reducedMotionMediaQuery,
 	toCssVariables,
-} from './css-variables.ts';
-export type { CssLayer, TokenStylesheetOptions } from './css-variables.ts';
-export { tokenDescriptions } from './descriptions.ts';
-export type { TokenDescriptions } from './descriptions.ts';
-export { createDesignTokens, tokens, typographyRoles } from './design-tokens.ts';
+} from '#src/tokens/css-variables.ts';
+export type { CssLayer, TokenStylesheetOptions } from '#src/tokens/css-variables.ts';
+export { tokenDescriptions } from '#src/tokens/descriptions.ts';
+export type { TokenDescriptions } from '#src/tokens/descriptions.ts';
+export { createDesignTokens, tokens, typographyRoles } from '#src/tokens/design-tokens.ts';
 export type {
 	AccentTokens,
 	BorderTokens,
@@ -52,14 +52,14 @@ export type {
 	TypographyRole,
 	TypographyStyle,
 	TypographyTokens,
-} from './design-tokens.ts';
+} from '#src/tokens/design-tokens.ts';
 export {
 	defaultIntentSources,
 	deriveIntentPalette,
 	deriveIntentTokens,
 	officialMainColor,
 	semanticIntents,
-} from './intents.ts';
+} from '#src/tokens/intents.ts';
 export type {
 	IntentDerivationContext,
 	IntentPalette,
@@ -67,4 +67,4 @@ export type {
 	IntentSources,
 	IntentTokens,
 	SemanticIntent,
-} from './intents.ts';
+} from '#src/tokens/intents.ts';

@@ -2,8 +2,8 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { declarationsOf, expectNoAxeViolations } from '../../../test/component-harness.ts';
-import { Divider } from './index.tsx';
+import { declarationsOf, expectNoAxeViolations } from '#test/component-harness.ts';
+import { Divider } from '#src/data-display/divider/index.tsx';
 
 afterEach((): void => {
 	cleanup();

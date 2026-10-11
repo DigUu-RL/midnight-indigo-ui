@@ -2,8 +2,14 @@ import { defineConfig } from 'tsdown';
 import type { UserConfig } from 'tsdown';
 
 const buildConfiguration: UserConfig = defineConfig({
-	// Each `src/<domain>/index.ts` becomes a public subpath; keep it in sync with `exports`.
-	entry: ['src/index.ts', 'src/*/index.ts'],
+	// Each `src/<domain>/index.ts` becomes a public subpath, plus the optional form integrations, whose dependencies
+	// stay out of `forms`; keep it in sync with `exports`.
+	entry: [
+		'src/index.ts',
+		'src/*/index.ts',
+		'src/forms/date-pickers/index.ts',
+		'src/forms/react-hook-form/index.ts',
+	],
 	outDir: 'dist',
 	format: 'esm',
 	platform: 'neutral',

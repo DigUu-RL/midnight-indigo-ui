@@ -1,8 +1,8 @@
 import type { Theme } from '@mui/material/styles';
 import { describe, expect, it } from 'vitest';
 
-import { createUiTheme, defaultUiTheme } from './create-ui-theme.ts';
-import { toMuiTheme } from './mui-theme.ts';
+import { createUiTheme, defaultUiTheme } from '#src/theme/create-ui-theme.ts';
+import { toMuiTheme } from '#src/theme/mui-theme.ts';
 
 describe('toMuiTheme', (): void => {
 	const muiTheme: Theme = toMuiTheme(defaultUiTheme);

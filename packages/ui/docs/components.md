@@ -79,7 +79,7 @@ States exist only where they mean something for the element.
 | loading  | Button, IconButton        | `aria-busy` + `aria-disabled`, ring in place of the icon; keeps its look and focus, ignores clicks and submission. |
 | selected | Chip (with `onClick`)     | `aria-pressed`, `solid` look **and** a check mark (never color alone).                                             |
 | current  | Carousel position buttons | `aria-current`, a wider and filled mark.                                                                           |
-| invalid  | none in F05               | Belongs to form controls (F06).                                                                                    |
+| invalid  | form controls             | `aria-invalid`, error message with an icon, thicker error boundary; see [forms.md](./forms.md).                    |
 
 Loading is not disabled: a disabled button means the action is unavailable, a loading one that it is running.
 Announce the outcome with a status message or toast (F07).

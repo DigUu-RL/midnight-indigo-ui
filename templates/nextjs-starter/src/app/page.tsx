@@ -3,10 +3,11 @@ import { themeVariables } from '@midnight-indigo/ui/theme';
 import { Suspense } from 'react';
 import type { ReactElement } from 'react';
 
-import { ComponentsShowcase } from './components-showcase.tsx';
-import { StreamedPanel } from './streamed-panel.tsx';
-import { ThemeSummary } from './theme-summary.tsx';
-import { TypographySpecimen } from './typography-specimen.tsx';
+import { ComponentsShowcase } from '#src/app/components-showcase.tsx';
+import { ProfileForm } from '#src/app/profile-form.tsx';
+import { StreamedPanel } from '#src/app/streamed-panel.tsx';
+import { ThemeSummary } from '#src/app/theme-summary.tsx';
+import { TypographySpecimen } from '#src/app/typography-specimen.tsx';
 
 const HomePage = (): ReactElement => {
 	return (
@@ -17,6 +18,7 @@ const HomePage = (): ReactElement => {
 			<ThemeSummary />
 			<TypographySpecimen />
 			<ComponentsShowcase />
+			<ProfileForm />
 			<Suspense fallback={<p className='panel'>Loading the streamed panel…</p>}>
 				<StreamedPanel />
 			</Suspense>

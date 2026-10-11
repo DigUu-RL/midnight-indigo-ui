@@ -1,10 +1,10 @@
 // Styles shared by every component: one resolver for `intent` × `variant`, the focus ring and the disabled look.
 import type { CSSObject } from '@mui/material/styles';
 
-import { themeVariables } from '../theme/theme-variables.ts';
-import type { ThemeVariables } from '../theme/theme-variables.ts';
-import { reducedMotionMediaQuery } from '../tokens/index.ts';
-import type { SemanticIntent } from '../tokens/index.ts';
+import { themeVariables } from '#src/theme/theme-variables.ts';
+import type { ThemeVariables } from '#src/theme/theme-variables.ts';
+import { reducedMotionMediaQuery } from '#src/tokens/index.ts';
+import type { SemanticIntent } from '#src/tokens/index.ts';
 
 /**
  * How strongly a component shows its intent: `solid` fills with `main`, `soft` with the tinted `container`,

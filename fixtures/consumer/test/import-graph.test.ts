@@ -62,6 +62,7 @@ const lightEntries: readonly string[] = [
 	'@midnight-indigo/ui/buttons',
 	'@midnight-indigo/ui/data-display',
 	'@midnight-indigo/ui/feedback',
+	'@midnight-indigo/ui/forms',
 ];
 
 for (const specifier of lightEntries) {
@@ -84,6 +85,41 @@ for (const specifier of lightEntries) {
 		assert.deepEqual(unexpected, []);
 	});
 }
+
+// The optional integrations reach their own peers, and only them, besides React and Material UI.
+const optionalEntries: readonly [string, RegExp][] = [
+	['@midnight-indigo/ui/forms/date-pickers', /^(@mui\/x-date-pickers\/[\w/]+|date-fns)$/],
+	['@midnight-indigo/ui/forms/react-hook-form', /^react-hook-form$/],
+];
+
+for (const [specifier, optionalPeers] of optionalEntries) {
+	test(`${specifier} depends only on its optional peers besides React and Material UI`, (): void => {
+		const { files, packages }: ImportGraph = importGraphOf(specifier);
+
+		const unexpected: string[] = packages.filter((name: string): boolean => {
+			return !allowedPackages.test(name) && !optionalPeers.test(name);
+		});
+
+		assert.ok(packages.some((name: string): boolean => optionalPeers.test(name)));
+		assert.deepEqual(unexpected, []);
+
+		assert.deepEqual(
+			files.filter((file: string): boolean => {
+				return heavyDomains.some((domain: string): boolean => file.startsWith(domain));
+			}),
+			[],
+		);
+	});
+}
+
+test('compiled files keep no subpath import of the source tree', (): void => {
+	const leaked: string[] = lightEntries
+		.concat(optionalEntries.map(([specifier]: [string, RegExp]): string => specifier))
+		.flatMap((specifier: string): string[] => importGraphOf(specifier).packages)
+		.filter((name: string): boolean => name.startsWith('#'));
+
+	assert.deepEqual(leaked, []);
+});
 
 test('@midnight-indigo/ui/tokens does not depend on React', (): void => {
 	assert.deepEqual(importGraphOf('@midnight-indigo/ui/tokens').packages, []);

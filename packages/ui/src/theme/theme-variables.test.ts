@@ -5,8 +5,8 @@ import {
 	listTokenEntries,
 	resolveTokenPath,
 	tokens,
-} from '../tokens/index.ts';
-import { themeVariables } from './theme-variables.ts';
+} from '#src/tokens/index.ts';
+import { themeVariables } from '#src/theme/theme-variables.ts';
 
 describe('themeVariables', (): void => {
 	it('references the CSS custom property of each token', (): void => {

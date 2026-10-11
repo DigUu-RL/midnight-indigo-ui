@@ -5,10 +5,10 @@ import type { CSSObject } from '@mui/material/styles';
 import { useEffect, useRef, useState } from 'react';
 import type { ComponentPropsWithRef, ReactElement, RefObject } from 'react';
 
-import { appearanceStyles, assertLabel, forwardAllBut } from '../../shared/appearance.ts';
-import type { ControlSize } from '../../shared/appearance.ts';
-import { themeVariables } from '../../theme/theme-variables.ts';
-import type { SemanticIntent } from '../../tokens/index.ts';
+import { appearanceStyles, assertLabel, forwardAllBut } from '#src/shared/appearance.ts';
+import type { ControlSize } from '#src/shared/appearance.ts';
+import { themeVariables } from '#src/theme/theme-variables.ts';
+import type { SemanticIntent } from '#src/tokens/index.ts';
 
 const { typography, fontWeight, radius }: typeof themeVariables = themeVariables;
 

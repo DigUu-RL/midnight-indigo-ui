@@ -11,15 +11,15 @@ import type {
 	RefObject,
 } from 'react';
 
-import { IconButton } from '../../buttons/icon-button/index.tsx';
+import { IconButton } from '#src/buttons/icon-button/index.tsx';
 import {
 	assertLabel,
 	colorTransitionStyles,
 	focusRingStyles,
 	reducedMotion,
-} from '../../shared/appearance.ts';
-import { Glyph } from '../../shared/glyphs/index.tsx';
-import { themeVariables } from '../../theme/theme-variables.ts';
+} from '#src/shared/appearance.ts';
+import { Glyph } from '#src/shared/glyphs/index.tsx';
+import { themeVariables } from '#src/theme/theme-variables.ts';
 
 const { spacing, radius, border, motion, intent }: typeof themeVariables = themeVariables;
 

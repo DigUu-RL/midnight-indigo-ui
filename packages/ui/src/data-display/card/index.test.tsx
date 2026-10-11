@@ -2,8 +2,8 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { expectNoAxeViolations, styleRulesOf } from '../../../test/component-harness.ts';
-import { Card, CardContent, CardHeader } from './index.tsx';
+import { expectNoAxeViolations, styleRulesOf } from '#test/component-harness.ts';
+import { Card, CardContent, CardHeader } from '#src/data-display/card/index.tsx';
 
 afterEach((): void => {
 	cleanup();
