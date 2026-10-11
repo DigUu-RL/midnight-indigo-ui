@@ -34,6 +34,7 @@ export type { TokenDescriptions } from '#src/tokens/descriptions.ts';
 export { createDesignTokens, tokens, typographyRoles } from '#src/tokens/design-tokens.ts';
 export type {
 	AccentTokens,
+	BackdropTokens,
 	BorderTokens,
 	ChartTokens,
 	DesignTokens,
@@ -42,6 +43,7 @@ export type {
 	FontFamilyTokens,
 	FontWeightTokens,
 	IconSizeTokens,
+	LayerTokens,
 	MotionTokens,
 	RadiusTokens,
 	SpacingStep,

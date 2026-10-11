@@ -86,7 +86,7 @@ export const toMuiTheme = (
 	theme: UiTheme,
 	{ reducedMotion = false }: MuiThemeOptions = {},
 ): Theme => {
-	const { intent, surface, text, border, state, radius, fontFamily }: UiTheme['tokens'] =
+	const { intent, surface, text, border, state, radius, fontFamily, layer }: UiTheme['tokens'] =
 		theme.tokens;
 
 	return createTheme({
@@ -111,6 +111,14 @@ export const toMuiTheme = (
 		shape: { borderRadius: Number.parseFloat(radius.medium) },
 		typography: toTypography(theme.tokens),
 		transitions: toTransitions(theme.tokens, reducedMotion),
+		// Material UI components rendered directly by the application stack like the library overlays.
+		zIndex: {
+			appBar: Number(layer.sticky),
+			drawer: Number(layer.drawer),
+			modal: Number(layer.dialog),
+			snackbar: Number(layer.toast),
+			tooltip: Number(layer.tooltip),
+		},
 		components: {
 			// The ripple is a decorative animation with its own timing, outside the transition durations.
 			MuiButtonBase: { defaultProps: { disableRipple: reducedMotion } },

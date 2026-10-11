@@ -20,6 +20,7 @@ import type { ReactElement } from 'react';
 import { renderToString } from 'react-dom/server';
 
 const componentNames: readonly string[] = [
+	'Alert',
 	'Avatar',
 	'Badge',
 	'Button',
@@ -28,10 +29,20 @@ const componentNames: readonly string[] = [
 	'CardHeader',
 	'Carousel',
 	'Chip',
+	'ConfirmDialog',
+	'ContextMenu',
+	'Dialog',
 	'Divider',
+	'Drawer',
 	'IconButton',
+	'Menu',
+	'Popover',
+	'Portal',
 	'ProgressBar',
 	'Skeleton',
+	'ToastProvider',
+	'Tooltip',
+	'useToast',
 ];
 
 test('the root entry re-exports every component', (): void => {

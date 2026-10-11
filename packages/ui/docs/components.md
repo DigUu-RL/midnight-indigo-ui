@@ -10,7 +10,7 @@ typography, icons and motion are explained in [foundations.md](./foundations.md)
 | ---------------------------------- | ------------------------------------------------------------------------------------------------- |
 | `@midnight-indigo/ui/buttons`      | `Button`, `IconButton`                                                                            |
 | `@midnight-indigo/ui/data-display` | `Card`, `CardHeader`, `CardContent`, `Chip`, `Badge`, `Avatar`, `Divider`, `Skeleton`, `Carousel` |
-| `@midnight-indigo/ui/feedback`     | `ProgressBar` (linear and circular)                                                               |
+| `@midnight-indigo/ui/feedback`     | `ProgressBar` (linear and circular); alerts, toasts and overlays in [feedback.md](./feedback.md)  |
 | `@midnight-indigo/ui`              | All of the above, plus `Icon` and the theme API                                                   |
 
 ```tsx
@@ -82,7 +82,7 @@ States exist only where they mean something for the element.
 | invalid  | form controls             | `aria-invalid`, error message with an icon, thicker error boundary; see [forms.md](./forms.md).                    |
 
 Loading is not disabled: a disabled button means the action is unavailable, a loading one that it is running.
-Announce the outcome with a status message or toast (F07).
+Announce the outcome with a status message or a toast ([feedback.md](./feedback.md#toasts)).
 
 ## Slots and icons
 

@@ -50,6 +50,16 @@ describe('toMuiTheme', (): void => {
 		});
 	});
 
+	it('maps the layer tokens to the Material UI stacking order', (): void => {
+		expect(muiTheme.zIndex).toMatchObject({
+			appBar: 1100,
+			drawer: 1200,
+			modal: 1300,
+			snackbar: 1500,
+			tooltip: 1600,
+		});
+	});
+
 	it('styles code elements with the monospace stack in the baseline', (): void => {
 		expect(muiTheme.components?.MuiCssBaseline?.styleOverrides).toEqual({
 			'code, kbd, pre, samp': { fontFamily: defaultUiTheme.tokens.fontFamily.mono },

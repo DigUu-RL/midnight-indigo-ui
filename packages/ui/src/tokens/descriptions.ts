@@ -1,6 +1,7 @@
 // Purpose of every token group, token and intent. Typed so that adding a token without documenting it fails.
 import type {
 	AccentTokens,
+	BackdropTokens,
 	BorderTokens,
 	ChartTokens,
 	DesignTokens,
@@ -9,6 +10,7 @@ import type {
 	FontFamilyTokens,
 	FontWeightTokens,
 	IconSizeTokens,
+	LayerTokens,
 	RadiusTokens,
 	StateTokens,
 	SurfaceTokens,
@@ -30,6 +32,8 @@ export interface TokenDescriptions {
 	chart: Record<keyof ChartTokens, string>;
 	radius: Record<keyof RadiusTokens, string>;
 	elevation: Record<keyof ElevationTokens, string>;
+	layer: Record<keyof LayerTokens, string>;
+	backdrop: Record<keyof BackdropTokens, string>;
 	fontFamily: Record<keyof FontFamilyTokens, string>;
 	fontWeight: Record<keyof FontWeightTokens, string>;
 	typography: Record<TypographyRole, string>;
@@ -53,6 +57,9 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 		spacing: 'Single spacing scale, in steps of 0.25rem.',
 		elevation:
 			'Shadows calibrated for the dark canvas; pair them with a lighter surface and a border.',
+		layer:
+			'Stacking order (`z-index`) of the layers above the page. Overlays take them already; use them for your own layers.',
+		backdrop: 'Scrim behind modal overlays, which keeps the page visible but out of reach.',
 		motion:
 			'Durations and easing curves. Durations become 0ms under `prefers-reduced-motion: reduce`.',
 		fontFamily:
@@ -145,6 +152,18 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 		low: 'Raised cards and controls.',
 		medium: 'Menus and popovers.',
 		high: 'Dialogs.',
+	},
+	layer: {
+		base: 'Content of the page.',
+		sticky: 'Sticky headers and toolbars, above the content they scroll over.',
+		drawer: 'Drawers.',
+		dialog: 'Dialogs and confirmation dialogs.',
+		popover: 'Popovers and menus, also when opened inside a dialog or a drawer.',
+		toast: 'Toast notifications, above every overlay so they are never hidden.',
+		tooltip: 'Tooltips, the highest layer.',
+	},
+	backdrop: {
+		scrim: 'Translucent canvas behind dialogs and drawers.',
 	},
 	fontFamily: {
 		sans: 'Interface text: every role except `code`.',

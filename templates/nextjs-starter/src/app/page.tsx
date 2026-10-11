@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import type { ReactElement } from 'react';
 
 import { ComponentsShowcase } from '#src/app/components-showcase.tsx';
+import { OverlaysShowcase } from '#src/app/overlays-showcase.tsx';
 import { ProfileForm } from '#src/app/profile-form.tsx';
 import { StreamedPanel } from '#src/app/streamed-panel.tsx';
 import { ThemeSummary } from '#src/app/theme-summary.tsx';
@@ -19,6 +20,7 @@ const HomePage = (): ReactElement => {
 			<TypographySpecimen />
 			<ComponentsShowcase />
 			<ProfileForm />
+			<OverlaysShowcase />
 			<Suspense fallback={<p className='panel'>Loading the streamed panel…</p>}>
 				<StreamedPanel />
 			</Suspense>
