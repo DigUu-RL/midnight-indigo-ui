@@ -26,4 +26,6 @@ These are enforced by ESLint where possible (`eslint.config.ts`); follow them ev
 - **Explicit types** on variables, parameters and return types, even when inference would work.
 - **Ternaries over `if`/`else`; avoid `else`** (object calisthenics) — prefer early returns.
 - **Braces for anything spanning more than one line** — `if`/`for`/`while` bodies, arrow function bodies, everything. Omit braces only when the whole construct fits on a single line (`const isEmpty = (list: string[]): boolean => list.length === 0;`). Enforced by the local rule in `eslint-rules/`.
+- **One folder per component:** `src/<domain>/<component>/index.tsx` with its test in `index.test.tsx` next to it (e.g. `data-display/chip/`). Only `src/<domain>/index.ts` is a public entry.
+- **JSX:** the closing `>` of a multi-line opening tag goes on its own line (Prettier `bracketSameLine: false`), and sibling elements have no blank lines between them (`@stylistic/jsx-newline`).
 - **Blank lines between groups, not between every statement.** Short related statements stay together (a `const` followed by the `return` that uses it needs no blank line); separate distinct groups, and set every multi-line statement (blocks, declarations and expressions such as a multi-line `await new Promise(...)` or `assert.match(...)`) apart with blank lines before and after.

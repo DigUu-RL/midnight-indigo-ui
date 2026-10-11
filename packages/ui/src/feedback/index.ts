@@ -1,2 +1,3 @@
 // Public subpath `@midnight-indigo/ui/feedback`.
-export {};
+export { ProgressBar } from './progress-bar/index.tsx';
+export type { ProgressBarProps, ProgressBarShape, ProgressBarSize } from './progress-bar/index.tsx';

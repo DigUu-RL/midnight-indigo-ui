@@ -198,6 +198,22 @@ test('functional icons are named and decorative icons are hidden', (): void => {
 	assert.match(page.html, /<svg[^>]*aria-hidden="true"[^>]*focusable="false"/);
 });
 
+test('the components are rendered on the server with their roles and names', (): void => {
+	assert.match(page.html, /<button type="button"[^>]*>.*?New report<\/button>/);
+	assert.match(page.html, /<button type="button" aria-label="Notifications, 3 unread"/);
+	assert.match(page.html, /aria-pressed="true"[^>]*>.*?Open/);
+	assert.match(page.html, /aria-label="Remove Finance"/);
+	assert.match(page.html, /role="progressbar" aria-label="Monthly goal" aria-valuenow="68"/);
+	assert.match(page.html, /aria-roledescription="carousel" aria-label="Highlights"/);
+});
+
+test('the component styles arrive in the head of the first flush, so controls paint styled', (): void => {
+	const head: string = page.shell.slice(0, page.shell.indexOf('</head>'));
+
+	assert.ok(head.includes('background-color:var(--mi-intent-official-main)'));
+	assert.ok(head.includes('outline:var(--mi-focus-width) solid var(--mi-focus-ring)'));
+});
+
 test('the late chunk is streamed after the shell', (): void => {
 	assert.ok(
 		!page.shell.includes(streamedContent),

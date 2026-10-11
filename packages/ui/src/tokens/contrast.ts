@@ -76,6 +76,12 @@ const intentPairs = (intent: SemanticIntent): ContrastPair[] => {
 		...onEverySurface(path('text'), 'text', `${intent} text, ghost and outline labels`),
 		...onEverySurface(path('border'), 'nonText', `Boundary of an outlined ${intent} control`),
 		...onEverySurface(path('main'), 'nonText', `Boundary of a filled ${intent} control`),
+		{
+			foreground: path('main'),
+			background: path('container'),
+			requirement: 'nonText',
+			usage: `${intent} progress indicator on its track`,
+		},
 	];
 };
 

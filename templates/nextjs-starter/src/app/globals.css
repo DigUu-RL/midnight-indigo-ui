@@ -56,3 +56,23 @@
 	align-items: center;
 	margin: var(--mi-spacing-4) 0 0;
 }
+
+/* Rows of controls wrap on narrow viewports and at high zoom. */
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--mi-spacing-2);
+	align-items: center;
+}
+
+.stack {
+	display: grid;
+	gap: var(--mi-spacing-4);
+}
+
+.slide {
+	margin: 0;
+	padding: var(--mi-spacing-8) var(--mi-spacing-6);
+	background: var(--mi-surface-overlay);
+	text-align: center;
+}
