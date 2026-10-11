@@ -7,7 +7,7 @@ import { requireBracesForMultilineArrowBody } from './eslint-rules/require-brace
 
 export default defineConfig(
   {
-    ignores: ['**/dist/**', '**/node_modules/**', '**/coverage/**', '.roadmap/**'],
+    ignores: ['**/dist/**', '**/node_modules/**', '**/coverage/**'],
   },
   javascript.configs.recommended,
   typescriptEslint.configs.strictTypeChecked,
