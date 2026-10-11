@@ -1,7 +1,7 @@
 // The complete design token set: base groups plus intents derived from their sources. Dark-only by design.
-import type { HexColor } from './color.ts';
-import { defaultIntentSources, deriveIntentPalette } from './intents.ts';
-import type { IntentDerivationContext, IntentPalette, IntentSources } from './intents.ts';
+import type { HexColor } from '#src/tokens/color.ts';
+import { defaultIntentSources, deriveIntentPalette } from '#src/tokens/intents.ts';
+import type { IntentDerivationContext, IntentPalette, IntentSources } from '#src/tokens/intents.ts';
 
 export interface SurfaceTokens {
 	canvas: HexColor;

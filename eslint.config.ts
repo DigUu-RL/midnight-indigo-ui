@@ -3,7 +3,7 @@ import stylistic from '@stylistic/eslint-plugin';
 import { defineConfig } from 'eslint/config';
 import typescriptEslint from 'typescript-eslint';
 
-import { requireBracesForMultilineArrowBody } from './eslint-rules/require-braces-for-multiline-arrow-body.ts';
+import { requireBracesForMultilineArrowBody } from '#eslint-rules/require-braces-for-multiline-arrow-body.ts';
 
 // Statements spanning more than one line are always set apart from their neighbors by blank lines.
 const multilineStatements: string[] = [
@@ -89,6 +89,21 @@ export default defineConfig(
 				{ blankLine: 'any', prev: 'import', next: 'import' },
 				{ blankLine: 'always', prev: '*', next: multilineStatements },
 				{ blankLine: 'always', prev: multilineStatements, next: '*' },
+			],
+
+			// Imports: never relative paths, which break when files move or are renamed. Each workspace maps its folders
+			// in the `imports` of its package.json (`#src/...`); another workspace is imported by its package name.
+			'no-restricted-imports': [
+				'error',
+				{
+					patterns: [
+						{
+							group: ['./*', '../*', '.', '..'],
+							message:
+								'Import through the subpath imports of the package (`#src/...`, `#test/...`), or by package name.',
+						},
+					],
+				},
 			],
 
 			// JSX siblings follow each other without blank lines; the tree structure already groups them.

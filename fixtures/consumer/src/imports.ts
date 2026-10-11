@@ -6,6 +6,8 @@ import * as dashboard from '@midnight-indigo/ui/dashboard';
 import * as dataDisplay from '@midnight-indigo/ui/data-display';
 import * as feedback from '@midnight-indigo/ui/feedback';
 import * as forms from '@midnight-indigo/ui/forms';
+import * as datePickers from '@midnight-indigo/ui/forms/date-pickers';
+import * as reactHookForm from '@midnight-indigo/ui/forms/react-hook-form';
 import * as internationalization from '@midnight-indigo/ui/i18n';
 import * as navigation from '@midnight-indigo/ui/navigation';
 import * as theme from '@midnight-indigo/ui/theme';
@@ -17,6 +19,8 @@ export const publicModules: readonly object[] = [
 	theme,
 	buttons,
 	forms,
+	datePickers,
+	reactHookForm,
 	feedback,
 	navigation,
 	dataDisplay,

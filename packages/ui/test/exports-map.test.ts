@@ -26,6 +26,9 @@ const publicSubpaths: readonly string[] = [
 	'./theme',
 	'./buttons',
 	'./forms',
+	// Optional integrations, with optional peer dependencies kept out of `./forms`.
+	'./forms/date-pickers',
+	'./forms/react-hook-form',
 	'./feedback',
 	'./navigation',
 	'./data-display',
@@ -72,7 +75,7 @@ describe('package.json exports', (): void => {
 			.toSorted();
 
 		const exportedDomains: string[] = publicSubpaths
-			.filter((subpath: string): boolean => subpath !== '.')
+			.filter((subpath: string): boolean => subpath !== '.' && !subpath.slice(2).includes('/'))
 			.toSorted();
 
 		expect(sourceDomains).toEqual(exportedDomains);

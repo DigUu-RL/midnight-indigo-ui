@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RadioGroup > marks the checked radio with a dot, not color alone (regression) 1`] = `
+[
+  "&{-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;box-sizing:border-box;display:inline-grid;place-content:center;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;margin:0;border-width:2px;border-style:solid;border-color:var(--mi-border-strong);background-color:var(--mi-surface-sunken);cursor:pointer;transition-property:background-color,border-color,color,box-shadow;transition-duration:var(--mi-motion-duration-fast);transition-timing-function:var(--mi-motion-easing-standard);width:1.125rem;height:1.125rem;border-radius:var(--mi-radius-pill);}",
+  "&::before{content:"";box-sizing:border-box;}",
+  "&:checked{border-color:var(--mi-intent-official-main);}",
+  "&:checked::before{width:0.5rem;height:0.5rem;border-radius:var(--mi-radius-pill);background-color:var(--mi-intent-official-main);}",
+  "&:focus-visible{outline:var(--mi-focus-width) solid var(--mi-focus-ring);outline-offset:var(--mi-focus-offset);}",
+  "&:hover:not(:disabled){border-color:var(--mi-text-muted);}",
+  "&:disabled,&:disabled:is(:checked, :indeterminate){border-color:var(--mi-state-disabled-border);background-color:var(--mi-state-disabled-surface);cursor:not-allowed;}",
+  "&:disabled:checked::before{background-color:var(--mi-state-disabled-text);}",
+]
+`;

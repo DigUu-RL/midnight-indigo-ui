@@ -10,7 +10,7 @@ import {
 	parseHexColor,
 	pickHighestContrast,
 	relativeLuminance,
-} from './color.ts';
+} from '#src/tokens/color.ts';
 
 describe('hex colors', (): void => {
 	it('accepts #RGB and #RRGGBB only', (): void => {

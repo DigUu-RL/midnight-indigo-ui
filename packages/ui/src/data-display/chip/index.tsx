@@ -18,11 +18,11 @@ import {
 	focusRingStyles,
 	forwardAllBut,
 	interactionStyles,
-} from '../../shared/appearance.ts';
-import type { Appearance } from '../../shared/appearance.ts';
-import { Glyph } from '../../shared/glyphs/index.tsx';
-import { themeVariables } from '../../theme/theme-variables.ts';
-import type { SemanticIntent } from '../../tokens/index.ts';
+} from '#src/shared/appearance.ts';
+import type { Appearance } from '#src/shared/appearance.ts';
+import { Glyph } from '#src/shared/glyphs/index.tsx';
+import { themeVariables } from '#src/theme/theme-variables.ts';
+import type { SemanticIntent } from '#src/tokens/index.ts';
 
 const {
 	spacing,

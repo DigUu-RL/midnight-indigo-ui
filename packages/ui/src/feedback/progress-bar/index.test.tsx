@@ -2,13 +2,9 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import {
-	declarationsOf,
-	expectNoAxeViolations,
-	styleRulesOf,
-} from '../../../test/component-harness.ts';
-import { reducedMotionMediaQuery } from '../../tokens/index.ts';
-import { ProgressBar } from './index.tsx';
+import { declarationsOf, expectNoAxeViolations, styleRulesOf } from '#test/component-harness.ts';
+import { reducedMotionMediaQuery } from '#src/tokens/index.ts';
+import { ProgressBar } from '#src/feedback/progress-bar/index.tsx';
 
 afterEach((): void => {
 	cleanup();

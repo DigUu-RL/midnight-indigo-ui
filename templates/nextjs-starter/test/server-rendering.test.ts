@@ -207,6 +207,21 @@ test('the components are rendered on the server with their roles and names', ():
 	assert.match(page.html, /aria-roledescription="carousel" aria-label="Highlights"/);
 });
 
+test('the form is rendered on the server with labelled fields and a described switch', (): void => {
+	assert.match(page.html, /<form[^>]*novalidate=""/i);
+
+	assert.match(
+		page.html,
+		/<label[^>]*for="([^"]+)"[^>]*>Email address.*?<input[^>]*id="\1"[^>]*aria-describedby="[^"]+"/,
+	);
+
+	assert.match(page.html, /<select[^>]*required=""/);
+	assert.match(page.html, /role="radiogroup"/);
+	assert.match(page.html, /role="switch"[^>]*aria-describedby="[^"]+"/);
+	assert.match(page.html, /Sends a notification by email for each new report\./);
+	assert.match(page.html, /<button type="submit"[^>]*>.*?Save profile<\/button>/);
+});
+
 test('the component styles arrive in the head of the first flush, so controls paint styled', (): void => {
 	const head: string = page.shell.slice(0, page.shell.indexOf('</head>'));
 

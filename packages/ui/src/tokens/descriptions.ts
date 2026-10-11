@@ -14,8 +14,8 @@ import type {
 	SurfaceTokens,
 	TextTokens,
 	TypographyRole,
-} from './design-tokens.ts';
-import type { IntentTokens, SemanticIntent } from './intents.ts';
+} from '#src/tokens/design-tokens.ts';
+import type { IntentTokens, SemanticIntent } from '#src/tokens/intents.ts';
 
 export interface TokenDescriptions {
 	groups: Record<keyof DesignTokens, string>;

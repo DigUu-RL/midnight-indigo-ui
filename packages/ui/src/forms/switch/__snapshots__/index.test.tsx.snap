@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Switch > moves its thumb when on, so the state does not rest on color (regression) 1`] = `
+[
+  "&{-webkit-appearance:none;-moz-appearance:none;-ms-appearance:none;appearance:none;box-sizing:border-box;display:inline-grid;place-content:center start;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;margin:0;border-width:1px;border-style:solid;border-color:var(--mi-border-strong);background-color:var(--mi-surface-sunken);cursor:pointer;transition-property:background-color,border-color,color,box-shadow;transition-duration:var(--mi-motion-duration-fast);transition-timing-function:var(--mi-motion-easing-standard);width:2.25rem;height:1.25rem;border-radius:var(--mi-radius-pill);justify-items:start;padding-inline:2px;}",
+  "&::before{width:0.875rem;height:0.875rem;border-radius:var(--mi-radius-pill);background-color:var(--mi-text-secondary);transition-property:transform,background-color;transition-duration:var(--mi-motion-duration-fast);transition-timing-function:var(--mi-motion-easing-standard);}",
+  "@media (prefers-reduced-motion: reduce){&::before{transition-duration:0ms;}}",
+  "&:checked{background-color:var(--mi-intent-official-main);border-color:var(--mi-intent-official-main);}",
+  "&:checked::before{background-color:var(--mi-intent-official-contrast-text);-webkit-transform:translateX(calc(2.25rem - 0.875rem - 6px));-moz-transform:translateX(calc(2.25rem - 0.875rem - 6px));-ms-transform:translateX(calc(2.25rem - 0.875rem - 6px));transform:translateX(calc(2.25rem - 0.875rem - 6px));}",
+  "[dir="rtl"] &:checked::before{-webkit-transform:translateX(calc(-1 * (2.25rem - 0.875rem - 6px)));-moz-transform:translateX(calc(-1 * (2.25rem - 0.875rem - 6px)));-ms-transform:translateX(calc(-1 * (2.25rem - 0.875rem - 6px)));transform:translateX(calc(-1 * (2.25rem - 0.875rem - 6px)));}",
+  "&:focus-visible{outline:var(--mi-focus-width) solid var(--mi-focus-ring);outline-offset:var(--mi-focus-offset);}",
+  "&:hover:not(:disabled){border-color:var(--mi-text-muted);}",
+  "&:is(:checked, :indeterminate):hover:not(:disabled){background-color:var(--mi-intent-official-hover);border-color:var(--mi-intent-official-hover);}",
+  "&:disabled,&:disabled:is(:checked, :indeterminate){border-color:var(--mi-state-disabled-border);background-color:var(--mi-state-disabled-surface);cursor:not-allowed;}",
+  "&:disabled::before{background-color:var(--mi-state-disabled-text);}",
+]
+`;

@@ -7,8 +7,8 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
 import type { Metadata } from 'next';
 import type { ReactElement, ReactNode } from 'react';
 
-import { theme } from '../theme.ts';
-import './globals.css';
+import { theme } from '#src/theme.ts';
+import '#src/app/globals.css';
 
 interface RootLayoutProps {
 	children: ReactNode;

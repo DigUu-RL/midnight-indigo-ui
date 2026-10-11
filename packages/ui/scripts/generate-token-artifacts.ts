@@ -2,7 +2,7 @@
 import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
-import { renderStylesheet, renderTokenDocument } from './token-artifacts.ts';
+import { renderStylesheet, renderTokenDocument } from '#scripts/token-artifacts.ts';
 
 const stylesheetPath: string = fileURLToPath(new URL('../src/styles.css', import.meta.url));
 const documentPath: string = fileURLToPath(new URL('../docs/tokens.md', import.meta.url));

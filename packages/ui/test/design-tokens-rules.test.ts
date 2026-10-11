@@ -9,7 +9,7 @@ import {
 	generationCommand,
 	renderStylesheet,
 	renderTokenDocument,
-} from '../scripts/token-artifacts.ts';
+} from '#scripts/token-artifacts.ts';
 
 const packageRoot: string = fileURLToPath(new URL('..', import.meta.url));
 const sourceDirectory: string = join(packageRoot, 'src');

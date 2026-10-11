@@ -7,8 +7,8 @@ import type {
 	TypographyVariantsOptions,
 } from '@mui/material/styles';
 
-import type { DesignTokens, IntentTokens } from '../tokens/index.ts';
-import type { UiTheme } from './create-ui-theme.ts';
+import type { DesignTokens, IntentTokens } from '#src/tokens/index.ts';
+import type { UiTheme } from '#src/theme/create-ui-theme.ts';
 
 export interface MuiThemeOptions {
 	/** Zeroes every Material UI transition and disables the ripple. `UiProvider` follows the user preference. */

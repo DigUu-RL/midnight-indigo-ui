@@ -1,0 +1,24 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TextField > keeps the same visual states (regression) 1`] = `
+{
+  "Disabled": [
+    "&{box-sizing:border-box;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;gap:var(--mi-spacing-2);width:100%;min-height:2.5rem;padding-inline:var(--mi-spacing-3);border-width:1px;border-style:solid;border-radius:var(--mi-radius-medium);background-color:var(--mi-state-disabled-surface);color:var(--mi-state-disabled-text);font-family:var(--mi-typography-body-font-family);font-size:var(--mi-typography-body-font-size);font-weight:var(--mi-typography-body-font-weight);line-height:var(--mi-typography-body-line-height);letter-spacing:var(--mi-typography-body-letter-spacing);transition-property:background-color,border-color,color,box-shadow;transition-duration:var(--mi-motion-duration-fast);transition-timing-function:var(--mi-motion-easing-standard);border-color:var(--mi-state-disabled-border);cursor:not-allowed;}",
+    "&:has(:is(input, textarea, select):focus-visible){outline:var(--mi-focus-width) solid var(--mi-focus-ring);outline-offset:var(--mi-focus-offset);}",
+  ],
+  "Invalid": [
+    "&{box-sizing:border-box;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;gap:var(--mi-spacing-2);width:100%;min-height:2.5rem;padding-inline:var(--mi-spacing-3);border-width:1px;border-style:solid;border-radius:var(--mi-radius-medium);background-color:var(--mi-surface-sunken);color:var(--mi-text-primary);font-family:var(--mi-typography-body-font-family);font-size:var(--mi-typography-body-font-size);font-weight:var(--mi-typography-body-font-weight);line-height:var(--mi-typography-body-line-height);letter-spacing:var(--mi-typography-body-letter-spacing);transition-property:background-color,border-color,color,box-shadow;transition-duration:var(--mi-motion-duration-fast);transition-timing-function:var(--mi-motion-easing-standard);border-color:var(--mi-intent-error-border);box-shadow:inset 0 0 0 1px var(--mi-intent-error-border);}",
+    "&:hover{border-color:var(--mi-intent-error-main);}",
+    "&:has(:is(input, textarea, select):focus-visible){outline:var(--mi-focus-width) solid var(--mi-focus-ring);outline-offset:var(--mi-focus-offset);}",
+  ],
+  "Read only": [
+    "&{box-sizing:border-box;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;gap:var(--mi-spacing-2);width:100%;min-height:2.5rem;padding-inline:var(--mi-spacing-3);border-width:1px;border-style:dashed;border-radius:var(--mi-radius-medium);background-color:transparent;color:var(--mi-text-primary);font-family:var(--mi-typography-body-font-family);font-size:var(--mi-typography-body-font-size);font-weight:var(--mi-typography-body-font-weight);line-height:var(--mi-typography-body-line-height);letter-spacing:var(--mi-typography-body-letter-spacing);transition-property:background-color,border-color,color,box-shadow;transition-duration:var(--mi-motion-duration-fast);transition-timing-function:var(--mi-motion-easing-standard);border-color:var(--mi-border-strong);}",
+    "&:has(:is(input, textarea, select):focus-visible){outline:var(--mi-focus-width) solid var(--mi-focus-ring);outline-offset:var(--mi-focus-offset);}",
+  ],
+  "Rest": [
+    "&{box-sizing:border-box;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;gap:var(--mi-spacing-2);width:100%;min-height:2.5rem;padding-inline:var(--mi-spacing-3);border-width:1px;border-style:solid;border-radius:var(--mi-radius-medium);background-color:var(--mi-surface-sunken);color:var(--mi-text-primary);font-family:var(--mi-typography-body-font-family);font-size:var(--mi-typography-body-font-size);font-weight:var(--mi-typography-body-font-weight);line-height:var(--mi-typography-body-line-height);letter-spacing:var(--mi-typography-body-letter-spacing);transition-property:background-color,border-color,color,box-shadow;transition-duration:var(--mi-motion-duration-fast);transition-timing-function:var(--mi-motion-easing-standard);border-color:var(--mi-border-strong);}",
+    "&:hover{border-color:var(--mi-text-muted);}",
+    "&:has(:is(input, textarea, select):focus-visible){outline:var(--mi-focus-width) solid var(--mi-focus-ring);outline-offset:var(--mi-focus-offset);}",
+  ],
+}
+`;

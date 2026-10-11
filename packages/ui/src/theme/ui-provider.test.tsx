@@ -8,11 +8,11 @@ import type { Root } from 'react-dom/client';
 import { renderToReadableStream } from 'react-dom/server';
 import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
 
-import { reducedMotionMediaQuery } from '../tokens/index.ts';
-import type { HexColor } from '../tokens/index.ts';
-import { createUiTheme, defaultUiTheme } from './create-ui-theme.ts';
-import type { CreateUiThemeOptions, UiTheme } from './create-ui-theme.ts';
-import { UiProvider, useUiTheme } from './ui-provider.tsx';
+import { reducedMotionMediaQuery } from '#src/tokens/index.ts';
+import type { HexColor } from '#src/tokens/index.ts';
+import { createUiTheme, defaultUiTheme } from '#src/theme/create-ui-theme.ts';
+import type { CreateUiThemeOptions, UiTheme } from '#src/theme/create-ui-theme.ts';
+import { UiProvider, useUiTheme } from '#src/theme/ui-provider.tsx';
 
 interface ThemeSnapshot {
 	uiTheme: UiTheme;

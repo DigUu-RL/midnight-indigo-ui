@@ -1,7 +1,7 @@
 // SVG icon that is either named for assistive technologies (functional) or hidden from them (decorative).
 import type { ReactElement, ReactNode, SVGProps } from 'react';
 
-import { themeVariables } from '../theme/theme-variables.ts';
+import { themeVariables } from '#src/theme/theme-variables.ts';
 
 /** A token size from `iconSize`, or `'inherit'` to follow the font size of the surrounding text (`1em`). */
 export type IconSize = 'small' | 'medium' | 'large' | 'inherit';

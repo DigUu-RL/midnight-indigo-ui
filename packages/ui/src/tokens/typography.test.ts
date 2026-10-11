@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { tokens, typographyRoles } from './design-tokens.ts';
-import type { TypographyRole, TypographyStyle } from './design-tokens.ts';
+import { tokens, typographyRoles } from '#src/tokens/design-tokens.ts';
+import type { TypographyRole, TypographyStyle } from '#src/tokens/design-tokens.ts';
 
 const typographyEntries: [TypographyRole, TypographyStyle][] = typographyRoles.map(
 	(role: TypographyRole): [TypographyRole, TypographyStyle] => [role, tokens.typography[role]],

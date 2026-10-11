@@ -3,6 +3,9 @@
 	"private": true,
 	"description": "Next.js starter (F13). Not published as part of the library.",
 	"type": "module",
+	"imports": {
+		"#src/*": "./src/*"
+	},
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",

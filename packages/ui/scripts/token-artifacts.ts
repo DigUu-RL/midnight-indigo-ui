@@ -9,7 +9,7 @@ import {
 	tokenDescriptions,
 	tokens,
 	typographyRoles,
-} from '../src/tokens/index.ts';
+} from '#src/tokens/index.ts';
 import type {
 	ContrastResult,
 	DesignTokens,
@@ -17,7 +17,7 @@ import type {
 	SemanticIntent,
 	TypographyRole,
 	TypographyStyle,
-} from '../src/tokens/index.ts';
+} from '#src/tokens/index.ts';
 
 export const generationCommand: string = 'pnpm --filter @midnight-indigo/ui generate:tokens';
 

@@ -10,6 +10,11 @@
 	"files": [
 		"dist"
 	],
+	"imports": {
+		"#src/*": "./src/*",
+		"#test/*": "./test/*",
+		"#scripts/*": "./scripts/*"
+	},
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
@@ -30,6 +35,14 @@
 		"./forms": {
 			"types": "./dist/forms/index.d.ts",
 			"default": "./dist/forms/index.js"
+		},
+		"./forms/date-pickers": {
+			"types": "./dist/forms/date-pickers/index.d.ts",
+			"default": "./dist/forms/date-pickers/index.js"
+		},
+		"./forms/react-hook-form": {
+			"types": "./dist/forms/react-hook-form/index.d.ts",
+			"default": "./dist/forms/react-hook-form/index.js"
 		},
 		"./feedback": {
 			"types": "./dist/feedback/index.d.ts",
@@ -69,14 +82,29 @@
 		"@emotion/react": "^11.14.0",
 		"@emotion/styled": "^11.14.0",
 		"@mui/material": "^9.5.0",
+		"@mui/x-date-pickers": "^9.14.0",
+		"date-fns": "^4.0.0",
 		"react": "^19.0.0",
-		"react-dom": "^19.0.0"
+		"react-dom": "^19.0.0",
+		"react-hook-form": "^7.55.0"
+	},
+	"peerDependenciesMeta": {
+		"@mui/x-date-pickers": {
+			"optional": true
+		},
+		"date-fns": {
+			"optional": true
+		},
+		"react-hook-form": {
+			"optional": true
+		}
 	},
 	"devDependencies": {
 		"@arethetypeswrong/cli": "catalog:",
 		"@emotion/react": "catalog:",
 		"@emotion/styled": "catalog:",
 		"@mui/material": "catalog:",
+		"@mui/x-date-pickers": "catalog:",
 		"@testing-library/dom": "catalog:",
 		"@testing-library/react": "catalog:",
 		"@testing-library/user-event": "catalog:",
@@ -84,10 +112,12 @@
 		"@types/react": "catalog:",
 		"@types/react-dom": "catalog:",
 		"axe-core": "catalog:",
+		"date-fns": "catalog:",
 		"jsdom": "catalog:",
 		"publint": "catalog:",
 		"react": "catalog:",
 		"react-dom": "catalog:",
+		"react-hook-form": "catalog:",
 		"tsdown": "catalog:",
 		"typescript": "catalog:",
 		"vite": "catalog:",

@@ -1,5 +1,5 @@
 // Maps the token tree to CSS custom properties (`--mi-<group>-<name>`) and renders the public stylesheet.
-import type { DesignTokens } from './design-tokens.ts';
+import type { DesignTokens } from '#src/tokens/design-tokens.ts';
 
 export const cssVariablePrefix: string = '--mi';
 

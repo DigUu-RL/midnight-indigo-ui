@@ -2,9 +2,9 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { declarationsOf, styleRulesOf } from '../../../test/component-harness.ts';
-import { reducedMotionMediaQuery } from '../../tokens/index.ts';
-import { Skeleton } from './index.tsx';
+import { declarationsOf, styleRulesOf } from '#test/component-harness.ts';
+import { reducedMotionMediaQuery } from '#src/tokens/index.ts';
+import { Skeleton } from '#src/data-display/skeleton/index.tsx';
 
 afterEach((): void => {
 	cleanup();
