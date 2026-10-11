@@ -1,0 +1,21 @@
+/* Application styles reference the theme through `var(--mi-*)`, so they follow any palette set in theme.json. */
+
+.page {
+	display: grid;
+	gap: var(--mi-spacing-6);
+	max-width: 48rem;
+	margin: 0 auto;
+	padding: var(--mi-spacing-12) var(--mi-spacing-4);
+}
+
+.panel {
+	padding: var(--mi-spacing-6);
+	border: 1px solid var(--mi-border-default);
+	border-radius: var(--mi-radius-large);
+	background: var(--mi-surface-raised);
+	box-shadow: var(--mi-elevation-low);
+}
+
+.official-text {
+	color: var(--mi-intent-official-text);
+}

@@ -45,12 +45,33 @@ export const toCssVariables = (tokens: Readonly<DesignTokens>): Record<string, s
 };
 
 /**
- * Renders a stylesheet that declares every token on `selector`. The color scheme is always dark:
- * there is no light palette and no light/dark toggle.
+ * Cascade layers of the library stylesheets, in increasing priority: the theme injected by `UiProvider`
+ * overrides the static defaults of `styles.css` whatever their order in the document, and any unlayered
+ * application CSS overrides both.
+ */
+export const cssLayers = {
+	defaults: 'midnight-indigo.defaults',
+	theme: 'midnight-indigo.theme',
+} as const;
+
+export type CssLayer = (typeof cssLayers)[keyof typeof cssLayers];
+
+export interface TokenStylesheetOptions {
+	/** Element that receives the custom properties. Defaults to `:root`. */
+	selector?: string;
+	/** Cascade layer that wraps the declarations. Defaults to `cssLayers.defaults`. */
+	layer?: CssLayer;
+}
+
+const indent = (line: string): string => (line === '' ? line : `  ${line}`);
+
+/**
+ * Renders a stylesheet that declares every token on `selector`, inside a cascade layer. The color scheme is
+ * always dark: there is no light palette and no light/dark toggle.
  */
 export const createTokenStylesheet = (
 	tokens: Readonly<DesignTokens>,
-	selector: string = ':root',
+	{ selector = ':root', layer = cssLayers.defaults }: TokenStylesheetOptions = {},
 ): string => {
 	const declarations: string[] = Object.entries(toCssVariables(tokens)).map(
 		([name, value]: [string, string]): string => `  ${name}: ${value};`,
@@ -62,7 +83,7 @@ export const createTokenStylesheet = (
 		},
 	);
 
-	return [
+	const rules: string[] = [
 		`${selector} {`,
 		'  color-scheme: dark;',
 		...declarations,
@@ -72,6 +93,15 @@ export const createTokenStylesheet = (
 		`  ${selector} {`,
 		...reducedMotionDurations,
 		'  }',
+		'}',
+	];
+
+	// Declaring the layer order first makes the priority independent of which stylesheet loads first.
+	return [
+		`@layer ${Object.values(cssLayers).join(', ')};`,
+		'',
+		`@layer ${layer} {`,
+		...rules.map(indent),
 		'}',
 		'',
 	].join('\n');

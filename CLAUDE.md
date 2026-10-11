@@ -13,7 +13,7 @@ Monorepo (pnpm workspaces) for `@midnight-indigo/ui`, a single npm package expos
 
 - `pnpm install` — install (pnpm is pinned via `packageManager`; enable it with corepack).
 - `pnpm check` — full gate: build, typecheck, lint, format check, tests, package lint (publint + attw) and source-cleanliness check.
-- Consumer fixture tests (`fixtures/consumer`) import the compiled output, so run `pnpm build` before `pnpm test`.
+- Consumer fixture tests (`fixtures/consumer`) import the compiled output and the starter test (`templates/nextjs-starter`) serves its production build, so run `pnpm build` before `pnpm test`.
 
 ## Code conventions
 

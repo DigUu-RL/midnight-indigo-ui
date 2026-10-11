@@ -20,12 +20,14 @@ export {
 export type { ContrastPair, ContrastRequirement, ContrastResult } from './contrast.ts';
 export {
 	createTokenStylesheet,
+	cssLayers,
 	cssVariableName,
 	cssVariablePrefix,
 	cssVariableReference,
 	listTokenEntries,
 	toCssVariables,
 } from './css-variables.ts';
+export type { CssLayer, TokenStylesheetOptions } from './css-variables.ts';
 export { tokenDescriptions } from './descriptions.ts';
 export type { TokenDescriptions } from './descriptions.ts';
 export { createDesignTokens, tokens } from './design-tokens.ts';

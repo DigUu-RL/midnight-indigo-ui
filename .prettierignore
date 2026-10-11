@@ -1,5 +1,7 @@
 dist
 coverage
+.next
+next-env.d.ts
 pnpm-lock.yaml
 
 # Generated from packages/ui/src/tokens (pnpm --filter @midnight-indigo/ui generate:tokens)
