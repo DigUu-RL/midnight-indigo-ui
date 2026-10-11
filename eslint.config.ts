@@ -90,6 +90,9 @@ export default defineConfig(
 				{ blankLine: 'always', prev: '*', next: multilineStatements },
 				{ blankLine: 'always', prev: multilineStatements, next: '*' },
 			],
+
+			// JSX siblings follow each other without blank lines; the tree structure already groups them.
+			'@stylistic/jsx-newline': ['error', { prevent: true }],
 		},
 	},
 );

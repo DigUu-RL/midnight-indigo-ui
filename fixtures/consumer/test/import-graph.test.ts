@@ -55,7 +55,16 @@ const importGraphOf = (specifier: string): ImportGraph => {
 const heavyDomains: readonly string[] = ['charts/', 'dashboard/'];
 const allowedPackages: RegExp = /^(react|react\/jsx-runtime|@mui\/material\/[\w/]+)$/;
 
-for (const specifier of ['@midnight-indigo/ui', '@midnight-indigo/ui/theme']) {
+// Every entry except the heavy ones themselves; components must never reach the chart engine nor the dashboard.
+const lightEntries: readonly string[] = [
+	'@midnight-indigo/ui',
+	'@midnight-indigo/ui/theme',
+	'@midnight-indigo/ui/buttons',
+	'@midnight-indigo/ui/data-display',
+	'@midnight-indigo/ui/feedback',
+];
+
+for (const specifier of lightEntries) {
 	test(`${specifier} does not load charts or dashboard`, (): void => {
 		const { files }: ImportGraph = importGraphOf(specifier);
 

@@ -318,6 +318,7 @@ Ratios are truncated, never rounded up. All colors are opaque, so the ratio is t
 | `intent.official.main` | `surface.base` | 7.94:1 | 3.00:1 | Boundary of a filled official control | Pass |
 | `intent.official.main` | `surface.raised` | 7.66:1 | 3.00:1 | Boundary of a filled official control | Pass |
 | `intent.official.main` | `surface.overlay` | 7.35:1 | 3.00:1 | Boundary of a filled official control | Pass |
+| `intent.official.main` | `intent.official.container` | 6.87:1 | 3.00:1 | official progress indicator on its track | Pass |
 | `intent.default.contrastText` | `intent.default.main` | 6.70:1 | 4.50:1 | Label of a filled default control (main) | Pass |
 | `intent.default.contrastText` | `intent.default.hover` | 7.96:1 | 4.50:1 | Label of a filled default control (hover) | Pass |
 | `intent.default.contrastText` | `intent.default.pressed` | 5.04:1 | 4.50:1 | Label of a filled default control (pressed) | Pass |
@@ -339,6 +340,7 @@ Ratios are truncated, never rounded up. All colors are opaque, so the ratio is t
 | `intent.default.main` | `surface.base` | 6.66:1 | 3.00:1 | Boundary of a filled default control | Pass |
 | `intent.default.main` | `surface.raised` | 6.42:1 | 3.00:1 | Boundary of a filled default control | Pass |
 | `intent.default.main` | `surface.overlay` | 6.16:1 | 3.00:1 | Boundary of a filled default control | Pass |
+| `intent.default.main` | `intent.default.container` | 5.84:1 | 3.00:1 | default progress indicator on its track | Pass |
 | `intent.success.contrastText` | `intent.success.main` | 9.84:1 | 4.50:1 | Label of a filled success control (main) | Pass |
 | `intent.success.contrastText` | `intent.success.hover` | 10.70:1 | 4.50:1 | Label of a filled success control (hover) | Pass |
 | `intent.success.contrastText` | `intent.success.pressed` | 7.17:1 | 4.50:1 | Label of a filled success control (pressed) | Pass |
@@ -360,6 +362,7 @@ Ratios are truncated, never rounded up. All colors are opaque, so the ratio is t
 | `intent.success.main` | `surface.base` | 9.77:1 | 3.00:1 | Boundary of a filled success control | Pass |
 | `intent.success.main` | `surface.raised` | 9.42:1 | 3.00:1 | Boundary of a filled success control | Pass |
 | `intent.success.main` | `surface.overlay` | 9.04:1 | 3.00:1 | Boundary of a filled success control | Pass |
+| `intent.success.main` | `intent.success.container` | 8.25:1 | 3.00:1 | success progress indicator on its track | Pass |
 | `intent.warning.contrastText` | `intent.warning.main` | 11.61:1 | 4.50:1 | Label of a filled warning control (main) | Pass |
 | `intent.warning.contrastText` | `intent.warning.hover` | 12.37:1 | 4.50:1 | Label of a filled warning control (hover) | Pass |
 | `intent.warning.contrastText` | `intent.warning.pressed` | 8.43:1 | 4.50:1 | Label of a filled warning control (pressed) | Pass |
@@ -381,6 +384,7 @@ Ratios are truncated, never rounded up. All colors are opaque, so the ratio is t
 | `intent.warning.main` | `surface.base` | 11.53:1 | 3.00:1 | Boundary of a filled warning control | Pass |
 | `intent.warning.main` | `surface.raised` | 11.12:1 | 3.00:1 | Boundary of a filled warning control | Pass |
 | `intent.warning.main` | `surface.overlay` | 10.67:1 | 3.00:1 | Boundary of a filled warning control | Pass |
+| `intent.warning.main` | `intent.warning.container` | 9.46:1 | 3.00:1 | warning progress indicator on its track | Pass |
 | `intent.error.contrastText` | `intent.error.main` | 6.13:1 | 4.50:1 | Label of a filled error control (main) | Pass |
 | `intent.error.contrastText` | `intent.error.hover` | 7.05:1 | 4.50:1 | Label of a filled error control (hover) | Pass |
 | `intent.error.contrastText` | `intent.error.pressed` | 4.61:1 | 4.50:1 | Label of a filled error control (pressed) | Pass |
@@ -402,6 +406,7 @@ Ratios are truncated, never rounded up. All colors are opaque, so the ratio is t
 | `intent.error.main` | `surface.base` | 6.08:1 | 3.00:1 | Boundary of a filled error control | Pass |
 | `intent.error.main` | `surface.raised` | 5.87:1 | 3.00:1 | Boundary of a filled error control | Pass |
 | `intent.error.main` | `surface.overlay` | 5.63:1 | 3.00:1 | Boundary of a filled error control | Pass |
+| `intent.error.main` | `intent.error.container` | 5.42:1 | 3.00:1 | error progress indicator on its track | Pass |
 | `intent.info.contrastText` | `intent.info.main` | 9.92:1 | 4.50:1 | Label of a filled info control (main) | Pass |
 | `intent.info.contrastText` | `intent.info.hover` | 10.93:1 | 4.50:1 | Label of a filled info control (hover) | Pass |
 | `intent.info.contrastText` | `intent.info.pressed` | 7.26:1 | 4.50:1 | Label of a filled info control (pressed) | Pass |
@@ -423,6 +428,7 @@ Ratios are truncated, never rounded up. All colors are opaque, so the ratio is t
 | `intent.info.main` | `surface.base` | 9.86:1 | 3.00:1 | Boundary of a filled info control | Pass |
 | `intent.info.main` | `surface.raised` | 9.51:1 | 3.00:1 | Boundary of a filled info control | Pass |
 | `intent.info.main` | `surface.overlay` | 9.12:1 | 3.00:1 | Boundary of a filled info control | Pass |
+| `intent.info.main` | `intent.info.container` | 8.29:1 | 3.00:1 | info progress indicator on its track | Pass |
 | `chart.series.1` | `surface.canvas` | 8.00:1 | 3.00:1 | Chart series mark | Pass |
 | `chart.series.1` | `surface.raised` | 7.66:1 | 3.00:1 | Chart series mark | Pass |
 | `chart.series.2` | `surface.canvas` | 9.92:1 | 3.00:1 | Chart series mark | Pass |

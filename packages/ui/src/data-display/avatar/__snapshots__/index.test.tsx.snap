@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Avatar > keeps the same look at every size (regression) 1`] = `
+[
+  [
+    "&{box-sizing:border-box;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;width:2rem;height:2rem;overflow:hidden;border-radius:var(--mi-radius-pill);vertical-align:middle;font-family:var(--mi-typography-label-font-family);font-size:var(--mi-typography-caption-font-size);font-weight:var(--mi-font-weight-semibold);line-height:1;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-color:var(--mi-intent-default-container);border-color:transparent;color:var(--mi-intent-default-on-container);}",
+  ],
+  [
+    "&{box-sizing:border-box;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;width:2.5rem;height:2.5rem;overflow:hidden;border-radius:var(--mi-radius-pill);vertical-align:middle;font-family:var(--mi-typography-label-font-family);font-size:var(--mi-typography-label-font-size);font-weight:var(--mi-font-weight-semibold);line-height:1;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-color:var(--mi-intent-default-container);border-color:transparent;color:var(--mi-intent-default-on-container);}",
+  ],
+  [
+    "&{box-sizing:border-box;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;-webkit-justify-content:center;justify-content:center;width:3rem;height:3rem;overflow:hidden;border-radius:var(--mi-radius-pill);vertical-align:middle;font-family:var(--mi-typography-label-font-family);font-size:var(--mi-typography-body-font-size);font-weight:var(--mi-font-weight-semibold);line-height:1;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-color:var(--mi-intent-official-container);border-color:transparent;color:var(--mi-intent-official-on-container);}",
+  ],
+]
+`;

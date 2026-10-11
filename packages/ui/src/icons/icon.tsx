@@ -76,7 +76,8 @@ export const Icon = ({
 			fill='currentColor'
 			{...svgAttributes}
 			{...iconAccessibilityProps(accessibility)}
-			style={{ width: dimension, height: dimension, flexShrink: 0, ...style }}>
+			style={{ width: dimension, height: dimension, flexShrink: 0, ...style }}
+		>
 			{children}
 		</svg>
 	);
