@@ -30,6 +30,7 @@ const publicSubpaths: readonly string[] = [
 	'./forms/date-pickers',
 	'./forms/react-hook-form',
 	'./feedback',
+	'./layout',
 	'./navigation',
 	'./data-display',
 	'./charts',

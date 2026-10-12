@@ -8,6 +8,7 @@ import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
 import type { Metadata } from 'next';
 import type { ReactElement, ReactNode } from 'react';
 
+import { AppNavigationProvider } from '#src/app/app-navigation-provider.tsx';
 import { theme } from '#src/theme.ts';
 import '#src/app/globals.css';
 
@@ -25,7 +26,9 @@ const RootLayout = ({ children }: Readonly<RootLayoutProps>): ReactElement => {
 			<body>
 				<AppRouterCacheProvider>
 					<UiProvider theme={theme}>
-						<ToastProvider>{children}</ToastProvider>
+						<AppNavigationProvider>
+							<ToastProvider>{children}</ToastProvider>
+						</AppNavigationProvider>
 					</UiProvider>
 				</AppRouterCacheProvider>
 			</body>

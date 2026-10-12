@@ -48,6 +48,10 @@
 			"types": "./dist/feedback/index.d.ts",
 			"default": "./dist/feedback/index.js"
 		},
+		"./layout": {
+			"types": "./dist/layout/index.d.ts",
+			"default": "./dist/layout/index.js"
+		},
 		"./navigation": {
 			"types": "./dist/navigation/index.d.ts",
 			"default": "./dist/navigation/index.js"

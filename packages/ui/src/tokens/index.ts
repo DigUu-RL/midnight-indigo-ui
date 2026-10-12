@@ -1,4 +1,6 @@
 // Public subpath `@midnight-indigo/ui/tokens`. Framework-agnostic: no React here.
+export { breakpointMediaQuery, breakpointNames, breakpoints } from '#src/tokens/breakpoints.ts';
+export type { Breakpoint } from '#src/tokens/breakpoints.ts';
 export {
 	contrastRatio,
 	ensureContrast,

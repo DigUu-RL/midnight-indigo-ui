@@ -3,6 +3,8 @@
 export * from '#src/buttons/index.ts';
 export * from '#src/data-display/index.ts';
 export * from '#src/feedback/index.ts';
+export * from '#src/layout/index.ts';
+export * from '#src/navigation/index.ts';
 export { Icon, iconAccessibilityProps } from '#src/icons/icon.tsx';
 export type {
 	IconAccessibility,

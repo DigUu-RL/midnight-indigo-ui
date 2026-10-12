@@ -1,6 +1,9 @@
 // Renders the files generated from the tokens: the public stylesheet and the token reference document.
 import {
 	auditContrast,
+	breakpointMediaQuery,
+	breakpointNames,
+	breakpoints,
 	createTokenStylesheet,
 	cssVariableName,
 	formatContrastRatio,
@@ -11,6 +14,7 @@ import {
 	typographyRoles,
 } from '#src/tokens/index.ts';
 import type {
+	Breakpoint,
 	ContrastResult,
 	DesignTokens,
 	IntentTokens,
@@ -191,6 +195,37 @@ const renderContrast = (): string[] => {
 	];
 };
 
+const breakpointUsages: Readonly<Record<Breakpoint, string>> = {
+	compact: 'Phones in portrait',
+	medium: 'Tablets in portrait, large phones in landscape',
+	expanded: 'Tablets in landscape, small laptops',
+	large: 'Desktops',
+	extraLarge: 'Wide monitors',
+};
+
+const renderBreakpoints = (): string[] => {
+	const rows: string[][] = breakpointNames.map((breakpoint: Breakpoint): string[] => {
+		return [
+			code(breakpoint),
+			`${String(breakpoints[breakpoint])} px`,
+			code(breakpointMediaQuery(breakpoint)),
+			breakpointUsages[breakpoint],
+		];
+	});
+
+	return [
+		`### ${code('breakpoints')}`,
+		'',
+		'Viewport widths where layouts change, mobile first: each applies from its width up. They are plain values, not',
+		'CSS custom properties, because media queries cannot read custom properties. The media queries are in `em`, so a',
+		'larger default text size gets the layout of a narrower viewport. How the components use them:',
+		'[navigation.md](./navigation.md#breakpoints).',
+		'',
+		...renderTable(['Name', 'From', 'Media query', 'Typical devices'], rows),
+		'',
+	];
+};
+
 const documentedGroups: readonly TokenGroup[] = [
 	'surface',
 	'text',
@@ -231,6 +266,7 @@ export const renderTokenDocument = (): string => {
 		...documentedGroups.slice(6).flatMap(renderGroup),
 		...renderTypography(),
 		...renderGroup('iconSize'),
+		...renderBreakpoints(),
 		...renderContrast(),
 	].join('\n');
 };
