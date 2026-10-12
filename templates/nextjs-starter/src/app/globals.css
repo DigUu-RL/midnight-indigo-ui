@@ -70,6 +70,16 @@
 	gap: var(--mi-spacing-4);
 }
 
+/* Gives the demo sidebar the height it would take from an application shell. */
+.sidebar-demo {
+	display: flex;
+	align-items: flex-start;
+	height: 22rem;
+	border: 1px solid var(--mi-border-subtle);
+	border-radius: var(--mi-radius-medium);
+	overflow: hidden;
+}
+
 .slide {
 	margin: 0;
 	padding: var(--mi-spacing-8) var(--mi-spacing-6);

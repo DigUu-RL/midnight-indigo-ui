@@ -14,9 +14,11 @@ export type GlyphName =
 	| 'chevronLeft'
 	| 'chevronRight'
 	| 'close'
+	| 'externalLink'
 	| 'eye'
 	| 'eyeOff'
 	| 'info'
+	| 'menu'
 	| 'minus'
 	| 'plus'
 	| 'search'
@@ -37,9 +39,11 @@ const strokes: Record<GlyphName, string> = {
 	chevronLeft: 'M14.5 6l-6 6 6 6',
 	chevronRight: 'M9.5 6l6 6-6 6',
 	close: 'M7 7l10 10M17 7 7 17',
+	externalLink: 'M14 4h6v6M20 4l-9 9M18 14v5H5V6h5',
 	eye,
 	eyeOff: `${eye}M4 4l16 16`,
 	info: `${circle}M12 11v5.5M12 7.5v.01`,
+	menu: 'M4 7h16M4 12h16M4 17h16',
 	minus: 'M5 12h14',
 	plus: 'M12 5v14M5 12h14',
 	search: 'M10.5 4a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM15.5 15.5 20 20',

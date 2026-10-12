@@ -63,6 +63,8 @@ const lightEntries: readonly string[] = [
 	'@midnight-indigo/ui/data-display',
 	'@midnight-indigo/ui/feedback',
 	'@midnight-indigo/ui/forms',
+	'@midnight-indigo/ui/layout',
+	'@midnight-indigo/ui/navigation',
 ];
 
 for (const specifier of lightEntries) {

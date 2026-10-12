@@ -11,6 +11,8 @@ typography, icons and motion are explained in [foundations.md](./foundations.md)
 | `@midnight-indigo/ui/buttons`      | `Button`, `IconButton`                                                                            |
 | `@midnight-indigo/ui/data-display` | `Card`, `CardHeader`, `CardContent`, `Chip`, `Badge`, `Avatar`, `Divider`, `Skeleton`, `Carousel` |
 | `@midnight-indigo/ui/feedback`     | `ProgressBar` (linear and circular); alerts, toasts and overlays in [feedback.md](./feedback.md)  |
+| `@midnight-indigo/ui/layout`       | `Container`, `Stack`, `Grid`, `GridItem`, `useBreakpoint`; see [navigation.md](./navigation.md)   |
+| `@midnight-indigo/ui/navigation`   | Links, tabs, breadcrumbs, pagination and the sidebar in [navigation.md](./navigation.md)          |
 | `@midnight-indigo/ui`              | All of the above, plus `Icon` and the theme API                                                   |
 
 ```tsx

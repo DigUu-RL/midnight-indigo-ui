@@ -85,33 +85,53 @@ const hasOwnName = (element: Element): boolean => {
  * in the console, since a tooltip must not be the only source of its name. A disabled control does not receive the
  * pointer and focus events, so wrap it in a focusable element or explain why it is disabled in visible text.
  */
-export const Tooltip = ({
+export const Tooltip = (props: TooltipProps): ReactElement => {
+	return <TooltipBase {...props} role='description' />;
+};
+
+interface TooltipBaseProps extends TooltipProps {
+	/**
+	 * `description` is the public contract. `name` is for library components whose trigger shows its name only in the
+	 * tooltip, such as the items of a collapsed navigation rail: the trigger is named by the same text instead.
+	 */
+	role: 'description' | 'name';
+	/** Keeps the trigger as it is but never shows the tooltip, e.g. while the rail is expanded. */
+	disabled?: boolean;
+}
+
+/** Shared by `Tooltip` and the library components that need the naming variant. Not public. */
+export const TooltipBase = ({
 	content,
 	children,
 	placement = 'top',
 	delay = 300,
 	container,
-}: TooltipProps): ReactElement => {
+	role,
+	disabled = false,
+}: TooltipBaseProps): ReactElement => {
 	const theme: Theme = useTheme();
 	const trigger: RefObject<HTMLElement | null> = useRef<HTMLElement>(null);
 
 	useEffect((): void => {
-		if (trigger.current === null || hasOwnName(trigger.current)) return;
+		if (role === 'name' || trigger.current === null || hasOwnName(trigger.current)) return;
 
 		console.error(
 			`[Midnight Indigo: UI] The trigger of the tooltip "${content}" has no accessible name of its own. ` +
 				'Name it with visible text or a label; the tooltip only describes it.',
 		);
-	}, [content]);
+	}, [content, role]);
 
 	return (
 		<MuiTooltip
 			ref={trigger}
 			title={content}
-			describeChild
+			describeChild={role === 'description'}
 			placement={physicalPlacements[placement](theme.direction === 'rtl')}
 			enterDelay={delay}
 			enterNextDelay={delay}
+			disableHoverListener={disabled}
+			disableFocusListener={disabled}
+			disableTouchListener={disabled}
 			slotProps={{
 				popper: { container, sx: { zIndex: layer.tooltip } },
 				tooltip: { sx: tooltipStyles },

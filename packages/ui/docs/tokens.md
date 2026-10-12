@@ -273,6 +273,21 @@ Fixed icon sizes. Icons inline with text use `1em` instead, to follow the text s
 | `iconSize.medium` | `--mi-icon-size-medium` | `1.25rem` | Default size inside buttons, inputs and menu items. |
 | `iconSize.large` | `--mi-icon-size-large` | `1.5rem` | Standalone icons, empty states and icon-only toolbars. |
 
+### `breakpoints`
+
+Viewport widths where layouts change, mobile first: each applies from its width up. They are plain values, not
+CSS custom properties, because media queries cannot read custom properties. The media queries are in `em`, so a
+larger default text size gets the layout of a narrower viewport. How the components use them:
+[navigation.md](./navigation.md#breakpoints).
+
+| Name | From | Media query | Typical devices |
+| --- | --- | --- | --- |
+| `compact` | 0 px | `(min-width: 0em)` | Phones in portrait |
+| `medium` | 600 px | `(min-width: 37.5em)` | Tablets in portrait, large phones in landscape |
+| `expanded` | 840 px | `(min-width: 52.5em)` | Tablets in landscape, small laptops |
+| `large` | 1200 px | `(min-width: 75em)` | Desktops |
+| `extraLarge` | 1600 px | `(min-width: 100em)` | Wide monitors |
+
 ## Contrast pairs
 
 Every pair below is checked in CI against WCAG 2.2 AA: 4.5:1 for text, 3:1 for non-text indicators.

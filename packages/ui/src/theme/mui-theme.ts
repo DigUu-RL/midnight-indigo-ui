@@ -7,6 +7,7 @@ import type {
 	TypographyVariantsOptions,
 } from '@mui/material/styles';
 
+import { breakpoints } from '#src/tokens/index.ts';
 import type { DesignTokens, IntentTokens } from '#src/tokens/index.ts';
 import type { UiTheme } from '#src/theme/create-ui-theme.ts';
 
@@ -111,6 +112,16 @@ export const toMuiTheme = (
 		shape: { borderRadius: Number.parseFloat(radius.medium) },
 		typography: toTypography(theme.tokens),
 		transitions: toTransitions(theme.tokens, reducedMotion),
+		// `theme.breakpoints` and `useMediaQuery` of the application switch at the same widths as the library.
+		breakpoints: {
+			values: {
+				xs: breakpoints.compact,
+				sm: breakpoints.medium,
+				md: breakpoints.expanded,
+				lg: breakpoints.large,
+				xl: breakpoints.extraLarge,
+			},
+		},
 		// Material UI components rendered directly by the application stack like the library overlays.
 		zIndex: {
 			appBar: Number(layer.sticky),

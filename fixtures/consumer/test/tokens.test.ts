@@ -4,7 +4,13 @@ import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 import { fileURLToPath } from 'node:url';
 
-import { auditContrast, semanticIntents, tokens } from '@midnight-indigo/ui/tokens';
+import {
+	auditContrast,
+	breakpointMediaQuery,
+	breakpoints,
+	semanticIntents,
+	tokens,
+} from '@midnight-indigo/ui/tokens';
 import type { ContrastResult } from '@midnight-indigo/ui/tokens';
 
 const officialPinkSource: string = '#FF6AC1';
@@ -24,6 +30,18 @@ test('the compiled tokens pass the contrast audit', (): void => {
 		.map((result: ContrastResult): string => result.message);
 
 	assert.deepEqual(failures, []);
+});
+
+test('the compiled breakpoints and their media queries', (): void => {
+	assert.deepEqual(breakpoints, {
+		compact: 0,
+		medium: 600,
+		expanded: 840,
+		large: 1200,
+		extraLarge: 1600,
+	});
+
+	assert.equal(breakpointMediaQuery('expanded'), '(min-width: 52.5em)');
 });
 
 test('the public stylesheet declares the official pink and a dark color scheme', (): void => {

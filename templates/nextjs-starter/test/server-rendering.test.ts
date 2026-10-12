@@ -230,6 +230,48 @@ test('the alerts and overlay triggers are rendered on the server, the overlays t
 	assert.doesNotMatch(page.html, /role="(?:dialog|alertdialog|menu|tooltip)"/);
 });
 
+test('the navigation is rendered on the server with landmarks, current pages and next/link anchors', (): void => {
+	assert.match(page.html, /<nav aria-label="Breadcrumb"><ol/);
+	assert.match(page.html, /aria-label="Show 1 more level"/);
+	assert.match(page.html, /<nav aria-label="Project sections">/);
+
+	assert.match(
+		page.html,
+		/<a(?=[^>]*href="\/")(?=[^>]*aria-current="page")[^>]*>(?:<!-- -->)?Overview/,
+	);
+
+	assert.match(page.html, /role="tablist" aria-label="Report sections"/);
+	assert.match(page.html, /<nav aria-label="Pagination">/);
+	assert.match(page.html, /aria-label="Page 1" aria-current="true"/);
+	assert.match(page.html, /<a[^>]*href="\/\?view=guide"[^>]*>getting started guide<\/a>/);
+	assert.match(page.html, /target="_blank" rel="noopener noreferrer"/);
+	assert.match(page.html, /<nav[^>]*aria-label="Demo navigation"/);
+
+	assert.match(
+		page.html,
+		/<button(?=[^>]*aria-label="Open navigation")(?=[^>]*aria-haspopup="dialog")(?=[^>]*aria-expanded="false")/,
+	);
+});
+
+test('the layout switches at the breakpoints with CSS from the first paint', (): void => {
+	const head: string = page.shell.slice(0, page.shell.indexOf('</head>'));
+
+	assert.match(
+		head,
+		/@media \(min-width: ?37\.5em\)\{[^}]*\{[^}]*grid-template-columns:repeat\(2, minmax\(0, 1fr\)\)/,
+	);
+
+	assert.match(
+		head,
+		/@media \(min-width: ?75em\)\{[^}]*\{[^}]*grid-template-columns:repeat\(4, minmax\(0, 1fr\)\)/,
+	);
+
+	assert.match(
+		head,
+		/@media \(min-width: ?52\.5em\)\{[^}]*\{[^}]*display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;/,
+	);
+});
+
 test('the component styles arrive in the head of the first flush, so controls paint styled', (): void => {
 	const head: string = page.shell.slice(0, page.shell.indexOf('</head>'));
 
