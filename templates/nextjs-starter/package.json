@@ -21,9 +21,11 @@
 		"@midnight-indigo/ui": "workspace:*",
 		"@mui/material": "catalog:",
 		"@mui/material-nextjs": "catalog:",
+		"i18next": "catalog:",
 		"next": "catalog:",
 		"react": "catalog:",
-		"react-dom": "catalog:"
+		"react-dom": "catalog:",
+		"react-i18next": "catalog:"
 	},
 	"devDependencies": {
 		"@types/node": "catalog:",

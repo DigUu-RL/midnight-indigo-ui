@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react';
 import type { ChangeEvent, KeyboardEvent, ReactElement, RefObject } from 'react';
 
+import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { IconButton } from '#src/buttons/icon-button/index.tsx';
 import { Glyph } from '#src/shared/glyphs/index.tsx';
 import { mergeReferences, setNativeValue } from '#src/shared/merge-references.ts';
@@ -43,7 +44,12 @@ export const SearchField = ({
 	readOnly = false,
 	...props
 }: SearchFieldProps): ReactElement => {
-	const text: SearchFieldLabels = { ...defaultSearchFieldLabels, ...labels };
+	const text: SearchFieldLabels = useComponentLabels(
+		'searchField',
+		defaultSearchFieldLabels,
+		labels,
+	);
+
 	const inputReference: RefObject<HTMLInputElement | null> = useRef<HTMLInputElement>(null);
 
 	const [uncontrolledFilled, setUncontrolledFilled] = useState<boolean>(

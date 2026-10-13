@@ -11,6 +11,7 @@ import type {
 	RefObject,
 } from 'react';
 
+import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { focusRingStyles } from '#src/shared/appearance.ts';
 import { Glyph } from '#src/shared/glyphs/index.tsx';
 import { mergeReferences } from '#src/shared/merge-references.ts';
@@ -128,7 +129,13 @@ export const ErrorSummary = ({
 	...attributes
 }: ErrorSummaryProps): ReactElement | null => {
 	const titleId: string = useId();
-	const texts: ErrorSummaryLabels = { ...defaultErrorSummaryLabels, ...labels };
+
+	const texts: ErrorSummaryLabels = useComponentLabels(
+		'errorSummary',
+		defaultErrorSummaryLabels,
+		labels,
+	);
+
 	const summaryReference: RefObject<HTMLElement | null> = useRef<HTMLElement>(null);
 	const visible: boolean = errors.length > 0;
 

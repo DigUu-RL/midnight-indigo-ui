@@ -5,6 +5,7 @@ import type { CSSObject } from '@mui/material/styles';
 import { useId } from 'react';
 import type { ComponentPropsWithRef, ReactElement, ReactNode, RefCallback } from 'react';
 
+import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { forwardAllBut } from '#src/shared/appearance.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 import {
@@ -136,7 +137,7 @@ export const Drawer = ({
 	ref,
 	...attributes
 }: DrawerProps): ReactElement => {
-	const texts: DrawerLabels = { ...defaultDrawerLabels, ...labels };
+	const texts: DrawerLabels = useComponentLabels('drawer', defaultDrawerLabels, labels);
 	const titleId: string = useId();
 	const descriptionId: string = useId();
 	const panelReference: RefCallback<HTMLDivElement> = useModalPanelReference(initialFocus, ref);

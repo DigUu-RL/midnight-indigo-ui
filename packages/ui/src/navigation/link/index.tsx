@@ -10,6 +10,7 @@ import {
 	forwardAllBut,
 	visuallyHiddenStyles,
 } from '#src/shared/appearance.ts';
+import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { Glyph } from '#src/shared/glyphs/index.tsx';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 import { useLinkAs } from '#src/navigation/navigation-provider/index.tsx';
@@ -91,7 +92,7 @@ export const Link = ({
 	rel,
 	...attributes
 }: LinkProps): ReactElement => {
-	const texts: LinkLabels = { ...defaultLinkLabels, ...labels };
+	const texts: LinkLabels = useComponentLabels('link', defaultLinkLabels, labels);
 	const linkAs: { as?: LinkComponent } = useLinkAs();
 
 	if (external) {

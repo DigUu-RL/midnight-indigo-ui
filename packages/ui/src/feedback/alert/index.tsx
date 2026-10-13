@@ -11,6 +11,7 @@ import {
 	focusRingStyles,
 	forwardAllBut,
 } from '#src/shared/appearance.ts';
+import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { Glyph, intentGlyphs } from '#src/shared/glyphs/index.tsx';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 import type { SemanticIntent } from '#src/tokens/index.ts';
@@ -180,7 +181,7 @@ export const Alert = ({
 	labels,
 	...attributes
 }: AlertProps): ReactElement => {
-	const texts: AlertLabels = { ...defaultAlertLabels, ...labels };
+	const texts: AlertLabels = useComponentLabels('alert', defaultAlertLabels, labels);
 
 	return (
 		<Root {...attributes} role={roles[announce]} alertIntent={intent} alertVariant={variant}>

@@ -11,6 +11,7 @@ import {
 	focusRingStyles,
 	interactionStyles,
 } from '#src/shared/appearance.ts';
+import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { Glyph } from '#src/shared/glyphs/index.tsx';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 import { breakpointMediaQuery } from '#src/tokens/index.ts';
@@ -197,7 +198,7 @@ export const Pagination = ({
 	labels,
 	...attributes
 }: PaginationProps): ReactElement => {
-	const texts: PaginationLabels = { ...defaultPaginationLabels, ...labels };
+	const texts: PaginationLabels = useComponentLabels('pagination', defaultPaginationLabels, labels);
 	const linkAs: { as?: LinkComponent } = useLinkAs();
 	const lastPage: number = Math.max(1, pageCount);
 	const page: number = Math.min(Math.max(1, requestedPage), lastPage);

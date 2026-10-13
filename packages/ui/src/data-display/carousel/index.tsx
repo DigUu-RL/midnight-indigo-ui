@@ -11,6 +11,7 @@ import type {
 	RefObject,
 } from 'react';
 
+import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { IconButton } from '#src/buttons/icon-button/index.tsx';
 import {
 	assertLabel,
@@ -148,7 +149,7 @@ export const Carousel = ({
 	labels,
 	...attributes
 }: CarouselProps): ReactElement => {
-	const text: CarouselLabels = { ...defaultCarouselLabels, ...labels };
+	const text: CarouselLabels = useComponentLabels('carousel', defaultCarouselLabels, labels);
 	const slides: ReactNode[] = Children.toArray(children);
 	const total: number = slides.length;
 	const [uncontrolledIndex, setUncontrolledIndex] = useState<number>(defaultIndex);

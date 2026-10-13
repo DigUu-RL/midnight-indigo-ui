@@ -5,6 +5,7 @@ import type { CSSObject } from '@mui/material/styles';
 import { useEffect, useId, useRef, useState } from 'react';
 import type { ComponentPropsWithRef, ReactElement, RefObject } from 'react';
 
+import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { colorTransitionStyles, focusRingStyles } from '#src/shared/appearance.ts';
 import { Glyph } from '#src/shared/glyphs/index.tsx';
 import { themeVariables } from '#src/theme/theme-variables.ts';
@@ -117,7 +118,12 @@ export const Breadcrumbs = ({
 	labels,
 	...attributes
 }: BreadcrumbsProps): ReactElement => {
-	const texts: BreadcrumbsLabels = { ...defaultBreadcrumbsLabels, ...labels };
+	const texts: BreadcrumbsLabels = useComponentLabels(
+		'breadcrumbs',
+		defaultBreadcrumbsLabels,
+		labels,
+	);
+
 	const linkAs: { as?: LinkComponent } = useLinkAs();
 	const [expanded, setExpanded] = useState<boolean>(false);
 	const expanderKey: string = useId();

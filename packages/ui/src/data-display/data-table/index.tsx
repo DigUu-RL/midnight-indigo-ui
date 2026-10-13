@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import { useDeferredValue, useMemo, useState } from 'react';
 import type { ComponentPropsWithRef, ReactElement, ReactNode } from 'react';
 
+import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { visuallyHiddenStyles } from '#src/shared/appearance.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 import { Pagination } from '#src/navigation/pagination/index.tsx';
@@ -204,7 +205,7 @@ export const DataTable = <Row,>({
 	paginationLabels,
 	...attributes
 }: DataTableProps<Row>): ReactElement => {
-	const texts: DataTableLabels = { ...defaultDataTableLabels, ...labels };
+	const texts: DataTableLabels = useComponentLabels('dataTable', defaultDataTableLabels, labels);
 	const server: boolean = processing === 'server';
 	const pageSize: number = Math.max(1, Math.floor(requestedPageSize));
 	const [uncontrolledSort, setUncontrolledSort] = useState<SortState | null>(defaultSort);

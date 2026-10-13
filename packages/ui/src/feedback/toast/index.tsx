@@ -5,6 +5,7 @@ import type { CSSObject } from '@mui/material/styles';
 import { createContext, use, useEffect, useMemo, useRef, useState } from 'react';
 import type { Context, FocusEvent, KeyboardEvent, ReactElement, ReactNode, RefObject } from 'react';
 
+import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { Button } from '#src/buttons/button/index.tsx';
 import { forwardAllBut, visuallyHiddenStyles } from '#src/shared/appearance.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
@@ -327,7 +328,7 @@ export const ToastProvider = ({
 	labels,
 	container,
 }: ToastProviderProps): ReactElement => {
-	const texts: ToastLabels = { ...defaultToastLabels, ...labels };
+	const texts: ToastLabels = useComponentLabels('toast', defaultToastLabels, labels);
 	const [toasts, setToasts] = useState<readonly ToastRecord[]>([]);
 
 	const [announcements, setAnnouncements] = useState<AnnouncementState>({
