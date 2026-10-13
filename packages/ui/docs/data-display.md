@@ -125,18 +125,38 @@ the texts of the pagination itself. Headers and the caption are given by the app
 
 ## Large datasets
 
-`DataTable` renders only the rows of the current page, so the size of the DOM does not grow with the data. Processing
-on the client is benchmarked in `row-processing/index.test.ts` with 10 000 rows:
+`DataTable` renders only the rows of the current page, so the size of the DOM does not grow with the data. The
+performance suite (`pnpm test:performance`, files `*.performance.test.ts(x)`) holds this with counts that do not
+depend on the machine: the same number of elements for 1 000 and 100 000 rows, the searchable texts read once (not
+again on sorting, paging or filtering), each sort value read once per sort, cells rendered only for the page, one
+React commit per sort or page change and at most two per new filter.
 
-| Operation                           | Measured (laptop) | Budget in CI |
-| ----------------------------------- | ----------------- | ------------ |
-| Sort by text (`Intl.Collator`)      | about 50 ms       | 250 ms       |
-| Filter with the index already built | about 2 ms        | 25 ms        |
+Processing, timed in Node (`row-processing/index.performance.test.ts`); budgets are about four times the laptop time:
+
+| Operation                           | 10 000 rows       | 100 000 rows    | 1 000 000 rows  |
+| ----------------------------------- | ----------------- | --------------- | --------------- |
+| Sort by text (`Intl.Collator`)      | ~50 ms (250 ms)   | ~740 ms (3 s)   | not budgeted    |
+| Sort by number                      | ~11 ms            | ~90 ms (400 ms) | ~830 ms (4 s)   |
+| Build the search index              | ~8 ms             | ~75 ms (400 ms) | ~950 ms         |
+| Filter with the index already built | ~2 ms (25 ms)     | ~17 ms (100 ms) | ~75 ms (400 ms) |
+| Slice a page                        | constant (< 1 ms) | constant        | constant        |
+
+The whole table, timed in Chromium on the production build (`fixtures/browser`, `pnpm test:browser`). Interaction
+latency is measured like Interaction to Next Paint, from the input to the next frame painted, and must stay under
+200 ms ("good" by the Core Web Vitals):
+
+| Scenario                                     | Measured (laptop)   |
+| -------------------------------------------- | ------------------- |
+| 10 000 rows on the client: first render      | ~140–210 ms         |
+| 10 000 rows: sort by text / by number        | ~80–130 ms / ~32 ms |
+| 10 000 rows: next page / typing a filter     | ~32 ms / ~40–48 ms  |
+| 10 000 000 rows by a server: render / paging | ~90 ms / ~32–48 ms  |
 
 Filtering follows `useDeferredValue`, so the field stays responsive while the rows update. **Supported on the client:
 up to about 10 000 rows.** Beyond that, or when the data does not fit in memory, use `processing="server"`: the server
-sorts, filters and pages, and the table renders what it receives. `sortRows` and `filterRows` are exported for a server
-written in TypeScript.
+sorts, filters and pages, and the table renders what it receives — 10 000 000 rows page as fast as 100. `sortRows` and
+`filterRows` are exported for a server written in TypeScript; sorting text with `Intl.Collator` is what limits them
+(about 7 s for 1 000 000 rows), so sort large text columns in the database.
 
 ### Not in this first delivery
 

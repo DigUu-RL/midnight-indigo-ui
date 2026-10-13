@@ -3,6 +3,11 @@ coverage
 .next
 next-env.d.ts
 pnpm-lock.yaml
+fixtures/consumer/.packed
+playwright-report
+test-results
+# Visual baselines, written by Playwright.
+fixtures/browser/test/__screenshots__
 
 # Generated from packages/ui/src/tokens (pnpm --filter @midnight-indigo/ui generate:tokens)
 packages/ui/src/styles.css

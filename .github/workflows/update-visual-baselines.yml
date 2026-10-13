@@ -1,0 +1,47 @@
+name: Update visual baselines
+
+# Regenerates the Linux screenshots that CI compares against, on the branch it is run on, and commits them. Run it after
+# an intentional visual change (Actions → Update visual baselines → Run workflow → pick the branch), review the new
+# images in the commit, then re-run CI: a commit pushed by this workflow does not start other workflows.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: visual-baselines-${{ github.ref }}
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+
+      - name: Install Chromium
+        run: pnpm --filter @midnight-indigo/browser-tests exec playwright install --with-deps chromium
+
+      - run: pnpm --filter @midnight-indigo/browser-tests run test:visual:update
+
+      - name: Commit the new baselines
+        shell: bash
+        run: |
+          git add fixtures/browser/test/__screenshots__/linux
+          if git diff --cached --quiet; then
+            echo "The Linux baselines are up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "test: update the Linux visual baselines"
+          git push

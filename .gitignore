@@ -8,6 +8,9 @@ coverage/
 next-env.d.ts
 *.tsbuildinfo
 *.tgz
+fixtures/consumer/.packed/
+playwright-report/
+test-results/
 
 # Logs
 *.log

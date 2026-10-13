@@ -1,0 +1,36 @@
+{
+	"name": "@midnight-indigo/browser-tests",
+	"private": true,
+	"description": "Browser suite (Playwright): end-to-end flows, accessibility and visual regression of the starter, and performance scenarios with large datasets.",
+	"type": "module",
+	"imports": {
+		"#src/*": "./src/*",
+		"#test/*": "./test/*"
+	},
+	"scripts": {
+		"build": "vite build",
+		"typecheck": "tsc -p tsconfig.json",
+		"test:browser": "playwright test --project=starter --project=visual && pnpm run test:performance",
+		"test:e2e": "playwright test --project=starter",
+		"test:visual": "playwright test --project=visual",
+		"test:visual:update": "playwright test --project=visual --update-snapshots",
+		"test:performance": "playwright test --project=performance --workers=1"
+	},
+	"dependencies": {
+		"@emotion/react": "catalog:",
+		"@emotion/styled": "catalog:",
+		"@midnight-indigo/ui": "workspace:*",
+		"@mui/material": "catalog:",
+		"react": "catalog:",
+		"react-dom": "catalog:"
+	},
+	"devDependencies": {
+		"@playwright/test": "catalog:",
+		"@types/node": "catalog:",
+		"@types/react": "catalog:",
+		"@types/react-dom": "catalog:",
+		"axe-core": "catalog:",
+		"typescript": "catalog:",
+		"vite": "catalog:"
+	}
+}

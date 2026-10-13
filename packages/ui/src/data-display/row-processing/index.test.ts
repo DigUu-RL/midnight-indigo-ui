@@ -1,8 +1,6 @@
-import { performance } from 'node:perf_hooks';
 import { describe, expect, it } from 'vitest';
 
 import {
-	createRowCollator,
 	createSearchIndex,
 	filterRows,
 	normalizeSearchText,
@@ -141,40 +139,5 @@ describe('pageRows', (): void => {
 		expect(idsOf(pageRows(orders, 3, 10))).toEqual([21, 22, 23, 24, 25]);
 		expect(pageCountOf(25, 10)).toBe(3);
 		expect(pageCountOf(0, 10)).toBe(1);
-	});
-});
-
-// Benchmark of client-side processing. The budgets are about five times the time measured on a laptop (about 50 ms to
-// sort and 2 ms to filter), so that a slow CI runner does not fail, and still below what a user perceives as a frozen
-// page for the sizes documented as supported on the client (docs/data-display.md, "Large datasets").
-describe('client-side processing benchmark', (): void => {
-	const rowCount: number = 10_000;
-	const orders: Order[] = createOrders(rowCount);
-	const collator: Intl.Collator = createRowCollator('pt-BR');
-
-	const measure = (task: () => void): number => {
-		const start: number = performance.now();
-		task();
-		return performance.now() - start;
-	};
-
-	it(`sorts ${String(rowCount)} rows by text in less than 250 ms`, (): void => {
-		const elapsed: number = measure((): void => {
-			sortRows(orders, (order: Order): SortValue => order.customer, 'ascending', collator);
-		});
-
-		expect(elapsed).toBeLessThan(250);
-	});
-
-	it(`indexes once and then filters ${String(rowCount)} rows in less than 25 ms per query`, (): void => {
-		const searchIndex: string[] = createSearchIndex(orders, (order: Order): string[] => {
-			return [order.customer, order.city];
-		});
-
-		const elapsed: number = measure((): void => {
-			filterRows(orders, searchIndex, 'curitiba 12');
-		});
-
-		expect(elapsed).toBeLessThan(25);
 	});
 });

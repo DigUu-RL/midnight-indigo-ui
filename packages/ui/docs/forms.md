@@ -87,6 +87,13 @@ its attributes through a render function.
 Without `label`, name the control with `aria-label` or `aria-labelledby` (e.g. a row checkbox in a table); a control
 with no name at all throws. Options inside `CheckboxGroup` and `RadioGroup` keep regular text, under the legend.
 
+**Combobox with many options.** The list renders at most `maxVisibleOptions` matches (default 100): opening a list of
+thousands of `<li>` freezes the page (10 000 options took about 800 ms to open in Chromium). When more options
+match, the list ends with `labels.moreOptions(shown, total)` — "Showing 100 of 10000 options. Type to narrow the list."
+— also announced in the status, and typing narrows the matches. With the cap, opening and typing stay under 200 ms
+with 100 000 options (fixtures/browser, `pnpm test:browser`). For options that live on a server, use `filter='none'`
+and pass the matches of `inputValue`.
+
 ## Validation, submission and focus
 
 The core has no schema engine: the application decides what is valid. Two ways to build a form:
@@ -100,7 +107,9 @@ The core has no schema engine: the application decides what is valid. Two ways t
   and the **error summary takes focus once** and is read with its count. Its links move focus to each field.
   `errorSummary={false}` focuses the first invalid field instead.
 - After a failed submission, leaving a field (`revalidateOn='blur'`) checks again and updates the messages in place,
-  **without moving focus and without live regions** — errors are never announced at each keystroke.
+  **without moving focus and without live regions** — errors are never announced at each keystroke. When a pointer
+  press moves focus, the messages change only after the release: changing them between the press and the release
+  would move the layout under the pointer, and the click would miss its target (a checkbox would not toggle).
 - `onSubmit(data, form)` may return a promise: the form is `aria-busy` and `SubmitButton` shows `loading` (it keeps
   focus and ignores clicks, so nothing is sent twice). Success announces `successMessage` (`role="status"`); a
   rejection announces `labels.submissionError` (`role="alert"`). Server errors come back through `errors`.
@@ -188,4 +197,5 @@ in the translation (`title: (count) => ...`). The i18n provider (F11) will feed 
 Testing Library and user-event for pointer and keyboard (Tab, Space, Enter, Escape, arrows), axe-core on the
 rendered markup, CSS rule snapshots of the field states, React Hook Form adapter tests in their own file, and the
 consumer fixture rendering the compiled fields on the server and checking that `forms` does not load the optional
-peers.
+peers. The browser suite (`fixtures/browser`) submits the profile form of the starter end to end, and its performance
+project times the combobox with up to 100 000 options.

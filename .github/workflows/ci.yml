@@ -41,8 +41,10 @@ jobs:
       - run: pnpm lint
       - run: pnpm format:check
       - run: pnpm test
+      - run: pnpm test:performance
       - run: pnpm check:package
       - run: pnpm check:source
+      - run: pnpm check:licenses
 
       - name: No generated files outside .gitignore
         shell: bash
@@ -51,3 +53,40 @@ jobs:
             git status --porcelain
             exit 1
           fi
+
+  # End-to-end flows, accessibility, visual regression and performance in Chromium, on the production builds. Linux
+  # only: the visual baselines in CI are the Linux set (see update-visual-baselines.yml).
+  browser:
+    name: browser (chromium)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+
+      - name: Install Chromium
+        run: pnpm --filter @midnight-indigo/browser-tests exec playwright install --with-deps chromium
+
+      - run: pnpm --filter @midnight-indigo/browser-tests run test:e2e
+      - run: pnpm --filter @midnight-indigo/browser-tests run test:visual
+        if: ${{ !cancelled() }}
+      - run: pnpm --filter @midnight-indigo/browser-tests run test:performance
+        if: ${{ !cancelled() }}
+
+      # The report holds traces of failures, the visual diffs and the measurements of the performance tests.
+      - uses: actions/upload-artifact@v6
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: |
+            fixtures/browser/playwright-report/
+            fixtures/browser/test-results/
+          retention-days: 14

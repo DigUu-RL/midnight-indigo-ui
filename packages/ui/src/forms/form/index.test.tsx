@@ -88,6 +88,43 @@ describe('Form', (): void => {
 		expect(screen.queryByRole('region')).toBeNull();
 	});
 
+	it('revalidates after the click when a pointer press moves focus, so the layout holds under the pointer', async (): Promise<void> => {
+		const user: UserEvent = userEvent.setup();
+
+		render(
+			<Form validate={validateEmail}>
+				<TextField label='Email' name='email' />
+				<TextField label='Other' name='other' />
+				<SubmitButton>Save</SubmitButton>
+			</Form>,
+		);
+
+		await user.click(screen.getByRole('button', { name: 'Save' }));
+		await screen.findByRole('region');
+		const email: HTMLElement = screen.getByRole('textbox', { name: 'Email' });
+		const other: HTMLElement = screen.getByRole('textbox', { name: 'Other' });
+		await user.type(email, 'ana@example.com');
+
+		// Pressing on another field blurs the email field; the summary must not shrink before the release.
+		await user.pointer({ keys: '[MouseLeft>]', target: other });
+
+		await new Promise<void>((resolve: () => void): void => {
+			setTimeout(resolve, 20);
+		});
+
+		expect(screen.getByRole('region')).toBeDefined();
+		expect(email.getAttribute('aria-invalid')).toBe('true');
+
+		await user.pointer({ keys: '[/MouseLeft]', target: other });
+
+		await waitFor((): void => {
+			expect(email.hasAttribute('aria-invalid')).toBe(false);
+		});
+
+		expect(document.activeElement).toBe(other);
+		expect(screen.queryByRole('region')).toBeNull();
+	});
+
 	it('waits for async validation and submission, keeping the button busy', async (): Promise<void> => {
 		const user: UserEvent = userEvent.setup();
 		let finish: () => void = (): void => undefined;

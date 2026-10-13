@@ -80,6 +80,7 @@
 		"build": "tsdown",
 		"typecheck": "tsc -p tsconfig.json",
 		"test": "vitest run",
+		"test:performance": "vitest run --config vitest.performance.config.ts",
 		"check:package": "publint --strict && attw --pack --profile esm-only --exclude-entrypoints ./styles.css"
 	},
 	"peerDependencies": {
