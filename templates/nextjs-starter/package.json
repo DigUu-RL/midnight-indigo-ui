@@ -17,7 +17,7 @@
 		"@emotion/cache": "catalog:",
 		"@emotion/react": "catalog:",
 		"@emotion/styled": "catalog:",
-		"@fontsource-variable/inter": "catalog:",
+		"@fontsource-variable/geist": "catalog:",
 		"@midnight-indigo/ui": "workspace:*",
 		"@mui/material": "catalog:",
 		"@mui/material-nextjs": "catalog:",

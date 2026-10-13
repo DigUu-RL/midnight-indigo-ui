@@ -150,7 +150,7 @@ test('the body typography comes from the tokens and is rendered on the server', 
 	assert.match(head, new RegExp(`body\\{[^}]*font-size:${fontSize}[^}]*line-height:${lineHeight}`));
 });
 
-test('Inter is self-hosted: no font is requested from another origin', async (): Promise<void> => {
+test('Geist Sans is self-hosted: no font is requested from another origin', async (): Promise<void> => {
 	const stylesheets: URL[] = listStylesheetUrls(page.html, origin);
 
 	assert.doesNotMatch(page.html, /fonts\.googleapis\.com|fonts\.gstatic\.com/);
@@ -179,8 +179,8 @@ test('Inter is self-hosted: no font is requested from another origin', async ():
 	);
 
 	assert.ok(
-		fontFaces.some((fontFace: string): boolean => fontFace.includes('Inter Variable')),
-		'No @font-face declares Inter.',
+		fontFaces.some((fontFace: string): boolean => fontFace.includes('Geist Variable')),
+		'No @font-face declares Geist Sans.',
 	);
 
 	assert.deepEqual(

@@ -30,7 +30,7 @@ const allowedLicenses: ReadonlySet<string> = new Set<string>([
 
 // Licenses allowed for specific packages only, each with the reason.
 const allowedExceptions: Readonly<Record<string, { license: string; reason: string }>> = {
-	'@fontsource-variable/inter': {
+	'@fontsource-variable/geist': {
 		license: 'OFL-1.1',
 		reason: 'Font files: the SIL Open Font License allows bundling them with any software (D02).',
 	},

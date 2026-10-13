@@ -226,11 +226,11 @@ Durations and easing curves. Durations become 0ms under `prefers-reduced-motion:
 
 ### `fontFamily`
 
-Font stacks. Inter is self-hosted by the application; the system fonts after it are the fallback.
+Font stacks. Geist Sans is self-hosted by the application; the system fonts after it are the fallback.
 
 | Token | CSS variable | Value | Purpose |
 | --- | --- | --- | --- |
-| `fontFamily.sans` | `--mi-font-family-sans` | `'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif` | Interface text: every role except `code`. |
+| `fontFamily.sans` | `--mi-font-family-sans` | `'Geist Variable', Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif` | Interface text: every role except `code`. |
 | `fontFamily.mono` | `--mi-font-family-mono` | `ui-monospace, SFMono-Regular, 'Cascadia Mono', 'Roboto Mono', Menlo, Consolas, 'Liberation Mono', monospace` | Code, identifiers and values that must align character by character. |
 
 ### `fontWeight`

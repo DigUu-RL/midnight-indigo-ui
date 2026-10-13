@@ -1,7 +1,8 @@
 // Root layout (Server Component). The Emotion cache provider must wrap `UiProvider` so that Material UI styles
 // are collected during server rendering and streamed into the `<head>` instead of being injected after hydration.
-// Inter is self-hosted: the font package ships the files, the bundler serves them and no request leaves the origin.
-import '@fontsource-variable/inter';
+// Geist Sans is self-hosted: the font package ships the files, the bundler serves them and no request leaves the
+// origin.
+import '@fontsource-variable/geist';
 import { ToastProvider } from '@midnight-indigo/ui/feedback';
 import { UiProvider } from '@midnight-indigo/ui/theme';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';

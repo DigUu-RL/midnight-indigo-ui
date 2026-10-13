@@ -63,7 +63,7 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 		motion:
 			'Durations and easing curves. Durations become 0ms under `prefers-reduced-motion: reduce`.',
 		fontFamily:
-			'Font stacks. Inter is self-hosted by the application; the system fonts after it are the fallback.',
+			'Font stacks. Geist Sans is self-hosted by the application; the system fonts after it are the fallback.',
 		fontWeight: 'Font weights used by the typographic roles.',
 		typography:
 			'Typographic roles. Sizes are in rem, so they follow the browser text size and zoom; line heights are unitless.',
