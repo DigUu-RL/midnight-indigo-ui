@@ -32,6 +32,7 @@ const DeleteReport = ({ intent = 'error', onConfirm, onCancelled }: HarnessProps
 			>
 				Delete report
 			</Button>
+
 			<ConfirmDialog
 				open={open}
 				intent={intent}

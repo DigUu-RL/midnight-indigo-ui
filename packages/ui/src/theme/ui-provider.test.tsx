@@ -40,6 +40,7 @@ const Document = ({ children }: ChildrenProps): ReactElement => {
 			<head>
 				<title>Theme</title>
 			</head>
+
 			<body>{children}</body>
 		</html>
 	);
@@ -91,6 +92,7 @@ describe('UiProvider in the browser', (): void => {
 		await renderInBrowser(
 			<>
 				<ThemeProbe />
+
 				<UiProvider>
 					<ThemeProbe />
 				</UiProvider>
@@ -205,6 +207,7 @@ describe('UiProvider on the server', (): void => {
 			<Document>
 				<UiProvider theme={customTheme}>
 					<main>Shell</main>
+
 					<Suspense fallback={<p>Loading</p>}>
 						<StreamedSection />
 					</Suspense>

@@ -97,6 +97,7 @@ export const NumberField = ({
 						>
 							<Glyph name='minus' />
 						</IconButton>
+
 						<IconButton
 							label={text.increment}
 							size='small'

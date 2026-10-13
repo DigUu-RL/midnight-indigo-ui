@@ -35,6 +35,7 @@ describe('Form', (): void => {
 			<Form onSubmit={handleSubmit} validate={validateEmail}>
 				<TextField label='Name' name='name' required />
 				<TextField label='Email' name='email' />
+
 				<FormActions>
 					<SubmitButton>Save</SubmitButton>
 				</FormActions>
@@ -165,6 +166,7 @@ describe('Form', (): void => {
 					name='channels'
 					options={[{ value: 'email', label: 'Email' }]}
 				/>
+
 				<SubmitButton>Save</SubmitButton>
 			</Form>,
 		);

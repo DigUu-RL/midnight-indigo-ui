@@ -180,6 +180,7 @@ export const Breadcrumbs = ({
 										<Glyph name='chevronRight' />
 									</Separator>
 								)}
+
 								{content}
 							</Item>
 						);

@@ -253,6 +253,25 @@ test('the navigation is rendered on the server with landmarks, current pages and
 	);
 });
 
+test('the data display is rendered on the server: a sorted first page, key figures and states', (): void => {
+	assert.match(
+		page.html,
+		/<table[^>]*aria-rowcount="43"[^>]*><caption id="[^"]+"[^>]*>Invoices<\/caption>/,
+	);
+
+	assert.match(
+		page.html,
+		/<th scope="col" aria-sort="descending"[^>]*><button type="button"[^>]*>Total/,
+	);
+
+	assert.match(page.html, /<nav aria-label="Pages of Invoices">/);
+	assert.match(page.html, /role="group" aria-labelledby="[^"]+"[^>]*>.*?Revenue/);
+	assert.match(page.html, /role="group" aria-labelledby="[^"]+" aria-busy="true"/);
+	assert.match(page.html, /<form role="search" aria-label="Invoices"/);
+	assert.match(page.html, /<ul aria-label="Latest customers"/);
+	assert.match(page.html, /No disputes/);
+});
+
 test('the layout switches at the breakpoints with CSS from the first paint', (): void => {
 	const head: string = page.shell.slice(0, page.shell.indexOf('</head>'));
 

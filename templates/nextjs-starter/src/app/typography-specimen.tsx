@@ -12,11 +12,13 @@ export const TypographySpecimen = (): ReactElement => {
 	return (
 		<section className='panel'>
 			<h2 style={themeVariables.typography.headingMedium}>Typography</h2>
+
 			<ul className='specimen'>
 				{typographyRoles.map((role: TypographyRole): ReactElement => {
 					return (
 						<li key={role} className='specimen-row'>
 							<code style={themeVariables.typography.caption}>{role}</code>
+
 							<span className='truncate' style={themeVariables.typography[role]} title={sampleText}>
 								{sampleText}
 							</span>
@@ -24,12 +26,15 @@ export const TypographySpecimen = (): ReactElement => {
 					);
 				})}
 			</ul>
+
 			<p className='status' style={themeVariables.typography.body}>
 				<Icon label='Completed' size='medium' style={{ color: themeVariables.intent.success.text }}>
 					{checkPath}
 				</Icon>
+
 				<span>Functional icon: named, because it carries the status on its own.</span>
 			</p>
+
 			<p className='status' style={themeVariables.typography.body}>
 				<Icon decorative>{checkPath}</Icon>
 				<span>Decorative icon: hidden, because the text already says it.</span>

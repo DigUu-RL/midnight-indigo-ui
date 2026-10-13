@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import type { ReactElement } from 'react';
 
 import { ComponentsShowcase } from '#src/app/components-showcase.tsx';
+import { DataDisplayShowcase } from '#src/app/data-display-showcase.tsx';
 import { NavigationShowcase } from '#src/app/navigation-showcase.tsx';
 import { OverlaysShowcase } from '#src/app/overlays-showcase.tsx';
 import { ProfileForm } from '#src/app/profile-form.tsx';
@@ -17,12 +18,15 @@ const HomePage = (): ReactElement => {
 			<h1 style={themeVariables.typography.headingLarge}>
 				Midnight Indigo<span className='official-text'>: UI</span>
 			</h1>
+
 			<ThemeSummary />
 			<TypographySpecimen />
 			<ComponentsShowcase />
 			<ProfileForm />
 			<OverlaysShowcase />
 			<NavigationShowcase />
+			<DataDisplayShowcase />
+
 			<Suspense fallback={<p className='panel'>Loading the streamed panel…</p>}>
 				<StreamedPanel />
 			</Suspense>

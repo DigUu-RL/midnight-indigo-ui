@@ -86,10 +86,13 @@ export const Fieldset = ({
 				{legend}
 				{required ? <RequiredMark /> : null}
 			</Legend>
+
 			{messages.ids.description === undefined ? null : (
 				<FieldDescription id={messages.ids.description}>{description}</FieldDescription>
 			)}
+
 			<Body>{children}</Body>
+
 			{messages.ids.error === undefined ? null : (
 				<FieldError id={messages.ids.error}>{messages.error}</FieldError>
 			)}

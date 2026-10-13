@@ -226,7 +226,9 @@ export const Form = ({
 				{errorSummary && attempts > 0 ? (
 					<ErrorSummary errors={summaryItems} focusKey={attempts} labels={{ title: texts.title }} />
 				) : null}
+
 				{children}
+
 				<Message role='status' style={{ color: intent.success.text }}>
 					{status === 'success' && successMessage !== undefined ? (
 						<>
@@ -235,6 +237,7 @@ export const Form = ({
 						</>
 					) : null}
 				</Message>
+
 				<Message role='alert' style={{ color: intent.error.text }}>
 					{status === 'error' ? (
 						<>

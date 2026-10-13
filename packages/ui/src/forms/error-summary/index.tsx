@@ -158,6 +158,7 @@ export const ErrorSummary = ({
 				<Glyph name='alert' />
 				{texts.title(errors.length)}
 			</Title>
+
 			<List>
 				{errors.map((item: ErrorSummaryItem, index: number): ReactElement => {
 					return (

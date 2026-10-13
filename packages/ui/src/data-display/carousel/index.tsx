@@ -227,6 +227,7 @@ export const Carousel = ({
 					})}
 				</Track>
 			</Viewport>
+
 			{total > 1 ? (
 				<Controls>
 					<IconButton
@@ -238,6 +239,7 @@ export const Carousel = ({
 					>
 						<Glyph name='chevronLeft' />
 					</IconButton>
+
 					<Picker role='group' aria-label={text.slidePicker}>
 						{slides.map((_: ReactNode, position: number): ReactElement => {
 							return (
@@ -257,6 +259,7 @@ export const Carousel = ({
 							);
 						})}
 					</Picker>
+
 					<IconButton
 						label={text.next}
 						aria-disabled={atEnd}

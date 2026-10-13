@@ -22,9 +22,11 @@ describe('Alert', (): void => {
 		const { container } = render(
 			<>
 				<Alert title='Maintenance'>The service stops at 22:00.</Alert>
+
 				<Alert intent='success' announce='polite'>
 					Report saved.
 				</Alert>
+
 				<Alert intent='error' announce='assertive' title='Upload failed'>
 					The file is larger than 10 MB.
 				</Alert>
@@ -122,9 +124,11 @@ describe('Alert', (): void => {
 				<Alert intent='info' title='a' onDismiss={(): void => undefined}>
 					soft
 				</Alert>
+
 				<Alert intent='success' variant='outline'>
 					outline
 				</Alert>
+
 				<Alert intent='warning' variant='solid' onDismiss={(): void => undefined}>
 					solid
 				</Alert>

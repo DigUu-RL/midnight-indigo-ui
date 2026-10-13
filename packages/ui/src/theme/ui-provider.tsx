@@ -64,6 +64,7 @@ export const UiProvider = ({
 			<style href={`midnight-indigo-theme-${hashText(stylesheet)}`} precedence='midnight-indigo'>
 				{stylesheet}
 			</style>
+
 			<MuiThemeProvider theme={muiTheme}>
 				{baseline ? <CssBaseline enableColorScheme /> : null}
 				{children}

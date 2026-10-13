@@ -59,6 +59,7 @@ const ProfileForm = ({
 					focusKey={formState.submitCount}
 				/>
 			) : null}
+
 			<TextField
 				label='Email'
 				{...useFieldController({
@@ -67,6 +68,7 @@ const ProfileForm = ({
 					rules: { required: 'Enter your email.' },
 				})}
 			/>
+
 			<TextField
 				label='City'
 				{...useFieldController({
@@ -75,12 +77,14 @@ const ProfileForm = ({
 					rules: { required: 'Enter your city.' },
 				})}
 			/>
+
 			<Select
 				label='Role'
 				placeholder='Choose'
 				options={[{ value: 'admin', label: 'Admin' }]}
 				{...useFieldController({ control, name: 'role' })}
 			/>
+
 			<Checkbox label='I accept the terms' {...useCheckedController({ control, name: 'terms' })} />
 			<button type='submit'>Save</button>
 		</form>

@@ -339,9 +339,11 @@ const Entries = ({ items, collapsed, tooltips, onChoose }: EntriesProps): ReactE
 				return (
 					<GroupItem key={entry.id}>
 						{collapsed ? <GroupRule aria-hidden='true' /> : null}
+
 						<GroupLabel id={labelId} collapsed={collapsed}>
 							{entry.label}
 						</GroupLabel>
+
 						<List aria-labelledby={labelId}>{entry.items.map(renderItem)}</List>
 					</GroupItem>
 				);
@@ -394,10 +396,13 @@ export const Sidebar = ({
 		<>
 			<Root {...attributes} permanentFrom={permanentFrom} collapsed={collapsed}>
 				{header === undefined ? null : <Section>{header}</Section>}
+
 				<Navigation id={navigationId} aria-label={label}>
 					<Entries items={items} collapsed={collapsed} tooltips />
 				</Navigation>
+
 				{footer === undefined ? null : <Section>{footer}</Section>}
+
 				<CollapseControl collapsed={collapsed}>
 					<IconButton
 						label={collapsed ? texts.expand : texts.collapse}
@@ -409,6 +414,7 @@ export const Sidebar = ({
 					</IconButton>
 				</CollapseControl>
 			</Root>
+
 			<Drawer
 				open={mobileOpen && !permanent}
 				onClose={close}
@@ -421,6 +427,7 @@ export const Sidebar = ({
 				<Navigation aria-label={label}>
 					<Entries items={items} collapsed={false} tooltips={false} onChoose={close} />
 				</Navigation>
+
 				{footer === undefined ? null : <Section>{footer}</Section>}
 			</Drawer>
 		</>

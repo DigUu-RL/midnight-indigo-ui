@@ -495,6 +495,7 @@ export const ToastProvider = ({
 	return (
 		<ToastContext value={api}>
 			{children}
+
 			<Portal container={container}>
 				<div ref={keepExposed} data-toast-layer=''>
 					<LiveRegion role='status' aria-atomic='true'>
@@ -502,11 +503,13 @@ export const ToastProvider = ({
 							<span key={announcements.polite.key}>{announcements.polite.text}</span>
 						)}
 					</LiveRegion>
+
 					<LiveRegion aria-live='assertive' aria-atomic='true'>
 						{announcements.assertive === null ? null : (
 							<span key={announcements.assertive.key}>{announcements.assertive.text}</span>
 						)}
 					</LiveRegion>
+
 					{visible.length === 0 ? null : (
 						<Viewport
 							placement={placement}

@@ -29,6 +29,7 @@ describe('Link', (): void => {
 		render(
 			<>
 				<Link href='/terms'>Terms</Link>
+
 				<Link href='/privacy' variant='standalone'>
 					Privacy
 				</Link>

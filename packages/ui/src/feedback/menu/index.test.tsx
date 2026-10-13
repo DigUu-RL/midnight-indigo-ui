@@ -137,6 +137,7 @@ describe('Menu', (): void => {
 							},
 						]}
 					/>
+
 					<Dialog
 						open={open}
 						title='Rename'

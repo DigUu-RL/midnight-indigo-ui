@@ -104,9 +104,11 @@ export const Link = ({
 				linkVariant={variant}
 			>
 				{children}
+
 				<ExternalIcon aria-hidden='true'>
 					<Glyph name='externalLink' />
 				</ExternalIcon>
+
 				<HiddenText> {texts.opensInNewTab}</HiddenText>
 			</StyledLink>
 		);

@@ -121,6 +121,7 @@ export const Popover = ({
 					setOpen(!isOpen);
 				},
 			})}
+
 			<MuiPopover
 				open={isOpen && triggerElement.current !== null}
 				anchorEl={triggerElement.current}

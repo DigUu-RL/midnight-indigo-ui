@@ -42,14 +42,17 @@ export const OverlaysShowcase = (): ReactElement => {
 				subtitle='Alerts, toasts, dialogs, a drawer, a popover, menus and a tooltip.'
 				headingLevel={2}
 			/>
+
 			<CardContent>
 				<div className='stack'>
 					<Alert intent='warning' title='Two invoices are overdue'>
 						Pay them before Friday to keep the workspace active.
 					</Alert>
+
 					<Alert intent='success' variant='outline'>
 						Your profile is complete.
 					</Alert>
+
 					<div className='row'>
 						<Button
 							intent='official'
@@ -60,6 +63,7 @@ export const OverlaysShowcase = (): ReactElement => {
 						>
 							Save report
 						</Button>
+
 						<Button
 							onClick={(): void => {
 								toast.show({
@@ -72,6 +76,7 @@ export const OverlaysShowcase = (): ReactElement => {
 						>
 							Simulate an error
 						</Button>
+
 						<Button
 							onClick={(): void => {
 								setOpenOverlay('dialog');
@@ -79,6 +84,7 @@ export const OverlaysShowcase = (): ReactElement => {
 						>
 							Rename report
 						</Button>
+
 						<Button
 							intent='error'
 							variant='outline'
@@ -88,6 +94,7 @@ export const OverlaysShowcase = (): ReactElement => {
 						>
 							Delete report
 						</Button>
+
 						<Button
 							onClick={(): void => {
 								setOpenOverlay('drawer');
@@ -95,9 +102,11 @@ export const OverlaysShowcase = (): ReactElement => {
 						>
 							Show details
 						</Button>
+
 						<Popover title='Filters' trigger={<Button>Filters</Button>}>
 							<TextField label='Owner' name='owner' />
 						</Popover>
+
 						<Menu
 							trigger={<Button>More actions</Button>}
 							items={[
@@ -114,10 +123,12 @@ export const OverlaysShowcase = (): ReactElement => {
 								},
 							]}
 						/>
+
 						<Tooltip content='Copies the link to the clipboard'>
 							<IconButton label='Copy link'>{copyIcon}</IconButton>
 						</Tooltip>
 					</div>
+
 					<ContextMenu
 						label='Actions for Q3 report'
 						items={[
@@ -131,6 +142,7 @@ export const OverlaysShowcase = (): ReactElement => {
 					</ContextMenu>
 				</div>
 			</CardContent>
+
 			<Dialog
 				open={openOverlay === 'dialog'}
 				title='Rename report'
@@ -141,6 +153,7 @@ export const OverlaysShowcase = (): ReactElement => {
 						<Button variant='outline' onClick={close}>
 							Cancel
 						</Button>
+
 						<Button intent='official' variant='solid' onClick={close}>
 							Rename
 						</Button>
@@ -149,6 +162,7 @@ export const OverlaysShowcase = (): ReactElement => {
 			>
 				<TextField label='Name' name='name' defaultValue='Q3 report' />
 			</Dialog>
+
 			<ConfirmDialog
 				open={openOverlay === 'confirm'}
 				intent='error'
@@ -161,6 +175,7 @@ export const OverlaysShowcase = (): ReactElement => {
 				}}
 				onCancel={close}
 			/>
+
 			<Drawer
 				open={openOverlay === 'drawer'}
 				title='Q3 report'

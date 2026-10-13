@@ -36,9 +36,11 @@ export const ProfileForm = (): ReactElement => {
 	return (
 		<Card as='section'>
 			<CardHeader title='Profile' subtitle='Form fields (F06)' />
+
 			<CardContent>
 				<Form validate={validate} onSubmit={save} successMessage='Profile saved.'>
 					<TextField label='Full name' name='name' autoComplete='name' required />
+
 					<TextField
 						label='Email address'
 						name='email'
@@ -47,6 +49,7 @@ export const ProfileForm = (): ReactElement => {
 						description='We will only use it to contact you.'
 						required
 					/>
+
 					<Select
 						label='Team'
 						name='team'
@@ -57,6 +60,7 @@ export const ProfileForm = (): ReactElement => {
 						]}
 						required
 					/>
+
 					<RadioGroup
 						legend='Plan'
 						name='plan'
@@ -67,14 +71,18 @@ export const ProfileForm = (): ReactElement => {
 							{ value: 'team', label: 'Team' },
 						]}
 					/>
+
 					<TextArea label='Notes' name='notes' maxLength={200} showCount />
+
 					<Switch
 						label='Enable email notifications'
 						description='Sends a notification by email for each new report.'
 						name='notifications'
 						defaultChecked
 					/>
+
 					<Checkbox label='I accept the terms of use' name='terms' required />
+
 					<FormActions>
 						<SubmitButton>Save profile</SubmitButton>
 					</FormActions>
