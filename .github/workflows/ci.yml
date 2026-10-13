@@ -55,7 +55,8 @@ jobs:
           fi
 
   # End-to-end flows, accessibility, visual regression and performance in Chromium, on the production builds. Linux
-  # only: the visual baselines in CI are the Linux set (see update-visual-baselines.yml).
+  # only: the visual baselines in CI are the Linux set. After an intentional visual change, add the
+  # `update-visual-baselines` label to the pull request (update-visual-baselines.yml commits the new set).
   browser:
     name: browser (chromium)
     runs-on: ubuntu-latest

@@ -1,22 +1,30 @@
 name: Update visual baselines
 
-# Regenerates the Linux screenshots that CI compares against, on the branch it is run on, and commits them. Run it after
-# an intentional visual change (Actions → Update visual baselines → Run workflow → pick the branch), review the new
-# images in the commit, then re-run CI: a commit pushed by this workflow does not start other workflows.
+# Regenerates the Linux screenshots that CI compares against and commits them to the branch. Run it after an intentional
+# visual change, either by adding the `update-visual-baselines` label to the pull request (works for a workflow that is
+# not on main yet, such as in the pull request that adds it) or from Actions → Update visual baselines → Run workflow.
+# Review the new images in the commit, then re-run CI: a commit pushed by this workflow does not start other workflows.
 on:
   workflow_dispatch:
+  pull_request:
+    types: [labeled]
 
 permissions:
   contents: write
+  pull-requests: write
 
 concurrency:
-  group: visual-baselines-${{ github.ref }}
+  group: visual-baselines-${{ github.head_ref || github.ref }}
 
 jobs:
   update:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.label.name == 'update-visual-baselines' }}
     runs-on: ubuntu-latest
     steps:
+      # The branch itself, not the merge commit of a pull request, so the new baselines can be pushed to it.
       - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.head_ref || github.ref }}
 
       - uses: pnpm/action-setup@v6
 
@@ -45,3 +53,10 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "test: update the Linux visual baselines"
           git push
+
+      # The label is a one-shot request: removing it lets the next change add it again.
+      - name: Remove the label
+        if: ${{ github.event_name == 'pull_request' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh pr edit ${{ github.event.pull_request.number }} --remove-label update-visual-baselines --repo ${{ github.repository }}
