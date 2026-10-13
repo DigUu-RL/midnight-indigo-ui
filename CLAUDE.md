@@ -12,8 +12,12 @@ Monorepo (pnpm workspaces) for `@midnight-indigo/ui`, a single npm package expos
 ## Commands
 
 - `pnpm install` — install (pnpm is pinned via `packageManager`; enable it with corepack).
-- `pnpm check` — full gate: build, typecheck, lint, format check, tests, package lint (publint + attw) and source-cleanliness check.
-- Consumer fixture tests (`fixtures/consumer`) import the compiled output and the starter test (`templates/nextjs-starter`) serves its production build, so run `pnpm build` before `pnpm test`.
+- `pnpm check` — full gate (CI job `check`): build, typecheck, lint, format check, tests, performance tests, package lint (publint + attw), source-cleanliness check and license audit.
+- `pnpm test:performance` — performance suite of `packages/ui` (`*.performance.test.ts(x)`, run one file at a time): counts in jsdom, times in Node. `PERFORMANCE_BUDGET_FACTOR=2` scales the budgets on a slow machine.
+- `pnpm test:browser` — Playwright suite in `fixtures/browser` (CI job `browser`): starter E2E, axe with contrast, visual regression, then browser performance alone. First run: `pnpm --filter @midnight-indigo/browser-tests exec playwright install chromium`. Visual baselines are per OS (`test/__screenshots__/<platform>`); after an intentional visual change, run `test:visual:update` locally and add the `update-visual-baselines` label to the PR, whose workflow commits the Linux baselines.
+- `pnpm check:licenses` — production dependencies of the consumer fixture and the starter must have an allowed license (`scripts/check-licenses.ts`).
+- Consumer fixture tests (`fixtures/consumer`) import the compiled output and pack the tarball, the starter test (`templates/nextjs-starter`) and the browser suite serve production builds, so run `pnpm build` before `pnpm test` or `pnpm test:browser`.
+- How to reproduce each CI failure locally: wiki page [Testes e integração contínua](https://github.com/DigUu-RL/midnight-indigo-ui/wiki/Testes-e-integração-contínua).
 
 ## Code conventions
 

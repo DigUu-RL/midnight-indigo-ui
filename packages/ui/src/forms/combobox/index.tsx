@@ -54,6 +54,8 @@ export interface ComboboxLabels {
 	open: string;
 	/** Name of the button that closes the list. */
 	close: string;
+	/** Shown and announced under the list when more options match than `maxVisibleOptions`. */
+	moreOptions: (shown: number, total: number) => string;
 }
 
 export const defaultComboboxLabels: Readonly<ComboboxLabels> = Object.freeze({
@@ -62,6 +64,9 @@ export const defaultComboboxLabels: Readonly<ComboboxLabels> = Object.freeze({
 	clear: 'Clear',
 	open: 'Show options',
 	close: 'Hide options',
+	moreOptions: (shown: number, total: number): string => {
+		return `Showing ${String(shown)} of ${String(total)} options. Type to narrow the list.`;
+	},
 });
 
 /** How options are filtered by the typed text; `'none'` keeps them as given, e.g. filtered by a server. */
@@ -98,6 +103,11 @@ export interface ComboboxProps
 	onInputValueChange?: ((inputValue: string) => void) | undefined;
 	/** Defaults to `'contains'`. */
 	filter?: ComboboxFilter | undefined;
+	/**
+	 * Most options rendered at once: the first matches are listed, and a message asks to type to narrow the rest.
+	 * Rendering thousands of options at once freezes the page when the list opens. Defaults to 100.
+	 */
+	maxVisibleOptions?: number | undefined;
 	/** Defaults to `'medium'`. */
 	size?: ControlSize | undefined;
 	/** Overrides some or all of `defaultComboboxLabels`. */
@@ -159,10 +169,12 @@ const Empty = styled('div')({
 	color: text.secondary,
 });
 
-const filters: Record<
-	Exclude<ComboboxFilter, 'none'>,
-	(options: ComboboxOption[], state: FilterOptionsState<ComboboxOption>) => ComboboxOption[]
-> = {
+type OptionFilter = (
+	options: ComboboxOption[],
+	state: FilterOptionsState<ComboboxOption>,
+) => ComboboxOption[];
+
+const filters: Record<Exclude<ComboboxFilter, 'none'>, OptionFilter> = {
 	contains: createFilterOptions<ComboboxOption>({ matchFrom: 'any' }),
 	startsWith: createFilterOptions<ComboboxOption>({ matchFrom: 'start' }),
 };
@@ -198,6 +210,7 @@ export const Combobox = ({
 	inputValue,
 	onInputValueChange,
 	filter = 'contains',
+	maxVisibleOptions = 100,
 	size = 'medium',
 	labels,
 	className,
@@ -218,13 +231,25 @@ export const Combobox = ({
 		value === undefined ? uncontrolledValue : value,
 	);
 
+	// Filled while `useAutocomplete` filters the options during this render: how many matched before the cut.
+	let matchCount: number = 0;
+	const filterOptions: OptionFilter = filter === 'none' ? keepAll : filters[filter];
+	const visibleLimit: number = Math.max(1, Math.floor(maxVisibleOptions));
+
 	const autocomplete: AutocompleteState = useAutocomplete<ComboboxOption>({
 		id: controlId,
 		options,
 		value: selected,
 		disabled,
 		inputValue,
-		filterOptions: filter === 'none' ? keepAll : filters[filter],
+		filterOptions: (
+			candidates: ComboboxOption[],
+			state: FilterOptionsState<ComboboxOption>,
+		): ComboboxOption[] => {
+			const matches: ComboboxOption[] = filterOptions(candidates, state);
+			matchCount = matches.length;
+			return matches.length > visibleLimit ? matches.slice(0, visibleLimit) : matches;
+		},
 		getOptionLabel: (option: ComboboxOption): string => option.label,
 		getOptionDisabled: (option: ComboboxOption): boolean => option.disabled === true,
 		isOptionEqualToValue: (option: ComboboxOption, candidate: ComboboxOption): boolean => {
@@ -243,9 +268,14 @@ export const Combobox = ({
 	const visibleOptions: ComboboxOption[] = autocomplete.groupedOptions;
 	const listOpen: boolean = autocomplete.popupOpen;
 	const emptyMessage: string = loading ? texts.loading : texts.noOptions;
+	const truncated: boolean = !loading && matchCount > visibleOptions.length;
+	const moreMessage: string = truncated ? texts.moreOptions(visibleOptions.length, matchCount) : '';
 
-	const announcement: string =
-		listOpen && (loading || visibleOptions.length === 0) ? emptyMessage : '';
+	const announcement: string = !listOpen
+		? ''
+		: loading || visibleOptions.length === 0
+			? emptyMessage
+			: moreMessage;
 
 	const inputProps: ReturnType<AutocompleteState['getInputProps']> = autocomplete.getInputProps();
 	const indicatorProps: HTMLAttributes<HTMLButtonElement> = autocomplete.getPopupIndicatorProps();
@@ -341,6 +371,8 @@ export const Combobox = ({
 								{loading || visibleOptions.length === 0 ? (
 									<Empty aria-hidden='true'>{emptyMessage}</Empty>
 								) : null}
+
+								{truncated ? <Empty aria-hidden='true'>{moreMessage}</Empty> : null}
 							</Popup>
 						) : null}
 

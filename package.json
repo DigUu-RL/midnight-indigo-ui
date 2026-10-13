@@ -17,9 +17,12 @@
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
 		"test": "pnpm -r run test",
+		"test:performance": "pnpm --filter @midnight-indigo/ui run test:performance",
+		"test:browser": "pnpm --filter @midnight-indigo/browser-tests run test:browser",
 		"check:package": "pnpm --filter @midnight-indigo/ui run check:package",
 		"check:source": "node scripts/check-source-clean.ts",
-		"check": "pnpm build && pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm check:package && pnpm check:source"
+		"check:licenses": "node scripts/check-licenses.ts",
+		"check": "pnpm build && pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm test:performance && pnpm check:package && pnpm check:source && pnpm check:licenses"
 	},
 	"devDependencies": {
 		"@eslint/js": "catalog:",

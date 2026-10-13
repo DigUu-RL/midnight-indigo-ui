@@ -104,4 +104,48 @@ describe('Combobox', (): void => {
 		await user.click(screen.getByRole('button', { name: 'Clear' }));
 		expect(handleValue).toHaveBeenCalledWith(null, null);
 	});
+
+	it('lists only the first matches and asks to type to narrow the rest', async (): Promise<void> => {
+		const user: UserEvent = userEvent.setup();
+
+		const products: ComboboxOption[] = Array.from(
+			{ length: 30 },
+			(_: unknown, index: number): ComboboxOption => {
+				return { value: String(index + 1), label: `Product ${String(index + 1)}` };
+			},
+		);
+
+		render(<Combobox label='Product' options={products} maxVisibleOptions={10} />);
+		const input: HTMLElement = screen.getByRole('combobox', { name: 'Product' });
+
+		await user.click(input);
+		await user.keyboard('{ArrowDown}');
+
+		expect(screen.getAllByRole('option')).toHaveLength(10);
+
+		expect(screen.getByRole('status').textContent).toBe(
+			'Showing 10 of 30 options. Type to narrow the list.',
+		);
+
+		await user.type(input, 'Product 2');
+
+		expect(
+			screen.getAllByRole('option').map((option: HTMLElement): string => option.textContent),
+		).toEqual([
+			'Product 2',
+			...Array.from(
+				{ length: 9 },
+				(_: unknown, index: number): string => `Product ${String(20 + index)}`,
+			),
+		]);
+
+		expect(screen.getByRole('status').textContent).toBe(
+			'Showing 10 of 11 options. Type to narrow the list.',
+		);
+
+		await user.type(input, '5');
+
+		expect(screen.getAllByRole('option')).toHaveLength(1);
+		expect(screen.getByRole('status').textContent).toBe('');
+	});
 });

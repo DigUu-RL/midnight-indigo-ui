@@ -146,6 +146,7 @@ export const Form = ({
 	const texts: FormLabels = { ...defaultFormLabels, ...labels };
 	const formReference: RefObject<HTMLFormElement | null> = useRef<HTMLFormElement>(null);
 	const validationRun: RefObject<number> = useRef<number>(0);
+	const pointerPressed: RefObject<boolean> = useRef<boolean>(false);
 	const [status, setStatus] = useState<FormStatus>('idle');
 	const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
 	const [attempts, setAttempts] = useState<number>(0);
@@ -196,15 +197,55 @@ export const Form = ({
 		void submit(event.currentTarget);
 	};
 
+	// Whether a pointer is pressed anywhere in the page: a press moves focus (and blurs the field) before its click.
+	useEffect((): (() => void) => {
+		const press = (): void => {
+			pointerPressed.current = true;
+		};
+
+		const release = (): void => {
+			pointerPressed.current = false;
+		};
+
+		document.addEventListener('pointerdown', press, true);
+		document.addEventListener('pointerup', release, true);
+		document.addEventListener('pointercancel', release, true);
+
+		return (): void => {
+			document.removeEventListener('pointerdown', press, true);
+			document.removeEventListener('pointerup', release, true);
+			document.removeEventListener('pointercancel', release, true);
+		};
+	}, []);
+
 	// After a failed submission, leaving a field checks the form again and updates the messages in place.
 	const handleBlur = (event: FocusEvent<HTMLFormElement>): void => {
 		onBlur?.(event);
 		if (revalidateOn !== 'blur' || attempts === 0 || pending) return;
 		const form: HTMLFormElement = event.currentTarget;
 
-		void collectErrors(form).then((found: Record<string, string> | null): void => {
-			if (found !== null) setValidationErrors(found);
-		});
+		const revalidate = (): void => {
+			void collectErrors(form).then((found: Record<string, string> | null): void => {
+				if (found !== null) setValidationErrors(found);
+			});
+		};
+
+		if (!pointerPressed.current) {
+			revalidate();
+			return;
+		}
+
+		// Focus left with a pointer press: messages appearing or disappearing now would move the layout between the
+		// press and the release, and the click would miss its target (a checkbox would not toggle). Revalidating waits
+		// for the release; the task after it runs once the click has been dispatched.
+		const afterRelease = (): void => {
+			document.removeEventListener('pointerup', afterRelease, true);
+			document.removeEventListener('pointercancel', afterRelease, true);
+			setTimeout(revalidate);
+		};
+
+		document.addEventListener('pointerup', afterRelease, true);
+		document.addEventListener('pointercancel', afterRelease, true);
 	};
 
 	const summaryItems: ErrorSummaryItem[] = Object.entries(errors).map(

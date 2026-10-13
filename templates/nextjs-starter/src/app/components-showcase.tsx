@@ -80,7 +80,7 @@ export const ComponentsShowcase = (): ReactElement => {
 			</CardContent>
 
 			<CardContent>
-				<div className='row' aria-busy='true' aria-label='Loading the team'>
+				<div className='row' role='group' aria-busy='true' aria-label='Loading the team'>
 					<Skeleton shape='circle' />
 					<Skeleton width='12rem' />
 				</div>
