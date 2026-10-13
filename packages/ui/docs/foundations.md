@@ -7,25 +7,25 @@ How to apply the typography, icon and motion tokens. The values themselves are l
 
 ### Typeface
 
-The interface uses **Inter**, through the `fontFamily.sans` stack:
+The interface uses **[Geist Sans](https://vercel.com/font)**, through the `fontFamily.sans` stack:
 
 ```text
-'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif
+'Geist Variable', Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif
 ```
 
 Code uses `fontFamily.mono`, a system monospace stack, so it never needs a download.
 
-The library ships **no font file** and never requests one. The application self-hosts Inter, so pages work without
-any call to an external font service and fall back to the system fonts while it loads (`font-display: swap`) or
-when it is absent. Inter is distributed under the [SIL Open Font License 1.1](https://openfontlicense.org), which
+The library ships **no font file** and never requests one. The application self-hosts Geist Sans, so pages work
+without any call to an external font service and fall back to the system fonts while it loads (`font-display: swap`)
+or when it is absent. Geist is distributed under the [SIL Open Font License 1.1](https://openfontlicense.org), which
 allows bundling, self-hosting and redistribution with software, including commercial software; the font cannot be
-sold on its own, and a modified version must not keep the name Inter.
+sold on its own, and a modified version must not keep the name Geist.
 
-The recommended setup is the [`@fontsource-variable/inter`](https://fontsource.org/fonts/inter) package, a single
-variable file per subset with every weight. Import it once, at the root of the application:
+The recommended setup is the [`@fontsource-variable/geist`](https://fontsource.org/fonts/geist) package, a single
+variable file per subset with every weight (100 to 900). Import it once, at the root of the application:
 
 ```ts
-import '@fontsource-variable/inter';
+import '@fontsource-variable/geist';
 ```
 
 The bundler copies the font files into the build and serves them from the application origin. The browser downloads
@@ -36,7 +36,7 @@ prefer the package to `next/font/google`, which makes every build depend on that
 `templates/nextjs-starter` is the reference setup. Its test checks that no font is requested from another origin and
 that the `@font-face` files are served by the application.
 
-> Decision D02 (typeface) is provisional until the public release: see the
+> Decision D02 (typeface) adopts Geist Sans as the official typeface: see the
 > [Decisões técnicas](https://github.com/DigUu-RL/midnight-indigo-ui/wiki/Decisões-técnicas#d02-tipografia-oficial)
 > wiki page.
 

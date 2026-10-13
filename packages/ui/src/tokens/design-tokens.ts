@@ -268,10 +268,10 @@ export const motionTokens: Readonly<MotionTokens> = {
 	},
 };
 
-// Inter is the provisional typeface (decision D02). The library ships no font file: the application self-hosts
+// Geist Sans is the official typeface (decision D02). The library ships no font file: the application self-hosts
 // it, and the system fonts that follow keep the interface usable while it loads or when it is absent.
 export const fontFamilyTokens: Readonly<FontFamilyTokens> = {
-	sans: "'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+	sans: "'Geist Variable', Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
 	mono: "ui-monospace, SFMono-Regular, 'Cascadia Mono', 'Roboto Mono', Menlo, Consolas, 'Liberation Mono', monospace",
 };
 

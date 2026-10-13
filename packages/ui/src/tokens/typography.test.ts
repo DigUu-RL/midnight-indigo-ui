@@ -63,8 +63,8 @@ describe('typography scale', (): void => {
 });
 
 describe('font stacks', (): void => {
-	it('put Inter first and end with a generic family', (): void => {
-		expect(tokens.fontFamily.sans).toMatch(/^'Inter Variable', Inter, /);
+	it('put Geist Sans first and end with a generic family', (): void => {
+		expect(tokens.fontFamily.sans).toMatch(/^'Geist Variable', Geist, /);
 		expect(tokens.fontFamily.sans).toMatch(/, sans-serif$/);
 		expect(tokens.fontFamily.mono).toMatch(/, monospace$/);
 	});
