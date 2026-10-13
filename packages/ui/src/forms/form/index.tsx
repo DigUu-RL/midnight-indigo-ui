@@ -12,9 +12,12 @@ import type {
 	RefObject,
 } from 'react';
 
+import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { Glyph } from '#src/shared/glyphs/index.tsx';
 import { mergeReferences } from '#src/shared/merge-references.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
+import { constraintFailure } from '#src/forms/constraint-failure.ts';
+import type { ConstraintFailure } from '#src/forms/constraint-failure.ts';
 import { ErrorSummary, findControlByName } from '#src/forms/error-summary/index.tsx';
 import type { ErrorSummaryItem, ErrorSummaryLabels } from '#src/forms/error-summary/index.tsx';
 import { FormContext } from '#src/forms/form-context.ts';
@@ -33,19 +36,19 @@ export interface FormLabels extends ErrorSummaryLabels {
 	submissionError: string;
 }
 
+const constraintMessages: Readonly<Record<ConstraintFailure, string>> = Object.freeze({
+	valueMissing: 'Fill in this field.',
+	badValue: 'Enter a valid value.',
+	tooShort: 'Enter a longer value.',
+	tooLong: 'Enter a shorter value.',
+	rangeUnderflow: 'Enter a larger value.',
+	rangeOverflow: 'Enter a smaller value.',
+	stepMismatch: 'Enter an allowed value.',
+	invalid: 'Check this field.',
+});
+
 const constraintMessage = ({ validity }: ValidatableElement): string => {
-	if (validity.valueMissing) return 'Fill in this field.';
-
-	if (validity.typeMismatch || validity.patternMismatch || validity.badInput) {
-		return 'Enter a valid value.';
-	}
-
-	if (validity.tooShort) return 'Enter a longer value.';
-	if (validity.tooLong) return 'Enter a shorter value.';
-	if (validity.rangeUnderflow) return 'Enter a larger value.';
-	if (validity.rangeOverflow) return 'Enter a smaller value.';
-	if (validity.stepMismatch) return 'Enter an allowed value.';
-	return 'Check this field.';
+	return constraintMessages[constraintFailure(validity)];
 };
 
 export const defaultFormLabels: Readonly<FormLabels> = Object.freeze({
@@ -143,7 +146,7 @@ export const Form = ({
 	onBlur,
 	...attributes
 }: FormProps): ReactElement => {
-	const texts: FormLabels = { ...defaultFormLabels, ...labels };
+	const texts: FormLabels = useComponentLabels('form', defaultFormLabels, labels);
 	const formReference: RefObject<HTMLFormElement | null> = useRef<HTMLFormElement>(null);
 	const validationRun: RefObject<number> = useRef<number>(0);
 	const pointerPressed: RefObject<boolean> = useRef<boolean>(false);

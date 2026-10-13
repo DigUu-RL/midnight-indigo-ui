@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react';
 import type { ReactElement, ReactNode, RefObject } from 'react';
 
+import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { Button } from '#src/buttons/button/index.tsx';
 import type { SemanticIntent } from '#src/tokens/index.ts';
 import { Dialog } from '#src/feedback/dialog/index.tsx';
@@ -60,7 +61,12 @@ export const ConfirmDialog = ({
 	labels,
 	...dialogProps
 }: ConfirmDialogProps): ReactElement => {
-	const texts: ConfirmDialogLabels = { ...defaultConfirmDialogLabels, ...labels };
+	const texts: ConfirmDialogLabels = useComponentLabels(
+		'confirmDialog',
+		defaultConfirmDialogLabels,
+		labels,
+	);
+
 	const confirmButton: RefObject<HTMLButtonElement | null> = useRef<HTMLButtonElement>(null);
 	const cancelButton: RefObject<HTMLButtonElement | null> = useRef<HTMLButtonElement>(null);
 	const [pending, setPending] = useState<boolean>(false);

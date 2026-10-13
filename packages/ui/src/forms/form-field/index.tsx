@@ -5,6 +5,7 @@ import type { CSSObject } from '@mui/material/styles';
 import { useId } from 'react';
 import type { ComponentPropsWithRef, ReactElement, ReactNode } from 'react';
 
+import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { forwardAllBut, visuallyHiddenStyles } from '#src/shared/appearance.ts';
 import { Glyph } from '#src/shared/glyphs/index.tsx';
 import { themeVariables } from '#src/theme/theme-variables.ts';
@@ -215,7 +216,12 @@ export const FormField = ({
 }: FormFieldProps): ReactElement => {
 	const generatedId: string = useId();
 	const id: string = controlId ?? generatedId;
-	const text: FormFieldLabels = { ...defaultFormFieldLabels, ...fieldLabels };
+
+	const text: FormFieldLabels = useComponentLabels(
+		'formField',
+		defaultFormFieldLabels,
+		fieldLabels,
+	);
 
 	const messages: { ids: FieldMessageIds; error: ReactNode; invalid: boolean } = useFieldMessages(
 		id,

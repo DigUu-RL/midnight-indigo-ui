@@ -14,6 +14,7 @@ import type {
 	SyntheticEvent,
 } from 'react';
 
+import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { IconButton } from '#src/buttons/icon-button/index.tsx';
 import type { ControlSize } from '#src/shared/appearance.ts';
 import { Glyph } from '#src/shared/glyphs/index.tsx';
@@ -223,7 +224,7 @@ export const Combobox = ({
 }: ComboboxProps): ReactElement => {
 	const generatedId: string = useId();
 	const controlId: string = id ?? generatedId;
-	const texts: ComboboxLabels = { ...defaultComboboxLabels, ...labels };
+	const texts: ComboboxLabels = useComponentLabels('combobox', defaultComboboxLabels, labels);
 	const [uncontrolledValue, setUncontrolledValue] = useState<string | null>(defaultValue);
 
 	const selected: ComboboxOption | null = findOption(

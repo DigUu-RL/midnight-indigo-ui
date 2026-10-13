@@ -92,6 +92,7 @@ for (const specifier of lightEntries) {
 const optionalEntries: readonly [string, RegExp][] = [
 	['@midnight-indigo/ui/forms/date-pickers', /^(@mui\/x-date-pickers\/[\w/]+|date-fns)$/],
 	['@midnight-indigo/ui/forms/react-hook-form', /^react-hook-form$/],
+	['@midnight-indigo/ui/i18n', /^(i18next|react-i18next)$/],
 ];
 
 for (const [specifier, optionalPeers] of optionalEntries) {

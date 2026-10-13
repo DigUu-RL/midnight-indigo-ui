@@ -89,9 +89,11 @@
 		"@mui/material": "^9.5.0",
 		"@mui/x-date-pickers": "^9.14.0",
 		"date-fns": "^4.0.0",
+		"i18next": "^26.2.0",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
-		"react-hook-form": "^7.55.0"
+		"react-hook-form": "^7.55.0",
+		"react-i18next": "^17.0.0"
 	},
 	"peerDependenciesMeta": {
 		"@mui/x-date-pickers": {
@@ -100,7 +102,13 @@
 		"date-fns": {
 			"optional": true
 		},
+		"i18next": {
+			"optional": true
+		},
 		"react-hook-form": {
+			"optional": true
+		},
+		"react-i18next": {
 			"optional": true
 		}
 	},
@@ -118,11 +126,13 @@
 		"@types/react-dom": "catalog:",
 		"axe-core": "catalog:",
 		"date-fns": "catalog:",
+		"i18next": "catalog:",
 		"jsdom": "catalog:",
 		"publint": "catalog:",
 		"react": "catalog:",
 		"react-dom": "catalog:",
 		"react-hook-form": "catalog:",
+		"react-i18next": "catalog:",
 		"tsdown": "catalog:",
 		"typescript": "catalog:",
 		"vite": "catalog:",

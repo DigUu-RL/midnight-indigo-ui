@@ -13,6 +13,7 @@ import type {
 	RefObject,
 } from 'react';
 
+import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { IconButton } from '#src/buttons/icon-button/index.tsx';
 import {
 	colorTransitionStyles,
@@ -328,7 +329,7 @@ export const FileUpload = ({
 	const generatedId: string = useId();
 	const controlId: string = id ?? generatedId;
 	const limitsId: string = `${controlId}-limits`;
-	const texts: FileUploadLabels = { ...defaultFileUploadLabels, ...labels };
+	const texts: FileUploadLabels = useComponentLabels('fileUpload', defaultFileUploadLabels, labels);
 	const inputReference: RefObject<HTMLInputElement | null> = useRef<HTMLInputElement>(null);
 	const [uncontrolledFiles, setUncontrolledFiles] = useState<readonly File[]>([]);
 	const [rejectionMessage, setRejectionMessage] = useState<string>('');

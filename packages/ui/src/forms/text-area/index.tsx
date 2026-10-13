@@ -11,6 +11,7 @@ import type {
 	ReactNode,
 } from 'react';
 
+import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { forwardAllBut } from '#src/shared/appearance.ts';
 import type { ControlSize } from '#src/shared/appearance.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
@@ -122,7 +123,7 @@ export const TextArea = ({
 	const generatedId: string = useId();
 	const controlId: string = id ?? generatedId;
 	const counterId: string = `${controlId}-count`;
-	const texts: TextAreaLabels = { ...defaultTextAreaLabels, ...labels };
+	const texts: TextAreaLabels = useComponentLabels('textArea', defaultTextAreaLabels, labels);
 	const [uncontrolledLength, setUncontrolledLength] = useState<number>(lengthOf(defaultValue));
 	const count: number = value === undefined ? uncontrolledLength : lengthOf(value);
 

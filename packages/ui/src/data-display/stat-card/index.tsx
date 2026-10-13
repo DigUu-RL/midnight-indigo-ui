@@ -5,6 +5,7 @@ import type { CSSObject } from '@mui/material/styles';
 import { useId } from 'react';
 import type { ComponentPropsWithRef, ReactElement, ReactNode } from 'react';
 
+import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { forwardAllBut, visuallyHiddenStyles } from '#src/shared/appearance.ts';
 import { Glyph } from '#src/shared/glyphs/index.tsx';
 import type { GlyphName } from '#src/shared/glyphs/index.tsx';
@@ -156,7 +157,7 @@ export const StatCard = ({
 	labels,
 	...attributes
 }: StatCardProps): ReactElement => {
-	const texts: StatCardLabels = { ...defaultStatCardLabels, ...labels };
+	const texts: StatCardLabels = useComponentLabels('statCard', defaultStatCardLabels, labels);
 	const labelId: string = useId();
 
 	return (

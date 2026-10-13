@@ -5,6 +5,7 @@ import type { CSSObject } from '@mui/material/styles';
 import { useId } from 'react';
 import type { ComponentPropsWithRef, ReactElement, ReactNode, RefCallback } from 'react';
 
+import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { forwardAllBut } from '#src/shared/appearance.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 import {
@@ -130,7 +131,7 @@ export const Dialog = ({
 	ref,
 	...attributes
 }: DialogProps): ReactElement => {
-	const texts: DialogLabels = { ...defaultDialogLabels, ...labels };
+	const texts: DialogLabels = useComponentLabels('dialog', defaultDialogLabels, labels);
 	const titleId: string = useId();
 	const descriptionId: string = useId();
 	const panelReference: RefCallback<HTMLDivElement> = useModalPanelReference(initialFocus, ref);

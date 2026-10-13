@@ -13,9 +13,11 @@
 		"@mui/material": "catalog:",
 		"@mui/x-date-pickers": "catalog:",
 		"date-fns": "catalog:",
+		"i18next": "catalog:",
 		"react": "catalog:",
 		"react-dom": "catalog:",
-		"react-hook-form": "catalog:"
+		"react-hook-form": "catalog:",
+		"react-i18next": "catalog:"
 	},
 	"devDependencies": {
 		"@types/node": "catalog:",

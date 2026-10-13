@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import type { ReactElement } from 'react';
 
+import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { IconButton } from '#src/buttons/icon-button/index.tsx';
 import { Glyph } from '#src/shared/glyphs/index.tsx';
 import { TextFieldBase } from '#src/forms/text-field-base/index.tsx';
@@ -36,7 +37,12 @@ export const PasswordField = ({
 	disabled,
 	...props
 }: PasswordFieldProps): ReactElement => {
-	const text: PasswordFieldLabels = { ...defaultPasswordFieldLabels, ...labels };
+	const text: PasswordFieldLabels = useComponentLabels(
+		'passwordField',
+		defaultPasswordFieldLabels,
+		labels,
+	);
+
 	const [visible, setVisible] = useState<boolean>(defaultVisible);
 
 	return (

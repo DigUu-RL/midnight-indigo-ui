@@ -190,7 +190,9 @@ Every default text is replaceable through a `labels` prop, with its defaults exp
 (`defaultFormLabels`, `defaultErrorSummaryLabels`, `defaultFormFieldLabels` via `fieldLabels`,
 `defaultPasswordFieldLabels`, `defaultSearchFieldLabels`, `defaultNumberFieldLabels`, `defaultTextAreaLabels`,
 `defaultComboboxLabels`, `defaultFileUploadLabels`). Texts with numbers are functions, so plurals and word order stay
-in the translation (`title: (count) => ...`). The i18n provider (F11) will feed these props from JSON resources.
+in the translation (`title: (count) => ...`). Inside an `I18nProvider`, every field takes its texts from JSON
+resources in pt-BR, en-US or a locale of the application, native validation messages included; the `labels` prop
+still wins. See [i18n.md](./i18n.md).
 
 ## Tests
 

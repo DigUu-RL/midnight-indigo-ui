@@ -2,6 +2,7 @@
 // Tells that content could not be loaded, and offers to try again.
 import type { ReactElement } from 'react';
 
+import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { Button } from '#src/buttons/button/index.tsx';
 import { Glyph, intentGlyphs } from '#src/shared/glyphs/index.tsx';
 import { themeVariables } from '#src/theme/theme-variables.ts';
@@ -38,7 +39,7 @@ export const ErrorState = ({
 	action,
 	...props
 }: ErrorStateProps): ReactElement => {
-	const texts: ErrorStateLabels = { ...defaultErrorStateLabels, ...labels };
+	const texts: ErrorStateLabels = useComponentLabels('errorState', defaultErrorStateLabels, labels);
 
 	const retry: ReactElement | undefined =
 		onRetry === undefined ? undefined : <Button onClick={onRetry}>{texts.retry}</Button>;

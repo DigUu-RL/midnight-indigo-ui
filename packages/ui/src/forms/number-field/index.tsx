@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import type { ChangeEvent, ReactElement, RefObject } from 'react';
 
+import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { IconButton } from '#src/buttons/icon-button/index.tsx';
 import { Glyph } from '#src/shared/glyphs/index.tsx';
 import { mergeReferences } from '#src/shared/merge-references.ts';
@@ -49,7 +50,12 @@ export const NumberField = ({
 	inputMode = 'decimal',
 	...props
 }: NumberFieldProps): ReactElement => {
-	const text: NumberFieldLabels = { ...defaultNumberFieldLabels, ...labels };
+	const text: NumberFieldLabels = useComponentLabels(
+		'numberField',
+		defaultNumberFieldLabels,
+		labels,
+	);
+
 	const inputReference: RefObject<HTMLInputElement | null> = useRef<HTMLInputElement>(null);
 	const editable: boolean = !disabled && !readOnly;
 

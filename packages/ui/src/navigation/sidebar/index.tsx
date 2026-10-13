@@ -5,6 +5,7 @@ import type { CSSObject } from '@mui/material/styles';
 import { useEffect, useId, useState } from 'react';
 import type { ComponentPropsWithRef, ReactElement, ReactNode } from 'react';
 
+import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { IconButton } from '#src/buttons/icon-button/index.tsx';
 import type { IconButtonProps } from '#src/buttons/icon-button/index.tsx';
 import { Drawer } from '#src/feedback/drawer/index.tsx';
@@ -67,12 +68,15 @@ export interface SidebarLabels {
 	expand: string;
 	/** Name of the close button of the drawer. */
 	close: string;
+	/** Name of `SidebarMenuButton`. */
+	open: string;
 }
 
 export const defaultSidebarLabels: Readonly<SidebarLabels> = Object.freeze({
 	collapse: 'Collapse navigation',
 	expand: 'Expand navigation',
 	close: 'Close navigation',
+	open: 'Open navigation',
 });
 
 export interface SidebarProps extends Omit<ComponentPropsWithRef<'div'>, 'children'> {
@@ -109,7 +113,7 @@ export interface SidebarMenuButtonProps extends Omit<
 	onOpenChange: (open: boolean) => void;
 	/** The `permanentFrom` of the sidebar, from where the button is hidden. Defaults to `'expanded'`. */
 	permanentFrom?: Breakpoint;
-	/** Accessible name. Defaults to `'Open navigation'`. */
+	/** Accessible name. Defaults to the `open` label of the sidebar, `'Open navigation'`. */
 	label?: string;
 }
 
@@ -372,7 +376,7 @@ export const Sidebar = ({
 	labels,
 	...attributes
 }: SidebarProps): ReactElement => {
-	const texts: SidebarLabels = { ...defaultSidebarLabels, ...labels };
+	const texts: SidebarLabels = useComponentLabels('sidebar', defaultSidebarLabels, labels);
 	const navigationId: string = useId();
 	const [uncontrolledCollapsed, setUncontrolledCollapsed] = useState<boolean>(defaultCollapsed);
 	const collapsed: boolean = controlledCollapsed ?? uncontrolledCollapsed;
@@ -442,13 +446,15 @@ export const SidebarMenuButton = ({
 	open,
 	onOpenChange,
 	permanentFrom = 'expanded',
-	label = 'Open navigation',
+	label,
 	...attributes
 }: SidebarMenuButtonProps): ReactElement => {
+	const texts: SidebarLabels = useComponentLabels('sidebar', defaultSidebarLabels, undefined);
+
 	return (
 		<MenuButton
 			{...attributes}
-			label={label}
+			label={label ?? texts.open}
 			aria-haspopup='dialog'
 			aria-expanded={open}
 			hiddenFrom={permanentFrom}
