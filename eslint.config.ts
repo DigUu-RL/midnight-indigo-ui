@@ -3,6 +3,7 @@ import stylistic from '@stylistic/eslint-plugin';
 import { defineConfig } from 'eslint/config';
 import typescriptEslint from 'typescript-eslint';
 
+import { jsxChildrenSpacing } from '#eslint-rules/jsx-children-spacing.ts';
 import { requireBracesForMultilineArrowBody } from '#eslint-rules/require-braces-for-multiline-arrow-body.ts';
 
 // Statements spanning more than one line are always set apart from their neighbors by blank lines.
@@ -37,6 +38,7 @@ export default defineConfig(
 			'@stylistic': stylistic,
 			local: {
 				rules: {
+					'jsx-children-spacing': jsxChildrenSpacing,
 					'require-braces-for-multiline-arrow-body': requireBracesForMultilineArrowBody,
 				},
 			},
@@ -106,8 +108,9 @@ export default defineConfig(
 				},
 			],
 
-			// JSX siblings follow each other without blank lines; the tree structure already groups them.
-			'@stylistic/jsx-newline': ['error', { prevent: true }],
+			// JSX children follow the rule of statements: a blank line around children spanning more than one line, none
+			// between children that fit on one line.
+			'local/jsx-children-spacing': 'error',
 		},
 	},
 );

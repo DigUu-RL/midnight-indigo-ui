@@ -258,6 +258,7 @@ export const Pagination = ({
 						children: <Glyph name='chevronLeft' size='small' />,
 					})}
 				</li>
+
 				{paginationRange(page, lastPage, siblingCount, boundaryCount).map(
 					(entry: PaginationEntry): ReactElement => {
 						return typeof entry === 'number' ? (
@@ -277,7 +278,9 @@ export const Pagination = ({
 						);
 					},
 				)}
+
 				<StatusItem>{texts.status(page, lastPage)}</StatusItem>
+
 				<li>
 					{renderControl({
 						page: page + 1,

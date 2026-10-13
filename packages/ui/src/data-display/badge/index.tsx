@@ -127,11 +127,13 @@ export const Badge = ({
 	return (
 		<Anchor {...attributes}>
 			{children}
+
 			{visible ? (
 				<Indicator aria-hidden='true' badgeIntent={intent} badgeVariant={appearance} dot={dot}>
 					{dot ? null : text}
 				</Indicator>
 			) : null}
+
 			{visible && accessibleLabel !== undefined ? (
 				<HiddenLabel>{accessibleLabel}</HiddenLabel>
 			) : null}

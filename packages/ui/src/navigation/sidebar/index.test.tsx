@@ -56,6 +56,7 @@ const SidebarHarness = ({ onMobileOpenChange, ...props }: HarnessProps): ReactEl
 			<header>
 				<SidebarMenuButton open={mobileOpen} onOpenChange={changeMobileOpen} />
 			</header>
+
 			<Sidebar
 				label='Main navigation'
 				items={createItems()}
@@ -63,6 +64,7 @@ const SidebarHarness = ({ onMobileOpenChange, ...props }: HarnessProps): ReactEl
 				mobileOpen={mobileOpen}
 				onMobileOpenChange={changeMobileOpen}
 			/>
+
 			<main>Content</main>
 		</>
 	);
@@ -241,6 +243,7 @@ describe('Sidebar on narrow viewports', (): void => {
 					onOpenChange={(): void => undefined}
 					permanentFrom='large'
 				/>
+
 				<Sidebar
 					label='Main navigation'
 					items={createItems()}

@@ -168,6 +168,7 @@ export const Tabs = ({
 					);
 				})}
 			</TabRow>
+
 			{items.map((item: TabItem): ReactElement => {
 				const selected: boolean = item.id === selectedValue;
 

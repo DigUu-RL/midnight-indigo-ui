@@ -187,13 +187,16 @@ export const Alert = ({
 			<span data-alert-icon='' aria-hidden='true'>
 				{icon ?? <Glyph name={intentGlyphs[intent]} />}
 			</span>
+
 			<Content>
 				{title === undefined ? null : <Title>{title}</Title>}
 				{children === undefined ? null : <div>{children}</div>}
 			</Content>
+
 			{action === undefined && onDismiss === undefined ? null : (
 				<Actions>
 					{action}
+
 					{onDismiss === undefined ? null : (
 						<DismissButton
 							type='button'

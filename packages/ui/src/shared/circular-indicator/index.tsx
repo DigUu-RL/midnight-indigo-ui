@@ -90,6 +90,7 @@ export const CircularIndicator = ({
 				stroke={trackColor}
 				strokeWidth={strokeWidth}
 			/>
+
 			<circle
 				cx='12'
 				cy='12'

@@ -18,6 +18,7 @@ describe('Card', (): void => {
 					subtitle='Last 30 days'
 					action={<button type='button'>Export</button>}
 				/>
+
 				<CardContent>R$ 12.400</CardContent>
 			</Card>,
 		);
@@ -55,6 +56,7 @@ describe('Card', (): void => {
 		render(
 			<>
 				<Card data-testid='card'>outline</Card>
+
 				<Card data-testid='card' variant='elevated'>
 					elevated
 				</Card>

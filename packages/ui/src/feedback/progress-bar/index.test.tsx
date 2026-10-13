@@ -15,6 +15,7 @@ describe('ProgressBar', (): void => {
 		const { container } = render(
 			<>
 				<ProgressBar label='Upload' value={40} />
+
 				<ProgressBar
 					label='Steps'
 					value={7}

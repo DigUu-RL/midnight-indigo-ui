@@ -28,6 +28,7 @@ const DrawerHarness = (props: Partial<Omit<DrawerProps, 'open' | 'onClose'>>): R
 			>
 				Show details
 			</Button>
+
 			<Drawer
 				title='Order #1042'
 				description='Placed today.'

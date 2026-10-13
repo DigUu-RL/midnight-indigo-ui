@@ -54,6 +54,7 @@ describe('Badge', (): void => {
 				<Badge content={0} label='No unread messages'>
 					<span>A</span>
 				</Badge>
+
 				<Badge content={5} invisible label='5 unread messages'>
 					<span>B</span>
 				</Badge>
@@ -95,6 +96,7 @@ describe('Badge', (): void => {
 				<Badge content={4} label='4 alerts' intent='error' data-testid='badge'>
 					<span>solid</span>
 				</Badge>
+
 				<Badge content={4} label='4 alerts' variant='soft' data-testid='badge'>
 					<span>soft</span>
 				</Badge>

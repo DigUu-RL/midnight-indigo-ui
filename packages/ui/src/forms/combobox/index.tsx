@@ -289,6 +289,7 @@ export const Combobox = ({
 											<Glyph name='close' />
 										</IconButton>
 									)}
+
 									<IconButton
 										label={listOpen ? texts.close : texts.open}
 										size='small'
@@ -311,9 +312,11 @@ export const Combobox = ({
 								aria-describedby={control['aria-describedby']}
 							/>
 						</InputFrame>
+
 						{name === undefined ? null : (
 							<input type='hidden' name={name} value={selected?.value ?? ''} />
 						)}
+
 						{listOpen ? (
 							<Popup>
 								{visibleOptions.length > 0 ? (
@@ -327,17 +330,20 @@ export const Combobox = ({
 													<CheckSlot>
 														{selected?.value === option.value ? <Glyph name='check' /> : null}
 													</CheckSlot>
+
 													{option.label}
 												</Option>
 											);
 										})}
 									</Listbox>
 								) : null}
+
 								{loading || visibleOptions.length === 0 ? (
 									<Empty aria-hidden='true'>{emptyMessage}</Empty>
 								) : null}
 							</Popup>
 						) : null}
+
 						<HiddenText role='status'>{announcement}</HiddenText>
 					</Anchor>
 				);

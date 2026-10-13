@@ -132,6 +132,7 @@ describe('Button appearance', (): void => {
 				<Button intent='official' variant='solid'>
 					Solid
 				</Button>
+
 				<Button intent='official' variant='outline'>
 					Outline
 				</Button>

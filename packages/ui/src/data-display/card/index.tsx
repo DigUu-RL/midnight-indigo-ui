@@ -132,12 +132,15 @@ export const CardHeader = ({
 	return (
 		<Header {...attributes}>
 			{avatar === undefined ? null : <HeaderSlot>{avatar}</HeaderSlot>}
+
 			<HeaderText>
 				<Title as={headingElement} id={titleId}>
 					{title}
 				</Title>
+
 				{subtitle === undefined ? null : <Subtitle>{subtitle}</Subtitle>}
 			</HeaderText>
+
 			{action === undefined ? null : <HeaderSlot>{action}</HeaderSlot>}
 		</Header>
 	);

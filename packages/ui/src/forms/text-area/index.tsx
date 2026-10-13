@@ -173,6 +173,7 @@ export const TextArea = ({
 								areaResize={resize}
 							/>
 						</InputFrame>
+
 						{showCount ? (
 							<Counter id={counterId} exceeded={maxLength !== undefined && count > maxLength}>
 								{texts.characterCount(count, maxLength)}

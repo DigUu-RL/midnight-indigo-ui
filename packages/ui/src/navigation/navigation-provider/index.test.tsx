@@ -45,21 +45,25 @@ describe('NavigationProvider', (): void => {
 		render(
 			<NavigationProvider linkComponent={RouterLink}>
 				<Link href='/help'>Help</Link>
+
 				<Breadcrumbs
 					items={[
 						{ id: 'home', label: 'Home', href: '/' },
 						{ id: 'project', label: 'Project' },
 					]}
 				/>
+
 				<Pagination
 					page={1}
 					pageCount={3}
 					getPageHref={(page: number): string => `/list?page=${String(page)}`}
 				/>
+
 				<TabNavigation
 					label='Project sections'
 					items={[{ id: 'overview', label: 'Overview', href: '/project', current: true }]}
 				/>
+
 				<Sidebar
 					label='Main navigation'
 					items={[{ id: 'reports', label: 'Reports', icon: <svg />, href: '/reports' }]}

@@ -225,9 +225,11 @@ export const Slider = ({
 							style={trackStyle}
 							invalid={control['aria-invalid'] === true}
 						/>
+
 						<Output htmlFor={controlId} aria-hidden='true'>
 							{formatValue(current)}
 						</Output>
+
 						{input}
 					</Row>
 				);

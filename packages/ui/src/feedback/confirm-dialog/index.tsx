@@ -94,6 +94,7 @@ export const ConfirmDialog = ({
 					<Button ref={cancelButton} variant='outline' disabled={pending} onClick={cancel}>
 						{texts.cancel}
 					</Button>
+
 					<Button
 						ref={confirmButton}
 						intent={intent}

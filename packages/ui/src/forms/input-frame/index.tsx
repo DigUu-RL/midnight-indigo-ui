@@ -215,11 +215,13 @@ export const InputFrame = ({
 			{hasContent(prefix) ? <Adornment id={`${controlId}-prefix`}>{prefix}</Adornment> : null}
 			{children}
 			{hasContent(suffix) ? <Adornment id={`${controlId}-suffix`}>{suffix}</Adornment> : null}
+
 			{loading ? (
 				<Busy>
 					<CircularIndicator size='1em' />
 				</Busy>
 			) : null}
+
 			{hasContent(actions) ? <Actions>{actions}</Actions> : null}
 		</Frame>
 	);

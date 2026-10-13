@@ -217,6 +217,7 @@ export const Chip = ({
 			{decoration === undefined || decoration === null ? null : (
 				<Decoration aria-hidden='true'>{decoration}</Decoration>
 			)}
+
 			{label}
 		</>
 	);
@@ -247,6 +248,7 @@ export const Chip = ({
 					{content}
 				</StaticContent>
 			)}
+
 			{onDelete === undefined ? null : (
 				<DeleteButton
 					type='button'

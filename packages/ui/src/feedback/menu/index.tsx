@@ -76,6 +76,7 @@ export const Menu = ({
 				},
 				onKeyDown: handleKeyDown,
 			})}
+
 			<MenuSurface
 				id={menuId}
 				open={open && triggerElement.current !== null}

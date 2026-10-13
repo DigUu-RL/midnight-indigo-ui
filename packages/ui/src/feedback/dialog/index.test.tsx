@@ -38,6 +38,7 @@ const DialogHarness = ({
 			<h1 ref={heading} tabIndex={-1}>
 				Profile
 			</h1>
+
 			<Button
 				onClick={(): void => {
 					setOpen(true);
@@ -45,6 +46,7 @@ const DialogHarness = ({
 			>
 				Edit profile
 			</Button>
+
 			<Dialog
 				title='Edit profile'
 				description='Changes apply to your public page.'

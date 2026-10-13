@@ -244,13 +244,17 @@ export const FormField = ({
 				{label}
 				{required ? <RequiredMark /> : null}
 			</FieldLabel>
+
 			{messages.ids.description === undefined ? null : (
 				<FieldDescription id={messages.ids.description}>{description}</FieldDescription>
 			)}
+
 			{children(control)}
+
 			{messages.ids.loading === undefined ? null : (
 				<HiddenText id={messages.ids.loading}>{text.loading}</HiddenText>
 			)}
+
 			{messages.ids.error === undefined ? null : (
 				<FieldError id={messages.ids.error}>{messages.error}</FieldError>
 			)}

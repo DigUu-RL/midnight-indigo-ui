@@ -14,6 +14,7 @@ export const ThemeSummary = (): ReactElement => {
 			<p>
 				Official color: <code>{theme.tokens.intent.official.main}</code>
 			</p>
+
 			<Button variant='contained'>Material UI button</Button>
 		</section>
 	);

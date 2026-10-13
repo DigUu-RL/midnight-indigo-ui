@@ -45,37 +45,47 @@ export const ComponentsShowcase = (): ReactElement => {
 					</Badge>
 				}
 			/>
+
 			<CardContent>
 				<div className='row'>
 					<Button intent='official' variant='solid' startIcon={plusIcon}>
 						New report
 					</Button>
+
 					<Button>Export</Button>
+
 					<Button intent='error' variant='outline'>
 						Delete
 					</Button>
+
 					<Button variant='ghost' loading>
 						Saving
 					</Button>
+
 					<Button disabled>Unavailable</Button>
 				</div>
 			</CardContent>
+
 			<Divider decorative />
+
 			<CardContent>
 				<FilterChips />
 			</CardContent>
+
 			<CardContent>
 				<div className='stack'>
 					<ProgressBar label='Monthly goal' value={68} valueText='68% of the monthly goal' />
 					<ProgressBar label='Synchronizing' intent='info' />
 				</div>
 			</CardContent>
+
 			<CardContent>
 				<div className='row' aria-busy='true' aria-label='Loading the team'>
 					<Skeleton shape='circle' />
 					<Skeleton width='12rem' />
 				</div>
 			</CardContent>
+
 			<Carousel label='Highlights'>
 				<p className='slide'>Revenue grew 12% this month.</p>
 				<p className='slide'>Three new teams joined the workspace.</p>

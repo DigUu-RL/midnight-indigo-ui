@@ -55,6 +55,7 @@ const HelperText = ({
 	return (
 		<Lines>
 			{hasContent(description) ? <span>{description}</span> : null}
+
 			{hasContent(error) ? (
 				<ErrorLine>
 					<Glyph name='alert' />

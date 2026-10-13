@@ -180,6 +180,7 @@ export const Select = ({
 								onChange={handleChange}
 							>
 								{placeholder === undefined ? null : <option value=''>{placeholder}</option>}
+
 								{options.map((entry: SelectOption | SelectOptionGroup): ReactElement => {
 									return isGroup(entry) ? (
 										<optgroup key={entry.label} label={entry.label}>
@@ -190,6 +191,7 @@ export const Select = ({
 									);
 								})}
 							</NativeSelect>
+
 							<Chevron aria-hidden='true'>
 								<Glyph name='chevronDown' />
 							</Chevron>

@@ -61,6 +61,7 @@ export const NavigationShowcase = (): ReactElement => {
 				subtitle='Links through next/link, tabs, pagination, a collapsible sidebar and a responsive grid.'
 				headingLevel={2}
 			/>
+
 			<CardContent>
 				<Stack gap='6'>
 					<Breadcrumbs
@@ -72,6 +73,7 @@ export const NavigationShowcase = (): ReactElement => {
 							{ id: 'settings', label: 'Settings' },
 						]}
 					/>
+
 					<TabNavigation
 						label='Project sections'
 						items={[
@@ -80,6 +82,7 @@ export const NavigationShowcase = (): ReactElement => {
 							{ id: 'settings', label: 'Settings', href: '/?section=settings' },
 						]}
 					/>
+
 					<Tabs
 						label='Report sections'
 						items={[
@@ -87,6 +90,7 @@ export const NavigationShowcase = (): ReactElement => {
 							{ id: 'details', label: 'Details', content: <p>Three new teams joined.</p> },
 						]}
 					/>
+
 					<Grid columns={{ compact: 1, medium: 2, large: 4 }} gap='3'>
 						{metrics.map((metric: string): ReactElement => {
 							return (
@@ -96,7 +100,9 @@ export const NavigationShowcase = (): ReactElement => {
 							);
 						})}
 					</Grid>
+
 					<Pagination page={page} pageCount={12} onPageChange={setPage} />
+
 					<p>
 						Read the <Link href='/?view=guide'>getting started guide</Link> or the{' '}
 						<Link href='https://github.com/DigUu-RL/midnight-indigo-ui' external>
@@ -104,8 +110,10 @@ export const NavigationShowcase = (): ReactElement => {
 						</Link>
 						.
 					</p>
+
 					<div className='sidebar-demo'>
 						<SidebarMenuButton open={mobileOpen} onOpenChange={setMobileOpen} />
+
 						<Sidebar
 							label='Demo navigation'
 							items={sidebarItems}

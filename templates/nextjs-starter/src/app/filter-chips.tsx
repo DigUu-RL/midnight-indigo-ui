@@ -38,6 +38,7 @@ export const FilterChips = (): ReactElement => {
 					/>
 				);
 			})}
+
 			{tags.map((tag: string): ReactElement => {
 				return (
 					<Chip

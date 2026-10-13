@@ -234,6 +234,7 @@ export const ChoiceRow = ({
 		<Row className={className} style={style}>
 			<ChoiceLabel rowDisabled={disabled}>
 				{control}
+
 				{hasContent(label) ? (
 					<LabelText emphasized={emphasized}>
 						{label}
@@ -241,11 +242,13 @@ export const ChoiceRow = ({
 					</LabelText>
 				) : null}
 			</ChoiceLabel>
+
 			{hasMessages ? (
 				<Texts style={indent === undefined ? undefined : { paddingInlineStart: indent }}>
 					{descriptionId === undefined ? null : (
 						<FieldDescription id={descriptionId}>{description}</FieldDescription>
 					)}
+
 					{errorId === undefined ? null : <FieldError id={errorId}>{error}</FieldError>}
 				</Texts>
 			) : null}

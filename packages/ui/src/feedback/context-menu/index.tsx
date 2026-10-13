@@ -75,6 +75,7 @@ export const ContextMenu = ({
 	return (
 		<>
 			{target}
+
 			<MenuSurface
 				id={menuId}
 				open={position !== null}

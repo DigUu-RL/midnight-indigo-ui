@@ -456,13 +456,16 @@ export const FileUpload = ({
 								multiple={multiple}
 								onChange={handleChange}
 							/>
+
 							<ChooseButton htmlFor={controlId} disabled={disabled}>
 								<Glyph name='upload' />
 								<span aria-hidden='true'>{texts.choose(multiple)}</span>
 							</ChooseButton>
+
 							{dropzone ? <span aria-hidden='true'>{texts.dropHint}</span> : null}
 							{limitsText === '' ? null : <span id={limitsId}>{limitsText}</span>}
 						</Zone>
+
 						{files.length === 0 ? null : (
 							<FileList aria-label={texts.fileList}>
 								{files.map((file: File, index: number): ReactElement => {
@@ -470,6 +473,7 @@ export const FileUpload = ({
 										<FileItem key={`${file.name}-${String(file.lastModified)}-${String(index)}`}>
 											<FileName>{file.name}</FileName>
 											<FileSize>{texts.formatSize(file.size)}</FileSize>
+
 											<IconButton
 												label={texts.remove(file.name)}
 												size='small'
@@ -485,6 +489,7 @@ export const FileUpload = ({
 								})}
 							</FileList>
 						)}
+
 						<Status role='status'>{rejectionMessage}</Status>
 					</>
 				);

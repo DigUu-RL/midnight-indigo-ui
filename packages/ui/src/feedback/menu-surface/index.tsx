@@ -204,6 +204,7 @@ export const MenuSurface = ({
 					>
 						{entry.icon === undefined ? null : <ItemIcon aria-hidden='true'>{entry.icon}</ItemIcon>}
 						<ItemLabel>{entry.label}</ItemLabel>
+
 						{entry.shortcut === undefined ? null : (
 							<Shortcut aria-hidden='true'>{displayShortcut(entry.shortcut)}</Shortcut>
 						)}

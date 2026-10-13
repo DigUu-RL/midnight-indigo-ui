@@ -214,6 +214,7 @@ export const OverlaySections = ({
 		<>
 			<Header>
 				<Title id={titleId}>{title}</Title>
+
 				{closeLabel === undefined ? null : (
 					<CloseSlot>
 						<IconButton label={closeLabel} size='small' onClick={onClose}>
@@ -222,9 +223,11 @@ export const OverlaySections = ({
 					</CloseSlot>
 				)}
 			</Header>
+
 			{description === undefined ? null : (
 				<Description id={descriptionId}>{description}</Description>
 			)}
+
 			{children === undefined ? null : <Body>{children}</Body>}
 			{actions === undefined ? null : <Actions>{actions}</Actions>}
 		</>

@@ -229,6 +229,7 @@ describe('ToastProvider and useToast', (): void => {
 					>
 						Open
 					</Button>
+
 					<Dialog
 						open={open}
 						title='Rename'

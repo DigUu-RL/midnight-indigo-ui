@@ -22,6 +22,7 @@ const renderTooltip = (): HTMLElement => {
 					<svg />
 				</IconButton>
 			</Tooltip>
+
 			<button type='button'>Next</button>
 		</>,
 	);
