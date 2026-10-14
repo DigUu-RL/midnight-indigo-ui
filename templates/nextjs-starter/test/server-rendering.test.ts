@@ -298,6 +298,29 @@ test('the component styles arrive in the head of the first flush, so controls pa
 	assert.ok(head.includes('outline:var(--mi-focus-width) solid var(--mi-focus-ring)'));
 });
 
+test('the dashboard is rendered on the server with its shell, translated texts and loading state', async (): Promise<void> => {
+	const { html }: StreamedPage = await readStreamedPage(`${origin}/dashboard`);
+
+	assert.match(html, /<a href="#[^"]+"[^>]*>Skip to main content<\/a>/);
+	assert.match(html, /<nav[^>]*aria-label="Main navigation"/);
+	assert.match(html, /<a(?=[^>]*href="\/dashboard")(?=[^>]*aria-current="page")/);
+	assert.match(html, /<header[^>]*>.*?aria-label="Open navigation"/s);
+	assert.match(html, /<main id="[^"]+" tabindex="-1"/);
+	assert.match(html, /<h1[^>]*>Sales overview<\/h1>/);
+	assert.match(html, /<form[^>]*role="search" aria-label="Filters"/);
+	assert.match(html, /<ul[^>]*aria-label="Key figures"/);
+	assert.match(html, /role="group" aria-labelledby="[^"]+" aria-busy="true"/);
+	assert.match(html, /<section[^>]*aria-labelledby="[^"]+"/);
+	assert.doesNotMatch(html, /dashboard\.[a-z]+\.[a-z]+/i);
+});
+
+test('a scenario of the mock API is chosen by the URL', async (): Promise<void> => {
+	const { html }: StreamedPage = await readStreamedPage(`${origin}/dashboard?state=error`);
+
+	assert.match(html, /<a(?=[^>]*href="\/dashboard\?state=error")(?=[^>]*aria-current="page")/);
+	assert.doesNotMatch(html, /<a(?=[^>]*href="\/dashboard")(?=[^>]*aria-current="page")/);
+});
+
 test('the late chunk is streamed after the shell', (): void => {
 	assert.ok(
 		!page.shell.includes(streamedContent),

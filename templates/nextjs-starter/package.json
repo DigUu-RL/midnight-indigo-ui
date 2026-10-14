@@ -21,6 +21,7 @@
 		"@midnight-indigo/ui": "workspace:*",
 		"@mui/material": "catalog:",
 		"@mui/material-nextjs": "catalog:",
+		"echarts": "catalog:",
 		"i18next": "catalog:",
 		"next": "catalog:",
 		"react": "catalog:",

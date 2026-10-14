@@ -93,6 +93,11 @@ export interface SidebarProps extends Omit<ComponentPropsWithRef<'div'>, 'childr
 	defaultCollapsed?: boolean;
 	onCollapsedChange?: (collapsed: boolean) => void;
 	/**
+	 * Shows the button that collapses and expands the sidebar. Defaults to `true`; without it, the sidebar keeps the form
+	 * given by `collapsed` (e.g. always a rail).
+	 */
+	collapsible?: boolean;
+	/**
 	 * Whether the drawer is open below `permanentFrom`, where the sidebar is not shown. Open it from a
 	 * `SidebarMenuButton`; the sidebar closes it after an item is chosen and when the viewport grows past the breakpoint.
 	 */
@@ -370,6 +375,7 @@ export const Sidebar = ({
 	collapsed: controlledCollapsed,
 	defaultCollapsed = false,
 	onCollapsedChange,
+	collapsible = true,
 	mobileOpen,
 	onMobileOpenChange,
 	permanentFrom = 'expanded',
@@ -407,16 +413,18 @@ export const Sidebar = ({
 
 				{footer === undefined ? null : <Section>{footer}</Section>}
 
-				<CollapseControl collapsed={collapsed}>
-					<IconButton
-						label={collapsed ? texts.expand : texts.collapse}
-						aria-expanded={!collapsed}
-						aria-controls={navigationId}
-						onClick={toggle}
-					>
-						<Glyph name={collapsed ? 'chevronRight' : 'chevronLeft'} />
-					</IconButton>
-				</CollapseControl>
+				{collapsible ? (
+					<CollapseControl collapsed={collapsed}>
+						<IconButton
+							label={collapsed ? texts.expand : texts.collapse}
+							aria-expanded={!collapsed}
+							aria-controls={navigationId}
+							onClick={toggle}
+						>
+							<Glyph name={collapsed ? 'chevronRight' : 'chevronLeft'} />
+						</IconButton>
+					</CollapseControl>
+				) : null}
 			</Root>
 
 			<Drawer

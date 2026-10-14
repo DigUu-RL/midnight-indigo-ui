@@ -166,6 +166,15 @@ describe('Sidebar on wide viewports', (): void => {
 		expect(toggle.getAttribute('aria-expanded')).toBe('false');
 	});
 
+	it('keeps its form without the collapse button when it is not collapsible', (): void => {
+		renderAt(1024, <SidebarHarness collapsed collapsible={false} />);
+		const navigation: HTMLElement = screen.getByRole('navigation', { name: 'Main navigation' });
+
+		expect(screen.queryByRole('button', { name: 'Expand navigation' })).toBeNull();
+		expect(within(navigation).getByRole('link', { name: 'Home' })).toBeDefined();
+		expect(styleRulesOf(navigation.parentElement as Element).join('')).toContain('width:4.5rem;');
+	});
+
 	it('runs the action of an item', async (): Promise<void> => {
 		const user: UserEvent = userEvent.setup();
 		const onCreate: Mock<() => void> = vi.fn();

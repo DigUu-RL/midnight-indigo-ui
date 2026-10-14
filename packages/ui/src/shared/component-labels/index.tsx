@@ -6,6 +6,8 @@ import { createContext, use, useMemo } from 'react';
 import type { Context, ReactElement, ReactNode } from 'react';
 
 import type { ChartLabels } from '#src/charts/chart-labels/index.ts';
+import type { DashboardLayoutLabels } from '#src/dashboard/dashboard-layout/index.tsx';
+import type { FilterBarLabels } from '#src/dashboard/filter-bar/index.tsx';
 import type { CarouselLabels } from '#src/data-display/carousel/index.tsx';
 import type { DataTableLabels } from '#src/data-display/data-table/index.tsx';
 import type { ErrorStateLabels } from '#src/data-display/error-state/index.tsx';
@@ -38,12 +40,14 @@ export interface ComponentLabelTypes {
 	chart: ChartLabels;
 	combobox: ComboboxLabels;
 	confirmDialog: ConfirmDialogLabels;
+	dashboardLayout: DashboardLayoutLabels;
 	dataTable: DataTableLabels;
 	dialog: DialogLabels;
 	drawer: DrawerLabels;
 	errorState: ErrorStateLabels;
 	errorSummary: ErrorSummaryLabels;
 	fileUpload: FileUploadLabels;
+	filterBar: FilterBarLabels;
 	form: FormLabels;
 	formField: FormFieldLabels;
 	link: LinkLabels;

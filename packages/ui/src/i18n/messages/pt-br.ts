@@ -69,6 +69,9 @@ export const brazilianPortugueseMessages: LibraryMessages = {
 		confirm: 'Confirmar',
 		cancel: 'Cancelar',
 	},
+	dashboardLayout: {
+		skipToContent: 'Pular para o conteúdo principal',
+	},
 	dataTable: {
 		loading: 'Carregando linhas',
 		empty: 'Nenhuma linha ainda',
@@ -128,6 +131,9 @@ export const brazilianPortugueseMessages: LibraryMessages = {
 				other: '{{fileName}} não foi adicionado: o limite é {{count, number}} arquivos.',
 			},
 		},
+	},
+	filterBar: {
+		clear: 'Limpar filtros',
 	},
 	form: {
 		submissionError: 'Não foi possível enviar o formulário. Tente novamente.',
