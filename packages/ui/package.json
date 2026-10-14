@@ -89,6 +89,7 @@
 		"@mui/material": "^9.5.0",
 		"@mui/x-date-pickers": "^9.14.0",
 		"date-fns": "^4.0.0",
+		"echarts": "^6.0.0",
 		"i18next": "^26.2.0",
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
@@ -100,6 +101,9 @@
 			"optional": true
 		},
 		"date-fns": {
+			"optional": true
+		},
+		"echarts": {
 			"optional": true
 		},
 		"i18next": {
@@ -126,6 +130,7 @@
 		"@types/react-dom": "catalog:",
 		"axe-core": "catalog:",
 		"date-fns": "catalog:",
+		"echarts": "catalog:",
 		"i18next": "catalog:",
 		"jsdom": "catalog:",
 		"publint": "catalog:",

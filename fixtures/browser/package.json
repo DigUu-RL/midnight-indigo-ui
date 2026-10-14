@@ -10,8 +10,8 @@
 	"scripts": {
 		"build": "vite build",
 		"typecheck": "tsc -p tsconfig.json",
-		"test:browser": "playwright test --project=starter --project=visual && pnpm run test:performance",
-		"test:e2e": "playwright test --project=starter",
+		"test:browser": "playwright test --project=starter --project=components --project=visual && pnpm run test:performance",
+		"test:e2e": "playwright test --project=starter --project=components",
 		"test:visual": "playwright test --project=visual",
 		"test:visual:update": "playwright test --project=visual --update-snapshots",
 		"test:performance": "playwright test --project=performance --workers=1"
@@ -21,6 +21,7 @@
 		"@emotion/styled": "catalog:",
 		"@midnight-indigo/ui": "workspace:*",
 		"@mui/material": "catalog:",
+		"echarts": "catalog:",
 		"react": "catalog:",
 		"react-dom": "catalog:"
 	},

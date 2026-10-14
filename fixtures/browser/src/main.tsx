@@ -1,11 +1,13 @@
 // Entry of the performance scenarios. The URL picks the scenario and its size, e.g. `/?scenario=data-table&size=10000`
 // or `/?scenario=data-table&processing=server&size=10000000`. The page marks `scenario-start` before rendering and
-// `scenario-ready` after the first paint, and sets `data-scenario-ready` on <html> for the tests to wait on.
+// `scenario-ready` after the first paint, and sets `data-scenario-ready` on <html> for the tests to wait on. The
+// chart scenario also marks `chart-ready` once the engine has drawn, and sets `data-chart-ready`.
 import { createUiTheme, UiProvider } from '@midnight-indigo/ui/theme';
 import { StrictMode, useEffect } from 'react';
 import type { ReactElement } from 'react';
 import { createRoot } from 'react-dom/client';
 
+import { ChartScenario } from '#src/scenarios/chart-scenario.tsx';
 import { ComboboxScenario, SelectScenario } from '#src/scenarios/choice-scenarios.tsx';
 import { DataTableScenario } from '#src/scenarios/data-table-scenario.tsx';
 import { ListScenario } from '#src/scenarios/list-scenario.tsx';
@@ -22,6 +24,7 @@ const scenarios: Record<string, () => ReactElement> = {
 	combobox: (): ReactElement => <ComboboxScenario optionCount={size} />,
 	select: (): ReactElement => <SelectScenario optionCount={size} />,
 	list: (): ReactElement => <ListScenario itemCount={size} />,
+	chart: (): ReactElement => <ChartScenario pointCount={size} />,
 };
 
 const renderScenario: () => ReactElement =

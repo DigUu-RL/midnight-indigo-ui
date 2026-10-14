@@ -2,9 +2,10 @@
 // Texts that a provider (e.g. `I18nProvider` of `@midnight-indigo/ui/i18n`) gives to every component below it. The
 // components read them without depending on any translation library: their `labels` prop wins, then the provider,
 // then the English defaults of the component.
-import { createContext, use } from 'react';
+import { createContext, use, useMemo } from 'react';
 import type { Context, ReactElement, ReactNode } from 'react';
 
+import type { ChartLabels } from '#src/charts/chart-labels/index.ts';
 import type { CarouselLabels } from '#src/data-display/carousel/index.tsx';
 import type { DataTableLabels } from '#src/data-display/data-table/index.tsx';
 import type { ErrorStateLabels } from '#src/data-display/error-state/index.tsx';
@@ -34,6 +35,7 @@ export interface ComponentLabelTypes {
 	alert: AlertLabels;
 	breadcrumbs: BreadcrumbsLabels;
 	carousel: CarouselLabels;
+	chart: ChartLabels;
 	combobox: ComboboxLabels;
 	confirmDialog: ConfirmDialogLabels;
 	dataTable: DataTableLabels;
@@ -89,6 +91,9 @@ export const useComponentLabels = <Name extends ComponentName>(
 	const provided: Partial<ComponentLabelTypes[Name]> | undefined =
 		use(ComponentLabelsContext)[component];
 
-	// The defaults are complete, so the merge is too; TypeScript cannot spread a type indexed by a generic.
-	return { ...defaults, ...provided, ...overrides } as ComponentLabelTypes[Name];
+	// The same object while its sources are the same, so that it can be a dependency of a memoized computation. The
+	// defaults are complete, so the merge is too; TypeScript cannot spread a type indexed by a generic.
+	return useMemo((): ComponentLabelTypes[Name] => {
+		return { ...defaults, ...provided, ...overrides } as ComponentLabelTypes[Name];
+	}, [defaults, provided, overrides]);
 };

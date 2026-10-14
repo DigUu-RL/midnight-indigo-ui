@@ -1,6 +1,7 @@
 import type { i18n as I18nInstance } from 'i18next';
 import { describe, expect, it } from 'vitest';
 
+import { defaultChartLabels } from '#src/charts/chart-labels/index.ts';
 import { defaultCarouselLabels } from '#src/data-display/carousel/index.tsx';
 import { defaultDataTableLabels } from '#src/data-display/data-table/index.tsx';
 import { defaultErrorStateLabels } from '#src/data-display/error-state/index.tsx';
@@ -43,6 +44,7 @@ const defaults: Defaults = {
 	alert: defaultAlertLabels,
 	breadcrumbs: defaultBreadcrumbsLabels,
 	carousel: defaultCarouselLabels,
+	chart: defaultChartLabels,
 	combobox: defaultComboboxLabels,
 	confirmDialog: defaultConfirmDialogLabels,
 	dataTable: defaultDataTableLabels,
@@ -201,6 +203,24 @@ describe('library messages', (): void => {
 		expect(labels.breadcrumbs?.expand?.(4)).toBe(defaultBreadcrumbsLabels.expand(4));
 		expect(labels.carousel?.slidePosition?.(2, 5)).toBe(defaultCarouselLabels.slidePosition(2, 5));
 
+		expect(labels.chart?.point?.('Mar', 'Revenue: 40', 3, 12)).toBe(
+			defaultChartLabels.point('Mar', 'Revenue: 40', 3, 12),
+		);
+
+		[1, 12].forEach((count: number): void => {
+			expect(labels.chart?.categoryRange?.(count, 'Jan', 'Dec')).toBe(
+				defaultChartLabels.categoryRange(count, 'Jan', 'Dec'),
+			);
+		});
+
+		expect(labels.chart?.seriesRange?.('Revenue', '10', 'Jan', '45', 'Mar')).toBe(
+			defaultChartLabels.seriesRange('Revenue', '10', 'Jan', '45', 'Mar'),
+		);
+
+		expect(labels.chart?.gauge?.('62', '0', '100')).toBe(
+			defaultChartLabels.gauge('62', '0', '100'),
+		);
+
 		expect(labels.combobox?.moreOptions?.(100, 250)).toBe(
 			defaultComboboxLabels.moreOptions(100, 250),
 		);
@@ -254,6 +274,10 @@ describe('library messages', (): void => {
 
 	it('in Portuguese, pluralize and format numbers', async (): Promise<void> => {
 		const labels: ComponentLabels = await labelsFor('pt-BR');
+
+		expect(labels.chart?.categoryRange?.(1, 'T1', 'T1')).toBe('1 categoria: T1.');
+
+		expect(labels.chart?.categoryRange?.(1200, 'T1', 'T4')).toBe('1.200 categorias, de T1 a T4.');
 
 		expect(labels.dataTable?.resultCount?.(0)).toBe('Nenhuma linha');
 		expect(labels.dataTable?.resultCount?.(1)).toBe('1 linha');
