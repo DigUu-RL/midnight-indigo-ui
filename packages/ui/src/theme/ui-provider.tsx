@@ -41,16 +41,28 @@ const hashText = (text: string): string => {
 };
 
 /**
+ * The previous theme while the new one is equal to it. A theme created again at each render (`createUiTheme(config)`
+ * written in the props of a component that renders again) would otherwise rebuild the Material UI theme and render
+ * every styled component below once more: about twenty times the cost of the same render with the same object, for
+ * 600 components. A theme is plain data (tokens and warnings), so its JSON is its identity.
+ */
+const useStableTheme = (theme: UiTheme): UiTheme => {
+	const identity: string = useMemo((): string => JSON.stringify(theme), [theme]);
+	return useMemo((): UiTheme => theme, [identity]);
+};
+
+/**
  * Root provider of Midnight Indigo: UI. The theme stylesheet is rendered as a React 19 hoistable `<style>`:
  * it lands in the `<head>` of the server HTML before any content (no unstyled flash), and React deduplicates it
  * by `href` across streamed chunks, nested providers and hydration. Material UI transitions follow the reduced motion
  * preference of the user.
  */
 export const UiProvider = ({
-	theme = defaultUiTheme,
+	theme: givenTheme = defaultUiTheme,
 	baseline = true,
 	children,
 }: UiProviderProps): ReactElement => {
+	const theme: UiTheme = useStableTheme(givenTheme);
 	const reducedMotion: boolean = usePrefersReducedMotion();
 	const stylesheet: string = useMemo((): string => createThemeStylesheet(theme), [theme]);
 

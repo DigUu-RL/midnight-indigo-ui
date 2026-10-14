@@ -1,0 +1,111 @@
+{
+	"description": "Gzip bytes of the initial and on-demand JS of each public entry and starter route. Checked by `pnpm check:bundle`; rewritten by `node scripts/check-bundle-size.ts --update`, in a pull request that explains the growth.",
+	"entries": {
+		"@midnight-indigo/ui": {
+			"initial": {
+				"baseline": 27629,
+				"budget": 30464
+			}
+		},
+		"@midnight-indigo/ui/tokens": {
+			"initial": {
+				"baseline": 6305,
+				"budget": 7168
+			}
+		},
+		"@midnight-indigo/ui/theme": {
+			"initial": {
+				"baseline": 5719,
+				"budget": 6400
+			}
+		},
+		"@midnight-indigo/ui/buttons": {
+			"initial": {
+				"baseline": 4311,
+				"budget": 4864
+			}
+		},
+		"@midnight-indigo/ui/forms": {
+			"initial": {
+				"baseline": 16193,
+				"budget": 17920
+			}
+		},
+		"@midnight-indigo/ui/forms/date-pickers": {
+			"initial": {
+				"baseline": 4638,
+				"budget": 5120
+			}
+		},
+		"@midnight-indigo/ui/forms/react-hook-form": {
+			"initial": {
+				"baseline": 438,
+				"budget": 512
+			}
+		},
+		"@midnight-indigo/ui/feedback": {
+			"initial": {
+				"baseline": 12503,
+				"budget": 13824
+			}
+		},
+		"@midnight-indigo/ui/layout": {
+			"initial": {
+				"baseline": 3598,
+				"budget": 4096
+			}
+		},
+		"@midnight-indigo/ui/navigation": {
+			"initial": {
+				"baseline": 11350,
+				"budget": 12544
+			}
+		},
+		"@midnight-indigo/ui/data-display": {
+			"initial": {
+				"baseline": 13851,
+				"budget": 15360
+			}
+		},
+		"@midnight-indigo/ui/charts": {
+			"initial": {
+				"baseline": 19407,
+				"budget": 21504
+			},
+			"onDemand": {
+				"baseline": 208357,
+				"budget": 229376
+			}
+		},
+		"@midnight-indigo/ui/i18n": {
+			"initial": {
+				"baseline": 6767,
+				"budget": 7680
+			}
+		},
+		"@midnight-indigo/ui/dashboard": {
+			"initial": {
+				"baseline": 11740,
+				"budget": 13056
+			}
+		},
+		"starter: /": {
+			"initial": {
+				"baseline": 312461,
+				"budget": 343808
+			}
+		},
+		"starter: /dashboard": {
+			"initial": {
+				"baseline": 294545,
+				"budget": 324096
+			}
+		},
+		"starter: chart engine": {
+			"onDemand": {
+				"baseline": 212099,
+				"budget": 233472
+			}
+		}
+	}
+}

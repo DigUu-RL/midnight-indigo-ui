@@ -150,6 +150,7 @@ export const Form = ({
 	const formReference: RefObject<HTMLFormElement | null> = useRef<HTMLFormElement>(null);
 	const validationRun: RefObject<number> = useRef<number>(0);
 	const pointerPressed: RefObject<boolean> = useRef<boolean>(false);
+	const cancelRevalidation: RefObject<(() => void) | null> = useRef<(() => void) | null>(null);
 	const [status, setStatus] = useState<FormStatus>('idle');
 	const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
 	const [attempts, setAttempts] = useState<number>(0);
@@ -218,6 +219,7 @@ export const Form = ({
 			document.removeEventListener('pointerdown', press, true);
 			document.removeEventListener('pointerup', release, true);
 			document.removeEventListener('pointercancel', release, true);
+			cancelRevalidation.current?.();
 		};
 	}, []);
 
@@ -240,15 +242,31 @@ export const Form = ({
 
 		// Focus left with a pointer press: messages appearing or disappearing now would move the layout between the
 		// press and the release, and the click would miss its target (a checkbox would not toggle). Revalidating waits
-		// for the release; the task after it runs once the click has been dispatched.
+		// for the release; the task after it runs once the click has been dispatched. The next blur, or unmounting the
+		// form, cancels the wait.
+		cancelRevalidation.current?.();
+		const listening: AbortController = new AbortController();
+		let timer: ReturnType<typeof setTimeout> | undefined;
+
 		const afterRelease = (): void => {
-			document.removeEventListener('pointerup', afterRelease, true);
-			document.removeEventListener('pointercancel', afterRelease, true);
-			setTimeout(revalidate);
+			listening.abort();
+			timer = setTimeout(revalidate);
 		};
 
-		document.addEventListener('pointerup', afterRelease, true);
-		document.addEventListener('pointercancel', afterRelease, true);
+		cancelRevalidation.current = (): void => {
+			listening.abort();
+			clearTimeout(timer);
+		};
+
+		document.addEventListener('pointerup', afterRelease, {
+			capture: true,
+			signal: listening.signal,
+		});
+
+		document.addEventListener('pointercancel', afterRelease, {
+			capture: true,
+			signal: listening.signal,
+		});
 	};
 
 	const summaryItems: ErrorSummaryItem[] = Object.entries(errors).map(
