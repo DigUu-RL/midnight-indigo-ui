@@ -2,7 +2,17 @@
 // Locale of the application and of the library texts. The root layout gives the locale, so the server and the browser
 // render the same text; the time zone and the currency are set here, never taken from the machine.
 import { I18nProvider } from '@midnight-indigo/ui/i18n';
+import type { I18nResources } from '@midnight-indigo/ui/i18n';
 import type { ReactElement, ReactNode } from 'react';
+
+import englishMessages from '#src/messages/en-us.json';
+import brazilianPortugueseMessages from '#src/messages/pt-br.json';
+
+// The texts of the application, in JSON; the texts of the components come with the library.
+const resources: I18nResources = {
+	'en-US': { translation: englishMessages },
+	'pt-BR': { translation: brazilianPortugueseMessages },
+};
 
 interface AppI18nProviderProps {
 	locale: string;
@@ -14,6 +24,7 @@ export const AppI18nProvider = ({ locale, children }: AppI18nProviderProps): Rea
 		<I18nProvider
 			locale={locale}
 			fallbackLocale='en-US'
+			resources={resources}
 			timeZone='America/Sao_Paulo'
 			currency='BRL'
 		>

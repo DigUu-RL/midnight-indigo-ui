@@ -2,7 +2,8 @@
 
 Page layout and the ways to move around an application (F08). Layout primitives are exported by
 `@midnight-indigo/ui/layout`, navigation by `@midnight-indigo/ui/navigation`, and both by the root entry. Neither
-needs the dashboard: they work in any React application. They follow the conventions of
+needs the dashboard: they work in any React application. The application shell built on them, `DashboardLayout`, is in
+[dashboard.md](./dashboard.md). They follow the conventions of
 [components.md](./components.md): theme variables only, and `labels` for every text the component writes itself.
 
 | Component                      | Use it for                                                           | Subpath      |
@@ -163,7 +164,8 @@ const [mobileOpen, setMobileOpen] = useState(false);
   their heading.
 - From `permanentFrom` (`expanded` by default) the sidebar is a 16 rem column inside a `nav` landmark named by `label`.
   The button at its end collapses it to a 4.5 rem rail of icons (`aria-expanded`, `aria-controls`); `collapsed` and
-  `onCollapsedChange` control it, `defaultCollapsed` sets the initial state.
+  `onCollapsedChange` control it, `defaultCollapsed` sets the initial state. `collapsible={false}` removes the button,
+  so the sidebar keeps the form given by `collapsed` (always a column, or always a rail).
 - In the rail every item keeps its name (the label is visually hidden, not removed) and stays in the tab order. A
   tooltip repeats the name on hover and on keyboard focus; nothing depends on hover. Group headings become lines.
 - Below `permanentFrom` the sidebar is not shown. `SidebarMenuButton` (hidden from that breakpoint up) opens the same

@@ -2,6 +2,8 @@ import type { i18n as I18nInstance } from 'i18next';
 import { describe, expect, it } from 'vitest';
 
 import { defaultChartLabels } from '#src/charts/chart-labels/index.ts';
+import { defaultDashboardLayoutLabels } from '#src/dashboard/dashboard-layout/index.tsx';
+import { defaultFilterBarLabels } from '#src/dashboard/filter-bar/index.tsx';
 import { defaultCarouselLabels } from '#src/data-display/carousel/index.tsx';
 import { defaultDataTableLabels } from '#src/data-display/data-table/index.tsx';
 import { defaultErrorStateLabels } from '#src/data-display/error-state/index.tsx';
@@ -47,12 +49,14 @@ const defaults: Defaults = {
 	chart: defaultChartLabels,
 	combobox: defaultComboboxLabels,
 	confirmDialog: defaultConfirmDialogLabels,
+	dashboardLayout: defaultDashboardLayoutLabels,
 	dataTable: defaultDataTableLabels,
 	dialog: defaultDialogLabels,
 	drawer: defaultDrawerLabels,
 	errorState: defaultErrorStateLabels,
 	errorSummary: defaultErrorSummaryLabels,
 	fileUpload: defaultFileUploadLabels,
+	filterBar: defaultFilterBarLabels,
 	form: defaultFormLabels,
 	formField: defaultFormFieldLabels,
 	link: defaultLinkLabels,

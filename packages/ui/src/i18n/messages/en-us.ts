@@ -67,6 +67,9 @@ export const englishMessages: LibraryMessages = {
 		confirm: 'Confirm',
 		cancel: 'Cancel',
 	},
+	dashboardLayout: {
+		skipToContent: 'Skip to main content',
+	},
 	dataTable: {
 		loading: 'Loading rows',
 		empty: 'No rows yet',
@@ -122,6 +125,9 @@ export const englishMessages: LibraryMessages = {
 				other: '{{fileName}} was not added: the limit is {{count, number}} files.',
 			},
 		},
+	},
+	filterBar: {
+		clear: 'Clear filters',
 	},
 	form: {
 		submissionError: 'The form could not be sent. Try again.',

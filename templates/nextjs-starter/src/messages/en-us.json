@@ -1,0 +1,77 @@
+{
+	"dashboard": {
+		"navigation": {
+			"label": "Main navigation",
+			"overview": "Sales overview",
+			"scenarios": "Data scenarios",
+			"loading": "Loading",
+			"empty": "No data",
+			"error": "Service error",
+			"components": "Component gallery"
+		},
+		"topbar": {
+			"notifications": "Notifications"
+		},
+		"breadcrumbs": {
+			"home": "Home",
+			"dashboard": "Sales overview"
+		},
+		"header": {
+			"title": "Sales overview",
+			"description": "Revenue and orders of the Aurora stores. Demo data served by a mock API, without a backend.",
+			"refresh": "Refresh data"
+		},
+		"filters": {
+			"label": "Filters",
+			"region": "Region",
+			"period": "Period",
+			"allRegions": "All regions",
+			"lastMonths": {
+				"one": "Last month",
+				"other": "Last {{count, number}} months"
+			}
+		},
+		"regions": {
+			"south": "South",
+			"southeast": "Southeast",
+			"northeast": "Northeast"
+		},
+		"kpis": {
+			"label": "Key figures",
+			"revenue": "Revenue",
+			"orders": "Orders",
+			"averageTicket": "Average ticket",
+			"refundRate": "Refund rate",
+			"monthOverMonth": "last month vs. the one before",
+			"inPeriod": "in the period"
+		},
+		"revenue": {
+			"title": "Revenue by month",
+			"description": "Stacked by region, in reais",
+			"category": "Month",
+			"empty": "No revenue in this period",
+			"emptyDescription": "Change the filters, or go back to the sales overview."
+		},
+		"orders": {
+			"title": "Latest orders",
+			"search": "Search orders",
+			"caption": "Orders",
+			"order": "Order",
+			"customer": "Customer",
+			"store": "Store",
+			"date": "Date",
+			"status": "Status",
+			"total": "Total",
+			"statuses": {
+				"paid": "Paid",
+				"pending": "Pending",
+				"refunded": "Refunded"
+			},
+			"empty": "No orders in this period"
+		},
+		"error": {
+			"title": "The sales data could not be loaded",
+			"description": "The demo service failed on purpose. Try again, or pick another scenario in the navigation."
+		}
+	}
+}

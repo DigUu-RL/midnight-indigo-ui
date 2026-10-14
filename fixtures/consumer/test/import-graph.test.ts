@@ -115,6 +115,25 @@ for (const [specifier, optionalPeers] of optionalEntries) {
 	});
 }
 
+// The dashboard composes the components: it reaches them, React and Material UI, never the chart engine (a chart is
+// passed to it as a child).
+test('@midnight-indigo/ui/dashboard depends only on React and Material UI and does not load charts', (): void => {
+	const { files, packages }: ImportGraph = importGraphOf('@midnight-indigo/ui/dashboard');
+
+	assert.ok(files.includes('dashboard/dashboard-layout/index.js'));
+	assert.ok(files.includes('navigation/sidebar/index.js'));
+
+	assert.deepEqual(
+		files.filter((file: string): boolean => file.startsWith('charts/')),
+		[],
+	);
+
+	assert.deepEqual(
+		packages.filter((name: string): boolean => !allowedPackages.test(name)),
+		[],
+	);
+});
+
 // The charts entry reaches React and Material UI only; the engine is behind a dynamic `import()`, which the graph does
 // not follow, so bundlers split it into a chunk loaded when the first chart mounts.
 const dynamicImportPattern: RegExp = /\bimport\(\s*["']([^"']+)["']\s*\)/g;
@@ -161,6 +180,7 @@ test('the chart engine module depends only on ECharts subpaths', (): void => {
 test('compiled files keep no subpath import of the source tree', (): void => {
 	const leaked: string[] = lightEntries
 		.concat(optionalEntries.map(([specifier]: [string, RegExp]): string => specifier))
+		.concat(['@midnight-indigo/ui/dashboard'])
 		.flatMap((specifier: string): string[] => importGraphOf(specifier).packages)
 		.filter((name: string): boolean => name.startsWith('#'));
 

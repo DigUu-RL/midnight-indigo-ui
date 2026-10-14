@@ -1,0 +1,78 @@
+{
+	"dashboard": {
+		"navigation": {
+			"label": "Navegação principal",
+			"overview": "Visão geral de vendas",
+			"scenarios": "Cenários de dados",
+			"loading": "Carregando",
+			"empty": "Sem dados",
+			"error": "Erro no serviço",
+			"components": "Galeria de componentes"
+		},
+		"topbar": {
+			"notifications": "Notificações"
+		},
+		"breadcrumbs": {
+			"home": "Início",
+			"dashboard": "Visão geral de vendas"
+		},
+		"header": {
+			"title": "Visão geral de vendas",
+			"description": "Receita e pedidos das lojas Aurora. Dados de demonstração servidos por uma API simulada, sem backend.",
+			"refresh": "Atualizar dados"
+		},
+		"filters": {
+			"label": "Filtros",
+			"region": "Região",
+			"period": "Período",
+			"allRegions": "Todas as regiões",
+			"lastMonths": {
+				"one": "Último mês",
+				"many": "Últimos {{count, number}} de meses",
+				"other": "Últimos {{count, number}} meses"
+			}
+		},
+		"regions": {
+			"south": "Sul",
+			"southeast": "Sudeste",
+			"northeast": "Nordeste"
+		},
+		"kpis": {
+			"label": "Indicadores",
+			"revenue": "Receita",
+			"orders": "Pedidos",
+			"averageTicket": "Ticket médio",
+			"refundRate": "Taxa de reembolso",
+			"monthOverMonth": "último mês sobre o anterior",
+			"inPeriod": "no período"
+		},
+		"revenue": {
+			"title": "Receita por mês",
+			"description": "Empilhada por região, em reais",
+			"category": "Mês",
+			"empty": "Nenhuma receita neste período",
+			"emptyDescription": "Altere os filtros ou volte à visão geral de vendas."
+		},
+		"orders": {
+			"title": "Últimos pedidos",
+			"search": "Pesquisar pedidos",
+			"caption": "Pedidos",
+			"order": "Pedido",
+			"customer": "Cliente",
+			"store": "Loja",
+			"date": "Data",
+			"status": "Situação",
+			"total": "Total",
+			"statuses": {
+				"paid": "Pago",
+				"pending": "Pendente",
+				"refunded": "Reembolsado"
+			},
+			"empty": "Nenhum pedido neste período"
+		},
+		"error": {
+			"title": "Não foi possível carregar os dados de vendas",
+			"description": "O serviço de demonstração falhou de propósito. Tente novamente ou escolha outro cenário na navegação."
+		}
+	}
+}

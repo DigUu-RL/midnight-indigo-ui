@@ -283,6 +283,9 @@ export const createComponentLabels = (
 			confirm: text('confirmDialog.confirm'),
 			cancel: text('confirmDialog.cancel'),
 		}),
+		dashboardLayout: defined<'dashboardLayout'>({
+			skipToContent: text('dashboardLayout.skipToContent'),
+		}),
 		dataTable: defined<'dataTable'>({
 			loading: text('dataTable.loading'),
 			empty: text('dataTable.empty'),
@@ -320,6 +323,7 @@ export const createComponentLabels = (
 		errorState: defined<'errorState'>({ retry: text('errorState.retry') }),
 		errorSummary: defined<'errorSummary'>({ title: errorSummaryTitle }),
 		fileUpload: fileUploadLabels(translator, formatters),
+		filterBar: defined<'filterBar'>({ clear: text('filterBar.clear') }),
 		form: defined<'form'>({
 			title: errorSummaryTitle,
 			constraint: resolves(

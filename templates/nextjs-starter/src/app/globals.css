@@ -80,6 +80,44 @@
 	overflow: hidden;
 }
 
+/* Product name of the dashboard demo, in the sidebar and in the top bar of narrow viewports. A container, so that in
+   the collapsed sidebar (a 3 rem wide rail) only the logo remains. */
+.brand {
+	display: block;
+	container-type: inline-size;
+	width: 10rem;
+	max-width: 100%;
+}
+
+.brand-content {
+	display: flex;
+	gap: var(--mi-spacing-2);
+	align-items: center;
+	justify-content: center;
+	min-height: 2.5rem;
+	color: var(--mi-text-primary);
+	font-weight: var(--mi-font-weight-semibold);
+	white-space: nowrap;
+}
+
+.brand-content > svg {
+	flex-shrink: 0;
+	color: var(--mi-intent-official-text);
+	font-size: var(--mi-icon-size-large);
+}
+
+@container (min-width: 6rem) {
+	.brand-content {
+		justify-content: flex-start;
+	}
+}
+
+@container (max-width: 6rem) {
+	.brand-name {
+		display: none;
+	}
+}
+
 .slide {
 	margin: 0;
 	padding: var(--mi-spacing-8) var(--mi-spacing-6);
