@@ -2,6 +2,7 @@
 // performance scenarios from theirs (`vite preview`).
 //
 // - starter: end-to-end flows and accessibility (axe-core, contrast included) of the starter in Chromium.
+// - components: library components in the scenarios app, driven in Chromium (charts drawn by the real engine).
 // - visual: screenshots of the starter compared with the committed baselines, one set per operating system, since
 //   font rasterization differs between them (CI compares the Linux set).
 // - performance: interaction latency and rendering of large datasets. Its scripts run it alone, with one worker, so that
@@ -38,6 +39,11 @@ const browserConfiguration: PlaywrightTestConfig = defineConfig({
 			name: 'starter',
 			testMatch: 'starter/**/*.test.ts',
 			use: { baseURL: starterUrl },
+		},
+		{
+			name: 'components',
+			testMatch: 'components/**/*.test.ts',
+			use: { baseURL: scenariosUrl },
 		},
 		{
 			name: 'visual',

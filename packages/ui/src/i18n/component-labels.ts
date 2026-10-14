@@ -145,6 +145,81 @@ const fileUploadLabels = (
 	});
 };
 
+const chartLabels = ({ text, message }: Translator): Partial<ComponentLabelTypes['chart']> => {
+	return defined<'chart'>({
+		loading: text('chart.loading'),
+		empty: text('chart.empty'),
+		error: text('chart.error'),
+		retry: text('chart.retry'),
+		stale: text('chart.stale'),
+		legend: text('chart.legend'),
+		showTable: text('chart.showTable'),
+		hideTable: text('chart.hideTable'),
+		category: text('chart.category'),
+		share: text('chart.share'),
+		zoomIn: text('chart.zoomIn'),
+		zoomOut: text('chart.zoomOut'),
+		resetZoom: text('chart.resetZoom'),
+		navigationHelp: text('chart.navigationHelp'),
+		zoomHelp: text('chart.zoomHelp'),
+		selectHelp: text('chart.selectHelp'),
+		noValue: text('chart.noValue'),
+		seriesValue: message(
+			'chart.seriesValue',
+			{},
+			(series: string, value: string): InterpolationValues => ({ series, value }),
+		),
+		point: message(
+			'chart.point',
+			{},
+			(category: string, values: string, position: number, total: number): InterpolationValues => {
+				return { category, values, position, total };
+			},
+		),
+		categoryRange: message(
+			'chart.categoryRange',
+			{ count: 2 },
+			(count: number, first: string, last: string): InterpolationValues => ({ count, first, last }),
+		),
+		seriesRange: message(
+			'chart.seriesRange',
+			{},
+			(
+				series: string,
+				lowest: string,
+				lowestCategory: string,
+				highest: string,
+				highestCategory: string,
+			): InterpolationValues => {
+				return { series, lowest, lowestCategory, highest, highestCategory };
+			},
+		),
+		seriesNoValues: message('chart.seriesNoValues', {}, (series: string): InterpolationValues => {
+			return { series };
+		}),
+		slice: message(
+			'chart.slice',
+			{},
+			(category: string, value: string, share: string): InterpolationValues => {
+				return { category, value, share };
+			},
+		),
+		total: message('chart.total', {}, (value: string): InterpolationValues => ({ value })),
+		gauge: message(
+			'chart.gauge',
+			{},
+			(value: string, minimum: string, maximum: string): InterpolationValues => {
+				return { value, minimum, maximum };
+			},
+		),
+		zoomRange: message(
+			'chart.zoomRange',
+			{},
+			(first: string, last: string): InterpolationValues => ({ first, last }),
+		),
+	});
+};
+
 /** The labels of every component for `locale`, from the `midnight-indigo` namespace of `instance`. */
 export const createComponentLabels = (
 	instance: I18nInstance,
@@ -191,6 +266,7 @@ export const createComponentLabels = (
 				(position: number, total: number): InterpolationValues => ({ position, total }),
 			),
 		}),
+		chart: chartLabels(translator),
 		combobox: defined<'combobox'>({
 			noOptions: text('combobox.noOptions'),
 			loading: text('combobox.loading'),

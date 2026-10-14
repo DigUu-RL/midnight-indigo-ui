@@ -115,6 +115,49 @@ for (const [specifier, optionalPeers] of optionalEntries) {
 	});
 }
 
+// The charts entry reaches React and Material UI only; the engine is behind a dynamic `import()`, which the graph does
+// not follow, so bundlers split it into a chunk loaded when the first chart mounts.
+const dynamicImportPattern: RegExp = /\bimport\(\s*["']([^"']+)["']\s*\)/g;
+
+test('@midnight-indigo/ui/charts loads the chart engine only on demand', (): void => {
+	const { files, packages }: ImportGraph = importGraphOf('@midnight-indigo/ui/charts');
+
+	const dynamicImports: string[] = files.flatMap((file: string): string[] => {
+		return [
+			...readFileSync(resolve(distributionDirectory, file), 'utf8').matchAll(dynamicImportPattern),
+		].map((match: RegExpExecArray): string => {
+			return resolve(dirname(resolve(distributionDirectory, file)), match[1]);
+		});
+	});
+
+	assert.deepEqual(
+		packages.filter((name: string): boolean => !allowedPackages.test(name)),
+		[],
+	);
+
+	assert.deepEqual(
+		dynamicImports.map((file: string): string => {
+			return relative(distributionDirectory, file).split(sep).join('/');
+		}),
+		['charts/chart-engine/index.js'],
+	);
+
+	assert.ok(!files.includes('charts/chart-engine/index.js'));
+});
+
+test('the chart engine module depends only on ECharts subpaths', (): void => {
+	const enginePackages: string[] = listSpecifiers(
+		resolve(distributionDirectory, 'charts/chart-engine/index.js'),
+	).filter((specifier: string): boolean => !specifier.startsWith('.'));
+
+	assert.deepEqual(enginePackages.toSorted(), [
+		'echarts/charts',
+		'echarts/components',
+		'echarts/core',
+		'echarts/renderers',
+	]);
+});
+
 test('compiled files keep no subpath import of the source tree', (): void => {
 	const leaked: string[] = lightEntries
 		.concat(optionalEntries.map(([specifier]: [string, RegExp]): string => specifier))
