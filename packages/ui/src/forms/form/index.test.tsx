@@ -125,6 +125,34 @@ describe('Form', (): void => {
 		expect(screen.queryByRole('region')).toBeNull();
 	});
 
+	it('cancels the revalidation that waits for the release when the form unmounts', async (): Promise<void> => {
+		const user: UserEvent = userEvent.setup();
+		const validate = vi.fn(validateEmail);
+
+		const { unmount } = render(
+			<Form validate={validate}>
+				<TextField label='Email' name='email' />
+				<TextField label='Other' name='other' />
+				<SubmitButton>Save</SubmitButton>
+			</Form>,
+		);
+
+		await user.click(screen.getByRole('button', { name: 'Save' }));
+		await screen.findByRole('region');
+		const other: HTMLElement = screen.getByRole('textbox', { name: 'Other' });
+		await user.click(screen.getByRole('textbox', { name: 'Email' }));
+		await user.pointer({ keys: '[MouseLeft>]', target: other });
+		const calls: number = validate.mock.calls.length;
+		unmount();
+		await user.pointer({ keys: '[/MouseLeft]', target: document.body });
+
+		await new Promise<void>((resolve: () => void): void => {
+			setTimeout(resolve, 20);
+		});
+
+		expect(validate).toHaveBeenCalledTimes(calls);
+	});
+
 	it('waits for async validation and submission, keeping the button busy', async (): Promise<void> => {
 		const user: UserEvent = userEvent.setup();
 		let finish: () => void = (): void => undefined;

@@ -130,6 +130,13 @@ export const resizeViewport = (width: number): void => {
 	applyViewportStyles();
 };
 
+/** Listeners the media queries still have: a component removes its own when it unmounts. */
+export const countMediaQueryListeners = (): number => {
+	return [...records].reduce((count: number, record: MediaQueryRecord): number => {
+		return count + record.listeners.size;
+	}, 0);
+};
+
 /** Restores `matchMedia` and the original `@media` rules, which Emotion keeps between the tests of a file. */
 export const resetViewport = (): void => {
 	styleObserver?.disconnect();

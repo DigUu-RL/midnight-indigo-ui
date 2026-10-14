@@ -22,7 +22,8 @@
 		"check:package": "pnpm --filter @midnight-indigo/ui run check:package",
 		"check:source": "node scripts/check-source-clean.ts",
 		"check:licenses": "node scripts/check-licenses.ts",
-		"check": "pnpm build && pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm test:performance && pnpm check:package && pnpm check:source && pnpm check:licenses"
+		"check:bundle": "node scripts/check-bundle-size.ts",
+		"check": "pnpm build && pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm test:performance && pnpm check:package && pnpm check:source && pnpm check:licenses && pnpm check:bundle"
 	},
 	"devDependencies": {
 		"@eslint/js": "catalog:",
@@ -33,6 +34,7 @@
 		"jiti": "catalog:",
 		"prettier": "catalog:",
 		"typescript": "catalog:",
-		"typescript-eslint": "catalog:"
+		"typescript-eslint": "catalog:",
+		"vite": "catalog:"
 	}
 }

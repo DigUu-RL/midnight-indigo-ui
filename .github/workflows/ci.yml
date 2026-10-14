@@ -45,6 +45,8 @@ jobs:
       - run: pnpm check:package
       - run: pnpm check:source
       - run: pnpm check:licenses
+      # Bundle budgets (bundle-budgets.json); the size report goes to the job summary.
+      - run: pnpm check:bundle
 
       - name: No generated files outside .gitignore
         shell: bash

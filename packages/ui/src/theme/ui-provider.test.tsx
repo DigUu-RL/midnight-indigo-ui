@@ -105,6 +105,33 @@ describe('UiProvider in the browser', (): void => {
 		]);
 	});
 
+	it('keeps the theme, and its consumers unrendered, when an equal theme is created again', async (): Promise<void> => {
+		const probe: ReactElement = <ThemeProbe />;
+
+		const createTheme = (): UiTheme => {
+			return createUiTheme({ palette: { official: { main: customMain } } }, silent);
+		};
+
+		await renderInBrowser(<UiProvider theme={createTheme()}>{probe}</UiProvider>);
+		const first: ThemeSnapshot | undefined = snapshots.at(-1);
+
+		await act(async (): Promise<void> => {
+			root?.render(<UiProvider theme={createTheme()}>{probe}</UiProvider>);
+			await Promise.resolve();
+		});
+
+		expect(snapshots).toHaveLength(1);
+
+		await act(async (): Promise<void> => {
+			root?.render(<UiProvider theme={defaultUiTheme}>{probe}</UiProvider>);
+			await Promise.resolve();
+		});
+
+		expect(snapshots).toHaveLength(2);
+		expect(snapshots.at(-1)?.uiTheme).toBe(defaultUiTheme);
+		expect(snapshots.at(-1)?.muiTheme).not.toBe(first?.muiTheme);
+	});
+
 	// React remembers the stylesheets it inserted in a document, so this test uses a theme no other test renders.
 	it('injects the theme custom properties once in the document head', async (): Promise<void> => {
 		const uniqueMain: HexColor = '#7A5CFF';

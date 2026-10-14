@@ -9,6 +9,7 @@ import { createRoot } from 'react-dom/client';
 
 import { ChartScenario } from '#src/scenarios/chart-scenario.tsx';
 import { ComboboxScenario, SelectScenario } from '#src/scenarios/choice-scenarios.tsx';
+import { ComponentsScenario } from '#src/scenarios/components-scenario.tsx';
 import { DataTableScenario } from '#src/scenarios/data-table-scenario.tsx';
 import { ListScenario } from '#src/scenarios/list-scenario.tsx';
 
@@ -25,6 +26,7 @@ const scenarios: Record<string, () => ReactElement> = {
 	select: (): ReactElement => <SelectScenario optionCount={size} />,
 	list: (): ReactElement => <ListScenario itemCount={size} />,
 	chart: (): ReactElement => <ChartScenario pointCount={size} />,
+	components: (): ReactElement => <ComponentsScenario cardCount={size} />,
 };
 
 const renderScenario: () => ReactElement =
