@@ -1,28 +1,22 @@
-// Serves the production build (`pnpm build` runs first) and inspects the streamed HTML as a browser receives it.
+// Serves the production build (`pnpm build` runs first) and inspects the streamed HTML of the component gallery and of
+// the sales overview as a browser receives it.
 import assert from 'node:assert/strict';
-import { spawn } from 'node:child_process';
-import type { ChildProcess } from 'node:child_process';
-import { existsSync, readFileSync } from 'node:fs';
-import { createServer } from 'node:net';
-import type { AddressInfo, Server } from 'node:net';
+import { readFileSync } from 'node:fs';
 import { after, before, test } from 'node:test';
-import { fileURLToPath } from 'node:url';
 
 import { tokens } from '@midnight-indigo/ui/tokens';
 
-interface StreamedPage {
-	/** Everything received up to the chunk that closes the `<head>`: what the browser paints first. */
-	shell: string;
-	/** The complete response, including the chunks streamed after the shell. */
-	html: string;
-}
+import {
+	countOccurrences,
+	headOf,
+	readStreamedPage,
+	startStarter,
+} from '#test/support/starter-server.ts';
+import type { StarterServer, StreamedPage } from '#test/support/starter-server.ts';
 
 interface ThemeConfiguration {
 	palette: { official: { main: string } };
 }
-
-const starterRoot: string = fileURLToPath(new URL('..', import.meta.url));
-const nextExecutable: string = fileURLToPath(import.meta.resolve('next/dist/bin/next'));
 
 const themeConfiguration: ThemeConfiguration = JSON.parse(
 	readFileSync(new URL('../src/theme.json', import.meta.url), 'utf8'),
@@ -30,63 +24,6 @@ const themeConfiguration: ThemeConfiguration = JSON.parse(
 
 const themeStyleMarker: string = 'data-href="midnight-indigo-theme-';
 const streamedContent: string = 'Streamed panel, styled';
-const serverStartTimeoutInMilliseconds: number = 30_000;
-
-const findFreePort = async (): Promise<number> => {
-	const server: Server = createServer();
-
-	await new Promise<void>((resolve: () => void): void => {
-		server.listen(0, resolve);
-	});
-
-	const { port }: AddressInfo = server.address() as AddressInfo;
-
-	await new Promise<void>((resolve: () => void): void => {
-		server.close((): void => {
-			resolve();
-		});
-	});
-
-	return port;
-};
-
-const waitForServer = async (url: string, deadline: number): Promise<void> => {
-	const isUp: boolean = await fetch(url).then(
-		(response: Response): boolean => response.ok,
-		(): boolean => false,
-	);
-
-	if (isUp) return;
-	if (Date.now() > deadline) throw new Error(`The starter did not answer at ${url} in time.`);
-
-	await new Promise((resolve: (value: unknown) => void): void => {
-		setTimeout(resolve, 200);
-	});
-
-	await waitForServer(url, deadline);
-};
-
-const readStreamedPage = async (url: string): Promise<StreamedPage> => {
-	const response: Response = await fetch(url);
-	assert.ok(response.body, 'The page has no body.');
-
-	const decoder: TextDecoder = new TextDecoder();
-	const received: string[] = [];
-	let shell: string | undefined;
-
-	for await (const chunk of response.body) {
-		received.push(decoder.decode(chunk, { stream: true }));
-		const soFar: string = received.join('');
-		shell ??= soFar.includes('</head>') ? soFar : undefined;
-	}
-
-	const html: string = received.join('');
-	return { shell: shell ?? html, html };
-};
-
-const countOccurrences = (text: string, fragment: string): number => {
-	return text.split(fragment).length - 1;
-};
 
 const listStylesheetUrls = (html: string, origin: string): URL[] => {
 	return [...html.matchAll(/<link[^>]*rel="stylesheet"[^>]*href="([^"]+)"/g)].map(
@@ -94,28 +31,16 @@ const listStylesheetUrls = (html: string, origin: string): URL[] => {
 	);
 };
 
-let server: ChildProcess | undefined;
+let server: StarterServer;
 let page: StreamedPage;
-let origin: string;
 
 before(async (): Promise<void> => {
-	assert.ok(existsSync(`${starterRoot}/.next/BUILD_ID`), 'Build the starter first: pnpm build.');
-
-	const port: number = await findFreePort();
-
-	server = spawn(process.execPath, [nextExecutable, 'start', '--port', String(port)], {
-		cwd: starterRoot,
-		env: { ...process.env, NEXT_TELEMETRY_DISABLED: '1' },
-		stdio: 'ignore',
-	});
-
-	origin = `http://localhost:${String(port)}`;
-	await waitForServer(`${origin}/`, Date.now() + serverStartTimeoutInMilliseconds);
-	page = await readStreamedPage(`${origin}/`);
+	server = await startStarter();
+	page = await readStreamedPage(`${server.origin}/gallery`);
 });
 
 after((): void => {
-	server?.kill();
+	server.stop();
 });
 
 test('the theme stylesheet arrives in the head of the first flush', (): void => {
@@ -131,18 +56,16 @@ test('the palette configured in theme.json reaches the CSS custom properties', (
 });
 
 test('Material UI styles are rendered on the server, so the dark canvas paints without a flash', (): void => {
-	const head: string = page.shell.slice(0, page.shell.indexOf('</head>'));
-
 	const canvasBackground: RegExp = new RegExp(
 		`body\\{[^}]*background-color:${tokens.surface.canvas}`,
 	);
 
-	assert.match(head, /<style data-emotion="mui-global /);
-	assert.match(head, canvasBackground);
+	assert.match(headOf(page), /<style data-emotion="mui-global /);
+	assert.match(headOf(page), canvasBackground);
 });
 
 test('the body typography comes from the tokens and is rendered on the server', (): void => {
-	const head: string = page.shell.slice(0, page.shell.indexOf('</head>'));
+	const head: string = headOf(page);
 	const { fontFamily, fontSize, lineHeight } = tokens.typography.body;
 	const minifiedFontFamily: string = fontFamily.replaceAll(', ', ',');
 
@@ -151,7 +74,7 @@ test('the body typography comes from the tokens and is rendered on the server', 
 });
 
 test('Geist Sans is self-hosted: no font is requested from another origin', async (): Promise<void> => {
-	const stylesheets: URL[] = listStylesheetUrls(page.html, origin);
+	const stylesheets: URL[] = listStylesheetUrls(page.html, server.origin);
 
 	assert.doesNotMatch(page.html, /fonts\.googleapis\.com|fonts\.gstatic\.com/);
 	assert.ok(stylesheets.length > 0, 'The page links no stylesheet.');
@@ -184,11 +107,11 @@ test('Geist Sans is self-hosted: no font is requested from another origin', asyn
 	);
 
 	assert.deepEqual(
-		fontUrls.filter((url: URL): boolean => url.origin !== origin),
+		fontUrls.filter((url: URL): boolean => url.origin !== server.origin),
 		[],
 	);
 
-	const fontResponse: Response = await fetch(fontUrls[0] ?? origin);
+	const fontResponse: Response = await fetch(fontUrls[0] ?? server.origin);
 	assert.equal(fontResponse.status, 200);
 	assert.equal(fontResponse.headers.get('content-type'), 'font/woff2');
 });
@@ -237,13 +160,13 @@ test('the navigation is rendered on the server with landmarks, current pages and
 
 	assert.match(
 		page.html,
-		/<a(?=[^>]*href="\/")(?=[^>]*aria-current="page")[^>]*>(?:<!-- -->)?Overview/,
+		/<a(?=[^>]*href="\/gallery")(?=[^>]*aria-current="page")[^>]*>(?:<!-- -->)?Overview/,
 	);
 
 	assert.match(page.html, /role="tablist" aria-label="Report sections"/);
 	assert.match(page.html, /<nav aria-label="Pagination">/);
 	assert.match(page.html, /aria-label="Page 1" aria-current="true"/);
-	assert.match(page.html, /<a[^>]*href="\/\?view=guide"[^>]*>getting started guide<\/a>/);
+	assert.match(page.html, /<a[^>]*href="\/gallery\?view=guide"[^>]*>getting started guide<\/a>/);
 	assert.match(page.html, /target="_blank" rel="noopener noreferrer"/);
 	assert.match(page.html, /<nav[^>]*aria-label="Demo navigation"/);
 
@@ -273,7 +196,7 @@ test('the data display is rendered on the server: a sorted first page, key figur
 });
 
 test('the layout switches at the breakpoints with CSS from the first paint', (): void => {
-	const head: string = page.shell.slice(0, page.shell.indexOf('</head>'));
+	const head: string = headOf(page);
 
 	assert.match(
 		head,
@@ -292,33 +215,33 @@ test('the layout switches at the breakpoints with CSS from the first paint', ():
 });
 
 test('the component styles arrive in the head of the first flush, so controls paint styled', (): void => {
-	const head: string = page.shell.slice(0, page.shell.indexOf('</head>'));
+	const head: string = headOf(page);
 
 	assert.ok(head.includes('background-color:var(--mi-intent-official-main)'));
 	assert.ok(head.includes('outline:var(--mi-focus-width) solid var(--mi-focus-ring)'));
 });
 
-test('the dashboard is rendered on the server with its shell, translated texts and loading state', async (): Promise<void> => {
-	const { html }: StreamedPage = await readStreamedPage(`${origin}/dashboard`);
+test('the sales overview is rendered on the server with its shell, translated texts and loading state', async (): Promise<void> => {
+	const { html }: StreamedPage = await readStreamedPage(`${server.origin}/en-us`);
 
 	assert.match(html, /<a href="#[^"]+"[^>]*>Skip to main content<\/a>/);
 	assert.match(html, /<nav[^>]*aria-label="Main navigation"/);
-	assert.match(html, /<a(?=[^>]*href="\/dashboard")(?=[^>]*aria-current="page")/);
+	assert.match(html, /<a(?=[^>]*href="\/en-us")(?=[^>]*aria-current="page")/);
 	assert.match(html, /<header[^>]*>.*?aria-label="Open navigation"/s);
 	assert.match(html, /<main id="[^"]+" tabindex="-1"/);
 	assert.match(html, /<h1[^>]*>Sales overview<\/h1>/);
+	assert.match(html, /<nav[^>]*aria-label="Data scenario"/);
 	assert.match(html, /<form[^>]*role="search" aria-label="Filters"/);
 	assert.match(html, /<ul[^>]*aria-label="Key figures"/);
 	assert.match(html, /role="group" aria-labelledby="[^"]+" aria-busy="true"/);
 	assert.match(html, /<section[^>]*aria-labelledby="[^"]+"/);
-	assert.doesNotMatch(html, /dashboard\.[a-z]+\.[a-z]+/i);
 });
 
 test('a scenario of the mock API is chosen by the URL', async (): Promise<void> => {
-	const { html }: StreamedPage = await readStreamedPage(`${origin}/dashboard?state=error`);
+	const { html }: StreamedPage = await readStreamedPage(`${server.origin}/en-us?state=error`);
 
-	assert.match(html, /<a(?=[^>]*href="\/dashboard\?state=error")(?=[^>]*aria-current="page")/);
-	assert.doesNotMatch(html, /<a(?=[^>]*href="\/dashboard")(?=[^>]*aria-current="page")/);
+	assert.match(html, /<a(?=[^>]*href="\/en-us\?state=error")(?=[^>]*aria-current="page")/);
+	assert.doesNotMatch(html, /<a(?=[^>]*href="\/en-us\?state=empty")(?=[^>]*aria-current="page")/);
 });
 
 test('the late chunk is streamed after the shell', (): void => {

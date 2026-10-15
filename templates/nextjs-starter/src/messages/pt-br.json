@@ -1,25 +1,38 @@
 {
-	"dashboard": {
+	"app": {
+		"name": "Aurora Varejo",
+		"description": "Administração de vendas das lojas Aurora, feita com Midnight Indigo: UI e Next.js."
+	},
+	"shell": {
 		"navigation": {
 			"label": "Navegação principal",
 			"overview": "Visão geral de vendas",
-			"scenarios": "Cenários de dados",
-			"loading": "Carregando",
-			"empty": "Sem dados",
-			"error": "Erro no serviço",
-			"components": "Galeria de componentes"
+			"orders": "Pedidos",
+			"reports": "Relatórios",
+			"newCustomer": "Novo cliente",
+			"appearance": "Aparência",
+			"gallery": "Galeria de componentes"
 		},
-		"topbar": {
-			"notifications": "Notificações"
-		},
-		"breadcrumbs": {
-			"home": "Início",
-			"dashboard": "Visão geral de vendas"
-		},
+		"language": "Idioma",
+		"notifications": "Notificações"
+	},
+	"regions": {
+		"south": "Sul",
+		"southeast": "Sudeste",
+		"northeast": "Nordeste"
+	},
+	"overview": {
 		"header": {
 			"title": "Visão geral de vendas",
 			"description": "Receita e pedidos das lojas Aurora. Dados de demonstração servidos por uma API simulada, sem backend.",
 			"refresh": "Atualizar dados"
+		},
+		"scenarios": {
+			"label": "Cenário de dados",
+			"live": "Dados reais",
+			"loading": "Carregando",
+			"empty": "Sem dados",
+			"error": "Erro no serviço"
 		},
 		"filters": {
 			"label": "Filtros",
@@ -31,11 +44,6 @@
 				"many": "Últimos {{count, number}} de meses",
 				"other": "Últimos {{count, number}} meses"
 			}
-		},
-		"regions": {
-			"south": "Sul",
-			"southeast": "Sudeste",
-			"northeast": "Nordeste"
 		},
 		"kpis": {
 			"label": "Indicadores",
@@ -51,28 +59,189 @@
 			"description": "Empilhada por região, em reais",
 			"category": "Mês",
 			"empty": "Nenhuma receita neste período",
-			"emptyDescription": "Altere os filtros ou volte à visão geral de vendas."
+			"emptyDescription": "Altere os filtros ou volte aos dados reais."
 		},
 		"orders": {
 			"title": "Últimos pedidos",
 			"search": "Pesquisar pedidos",
 			"caption": "Pedidos",
+			"empty": "Nenhum pedido neste período"
+		},
+		"error": {
+			"title": "Não foi possível carregar os dados de vendas",
+			"description": "O serviço de demonstração falhou de propósito. Tente novamente ou escolha outro cenário de dados."
+		}
+	},
+	"orders": {
+		"header": {
+			"title": "Pedidos",
+			"description": "Todos os pedidos do ano. Ordene por uma coluna, filtre por situação e região ou pesquise por cliente, loja ou número."
+		},
+		"columns": {
 			"order": "Pedido",
 			"customer": "Cliente",
 			"store": "Loja",
 			"date": "Data",
 			"status": "Situação",
-			"total": "Total",
-			"statuses": {
-				"paid": "Pago",
-				"pending": "Pendente",
-				"refunded": "Reembolsado"
-			},
-			"empty": "Nenhum pedido neste período"
+			"total": "Total"
 		},
-		"error": {
-			"title": "Não foi possível carregar os dados de vendas",
-			"description": "O serviço de demonstração falhou de propósito. Tente novamente ou escolha outro cenário na navegação."
+		"statuses": {
+			"paid": "Pago",
+			"pending": "Pendente",
+			"refunded": "Reembolsado"
+		},
+		"filters": {
+			"label": "Filtros dos pedidos",
+			"search": "Pesquisar",
+			"status": "Situação",
+			"allStatuses": "Todas as situações",
+			"region": "Região",
+			"allRegions": "Todas as regiões"
+		},
+		"listing": {
+			"title": "Todos os pedidos",
+			"description": "De janeiro a setembro de 2026",
+			"caption": "Todos os pedidos",
+			"noResults": "Nenhum pedido corresponde aos filtros",
+			"noResultsDescription": "Pesquise outro termo ou limpe os filtros para ver todos os pedidos.",
+			"clearFilters": "Limpar filtros"
 		}
+	},
+	"reports": {
+		"header": {
+			"title": "Relatórios",
+			"description": "Um gráfico de cada tipo sobre as vendas do ano. Todos podem ser lidos pelo teclado e exibidos como tabela."
+		},
+		"month": "Mês",
+		"orders": {
+			"title": "Pedidos por situação",
+			"description": "Número de pedidos feitos em cada mês",
+			"axis": "Pedidos"
+		},
+		"performance": {
+			"title": "Receita e ticket médio",
+			"description": "Receita em barras, ticket médio no eixo da direita",
+			"revenue": "Receita",
+			"averageTicket": "Ticket médio"
+		},
+		"stores": {
+			"title": "Receita por loja",
+			"description": "Total dos pedidos de cada loja no ano",
+			"category": "Loja",
+			"revenue": "Receita"
+		},
+		"statuses": {
+			"title": "Participação de cada situação",
+			"description": "Todos os pedidos do ano",
+			"category": "Situação",
+			"value": "Pedidos"
+		},
+		"goal": {
+			"title": "Meta mensal",
+			"description": "Receita de setembro em relação à meta do mês",
+			"summary": "Receita de setembro: {{revenue}}, {{share}} da meta de {{goal}}."
+		}
+	},
+	"customers": {
+		"header": {
+			"title": "Novo cliente",
+			"description": "Cadastre um cliente das lojas Aurora. Os dados são verificados pelo servidor e não são armazenados: é uma demonstração."
+		},
+		"form": {
+			"contact": "Contato",
+			"account": "Conta",
+			"submit": "Cadastrar cliente"
+		},
+		"fields": {
+			"name": "Nome completo",
+			"email": "Endereço de e-mail",
+			"emailDescription": "Usado para enviar os comprovantes. ana.souza@aurora.example já está cadastrado.",
+			"phone": "Telefone",
+			"phoneDescription": "Opcional. DDD e número, por exemplo (11) 91234-5678.",
+			"type": "Tipo de cliente",
+			"region": "Região",
+			"regionPlaceholder": "Escolha uma região",
+			"notes": "Observações",
+			"newsletter": "Assinar a newsletter",
+			"newsletterDescription": "Ofertas e novidades das lojas, uma vez por mês."
+		},
+		"types": {
+			"individual": "Pessoa física",
+			"company": "Pessoa jurídica"
+		},
+		"errors": {
+			"nameTooShort": "Informe o nome completo, com pelo menos 3 letras.",
+			"emailInvalid": "Informe um e-mail no formato nome@exemplo.com.",
+			"emailTaken": "Este e-mail já está cadastrado.",
+			"phone": "Informe o DDD e o número: 10 ou 11 dígitos.",
+			"region": "Escolha uma das regiões."
+		},
+		"saved": {
+			"title": "Cliente cadastrado",
+			"message": "{{name}} é o cliente {{customer}}."
+		}
+	},
+	"appearance": {
+		"header": {
+			"title": "Aparência",
+			"description": "Experimente uma paleta, confira o contraste e exporte o theme.json com que a aplicação é construída."
+		},
+		"intents": {
+			"official": "Oficial",
+			"default": "Padrão",
+			"success": "Sucesso",
+			"warning": "Atenção",
+			"error": "Erro",
+			"info": "Informação"
+		},
+		"colors": {
+			"title": "Cores principais",
+			"description": "Todos os outros tons de cada intenção derivam da cor principal.",
+			"format": "Hexadecimal, por exemplo #FF6AC1",
+			"invalid": "Informe uma cor no formato #RRGGBB ou #RGB.",
+			"pick": "Escolher a cor {{intent}}",
+			"reset": "Restaurar as cores do build"
+		},
+		"preview": {
+			"title": "Prévia",
+			"description": "Os componentes com a paleta acima, só neste painel",
+			"alertTitle": "Relatório pronto",
+			"alertMessage": "O relatório de vendas de setembro foi gerado.",
+			"progress": "Meta mensal",
+			"linkBefore": "Gostou?",
+			"link": "Exporte o tema"
+		},
+		"contrast": {
+			"title": "Contraste",
+			"description": "Cada par de cores que os componentes desenham, comparado aos mínimos da WCAG 2.2 AA",
+			"passTitle": "Todos os pares passam",
+			"passMessage": "Texto, texto grande e controles atingem o contraste mínimo sobre suas superfícies.",
+			"failTitle": {
+				"one": "{{count, number}} par abaixo do mínimo",
+				"many": "{{count, number}} de pares abaixo do mínimo",
+				"other": "{{count, number}} pares abaixo do mínimo"
+			},
+			"ratio": "{{ratio}}:1, mínimo de {{minimum}}:1 para {{requirement}}",
+			"requirements": {
+				"text": "texto",
+				"largeText": "texto grande",
+				"nonText": "controles e gráficos"
+			}
+		},
+		"export": {
+			"title": "theme.json",
+			"description": "Substitua src/theme.json por ele e faça o build de novo: a paleta é aplicada no servidor, sem flash.",
+			"code": "Configuração do tema",
+			"copy": "Copiar",
+			"download": "Baixar",
+			"copied": "O tema foi copiado.",
+			"copyFailed": "Não foi possível copiar o tema. Selecione o texto e copie-o."
+		}
+	},
+	"notFound": {
+		"title": "Página não encontrada",
+		"message": "Não há nenhuma página neste endereço",
+		"description": "Ela pode ter mudado de lugar, ou o link pode estar errado.",
+		"home": "Ir para a visão geral de vendas"
 	}
 }

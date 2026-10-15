@@ -1,11 +1,11 @@
-// Visual regression of the dashboard demo: the shell with the figures loaded, the rail, the error state and the phone
+// Visual regression of the sales overview: the shell with the figures loaded, the rail, the error state and the phone
 // layout with its drawer. The chart canvas is masked: the chart engine has its own suite, and a difference there would
 // hide one in the shell. Update the baselines on purpose only (see starter.test.ts).
 import type { Locator, Page } from '@playwright/test';
 
 import { expect, test } from '#test/support/fixtures.ts';
 
-const openDashboard = async (page: Page, path: string = '/dashboard'): Promise<void> => {
+const openDashboard = async (page: Page, path: string = '/en-us'): Promise<void> => {
 	await page.goto(path);
 	await expect(page.getByRole('main')).toBeVisible();
 
@@ -45,7 +45,7 @@ test('the dashboard with the sidebar as a rail matches its baseline', async ({
 });
 
 test('the error state of the dashboard matches its baseline', async ({ page }): Promise<void> => {
-	await openDashboard(page, '/dashboard?state=error');
+	await openDashboard(page, '/en-us?state=error');
 	await expect(page.getByRole('main').getByRole('alert')).toBeVisible();
 
 	await expect(page).toHaveScreenshot('dashboard-error.png');

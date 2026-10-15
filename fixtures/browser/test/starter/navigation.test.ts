@@ -7,7 +7,7 @@ import { expect, test } from '#test/support/fixtures.ts';
 test('a link navigates on the client, without reloading the page', async ({
 	page,
 }): Promise<void> => {
-	await page.goto('/');
+	await page.goto('/gallery');
 
 	// A full reload would lose this marker; a client-side navigation keeps the same document.
 	await page.evaluate((): void => {
@@ -15,7 +15,7 @@ test('a link navigates on the client, without reloading the page', async ({
 	});
 
 	await page.getByRole('link', { name: 'getting started guide' }).click();
-	await expect(page).toHaveURL('/?view=guide');
+	await expect(page).toHaveURL('/gallery?view=guide');
 
 	expect(
 		await page.evaluate((): string | undefined => document.documentElement.dataset.sameDocument),
@@ -23,7 +23,7 @@ test('a link navigates on the client, without reloading the page', async ({
 });
 
 test('the pagination moves the current page', async ({ page }): Promise<void> => {
-	await page.goto('/');
+	await page.goto('/gallery');
 
 	const pagination: Locator = page.getByRole('navigation', { name: 'Pagination', exact: true });
 	await pagination.getByRole('button', { name: 'Page 2' }).click();
@@ -45,7 +45,7 @@ test.describe('on a phone', (): void => {
 	test.use({ viewport: { width: 390, height: 844 }, hasTouch: true });
 
 	test('the sidebar opens as a drawer and closes with Escape', async ({ page }): Promise<void> => {
-		await page.goto('/');
+		await page.goto('/gallery');
 
 		const menuButton: Locator = page.getByRole('button', { name: 'Open navigation' });
 		await menuButton.tap();

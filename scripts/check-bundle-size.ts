@@ -67,7 +67,17 @@ const budgetFilePath: string = join(repositoryRoot, 'bundle-budgets.json');
 const updating: boolean = process.argv.includes('--update');
 const headroom: number = 1.1;
 const budgetStep: number = 256;
-const starterRoutes: readonly string[] = ['/', '/dashboard'];
+
+// Every page of the application in one locale (the other loads the same scripts) and the component gallery.
+const starterRoutes: readonly string[] = [
+	'/en-us',
+	'/en-us/orders',
+	'/en-us/reports',
+	'/en-us/customers/new',
+	'/en-us/settings/appearance',
+	'/gallery',
+];
+
 const engineName: string = 'starter: chart engine';
 const serverStartTimeoutInMilliseconds: number = 60_000;
 
@@ -288,7 +298,7 @@ const measureStarter = async (failures: string[]): Promise<Measurement[]> => {
 	);
 
 	try {
-		await waitForServer(`${origin}/`, Date.now() + serverStartTimeoutInMilliseconds);
+		await waitForServer(`${origin}/en-us`, Date.now() + serverStartTimeoutInMilliseconds);
 		const initialFiles: Set<string> = new Set<string>();
 
 		const routes: Measurement[] = await Promise.all(

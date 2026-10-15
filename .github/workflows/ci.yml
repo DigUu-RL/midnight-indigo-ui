@@ -56,6 +56,25 @@ jobs:
             exit 1
           fi
 
+  # The starter as a user gets it: a copy generated outside the monorepo with the local build of the library
+  # (`pnpm create:starter --pack`), installed from the registry, built and served, every page requested in each locale.
+  starter:
+    name: generated starter
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @midnight-indigo/ui run build
+      - run: pnpm check:starter
+
   # End-to-end flows, accessibility, visual regression and performance in Chromium, on the production builds. Linux
   # only: the visual baselines in CI are the Linux set. After an intentional visual change, add the
   # `update-visual-baselines` label to the pull request (update-visual-baselines.yml commits the new set).

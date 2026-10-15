@@ -8,7 +8,7 @@ const cityColumn: number = 2;
 test('filters, sorts and pages the invoices, announcing each change', async ({
 	page,
 }): Promise<void> => {
-	await page.goto('/');
+	await page.goto('/gallery');
 
 	const table: Locator = page.getByRole('table', { name: 'Invoices' });
 	const status: Locator = page.getByRole('status').filter({ hasText: /rows?|Rows|Sorted/ });

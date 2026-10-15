@@ -1,25 +1,38 @@
 {
-	"dashboard": {
+	"app": {
+		"name": "Aurora Retail",
+		"description": "Sales administration of the Aurora stores, built with Midnight Indigo: UI and Next.js."
+	},
+	"shell": {
 		"navigation": {
 			"label": "Main navigation",
 			"overview": "Sales overview",
-			"scenarios": "Data scenarios",
-			"loading": "Loading",
-			"empty": "No data",
-			"error": "Service error",
-			"components": "Component gallery"
+			"orders": "Orders",
+			"reports": "Reports",
+			"newCustomer": "New customer",
+			"appearance": "Appearance",
+			"gallery": "Component gallery"
 		},
-		"topbar": {
-			"notifications": "Notifications"
-		},
-		"breadcrumbs": {
-			"home": "Home",
-			"dashboard": "Sales overview"
-		},
+		"language": "Language",
+		"notifications": "Notifications"
+	},
+	"regions": {
+		"south": "South",
+		"southeast": "Southeast",
+		"northeast": "Northeast"
+	},
+	"overview": {
 		"header": {
 			"title": "Sales overview",
 			"description": "Revenue and orders of the Aurora stores. Demo data served by a mock API, without a backend.",
 			"refresh": "Refresh data"
+		},
+		"scenarios": {
+			"label": "Data scenario",
+			"live": "Live data",
+			"loading": "Loading",
+			"empty": "No data",
+			"error": "Service error"
 		},
 		"filters": {
 			"label": "Filters",
@@ -30,11 +43,6 @@
 				"one": "Last month",
 				"other": "Last {{count, number}} months"
 			}
-		},
-		"regions": {
-			"south": "South",
-			"southeast": "Southeast",
-			"northeast": "Northeast"
 		},
 		"kpis": {
 			"label": "Key figures",
@@ -50,28 +58,188 @@
 			"description": "Stacked by region, in reais",
 			"category": "Month",
 			"empty": "No revenue in this period",
-			"emptyDescription": "Change the filters, or go back to the sales overview."
+			"emptyDescription": "Change the filters, or go back to the live data."
 		},
 		"orders": {
 			"title": "Latest orders",
 			"search": "Search orders",
 			"caption": "Orders",
+			"empty": "No orders in this period"
+		},
+		"error": {
+			"title": "The sales data could not be loaded",
+			"description": "The demo service failed on purpose. Try again, or pick another data scenario."
+		}
+	},
+	"orders": {
+		"header": {
+			"title": "Orders",
+			"description": "Every order of the year. Sort by a column, filter by status and region, or search by customer, store or number."
+		},
+		"columns": {
 			"order": "Order",
 			"customer": "Customer",
 			"store": "Store",
 			"date": "Date",
 			"status": "Status",
-			"total": "Total",
-			"statuses": {
-				"paid": "Paid",
-				"pending": "Pending",
-				"refunded": "Refunded"
-			},
-			"empty": "No orders in this period"
+			"total": "Total"
 		},
-		"error": {
-			"title": "The sales data could not be loaded",
-			"description": "The demo service failed on purpose. Try again, or pick another scenario in the navigation."
+		"statuses": {
+			"paid": "Paid",
+			"pending": "Pending",
+			"refunded": "Refunded"
+		},
+		"filters": {
+			"label": "Order filters",
+			"search": "Search",
+			"status": "Status",
+			"allStatuses": "All statuses",
+			"region": "Region",
+			"allRegions": "All regions"
+		},
+		"listing": {
+			"title": "All orders",
+			"description": "January to September 2026",
+			"caption": "All orders",
+			"noResults": "No order matches the filters",
+			"noResultsDescription": "Search for another term, or clear the filters to see every order.",
+			"clearFilters": "Clear filters"
 		}
+	},
+	"reports": {
+		"header": {
+			"title": "Reports",
+			"description": "One chart of each kind over the sales of the year. Every chart can be read by keyboard and shown as a table."
+		},
+		"month": "Month",
+		"orders": {
+			"title": "Orders by status",
+			"description": "Number of orders placed each month",
+			"axis": "Orders"
+		},
+		"performance": {
+			"title": "Revenue and average ticket",
+			"description": "Revenue in bars, average ticket on the right axis",
+			"revenue": "Revenue",
+			"averageTicket": "Average ticket"
+		},
+		"stores": {
+			"title": "Revenue by store",
+			"description": "Total of the orders of each store in the year",
+			"category": "Store",
+			"revenue": "Revenue"
+		},
+		"statuses": {
+			"title": "Share of each status",
+			"description": "All orders of the year",
+			"category": "Status",
+			"value": "Orders"
+		},
+		"goal": {
+			"title": "Monthly goal",
+			"description": "Revenue of September against the goal of the month",
+			"summary": "Revenue of September: {{revenue}}, {{share}} of the goal of {{goal}}."
+		}
+	},
+	"customers": {
+		"header": {
+			"title": "New customer",
+			"description": "Register a customer of the Aurora stores. The data is checked by the server and not stored: this is a demo."
+		},
+		"form": {
+			"contact": "Contact",
+			"account": "Account",
+			"submit": "Register customer"
+		},
+		"fields": {
+			"name": "Full name",
+			"email": "Email address",
+			"emailDescription": "Used to send receipts. ana.souza@aurora.example is already registered.",
+			"phone": "Phone",
+			"phoneDescription": "Optional. Area code and number, e.g. (11) 91234-5678.",
+			"type": "Customer type",
+			"region": "Region",
+			"regionPlaceholder": "Choose a region",
+			"notes": "Notes",
+			"newsletter": "Subscribe to the newsletter",
+			"newsletterDescription": "Offers and news of the stores, once a month."
+		},
+		"types": {
+			"individual": "Individual",
+			"company": "Company"
+		},
+		"errors": {
+			"nameTooShort": "Enter the full name, with at least 3 letters.",
+			"emailInvalid": "Enter an email address in the format name@example.com.",
+			"emailTaken": "This email address is already registered.",
+			"phone": "Enter the area code and the number: 10 or 11 digits.",
+			"region": "Choose one of the regions."
+		},
+		"saved": {
+			"title": "Customer registered",
+			"message": "{{name}} is customer {{customer}}."
+		}
+	},
+	"appearance": {
+		"header": {
+			"title": "Appearance",
+			"description": "Try a palette, check its contrast and export the theme.json the application is built with."
+		},
+		"intents": {
+			"official": "Official",
+			"default": "Default",
+			"success": "Success",
+			"warning": "Warning",
+			"error": "Error",
+			"info": "Info"
+		},
+		"colors": {
+			"title": "Main colors",
+			"description": "Every other shade of each intent is derived from its main color.",
+			"format": "Hexadecimal, e.g. #FF6AC1",
+			"invalid": "Enter a color in the format #RRGGBB or #RGB.",
+			"pick": "Pick the {{intent}} color",
+			"reset": "Restore the colors of the build"
+		},
+		"preview": {
+			"title": "Preview",
+			"description": "The components with the palette above, only in this panel",
+			"alertTitle": "Report ready",
+			"alertMessage": "The sales report of September was generated.",
+			"progress": "Monthly goal",
+			"linkBefore": "Happy with it?",
+			"link": "Export the theme"
+		},
+		"contrast": {
+			"title": "Contrast",
+			"description": "Every pair of colors the components draw, against the WCAG 2.2 AA minimums",
+			"passTitle": "Every pair passes",
+			"passMessage": "Text, large text and controls reach the minimum contrast on their surfaces.",
+			"failTitle": {
+				"one": "{{count, number}} pair below the minimum",
+				"other": "{{count, number}} pairs below the minimum"
+			},
+			"ratio": "{{ratio}}:1, minimum {{minimum}}:1 for {{requirement}}",
+			"requirements": {
+				"text": "text",
+				"largeText": "large text",
+				"nonText": "controls and graphics"
+			}
+		},
+		"export": {
+			"title": "theme.json",
+			"description": "Replace src/theme.json with it and build again: the palette is applied on the server, without a flash.",
+			"code": "Theme configuration",
+			"copy": "Copy",
+			"download": "Download",
+			"copied": "The theme was copied.",
+			"copyFailed": "The theme could not be copied. Select the text and copy it instead."
+		}
+	},
+	"notFound": {
+		"title": "Page not found",
+		"message": "There is no page at this address",
+		"description": "It may have moved, or the link may be wrong.",
+		"home": "Go to the sales overview"
 	}
 }

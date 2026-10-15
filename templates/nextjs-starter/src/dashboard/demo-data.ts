@@ -7,6 +7,8 @@ export const regions: readonly Region[] = ['south', 'southeast', 'northeast'];
 
 export type OrderStatus = 'paid' | 'pending' | 'refunded';
 
+export const orderStatuses: readonly OrderStatus[] = ['paid', 'pending', 'refunded'];
+
 export interface MonthlyRevenue {
 	/** First day of the month, ISO 8601 (`2026-01-01`). */
 	month: string;

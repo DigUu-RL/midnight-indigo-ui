@@ -7,7 +7,7 @@ import { expect, test } from '#test/support/fixtures.ts';
 test('a dialog takes focus, closes with Escape and returns focus to its trigger', async ({
 	page,
 }): Promise<void> => {
-	await page.goto('/');
+	await page.goto('/gallery');
 
 	const trigger: Locator = page.getByRole('button', { name: 'Rename report' });
 	await trigger.click();
@@ -32,7 +32,7 @@ test('a dialog takes focus, closes with Escape and returns focus to its trigger'
 test('a menu item chosen with the keyboard opens a confirmation, and confirming shows a toast', async ({
 	page,
 }): Promise<void> => {
-	await page.goto('/');
+	await page.goto('/gallery');
 
 	await page.getByRole('button', { name: 'More actions' }).focus();
 	await page.keyboard.press('Enter');
@@ -56,7 +56,7 @@ test('a menu item chosen with the keyboard opens a confirmation, and confirming 
 });
 
 test('a toast reports the outcome of an action', async ({ page }): Promise<void> => {
-	await page.goto('/');
+	await page.goto('/gallery');
 	await page.getByRole('button', { name: 'Save report' }).click();
 
 	await expect(
@@ -65,7 +65,7 @@ test('a toast reports the outcome of an action', async ({ page }): Promise<void>
 });
 
 test('a tooltip appears on keyboard focus', async ({ page }): Promise<void> => {
-	await page.goto('/');
+	await page.goto('/gallery');
 	await page.getByRole('button', { name: 'Copy link' }).focus();
 
 	await expect(page.getByRole('tooltip')).toHaveText('Copies the link to the clipboard');

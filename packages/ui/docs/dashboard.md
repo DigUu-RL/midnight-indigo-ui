@@ -121,14 +121,18 @@ and en-US); `defaultDashboardLayoutLabels` and `defaultFilterBarLabels` are the 
 
 ## The demo
 
-`templates/nextjs-starter` has a dashboard at `/dashboard`: a fictional retail chain, with key figures, a stacked area
-chart by region, the latest orders and filters by region and period.
+`templates/nextjs-starter` (F13) is an application built on this shell: `DashboardLayout` wraps every page of
+`app/[locale]` (`src/shell/app-shell.tsx`), with the pages as data, the language links in the top bar and breadcrumbs
+from the route. Its home page, `/en-us` (or `/pt-br`), is the sales overview of a fictional retail chain: key figures,
+a stacked area chart by region, the latest orders and filters by region and period. The other pages use the same
+patterns: orders (`FilterBar`, `DashboardPanel`, `DataTable`), reports (a `Grid` of `DashboardPanel` with charts),
+a customer form and a palette editor. See the starter's README.
 
 - **Mock API.** `src/dashboard/demo-data.ts` holds the data (fixed numbers, so the server and the browser agree) and
   `src/dashboard/mock-api.ts` the fake backend, `fetchDashboard(query, scenario, signal)`, with latency and failures.
   The page only depends on it and on its types: replace it with a real request.
-- **States.** `?state=loading` never answers, `?state=empty` answers with nothing and `?state=error` fails; the sidebar
-  links to each.
+- **States.** `?state=loading` never answers, `?state=empty` answers with nothing and `?state=error` fails; a
+  `TabNavigation` above the filters links to each.
 - **Texts.** Every text comes from `src/messages/en-us.json` and `pt-br.json` (the same keys, checked by a test).
 
 ## Tests
