@@ -7,7 +7,7 @@ import { expect, test } from '#test/support/fixtures.ts';
 test('hydrates without errors and the server markup becomes interactive', async ({
 	page,
 }): Promise<void> => {
-	await page.goto('/');
+	await page.goto('/gallery');
 
 	// The node rendered by the server must be the one that becomes interactive: hydration adopts it, never recreates it.
 	const serverHeading: JSHandle = await page.evaluateHandle((): Element | null => {
@@ -28,6 +28,6 @@ test('hydrates without errors and the server markup becomes interactive', async 
 });
 
 test('the streamed panel arrives styled after the shell', async ({ page }): Promise<void> => {
-	await page.goto('/');
+	await page.goto('/gallery');
 	await expect(page.getByText('Streamed panel, styled')).toBeVisible();
 });

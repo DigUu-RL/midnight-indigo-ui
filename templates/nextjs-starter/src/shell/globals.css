@@ -118,6 +118,74 @@
 	}
 }
 
+/* End of the top bar: the language links and the notifications. */
+.topbar {
+	display: flex;
+	gap: var(--mi-spacing-4);
+	align-items: center;
+}
+
+.locale-switcher > ul {
+	display: flex;
+	gap: var(--mi-spacing-3);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/* A color of the palette editor: the hexadecimal field and the native picker beside it. */
+.color-field {
+	display: flex;
+	gap: var(--mi-spacing-3);
+	align-items: flex-start;
+}
+
+.color-field > :first-child {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+/* Aligned with the input of the field, below its label. */
+.color-field > input[type='color'] {
+	flex: 0 0 auto;
+	width: 2.75rem;
+	height: 2.75rem;
+	margin-top: 1.75rem;
+	padding: var(--mi-spacing-1);
+	border: 1px solid var(--mi-border-default);
+	border-radius: var(--mi-radius-medium);
+	background: var(--mi-surface-sunken);
+	cursor: pointer;
+}
+
+.color-field > input[type='color']:focus-visible {
+	outline: var(--mi-focus-width) solid var(--mi-focus-ring);
+	outline-offset: var(--mi-focus-offset);
+}
+
+/* Scrolls inside itself, so long lines never widen the page; focusable, so it scrolls by keyboard too. */
+.code-block {
+	margin: 0;
+	padding: var(--mi-spacing-4);
+	overflow: auto;
+	border: 1px solid var(--mi-border-subtle);
+	border-radius: var(--mi-radius-medium);
+	background: var(--mi-surface-sunken);
+	tab-size: 2;
+}
+
+.code-block:focus-visible {
+	outline: var(--mi-focus-width) solid var(--mi-focus-ring);
+	outline-offset: var(--mi-focus-offset);
+}
+
+.contrast-failures {
+	display: grid;
+	gap: var(--mi-spacing-1);
+	margin: var(--mi-spacing-2) 0 0;
+	padding-inline-start: var(--mi-spacing-5);
+}
+
 .slide {
 	margin: 0;
 	padding: var(--mi-spacing-8) var(--mi-spacing-6);

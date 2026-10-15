@@ -36,13 +36,13 @@ const plusIcon: ReactElement = (
 );
 
 const sidebarItems: SidebarEntry[] = [
-	{ id: 'home', label: 'Home', icon: homeIcon, href: '/', current: true },
+	{ id: 'home', label: 'Home', icon: homeIcon, href: '/gallery', current: true },
 	{
 		id: 'reports',
 		label: 'Reports',
 		items: [
-			{ id: 'sales', label: 'Sales', icon: chartIcon, href: '/?report=sales' },
-			{ id: 'costs', label: 'Costs', icon: chartIcon, href: '/?report=costs' },
+			{ id: 'sales', label: 'Sales', icon: chartIcon, href: '/gallery?report=sales' },
+			{ id: 'costs', label: 'Costs', icon: chartIcon, href: '/gallery?report=costs' },
 		],
 	},
 	{ id: 'new-report', label: 'New report', icon: plusIcon, onSelect: (): void => undefined },
@@ -67,9 +67,9 @@ export const NavigationShowcase = (): ReactElement => {
 					<Breadcrumbs
 						maxItems={3}
 						items={[
-							{ id: 'home', label: 'Home', href: '/' },
-							{ id: 'projects', label: 'Projects', href: '/?view=projects' },
-							{ id: 'atlas', label: 'Atlas', href: '/?project=atlas' },
+							{ id: 'home', label: 'Home', href: '/gallery' },
+							{ id: 'projects', label: 'Projects', href: '/gallery?view=projects' },
+							{ id: 'atlas', label: 'Atlas', href: '/gallery?project=atlas' },
 							{ id: 'settings', label: 'Settings' },
 						]}
 					/>
@@ -77,9 +77,9 @@ export const NavigationShowcase = (): ReactElement => {
 					<TabNavigation
 						label='Project sections'
 						items={[
-							{ id: 'overview', label: 'Overview', href: '/', current: true },
-							{ id: 'members', label: 'Members', href: '/?section=members' },
-							{ id: 'settings', label: 'Settings', href: '/?section=settings' },
+							{ id: 'overview', label: 'Overview', href: '/gallery', current: true },
+							{ id: 'members', label: 'Members', href: '/gallery?section=members' },
+							{ id: 'settings', label: 'Settings', href: '/gallery?section=settings' },
 						]}
 					/>
 
@@ -104,7 +104,7 @@ export const NavigationShowcase = (): ReactElement => {
 					<Pagination page={page} pageCount={12} onPageChange={setPage} />
 
 					<p>
-						Read the <Link href='/?view=guide'>getting started guide</Link> or the{' '}
+						Read the <Link href='/gallery?view=guide'>getting started guide</Link> or the{' '}
 						<Link href='https://github.com/DigUu-RL/midnight-indigo-ui' external>
 							source code
 						</Link>

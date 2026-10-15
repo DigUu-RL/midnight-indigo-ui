@@ -1,4 +1,4 @@
-// Visual regression of the starter: every section (tokens, typography, components, forms, overlays, navigation, data
+// Visual regression of the component gallery of the starter: every section (tokens, typography, components, forms, overlays, navigation, data
 // display) compared with its committed baseline, plus states only visible after an interaction. One screenshot per
 // section, so that a difference points at the component that changed. Update the baselines on purpose only:
 // `pnpm --filter @midnight-indigo/browser-tests test:visual:update` (see the wiki, "Testes e integração contínua").
@@ -16,8 +16,8 @@ const slug = (text: string): string => {
 };
 
 // Fonts and the streamed panel arrive after the first paint; a screenshot taken before them would be flaky.
-const openStarter = async (page: Page): Promise<void> => {
-	await page.goto('/');
+const openGallery = async (page: Page): Promise<void> => {
+	await page.goto('/gallery');
 	await expect(page.getByText('Streamed panel, styled')).toBeVisible();
 
 	await page.evaluate(async (): Promise<void> => {
@@ -25,8 +25,8 @@ const openStarter = async (page: Page): Promise<void> => {
 	});
 };
 
-test('every section of the starter matches its baseline', async ({ page }): Promise<void> => {
-	await openStarter(page);
+test('every section of the gallery matches its baseline', async ({ page }): Promise<void> => {
+	await openGallery(page);
 
 	const sections: Locator[] = await page.locator('main > *').all();
 	expect(sections.length).toBeGreaterThan(5);
@@ -46,7 +46,7 @@ test('every section of the starter matches its baseline', async ({ page }): Prom
 });
 
 test('an open dialog matches its baseline', async ({ page }): Promise<void> => {
-	await openStarter(page);
+	await openGallery(page);
 	await page.getByRole('button', { name: 'Rename report' }).click();
 	await expect(page.getByRole('dialog', { name: 'Rename report' })).toBeVisible();
 
@@ -54,7 +54,7 @@ test('an open dialog matches its baseline', async ({ page }): Promise<void> => {
 });
 
 test('an open menu matches its baseline', async ({ page }): Promise<void> => {
-	await openStarter(page);
+	await openGallery(page);
 	await page.getByRole('button', { name: 'More actions' }).click();
 	await expect(page.getByRole('menu')).toBeVisible();
 
@@ -62,7 +62,7 @@ test('an open menu matches its baseline', async ({ page }): Promise<void> => {
 });
 
 test('form errors match their baseline', async ({ page }): Promise<void> => {
-	await openStarter(page);
+	await openGallery(page);
 
 	const form: Locator = page.locator('form').filter({ has: page.getByLabel('Full name') });
 	await form.getByRole('button', { name: 'Save profile' }).click();
@@ -72,7 +72,7 @@ test('form errors match their baseline', async ({ page }): Promise<void> => {
 });
 
 test('a focused control shows the focus ring', async ({ page }): Promise<void> => {
-	await openStarter(page);
+	await openGallery(page);
 
 	// Focus from the keyboard (back and forth): the ring follows `:focus-visible`, which a pointer focus does not set.
 	// The first "New report" is the button of the components section; the sidebar has an item with the same name.
@@ -91,7 +91,7 @@ test.describe('on a phone', (): void => {
 	test('the page and the navigation drawer match their baselines', async ({
 		page,
 	}): Promise<void> => {
-		await openStarter(page);
+		await openGallery(page);
 		await expect(page).toHaveScreenshot('phone-top.png');
 
 		await page.getByRole('button', { name: 'Open navigation' }).click();

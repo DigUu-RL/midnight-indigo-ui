@@ -7,7 +7,7 @@ import { expect, test } from '#test/support/fixtures.ts';
 test('blocks an invalid submission, then saves once every error is fixed', async ({
 	page,
 }): Promise<void> => {
-	await page.goto('/');
+	await page.goto('/gallery');
 
 	const form: Locator = page.locator('form').filter({ has: page.getByLabel('Full name') });
 	const name: Locator = form.getByLabel('Full name');

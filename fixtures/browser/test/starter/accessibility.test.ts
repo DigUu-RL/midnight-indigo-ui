@@ -3,12 +3,12 @@ import { expectNoAxeViolations } from '#test/support/accessibility.ts';
 import { expect, test } from '#test/support/fixtures.ts';
 
 test('the page has no accessibility violation', async ({ page }): Promise<void> => {
-	await page.goto('/');
+	await page.goto('/gallery');
 	await expectNoAxeViolations(page);
 });
 
 test('an open dialog has no accessibility violation', async ({ page }): Promise<void> => {
-	await page.goto('/');
+	await page.goto('/gallery');
 	await page.getByRole('button', { name: 'Rename report' }).click();
 	await expect(page.getByRole('dialog', { name: 'Rename report' })).toBeVisible();
 
@@ -16,7 +16,7 @@ test('an open dialog has no accessibility violation', async ({ page }): Promise<
 });
 
 test('an open menu has no accessibility violation', async ({ page }): Promise<void> => {
-	await page.goto('/');
+	await page.goto('/gallery');
 	await page.getByRole('button', { name: 'More actions' }).click();
 	await expect(page.getByRole('menu')).toBeVisible();
 
@@ -29,7 +29,7 @@ test.describe('on a phone', (): void => {
 	test('the page and the navigation drawer have no accessibility violation', async ({
 		page,
 	}): Promise<void> => {
-		await page.goto('/');
+		await page.goto('/gallery');
 		await expectNoAxeViolations(page);
 
 		await page.getByRole('button', { name: 'Open navigation' }).click();

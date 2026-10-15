@@ -216,7 +216,8 @@ the rest of the interface:
 
 ## Composition example
 
-`templates/nextjs-starter/src/app/components-showcase.tsx` composes every component in a card: a header with avatar
+`templates/nextjs-starter/src/gallery/components-showcase.tsx` (the component gallery of the starter, at `/gallery`)
+composes every component in a card: a header with avatar
 and a badged icon button, a row of buttons in each state, selectable and removable filter chips, progress bars, a
 loading skeleton and a carousel. The starter test checks that it is rendered on the server with its roles and names
 and that the component styles are in the head of the first flush.

@@ -1,4 +1,4 @@
-// The dashboard demo over its mock API: the shell by keyboard on desktop and as a drawer on a phone, the filters, and
+// The sales overview over its mock API: the shell by keyboard on desktop and as a drawer on a phone, the filters, and
 // the loading, empty and error states, each with an accessibility audit (contrast included).
 import type { Locator, Page } from '@playwright/test';
 
@@ -6,7 +6,7 @@ import { expectNoAxeViolations } from '#test/support/accessibility.ts';
 import { expect, test } from '#test/support/fixtures.ts';
 
 // The mock API answers after 600 ms; the figures are ready once the first card has a value.
-const openDashboard = async (page: Page, path: string = '/dashboard'): Promise<void> => {
+const openDashboard = async (page: Page, path: string = '/en-us'): Promise<void> => {
 	await page.goto(path);
 	await expect(page.getByRole('main')).toBeVisible();
 };
@@ -16,6 +16,8 @@ const waitForFigures = async (page: Page): Promise<void> => {
 		'aria-busy',
 	);
 };
+
+const scenarios = (page: Page): Locator => page.getByRole('navigation', { name: 'Data scenario' });
 
 test('the shell has its landmarks and the figures load from the mock API', async ({
 	page,
@@ -56,7 +58,7 @@ test('the skip link is the first stop and moves the focus to the main content', 
 
 	await expect(page.getByRole('main')).toBeFocused();
 	await page.keyboard.press('Tab');
-	await expect(page.getByRole('main').getByRole('link', { name: 'Home' })).toBeFocused();
+	await expect(page.getByRole('main').getByRole('button', { name: 'Refresh data' })).toBeFocused();
 });
 
 test('the sidebar is reached by keyboard and collapses to a rail', async ({
@@ -73,7 +75,7 @@ test('the sidebar is reached by keyboard and collapses to a rail', async ({
 	await expect(page.getByRole('button', { name: 'Expand navigation' })).toBeVisible();
 	// The first brand is the sidebar's; the second, in the top bar, is only shown on narrow viewports.
 	await expect(page.getByText('Aurora Retail').first()).toBeHidden();
-	await expect(navigation.getByRole('link', { name: 'No data' })).toBeVisible();
+	await expect(navigation.getByRole('link', { name: 'Orders' })).toBeVisible();
 });
 
 test('the filters narrow the figures, the chart and the orders', async ({
@@ -100,16 +102,20 @@ test('the filters narrow the figures, the chart and the orders', async ({
 	await expect(revenue).toContainText('R$4.33M');
 });
 
-test('a scenario chosen in the navigation loads on the client', async ({ page }): Promise<void> => {
+test('a scenario chosen in its navigation loads on the client', async ({ page }): Promise<void> => {
 	await openDashboard(page);
 
 	await page.evaluate((): void => {
 		document.documentElement.dataset.sameDocument = 'true';
 	});
 
-	await page.getByRole('link', { name: 'No data' }).click();
-	await expect(page).toHaveURL('/dashboard?state=empty');
-	await expect(page.getByRole('link', { name: 'No data' })).toHaveAttribute('aria-current', 'page');
+	await scenarios(page).getByRole('link', { name: 'No data' }).click();
+	await expect(page).toHaveURL('/en-us?state=empty');
+
+	await expect(scenarios(page).getByRole('link', { name: 'No data' })).toHaveAttribute(
+		'aria-current',
+		'page',
+	);
 
 	expect(
 		await page.evaluate((): string | undefined => document.documentElement.dataset.sameDocument),
@@ -119,7 +125,7 @@ test('a scenario chosen in the navigation loads on the client', async ({ page })
 test('the loading state marks the figures busy and shows placeholders', async ({
 	page,
 }): Promise<void> => {
-	await openDashboard(page, '/dashboard?state=loading');
+	await openDashboard(page, '/en-us?state=loading');
 
 	await expect(page.getByRole('group', { name: 'Revenue', exact: true })).toHaveAttribute(
 		'aria-busy',
@@ -133,7 +139,7 @@ test('the loading state marks the figures busy and shows placeholders', async ({
 test('the empty state explains that there is nothing in the period', async ({
 	page,
 }): Promise<void> => {
-	await openDashboard(page, '/dashboard?state=empty');
+	await openDashboard(page, '/en-us?state=empty');
 
 	await expect(page.getByText('No revenue in this period')).toBeVisible();
 	await expect(page.getByText('No orders in this period')).toBeVisible();
@@ -142,7 +148,7 @@ test('the empty state explains that there is nothing in the period', async ({
 });
 
 test('the error state is announced and offers to try again', async ({ page }): Promise<void> => {
-	await openDashboard(page, '/dashboard?state=error');
+	await openDashboard(page, '/en-us?state=error');
 	// Scoped to the page: the route announcer of Next.js is an alert too.
 	const alert: Locator = page.getByRole('main').getByRole('alert');
 
@@ -176,11 +182,11 @@ test.describe('on a phone', (): void => {
 
 		await expect(drawer).toBeVisible();
 		await expectNoAxeViolations(page);
-		await drawer.getByRole('link', { name: 'Service error' }).tap();
+		await drawer.getByRole('link', { name: 'Orders' }).tap();
 
 		await expect(drawer).toBeHidden();
-		await expect(page).toHaveURL('/dashboard?state=error');
-		await expect(page.getByRole('main').getByRole('alert')).toBeVisible();
+		await expect(page).toHaveURL('/en-us/orders');
+		await expect(page.getByRole('heading', { level: 1, name: 'Orders' })).toBeVisible();
 	});
 
 	test('the page fits the viewport without a horizontal scroll', async ({

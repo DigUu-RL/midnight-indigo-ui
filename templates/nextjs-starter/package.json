@@ -4,7 +4,9 @@
 	"description": "Next.js starter (F13). Not published as part of the library.",
 	"type": "module",
 	"imports": {
-		"#src/*": "./src/*"
+		"#src/*": "./src/*",
+		"#test/*": "./test/*",
+		"#scripts/*": "./scripts/*"
 	},
 	"scripts": {
 		"dev": "next dev",

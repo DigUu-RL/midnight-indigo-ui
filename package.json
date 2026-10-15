@@ -23,6 +23,8 @@
 		"check:source": "node scripts/check-source-clean.ts",
 		"check:licenses": "node scripts/check-licenses.ts",
 		"check:bundle": "node scripts/check-bundle-size.ts",
+		"create:starter": "node templates/nextjs-starter/scripts/create-starter.ts",
+		"check:starter": "node templates/nextjs-starter/scripts/check-generated-starter.ts",
 		"check": "pnpm build && pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm test:performance && pnpm check:package && pnpm check:source && pnpm check:licenses && pnpm check:bundle"
 	},
 	"devDependencies": {
