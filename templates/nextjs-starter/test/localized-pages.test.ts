@@ -36,6 +36,8 @@ const applicationPages: readonly ApplicationPage[] = [
 	{ path: '/reports', heading: 'reports.header.title' },
 	{ path: '/customers/new', heading: 'customers.header.title' },
 	{ path: '/settings/appearance', heading: 'appearance.header.title' },
+	{ path: '/icons', heading: 'icons.header.title' },
+	{ path: '/icons/attribution', heading: 'iconAttribution.header.title' },
 ];
 
 const themeStyleMarker: string = 'data-href="midnight-indigo-theme-';

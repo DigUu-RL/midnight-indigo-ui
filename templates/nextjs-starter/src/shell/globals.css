@@ -192,3 +192,68 @@
 	background: var(--mi-surface-overlay);
 	text-align: center;
 }
+
+/* Icon browser: tiles that wrap to the width of the page, each a link to the details of its icon. */
+.icon-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+	gap: var(--mi-spacing-2);
+	margin: var(--mi-spacing-4) 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.icon-tile {
+	display: grid;
+	justify-items: center;
+	gap: var(--mi-spacing-1);
+	min-width: 0;
+	padding: var(--mi-spacing-3) var(--mi-spacing-2);
+	border: 1px solid var(--mi-border-subtle);
+	border-radius: var(--mi-radius-medium);
+	color: var(--mi-text-primary);
+	font: var(--mi-typography-caption-font-weight) var(--mi-typography-caption-font-size) /
+		var(--mi-typography-caption-line-height) var(--mi-typography-caption-font-family);
+	text-align: center;
+	text-decoration: none;
+}
+
+.icon-tile > .truncate {
+	max-width: 100%;
+}
+
+.icon-tile:hover,
+.icon-tile[aria-current='true'] {
+	border-color: var(--mi-border-strong);
+	background: var(--mi-surface-raised);
+}
+
+.icon-tile:focus-visible {
+	outline: var(--mi-focus-width) solid var(--mi-focus-ring);
+	outline-offset: var(--mi-focus-offset);
+}
+
+.icon-tile-set {
+	color: var(--mi-text-secondary);
+}
+
+.icon-pages {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--mi-spacing-4);
+	margin-block-start: var(--mi-spacing-4);
+}
+
+.icon-preview {
+	display: grid;
+	gap: var(--mi-spacing-2);
+	margin: 0;
+}
+
+.icon-preview-samples {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--mi-spacing-3);
+}

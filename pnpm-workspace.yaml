@@ -13,6 +13,7 @@ catalog:
   '@emotion/styled': ^11.14.1
   '@eslint/js': ^10.0.1
   '@fontsource-variable/geist': ^5.3.0
+  '@iconify-json/tabler': ^1.2.42
   '@mui/material': ^9.5.0
   '@mui/material-nextjs': ^9.5.0
   '@mui/x-date-pickers': ~9.14.0
@@ -45,3 +46,12 @@ catalog:
   typescript-eslint: ^8.71.1
   vite: ^8.3.4
   vitest: ^5.0.3
+
+minimumReleaseAgeExclude:
+  - '@iconify-json/lucide@1.2.144'
+  - '@iconify-json/matita@1.2.1'
+  - '@iconify-json/octicon@1.2.39'
+  - '@iconify-json/selfhst@1.2.24'
+  - '@iconify-json/thesvg-color@1.2.17'
+  - '@iconify-json/thesvg@1.2.10'
+  - '@iconify-json/vscode-icons@1.2.89'

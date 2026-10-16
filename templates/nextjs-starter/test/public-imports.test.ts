@@ -94,7 +94,9 @@ test('no import reaches outside the starter: no relative path and no file of the
 test('own modules exist in src, and packages are dependencies of the starter', (): void => {
 	const dependencies: Set<string> = new Set<string>(Object.keys(manifest.dependencies ?? {}));
 
+	// Node built-ins (`node:fs`, read on the server by the icon catalog) need no dependency.
 	const unresolved: string[] = sourceImports
+		.filter(({ specifier }: SourceImport): boolean => !specifier.startsWith('node:'))
 		.filter(({ specifier }: SourceImport): boolean => {
 			return specifier.startsWith('#src/')
 				? !existsSync(join(sourceRoot, specifier.slice('#src/'.length)))

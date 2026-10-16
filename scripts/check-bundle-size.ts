@@ -6,6 +6,8 @@
 //   would, with everything it exports kept. The peer dependencies (React, Material UI, ...) stay out: they are measured
 //   with the starter. ECharts is bundled, since the package decides which of its modules are loaded. The initial JS is
 //   the entry chunk and the chunks it imports; the on-demand JS is the chunks loaded by `import()`.
+// - One icon imported as data next to others of the same module is bundled as an application would, tree-shaken:
+//   only its data may reach the bundle.
 // - Each route of the starter is served by `next start`; its initial JS is the scripts of its HTML (framework, React,
 //   Material UI and the library included). The chart engine is a chunk of its own, on demand.
 //
@@ -22,7 +24,7 @@ import { fileURLToPath } from 'node:url';
 import { brotliCompressSync, gzipSync } from 'node:zlib';
 
 import { build } from 'vite';
-import type { Rollup } from 'vite';
+import type { Plugin, Rollup } from 'vite';
 
 interface Size {
 	raw: number;
@@ -75,6 +77,7 @@ const starterRoutes: readonly string[] = [
 	'/en-us/reports',
 	'/en-us/customers/new',
 	'/en-us/settings/appearance',
+	'/en-us/icons',
 	'/gallery',
 ];
 
@@ -226,6 +229,87 @@ const measureEntry = async (subpath: string, failures: string[]): Promise<Measur
 			onDemand.length === 0
 				? null
 				: sizeOf(onDemand.map((chunk: Rollup.OutputChunk): string => chunk.code)),
+	};
+};
+
+// One icon imported as data from a module that exports three: only the data of that icon may reach the bundle.
+const singleIconName: string = '@midnight-indigo/ui/icons: one imported icon';
+const singleIconScope: string = 'single-icon:';
+
+const sampleIconPaths: Readonly<Record<string, string>> = {
+	rocket: 'M101 101h1v1',
+	planet: 'M202 202h2v2',
+	comet: 'M303 303h3v3',
+};
+
+const sampleIconModule: string = Object.entries(sampleIconPaths)
+	.map(([name, path]: [string, string]): string => {
+		return `export const ${name} = { width: 24, height: 24, body: '<path d="${path}"/>' };`;
+	})
+	.join('\n');
+
+const singleIconEntry = (): string => {
+	return [
+		"import { createElement } from 'react';",
+		`import { IconifyIcon } from ${JSON.stringify(entryFileOf('./icons'))};`,
+		`import { rocket } from '${singleIconScope}icons';`,
+		'export const RocketIcon = () => createElement(IconifyIcon, { icon: rocket, decorative: true });',
+	].join('\n');
+};
+
+const singleIconPlugin: Plugin = {
+	name: 'single-icon',
+	resolveId: (id: string): string | null => (id.startsWith(singleIconScope) ? `\0${id}` : null),
+	load: (id: string): string | null => {
+		if (id === `\0${singleIconScope}entry`) return singleIconEntry();
+		return id === `\0${singleIconScope}icons` ? sampleIconModule : null;
+	},
+};
+
+const measureSingleIcon = async (failures: string[]): Promise<Measurement> => {
+	const output: Awaited<ReturnType<typeof build>> = await build({
+		configFile: false,
+		logLevel: 'silent',
+		root: packageRoot,
+		plugins: [singleIconPlugin],
+		build: {
+			write: false,
+			minify: true,
+			rolldownOptions: {
+				input: `${singleIconScope}entry`,
+				// Keeps the export of the entry, and only what it uses: an application importing one icon.
+				preserveEntrySignatures: 'exports-only',
+				external: isExternal,
+				onwarn: ignoreDirectives,
+			},
+		},
+	});
+
+	const chunks: Rollup.OutputChunk[] = (
+		(Array.isArray(output) ? output : [output]) as Rollup.RolldownOutput[]
+	).flatMap((result: Rollup.RolldownOutput): Rollup.OutputChunk[] => {
+		return result.output.filter(
+			(item: Rollup.OutputChunk | Rollup.OutputAsset): item is Rollup.OutputChunk => {
+				return item.type === 'chunk';
+			},
+		);
+	});
+
+	const code: string = chunks.map((chunk: Rollup.OutputChunk): string => chunk.code).join('\n');
+	const { rocket = '', ...others }: Record<string, string> = sampleIconPaths;
+
+	if (!code.includes(rocket)) failures.push(`${singleIconName}: the imported icon is missing.`);
+
+	Object.entries(others)
+		.filter(([, path]: [string, string]): boolean => code.includes(path))
+		.forEach(([name]: [string, string]): void => {
+			failures.push(`${singleIconName}: the icon "${name}", not imported, reached the bundle.`);
+		});
+
+	return {
+		name: singleIconName,
+		initial: sizeOf(chunks.map((chunk: Rollup.OutputChunk): string => chunk.code)),
+		onDemand: null,
 	};
 };
 
@@ -462,6 +546,7 @@ const failures: string[] = [];
 const measurements: Measurement[] = [];
 
 for (const subpath of codeSubpaths) measurements.push(await measureEntry(subpath, failures));
+measurements.push(await measureSingleIcon(failures));
 measurements.push(...(await measureStarter(failures)));
 
 if (updating) writeBudgets(measurements);

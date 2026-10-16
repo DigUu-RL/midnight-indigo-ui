@@ -100,11 +100,12 @@ Components accept content in named slots instead of exposing their internal elem
 
 Every component also accepts `className`, `style`, `ref` and the attributes of its root element.
 
-**Icon strategy.** The library depends on no icon set (decision D07 remains open). Any SVG fits a slot: the `Icon`
-primitive with your paths, or a component of any set with `iconAccessibilityProps`. Slot icons are decorative,
-because the control is named by its label (`Button`) or by its required `label` (`IconButton`); Button slots are
-wrapped in `aria-hidden` for that reason. The few glyphs the components draw themselves (check, close, chevrons) are
-simple strokes made for the library, so no third-party license is involved.
+**Icon strategy.** Any SVG fits a slot: an Iconify icon (`IconifyIcon` of `@midnight-indigo/ui/icons`, rendered
+offline; see [icons.md](./icons.md)), the `Icon` primitive with your paths, or a component of any set with
+`iconAccessibilityProps`. Slot icons are decorative, because the control is named by its label (`Button`) or by its
+required `label` (`IconButton`); Button slots are wrapped in `aria-hidden` for that reason. The glyphs the components
+draw themselves (check, close, chevrons) are Tabler icons (MIT), embedded one by one, so the library depends on no
+icon package at runtime.
 
 ```tsx
 import { Icon } from '@midnight-indigo/ui';
