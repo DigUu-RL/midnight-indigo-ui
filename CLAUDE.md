@@ -29,6 +29,7 @@ These are enforced by ESLint where possible (`eslint.config.ts`); follow them ev
 
 - **TypeScript only.** Use JavaScript only when strictly unavoidable. Node scripts and tests run `.ts` directly (native type stripping), so keep syntax erasable (no `enum`, no `namespace`, no parameter properties).
 - **Comments in English.**
+- **Example names are fictional characters** from games, anime or Star Wars (`Samus Aran`, `Spike Spiegel`, `Leia Organa`), in tests, fixtures, the starter, docs and examples alike; never real people or generic placeholders such as `John Doe`.
 - **No abbreviations.** Variables, functions, classes, interfaces and types use full, descriptive names (`sourceDirectory`, not `srcDir`; `entry`, not `e`).
 - **Arrow functions.** Use `function` only when strictly necessary (e.g. generators, `this` binding).
 - **Explicit types** on variables, parameters and return types, even when inference would work.
