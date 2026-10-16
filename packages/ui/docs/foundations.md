@@ -85,8 +85,9 @@ Material UI components follow the same scale: `UiProvider` maps the roles to the
 
 ### Global styles
 
-With `baseline` (the default), `UiProvider` styles only `body` (role `body`, `text.primary` on `surface.canvas`) and
-`code, kbd, pre, samp` (monospace stack). Headings, paragraphs and lists keep the browser defaults, so the library
+With `baseline` (the default), `UiProvider` styles `body` (role `body`, `text.primary` on `surface.canvas`),
+`code, kbd, pre, samp` (monospace stack) and what the browser draws by itself, such as scrollbars, selection and links
+([native-styles.md](./native-styles.md)). Headings, paragraphs and lists keep the browser defaults, so the library
 never fights the styles of the application; give them a role explicitly. Library components (from F05 on) set their
 own typography and do not depend on global styles.
 

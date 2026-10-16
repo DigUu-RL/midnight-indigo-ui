@@ -75,11 +75,12 @@ jobs:
       - run: pnpm --filter @midnight-indigo/ui run build
       - run: pnpm check:starter
 
-  # End-to-end flows, accessibility, visual regression and performance in Chromium, on the production builds. Linux
-  # only: the visual baselines in CI are the Linux set. After an intentional visual change, add the
-  # `update-visual-baselines` label to the pull request (update-visual-baselines.yml commits the new set).
+  # End-to-end flows, accessibility, visual regression and performance in Chromium, on the production builds, plus the
+  # native browser styles in Firefox and WebKit too. Linux only: the visual baselines in CI are the Linux set. After an
+  # intentional visual change, add the `update-visual-baselines` label to the pull request (update-visual-baselines.yml
+  # commits the new set).
   browser:
-    name: browser (chromium)
+    name: browser
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -94,8 +95,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
 
-      - name: Install Chromium
-        run: pnpm --filter @midnight-indigo/browser-tests exec playwright install --with-deps chromium
+      - name: Install Chromium, Firefox and WebKit
+        run: pnpm --filter @midnight-indigo/browser-tests exec playwright install --with-deps chromium firefox webkit
 
       - run: pnpm --filter @midnight-indigo/browser-tests run test:e2e
       - run: pnpm --filter @midnight-indigo/browser-tests run test:visual

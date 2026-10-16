@@ -16,6 +16,7 @@ import {
 } from '#src/navigation/sidebar/index.tsx';
 import type { SidebarEntry, SidebarLabels } from '#src/navigation/sidebar/index.tsx';
 import { forwardAllBut, visuallyHiddenStyles } from '#src/shared/appearance.ts';
+import { stickyTopbarAttribute, topbarHeight } from '#src/shared/layout-metrics.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 import { breakpointMediaQuery } from '#src/tokens/index.ts';
 import type { Breakpoint } from '#src/tokens/index.ts';
@@ -130,7 +131,7 @@ const Topbar = styled('header', {
 		display: 'flex',
 		alignItems: 'center',
 		gap: spacing[3],
-		minHeight: '4rem',
+		minHeight: topbarHeight,
 		paddingBlock: spacing[2],
 		paddingInline: spacing[4],
 		borderBlockEnd: `1px solid ${border.subtle}`,
@@ -281,7 +282,11 @@ export const DashboardLayout = ({
 			</SidebarSlot>
 
 			<Column>
-				<Topbar permanentFrom={permanentFrom} persistent={topbar !== undefined}>
+				<Topbar
+					permanentFrom={permanentFrom}
+					persistent={topbar !== undefined}
+					{...{ [stickyTopbarAttribute]: '' }}
+				>
 					<SidebarMenuButton
 						open={navigationOpen}
 						onOpenChange={changeNavigationOpen}

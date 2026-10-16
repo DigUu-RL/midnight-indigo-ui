@@ -1,4 +1,6 @@
-/* Application styles reference the theme through `var(--mi-*)`, so they follow any palette set in theme.json. */
+/* Application styles reference the theme through `var(--mi-*)`, so they follow any palette set in theme.json. The
+   baseline of `UiProvider` already styles what the browser draws by itself (scrollbars, selection, autofill, native
+   controls, focus ring, links), so nothing here repeats it. */
 
 .page {
 	display: grid;
@@ -158,11 +160,6 @@
 	cursor: pointer;
 }
 
-.color-field > input[type='color']:focus-visible {
-	outline: var(--mi-focus-width) solid var(--mi-focus-ring);
-	outline-offset: var(--mi-focus-offset);
-}
-
 /* Scrolls inside itself, so long lines never widen the page; focusable, so it scrolls by keyboard too. */
 .code-block {
 	margin: 0;
@@ -172,11 +169,6 @@
 	border-radius: var(--mi-radius-medium);
 	background: var(--mi-surface-sunken);
 	tab-size: 2;
-}
-
-.code-block:focus-visible {
-	outline: var(--mi-focus-width) solid var(--mi-focus-ring);
-	outline-offset: var(--mi-focus-offset);
 }
 
 .contrast-failures {
@@ -226,11 +218,6 @@
 .icon-tile[aria-current='true'] {
 	border-color: var(--mi-border-strong);
 	background: var(--mi-surface-raised);
-}
-
-.icon-tile:focus-visible {
-	outline: var(--mi-focus-width) solid var(--mi-focus-ring);
-	outline-offset: var(--mi-focus-offset);
 }
 
 .icon-tile-set {

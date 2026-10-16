@@ -64,10 +64,9 @@ describe('toMuiTheme', (): void => {
 		expect(muiTheme.breakpoints.values).toEqual({ xs: 0, sm: 600, md: 840, lg: 1200, xl: 1600 });
 	});
 
-	it('styles code elements with the monospace stack in the baseline', (): void => {
-		expect(muiTheme.components?.MuiCssBaseline?.styleOverrides).toEqual({
-			'code, kbd, pre, samp': { fontFamily: defaultUiTheme.tokens.fontFamily.mono },
-		});
+	// The global styles of the library are applied by `UiProvider` (`nativeBaselineStyles`), not by the Material UI theme.
+	it('leaves the Material UI baseline unchanged', (): void => {
+		expect(muiTheme.components?.MuiCssBaseline).toBeUndefined();
 	});
 
 	it('maps the motion tokens to the transitions', (): void => {

@@ -17,6 +17,7 @@ export {
 	createUiTheme,
 	defaultUiTheme,
 	parseUiThemeConfig,
+	scrollbarStyles,
 	themeVariables,
 	UiProvider,
 	UiThemeConfigError,

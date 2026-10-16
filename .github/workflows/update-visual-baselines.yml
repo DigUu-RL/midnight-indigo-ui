@@ -36,8 +36,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
 
-      - name: Install Chromium
-        run: pnpm --filter @midnight-indigo/browser-tests exec playwright install --with-deps chromium
+      - name: Install Chromium, Firefox and WebKit
+        run: pnpm --filter @midnight-indigo/browser-tests exec playwright install --with-deps chromium firefox webkit
 
       - run: pnpm --filter @midnight-indigo/browser-tests run test:visual:update
 

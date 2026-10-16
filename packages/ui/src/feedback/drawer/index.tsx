@@ -7,6 +7,7 @@ import type { ComponentPropsWithRef, ReactElement, ReactNode, RefCallback } from
 
 import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { forwardAllBut } from '#src/shared/appearance.ts';
+import { scrollbarStyles } from '#src/theme/native-styles.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 import {
 	ModalLayer,
@@ -104,6 +105,7 @@ const Panel = styled('div', {
 			? { width: widths[drawerSize], maxWidth: '100%', height: '100%' }
 			: { width: '100%', maxHeight: heights[drawerSize] }),
 		overflowY: 'auto',
+		...scrollbarStyles,
 		padding: spacing[6],
 		[borderSides[drawerPlacement]]: `1px solid ${border.default}`,
 		backgroundColor: surface.overlay,

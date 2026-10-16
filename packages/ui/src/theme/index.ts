@@ -7,6 +7,12 @@ export {
 export type { CreateUiThemeOptions, UiTheme } from '#src/theme/create-ui-theme.ts';
 export { toMuiTheme } from '#src/theme/mui-theme.ts';
 export type { MuiThemeOptions } from '#src/theme/mui-theme.ts';
+export {
+	autofillStyles,
+	forcedColorsMediaQuery,
+	nativeBaselineStyles,
+	scrollbarStyles,
+} from '#src/theme/native-styles.ts';
 export { parseUiThemeConfig, UiThemeConfigError } from '#src/theme/theme-config.ts';
 export type {
 	IntentConfig,

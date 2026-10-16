@@ -17,6 +17,7 @@ import {
 	visuallyHiddenStyles,
 } from '#src/shared/appearance.ts';
 import { Glyph } from '#src/shared/glyphs/index.tsx';
+import { scrollbarStyles } from '#src/theme/native-styles.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 import { breakpointMediaQuery } from '#src/tokens/index.ts';
 import type { Breakpoint } from '#src/tokens/index.ts';
@@ -164,6 +165,7 @@ const Navigation = styled('nav')({
 	paddingInline: spacing[1],
 	overflowX: 'hidden',
 	overflowY: 'auto',
+	...scrollbarStyles,
 });
 
 const List = styled('ul')({

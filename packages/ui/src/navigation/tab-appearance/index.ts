@@ -2,6 +2,7 @@
 import type { CSSObject } from '@mui/material/styles';
 
 import { colorTransitionStyles } from '#src/shared/appearance.ts';
+import { scrollbarStyles } from '#src/theme/native-styles.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 
 const { spacing, typography, radius, text, border, state, focus, intent }: typeof themeVariables =
@@ -16,7 +17,7 @@ export const tabRowStyles: CSSObject = {
 	padding: 0,
 	overflowX: 'auto',
 	overscrollBehaviorX: 'contain',
-	scrollbarWidth: 'thin',
+	...scrollbarStyles,
 	listStyle: 'none',
 	borderBlockEnd: `1px solid ${border.subtle}`,
 };

@@ -163,6 +163,43 @@ describe('UiProvider in the browser', (): void => {
 	});
 });
 
+describe('UiProvider baseline', (): void => {
+	const globalStylesText = (): string => {
+		return [...document.head.querySelectorAll<HTMLStyleElement>('style[data-emotion*="global"]')]
+			.map((style: HTMLStyleElement): string => style.textContent)
+			.join('\n');
+	};
+
+	it('applies the base document styles and the native browser styles by default', async (): Promise<void> => {
+		await renderInBrowser(
+			<UiProvider>
+				<ThemeProbe />
+			</UiProvider>,
+		);
+
+		const css: string = globalStylesText();
+
+		expect(css).toContain('color-scheme:dark');
+		expect(css).toContain('::selection{background-color:var(--mi-accent-selection)');
+		expect(css).toContain('scrollbar-color:var(--mi-border-strong) var(--mi-surface-canvas)');
+
+		expect(css).toContain(
+			':where(:focus-visible){outline:var(--mi-focus-width) solid var(--mi-focus-ring)',
+		);
+	});
+
+	it('applies no global style when it is turned off', async (): Promise<void> => {
+		await renderInBrowser(
+			<UiProvider baseline={false}>
+				<ThemeProbe />
+			</UiProvider>,
+		);
+
+		expect(globalStylesText()).toBe('');
+		expect(snapshots.at(-1)?.uiTheme).toBe(defaultUiTheme);
+	});
+});
+
 describe('UiProvider and reduced motion', (): void => {
 	const stubMatchMedia = (reducedMotion: boolean): void => {
 		vi.stubGlobal('matchMedia', (query: string): MediaQueryList => {
