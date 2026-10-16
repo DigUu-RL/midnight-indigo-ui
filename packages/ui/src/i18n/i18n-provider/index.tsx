@@ -15,14 +15,19 @@ import { createFormatters } from '#src/i18n/formatters.ts';
 import type { Formatters } from '#src/i18n/formatters.ts';
 import { libraryNamespace, mergeResources } from '#src/i18n/library-messages.ts';
 import type { I18nResources, Messages } from '#src/i18n/library-messages.ts';
+import { createRichTranslator } from '#src/i18n/rich-text.ts';
+import type { MalformedMessageHandler, RichTranslator } from '#src/i18n/rich-text.ts';
 
 export interface I18nProviderProps extends I18nOptions {
+	/** Called once per message and problem of a malformed rich message. Defaults to `console.warn` outside production. */
+	onMalformedMessage?: MalformedMessageHandler | undefined;
 	children?: ReactNode;
 }
 
 interface I18nState {
 	instance: I18nInstance;
 	formatters: Formatters;
+	onMalformedMessage: MalformedMessageHandler | undefined;
 }
 
 const I18nContext: Context<I18nState | null> = createContext<I18nState | null>(null);
@@ -44,7 +49,11 @@ const addResources = (instance: I18nInstance, resources: I18nResources): void =>
  * Client Component of the application. The instance is created once; a new `locale` changes its language, and new
  * `resources` are merged into it.
  */
-export const I18nProvider = ({ children, ...options }: I18nProviderProps): ReactElement => {
+export const I18nProvider = ({
+	children,
+	onMalformedMessage,
+	...options
+}: I18nProviderProps): ReactElement => {
 	const { locale, resources, timeZone, currency }: I18nOptions = options;
 	const [instance] = useState((): I18nInstance => initializeI18n(options).instance);
 	const [addedResources, setAddedResources] = useState<I18nResources | undefined>(resources);
@@ -73,8 +82,8 @@ export const I18nProvider = ({ children, ...options }: I18nProviderProps): React
 	}, [instance, language, formatters, t]);
 
 	const state: I18nState = useMemo(
-		(): I18nState => ({ instance, formatters }),
-		[instance, formatters],
+		(): I18nState => ({ instance, formatters, onMalformedMessage }),
+		[instance, formatters, onMalformedMessage],
 	);
 
 	return (
@@ -96,7 +105,7 @@ const useI18nState = (hook: string): I18nState => {
 	return state;
 };
 
-export interface I18nValue extends Formatters {
+export interface I18nValue extends Formatters, RichTranslator {
 	/** Translates keys of the namespace given to `useI18n` (or the default one); `'namespace:key'` reaches others. */
 	t: TFunction;
 	/** Changes the language of the provider; the promise settles when its messages are loaded. */
@@ -105,17 +114,22 @@ export interface I18nValue extends Formatters {
 	i18n: I18nInstance;
 }
 
-/** `t` for the namespace(s), the locale and the formatters of the nearest `I18nProvider`. */
+/** `t`, `rich` and `plain` for the namespace(s), the locale and the formatters of the nearest `I18nProvider`. */
 export const useI18n = (namespace?: string | readonly string[]): I18nValue => {
-	const { instance, formatters }: I18nState = useI18nState('useI18n');
+	const { instance, formatters, onMalformedMessage }: I18nState = useI18nState('useI18n');
 
 	const { t }: { t: TFunction } = useTranslation(
 		namespace === undefined || typeof namespace === 'string' ? namespace : [...namespace],
 		{ i18n: instance },
 	);
 
+	const richTranslator: RichTranslator = useMemo((): RichTranslator => {
+		return createRichTranslator(t, { onMalformedMessage });
+	}, [t, onMalformedMessage]);
+
 	return {
 		...formatters,
+		...richTranslator,
 		t,
 		changeLocale: async (locale: string): Promise<void> => {
 			await instance.changeLanguage(locale);

@@ -6,6 +6,24 @@ export { createFormatters, FormattersConfigurationError } from '#src/i18n/format
 export type { Formatters, FormattersOptions } from '#src/i18n/formatters.ts';
 export { I18nProvider, useFormatters, useI18n } from '#src/i18n/i18n-provider/index.tsx';
 export type { I18nProviderProps, I18nValue } from '#src/i18n/i18n-provider/index.tsx';
+export { RichMessage } from '#src/i18n/rich-message/index.tsx';
+export type { RichMessageProps } from '#src/i18n/rich-message/index.tsx';
+export {
+	createRichTranslator,
+	defaultRichTags,
+	renderRichText,
+	toPlainText,
+} from '#src/i18n/rich-text.ts';
+export type {
+	MalformedMessageHandler,
+	RichTag,
+	RichTags,
+	RichTextOptions,
+	RichTextProblem,
+	RichTranslator,
+	RichTranslatorOptions,
+	RichValues,
+} from '#src/i18n/rich-text.ts';
 export { libraryNamespace, libraryResources, mergeResources } from '#src/i18n/library-messages.ts';
 export type { I18nResources, LibraryMessages, Messages } from '#src/i18n/library-messages.ts';
 export { englishMessages } from '#src/i18n/messages/en-us.ts';

@@ -145,7 +145,7 @@
 	"customers": {
 		"header": {
 			"title": "New customer",
-			"description": "Register a customer of the Aurora stores. The data is checked by the server and not stored: this is a demo."
+			"description": "Register a customer of the Aurora stores. The data is checked by the server and <strong>not stored</strong>: this is a demo."
 		},
 		"form": {
 			"contact": "Contact",
@@ -155,7 +155,7 @@
 		"fields": {
 			"name": "Full name",
 			"email": "Email address",
-			"emailDescription": "Used to send receipts. ana.souza@aurora.example is already registered.",
+			"emailDescription": "Used to send receipts. <code>ana.souza@aurora.example</code> is already registered.",
 			"phone": "Phone",
 			"phoneDescription": "Optional. Area code and number, e.g. (11) 91234-5678.",
 			"type": "Customer type",
@@ -208,8 +208,7 @@
 			"alertTitle": "Report ready",
 			"alertMessage": "The sales report of September was generated.",
 			"progress": "Monthly goal",
-			"linkBefore": "Happy with it?",
-			"link": "Export the theme"
+			"export": "Happy with it? <link>Export the theme</link>"
 		},
 		"contrast": {
 			"title": "Contrast",
@@ -229,7 +228,7 @@
 		},
 		"export": {
 			"title": "theme.json",
-			"description": "Replace src/theme.json with it and build again: the palette is applied on the server, without a flash.",
+			"description": "Replace <code>src/theme.json</code> with it and build again: the palette is applied on the server, <em>without a flash</em>.",
 			"code": "Theme configuration",
 			"copy": "Copy",
 			"download": "Download",

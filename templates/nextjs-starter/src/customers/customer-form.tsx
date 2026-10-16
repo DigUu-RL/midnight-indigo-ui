@@ -31,7 +31,7 @@ interface CustomerFormProps {
 }
 
 export const CustomerForm = ({ locale }: CustomerFormProps): ReactElement => {
-	const { t }: I18nValue = useI18n();
+	const { t, rich }: I18nValue = useI18n();
 	const toast: ToastApi = useToast();
 
 	const save = async (data: FormData, form: HTMLFormElement): Promise<void> => {
@@ -70,7 +70,7 @@ export const CustomerForm = ({ locale }: CustomerFormProps): ReactElement => {
 							name='email'
 							type='email'
 							autoComplete='email'
-							description={t('customers.fields.emailDescription')}
+							description={rich('customers.fields.emailDescription')}
 							required
 						/>
 
