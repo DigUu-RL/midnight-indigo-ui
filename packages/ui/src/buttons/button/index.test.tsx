@@ -6,7 +6,7 @@ import type { ReactElement } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { declarationsOf, expectNoAxeViolations, styleRulesOf } from '#test/component-harness.ts';
-import { Icon } from '#src/icons/icon.tsx';
+import { Icon } from '#src/icons/icon/index.tsx';
 import type { Appearance } from '#src/shared/appearance.ts';
 import { semanticIntents } from '#src/tokens/index.ts';
 import type { SemanticIntent } from '#src/tokens/index.ts';

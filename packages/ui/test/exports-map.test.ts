@@ -36,6 +36,7 @@ const publicSubpaths: readonly string[] = [
 	'./charts',
 	'./i18n',
 	'./dashboard',
+	'./icons',
 ];
 
 const nonCodeExports: readonly string[] = ['./styles.css', './package.json'];

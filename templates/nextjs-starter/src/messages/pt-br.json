@@ -11,7 +11,8 @@
 			"reports": "Relatórios",
 			"newCustomer": "Novo cliente",
 			"appearance": "Aparência",
-			"gallery": "Galeria de componentes"
+			"gallery": "Galeria de componentes",
+			"icons": "Ícones"
 		},
 		"language": "Idioma",
 		"notifications": "Notificações"
@@ -243,5 +244,78 @@
 		"message": "Não há nenhuma página neste endereço",
 		"description": "Ela pode ter mudado de lugar, ou o link pode estar errado.",
 		"home": "Ir para a visão geral de vendas"
+	},
+	"icons": {
+		"header": {
+			"title": "Ícones",
+			"description": "{{sets, number}} conjuntos de ícones de código aberto do Iconify, {{icons, number}} ícones ao todo, renderizados como SVG inline no servidor: nenhuma requisição e nenhum dado de ícone no navegador.",
+			"attribution": "Atribuição dos ícones"
+		},
+		"search": {
+			"title": "Buscar ícones",
+			"query": "Nome",
+			"queryDescription": "Palavras do nome do ícone, em inglês, por exemplo arrow left",
+			"set": "Conjunto",
+			"allSets": "Todos os conjuntos",
+			"license": "Licença",
+			"allLicenses": "Todas as licenças",
+			"submit": "Buscar",
+			"clear": "Limpar busca"
+		},
+		"sets": {
+			"caption": "Conjuntos de ícones instalados",
+			"name": "Conjunto",
+			"license": "Licença",
+			"icons": "Ícones",
+			"author": "Autor"
+		},
+		"count": "{{count, number}}",
+		"results": {
+			"summary": {
+				"one": "{{count, number}} ícone",
+				"many": "{{count, number}} de ícones",
+				"other": "{{count, number}} ícones"
+			},
+			"emptyTitle": "Nenhum ícone encontrado",
+			"emptyDescription": "Tente outras palavras, ou busque em todos os conjuntos e licenças.",
+			"pages": "Páginas de resultados",
+			"previous": "Página anterior",
+			"next": "Próxima página",
+			"page": "Página {{page, number}} de {{pageCount, number}}"
+		},
+		"details": {
+			"source": "{{set}}, de {{author}}, sob {{license}}.",
+			"attribution": "A licença (CC BY 4.0) exige dar crédito ao autor: mantenha a página de atribuição ou o ICON-NOTICES.md na sua aplicação.",
+			"palette": "Ícone multicolorido: mantém as próprias cores em vez de seguir a cor do texto.",
+			"sizes": "Tamanhos pequeno, médio e grande",
+			"intents": "Na cor de texto de cada intent"
+		},
+		"snippets": {
+			"dataTitle": "Importar os dados",
+			"dataDescription": "Funciona em Server e Client Components; só este ícone chega ao bundle.",
+			"nameTitle": "Pelo nome, no servidor",
+			"nameDescription": "Registra o conjunto inteiro em um Server Component, então nenhum dado de ícone chega ao navegador. No cliente, importe os dados.",
+			"copyData": "Copiar o código dos dados",
+			"copyName": "Copiar o código pelo nome",
+			"copied": "Código copiado para a área de transferência.",
+			"copyFailed": "Não foi possível copiar o código. Selecione-o e copie à mão."
+		}
+	},
+	"iconAttribution": {
+		"header": {
+			"title": "Atribuição dos ícones",
+			"description": "Autores e licenças dos conjuntos de ícones que a aplicação distribui. Os conjuntos sob CC BY 4.0 exigem este crédito.",
+			"back": "Voltar aos ícones"
+		},
+		"attributed": {
+			"one": "{{count, number}} conjunto que exige atribuição (CC BY 4.0)",
+			"many": "{{count, number}} de conjuntos que exigem atribuição (CC BY 4.0)",
+			"other": "{{count, number}} conjuntos que exigem atribuição (CC BY 4.0)"
+		},
+		"others": {
+			"one": "{{count, number}} outro conjunto",
+			"many": "{{count, number}} de outros conjuntos",
+			"other": "{{count, number}} outros conjuntos"
+		}
 	}
 }

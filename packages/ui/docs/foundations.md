@@ -114,8 +114,9 @@ Browser checks of zoom and reflow run with the end-to-end tests (F17).
 
 ## Icons
 
-`Icon` (root entry, `@midnight-indigo/ui`) renders inline SVG content. It is a Server Component-safe primitive and is
-not tied to an icon set: decision D07 (icon source) is still open. How components take icons (slots, decorative by
+`Icon` (root entry, `@midnight-indigo/ui`, and `@midnight-indigo/ui/icons`) renders inline SVG content. It is a Server
+Component-safe primitive and is not tied to an icon set. The icons of Iconify, rendered offline with the same rule, are
+`IconifyIcon` of `@midnight-indigo/ui/icons` ([icons.md](./icons.md)). How components take icons (slots, decorative by
 default) is described in [components.md](./components.md#slots-and-icons).
 
 ```tsx

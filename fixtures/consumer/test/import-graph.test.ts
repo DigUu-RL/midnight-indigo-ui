@@ -65,6 +65,7 @@ const lightEntries: readonly string[] = [
 	'@midnight-indigo/ui/forms',
 	'@midnight-indigo/ui/layout',
 	'@midnight-indigo/ui/navigation',
+	'@midnight-indigo/ui/icons',
 ];
 
 for (const specifier of lightEntries) {
@@ -189,4 +190,26 @@ test('compiled files keep no subpath import of the source tree', (): void => {
 
 test('@midnight-indigo/ui/tokens does not depend on React', (): void => {
 	assert.deepEqual(importGraphOf('@midnight-indigo/ui/tokens').packages, []);
+});
+
+// The root re-exports `Icon` only: the Iconify renderer and the collection registry stay in `@midnight-indigo/ui/icons`.
+const iconsEntryFiles: readonly string[] = [
+	'icons/index.js',
+	'icons/iconify-icon/index.js',
+	'icons/icon-registry/index.js',
+];
+
+test('@midnight-indigo/ui does not load @midnight-indigo/ui/icons', (): void => {
+	const rootFiles: string[] = importGraphOf('@midnight-indigo/ui').files;
+	const iconsFiles: string[] = importGraphOf('@midnight-indigo/ui/icons').files;
+
+	assert.deepEqual(
+		rootFiles.filter((file: string): boolean => iconsEntryFiles.includes(file)),
+		[],
+	);
+
+	assert.deepEqual(
+		iconsEntryFiles.filter((file: string): boolean => !iconsFiles.includes(file)),
+		[],
+	);
 });

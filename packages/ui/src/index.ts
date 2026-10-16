@@ -5,13 +5,13 @@ export * from '#src/data-display/index.ts';
 export * from '#src/feedback/index.ts';
 export * from '#src/layout/index.ts';
 export * from '#src/navigation/index.ts';
-export { Icon, iconAccessibilityProps } from '#src/icons/icon.tsx';
+export { Icon, iconAccessibilityProps } from '#src/icons/icon/index.tsx';
 export type {
 	IconAccessibility,
 	IconAccessibilityAttributes,
 	IconProps,
 	IconSize,
-} from '#src/icons/icon.tsx';
+} from '#src/icons/icon/index.tsx';
 export {
 	createThemeStylesheet,
 	createUiTheme,

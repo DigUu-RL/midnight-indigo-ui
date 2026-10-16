@@ -18,6 +18,7 @@ const applicationPages: readonly ApplicationPage[] = [
 	{ path: '/reports', names: { 'en-us': 'Reports', 'pt-br': 'Relatórios' } },
 	{ path: '/customers/new', names: { 'en-us': 'New customer', 'pt-br': 'Novo cliente' } },
 	{ path: '/settings/appearance', names: { 'en-us': 'Appearance', 'pt-br': 'Aparência' } },
+	{ path: '/icons', names: { 'en-us': 'Icons', 'pt-br': 'Ícones' } },
 ];
 
 const locales: readonly ('en-us' | 'pt-br')[] = ['en-us', 'pt-br'];

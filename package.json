@@ -16,7 +16,7 @@
 		"lint": "eslint .",
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
-		"test": "pnpm -r run test",
+		"test": "node --test \"scripts/**/*.test.ts\" && pnpm -r run test",
 		"test:performance": "pnpm --filter @midnight-indigo/ui run test:performance",
 		"test:browser": "pnpm --filter @midnight-indigo/browser-tests run test:browser",
 		"check:package": "pnpm --filter @midnight-indigo/ui run check:package",
@@ -25,6 +25,7 @@
 		"check:bundle": "node scripts/check-bundle-size.ts",
 		"create:starter": "node templates/nextjs-starter/scripts/create-starter.ts",
 		"check:starter": "node templates/nextjs-starter/scripts/check-generated-starter.ts",
+		"update:icon-sets": "node scripts/update-icon-sets.ts",
 		"check": "pnpm build && pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm test:performance && pnpm check:package && pnpm check:source && pnpm check:licenses && pnpm check:bundle"
 	},
 	"devDependencies": {

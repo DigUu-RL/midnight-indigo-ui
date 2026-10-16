@@ -39,6 +39,8 @@ export interface ToastOptions {
 	/** Short summary in bold before the message. */
 	title?: string;
 	message: string;
+	/** Decorative icon in place of the intent glyph, e.g. an `IconifyIcon` marked `decorative`. */
+	icon?: ReactNode;
 	/** Runs the action and dismisses the toast. A toast with an action stays at least 10 seconds. */
 	action?: ToastAction;
 	/**
@@ -106,6 +108,7 @@ interface ToastRecord {
 	intent: SemanticIntent;
 	title: string | undefined;
 	message: string;
+	icon: ReactNode;
 	action: ToastAction | undefined;
 	duration: number | null;
 	/** Changes when the text changes, which announces the toast again. */
@@ -284,6 +287,7 @@ const ToastItem = ({
 				intent={toast.intent}
 				variant='outline'
 				title={toast.title}
+				icon={toast.icon}
 				action={
 					toast.action === undefined ? undefined : (
 						<Button
@@ -373,6 +377,7 @@ export const ToastProvider = ({
 				intent,
 				title: options.title,
 				message: options.message,
+				icon: options.icon,
 				action: options.action,
 				duration: resolveDuration(options, intent),
 				contentRevision:

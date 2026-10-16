@@ -11,7 +11,8 @@
 			"reports": "Reports",
 			"newCustomer": "New customer",
 			"appearance": "Appearance",
-			"gallery": "Component gallery"
+			"gallery": "Component gallery",
+			"icons": "Icons"
 		},
 		"language": "Language",
 		"notifications": "Notifications"
@@ -241,5 +242,75 @@
 		"message": "There is no page at this address",
 		"description": "It may have moved, or the link may be wrong.",
 		"home": "Go to the sales overview"
+	},
+	"icons": {
+		"header": {
+			"title": "Icons",
+			"description": "{{sets, number}} open-source icon sets of Iconify, {{icons, number}} icons in all, rendered as inline SVG on the server: no request and no icon data in the browser.",
+			"attribution": "Icon attribution"
+		},
+		"search": {
+			"title": "Search icons",
+			"query": "Name",
+			"queryDescription": "Words of the icon name, in English, e.g. arrow left",
+			"set": "Set",
+			"allSets": "All sets",
+			"license": "License",
+			"allLicenses": "All licenses",
+			"submit": "Search",
+			"clear": "Clear search"
+		},
+		"sets": {
+			"caption": "Installed icon sets",
+			"name": "Set",
+			"license": "License",
+			"icons": "Icons",
+			"author": "Author"
+		},
+		"count": "{{count, number}}",
+		"results": {
+			"summary": {
+				"one": "{{count, number}} icon",
+				"other": "{{count, number}} icons"
+			},
+			"emptyTitle": "No icon found",
+			"emptyDescription": "Try other words, or search every set and license.",
+			"pages": "Result pages",
+			"previous": "Previous page",
+			"next": "Next page",
+			"page": "Page {{page, number}} of {{pageCount, number}}"
+		},
+		"details": {
+			"source": "{{set}} by {{author}}, under {{license}}.",
+			"attribution": "Its license (CC BY 4.0) requires crediting the author: keep the attribution page or ICON-NOTICES.md in your application.",
+			"palette": "Multicolor icon: it keeps its own colors instead of following the text color.",
+			"sizes": "Small, medium and large sizes",
+			"intents": "In the text color of each intent"
+		},
+		"snippets": {
+			"dataTitle": "Import the data",
+			"dataDescription": "Works in Server and Client Components; only this icon reaches the bundle.",
+			"nameTitle": "By name, on the server",
+			"nameDescription": "Registers the whole set in a Server Component, so no icon data reaches the browser. On the client, import the data instead.",
+			"copyData": "Copy the data code",
+			"copyName": "Copy the name code",
+			"copied": "Code copied to the clipboard.",
+			"copyFailed": "The code could not be copied. Select it and copy it by hand."
+		}
+	},
+	"iconAttribution": {
+		"header": {
+			"title": "Icon attribution",
+			"description": "Authors and licenses of the icon sets the application ships. The sets under CC BY 4.0 require this credit.",
+			"back": "Back to the icons"
+		},
+		"attributed": {
+			"one": "{{count, number}} set that requires attribution (CC BY 4.0)",
+			"other": "{{count, number}} sets that require attribution (CC BY 4.0)"
+		},
+		"others": {
+			"one": "{{count, number}} other set",
+			"other": "{{count, number}} other sets"
+		}
 	}
 }

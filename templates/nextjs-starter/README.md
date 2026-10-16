@@ -63,13 +63,14 @@ src/
 │   ├── [locale]/            # every page of the application, once per locale
 │   │   ├── layout.tsx       # root layout: <html lang>, providers and the shell
 │   │   ├── page.tsx         # sales overview
-│   │   └── orders/ reports/ customers/new/ settings/appearance/
+│   │   └── orders/ reports/ customers/new/ settings/appearance/ icons/
 │   ├── gallery/             # the component gallery, with its own root layout
 │   └── global-not-found.tsx # the 404 page of any path no route matches
 ├── proxy.ts                 # sends paths without a locale to the preferred one
 ├── i18n/                    # locales, messages by locale, server translation
 ├── messages/                # en-us.json and pt-br.json
 ├── shell/                   # providers, the dashboard shell, the language links
+├── icons/                   # the installed icon sets, the icon browser (server only)
 ├── dashboard/ orders/ reports/ customers/ appearance/
 ├── theme.json               # the palette of the application
 └── theme.ts
@@ -108,6 +109,21 @@ Application CSS uses the tokens as CSS custom properties (`var(--mi-surface-rais
 `src/shell/globals.css`), so it follows the palette. TypeScript code reads them from `themeVariables` of
 `@midnight-indigo/ui/theme`.
 
+## Icons
+
+The starter depends on every open-source icon set of [Iconify](https://iconify.design) whose license allows
+commercial use next to an MIT project, one `@iconify-json/<prefix>` package each (`src/icons/icon-sets.ts` lists
+them). The **Icons** page searches the names of every set, filters by set and license, previews an icon in each size
+and intent, and copies the code to use it. It runs on the server: the browser receives the rendered SVG, never a set.
+
+- In a Server Component, register a set with `registerIconCollection` and name icons (`tabler:home`) at no client
+  cost; in a Client Component, paste the icon data the browser copies, so only that icon reaches the bundle. See the
+  icons guide of the library.
+- Sets under CC BY 4.0 require crediting their authors: the **Icon attribution** page and `ICON-NOTICES.md` (also in
+  `ICON-NOTICES.pt-BR.md`) do it, and list each excluded set with the reason. Keep one of them in your application.
+- The sets take about 330 MB in `node_modules` and are not part of any page bundle. To ship fewer, remove the
+  `@iconify-json/*` dependencies you do not use and their entries in `src/icons/icon-sets.ts`.
+
 ## Replacing the demo
 
 - **Data:** `src/dashboard/mock-api.ts` is the only thing the sales overview calls; replace `fetchDashboard` with a
@@ -118,4 +134,5 @@ Application CSS uses the tokens as CSS custom properties (`var(--mi-surface-rais
 
 ## License
 
-MIT, like the library. Geist Sans is licensed under the SIL Open Font License 1.1.
+MIT, like the library. Geist Sans is licensed under the SIL Open Font License 1.1. Each icon set keeps its own
+license; see `ICON-NOTICES.md`.
