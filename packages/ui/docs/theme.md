@@ -77,13 +77,14 @@ Pass `{ onWarning: () => {} }` to silence the console, or throw from it to make 
 
 `UiProvider` is a Client Component. Place a single one at the root of the application.
 
-| Prop       | Default          | Purpose                                                               |
-| ---------- | ---------------- | --------------------------------------------------------------------- |
-| `theme`    | `defaultUiTheme` | Theme created by `createUiTheme`.                                     |
-| `baseline` | `true`           | Base document styles: dark canvas background, text color, box sizing. |
+| Prop       | Default          | Purpose                                                                               |
+| ---------- | ---------------- | ------------------------------------------------------------------------------------- |
+| `theme`    | `defaultUiTheme` | Theme created by `createUiTheme`.                                                     |
+| `baseline` | `true`           | Global styles: the document (canvas, text, box sizing) and the native browser styles. |
 
-With `baseline`, `body` also receives the `body` typographic role and `code, kbd, pre, samp` the monospace stack;
-nothing else is styled globally (see [foundations.md](./foundations.md#global-styles)).
+With `baseline`, `body` also receives the `body` typographic role, and what the browser draws by itself (scrollbars,
+selection, autofill, native controls, focus ring, links and other text elements) follows the theme, with zero
+specificity (see [native-styles.md](./native-styles.md)). With `baseline={false}`, no global style is applied.
 
 `useUiTheme()` returns the theme of the nearest provider, or the official theme outside of one.
 `usePrefersReducedMotion()` returns the reduced motion preference of the user; the provider uses it to remove the

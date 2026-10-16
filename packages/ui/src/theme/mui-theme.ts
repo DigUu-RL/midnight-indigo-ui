@@ -87,8 +87,7 @@ export const toMuiTheme = (
 	theme: UiTheme,
 	{ reducedMotion = false }: MuiThemeOptions = {},
 ): Theme => {
-	const { intent, surface, text, border, state, radius, fontFamily, layer }: UiTheme['tokens'] =
-		theme.tokens;
+	const { intent, surface, text, border, state, radius, layer }: UiTheme['tokens'] = theme.tokens;
 
 	return createTheme({
 		palette: {
@@ -133,10 +132,6 @@ export const toMuiTheme = (
 		components: {
 			// The ripple is a decorative animation with its own timing, outside the transition durations.
 			MuiButtonBase: { defaultProps: { disableRipple: reducedMotion } },
-			// `body` already receives `body1`; code elements get the monospace stack and nothing else is styled.
-			MuiCssBaseline: {
-				styleOverrides: { 'code, kbd, pre, samp': { fontFamily: fontFamily.mono } },
-			},
 		},
 	});
 };

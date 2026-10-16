@@ -12,10 +12,13 @@ import { ComboboxScenario, SelectScenario } from '#src/scenarios/choice-scenario
 import { ComponentsScenario } from '#src/scenarios/components-scenario.tsx';
 import { DataTableScenario } from '#src/scenarios/data-table-scenario.tsx';
 import { ListScenario } from '#src/scenarios/list-scenario.tsx';
+import { NativeScenario } from '#src/scenarios/native-scenario.tsx';
 
 const parameters: URLSearchParams = new URLSearchParams(window.location.search);
 const scenario: string = parameters.get('scenario') ?? 'data-table';
 const size: number = Number(parameters.get('size') ?? '10000');
+// `baseline=false` renders the provider without its global styles.
+const baseline: boolean = parameters.get('baseline') !== 'false';
 
 const processing: 'client' | 'server' =
 	parameters.get('processing') === 'server' ? 'server' : 'client';
@@ -27,6 +30,7 @@ const scenarios: Record<string, () => ReactElement> = {
 	list: (): ReactElement => <ListScenario itemCount={size} />,
 	chart: (): ReactElement => <ChartScenario pointCount={size} />,
 	components: (): ReactElement => <ComponentsScenario cardCount={size} />,
+	native: (): ReactElement => <NativeScenario />,
 };
 
 const renderScenario: () => ReactElement =
@@ -57,7 +61,7 @@ performance.mark('scenario-start');
 
 createRoot(rootElement).render(
 	<StrictMode>
-		<UiProvider theme={createUiTheme()}>
+		<UiProvider theme={createUiTheme()} baseline={baseline}>
 			<main style={{ maxWidth: '72rem', margin: '0 auto', padding: '1.5rem' }}>
 				{renderScenario()}
 				<ReadySignal />

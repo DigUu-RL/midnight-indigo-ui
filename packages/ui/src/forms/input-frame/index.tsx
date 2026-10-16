@@ -7,6 +7,7 @@ import type { ComponentPropsWithRef, ReactElement, ReactNode } from 'react';
 import { colorTransitionStyles, forwardAllBut } from '#src/shared/appearance.ts';
 import type { ControlSize } from '#src/shared/appearance.ts';
 import { CircularIndicator } from '#src/shared/circular-indicator/index.tsx';
+import { autofillStyles } from '#src/theme/native-styles.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 import { hasContent } from '#src/forms/form-field/index.tsx';
 
@@ -112,6 +113,8 @@ export const frameForwarding: { shouldForwardProp: (property: PropertyKey) => bo
 
 const Frame = styled('div', frameForwarding)<FrameStyleProps>(frameStyles);
 
+const controlAutofillStyles: CSSObject = autofillStyles(surface.sunken, text.primary);
+
 /** The native control inside the frame, which draws the boundary and the focus instead of it. */
 export const controlResetStyles: CSSObject = {
 	boxSizing: 'border-box',
@@ -128,6 +131,9 @@ export const controlResetStyles: CSSObject = {
 	letterSpacing: 'inherit',
 	'&::placeholder': { color: text.muted, opacity: 1 },
 	'&:disabled': { cursor: 'not-allowed', WebkitTextFillColor: 'currentColor' },
+	// An autofilled control keeps the colors of the frame (only an enabled, editable field is autofilled).
+	'&:-webkit-autofill': controlAutofillStyles,
+	'&:autofill': controlAutofillStyles,
 };
 
 const StyledTextInput = styled('input')(controlResetStyles);

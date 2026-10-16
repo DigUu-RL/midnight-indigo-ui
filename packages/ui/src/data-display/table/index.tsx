@@ -14,6 +14,7 @@ import {
 } from '#src/shared/appearance.ts';
 import { Glyph } from '#src/shared/glyphs/index.tsx';
 import type { GlyphName } from '#src/shared/glyphs/index.tsx';
+import { scrollbarStyles } from '#src/theme/native-styles.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 import type { SortDirection } from '#src/data-display/row-processing/index.ts';
 
@@ -84,6 +85,7 @@ const ScrollContainer = styled('div')({
 	boxSizing: 'border-box',
 	maxWidth: '100%',
 	overflowX: 'auto',
+	...scrollbarStyles,
 	border: `1px solid ${border.subtle}`,
 	borderRadius: radius.large,
 	backgroundColor: surface.base,

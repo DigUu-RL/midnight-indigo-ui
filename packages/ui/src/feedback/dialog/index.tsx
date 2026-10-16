@@ -7,6 +7,7 @@ import type { ComponentPropsWithRef, ReactElement, ReactNode, RefCallback } from
 
 import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { forwardAllBut } from '#src/shared/appearance.ts';
+import { scrollbarStyles } from '#src/theme/native-styles.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 import {
 	ModalLayer,
@@ -90,6 +91,7 @@ const Panel = styled('div', { shouldForwardProp: forwardAllBut('dialogSize') })<
 		maxHeight: '100%',
 		// The panel scrolls as a whole and is focusable, so a long dialog can be read with the keyboard.
 		overflowY: 'auto',
+		...scrollbarStyles,
 		padding: spacing[6],
 		borderWidth: '1px',
 		borderStyle: 'solid',

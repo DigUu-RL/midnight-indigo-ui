@@ -12,6 +12,7 @@ import type {
 } from 'react';
 
 import { mergeReferences } from '#src/shared/merge-references.ts';
+import { scrollbarStyles } from '#src/theme/native-styles.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 
 const {
@@ -51,8 +52,9 @@ export const anchorOrigins = (
 /** Root of an anchored overlay: above dialogs and drawers, so it also works inside them. */
 export const anchoredRootStyles: CSSObject = { zIndex: layer.popover };
 
-/** Surface of an anchored overlay, replacing the Material UI paper look. */
+/** Surface of an anchored overlay, replacing the Material UI paper look. It scrolls when its content is taller. */
 export const anchoredSurfaceStyles: CSSObject = {
+	...scrollbarStyles,
 	boxSizing: 'border-box',
 	maxWidth: `calc(100vw - 2 * ${spacing[4]})`,
 	marginBlock: spacing[1],

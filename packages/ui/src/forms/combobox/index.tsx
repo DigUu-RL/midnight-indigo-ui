@@ -19,6 +19,7 @@ import { IconButton } from '#src/buttons/icon-button/index.tsx';
 import type { ControlSize } from '#src/shared/appearance.ts';
 import { Glyph } from '#src/shared/glyphs/index.tsx';
 import { mergeReferences } from '#src/shared/merge-references.ts';
+import { scrollbarStyles } from '#src/theme/native-styles.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 import { FormField, HiddenText } from '#src/forms/form-field/index.tsx';
 import type { FieldProps, FormFieldControlProps } from '#src/forms/form-field/index.tsx';
@@ -131,6 +132,7 @@ const Popup = styled('div')({
 	boxSizing: 'border-box',
 	maxHeight: '16rem',
 	overflowY: 'auto',
+	...scrollbarStyles,
 	padding: spacing[1],
 	borderWidth: '1px',
 	borderStyle: 'solid',

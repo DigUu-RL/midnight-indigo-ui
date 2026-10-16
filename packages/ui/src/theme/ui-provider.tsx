@@ -1,6 +1,7 @@
 'use client';
 // Provides the theme to components, injects its CSS custom properties and configures Material UI.
 import CssBaseline from '@mui/material/CssBaseline';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
 import type { Theme } from '@mui/material/styles';
 import { createContext, use, useMemo } from 'react';
@@ -9,14 +10,16 @@ import type { Context, ReactElement, ReactNode } from 'react';
 import { createThemeStylesheet, defaultUiTheme } from '#src/theme/create-ui-theme.ts';
 import type { UiTheme } from '#src/theme/create-ui-theme.ts';
 import { toMuiTheme } from '#src/theme/mui-theme.ts';
+import { nativeBaselineStyles } from '#src/theme/native-styles.ts';
 import { usePrefersReducedMotion } from '#src/theme/use-prefers-reduced-motion.ts';
 
 export interface UiProviderProps {
 	/** Theme created by `createUiTheme`. Defaults to the official theme. */
 	theme?: UiTheme;
 	/**
-	 * Applies the base document styles: dark canvas background, text color, body typography, monospace code and box
-	 * sizing. Defaults to `true`.
+	 * Applies the global styles: dark canvas background, text color, body typography and box sizing, plus what the
+	 * browser draws by itself in the theme colors (scrollbars, selection, autofill, native controls, focus and text
+	 * elements). With `false`, no global style is applied. Defaults to `true`.
 	 */
 	baseline?: boolean;
 	children?: ReactNode;
@@ -79,6 +82,7 @@ export const UiProvider = ({
 
 			<MuiThemeProvider theme={muiTheme}>
 				{baseline ? <CssBaseline enableColorScheme /> : null}
+				{baseline ? <GlobalStyles styles={nativeBaselineStyles} /> : null}
 				{children}
 			</MuiThemeProvider>
 		</UiThemeContext>

@@ -7,8 +7,10 @@
 //   font rasterization differs between them (CI compares the Linux set).
 // - performance: interaction latency and rendering of large datasets. Its scripts run it alone, with one worker, so that
 //   no other test competes for the processor while it measures.
+// - native-chromium, native-firefox, native-webkit: what the browser draws by itself (scrollbars, autofill, native
+//   controls, selection and focus) styled by the baseline of `UiProvider`, compared with baselines in each engine.
 import { defineConfig, devices } from '@playwright/test';
-import type { PlaywrightTestConfig } from '@playwright/test';
+import type { PlaywrightTestConfig, Project } from '@playwright/test';
 import { fileURLToPath } from 'node:url';
 
 const starterPort: number = 3100;
@@ -17,6 +19,34 @@ const continuousIntegration: boolean = process.env.CI !== undefined;
 
 const starterUrl: string = `http://localhost:${String(starterPort)}`;
 const scenariosUrl: string = `http://localhost:${String(scenariosPort)}`;
+
+// The full Chromium (channel `chromium`) instead of the headless shell, which has no autofill, and with its scrollbars,
+// which headless Chromium hides unless told otherwise.
+const nativeProjects: Project[] = [
+	{
+		name: 'native-chromium',
+		use: {
+			...devices['Desktop Chrome'],
+			channel: 'chromium',
+			launchOptions: { ignoreDefaultArgs: ['--hide-scrollbars'] },
+		},
+	},
+	{ name: 'native-firefox', use: devices['Desktop Firefox'] },
+	{ name: 'native-webkit', use: devices['Desktop Safari'] },
+].map((project: Project): Project => {
+	return {
+		...project,
+		testMatch: 'native/**/*.test.ts',
+		snapshotPathTemplate:
+			'{testDir}/__screenshots__/{platform}/{testFileName}/{projectName}/{arg}{ext}',
+		use: {
+			...project.use,
+			baseURL: scenariosUrl,
+			viewport: { width: 1280, height: 800 },
+			deviceScaleFactor: 1,
+		},
+	};
+});
 
 const browserConfiguration: PlaywrightTestConfig = defineConfig({
 	testDir: 'test',
@@ -61,6 +91,7 @@ const browserConfiguration: PlaywrightTestConfig = defineConfig({
 			fullyParallel: false,
 			use: { baseURL: scenariosUrl },
 		},
+		...nativeProjects,
 	],
 	webServer: [
 		{
