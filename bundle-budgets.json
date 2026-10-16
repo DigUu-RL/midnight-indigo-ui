@@ -79,8 +79,8 @@
 		},
 		"@midnight-indigo/ui/i18n": {
 			"initial": {
-				"baseline": 6767,
-				"budget": 7680
+				"baseline": 8067,
+				"budget": 8960
 			}
 		},
 		"@midnight-indigo/ui/dashboard": {
@@ -103,44 +103,44 @@
 		},
 		"starter: /en-us": {
 			"initial": {
-				"baseline": 301636,
-				"budget": 332032
+				"baseline": 302696,
+				"budget": 333056
 			}
 		},
 		"starter: /en-us/orders": {
 			"initial": {
-				"baseline": 289947,
-				"budget": 318976
+				"baseline": 291007,
+				"budget": 320256
 			}
 		},
 		"starter: /en-us/reports": {
 			"initial": {
-				"baseline": 294950,
-				"budget": 324608
+				"baseline": 296010,
+				"budget": 325632
 			}
 		},
 		"starter: /en-us/customers/new": {
 			"initial": {
-				"baseline": 289221,
-				"budget": 318208
+				"baseline": 290283,
+				"budget": 319488
 			}
 		},
 		"starter: /en-us/settings/appearance": {
 			"initial": {
-				"baseline": 285657,
-				"budget": 314368
+				"baseline": 286728,
+				"budget": 315648
 			}
 		},
 		"starter: /en-us/icons": {
 			"initial": {
-				"baseline": 284859,
-				"budget": 313600
+				"baseline": 285919,
+				"budget": 314624
 			}
 		},
 		"starter: /gallery": {
 			"initial": {
-				"baseline": 317357,
-				"budget": 349184
+				"baseline": 318415,
+				"budget": 350464
 			}
 		},
 		"starter: chart engine": {

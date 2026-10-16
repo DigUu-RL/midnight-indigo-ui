@@ -92,6 +92,9 @@ else English. The language links in the top bar lead to the same page in the oth
 - Messages are JSON, with the same camelCase keys in every locale; plurals are nested objects (`one`, `many`, `other`).
 - Server Components translate with `getTranslator(locale)` (`src/i18n/server.ts`); Client Components with
   `useI18n()` of `@midnight-indigo/ui/i18n`. The browser only receives the messages of the locale it renders.
+- Bold, code or a link on part of a sentence go in the message as tags (`"Happy with it? <link>Export the theme</link>"`),
+  rendered by `rich` of `getRichTranslator(locale)` on the server or of `useI18n()` on the client; `plain` gives the
+  text without them. Every locale must use the tags of English in each key, which `test/messages.test.ts` checks.
 - The time zone (`America/Sao_Paulo`) and the currency (`BRL`) belong to the business, not to the language, and are set
   in `src/i18n/locales.ts`, so the server and the browser format dates and amounts the same way.
 

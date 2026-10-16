@@ -10,7 +10,7 @@ import { Alert, ProgressBar, useToast } from '@midnight-indigo/ui/feedback';
 import type { ToastApi } from '@midnight-indigo/ui/feedback';
 import { TextField } from '@midnight-indigo/ui/forms';
 import { useI18n } from '@midnight-indigo/ui/i18n';
-import type { I18nValue } from '@midnight-indigo/ui/i18n';
+import type { I18nValue, RichTags } from '@midnight-indigo/ui/i18n';
 import { Grid, Stack } from '@midnight-indigo/ui/layout';
 import { Link } from '@midnight-indigo/ui/navigation';
 import { createThemeStylesheet, createUiTheme } from '@midnight-indigo/ui/theme';
@@ -23,7 +23,7 @@ import {
 } from '@midnight-indigo/ui/tokens';
 import type { ContrastResult, SemanticIntent } from '@midnight-indigo/ui/tokens';
 import { useMemo, useState } from 'react';
-import type { ChangeEvent, ReactElement } from 'react';
+import type { ChangeEvent, ReactElement, ReactNode } from 'react';
 
 import { theme as applicationTheme } from '#src/theme.ts';
 
@@ -50,6 +50,11 @@ const configurationOf = (colors: MainColors): UiThemeConfig => {
 	};
 };
 
+// `<link>` of the translations: the words of the link stay in the sentence, in the order of each language.
+const exportLink: RichTags = {
+	link: (children: ReactNode): ReactNode => <Link href='#theme-json'>{children}</Link>,
+};
+
 const downloadJson = (json: string): void => {
 	const url: string = URL.createObjectURL(new Blob([json], { type: 'application/json' }));
 	const anchor: HTMLAnchorElement = document.createElement('a');
@@ -61,7 +66,7 @@ const downloadJson = (json: string): void => {
 };
 
 export const PaletteEditor = (): ReactElement => {
-	const { t, formatNumber }: I18nValue = useI18n();
+	const { t, rich, formatNumber }: I18nValue = useI18n();
 	const toast: ToastApi = useToast();
 	const [colors, setColors] = useState<MainColors>(initialColors);
 
@@ -184,11 +189,7 @@ export const PaletteEditor = (): ReactElement => {
 						</Alert>
 
 						<ProgressBar label={t('appearance.preview.progress')} value={64} />
-
-						<p>
-							{t('appearance.preview.linkBefore')}{' '}
-							<Link href='#theme-json'>{t('appearance.preview.link')}</Link>
-						</p>
+						<p>{rich('appearance.preview.export', {}, exportLink)}</p>
 					</Stack>
 				</div>
 			</DashboardPanel>
@@ -228,7 +229,7 @@ export const PaletteEditor = (): ReactElement => {
 			<DashboardPanel
 				id='theme-json'
 				title={t('appearance.export.title')}
-				description={t('appearance.export.description')}
+				description={rich('appearance.export.description')}
 				toolbar={
 					<div className='row'>
 						<Button variant='outline' onClick={copyJson}>

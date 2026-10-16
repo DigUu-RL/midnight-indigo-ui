@@ -8,7 +8,7 @@ import { expect, test } from '#test/support/fixtures.ts';
 const preview = (page: Page): Locator => page.locator('.palette-preview');
 
 const themeJson = (page: Page): Locator => {
-	return page.getByRole('region', { name: 'theme.json' }).locator('code');
+	return page.getByRole('region', { name: 'theme.json' }).locator('pre code');
 };
 
 const customProperty = async (locator: Locator, name: string): Promise<string> => {

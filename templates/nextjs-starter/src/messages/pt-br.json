@@ -146,7 +146,7 @@
 	"customers": {
 		"header": {
 			"title": "Novo cliente",
-			"description": "Cadastre um cliente das lojas Aurora. Os dados são verificados pelo servidor e não são armazenados: é uma demonstração."
+			"description": "Cadastre um cliente das lojas Aurora. Os dados são verificados pelo servidor e <strong>não são armazenados</strong>: é uma demonstração."
 		},
 		"form": {
 			"contact": "Contato",
@@ -156,7 +156,7 @@
 		"fields": {
 			"name": "Nome completo",
 			"email": "Endereço de e-mail",
-			"emailDescription": "Usado para enviar os comprovantes. ana.souza@aurora.example já está cadastrado.",
+			"emailDescription": "Usado para enviar os comprovantes. <code>ana.souza@aurora.example</code> já está cadastrado.",
 			"phone": "Telefone",
 			"phoneDescription": "Opcional. DDD e número, por exemplo (11) 91234-5678.",
 			"type": "Tipo de cliente",
@@ -209,8 +209,7 @@
 			"alertTitle": "Relatório pronto",
 			"alertMessage": "O relatório de vendas de setembro foi gerado.",
 			"progress": "Meta mensal",
-			"linkBefore": "Gostou?",
-			"link": "Exporte o tema"
+			"export": "Gostou? <link>Exporte o tema</link>"
 		},
 		"contrast": {
 			"title": "Contraste",
@@ -231,7 +230,7 @@
 		},
 		"export": {
 			"title": "theme.json",
-			"description": "Substitua src/theme.json por ele e faça o build de novo: a paleta é aplicada no servidor, sem flash.",
+			"description": "Substitua <code>src/theme.json</code> por ele e faça o build de novo: a paleta é aplicada no servidor, <em>sem flash</em>.",
 			"code": "Configuração do tema",
 			"copy": "Copiar",
 			"download": "Baixar",
