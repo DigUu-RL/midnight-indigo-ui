@@ -4,7 +4,7 @@ Monorepo (pnpm workspaces) for `@midnight-indigo/ui`, a single npm package expos
 
 ## Roadmap
 
-- **Features:** one GitHub issue per feature (label `feature`, F01–F18 = issues #2–#19, F19–F33 = issues #36–#50, F34–F57 = issues #55–#78), holding the full spec, acceptance criteria and dependencies.
+- **Features:** one GitHub issue per feature (label `feature`, F01–F18 = issues #2–#19, F19–F33 = issues #36–#50, F34–F57 = issues #55–#78, F58–F59 = issues #82–#83), holding the full spec, acceptance criteria and dependencies.
 - **Progress:** GitHub Project <https://github.com/users/DigUu-RL/projects/1> — Status `Planejada` → `Em desenvolvimento` → `Concluída`, plus `Prioridade` and `Fase` fields.
 - **Reference docs** (architecture, decisions, theming, ...): repository wiki <https://github.com/DigUu-RL/midnight-indigo-ui/wiki>.
 - **Workflow:** implement each feature on a branch; the PR body contains `Closes #N` (moves the item to `Em desenvolvimento`); merging only after all acceptance criteria and CI pass closes the issue and moves it to `Concluída`. New issues are not auto-added: add them with `gh project item-add 1 --owner DigUu-RL --url <issue-url>` and set `Prioridade`/`Fase`.
