@@ -6,12 +6,77 @@ Midnight Indigo: UI is dark-only: there is no light palette and no light/dark to
 Every token is exported by `@midnight-indigo/ui/tokens` and declared as a CSS custom property in
 `@midnight-indigo/ui/styles.css`. Components reference tokens, never hexadecimal values.
 
-`intent.official.main` is the exact Midnight Indigo keyword pink, `#FF6AC1`. The other intent `main`
-values are provisional proposals until the stable API.
+`intent.official.main` and `color.pink.400` are the exact Midnight Indigo keyword pink, `#FF6AC1`. The other
+intent `main` values are provisional proposals until the stable API.
 
-How to apply the typography, icon and motion tokens: [foundations.md](./foundations.md).
+How to apply the typography, icon and motion tokens: [foundations.md](./foundations.md). How to use the color
+scales: [palette.md](./palette.md).
 
 ## Tokens
+
+### `color`
+
+Fixed color scales of the project identity, from the lightest step to the darkest. A theme palette does not change them; prefer the semantic groups in components.
+
+#### `color.pink`
+
+Brand pink, built around the official pink `#FF6AC1`.
+
+| Step | CSS variable | Value | Role |
+| --- | --- | --- | --- |
+| `50` | `--mi-color-pink-50` | `#FFF3FA` |  |
+| `100` | `--mi-color-pink-100` | `#FFE4F4` |  |
+| `200` | `--mi-color-pink-200` | `#FFCCEA` |  |
+| `300` | `--mi-color-pink-300` | `#FF93D0` | Hover of the official pink. |
+| `400` | `--mi-color-pink-400` | `#FF6AC1` | Official pink, identical to `intent.official.main` of the official theme. |
+| `500` | `--mi-color-pink-500` | `#D258A1` |  |
+| `600` | `--mi-color-pink-600` | `#A54581` |  |
+| `700` | `--mi-color-pink-700` | `#783360` |  |
+| `800` | `--mi-color-pink-800` | `#502344` |  |
+| `900` | `--mi-color-pink-900` | `#32162E` |  |
+| `950` | `--mi-color-pink-950` | `#1E0E20` |  |
+
+#### `color.indigo`
+
+Identity indigo, for solid fills, active borders, text and icons.
+
+| Step | CSS variable | Value | Role |
+| --- | --- | --- | --- |
+| `50` | `--mi-color-indigo-50` | `#F6F4FF` |  |
+| `100` | `--mi-color-indigo-100` | `#EBE7FE` |  |
+| `200` | `--mi-color-indigo-200` | `#D2CAFD` |  |
+| `300` | `--mi-color-indigo-300` | `#8F7AFB` | Indigo text and icons. |
+| `400` | `--mi-color-indigo-400` | `#7560F0` | Hover of the solid indigo and active border. |
+| `500` | `--mi-color-indigo-500` | `#5E48D6` | Solid indigo. |
+| `600` | `--mi-color-indigo-600` | `#4C3AAE` |  |
+| `700` | `--mi-color-indigo-700` | `#3A2D86` |  |
+| `800` | `--mi-color-indigo-800` | `#2A2162` |  |
+| `900` | `--mi-color-indigo-900` | `#1E1746` |  |
+| `950` | `--mi-color-indigo-950` | `#130F2E` |  |
+
+#### `color.midnight`
+
+Neutral with an indigo hue, the source of every surface, border and state value.
+
+| Step | CSS variable | Value | Role |
+| --- | --- | --- | --- |
+| `50` | `--mi-color-midnight-50` | `#F2EFFC` |  |
+| `100` | `--mi-color-midnight-100` | `#C3BDDC` |  |
+| `150` | `--mi-color-midnight-150` | `#ABA4C9` |  |
+| `200` | `--mi-color-midnight-200` | `#9790B8` |  |
+| `250` | `--mi-color-midnight-250` | `#6E62A3` |  |
+| `300` | `--mi-color-midnight-300` | `#453C7A` |  |
+| `350` | `--mi-color-midnight-350` | `#2C2558` |  |
+| `400` | `--mi-color-midnight-400` | `#251C5C` |  |
+| `450` | `--mi-color-midnight-450` | `#1E1940` |  |
+| `500` | `--mi-color-midnight-500` | `#1B1638` |  |
+| `550` | `--mi-color-midnight-550` | `#1B1540` |  |
+| `600` | `--mi-color-midnight-600` | `#17132F` |  |
+| `650` | `--mi-color-midnight-650` | `#13102B` |  |
+| `700` | `--mi-color-midnight-700` | `#0F0C24` |  |
+| `750` | `--mi-color-midnight-750` | `#0A0819` |  |
+| `800` | `--mi-color-midnight-800` | `#080615` |  |
+| `850` | `--mi-color-midnight-850` | `#05040E` |  |
 
 ### `surface`
 

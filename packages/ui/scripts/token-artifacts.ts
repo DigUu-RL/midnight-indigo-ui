@@ -15,6 +15,7 @@ import {
 } from '#src/tokens/index.ts';
 import type {
 	Breakpoint,
+	ColorTokens,
 	ContrastResult,
 	DesignTokens,
 	IntentTokens,
@@ -132,6 +133,42 @@ const renderIntents = (): string[] => {
 		'',
 		...renderTable(['Field', ...semanticIntents.map(code)], valueRows),
 		'',
+	];
+};
+
+const renderColorScales = (): string[] => {
+	const scales: (keyof ColorTokens)[] = Object.keys(tokens.color) as (keyof ColorTokens)[];
+
+	const renderScale = (scale: keyof ColorTokens): string[] => {
+		const roles: Readonly<Record<string, string>> = tokenDescriptions.colorSteps[scale];
+
+		const rows: string[][] = Object.entries(tokens.color[scale]).map(
+			([step, value]: [string, string]): string[] => {
+				return [
+					code(step),
+					code(cssVariableName(['color', scale, step])),
+					code(value),
+					roles[step] ?? '',
+				];
+			},
+		);
+
+		return [
+			`#### ${code(`color.${scale}`)}`,
+			'',
+			tokenDescriptions.color[scale],
+			'',
+			...renderTable(['Step', 'CSS variable', 'Value', 'Role'], rows),
+			'',
+		];
+	};
+
+	return [
+		`### ${code('color')}`,
+		'',
+		tokenDescriptions.groups.color,
+		'',
+		...scales.flatMap(renderScale),
 	];
 };
 
@@ -254,13 +291,15 @@ export const renderTokenDocument = (): string => {
 		'Every token is exported by `@midnight-indigo/ui/tokens` and declared as a CSS custom property in',
 		'`@midnight-indigo/ui/styles.css`. Components reference tokens, never hexadecimal values.',
 		'',
-		'`intent.official.main` is the exact Midnight Indigo keyword pink, `#FF6AC1`. The other intent `main`',
-		'values are provisional proposals until the stable API.',
+		'`intent.official.main` and `color.pink.400` are the exact Midnight Indigo keyword pink, `#FF6AC1`. The other',
+		'intent `main` values are provisional proposals until the stable API.',
 		'',
-		'How to apply the typography, icon and motion tokens: [foundations.md](./foundations.md).',
+		'How to apply the typography, icon and motion tokens: [foundations.md](./foundations.md). How to use the color',
+		'scales: [palette.md](./palette.md).',
 		'',
 		'## Tokens',
 		'',
+		...renderColorScales(),
 		...documentedGroups.slice(0, 6).flatMap(renderGroup),
 		...renderIntents(),
 		...documentedGroups.slice(6).flatMap(renderGroup),
