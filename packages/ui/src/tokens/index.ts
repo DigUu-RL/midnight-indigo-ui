@@ -10,6 +10,8 @@ export {
 	normalizeHexColor,
 	parseHexColor,
 	relativeLuminance,
+	soft,
+	softAlpha,
 } from '#src/tokens/color.ts';
 export type { HexColor, RgbColor } from '#src/tokens/color.ts';
 export {
@@ -69,6 +71,19 @@ export type {
 	TypographyStyle,
 	TypographyTokens,
 } from '#src/tokens/design-tokens.ts';
+export {
+	deriveSupportTokens,
+	measureSupportContrast,
+	supportColorFor,
+	supportColorNames,
+	supportMainColors,
+} from '#src/tokens/support-colors.ts';
+export type {
+	SupportColor,
+	SupportColorTokens,
+	SupportContrastMeasure,
+	SupportTokens,
+} from '#src/tokens/support-colors.ts';
 export { measureSurfaceLayers, surfaceLayers } from '#src/tokens/surface-layers.ts';
 export type { SurfaceLayerMeasure } from '#src/tokens/surface-layers.ts';
 export {

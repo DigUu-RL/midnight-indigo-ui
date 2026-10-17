@@ -1,6 +1,6 @@
 # Estilos nativos do navegador
 
-[English](./native-styles.md)
+[English](../en-us/native-styles.md)
 
 Os componentes seguem o tema, mas o navegador também desenha coisas por conta própria: as barras de rolagem, a seleção
 de texto, o fundo dos campos preenchidos automaticamente, os controles nativos (campos de data e hora, `select`,
@@ -82,7 +82,7 @@ const SearchInput = styled('input')({
 
 Com `baseline={false}`, o `UiProvider` não aplica nenhum estilo global: nem os estilos de documento do Material UI
 (fundo do `body`, box sizing) nem os estilos nativos acima. Ele continua declarando as custom properties dos tokens em
-`:root`, com `color-scheme: dark` (veja [theme.md](./theme.md#css)), e os componentes mantêm os próprios estilos.
+`:root`, com `color-scheme: dark` (veja [theme.md](../en-us/theme.md#css)), e os componentes mantêm os próprios estilos.
 
 ## Testes
 

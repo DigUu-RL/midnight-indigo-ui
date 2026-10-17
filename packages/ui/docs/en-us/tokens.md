@@ -219,6 +219,29 @@ deterministically (`deriveIntentTokens`) unless provided explicitly.
 | `containerHover` | `#371832` | `#171236` | `#21202D` | `#0F2B29` | `#34281A` | `#34141D` | `#18293A` |
 | `containerPressed` | `#461F3D` | `#1C1642` | `#2A2836` | `#123731` | `#43331E` | `#431922` | `#1E3447` |
 
+### `support`
+
+Support colors harmonized with the pink and the indigo, for categories, tags, avatars and charts. They carry no meaning: status is the job of the intents.
+
+| Field | CSS variable | Purpose |
+| --- | --- | --- |
+| `main` | `--mi-support-<color>-main` | The color itself: icons, dots and chart marks; meets 3:1 on its `soft` background. |
+| `soft` | `--mi-support-<color>-soft` | Tonal background: `main` at 16% over the surface below it (`soft()` takes 14–18%). |
+| `text` | `--mi-support-<color>-text` | Text on `soft`; equals `main` unless `main` is below 4.5:1 on it. Meets 4.5:1 on every surface. |
+
+The ratios are the lowest of `text` and `main` on `soft` at 14% and at 18%, over every surface (checked in CI).
+
+| Color | `main` | `text` | `soft` | Text on soft | Icon on soft | Notes |
+| --- | --- | --- | --- | --- | --- | --- |
+| `pink` | `#FF6AC1` | `#FF6AC1` | `rgb(255 106 193 / 0.16)` | 4.96:1 | 4.96:1 | The official pink. |
+| `violet` | `#8F7AFB` | `#9986FB` | `rgb(143 122 251 / 0.16)` | 4.52:1 | 4.01:1 | The indigo text color (`color.indigo.300`). |
+| `blue` | `#65BDEB` | `#65BDEB` | `rgb(101 189 235 / 0.16)` | 5.82:1 | 5.82:1 | Same hue as the `info` intent. |
+| `green` | `#36C995` | `#36C995` | `rgb(54 201 149 / 0.16)` | 5.90:1 | 5.90:1 | Same hue as the `success` intent. |
+| `amber` | `#F2B84B` | `#F2B84B` | `rgb(242 184 75 / 0.16)` | 6.63:1 | 6.63:1 | Same hue as the `warning` intent. |
+| `red` | `#F2545B` | `#F26B73` | `rgb(242 84 91 / 0.16)` | 4.69:1 | 4.07:1 | Same hue as the `error` intent. |
+| `turquoise` | `#3FD0C9` | `#3FD0C9` | `rgb(63 208 201 / 0.16)` | 6.39:1 | 6.39:1 | Turquoise. |
+| `orange` | `#F28A4B` | `#F28A4B` | `rgb(242 138 75 / 0.16)` | 5.18:1 | 5.18:1 | Orange. |
+
 ### `chart`
 
 Chart marks and chrome.
@@ -226,13 +249,13 @@ Chart marks and chrome.
 | Token | CSS variable | Value | Purpose |
 | --- | --- | --- | --- |
 | `chart.series.1` | `--mi-chart-series-1` | `#FF6AC1` | Categorical series colors, in assignment order. |
-| `chart.series.2` | `--mi-chart-series-2` | `#65BDEB` | Categorical series colors, in assignment order. |
-| `chart.series.3` | `--mi-chart-series-3` | `#36C995` | Categorical series colors, in assignment order. |
-| `chart.series.4` | `--mi-chart-series-4` | `#F2B84B` | Categorical series colors, in assignment order. |
-| `chart.series.5` | `--mi-chart-series-5` | `#A68CFF` | Categorical series colors, in assignment order. |
-| `chart.series.6` | `--mi-chart-series-6` | `#FF8A5B` | Categorical series colors, in assignment order. |
-| `chart.series.7` | `--mi-chart-series-7` | `#4FD1C5` | Categorical series colors, in assignment order. |
-| `chart.series.8` | `--mi-chart-series-8` | `#D4D1E8` | Categorical series colors, in assignment order. |
+| `chart.series.2` | `--mi-chart-series-2` | `#8F7AFB` | Categorical series colors, in assignment order. |
+| `chart.series.3` | `--mi-chart-series-3` | `#65BDEB` | Categorical series colors, in assignment order. |
+| `chart.series.4` | `--mi-chart-series-4` | `#36C995` | Categorical series colors, in assignment order. |
+| `chart.series.5` | `--mi-chart-series-5` | `#F2B84B` | Categorical series colors, in assignment order. |
+| `chart.series.6` | `--mi-chart-series-6` | `#3FD0C9` | Categorical series colors, in assignment order. |
+| `chart.series.7` | `--mi-chart-series-7` | `#F28A4B` | Categorical series colors, in assignment order. |
+| `chart.series.8` | `--mi-chart-series-8` | `#F2545B` | Categorical series colors, in assignment order. |
 | `chart.grid` | `--mi-chart-grid` | `#1E1940` | Grid lines. |
 | `chart.axis` | `--mi-chart-axis` | `#453C7A` | Axis lines and ticks. |
 | `chart.label` | `--mi-chart-label` | `#C3BDDC` | Axis labels and legends. |
@@ -592,17 +615,17 @@ Ratios are truncated, never rounded up. All colors are opaque, so the ratio is t
 | `intent.info.main` | `intent.info.container` | 8.02:1 | 3.00:1 | info progress indicator on its track | Pass |
 | `chart.series.1` | `surface.canvas` | 7.84:1 | 3.00:1 | Chart series mark | Pass |
 | `chart.series.1` | `surface.raised` | 7.11:1 | 3.00:1 | Chart series mark | Pass |
-| `chart.series.2` | `surface.canvas` | 9.73:1 | 3.00:1 | Chart series mark | Pass |
-| `chart.series.2` | `surface.raised` | 8.82:1 | 3.00:1 | Chart series mark | Pass |
-| `chart.series.3` | `surface.canvas` | 9.65:1 | 3.00:1 | Chart series mark | Pass |
-| `chart.series.3` | `surface.raised` | 8.74:1 | 3.00:1 | Chart series mark | Pass |
-| `chart.series.4` | `surface.canvas` | 11.38:1 | 3.00:1 | Chart series mark | Pass |
-| `chart.series.4` | `surface.raised` | 10.32:1 | 3.00:1 | Chart series mark | Pass |
-| `chart.series.5` | `surface.canvas` | 7.58:1 | 3.00:1 | Chart series mark | Pass |
-| `chart.series.5` | `surface.raised` | 6.87:1 | 3.00:1 | Chart series mark | Pass |
-| `chart.series.6` | `surface.canvas` | 8.77:1 | 3.00:1 | Chart series mark | Pass |
-| `chart.series.6` | `surface.raised` | 7.95:1 | 3.00:1 | Chart series mark | Pass |
-| `chart.series.7` | `surface.canvas` | 10.92:1 | 3.00:1 | Chart series mark | Pass |
-| `chart.series.7` | `surface.raised` | 9.90:1 | 3.00:1 | Chart series mark | Pass |
-| `chart.series.8` | `surface.canvas` | 13.67:1 | 3.00:1 | Chart series mark | Pass |
-| `chart.series.8` | `surface.raised` | 12.39:1 | 3.00:1 | Chart series mark | Pass |
+| `chart.series.2` | `surface.canvas` | 6.15:1 | 3.00:1 | Chart series mark | Pass |
+| `chart.series.2` | `surface.raised` | 5.58:1 | 3.00:1 | Chart series mark | Pass |
+| `chart.series.3` | `surface.canvas` | 9.73:1 | 3.00:1 | Chart series mark | Pass |
+| `chart.series.3` | `surface.raised` | 8.82:1 | 3.00:1 | Chart series mark | Pass |
+| `chart.series.4` | `surface.canvas` | 9.65:1 | 3.00:1 | Chart series mark | Pass |
+| `chart.series.4` | `surface.raised` | 8.74:1 | 3.00:1 | Chart series mark | Pass |
+| `chart.series.5` | `surface.canvas` | 11.38:1 | 3.00:1 | Chart series mark | Pass |
+| `chart.series.5` | `surface.raised` | 10.32:1 | 3.00:1 | Chart series mark | Pass |
+| `chart.series.6` | `surface.canvas` | 10.75:1 | 3.00:1 | Chart series mark | Pass |
+| `chart.series.6` | `surface.raised` | 9.74:1 | 3.00:1 | Chart series mark | Pass |
+| `chart.series.7` | `surface.canvas` | 8.26:1 | 3.00:1 | Chart series mark | Pass |
+| `chart.series.7` | `surface.raised` | 7.48:1 | 3.00:1 | Chart series mark | Pass |
+| `chart.series.8` | `surface.canvas` | 6.01:1 | 3.00:1 | Chart series mark | Pass |
+| `chart.series.8` | `surface.raised` | 5.44:1 | 3.00:1 | Chart series mark | Pass |

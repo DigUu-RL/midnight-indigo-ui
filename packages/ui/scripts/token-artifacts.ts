@@ -8,8 +8,10 @@ import {
 	cssVariableName,
 	formatContrastRatio,
 	listTokenEntries,
+	measureSupportContrast,
 	measureSurfaceLayers,
 	semanticIntents,
+	surfaceLayers,
 	tokenDescriptions,
 	tokens,
 	typographyRoles,
@@ -19,9 +21,13 @@ import type {
 	ColorTokens,
 	ContrastResult,
 	DesignTokens,
+	HexColor,
 	IntentTokens,
 	SemanticIntent,
+	SupportColorTokens,
+	SupportContrastMeasure,
 	SurfaceLayerMeasure,
+	SurfaceTokens,
 	TypographyRole,
 	TypographyStyle,
 } from '#src/tokens/index.ts';
@@ -135,6 +141,53 @@ const renderIntents = (): string[] => {
 		...renderTable(['Field', 'CSS variable', 'Purpose'], fieldRows),
 		'',
 		...renderTable(['Field', ...semanticIntents.map(code)], valueRows),
+		'',
+	];
+};
+
+const renderSupport = (): string[] => {
+	const fields: (keyof SupportColorTokens)[] = Object.keys(
+		tokenDescriptions.supportFields,
+	) as (keyof SupportColorTokens)[];
+
+	const fieldRows: string[][] = fields.map((field: keyof SupportColorTokens): string[] => {
+		return [
+			code(field),
+			code(cssVariableName(['support', '<color>', field])),
+			tokenDescriptions.supportFields[field],
+		];
+	});
+
+	const colorRows: string[][] = measureSupportContrast(
+		tokens.support,
+		surfaceLayers.map((surface: keyof SurfaceTokens): HexColor => tokens.surface[surface]),
+	).map((measure: SupportContrastMeasure): string[] => {
+		const { main, soft, text }: SupportColorTokens = tokens.support[measure.color];
+
+		return [
+			code(measure.color),
+			code(main),
+			code(text),
+			code(soft),
+			formatContrastRatio(measure.textRatio),
+			formatContrastRatio(measure.iconRatio),
+			tokenDescriptions.support[measure.color],
+		];
+	});
+
+	return [
+		`### ${code('support')}`,
+		'',
+		tokenDescriptions.groups.support,
+		'',
+		...renderTable(['Field', 'CSS variable', 'Purpose'], fieldRows),
+		'',
+		'The ratios are the lowest of `text` and `main` on `soft` at 14% and at 18%, over every surface (checked in CI).',
+		'',
+		...renderTable(
+			['Color', '`main`', '`text`', '`soft`', 'Text on soft', 'Icon on soft', 'Notes'],
+			colorRows,
+		),
 		'',
 	];
 };
@@ -341,6 +394,7 @@ export const renderTokenDocument = (): string => {
 		...renderSurfaceLayers(),
 		...documentedGroups.slice(0, 6).flatMap(renderGroup),
 		...renderIntents(),
+		...renderSupport(),
 		...documentedGroups.slice(6).flatMap(renderGroup),
 		...renderTypography(),
 		...renderGroup('iconSize'),

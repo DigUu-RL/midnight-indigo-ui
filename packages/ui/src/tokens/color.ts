@@ -62,6 +62,27 @@ export const mixColors = (foreground: string, background: string, weight: number
 	});
 };
 
+/** A color as CSS `rgb()` with an alpha channel, from 0 (transparent) to 1 (opaque). */
+export const translucent = (color: string, alpha: number): string => {
+	const { red, green, blue }: RgbColor = parseHexColor(color);
+	return `rgb(${String(red)} ${String(green)} ${String(blue)} / ${String(alpha)})`;
+};
+
+/** Range of the tonal backgrounds built by `soft`: the share of the color over the surface below it. */
+export const softAlpha = {
+	minimum: 0.14,
+	default: 0.16,
+	maximum: 0.18,
+} as const;
+
+/**
+ * Tonal background of a color: the color at 14–18% over whatever surface is below it. `alpha` is clamped to that
+ * range, where the support colors keep their text at 4.5:1 and their icons at 3:1 on every surface.
+ */
+export const soft = (color: string, alpha: number = softAlpha.default): string => {
+	return translucent(color, Math.min(softAlpha.maximum, Math.max(softAlpha.minimum, alpha)));
+};
+
 const linearizeChannel = (value: number): number => {
 	const normalized: number = value / 255;
 	return normalized <= 0.04045 ? normalized / 12.92 : ((normalized + 0.055) / 1.055) ** 2.4;

@@ -22,6 +22,7 @@ import type {
 	TypographyRole,
 } from '#src/tokens/design-tokens.ts';
 import type { IntentTokens, SemanticIntent } from '#src/tokens/intents.ts';
+import type { SupportColor, SupportColorTokens } from '#src/tokens/support-colors.ts';
 
 /** Steps of a scale with a fixed role; the other steps are tints and shades without one. */
 export interface ColorStepDescriptions {
@@ -43,6 +44,8 @@ export interface TokenDescriptions {
 	state: Record<keyof StateTokens, string>;
 	intents: Record<SemanticIntent, string>;
 	intentFields: Record<keyof IntentTokens, string>;
+	support: Record<SupportColor, string>;
+	supportFields: Record<keyof SupportColorTokens, string>;
 	chart: Record<keyof ChartTokens, string>;
 	radius: Record<keyof RadiusTokens, string>;
 	elevation: Record<keyof ElevationTokens, string>;
@@ -70,6 +73,8 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 			'Interaction states of neutral items (list rows, menu items, table rows) and disabled controls.',
 		intent:
 			'Semantic intents. Every intent has the same fields, so any component accepts any intent.',
+		support:
+			'Support colors harmonized with the pink and the indigo, for categories, tags, avatars and charts. They carry no meaning: status is the job of the intents.',
 		chart: 'Chart marks and chrome.',
 		radius: 'Corner radius scale; components pick a step instead of sharing a single radius.',
 		spacing: 'Single spacing scale, in steps of 0.25rem.',
@@ -176,6 +181,21 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 		pressed: 'Fill of a pressed filled control.',
 		containerHover: 'Soft background when hovered.',
 		containerPressed: 'Soft background when pressed or selected.',
+	},
+	support: {
+		pink: 'The official pink.',
+		violet: 'The indigo text color (`color.indigo.300`).',
+		blue: 'Same hue as the `info` intent.',
+		green: 'Same hue as the `success` intent.',
+		amber: 'Same hue as the `warning` intent.',
+		red: 'Same hue as the `error` intent.',
+		turquoise: 'Turquoise.',
+		orange: 'Orange.',
+	},
+	supportFields: {
+		main: 'The color itself: icons, dots and chart marks; meets 3:1 on its `soft` background.',
+		soft: 'Tonal background: `main` at 16% over the surface below it (`soft()` takes 14–18%).',
+		text: 'Text on `soft`; equals `main` unless `main` is below 4.5:1 on it. Meets 4.5:1 on every surface.',
 	},
 	chart: {
 		series: 'Categorical series colors, in assignment order.',

@@ -44,7 +44,7 @@ const isTokenSource = (file: string): boolean => {
 describe('generated token artifacts', (): void => {
 	it.each([
 		['src/styles.css', renderStylesheet],
-		['docs/tokens.md', renderTokenDocument],
+		['docs/en-us/tokens.md', renderTokenDocument],
 	])(
 		`%s is up to date (run \`${generationCommand}\`)`,
 		(path: string, render: () => string): void => {

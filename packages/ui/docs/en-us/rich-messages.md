@@ -1,6 +1,6 @@
 # Rich messages
 
-[Português](./rich-messages.pt-BR.md)
+[Português](../pt-br/rich-messages.md)
 
 Bold, emphasis or a link on part of a sentence, written in the translation itself (F21), exported by
 `@midnight-indigo/ui/i18n`. Splitting the sentence into several keys breaks the translation, because the order of the

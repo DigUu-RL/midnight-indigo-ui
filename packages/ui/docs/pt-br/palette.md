@@ -1,10 +1,10 @@
 # Escalas de cor
 
-[English](./palette.md)
+[English](../en-us/palette.md)
 
 A identidade do Midnight Indigo: UI se apoia em três escalas de cor, exportadas por `@midnight-indigo/ui/tokens` como
 `tokens.color` e declaradas no CSS como `--mi-color-<escala>-<tom>`. Os valores de cada tom estão em
-[tokens.md](./tokens.md#color).
+[tokens.md](../en-us/tokens.md#color).
 
 | Escala     | Tons                      | Cores de identidade                                                                            |
 | ---------- | ------------------------- | ---------------------------------------------------------------------------------------------- |
@@ -52,7 +52,7 @@ tema que configura `palette.brand.main` deriva o hover novamente a partir da pr�
 
 Toda superfície, borda e estado vem da escala `midnight`. As superfícies vão da mais escura à mais clara: `canvas`,
 `field`, `sidebar`, `tableHeader`, `raised`, `dialog` e `overlay`. Cada uma é mais clara que a de baixo, por um passo
-pequeno ([camadas de superfície](./tokens.md#surface-layers)), então uma camada que precisa se destacar da vizinha
+pequeno ([camadas de superfície](../en-us/tokens.md#surface-layers)), então uma camada que precisa se destacar da vizinha
 também recebe uma borda ou uma elevação.
 
 | Necessidade                                         | Tokens                                                                  |
@@ -78,6 +78,55 @@ da aba ativa e o ponto atual do carrossel usam o `brand.border`, mais claro.
 | `elevation.medium`                        | `elevation.overlay` (menus, popovers), `elevation.card` (cards)        |
 | `elevation.high`                          | `elevation.dialog`                                                     |
 | `border.strong` como contorno de controle | `border.control` (`#6E62A3`); `border.strong` agora é `#453C7A`, < 3:1 |
+
+## Cores de apoio
+
+Categorias, tags, avatares e gráficos precisam de mais cores do que as intenções. A paleta de apoio, `tokens.support`,
+tem oito cores harmonizadas com o rosa e o indigo e não carrega significado: status continua com as intenções. As
+intenções de status tiram o `main` dela, então uma categoria verde e um alerta `success` compartilham o tom.
+
+| Cor         | `main`    | Também                          |
+| ----------- | --------- | ------------------------------- |
+| `pink`      | `#FF6AC1` | Rosa oficial                    |
+| `violet`    | `#8F7AFB` | `color.indigo.300`              |
+| `blue`      | `#65BDEB` | `intent.info.main` (info)       |
+| `green`     | `#36C995` | `intent.success.main` (sucesso) |
+| `amber`     | `#F2B84B` | `intent.warning.main` (atenção) |
+| `red`       | `#F2545B` | `intent.error.main` (perigo)    |
+| `turquoise` | `#3FD0C9` |                                 |
+| `orange`    | `#F28A4B` |                                 |
+
+Cada cor tem três tokens, declarados como `--mi-support-<color>-<field>`:
+
+- `main`: a própria cor, para ícones, pontos e marcas de gráfico.
+- `soft`: fundo tonal, `main` a 16% sobre a superfície abaixo dele.
+- `text`: texto sobre `soft`. É igual a `main`, exceto em `violet` e `red`, cujo `main` fica abaixo de 4.5:1 sobre
+  `soft` nas superfícies mais claras, então o `text` deles é um tom mais claro.
+
+Sobre `soft`, de 14% a 18% e em qualquer superfície, `text` atinge 4.5:1 e `main`, 3:1 (verificado no CI; as razões
+estão em [tokens.md](../en-us/tokens.md#support)).
+
+```css
+.category {
+	background: var(--mi-support-violet-soft);
+	color: var(--mi-support-violet-text);
+}
+```
+
+`soft(color, alpha)` monta o mesmo fundo tonal a partir de qualquer cor, com `alpha` mantido entre 0.14 e 0.18.
+`supportColorFor(text)` atribui uma cor de apoio a um texto, como um nome: o mesmo texto sempre recebe a mesma cor,
+ignorando maiúsculas e espaços nas pontas.
+
+```ts
+import { soft, supportColorFor, tokens } from '@midnight-indigo/ui/tokens';
+
+const color = supportColorFor('Samus Aran'); // 'pink'
+tokens.support[color].text; // '#FF6AC1'
+soft('#3FD0C9'); // 'rgb(63 208 201 / 0.16)'
+```
+
+As séries de gráfico (`chart.series`) são as cores de apoio, começando por rosa, violeta e azul; o vermelho vem por
+último, porque também é lido como erro.
 
 ## Escalas e tema
 

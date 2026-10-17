@@ -11,4 +11,4 @@ fixtures/browser/test/__screenshots__
 
 # Generated from packages/ui/src/tokens (pnpm --filter @midnight-indigo/ui generate:tokens)
 packages/ui/src/styles.css
-packages/ui/docs/tokens.md
+packages/ui/docs/en-us/tokens.md

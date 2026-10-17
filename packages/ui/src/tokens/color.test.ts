@@ -10,6 +10,8 @@ import {
 	parseHexColor,
 	pickHighestContrast,
 	relativeLuminance,
+	soft,
+	translucent,
 } from '#src/tokens/color.ts';
 
 describe('hex colors', (): void => {
@@ -40,6 +42,22 @@ describe('mixColors', (): void => {
 
 	it('interpolates channels in sRGB', (): void => {
 		expect(mixColors('#FFFFFF', '#000000', 0.5)).toBe('#808080');
+	});
+});
+
+describe('translucent and soft', (): void => {
+	it('writes a color as CSS rgb() with alpha', (): void => {
+		expect(translucent('#05040E', 0.72)).toBe('rgb(5 4 14 / 0.72)');
+	});
+
+	it('builds a tonal background at 16% by default', (): void => {
+		expect(soft('#8F7AFB')).toBe('rgb(143 122 251 / 0.16)');
+		expect(soft('#8F7AFB', 0.14)).toBe('rgb(143 122 251 / 0.14)');
+	});
+
+	it('keeps the alpha within the tonal range of 14–18%', (): void => {
+		expect(soft('#8F7AFB', 0.5)).toBe('rgb(143 122 251 / 0.18)');
+		expect(soft('#8F7AFB', 0)).toBe('rgb(143 122 251 / 0.14)');
 	});
 });
 
