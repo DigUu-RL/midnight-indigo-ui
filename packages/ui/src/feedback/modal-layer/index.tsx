@@ -7,7 +7,7 @@ import { useEffect, useMemo, useRef } from 'react';
 import type { MouseEvent, ReactElement, ReactNode, Ref, RefCallback, RefObject } from 'react';
 
 import { IconButton } from '#src/buttons/icon-button/index.tsx';
-import { forwardAllBut } from '#src/shared/appearance.ts';
+import { forwardAllBut, prettyWrapStyles } from '#src/shared/appearance.ts';
 import { Glyph } from '#src/shared/glyphs/index.tsx';
 import { mergeReferences } from '#src/shared/merge-references.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
@@ -162,12 +162,14 @@ const Header = styled('div')({
 const Title = styled('h2')({
 	margin: 0,
 	...typography.headingSmall,
+	...prettyWrapStyles,
 	color: text.primary,
 	overflowWrap: 'anywhere',
 });
 
 const Description = styled('div')({
 	...typography.body,
+	...prettyWrapStyles,
 	color: text.secondary,
 });
 

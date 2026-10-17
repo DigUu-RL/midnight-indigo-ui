@@ -344,12 +344,12 @@ Durations and easing curves. Durations become 0ms under `prefers-reduced-motion:
 
 ### `fontFamily`
 
-Font stacks. Geist Sans is self-hosted by the application; the system fonts after it are the fallback.
+Font stacks. Geist Sans and Geist Mono are self-hosted by the application; the system fonts after them are the fallback.
 
 | Token | CSS variable | Value | Purpose |
 | --- | --- | --- | --- |
 | `fontFamily.sans` | `--mi-font-family-sans` | `'Geist Variable', Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif` | Interface text: every role except `code`. |
-| `fontFamily.mono` | `--mi-font-family-mono` | `ui-monospace, SFMono-Regular, 'Cascadia Mono', 'Roboto Mono', Menlo, Consolas, 'Liberation Mono', monospace` | Code, identifiers and values that must align character by character. |
+| `fontFamily.mono` | `--mi-font-family-mono` | `'Geist Mono Variable', 'Geist Mono', ui-monospace, SFMono-Regular, 'Cascadia Mono', 'Roboto Mono', Menlo, Consolas, 'Liberation Mono', monospace` | Code, and always numbers, identifiers and amounts, with tabular digits. |
 
 ### `fontWeight`
 
@@ -357,29 +357,31 @@ Font weights used by the typographic roles.
 
 | Token | CSS variable | Value | Purpose |
 | --- | --- | --- | --- |
-| `fontWeight.regular` | `--mi-font-weight-regular` | `400` | Body text, captions and code. |
-| `fontWeight.medium` | `--mi-font-weight-medium` | `500` | Labels of controls, tabs and menu items. |
-| `fontWeight.semibold` | `--mi-font-weight-semibold` | `600` | Headings. |
-| `fontWeight.bold` | `--mi-font-weight-bold` | `700` | Display text. |
+| `fontWeight.regular` | `--mi-font-weight-regular` | `400` | Body text and captions. |
+| `fontWeight.medium` | `--mi-font-weight-medium` | `500` | Labels of controls, tabs and menu items, and code. |
+| `fontWeight.semibold` | `--mi-font-weight-semibold` | `600` | Small headings and the overline. |
+| `fontWeight.bold` | `--mi-font-weight-bold` | `700` | Display text and the large and medium headings. |
 
 ### `typography`
 
 Typographic roles. Sizes are in rem, so they follow the browser text size and zoom; line heights are unitless.
 
-Every role has the fields `fontFamily`, `fontSize`, `fontWeight`, `lineHeight` and `letterSpacing`, declared as
-`--mi-typography-<role>-<field>`, e.g. `--mi-typography-body-font-size`.
+Every role has the fields `fontFamily`, `fontSize`, `fontWeight`, `lineHeight`, `letterSpacing` and
+`textTransform`, declared as `--mi-typography-<role>-<field>`, e.g.
+`--mi-typography-body-font-size`.
 
-| Role | Font | Size | Line height | Weight | Letter spacing | Usage |
-| --- | --- | --- | --- | --- | --- | --- |
-| `display` | `sans` | `2.25rem` | `1.2` | `700` | `-0.02em` | Key figures and hero titles; at most one per view. |
-| `headingLarge` | `sans` | `1.75rem` | `1.25` | `600` | `-0.015em` | Page title (`h1`). |
-| `headingMedium` | `sans` | `1.375rem` | `1.3` | `600` | `-0.01em` | Section title (`h2`). |
-| `headingSmall` | `sans` | `1.125rem` | `1.4` | `600` | `0` | Card, panel and dialog title (`h3`). |
-| `body` | `sans` | `1rem` | `1.5` | `400` | `0` | Default text of the document, paragraphs and form fields. |
-| `bodySmall` | `sans` | `0.875rem` | `1.5` | `400` | `0` | Dense text: table cells, secondary list text and helper text. |
-| `label` | `sans` | `0.875rem` | `1.4` | `500` | `0.01em` | Buttons, form labels, tabs and menu items. |
-| `caption` | `sans` | `0.75rem` | `1.4` | `400` | `0.02em` | Timestamps, footnotes and annotations; never the only place of essential content. |
-| `code` | `mono` | `0.875rem` | `1.5` | `400` | `0` | Inline code, identifiers and monospace values. |
+| Role | Font | Size | Line height | Weight | Letter spacing | Transform | Usage |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `display` | `sans` | `2.5rem` | `1.2` | `700` | `-0.02em` | `none` | Key figures and hero titles; at most one per view. |
+| `headingLarge` | `sans` | `2rem` | `1.25` | `700` | `-0.015em` | `none` | Page title (`h1`). |
+| `headingMedium` | `sans` | `1.5rem` | `1.3` | `700` | `-0.01em` | `none` | Section title (`h2`). |
+| `headingSmall` | `sans` | `1.125rem` | `1.4` | `600` | `0` | `none` | Card, panel and dialog title (`h3`). |
+| `body` | `sans` | `0.9375rem` | `1.6` | `400` | `0` | `none` | Default text of the document, paragraphs and form fields. |
+| `bodySmall` | `sans` | `0.8125rem` | `1.5` | `400` | `0` | `none` | Dense text: table cells, secondary list text and helper text. |
+| `label` | `sans` | `0.8125rem` | `1.4` | `500` | `0.01em` | `none` | Buttons, form labels, tabs and menu items. |
+| `caption` | `sans` | `0.75rem` | `1.4` | `400` | `0.01em` | `none` | Timestamps, footnotes and annotations; never the only place of essential content. |
+| `overline` | `sans` | `0.6875rem` | `1.4` | `600` | `0.09em` | `uppercase` | Uppercase eyebrow above a title and labels of navigation groups; a few words at most. |
+| `code` | `mono` | `0.8125rem` | `1.5` | `500` | `0` | `none` | Inline code, identifiers and monospace values. |
 
 ### `iconSize`
 

@@ -197,6 +197,7 @@ export const typographyRoles = [
 	'bodySmall',
 	'label',
 	'caption',
+	'overline',
 	'code',
 ] as const;
 
@@ -209,6 +210,7 @@ export interface TypographyStyle {
 	fontWeight: string;
 	lineHeight: string;
 	letterSpacing: string;
+	textTransform: string;
 }
 
 export type TypographyTokens = Record<TypographyRole, TypographyStyle>;
@@ -409,11 +411,12 @@ export const motionTokens: Readonly<MotionTokens> = {
 	},
 };
 
-// Geist Sans is the official typeface (decision D02). The library ships no font file: the application self-hosts
-// it, and the system fonts that follow keep the interface usable while it loads or when it is absent.
+// Geist Sans and Geist Mono are the official typefaces (decision D02). The library ships no font file: the
+// application self-hosts them, and the system fonts that follow keep the interface usable while they load or when they
+// are absent.
 export const fontFamilyTokens: Readonly<FontFamilyTokens> = {
 	sans: "'Geist Variable', Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
-	mono: "ui-monospace, SFMono-Regular, 'Cascadia Mono', 'Roboto Mono', Menlo, Consolas, 'Liberation Mono', monospace",
+	mono: "'Geist Mono Variable', 'Geist Mono', ui-monospace, SFMono-Regular, 'Cascadia Mono', 'Roboto Mono', Menlo, Consolas, 'Liberation Mono', monospace",
 };
 
 export const fontWeightTokens: Readonly<FontWeightTokens> = {
@@ -423,33 +426,54 @@ export const fontWeightTokens: Readonly<FontWeightTokens> = {
 	bold: '700',
 };
 
+interface TypographyStyleOptions {
+	letterSpacing?: string;
+	textTransform?: string;
+	fontFamily?: string;
+}
+
 const createTypographyStyle = (
 	fontSize: string,
 	lineHeight: string,
 	fontWeight: string,
-	letterSpacing: string = '0',
-	fontFamily: string = fontFamilyTokens.sans,
+	{
+		letterSpacing = '0',
+		textTransform = 'none',
+		fontFamily = fontFamilyTokens.sans,
+	}: TypographyStyleOptions = {},
 ): TypographyStyle => {
-	return { fontFamily, fontSize, fontWeight, lineHeight, letterSpacing };
+	return { fontFamily, fontSize, fontWeight, lineHeight, letterSpacing, textTransform };
 };
 
-// Sizes in rem follow the browser text size and zoom; unitless line heights scale with them.
+// Sizes in rem follow the browser text size and zoom; unitless line heights scale with them. At the default text size
+// they are 40, 32, 24, 18, 15, 13, 13, 12, 11 and 13 px.
 export const typographyTokens: Readonly<TypographyTokens> = {
-	display: createTypographyStyle('2.25rem', '1.2', fontWeightTokens.bold, '-0.02em'),
-	headingLarge: createTypographyStyle('1.75rem', '1.25', fontWeightTokens.semibold, '-0.015em'),
-	headingMedium: createTypographyStyle('1.375rem', '1.3', fontWeightTokens.semibold, '-0.01em'),
+	display: createTypographyStyle('2.5rem', '1.2', fontWeightTokens.bold, {
+		letterSpacing: '-0.02em',
+	}),
+	headingLarge: createTypographyStyle('2rem', '1.25', fontWeightTokens.bold, {
+		letterSpacing: '-0.015em',
+	}),
+	headingMedium: createTypographyStyle('1.5rem', '1.3', fontWeightTokens.bold, {
+		letterSpacing: '-0.01em',
+	}),
 	headingSmall: createTypographyStyle('1.125rem', '1.4', fontWeightTokens.semibold),
-	body: createTypographyStyle('1rem', '1.5', fontWeightTokens.regular),
-	bodySmall: createTypographyStyle('0.875rem', '1.5', fontWeightTokens.regular),
-	label: createTypographyStyle('0.875rem', '1.4', fontWeightTokens.medium, '0.01em'),
-	caption: createTypographyStyle('0.75rem', '1.4', fontWeightTokens.regular, '0.02em'),
-	code: createTypographyStyle(
-		'0.875rem',
-		'1.5',
-		fontWeightTokens.regular,
-		'0',
-		fontFamilyTokens.mono,
-	),
+	body: createTypographyStyle('0.9375rem', '1.6', fontWeightTokens.regular),
+	bodySmall: createTypographyStyle('0.8125rem', '1.5', fontWeightTokens.regular),
+	label: createTypographyStyle('0.8125rem', '1.4', fontWeightTokens.medium, {
+		letterSpacing: '0.01em',
+	}),
+	caption: createTypographyStyle('0.75rem', '1.4', fontWeightTokens.regular, {
+		letterSpacing: '0.01em',
+	}),
+	// The smallest role: capitals and a wide tracking keep it legible.
+	overline: createTypographyStyle('0.6875rem', '1.4', fontWeightTokens.semibold, {
+		letterSpacing: '0.09em',
+		textTransform: 'uppercase',
+	}),
+	code: createTypographyStyle('0.8125rem', '1.5', fontWeightTokens.medium, {
+		fontFamily: fontFamilyTokens.mono,
+	}),
 };
 
 export const iconSizeTokens: Readonly<IconSizeTokens> = {

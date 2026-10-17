@@ -1,6 +1,7 @@
 // Adapter from the library theme to Material UI, which provides behavior (focus, keyboard, overlays) underneath.
 import { createTheme } from '@mui/material/styles';
 import type {
+	CSSProperties,
 	SimplePaletteColorOptions,
 	Theme,
 	TransitionsOptions,
@@ -25,6 +26,10 @@ const toPaletteColor = (intent: IntentTokens): SimplePaletteColorOptions => {
 	};
 };
 
+// Headings and paragraphs avoid a single short word on their last line; `noWrap` still wins, since Material UI
+// declares its `white-space` after the variant.
+const prettyWrap: CSSProperties = { textWrap: 'pretty' };
+
 const toTypography = (tokens: Readonly<DesignTokens>): TypographyVariantsOptions => {
 	const { typography, fontFamily, fontWeight }: Readonly<DesignTokens> = tokens;
 
@@ -33,19 +38,19 @@ const toTypography = (tokens: Readonly<DesignTokens>): TypographyVariantsOptions
 		fontWeightRegular: fontWeight.regular,
 		fontWeightMedium: fontWeight.medium,
 		fontWeightBold: fontWeight.bold,
-		h1: { ...typography.display },
-		h2: { ...typography.headingLarge },
-		h3: { ...typography.headingMedium },
-		h4: { ...typography.headingSmall },
-		h5: { ...typography.headingSmall },
-		h6: { ...typography.headingSmall },
-		subtitle1: { ...typography.body, fontWeight: fontWeight.medium },
+		h1: { ...typography.display, ...prettyWrap },
+		h2: { ...typography.headingLarge, ...prettyWrap },
+		h3: { ...typography.headingMedium, ...prettyWrap },
+		h4: { ...typography.headingSmall, ...prettyWrap },
+		h5: { ...typography.headingSmall, ...prettyWrap },
+		h6: { ...typography.headingSmall, ...prettyWrap },
+		subtitle1: { ...typography.body, fontWeight: fontWeight.medium, ...prettyWrap },
 		subtitle2: { ...typography.label },
-		body1: { ...typography.body },
-		body2: { ...typography.bodySmall },
-		button: { ...typography.label, textTransform: 'none' },
+		body1: { ...typography.body, ...prettyWrap },
+		body2: { ...typography.bodySmall, ...prettyWrap },
+		button: { ...typography.label },
 		caption: { ...typography.caption },
-		overline: { ...typography.caption, textTransform: 'uppercase' },
+		overline: { ...typography.overline },
 	};
 };
 

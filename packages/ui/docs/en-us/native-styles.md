@@ -27,14 +27,15 @@ import { UiProvider } from '@midnight-indigo/ui/theme';
 | `::placeholder`                                      | `text.muted`, fully opaque.                                                                  |
 | `a`, `a:hover`                                       | `accent.link`, `accent.linkHover`.                                                           |
 | `hr`, `kbd`, `mark`, `abbr[title]`, `blockquote`     | Theme borders and surfaces; `mark` uses the soft warning pair; `abbr` is underlined dotted.  |
-| `code`, `kbd`, `pre`, `samp`                         | Monospace stack.                                                                             |
+| `code`, `kbd`, `pre`, `samp`                         | Geist Mono (`fontFamily.mono`) with tabular digits.                                          |
+| `h1`–`h6`, `p`                                       | `text-wrap: pretty`, so the last line does not end on a single short word.                   |
 | Scrolling                                            | `scroll-behavior: smooth` only for users without a reduced motion preference.                |
 | Pages with the `DashboardLayout` top bar             | `scroll-padding-top` equal to its height, so anchors and focused elements land below it.     |
 | Mobile browsers                                      | No tap highlight; `text-size-adjust: 100%` (no automatic text inflation).                    |
 
 Every element rule is wrapped in `:where()`, whose specificity is zero: any class of a component or of the application
 wins over it. The baseline never resets margins, line heights or font sizes of the content. Headings, paragraphs and
-lists keep the browser defaults.
+lists keep the browser defaults, apart from `text-wrap: pretty`.
 
 ### High contrast modes
 

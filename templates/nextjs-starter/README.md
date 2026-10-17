@@ -137,5 +137,5 @@ and intent, and copies the code to use it. It runs on the server: the browser re
 
 ## License
 
-MIT, like the library. Geist Sans is licensed under the SIL Open Font License 1.1. Each icon set keeps its own
+MIT, like the library. Geist Sans and Geist Mono are licensed under the SIL Open Font License 1.1. Each icon set keeps its own
 license; see `ICON-NOTICES.md`.

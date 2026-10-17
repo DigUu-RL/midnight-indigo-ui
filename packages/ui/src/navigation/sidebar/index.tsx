@@ -185,8 +185,7 @@ const GroupLabel = styled('span', {
 	return {
 		marginBlockStart: spacing[3],
 		paddingInline: spacing[3],
-		...typography.caption,
-		fontWeight: fontWeight.semibold,
+		...typography.overline,
 		color: text.muted,
 		...(collapsed ? visuallyHiddenStyles : {}),
 	};

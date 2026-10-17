@@ -12,6 +12,7 @@ test('permissive licenses and SPDX expressions are allowed for any package', ():
 
 test('a named exception covers only its package', (): void => {
 	assert.equal(isAllowedLicense('OFL-1.1', '@fontsource-variable/geist'), true);
+	assert.equal(isAllowedLicense('OFL-1.1', '@fontsource-variable/geist-mono'), true);
 	assert.equal(isAllowedLicense('OFL-1.1', 'another-font'), false);
 });
 
