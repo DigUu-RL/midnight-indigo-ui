@@ -1,4 +1,4 @@
-// Budgets of client-side processing (docs/data-display.md, "Large datasets"). Each budget is about four times the time
+// Budgets of client-side processing (docs/en-us/data-display.md, "Large datasets"). Each budget is about four times the time
 // measured on a development laptop: loose enough for a shared CI runner, tight enough to catch a change of complexity.
 // 10 000 rows is the size supported on the client; 100 000 and 1 000 000 rows cover `sortRows` and `filterRows` used
 // by a server written in TypeScript.

@@ -1,6 +1,6 @@
 # Icons
 
-[Português](./icons.pt-BR.md)
+[Português](../pt-br/icons.md)
 
 `@midnight-indigo/ui/icons` renders the icons of [Iconify](https://iconify.design), more than 200 open-source sets in
 one format, as inline SVG. The icon data is already in your code: nothing is downloaded at runtime, not even as a

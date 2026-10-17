@@ -1,6 +1,6 @@
 # Native browser styles
 
-[Português](./native-styles.pt-BR.md)
+[Português](../pt-br/native-styles.md)
 
 Components follow the theme, but the browser also draws things by itself: the scrollbars, the text selection, the
 background of autofilled fields, native controls (date and time inputs, `select`, checkboxes) and the default focus

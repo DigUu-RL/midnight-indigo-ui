@@ -6,6 +6,7 @@ import {
 	pickHighestContrast,
 } from '#src/tokens/color.ts';
 import type { HexColor } from '#src/tokens/color.ts';
+import { supportMainColors } from '#src/tokens/support-colors.ts';
 
 export const semanticIntents = [
 	'official',
@@ -66,10 +67,11 @@ export const defaultIntentSources: Readonly<IntentSources> = {
 	// The derived hover (15% toward the light ink) gives the light label 4.13:1; this lighter step keeps 4.96:1.
 	brand: { main: brandMainColor, hover: '#664FDE' },
 	default: { main: '#9290A8' },
-	success: { main: '#36C995' },
-	warning: { main: '#F2B84B' },
-	error: { main: '#F2545B' },
-	info: { main: '#65BDEB' },
+	// The status colors are support colors, so a category and a status of the same hue match.
+	success: { main: supportMainColors.green },
+	warning: { main: supportMainColors.amber },
+	error: { main: supportMainColors.red },
+	info: { main: supportMainColors.blue },
 };
 
 const textMinimumRatio: number = 4.5;

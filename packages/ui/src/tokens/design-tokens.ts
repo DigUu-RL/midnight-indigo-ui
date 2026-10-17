@@ -1,6 +1,6 @@
 // The complete design token set: base groups plus intents derived from their sources. Dark-only by design.
-import { parseHexColor } from '#src/tokens/color.ts';
-import type { HexColor, RgbColor } from '#src/tokens/color.ts';
+import { translucent } from '#src/tokens/color.ts';
+import type { HexColor } from '#src/tokens/color.ts';
 import {
 	brandMainColor,
 	defaultIntentSources,
@@ -8,6 +8,8 @@ import {
 	officialMainColor,
 } from '#src/tokens/intents.ts';
 import type { IntentDerivationContext, IntentPalette, IntentSources } from '#src/tokens/intents.ts';
+import { deriveSupportTokens, supportMainColors } from '#src/tokens/support-colors.ts';
+import type { SupportTokens } from '#src/tokens/support-colors.ts';
 
 /** Steps of the pink and indigo scales, from the lightest (`50`) to the darkest (`950`). */
 export const colorScaleSteps = [
@@ -227,6 +229,7 @@ export interface DesignTokens {
 	accent: AccentTokens;
 	state: StateTokens;
 	intent: IntentPalette;
+	support: SupportTokens;
 	chart: ChartTokens;
 	radius: RadiusTokens;
 	spacing: SpacingTokens;
@@ -363,12 +366,6 @@ export const spacingTokens: Readonly<SpacingTokens> = {
 	'16': '4rem',
 };
 
-/** A color as CSS `rgb()` with an alpha channel, from 0 (transparent) to 1 (opaque). */
-const translucent = (color: string, alpha: number): string => {
-	const { red, green, blue }: RgbColor = parseHexColor(color);
-	return `rgb(${String(red)} ${String(green)} ${String(blue)} / ${String(alpha)})`;
-};
-
 // Shadows are barely visible on the dark canvas, so elevation pairs them with lighter surfaces and borders. The
 // colored shadows (`official`, `brand`) follow the intent `main` of the theme and are added by `createDesignTokens`.
 export const elevationTokens: Readonly<Omit<ElevationTokens, 'official' | 'brand'>> = {
@@ -461,15 +458,16 @@ export const iconSizeTokens: Readonly<IconSizeTokens> = {
 	large: '1.5rem',
 };
 
+// The support colors, starting with the identity pink and violet. Red comes last: it also reads as an error.
 const chartSeries: readonly HexColor[] = [
-	'#FF6AC1',
-	'#65BDEB',
-	'#36C995',
-	'#F2B84B',
-	'#A68CFF',
-	'#FF8A5B',
-	'#4FD1C5',
-	'#D4D1E8',
+	supportMainColors.pink,
+	supportMainColors.violet,
+	supportMainColors.blue,
+	supportMainColors.green,
+	supportMainColors.amber,
+	supportMainColors.turquoise,
+	supportMainColors.orange,
+	supportMainColors.red,
 ];
 
 const intentDerivationContext: Readonly<IntentDerivationContext> = {
@@ -512,6 +510,7 @@ export const createDesignTokens = (
 		},
 		state: { ...stateTokens },
 		intent,
+		support: deriveSupportTokens(intentDerivationContext),
 		chart: {
 			series: [...chartSeries],
 			grid: borderTokens.subtle,

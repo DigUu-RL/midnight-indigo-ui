@@ -1,6 +1,6 @@
 # Mensagens ricas
 
-[English](./rich-messages.md)
+[English](../en-us/rich-messages.md)
 
 Negrito, ênfase ou um link em parte de uma frase, escritos na própria tradução (F21), exportados por
 `@midnight-indigo/ui/i18n`. Quebrar a frase em várias chaves prejudica a tradução, porque a ordem das palavras muda
@@ -39,7 +39,7 @@ JSON, carregadas como antes.
 Toda mensagem pode usar, sem configuração: `strong`, `b`, `em`, `i`, `u`, `s`, `code`, `kbd`, `mark`, `small`, `sub`,
 `sup` e `br` (`<br>` ou `<br/>`). Elas renderizam o elemento nativo, que o baseline do `UiProvider` estiliza com os
 tokens do tema (`code` e `kbd` na fonte monoespaçada, `kbd` como uma tecla, `mark` no container de alerta; veja
-[native-styles.pt-BR.md](./native-styles.pt-BR.md)).
+[native-styles.pt-BR.md](./native-styles.md)).
 
 ## Tags da aplicação
 

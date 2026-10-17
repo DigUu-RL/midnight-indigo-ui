@@ -1,6 +1,6 @@
 # Ícones
 
-[English](./icons.md)
+[English](../en-us/icons.md)
 
 `@midnight-indigo/ui/icons` renderiza os ícones do [Iconify](https://iconify.design), mais de 200 conjuntos de código
 aberto num formato único, como SVG inline. Os dados do ícone já estão no seu código: nada é baixado em tempo de
@@ -59,7 +59,7 @@ administram o registro.
 
 ## Acessibilidade, tamanho e cor
 
-`IconifyIcon` segue a regra do `Icon` ([foundations.md](./foundations.md#icons)): o tipo exige um `label` (ícone
+`IconifyIcon` segue a regra do `Icon` ([foundations.md](../en-us/foundations.md#icons)): o tipo exige um `label` (ícone
 funcional, `role="img"`) ou `decorative` (oculto das tecnologias assistivas). Um ícone no slot de um controle que já tem
 nome é decorativo.
 

@@ -1,6 +1,6 @@
 # Color scales
 
-[Português](./palette.pt-BR.md)
+[Português](../pt-br/palette.md)
 
 The identity of Midnight Indigo: UI rests on three color scales, exported by `@midnight-indigo/ui/tokens` as
 `tokens.color` and declared in CSS as `--mi-color-<scale>-<step>`. The values of every step are in
@@ -78,6 +78,55 @@ carousel dot use the lighter `brand.border`.
 | `elevation.medium`                   | `elevation.overlay` (menus, popovers), `elevation.card` (cards)       |
 | `elevation.high`                     | `elevation.dialog`                                                    |
 | `border.strong` as a control outline | `border.control` (`#6E62A3`); `border.strong` is now `#453C7A`, < 3:1 |
+
+## Support colors
+
+Categories, tags, avatars and charts need more colors than the intents. The support palette, `tokens.support`, has
+eight colors harmonized with the pink and the indigo, and carries no meaning: status stays with the intents. The status
+intents take their `main` from it, so a green category and a `success` alert share the hue.
+
+| Color       | `main`    | Also                         |
+| ----------- | --------- | ---------------------------- |
+| `pink`      | `#FF6AC1` | Official pink                |
+| `violet`    | `#8F7AFB` | `color.indigo.300`           |
+| `blue`      | `#65BDEB` | `intent.info.main` (info)    |
+| `green`     | `#36C995` | `intent.success.main`        |
+| `amber`     | `#F2B84B` | `intent.warning.main`        |
+| `red`       | `#F2545B` | `intent.error.main` (danger) |
+| `turquoise` | `#3FD0C9` |                              |
+| `orange`    | `#F28A4B` |                              |
+
+Each color has three tokens, declared as `--mi-support-<color>-<field>`:
+
+- `main`: the color itself, for icons, dots and chart marks.
+- `soft`: tonal background, `main` at 16% over the surface below it.
+- `text`: text on `soft`. It equals `main`, except for `violet` and `red`, whose `main` is below 4.5:1 on `soft` over
+  the lighter surfaces, so their `text` is a lighter step.
+
+On `soft`, at 14% to 18% and over every surface, `text` meets 4.5:1 and `main` 3:1 (checked in CI; the ratios are in
+[tokens.md](./tokens.md#support)).
+
+```css
+.category {
+	background: var(--mi-support-violet-soft);
+	color: var(--mi-support-violet-text);
+}
+```
+
+`soft(color, alpha)` builds the same tonal background from any color, with `alpha` kept between 0.14 and 0.18.
+`supportColorFor(text)` assigns a support color to a text, such as a name: the same text always gets the same color,
+ignoring case and surrounding spaces.
+
+```ts
+import { soft, supportColorFor, tokens } from '@midnight-indigo/ui/tokens';
+
+const color = supportColorFor('Samus Aran'); // 'pink'
+tokens.support[color].text; // '#FF6AC1'
+soft('#3FD0C9'); // 'rgb(63 208 201 / 0.16)'
+```
+
+The chart series (`chart.series`) are the support colors, starting with pink, violet and blue; red comes last, as it
+also reads as an error.
 
 ## Scales and theme
 
