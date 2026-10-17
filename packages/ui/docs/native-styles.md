@@ -21,7 +21,7 @@ import { UiProvider } from '@midnight-indigo/ui/theme';
 | Document                                             | `color-scheme: dark`, so native controls, date pickers and form popups render dark.          |
 | Page scrollbar                                       | Thin, thumb `border.strong` on a `surface.canvas` track.                                     |
 | Text selection (`::selection`)                       | `accent.selection` background, `accent.onSelection` text (an audited pair).                  |
-| Caret, checkboxes, radios, range                     | `caret-color: focus.ring`, `accent-color: intent.official.main`.                             |
+| Caret, checkboxes, radios, range                     | `caret-color: focus.ring`, `accent-color: intent.brand.main`.                                |
 | Autofilled fields (`:autofill`, `:-webkit-autofill`) | Keep the system colors of a field (`Field`, `FieldText`) instead of the blue or yellow fill. |
 | Focus of native elements (`:focus-visible`)          | The focus ring of the components: `focus.width` solid `focus.ring`, offset `focus.offset`.   |
 | `::placeholder`                                      | `text.muted`, fully opaque.                                                                  |

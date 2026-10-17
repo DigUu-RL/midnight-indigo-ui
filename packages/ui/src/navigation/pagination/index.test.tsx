@@ -5,7 +5,7 @@ import type { UserEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { Mock } from 'vitest';
 
-import { expectNoAxeViolations } from '#test/component-harness.ts';
+import { expectNoAxeViolations, styleRulesOf } from '#test/component-harness.ts';
 import { applyViewportStyles, resetViewport, setViewportWidth } from '#test/viewport.ts';
 import { Pagination, paginationRange } from '#src/navigation/pagination/index.tsx';
 import type { PaginationEntry, PaginationProps } from '#src/navigation/pagination/index.tsx';
@@ -147,6 +147,14 @@ describe('Pagination with links', (): void => {
 
 		expect(screen.queryAllByRole('button')).toHaveLength(0);
 		await expectNoAxeViolations(document.body);
+	});
+
+	it('fills the current page with the brand indigo, not the official pink', (): void => {
+		renderAt(1024, { page: 2, pageCount: 3, getPageHref });
+		const rules: string = styleRulesOf(screen.getByRole('link', { name: 'Page 2' })).join('');
+
+		expect(rules).toContain('background-color:var(--mi-intent-brand-main);');
+		expect(rules).not.toContain('--mi-intent-official-');
 	});
 
 	it('takes the destination out of a disabled link', (): void => {

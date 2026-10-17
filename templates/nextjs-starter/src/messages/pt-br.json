@@ -189,6 +189,7 @@
 		},
 		"intents": {
 			"official": "Oficial",
+			"brand": "Marca",
 			"default": "Padrão",
 			"success": "Sucesso",
 			"warning": "Atenção",

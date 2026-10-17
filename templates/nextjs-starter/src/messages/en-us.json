@@ -188,6 +188,7 @@
 		},
 		"intents": {
 			"official": "Official",
+			"brand": "Brand",
 			"default": "Default",
 			"success": "Success",
 			"warning": "Warning",

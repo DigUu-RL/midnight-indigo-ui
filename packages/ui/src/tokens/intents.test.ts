@@ -8,6 +8,7 @@ import {
 	tokens,
 } from '#src/tokens/design-tokens.ts';
 import {
+	brandMainColor,
 	defaultIntentSources,
 	deriveIntentTokens,
 	officialMainColor,
@@ -44,9 +45,41 @@ describe('official pink', (): void => {
 	});
 });
 
+describe('brand indigo', (): void => {
+	it('is the solid indigo of the color scale', (): void => {
+		expect(brandMainColor).toBe('#5E48D6');
+		expect(tokens.intent.brand.main).toBe(tokens.color.indigo['500']);
+	});
+
+	it('keeps 4.5:1 for the light label of a solid brand control in every state', (): void => {
+		const { contrastText, main, hover, pressed }: IntentTokens = tokens.intent.brand;
+
+		expect(contrastText).toBe(textTokens.primary);
+
+		[main, hover, pressed].forEach((fill: string): void => {
+			expect(contrastRatio(contrastText, fill)).toBeGreaterThanOrEqual(4.5);
+		});
+	});
+
+	it('pins a hover lighter than main, since the derived one misses 4.5:1', (): void => {
+		const derived: IntentTokens = deriveIntentTokens({ main: brandMainColor }, context);
+
+		expect(contrastRatio(derived.contrastText, derived.hover)).toBeLessThan(4.5);
+		expect(tokens.intent.brand.hover).toBe('#664FDE');
+	});
+});
+
 describe('semantic intents', (): void => {
-	it('are exactly the six public intents', (): void => {
-		expect(semanticIntents).toEqual(['official', 'default', 'success', 'warning', 'error', 'info']);
+	it('are exactly the seven public intents', (): void => {
+		expect(semanticIntents).toEqual([
+			'official',
+			'brand',
+			'default',
+			'success',
+			'warning',
+			'error',
+			'info',
+		]);
 	});
 
 	it('all expose the same fields', (): void => {
@@ -105,6 +138,16 @@ describe('createDesignTokens', (): void => {
 		expect(custom.intent.official.main).toBe('#A68CFF');
 		expect(custom.accent.link).toBe(custom.intent.official.text);
 		expect(tokens.intent.official.main).toBe(officialPinkSource);
+	});
+
+	it('draws focus in the official pink and selected text in the brand indigo', (): void => {
+		const sources: IntentSources = { ...defaultIntentSources, brand: { main: '#3F8CFF' } };
+		const custom: Readonly<DesignTokens> = createDesignTokens(sources);
+
+		expect(tokens.focus).toEqual({ ring: officialPinkSource, width: '2px', offset: '2px' });
+		expect(tokens.accent.selection).toBe(tokens.intent.brand.containerPressed);
+		expect(custom.accent.selection).toBe(custom.intent.brand.containerPressed);
+		expect(custom.accent.selection).not.toBe(tokens.accent.selection);
 	});
 
 	it('returns a frozen token tree', (): void => {

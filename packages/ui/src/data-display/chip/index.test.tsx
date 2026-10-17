@@ -46,6 +46,23 @@ describe('Chip', (): void => {
 		await expectNoAxeViolations(container);
 	});
 
+	it('fills a selected chip with the brand indigo, whatever its intent', (): void => {
+		render(
+			<Chip
+				label='Open'
+				intent='success'
+				selected
+				onClick={(): void => undefined}
+				data-testid='chip'
+			/>,
+		);
+
+		const rules: string = styleRulesOf(screen.getByTestId('chip')).join('');
+
+		expect(rules).toContain('background-color:var(--mi-intent-brand-main);');
+		expect(rules).not.toContain('--mi-intent-success-');
+	});
+
 	it('has a named delete button, also reachable with Backspace and Delete', async (): Promise<void> => {
 		const user: UserEvent = userEvent.setup();
 		const handleDelete = vi.fn();

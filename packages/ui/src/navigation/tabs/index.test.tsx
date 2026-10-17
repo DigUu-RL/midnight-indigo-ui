@@ -5,7 +5,7 @@ import type { UserEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { Mock } from 'vitest';
 
-import { expectNoAxeViolations } from '#test/component-harness.ts';
+import { expectNoAxeViolations, styleRulesOf } from '#test/component-harness.ts';
 import { Tabs } from '#src/navigation/tabs/index.tsx';
 import type { TabItem, TabsProps } from '#src/navigation/tabs/index.tsx';
 
@@ -45,6 +45,17 @@ describe('Tabs', (): void => {
 		expect(screen.getAllByRole('tabpanel')).toHaveLength(1);
 		expect(screen.getByRole('tab', { name: 'Archive' }).getAttribute('aria-disabled')).toBe('true');
 		await expectNoAxeViolations(document.body);
+	});
+
+	it('marks the selected tab with a brand indigo bar', (): void => {
+		renderTabs();
+		const rules: string = styleRulesOf(selectedTab()).join('');
+
+		expect(rules).toContain(
+			'&[aria-selected="true"]::after,&[aria-current="page"]::after{background-color:var(--mi-intent-brand-main);}',
+		);
+
+		expect(rules).not.toContain('--mi-intent-official-');
 	});
 
 	it('is a single tab stop that leads to the panel', async (): Promise<void> => {

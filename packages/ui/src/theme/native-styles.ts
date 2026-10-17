@@ -77,7 +77,7 @@ const nativeFieldAutofillStyles: CSSObject = autofillStyles('Field', 'FieldText'
 export const nativeBaselineStyles: CSSObject = {
 	html: {
 		colorScheme: 'dark',
-		accentColor: intent.official.main,
+		accentColor: intent.brand.main,
 		caretColor: focus.ring,
 		WebkitTapHighlightColor: 'transparent',
 		WebkitTextSizeAdjust: '100%',

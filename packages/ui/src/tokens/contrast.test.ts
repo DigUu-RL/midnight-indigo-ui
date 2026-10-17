@@ -37,6 +37,30 @@ describe('official contrast pairs', (): void => {
 			expect(foregrounds).toContain(path);
 		});
 	});
+
+	it('audits the brand intent and the pink focus ring on every surface', (): void => {
+		const pairs: ContrastPair[] = createContrastPairs(tokens);
+
+		const backgroundsOf = (foreground: string): string[] => {
+			return pairs
+				.filter((pair: ContrastPair): boolean => pair.foreground === foreground)
+				.map((pair: ContrastPair): string => pair.background);
+		};
+
+		const everySurface: string[] = ['canvas', 'sunken', 'base', 'raised', 'overlay'].map(
+			(surface: string): string => `surface.${surface}`,
+		);
+
+		expect(backgroundsOf('focus.ring')).toEqual(everySurface);
+		expect(backgroundsOf('intent.brand.text')).toEqual(everySurface);
+		expect(backgroundsOf('intent.brand.border')).toEqual(everySurface);
+
+		expect(backgroundsOf('intent.brand.contrastText')).toEqual([
+			'intent.brand.main',
+			'intent.brand.hover',
+			'intent.brand.pressed',
+		]);
+	});
 });
 
 describe('auditContrast on a custom palette', (): void => {
@@ -64,8 +88,8 @@ describe('resolveTokenPath', (): void => {
 	});
 
 	it('rejects unknown paths', (): void => {
-		expect((): unknown => resolveTokenPath(tokens, 'intent.brand.main')).toThrow(
-			'Unknown token path "intent.brand.main".',
+		expect((): unknown => resolveTokenPath(tokens, 'intent.accent.main')).toThrow(
+			'Unknown token path "intent.accent.main".',
 		);
 
 		expect((): unknown => resolveTokenPath(tokens, 'surface')).toThrow(/Unknown token path/);

@@ -236,7 +236,7 @@ const itemStyles = ({ collapsed }: { collapsed: boolean }): CSSObject => {
 			insetBlock: spacing[2],
 			width: '3px',
 			borderRadius: radius.pill,
-			backgroundColor: intent.official.main,
+			backgroundColor: intent.brand.text,
 		},
 		// Drawn inside, so the scrolling navigation never clips it.
 		'&:focus-visible': {

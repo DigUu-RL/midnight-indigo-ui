@@ -26,7 +26,8 @@
 		"create:starter": "node templates/nextjs-starter/scripts/create-starter.ts",
 		"check:starter": "node templates/nextjs-starter/scripts/check-generated-starter.ts",
 		"update:icon-sets": "node scripts/update-icon-sets.ts",
-		"check": "pnpm build && pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm test:performance && pnpm check:package && pnpm check:source && pnpm check:licenses && pnpm check:bundle"
+		"check": "pnpm build && pnpm typecheck && pnpm lint && pnpm format:check && pnpm test && pnpm test:performance && pnpm check:package && pnpm check:source && pnpm check:licenses && pnpm check:bundle",
+		"show:preview": "pnpm --filter @midnight-indigo/nextjs-starter dev"
 	},
 	"devDependencies": {
 		"@eslint/js": "catalog:",

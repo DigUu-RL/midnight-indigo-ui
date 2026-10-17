@@ -97,7 +97,7 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 		indigo: {
 			'300': 'Indigo text and icons.',
 			'400': 'Hover of the solid indigo and active border.',
-			'500': 'Solid indigo.',
+			'500': 'Solid indigo, identical to `intent.brand.main` of the official theme.',
 		},
 		// The roles of the midnight steps are the semantic surface, border and state tokens.
 		midnight: {},
@@ -123,14 +123,14 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 		strong: 'Boundary of inputs and interactive controls; meets 3:1 on every surface.',
 	},
 	focus: {
-		ring: 'Focus indicator color; meets 3:1 on every surface.',
+		ring: 'Focus indicator color, the official pink; meets 3:1 on every surface.',
 		width: 'Focus indicator thickness.',
 		offset: 'Gap between the control and the focus indicator.',
 	},
 	accent: {
 		link: 'Link text.',
 		linkHover: 'Hovered link text.',
-		selection: 'Background of selected text.',
+		selection: 'Background of selected text, derived from `brand`.',
 		onSelection: 'Selected text.',
 	},
 	state: {
@@ -143,7 +143,9 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 	},
 	intents: {
 		official:
-			'Brand, primary action and highlight. `main` is the exact Midnight Indigo keyword pink.',
+			'Main action and focus, at most one solid per screen. `main` is the exact Midnight Indigo keyword pink.',
+		brand:
+			'Indigo for selection, the active item and navigation: checked controls, current page, active tab.',
 		default: 'Neutral gray for secondary actions and neutral status.',
 		success: 'Confirmation and completed operations.',
 		warning: 'Attention required; pair with an icon or label, never hue alone.',

@@ -34,7 +34,7 @@ flash.
 
 Two props describe the look of every component that carries color, instead of one prop per combination:
 
-- `intent` — the meaning: `official`, `default`, `success`, `warning`, `error` or `info`.
+- `intent` — the meaning: `official`, `brand`, `default`, `success`, `warning`, `error` or `info`.
 - `variant` — the emphasis, independent from the meaning.
 
 | Variant   | Rest                                  | Hover / pressed                                                 | Used by                         |
@@ -49,7 +49,10 @@ part of the contrast audit (`auditContrast`, table in [tokens.md](./tokens.md#co
 `variant='outline'` still means the brand: it is just not filled.
 
 Defaults favor restraint: `Button` and `Chip` are `default` + `soft`, `IconButton` is `default` + `ghost`. Mark the
-main action of a view with `intent='official' variant='solid'`, and destructive actions with `intent='error'`.
+main action of a view with `intent='official' variant='solid'` (at most one per screen), and destructive actions with
+`intent='error'`. Selection, the active item and navigation take `brand`, the indigo: checked checkboxes, radios and
+switches, a selected chip, the current page and the active tab already do. See
+[the pink × indigo rule](./palette.md#pink--indigo).
 
 ## Shape and scale
 

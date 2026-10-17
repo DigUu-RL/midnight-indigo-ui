@@ -40,7 +40,7 @@ interface ChipBaseProps extends Omit<ComponentPropsWithRef<'span'>, 'children' |
 	label: ReactNode;
 	/** Defaults to `'default'`. */
 	intent?: SemanticIntent;
-	/** Defaults to `'soft'`. A selected chip is always `solid` and shows a check mark. */
+	/** Defaults to `'soft'`. A selected chip is always a `solid` `brand` chip with a check mark. */
 	variant?: ChipVariant;
 	/** 24 or 32 px high. Defaults to `'medium'`. */
 	size?: ChipSize;
@@ -202,6 +202,7 @@ export const Chip = ({
 }: ChipProps): ReactElement => {
 	const interactive: boolean = onClick !== undefined;
 	const removable: boolean = onDelete !== undefined;
+	const shownIntent: SemanticIntent = selected === true ? 'brand' : intent;
 	const appearance: ChipVariant = selected === true ? 'solid' : variant;
 	const decoration: ReactNode = selected === true ? <Glyph name='check' /> : icon;
 
@@ -225,7 +226,7 @@ export const Chip = ({
 	return (
 		<ChipRoot
 			{...attributes}
-			chipIntent={intent}
+			chipIntent={shownIntent}
 			chipVariant={appearance}
 			chipSize={size}
 			interactive={interactive}
@@ -255,7 +256,7 @@ export const Chip = ({
 					aria-label={assertLabel(deleteLabel, 'The deleteLabel of a Chip')}
 					disabled={disabled}
 					onClick={onDelete}
-					chipIntent={intent}
+					chipIntent={shownIntent}
 					chipVariant={appearance}
 				>
 					<Glyph name='close' size='small' />

@@ -31,6 +31,23 @@ tokens.color.indigo['500']; // '#5E48D6'
 themeVariables.color.midnight['850']; // 'var(--mi-color-midnight-850)'
 ```
 
+## Rosa × indigo
+
+Cada cor de identidade tem um papel, para que a ação principal se destaque:
+
+| Papel                           | Intenção                   | Onde                                                                                                               |
+| ------------------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Ação principal e foco           | `official` (rosa)          | No máximo **um** botão sólido rosa por tela; o anel de foco (`focus.ring`, 2 px, deslocamento 2 px)                |
+| Seleção, item ativo e navegação | `brand` (indigo `#5E48D6`) | Checkbox, radio e switch marcados, chip selecionado, página atual, aba e item de sidebar ativos, texto selecionado |
+
+`brand` é uma intenção semântica como as demais: todo componente que recebe `intent` aceita `intent='brand'` nas quatro
+aparências (`solid`, `soft`, `outline`, `ghost`). Não o use para uma segunda ação principal: ações secundárias
+continuam `default`.
+
+O rótulo de um controle `brand` sólido é a tinta clara e mantém 4.5:1 em repouso, com hover e pressionado. O hover
+derivado (4.13:1) não alcança esse mínimo, então o tema oficial fixa `intent.brand.hover` em `#664FDE` (4.96:1); um
+tema que configura `palette.brand.main` deriva o hover novamente a partir da própria cor.
+
 ## Escalas e tema
 
 As escalas são fixas: um tema criado com `createUiTheme` muda as intenções semânticas, nunca `tokens.color`. Com um

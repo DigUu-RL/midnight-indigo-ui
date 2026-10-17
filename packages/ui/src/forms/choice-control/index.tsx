@@ -44,17 +44,17 @@ const switchHeight: string = '1.25rem';
 const thumbSize: string = '0.875rem';
 
 const filled: CSSObject = {
-	backgroundColor: intent.official.main,
-	borderColor: intent.official.main,
+	backgroundColor: intent.brand.main,
+	borderColor: intent.brand.main,
 };
 
-// The mark is a pseudo-element in `contrastText`, a pair of the contrast audit with `official.main`.
+// The mark is a pseudo-element in `contrastText`, a pair of the contrast audit with `brand.main`.
 const checkMark: CSSObject = {
 	width: '0.3rem',
 	height: '0.6rem',
 	marginBlockStart: '-0.1rem',
 	borderStyle: 'solid',
-	borderColor: intent.official.contrastText,
+	borderColor: intent.brand.contrastText,
 	borderWidth: '0 2px 2px 0',
 	transform: 'rotate(45deg)',
 };
@@ -69,19 +69,19 @@ const kindStyles: Record<ChoiceKind, CSSObject> = {
 		'&:indeterminate::before': {
 			width: '0.6rem',
 			height: '2px',
-			backgroundColor: intent.official.contrastText,
+			backgroundColor: intent.brand.contrastText,
 		},
 	},
 	radio: {
 		width: boxSize,
 		height: boxSize,
 		borderRadius: radius.pill,
-		'&:checked': { borderColor: intent.official.main },
+		'&:checked': { borderColor: intent.brand.main },
 		'&:checked::before': {
 			width: '0.5rem',
 			height: '0.5rem',
 			borderRadius: radius.pill,
-			backgroundColor: intent.official.main,
+			backgroundColor: intent.brand.main,
 		},
 	},
 	// The thumb moves to the end when on, so the state does not rest on color.
@@ -103,7 +103,7 @@ const kindStyles: Record<ChoiceKind, CSSObject> = {
 		},
 		'&:checked': filled,
 		'&:checked::before': {
-			backgroundColor: intent.official.contrastText,
+			backgroundColor: intent.brand.contrastText,
 			transform: `translateX(calc(${switchWidth} - ${thumbSize} - 6px))`,
 		},
 		'[dir="rtl"] &:checked::before': {
@@ -146,8 +146,8 @@ const StyledChoiceInput = styled('input', {
 			? {}
 			: {
 					'&:is(:checked, :indeterminate):hover:not(:disabled)': {
-						backgroundColor: intent.official.hover,
-						borderColor: intent.official.hover,
+						backgroundColor: intent.brand.hover,
+						borderColor: intent.brand.hover,
 					},
 				}),
 		'&:disabled, &:disabled:is(:checked, :indeterminate)': {

@@ -128,8 +128,8 @@ const PickerButton = styled('button')({
 		...colorTransitionStyles,
 		transitionProperty: 'background-color, width',
 	},
-	'&:hover::before': { backgroundColor: intent.official.hover },
-	'&[aria-current="true"]::before': { width: spacing[4], backgroundColor: intent.official.main },
+	'&:hover::before': { backgroundColor: intent.brand.hover },
+	'&[aria-current="true"]::before': { width: spacing[4], backgroundColor: intent.brand.main },
 });
 
 const editableSelector: string =

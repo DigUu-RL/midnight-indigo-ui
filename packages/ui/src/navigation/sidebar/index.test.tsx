@@ -96,6 +96,16 @@ describe('Sidebar on wide viewports', (): void => {
 		await expectNoAxeViolations(document.body);
 	});
 
+	it('marks the current item with a brand indigo bar', (): void => {
+		renderAt(1024, <SidebarHarness />);
+		const navigation: HTMLElement = screen.getByRole('navigation', { name: 'Main navigation' });
+		const home: HTMLElement = within(navigation).getByRole('link', { name: 'Home' });
+		const rules: string = styleRulesOf(home).join('');
+
+		expect(rules).toContain('background-color:var(--mi-intent-brand-text);');
+		expect(rules).not.toContain('--mi-intent-official-');
+	});
+
 	it('collapses to a rail that keeps every name and stays in the tab order', async (): Promise<void> => {
 		const user: UserEvent = userEvent.setup();
 		const onCollapsedChange: Mock<(collapsed: boolean) => void> = vi.fn();

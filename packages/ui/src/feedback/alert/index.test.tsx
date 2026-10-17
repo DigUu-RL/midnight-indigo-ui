@@ -63,9 +63,10 @@ describe('Alert', (): void => {
 			},
 		);
 
-		const [, defaultGlyph, success, warning, error, info] = glyphs;
+		const [official, brand, defaultGlyph, success, warning, error, info] = glyphs;
 
-		expect(new Set([glyphs[0], success, warning, error, info]).size).toBe(5);
+		expect(new Set([official, success, warning, error, info]).size).toBe(5);
+		expect(brand).toBe(info);
 		expect(defaultGlyph).toBe(info);
 	});
 

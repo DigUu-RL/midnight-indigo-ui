@@ -1,6 +1,7 @@
 // The complete design token set: base groups plus intents derived from their sources. Dark-only by design.
 import type { HexColor } from '#src/tokens/color.ts';
 import {
+	brandMainColor,
 	defaultIntentSources,
 	deriveIntentPalette,
 	officialMainColor,
@@ -248,7 +249,7 @@ export const indigoScale: Readonly<ColorScale> = {
 	'200': '#D2CAFD',
 	'300': '#8F7AFB',
 	'400': '#7560F0',
-	'500': '#5E48D6',
+	'500': brandMainColor,
 	'600': '#4C3AAE',
 	'700': '#3A2D86',
 	'800': '#2A2162',
@@ -299,8 +300,9 @@ export const borderTokens: Readonly<BorderTokens> = {
 	strong: '#6E62A3',
 };
 
+// The official pink, like the main action: focus and the primary action share the color that draws the eye.
 export const focusTokens: Readonly<FocusTokens> = {
-	ring: '#B7A8FF',
+	ring: officialMainColor,
 	width: '2px',
 	offset: '2px',
 };
@@ -470,7 +472,7 @@ export const createDesignTokens = (
 		accent: {
 			link: intent.official.text,
 			linkHover: intent.official.light,
-			selection: intent.official.containerPressed,
+			selection: intent.brand.containerPressed,
 			onSelection: textTokens.primary,
 		},
 		state: { ...stateTokens },

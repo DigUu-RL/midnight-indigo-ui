@@ -5,6 +5,7 @@ import {
 	createTokenStylesheet,
 	cssLayers,
 	defaultIntentSources,
+	normalizeHexColor,
 	semanticIntents,
 } from '#src/tokens/index.ts';
 import type {
@@ -15,7 +16,7 @@ import type {
 	SemanticIntent,
 } from '#src/tokens/index.ts';
 import { parseUiThemeConfig } from '#src/theme/theme-config.ts';
-import type { PaletteConfig, UiThemeConfig } from '#src/theme/theme-config.ts';
+import type { IntentConfig, PaletteConfig, UiThemeConfig } from '#src/theme/theme-config.ts';
 
 /**
  * A resolved theme. Plain, frozen data without functions, so a Server Component can create it and pass it to
@@ -37,11 +38,20 @@ const warnInConsole = (message: string): void => {
 	console.warn(`[Midnight Indigo: UI] Theme contrast warning: ${message}`);
 };
 
-// An intent keeps its default `main` when the configuration omits it; any configured field wins.
+// An intent keeps its default source unless the configuration sets another `main`; any configured field wins. A new
+// `main` replaces the whole default source, so fields pinned for the default color (`brand.hover`) are derived again.
 const resolveIntentSources = (palette: PaletteConfig): IntentSources => {
 	return Object.fromEntries(
 		semanticIntents.map((intent: SemanticIntent): [SemanticIntent, IntentSource] => {
-			return [intent, { ...defaultIntentSources[intent], ...palette[intent] }];
+			const configured: IntentConfig = palette[intent] ?? {};
+			const defaults: IntentSource = defaultIntentSources[intent];
+
+			const keepsDefaultMain: boolean =
+				configured.main === undefined || normalizeHexColor(configured.main) === defaults.main;
+
+			const base: IntentConfig = keepsDefaultMain ? defaults : {};
+
+			return [intent, { main: defaults.main, ...base, ...configured }];
 		}),
 	) as IntentSources;
 };

@@ -22,9 +22,9 @@ and the API are this library's. No Material UI prop or class is part of the publ
 
 ## Intents and variants
 
-`Alert` and the toasts take the six semantic intents. The meaning never rests on color alone: each intent has its own
+`Alert` and the toasts take the seven semantic intents. The meaning never rests on color alone: each intent has its own
 glyph (circled exclamation for `error`, triangle for `warning`, circled check for `success`, star for `official`,
-circled `i` for `info` and `default`), and the alert variants are distinct in shape as well as in color:
+circled `i` for `info`, `brand` and `default`), and the alert variants are distinct in shape as well as in color:
 
 | Variant   | Surface     | Text and icon                  | Boundary        |
 | --------- | ----------- | ------------------------------ | --------------- |
@@ -213,11 +213,11 @@ toast.show({
 
 **Duration and dismissal.**
 
-| Intent                                   | Default duration         |
-| ---------------------------------------- | ------------------------ |
-| `official`, `default`, `success`, `info` | 6 s                      |
-| `warning`                                | 10 s                     |
-| `error`                                  | until dismissed (`null`) |
+| Intent                                            | Default duration         |
+| ------------------------------------------------- | ------------------------ |
+| `official`, `brand`, `default`, `success`, `info` | 6 s                      |
+| `warning`                                         | 10 s                     |
+| `error`                                           | until dismissed (`null`) |
 
 - Errors never disappear on their own unless you set a `duration`; even then, no toast stays less than
   `minimumToastDuration` (5 s), and a toast with an `action` stays at least 10 s, so the action can be reached.
