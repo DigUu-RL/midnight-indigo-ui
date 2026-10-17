@@ -37,6 +37,7 @@ derived fields listed in [tokens.md](./tokens.md#intent) (`light`, `dark`, `cont
 | `main` of a configured intent            | The default `main` of that intent is used; the configured fields still apply. |
 | A derived field (`light`, `border`, ...) | Derived from `main` deterministically: same input, same output.               |
 | Surfaces, text, borders, spacing, motion | Not configurable yet; always the official values.                             |
+| Color scales (`color`)                   | Fixed by design: the identity scales of [palette.md](./palette.md).           |
 | Typography and icon sizes                | Not configurable yet; always the official values.                             |
 
 ### JSON

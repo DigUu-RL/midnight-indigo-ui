@@ -1,7 +1,62 @@
 // The complete design token set: base groups plus intents derived from their sources. Dark-only by design.
 import type { HexColor } from '#src/tokens/color.ts';
-import { defaultIntentSources, deriveIntentPalette } from '#src/tokens/intents.ts';
+import {
+	defaultIntentSources,
+	deriveIntentPalette,
+	officialMainColor,
+} from '#src/tokens/intents.ts';
 import type { IntentDerivationContext, IntentPalette, IntentSources } from '#src/tokens/intents.ts';
+
+/** Steps of the pink and indigo scales, from the lightest (`50`) to the darkest (`950`). */
+export const colorScaleSteps = [
+	'50',
+	'100',
+	'200',
+	'300',
+	'400',
+	'500',
+	'600',
+	'700',
+	'800',
+	'900',
+	'950',
+] as const;
+
+export type ColorScaleStep = (typeof colorScaleSteps)[number];
+
+/** Steps of the midnight scale, from the lightest (`50`) to the darkest (`850`), every 50. */
+export const midnightScaleSteps = [
+	'50',
+	'100',
+	'150',
+	'200',
+	'250',
+	'300',
+	'350',
+	'400',
+	'450',
+	'500',
+	'550',
+	'600',
+	'650',
+	'700',
+	'750',
+	'800',
+	'850',
+] as const;
+
+export type MidnightScaleStep = (typeof midnightScaleSteps)[number];
+
+export type ColorScale = Record<ColorScaleStep, HexColor>;
+
+export type MidnightScale = Record<MidnightScaleStep, HexColor>;
+
+/** Fixed color scales of the project identity; the semantic groups take their values from them. */
+export interface ColorTokens {
+	pink: ColorScale;
+	indigo: ColorScale;
+	midnight: MidnightScale;
+}
 
 export interface SurfaceTokens {
 	canvas: HexColor;
@@ -149,6 +204,7 @@ export interface IconSizeTokens {
 }
 
 export interface DesignTokens {
+	color: ColorTokens;
 	surface: SurfaceTokens;
 	text: TextTokens;
 	border: BorderTokens;
@@ -168,6 +224,58 @@ export interface DesignTokens {
 	typography: TypographyTokens;
 	iconSize: IconSizeTokens;
 }
+
+// `400` is the official pink and `300` its hover. The lighter steps mix it with white, the darker ones with the
+// darkest midnight.
+export const pinkScale: Readonly<ColorScale> = {
+	'50': '#FFF3FA',
+	'100': '#FFE4F4',
+	'200': '#FFCCEA',
+	'300': '#FF93D0',
+	'400': officialMainColor,
+	'500': '#D258A1',
+	'600': '#A54581',
+	'700': '#783360',
+	'800': '#502344',
+	'900': '#32162E',
+	'950': '#1E0E20',
+};
+
+// `500` is the solid indigo, `400` its hover and active border, `300` indigo text and icons.
+export const indigoScale: Readonly<ColorScale> = {
+	'50': '#F6F4FF',
+	'100': '#EBE7FE',
+	'200': '#D2CAFD',
+	'300': '#8F7AFB',
+	'400': '#7560F0',
+	'500': '#5E48D6',
+	'600': '#4C3AAE',
+	'700': '#3A2D86',
+	'800': '#2A2162',
+	'900': '#1E1746',
+	'950': '#130F2E',
+};
+
+// Neutral with an indigo hue: every surface, border and state value of the v2 standard comes from this scale.
+export const midnightScale: Readonly<MidnightScale> = {
+	'50': '#F2EFFC',
+	'100': '#C3BDDC',
+	'150': '#ABA4C9',
+	'200': '#9790B8',
+	'250': '#6E62A3',
+	'300': '#453C7A',
+	'350': '#2C2558',
+	'400': '#251C5C',
+	'450': '#1E1940',
+	'500': '#1B1638',
+	'550': '#1B1540',
+	'600': '#17132F',
+	'650': '#13102B',
+	'700': '#0F0C24',
+	'750': '#0A0819',
+	'800': '#080615',
+	'850': '#05040E',
+};
 
 export const surfaceTokens: Readonly<SurfaceTokens> = {
 	canvas: '#020108',
@@ -350,6 +458,11 @@ export const createDesignTokens = (
 	const intent: IntentPalette = deriveIntentPalette(intentSources, intentDerivationContext);
 
 	return deepFreeze({
+		color: {
+			pink: { ...pinkScale },
+			indigo: { ...indigoScale },
+			midnight: { ...midnightScale },
+		},
 		surface: { ...surfaceTokens },
 		text: { ...textTokens },
 		border: { ...borderTokens },

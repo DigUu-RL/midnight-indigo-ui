@@ -32,13 +32,22 @@ export {
 } from '#src/tokens/css-variables.ts';
 export type { CssLayer, TokenStylesheetOptions } from '#src/tokens/css-variables.ts';
 export { tokenDescriptions } from '#src/tokens/descriptions.ts';
-export type { TokenDescriptions } from '#src/tokens/descriptions.ts';
-export { createDesignTokens, tokens, typographyRoles } from '#src/tokens/design-tokens.ts';
+export type { ColorStepDescriptions, TokenDescriptions } from '#src/tokens/descriptions.ts';
+export {
+	colorScaleSteps,
+	createDesignTokens,
+	midnightScaleSteps,
+	tokens,
+	typographyRoles,
+} from '#src/tokens/design-tokens.ts';
 export type {
 	AccentTokens,
 	BackdropTokens,
 	BorderTokens,
 	ChartTokens,
+	ColorScale,
+	ColorScaleStep,
+	ColorTokens,
 	DesignTokens,
 	ElevationTokens,
 	FocusTokens,
@@ -46,6 +55,8 @@ export type {
 	FontWeightTokens,
 	IconSizeTokens,
 	LayerTokens,
+	MidnightScale,
+	MidnightScaleStep,
 	MotionTokens,
 	RadiusTokens,
 	SpacingStep,

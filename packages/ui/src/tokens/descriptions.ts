@@ -4,6 +4,8 @@ import type {
 	BackdropTokens,
 	BorderTokens,
 	ChartTokens,
+	ColorScaleStep,
+	ColorTokens,
 	DesignTokens,
 	ElevationTokens,
 	FocusTokens,
@@ -11,6 +13,7 @@ import type {
 	FontWeightTokens,
 	IconSizeTokens,
 	LayerTokens,
+	MidnightScaleStep,
 	RadiusTokens,
 	StateTokens,
 	SurfaceTokens,
@@ -19,8 +22,17 @@ import type {
 } from '#src/tokens/design-tokens.ts';
 import type { IntentTokens, SemanticIntent } from '#src/tokens/intents.ts';
 
+/** Steps of a scale with a fixed role; the other steps are tints and shades without one. */
+export interface ColorStepDescriptions {
+	pink: Partial<Record<ColorScaleStep, string>>;
+	indigo: Partial<Record<ColorScaleStep, string>>;
+	midnight: Partial<Record<MidnightScaleStep, string>>;
+}
+
 export interface TokenDescriptions {
 	groups: Record<keyof DesignTokens, string>;
+	color: Record<keyof ColorTokens, string>;
+	colorSteps: ColorStepDescriptions;
 	surface: Record<keyof SurfaceTokens, string>;
 	text: Record<keyof TextTokens, string>;
 	border: Record<keyof BorderTokens, string>;
@@ -42,6 +54,8 @@ export interface TokenDescriptions {
 
 export const tokenDescriptions: Readonly<TokenDescriptions> = {
 	groups: {
+		color:
+			'Fixed color scales of the project identity, from the lightest step to the darkest. A theme palette does not change them; prefer the semantic groups in components.',
 		surface: 'Background layers, from the deepest to the most elevated.',
 		text: 'Text colors by emphasis.',
 		border: 'Boundaries and dividers.',
@@ -69,6 +83,24 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 			'Typographic roles. Sizes are in rem, so they follow the browser text size and zoom; line heights are unitless.',
 		iconSize:
 			'Fixed icon sizes. Icons inline with text use `1em` instead, to follow the text size.',
+	},
+	color: {
+		pink: 'Brand pink, built around the official pink `#FF6AC1`.',
+		indigo: 'Identity indigo, for solid fills, active borders, text and icons.',
+		midnight: 'Neutral with an indigo hue, the source of every surface, border and state value.',
+	},
+	colorSteps: {
+		pink: {
+			'300': 'Hover of the official pink.',
+			'400': 'Official pink, identical to `intent.official.main` of the official theme.',
+		},
+		indigo: {
+			'300': 'Indigo text and icons.',
+			'400': 'Hover of the solid indigo and active border.',
+			'500': 'Solid indigo.',
+		},
+		// The roles of the midnight steps are the semantic surface, border and state tokens.
+		midnight: {},
 	},
 	surface: {
 		canvas: 'Main application background.',
