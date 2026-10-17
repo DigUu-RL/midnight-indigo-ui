@@ -164,8 +164,8 @@ const controlStyles: CSSObject = {
 	...colorTransitionStyles,
 	...appearanceStyles('default', 'ghost'),
 	...interactionStyles('default', 'ghost'),
-	'&[aria-current]': { ...appearanceStyles('official', 'solid'), fontWeight: fontWeight.semibold },
-	[`&[aria-current]:hover${enabledSelector}`]: appearanceStyles('official', 'solid'),
+	'&[aria-current]': { ...appearanceStyles('brand', 'solid'), fontWeight: fontWeight.semibold },
+	[`&[aria-current]:hover${enabledSelector}`]: appearanceStyles('brand', 'solid'),
 	'&[aria-disabled="true"]': { color: state.disabledText, cursor: 'not-allowed' },
 	// The chevrons point in the reading direction.
 	'[dir="rtl"] & svg': { transform: 'scaleX(-1)' },

@@ -156,7 +156,7 @@ const Option = styled('li')({
 	...typography.body,
 	color: text.primary,
 	cursor: 'pointer',
-	'& > svg': { width: iconSize.small, height: iconSize.small, color: intent.official.text },
+	'& > svg': { width: iconSize.small, height: iconSize.small, color: intent.brand.text },
 	'&.Mui-focused': { backgroundColor: state.hover },
 	'&[aria-selected="true"]': { backgroundColor: state.selected },
 	'&[aria-selected="true"].Mui-focused': { backgroundColor: state.pressed },

@@ -76,6 +76,7 @@ export const defaultToastLabels: Readonly<ToastLabels> = Object.freeze({
 export const defaultToastDurations: Readonly<Record<SemanticIntent, number | null>> = Object.freeze(
 	{
 		official: 6000,
+		brand: 6000,
 		default: 6000,
 		success: 6000,
 		info: 6000,

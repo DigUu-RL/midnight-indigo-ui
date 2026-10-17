@@ -31,6 +31,23 @@ tokens.color.indigo['500']; // '#5E48D6'
 themeVariables.color.midnight['850']; // 'var(--mi-color-midnight-850)'
 ```
 
+## Pink × indigo
+
+Each identity color has one role, so the main action stands out:
+
+| Role                                  | Intent                     | Where                                                                                                       |
+| ------------------------------------- | -------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| Main action and focus                 | `official` (pink)          | At most **one** solid pink button per screen; the focus ring (`focus.ring`, 2 px, offset 2 px)              |
+| Selection, active item and navigation | `brand` (indigo `#5E48D6`) | Checked checkbox, radio and switch, selected chip, current page, active tab and sidebar item, selected text |
+
+`brand` is a semantic intent like the others: every component that takes `intent` accepts `intent='brand'` in the four
+appearances (`solid`, `soft`, `outline`, `ghost`). Do not use it for a second main action: secondary actions stay
+`default`.
+
+The label of a solid `brand` control is the light ink and keeps 4.5:1 at rest, hovered and pressed. The derived hover
+(4.13:1) misses it, so the official theme pins `intent.brand.hover` to `#664FDE` (4.96:1); a theme that configures
+`palette.brand.main` derives the hover again from its own color.
+
 ## Scales and theme
 
 The scales are fixed: a theme created with `createUiTheme` changes the semantic intents, never `tokens.color`. With a

@@ -14,10 +14,11 @@ export type { GlyphName } from '#src/shared/glyphs/glyph-data.ts';
 
 /**
  * Glyph of each intent, so that the meaning of a message never rests on its color alone: a circled exclamation for
- * errors, a triangle for warnings, a circled check for success, a star for the brand and a circled `i` otherwise.
+ * errors, a triangle for warnings, a circled check for success, a star for `official` and a circled `i` otherwise.
  */
 export const intentGlyphs: Readonly<Record<SemanticIntent, GlyphName>> = {
 	official: 'star',
+	brand: 'info',
 	default: 'info',
 	success: 'checkCircle',
 	warning: 'warning',

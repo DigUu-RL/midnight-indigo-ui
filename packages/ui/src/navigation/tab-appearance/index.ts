@@ -23,7 +23,7 @@ export const tabRowStyles: CSSObject = {
 };
 
 /**
- * The selected tab (or the link to the current page) has primary text and a 2 px bar in `intent.official.main`, a
+ * The selected tab (or the link to the current page) has primary text and a 2 px bar in `intent.brand.main`, a
  * shape besides the color. The focus ring is drawn inside, so the scrolling row never clips it.
  */
 export const tabStyles: CSSObject = {
@@ -58,7 +58,7 @@ export const tabStyles: CSSObject = {
 	'&:hover:not([aria-disabled="true"])': { backgroundColor: state.hover, color: text.primary },
 	'&[aria-selected="true"], &[aria-current="page"]': {
 		color: text.primary,
-		'&::after': { backgroundColor: intent.official.main },
+		'&::after': { backgroundColor: intent.brand.main },
 	},
 	'&[aria-disabled="true"]': { color: state.disabledText, cursor: 'not-allowed' },
 	'&:focus-visible': {

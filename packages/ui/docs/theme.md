@@ -23,10 +23,14 @@ interface UiThemeConfig {
 }
 ```
 
-The intents are `official`, `default`, `success`, `warning`, `error` and `info`. Each accepts `main` and any of the
+The intents are `official`, `brand`, `default`, `success`, `warning`, `error` and `info`. Each accepts `main` and any of the
 derived fields listed in [tokens.md](./tokens.md#intent) (`light`, `dark`, `contrastText`, `container`,
 `onContainer`, `border`, `text`, `hover`, `pressed`, `containerHover`, `containerPressed`). Colors are hexadecimal,
 `#RRGGBB` or `#RGB`, in any case; they are normalized to uppercase `#RRGGBB`.
+
+A `main` other than the default replaces the whole default source of its intent: fields the official theme pins for its
+own color (`brand.hover`) are derived again from the new `main`. Otherwise the configured fields override the defaults.
+The selected text (`accent.selection`) follows `brand`, and the focus ring stays the official pink.
 
 ### Fallbacks
 
@@ -60,7 +64,7 @@ with the dotted path of the offending value:
 ```text
 Invalid Midnight Indigo theme configuration:
   - palette.official.main: invalid color "pink": expected a hexadecimal color in the form #RRGGBB or #RGB.
-  - palette.primary: unknown intent. Expected one of: official, default, success, warning, error, info.
+  - palette.primary: unknown intent. Expected one of: official, brand, default, success, warning, error, info.
   - palette.info.mian: unknown field. Expected one of: main, light, dark, contrastText, ...
 ```
 

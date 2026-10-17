@@ -69,6 +69,7 @@ export type {
 	TypographyTokens,
 } from '#src/tokens/design-tokens.ts';
 export {
+	brandMainColor,
 	defaultIntentSources,
 	deriveIntentPalette,
 	deriveIntentTokens,

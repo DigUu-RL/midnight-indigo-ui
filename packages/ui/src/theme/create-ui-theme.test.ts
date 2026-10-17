@@ -28,6 +28,30 @@ describe('createUiTheme', (): void => {
 		expect(theme.tokens.accent.link).toBe(theme.tokens.intent.official.text);
 	});
 
+	it('overrides brand without a fork, deriving again the hover pinned for the default indigo', (): void => {
+		const theme: UiTheme = createUiTheme({ palette: { brand: { main: '#3F2FB0' } } }, silent);
+
+		expect(theme.tokens.intent.brand.main).toBe('#3F2FB0');
+		expect(theme.tokens.intent.brand.hover).not.toBe(tokens.intent.brand.hover);
+		expect(theme.tokens.accent.selection).toBe(theme.tokens.intent.brand.containerPressed);
+		expect(theme.tokens.intent.official).toEqual(tokens.intent.official);
+	});
+
+	it('keeps the pinned brand hover when a configuration repeats the default brand.main', (): void => {
+		const theme: UiTheme = createUiTheme({ palette: { brand: { main: '#5e48d6' } } }, silent);
+
+		expect(theme.tokens.intent.brand).toEqual(tokens.intent.brand);
+		expect(theme.warnings).toEqual([]);
+	});
+
+	it('keeps the pinned brand hover when a configuration omits brand.main', (): void => {
+		const theme: UiTheme = createUiTheme({ palette: { brand: { pressed: '#3A2D86' } } }, silent);
+
+		expect(theme.tokens.intent.brand.main).toBe(tokens.intent.brand.main);
+		expect(theme.tokens.intent.brand.hover).toBe(tokens.intent.brand.hover);
+		expect(theme.tokens.intent.brand.pressed).toBe('#3A2D86');
+	});
+
 	it('normalizes colors', (): void => {
 		const theme: UiTheme = createUiTheme({ palette: { info: { main: '#5af' } } }, silent);
 		expect(theme.tokens.intent.info.main).toBe('#55AAFF');

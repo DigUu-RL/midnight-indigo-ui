@@ -47,7 +47,7 @@ Identity indigo, for solid fills, active borders, text and icons.
 | `200` | `--mi-color-indigo-200` | `#D2CAFD` |  |
 | `300` | `--mi-color-indigo-300` | `#8F7AFB` | Indigo text and icons. |
 | `400` | `--mi-color-indigo-400` | `#7560F0` | Hover of the solid indigo and active border. |
-| `500` | `--mi-color-indigo-500` | `#5E48D6` | Solid indigo. |
+| `500` | `--mi-color-indigo-500` | `#5E48D6` | Solid indigo, identical to `intent.brand.main` of the official theme. |
 | `600` | `--mi-color-indigo-600` | `#4C3AAE` |  |
 | `700` | `--mi-color-indigo-700` | `#3A2D86` |  |
 | `800` | `--mi-color-indigo-800` | `#2A2162` |  |
@@ -118,7 +118,7 @@ Focus-visible indicator, drawn as an offset outline so it never relies on color 
 
 | Token | CSS variable | Value | Purpose |
 | --- | --- | --- | --- |
-| `focus.ring` | `--mi-focus-ring` | `#B7A8FF` | Focus indicator color; meets 3:1 on every surface. |
+| `focus.ring` | `--mi-focus-ring` | `#FF6AC1` | Focus indicator color, the official pink; meets 3:1 on every surface. |
 | `focus.width` | `--mi-focus-width` | `2px` | Focus indicator thickness. |
 | `focus.offset` | `--mi-focus-offset` | `2px` | Gap between the control and the focus indicator. |
 
@@ -130,7 +130,7 @@ Brand accents applied outside components: links and text selection.
 | --- | --- | --- | --- |
 | `accent.link` | `--mi-accent-link` | `#FF6AC1` | Link text. |
 | `accent.linkHover` | `--mi-accent-link-hover` | `#FB92D3` | Hovered link text. |
-| `accent.selection` | `--mi-accent-selection` | `#441C38` | Background of selected text. |
+| `accent.selection` | `--mi-accent-selection` | `#1A133E` | Background of selected text, derived from `brand`. |
 | `accent.onSelection` | `--mi-accent-on-selection` | `#F2EFFC` | Selected text. |
 
 ### `state`
@@ -152,7 +152,8 @@ Semantic intents. Every intent has the same fields, so any component accepts any
 
 | Intent | Role |
 | --- | --- |
-| `official` | Brand, primary action and highlight. `main` is the exact Midnight Indigo keyword pink. |
+| `official` | Main action and focus, at most one solid per screen. `main` is the exact Midnight Indigo keyword pink. |
+| `brand` | Indigo for selection, the active item and navigation: checked controls, current page, active tab. |
 | `default` | Neutral gray for secondary actions and neutral status. |
 | `success` | Confirmation and completed operations. |
 | `warning` | Attention required; pair with an icon or label, never hue alone. |
@@ -177,20 +178,20 @@ deterministically (`deriveIntentTokens`) unless provided explicitly.
 | `containerHover` | `--mi-intent-<intent>-container-hover` | Soft background when hovered. |
 | `containerPressed` | `--mi-intent-<intent>-container-pressed` | Soft background when pressed or selected. |
 
-| Field | `official` | `default` | `success` | `warning` | `error` | `info` |
-| --- | --- | --- | --- | --- | --- | --- |
-| `main` | `#FF6AC1` | `#9290A8` | `#36C995` | `#F2B84B` | `#F2545B` | `#65BDEB` |
-| `light` | `#FB92D3` | `#AFADC1` | `#6ED4B4` | `#F2C980` | `#F2838B` | `#8FCCF0` |
-| `dark` | `#B34A8A` | `#676578` | `#268D6B` | `#AA8137` | `#AA3B42` | `#4785A7` |
-| `contrastText` | `#020108` | `#020108` | `#020108` | `#020108` | `#020108` | `#020108` |
-| `container` | `#251022` | `#16151E` | `#091D1C` | `#241B11` | `#240D14` | `#101B28` |
-| `onContainer` | `#FA9FD9` | `#B8B6CA` | `#81D8BE` | `#F2CE92` | `#F2929B` | `#9DD1F2` |
-| `border` | `#FF6AC1` | `#9290A8` | `#36C995` | `#F2B84B` | `#F2545B` | `#65BDEB` |
-| `text` | `#FF6AC1` | `#9290A8` | `#36C995` | `#F2B84B` | `#F2545B` | `#65BDEB` |
-| `hover` | `#FD7ECA` | `#A09EB5` | `#52CFA4` | `#F2C066` | `#F26B73` | `#7AC5EE` |
-| `pressed` | `#D95AA5` | `#7C7B90` | `#2EAB80` | `#CE9D41` | `#CE484F` | `#56A1C9` |
-| `containerHover` | `#35162D` | `#1F1E28` | `#0C2924` | `#322615` | `#321219` | `#162735` |
-| `containerPressed` | `#441C38` | `#272632` | `#10352D` | `#403119` | `#40171E` | `#1C3243` |
+| Field | `official` | `brand` | `default` | `success` | `warning` | `error` | `info` |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `main` | `#FF6AC1` | `#5E48D6` | `#9290A8` | `#36C995` | `#F2B84B` | `#F2545B` | `#65BDEB` |
+| `light` | `#FB92D3` | `#8A7AE1` | `#AFADC1` | `#6ED4B4` | `#F2C980` | `#F2838B` | `#8FCCF0` |
+| `dark` | `#B34A8A` | `#423398` | `#676578` | `#268D6B` | `#AA8137` | `#AA3B42` | `#4785A7` |
+| `contrastText` | `#020108` | `#F2EFFC` | `#020108` | `#020108` | `#020108` | `#020108` | `#020108` |
+| `container` | `#251022` | `#0F0B25` | `#16151E` | `#091D1C` | `#241B11` | `#240D14` | `#101B28` |
+| `onContainer` | `#FA9FD9` | `#998BE5` | `#B8B6CA` | `#81D8BE` | `#F2CE92` | `#F2929B` | `#9DD1F2` |
+| `border` | `#FF6AC1` | `#5E48D6` | `#9290A8` | `#36C995` | `#F2B84B` | `#F2545B` | `#65BDEB` |
+| `text` | `#FF6AC1` | `#8372E0` | `#9290A8` | `#36C995` | `#F2B84B` | `#F2545B` | `#65BDEB` |
+| `hover` | `#FD7ECA` | `#664FDE` | `#A09EB5` | `#52CFA4` | `#F2C066` | `#F26B73` | `#7AC5EE` |
+| `pressed` | `#D95AA5` | `#503DB7` | `#7C7B90` | `#2EAB80` | `#CE9D41` | `#CE484F` | `#56A1C9` |
+| `containerHover` | `#35162D` | `#140F31` | `#1F1E28` | `#0C2924` | `#322615` | `#321219` | `#162735` |
+| `containerPressed` | `#441C38` | `#1A133E` | `#272632` | `#10352D` | `#403119` | `#40171E` | `#1C3243` |
 
 ### `chart`
 
@@ -380,11 +381,11 @@ Ratios are truncated, never rounded up. All colors are opaque, so the ratio is t
 | `border.strong` | `surface.base` | 3.87:1 | 3.00:1 | Boundary of inputs and interactive controls | Pass |
 | `border.strong` | `surface.raised` | 3.73:1 | 3.00:1 | Boundary of inputs and interactive controls | Pass |
 | `border.strong` | `surface.overlay` | 3.58:1 | 3.00:1 | Boundary of inputs and interactive controls | Pass |
-| `focus.ring` | `surface.canvas` | 9.95:1 | 3.00:1 | Focus indicator | Pass |
-| `focus.ring` | `surface.sunken` | 9.89:1 | 3.00:1 | Focus indicator | Pass |
-| `focus.ring` | `surface.base` | 9.88:1 | 3.00:1 | Focus indicator | Pass |
-| `focus.ring` | `surface.raised` | 9.53:1 | 3.00:1 | Focus indicator | Pass |
-| `focus.ring` | `surface.overlay` | 9.14:1 | 3.00:1 | Focus indicator | Pass |
+| `focus.ring` | `surface.canvas` | 8.00:1 | 3.00:1 | Focus indicator | Pass |
+| `focus.ring` | `surface.sunken` | 7.95:1 | 3.00:1 | Focus indicator | Pass |
+| `focus.ring` | `surface.base` | 7.94:1 | 3.00:1 | Focus indicator | Pass |
+| `focus.ring` | `surface.raised` | 7.66:1 | 3.00:1 | Focus indicator | Pass |
+| `focus.ring` | `surface.overlay` | 7.35:1 | 3.00:1 | Focus indicator | Pass |
 | `accent.link` | `surface.canvas` | 8.00:1 | 4.50:1 | Links | Pass |
 | `accent.link` | `surface.sunken` | 7.95:1 | 4.50:1 | Links | Pass |
 | `accent.link` | `surface.base` | 7.94:1 | 4.50:1 | Links | Pass |
@@ -395,7 +396,7 @@ Ratios are truncated, never rounded up. All colors are opaque, so the ratio is t
 | `accent.linkHover` | `surface.base` | 9.98:1 | 4.50:1 | Hovered links | Pass |
 | `accent.linkHover` | `surface.raised` | 9.62:1 | 4.50:1 | Hovered links | Pass |
 | `accent.linkHover` | `surface.overlay` | 9.23:1 | 4.50:1 | Hovered links | Pass |
-| `accent.onSelection` | `accent.selection` | 12.61:1 | 4.50:1 | Selected text | Pass |
+| `accent.onSelection` | `accent.selection` | 15.35:1 | 4.50:1 | Selected text | Pass |
 | `text.primary` | `state.hover` | 16.12:1 | 4.50:1 | Text on a hover neutral item | Pass |
 | `text.primary` | `state.pressed` | 15.18:1 | 4.50:1 | Text on a pressed neutral item | Pass |
 | `text.primary` | `state.selected` | 14.08:1 | 4.50:1 | Text on a selected neutral item | Pass |
@@ -421,6 +422,28 @@ Ratios are truncated, never rounded up. All colors are opaque, so the ratio is t
 | `intent.official.main` | `surface.raised` | 7.66:1 | 3.00:1 | Boundary of a filled official control | Pass |
 | `intent.official.main` | `surface.overlay` | 7.35:1 | 3.00:1 | Boundary of a filled official control | Pass |
 | `intent.official.main` | `intent.official.container` | 6.87:1 | 3.00:1 | official progress indicator on its track | Pass |
+| `intent.brand.contrastText` | `intent.brand.main` | 5.49:1 | 4.50:1 | Label of a filled brand control (main) | Pass |
+| `intent.brand.contrastText` | `intent.brand.hover` | 4.95:1 | 4.50:1 | Label of a filled brand control (hover) | Pass |
+| `intent.brand.contrastText` | `intent.brand.pressed` | 6.88:1 | 4.50:1 | Label of a filled brand control (pressed) | Pass |
+| `intent.brand.onContainer` | `intent.brand.container` | 6.55:1 | 4.50:1 | Text on a soft brand container (container) | Pass |
+| `intent.brand.onContainer` | `intent.brand.containerHover` | 6.28:1 | 4.50:1 | Text on a soft brand container (containerHover) | Pass |
+| `intent.brand.onContainer` | `intent.brand.containerPressed` | 5.94:1 | 4.50:1 | Text on a soft brand container (containerPressed) | Pass |
+| `intent.brand.text` | `surface.canvas` | 5.39:1 | 4.50:1 | brand text, ghost and outline labels | Pass |
+| `intent.brand.text` | `surface.sunken` | 5.35:1 | 4.50:1 | brand text, ghost and outline labels | Pass |
+| `intent.brand.text` | `surface.base` | 5.35:1 | 4.50:1 | brand text, ghost and outline labels | Pass |
+| `intent.brand.text` | `surface.raised` | 5.16:1 | 4.50:1 | brand text, ghost and outline labels | Pass |
+| `intent.brand.text` | `surface.overlay` | 4.95:1 | 4.50:1 | brand text, ghost and outline labels | Pass |
+| `intent.brand.border` | `surface.canvas` | 3.33:1 | 3.00:1 | Boundary of an outlined brand control | Pass |
+| `intent.brand.border` | `surface.sunken` | 3.31:1 | 3.00:1 | Boundary of an outlined brand control | Pass |
+| `intent.brand.border` | `surface.base` | 3.31:1 | 3.00:1 | Boundary of an outlined brand control | Pass |
+| `intent.brand.border` | `surface.raised` | 3.19:1 | 3.00:1 | Boundary of an outlined brand control | Pass |
+| `intent.brand.border` | `surface.overlay` | 3.06:1 | 3.00:1 | Boundary of an outlined brand control | Pass |
+| `intent.brand.main` | `surface.canvas` | 3.33:1 | 3.00:1 | Boundary of a filled brand control | Pass |
+| `intent.brand.main` | `surface.sunken` | 3.31:1 | 3.00:1 | Boundary of a filled brand control | Pass |
+| `intent.brand.main` | `surface.base` | 3.31:1 | 3.00:1 | Boundary of a filled brand control | Pass |
+| `intent.brand.main` | `surface.raised` | 3.19:1 | 3.00:1 | Boundary of a filled brand control | Pass |
+| `intent.brand.main` | `surface.overlay` | 3.06:1 | 3.00:1 | Boundary of a filled brand control | Pass |
+| `intent.brand.main` | `intent.brand.container` | 3.08:1 | 3.00:1 | brand progress indicator on its track | Pass |
 | `intent.default.contrastText` | `intent.default.main` | 6.70:1 | 4.50:1 | Label of a filled default control (main) | Pass |
 | `intent.default.contrastText` | `intent.default.hover` | 7.96:1 | 4.50:1 | Label of a filled default control (hover) | Pass |
 | `intent.default.contrastText` | `intent.default.pressed` | 5.04:1 | 4.50:1 | Label of a filled default control (pressed) | Pass |

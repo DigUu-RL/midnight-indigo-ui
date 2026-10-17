@@ -67,7 +67,7 @@ describe('nativeBaselineStyles', (): void => {
 	it('renders native controls in the dark color scheme, with the theme accent and caret', (): void => {
 		expect(html).toMatchObject({
 			colorScheme: 'dark',
-			accentColor: intent.official.main,
+			accentColor: intent.brand.main,
 			caretColor: focus.ring,
 		});
 	});

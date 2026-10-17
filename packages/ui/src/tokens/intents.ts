@@ -9,6 +9,7 @@ import type { HexColor } from '#src/tokens/color.ts';
 
 export const semanticIntents = [
 	'official',
+	'brand',
 	'default',
 	'success',
 	'warning',
@@ -56,9 +57,14 @@ export interface IntentDerivationContext {
 /** Exact brand value: the `keyword` pink of the Midnight Indigo theme. Must not change silently. */
 export const officialMainColor: HexColor = '#FF6AC1';
 
-/** Default intent sources. Every value except `official.main` is a provisional proposal. */
+/** Solid indigo of the `brand` intent: selection, active item and navigation. */
+export const brandMainColor: HexColor = '#5E48D6';
+
+/** Default intent sources. Every value except `official.main` and `brand.main` is a provisional proposal. */
 export const defaultIntentSources: Readonly<IntentSources> = {
 	official: { main: officialMainColor },
+	// The derived hover (15% toward the light ink) gives the light label 4.13:1; this lighter step keeps 4.96:1.
+	brand: { main: brandMainColor, hover: '#664FDE' },
 	default: { main: '#9290A8' },
 	success: { main: '#36C995' },
 	warning: { main: '#F2B84B' },
