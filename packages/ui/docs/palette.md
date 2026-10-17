@@ -48,6 +48,37 @@ The label of a solid `brand` control is the light ink and keeps 4.5:1 at rest, h
 (4.13:1) misses it, so the official theme pins `intent.brand.hover` to `#664FDE` (4.96:1); a theme that configures
 `palette.brand.main` derives the hover again from its own color.
 
+## Surfaces, borders and elevation
+
+Every surface, border and state comes from the `midnight` scale. The surfaces go from the darkest to the lightest:
+`canvas`, `field`, `sidebar`, `tableHeader`, `raised`, `dialog` and `overlay`. Each one is lighter than the one below it,
+by a small step ([surface layers](./tokens.md#surface-layers)), so a layer that must stand out from its neighbor also
+takes a border or an elevation.
+
+| Need                                           | Tokens                                                                   |
+| ---------------------------------------------- | ------------------------------------------------------------------------ |
+| Boundary of an input or control (3:1)          | `border.control`                                                         |
+| Divider, container border, emphasized border   | `border.subtle`, `border.default`, `border.strong` (decorative, < 3:1)   |
+| Empty state or drop zone                       | `stroke.dashed`                                                          |
+| Card, menu or popover, dialog or drawer        | `elevation.card`, `elevation.overlay`, `elevation.dialog`                |
+| Glow of a solid main action or `brand` control | `elevation.official`, `elevation.brand` (follow the `main` of the theme) |
+| Page behind a dialog                           | `backdrop.scrim` with `backdrop-filter: blur(var(--mi-backdrop-blur))`   |
+
+A solid control is bounded by `intent.<intent>.border`, which equals `main` unless `main` is below 3:1 on a surface:
+`brand.main` is, on `raised`, `dialog` and `overlay`, so solid `brand` controls, the active tab bar and the current
+carousel dot use the lighter `brand.border`.
+
+### Migrating from the first palette
+
+| Removed                              | Use                                                                   |
+| ------------------------------------ | --------------------------------------------------------------------- |
+| `surface.sunken`                     | `surface.field` (inputs, choice controls, code blocks)                |
+| `surface.base`                       | `surface.sidebar` (navigation), `surface.raised` (panels, tables)     |
+| `elevation.low`                      | `elevation.card`                                                      |
+| `elevation.medium`                   | `elevation.overlay` (menus, popovers), `elevation.card` (cards)       |
+| `elevation.high`                     | `elevation.dialog`                                                    |
+| `border.strong` as a control outline | `border.control` (`#6E62A3`); `border.strong` is now `#453C7A`, < 3:1 |
+
 ## Scales and theme
 
 The scales are fixed: a theme created with `createUiTheme` changes the semantic intents, never `tokens.color`. With a

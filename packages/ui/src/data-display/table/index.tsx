@@ -88,7 +88,7 @@ const ScrollContainer = styled('div')({
 	...scrollbarStyles,
 	border: `1px solid ${border.subtle}`,
 	borderRadius: radius.large,
-	backgroundColor: surface.base,
+	backgroundColor: surface.raised,
 	...focusRingStyles,
 });
 
@@ -99,7 +99,7 @@ const StyledTable = styled('table')({
 	// Digits of the same width keep numbers aligned from row to row.
 	fontVariantNumeric: 'tabular-nums',
 	color: text.primary,
-	'& > thead': { backgroundColor: surface.raised },
+	'& > thead': { backgroundColor: surface.tableHeader },
 	'& > tbody > tr + tr, & > tfoot > tr': { borderTop: `1px solid ${border.subtle}` },
 	'& > tbody:first-of-type > tr:first-of-type, & > thead + tbody > tr:first-of-type': {
 		borderTop: `1px solid ${border.default}`,

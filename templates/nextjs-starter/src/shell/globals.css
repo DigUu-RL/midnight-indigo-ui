@@ -15,7 +15,7 @@
 	border: 1px solid var(--mi-border-default);
 	border-radius: var(--mi-radius-large);
 	background: var(--mi-surface-raised);
-	box-shadow: var(--mi-elevation-low);
+	box-shadow: var(--mi-elevation-card);
 }
 
 .official-text {
@@ -156,7 +156,7 @@
 	padding: var(--mi-spacing-1);
 	border: 1px solid var(--mi-border-default);
 	border-radius: var(--mi-radius-medium);
-	background: var(--mi-surface-sunken);
+	background: var(--mi-surface-field);
 	cursor: pointer;
 }
 
@@ -167,7 +167,7 @@
 	overflow: auto;
 	border: 1px solid var(--mi-border-subtle);
 	border-radius: var(--mi-radius-medium);
-	background: var(--mi-surface-sunken);
+	background: var(--mi-surface-field);
 	tab-size: 2;
 }
 

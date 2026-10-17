@@ -58,7 +58,7 @@ test('the compiled fields render on the server with labels, descriptions and sta
 	assert.match(html, /role="switch"/);
 	assert.match(html, /type="file"/);
 	assert.match(html, /<button type="submit"/);
-	assert.match(html, /var\(--mi-border-strong\)/);
+	assert.match(html, /var\(--mi-border-control\)/);
 });
 
 test('the compiled date picker renders on the server inside its provider', (): void => {

@@ -190,6 +190,6 @@ describe('Dialog', (): void => {
 		expect(scrim.parentElement?.style.zIndex).toBe('var(--mi-layer-dialog)');
 		expect(styleRulesOf(scrim).join('')).toContain('background-color:var(--mi-backdrop-scrim);');
 		expect(styleRulesOf(dialog).join('')).toContain('max-width:48rem;');
-		expect(styleRulesOf(dialog).join('')).toContain('background-color:var(--mi-surface-overlay);');
+		expect(styleRulesOf(dialog).join('')).toContain('background-color:var(--mi-surface-dialog);');
 	});
 });

@@ -205,7 +205,7 @@ const Item = styled('li')({
 	maxWidth: '100%',
 	borderRadius: radius.medium,
 	backgroundColor: surface.overlay,
-	boxShadow: elevation.high,
+	boxShadow: elevation.dialog,
 	pointerEvents: 'auto',
 	animationName: enter,
 	animationDuration: motion.duration.moderate,

@@ -56,7 +56,7 @@ const textStyles: Record<ControlSize, CSSObject> = {
 	large: typography.body,
 };
 
-/** Look of the boundary in each state; the matching pairs are in the contrast audit (`border.strong`, `intent.error.border`). */
+/** Look of the boundary in each state; the matching pairs are in the contrast audit (`border.control`, `intent.error.border`). */
 const boundaryStyles = ({ invalid, disabled, readOnly }: FrameStyleProps): CSSObject => {
 	if (disabled) {
 		return {
@@ -69,7 +69,7 @@ const boundaryStyles = ({ invalid, disabled, readOnly }: FrameStyleProps): CSSOb
 
 	// Read-only keeps the text readable and drops the filled look: a dashed boundary, not a color, tells it apart.
 	if (readOnly) {
-		return { backgroundColor: 'transparent', borderStyle: 'dashed', borderColor: border.strong };
+		return { backgroundColor: 'transparent', borderStyle: 'dashed', borderColor: border.control };
 	}
 
 	// An invalid boundary is also thicker (an inset shadow, so the size does not change), besides the error message.
@@ -79,7 +79,7 @@ const boundaryStyles = ({ invalid, disabled, readOnly }: FrameStyleProps): CSSOb
 				boxShadow: `inset 0 0 0 1px ${intent.error.border}`,
 				'&:hover': { borderColor: intent.error.main },
 			}
-		: { borderColor: border.strong, '&:hover': { borderColor: text.muted } };
+		: { borderColor: border.control, '&:hover': { borderColor: text.muted } };
 };
 
 export const frameStyles = (props: FrameStyleProps): CSSObject => {
@@ -94,7 +94,7 @@ export const frameStyles = (props: FrameStyleProps): CSSObject => {
 		borderWidth: '1px',
 		borderStyle: 'solid',
 		borderRadius: radius.medium,
-		backgroundColor: surface.sunken,
+		backgroundColor: surface.field,
 		color: text.primary,
 		...textStyles[props.frameSize],
 		...colorTransitionStyles,
@@ -113,7 +113,7 @@ export const frameForwarding: { shouldForwardProp: (property: PropertyKey) => bo
 
 const Frame = styled('div', frameForwarding)<FrameStyleProps>(frameStyles);
 
-const controlAutofillStyles: CSSObject = autofillStyles(surface.sunken, text.primary);
+const controlAutofillStyles: CSSObject = autofillStyles(surface.field, text.primary);
 
 /** The native control inside the frame, which draws the boundary and the focus instead of it. */
 export const controlResetStyles: CSSObject = {

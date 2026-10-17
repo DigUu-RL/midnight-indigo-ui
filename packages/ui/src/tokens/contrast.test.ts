@@ -29,7 +29,7 @@ describe('official contrast pairs', (): void => {
 		[
 			'text.primary',
 			'text.muted',
-			'border.strong',
+			'border.control',
 			'focus.ring',
 			'intent.error.text',
 			'chart.series.8',
@@ -47,9 +47,15 @@ describe('official contrast pairs', (): void => {
 				.map((pair: ContrastPair): string => pair.background);
 		};
 
-		const everySurface: string[] = ['canvas', 'sunken', 'base', 'raised', 'overlay'].map(
-			(surface: string): string => `surface.${surface}`,
-		);
+		const everySurface: string[] = [
+			'canvas',
+			'field',
+			'sidebar',
+			'tableHeader',
+			'raised',
+			'dialog',
+			'overlay',
+		].map((surface: string): string => `surface.${surface}`);
 
 		expect(backgroundsOf('focus.ring')).toEqual(everySurface);
 		expect(backgroundsOf('intent.brand.text')).toEqual(everySurface);

@@ -8,6 +8,7 @@ import {
 	cssVariableName,
 	formatContrastRatio,
 	listTokenEntries,
+	measureSurfaceLayers,
 	semanticIntents,
 	tokenDescriptions,
 	tokens,
@@ -20,6 +21,7 @@ import type {
 	DesignTokens,
 	IntentTokens,
 	SemanticIntent,
+	SurfaceLayerMeasure,
 	TypographyRole,
 	TypographyStyle,
 } from '#src/tokens/index.ts';
@@ -55,6 +57,7 @@ const tokenPurposes: Partial<Record<TokenGroup, Readonly<Record<string, string>>
 	surface: tokenDescriptions.surface,
 	text: tokenDescriptions.text,
 	border: tokenDescriptions.border,
+	stroke: tokenDescriptions.stroke,
 	focus: tokenDescriptions.focus,
 	accent: tokenDescriptions.accent,
 	state: tokenDescriptions.state,
@@ -172,6 +175,39 @@ const renderColorScales = (): string[] => {
 	];
 };
 
+const renderSurfaceLayers = (): string[] => {
+	const rows: string[][] = measureSurfaceLayers(tokens).map(
+		(layer: SurfaceLayerMeasure): string[] => {
+			return [
+				code(`surface.${layer.surface}`),
+				code(layer.color),
+				layer.luminance.toFixed(5),
+				layer.luminanceStep === undefined ? '—' : `+${layer.luminanceStep.toFixed(5)}`,
+				layer.ratioToPrevious === undefined ? '—' : formatContrastRatio(layer.ratioToPrevious),
+			];
+		},
+	);
+
+	return [
+		'#### Surface layers',
+		'',
+		'From the darkest to the lightest. Each layer is lighter than the one below it (checked in CI); the difference is',
+		'small by design, so a layer that must stand out from its neighbor also takes a border or an elevation.',
+		'',
+		...renderTable(
+			[
+				'Layer',
+				'Value',
+				'Relative luminance',
+				'Step over the layer below',
+				'Ratio to the layer below',
+			],
+			rows,
+		),
+		'',
+	];
+};
+
 const describeFontFamily = (fontFamily: string): string => {
 	return fontFamily === tokens.fontFamily.mono ? code('mono') : code('sans');
 };
@@ -263,10 +299,11 @@ const renderBreakpoints = (): string[] => {
 	];
 };
 
+// `surface` is rendered first, followed by its layers.
 const documentedGroups: readonly TokenGroup[] = [
-	'surface',
 	'text',
 	'border',
+	'stroke',
 	'focus',
 	'accent',
 	'state',
@@ -300,6 +337,8 @@ export const renderTokenDocument = (): string => {
 		'## Tokens',
 		'',
 		...renderColorScales(),
+		...renderGroup('surface'),
+		...renderSurfaceLayers(),
 		...documentedGroups.slice(0, 6).flatMap(renderGroup),
 		...renderIntents(),
 		...documentedGroups.slice(6).flatMap(renderGroup),

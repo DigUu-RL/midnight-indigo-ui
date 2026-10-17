@@ -3,38 +3,38 @@
 	"entries": {
 		"@midnight-indigo/ui": {
 			"initial": {
-				"baseline": 29204,
-				"budget": 32256
+				"baseline": 29763,
+				"budget": 32768
 			}
 		},
 		"@midnight-indigo/ui/tokens": {
 			"initial": {
-				"baseline": 6305,
-				"budget": 7168
+				"baseline": 7560,
+				"budget": 8448
 			}
 		},
 		"@midnight-indigo/ui/theme": {
 			"initial": {
-				"baseline": 6559,
-				"budget": 7424
+				"baseline": 7072,
+				"budget": 7936
 			}
 		},
 		"@midnight-indigo/ui/buttons": {
 			"initial": {
-				"baseline": 4311,
-				"budget": 4864
+				"baseline": 4776,
+				"budget": 5376
 			}
 		},
 		"@midnight-indigo/ui/forms": {
 			"initial": {
-				"baseline": 17418,
-				"budget": 19200
+				"baseline": 17883,
+				"budget": 19712
 			}
 		},
 		"@midnight-indigo/ui/forms/date-pickers": {
 			"initial": {
-				"baseline": 5428,
-				"budget": 6144
+				"baseline": 5881,
+				"budget": 6656
 			}
 		},
 		"@midnight-indigo/ui/forms/react-hook-form": {
@@ -45,32 +45,32 @@
 		},
 		"@midnight-indigo/ui/feedback": {
 			"initial": {
-				"baseline": 13738,
-				"budget": 15360
+				"baseline": 14215,
+				"budget": 15872
 			}
 		},
 		"@midnight-indigo/ui/layout": {
 			"initial": {
-				"baseline": 3598,
-				"budget": 4096
+				"baseline": 4059,
+				"budget": 4608
 			}
 		},
 		"@midnight-indigo/ui/navigation": {
 			"initial": {
-				"baseline": 12557,
-				"budget": 13824
+				"baseline": 13014,
+				"budget": 14336
 			}
 		},
 		"@midnight-indigo/ui/data-display": {
 			"initial": {
-				"baseline": 15068,
-				"budget": 16640
+				"baseline": 15552,
+				"budget": 17152
 			}
 		},
 		"@midnight-indigo/ui/charts": {
 			"initial": {
-				"baseline": 20764,
-				"budget": 23040
+				"baseline": 21269,
+				"budget": 23552
 			},
 			"onDemand": {
 				"baseline": 208357,
@@ -85,62 +85,62 @@
 		},
 		"@midnight-indigo/ui/dashboard": {
 			"initial": {
-				"baseline": 12977,
-				"budget": 14336
+				"baseline": 13424,
+				"budget": 14848
 			}
 		},
 		"@midnight-indigo/ui/icons": {
 			"initial": {
-				"baseline": 4248,
-				"budget": 4864
+				"baseline": 4713,
+				"budget": 5376
 			}
 		},
 		"@midnight-indigo/ui/icons: one imported icon": {
 			"initial": {
-				"baseline": 4179,
-				"budget": 4608
+				"baseline": 4647,
+				"budget": 5120
 			}
 		},
 		"starter: /en-us": {
 			"initial": {
-				"baseline": 302696,
-				"budget": 333056
+				"baseline": 303209,
+				"budget": 333568
 			}
 		},
 		"starter: /en-us/orders": {
 			"initial": {
-				"baseline": 291007,
-				"budget": 320256
+				"baseline": 291524,
+				"budget": 320768
 			}
 		},
 		"starter: /en-us/reports": {
 			"initial": {
-				"baseline": 296010,
-				"budget": 325632
+				"baseline": 296529,
+				"budget": 326400
 			}
 		},
 		"starter: /en-us/customers/new": {
 			"initial": {
-				"baseline": 290283,
-				"budget": 319488
+				"baseline": 290801,
+				"budget": 320000
 			}
 		},
 		"starter: /en-us/settings/appearance": {
 			"initial": {
-				"baseline": 286728,
-				"budget": 315648
+				"baseline": 287251,
+				"budget": 316160
 			}
 		},
 		"starter: /en-us/icons": {
 			"initial": {
-				"baseline": 285919,
-				"budget": 314624
+				"baseline": 286435,
+				"budget": 315136
 			}
 		},
 		"starter: /gallery": {
 			"initial": {
-				"baseline": 318415,
-				"budget": 350464
+				"baseline": 318939,
+				"budget": 350976
 			}
 		},
 		"starter: chart engine": {

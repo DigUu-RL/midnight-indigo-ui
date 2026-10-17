@@ -48,6 +48,37 @@ O rótulo de um controle `brand` sólido é a tinta clara e mantém 4.5:1 em rep
 derivado (4.13:1) não alcança esse mínimo, então o tema oficial fixa `intent.brand.hover` em `#664FDE` (4.96:1); um
 tema que configura `palette.brand.main` deriva o hover novamente a partir da própria cor.
 
+## Superfícies, bordas e elevação
+
+Toda superfície, borda e estado vem da escala `midnight`. As superfícies vão da mais escura à mais clara: `canvas`,
+`field`, `sidebar`, `tableHeader`, `raised`, `dialog` e `overlay`. Cada uma é mais clara que a de baixo, por um passo
+pequeno ([camadas de superfície](./tokens.md#surface-layers)), então uma camada que precisa se destacar da vizinha
+também recebe uma borda ou uma elevação.
+
+| Necessidade                                         | Tokens                                                                  |
+| --------------------------------------------------- | ----------------------------------------------------------------------- |
+| Contorno de um campo ou controle (3:1)              | `border.control`                                                        |
+| Divisor, borda de contêiner, borda de destaque      | `border.subtle`, `border.default`, `border.strong` (decorativas, < 3:1) |
+| Estado vazio ou área de soltar arquivos             | `stroke.dashed`                                                         |
+| Card, menu ou popover, diálogo ou drawer            | `elevation.card`, `elevation.overlay`, `elevation.dialog`               |
+| Brilho da ação principal sólida ou controle `brand` | `elevation.official`, `elevation.brand` (seguem o `main` do tema)       |
+| Página atrás de um diálogo                          | `backdrop.scrim` com `backdrop-filter: blur(var(--mi-backdrop-blur))`   |
+
+Um controle sólido é contornado por `intent.<intent>.border`, que é igual a `main`, a menos que `main` fique abaixo de
+3:1 em alguma superfície: `brand.main` fica, em `raised`, `dialog` e `overlay`, então controles `brand` sólidos, a barra
+da aba ativa e o ponto atual do carrossel usam o `brand.border`, mais claro.
+
+### Migração da primeira paleta
+
+| Removido                                  | Use                                                                    |
+| ----------------------------------------- | ---------------------------------------------------------------------- |
+| `surface.sunken`                          | `surface.field` (campos, controles de escolha, blocos de código)       |
+| `surface.base`                            | `surface.sidebar` (navegação), `surface.raised` (painéis, tabelas)     |
+| `elevation.low`                           | `elevation.card`                                                       |
+| `elevation.medium`                        | `elevation.overlay` (menus, popovers), `elevation.card` (cards)        |
+| `elevation.high`                          | `elevation.dialog`                                                     |
+| `border.strong` como contorno de controle | `border.control` (`#6E62A3`); `border.strong` agora é `#453C7A`, < 3:1 |
+
 ## Escalas e tema
 
 As escalas são fixas: um tema criado com `createUiTheme` muda as intenções semânticas, nunca `tokens.color`. Com um

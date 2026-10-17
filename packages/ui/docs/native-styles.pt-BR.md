@@ -19,7 +19,7 @@ import { UiProvider } from '@midnight-indigo/ui/theme';
 | Elemento nativo                                        | Estilo                                                                                                     |
 | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
 | Documento                                              | `color-scheme: dark`, para que controles nativos, seletores de data e popups de formulário fiquem escuros. |
-| Barra de rolagem da página                             | Fina, polegar `border.strong` sobre trilho `surface.canvas`.                                               |
+| Barra de rolagem da página                             | Fina, polegar `border.control` sobre trilho `surface.canvas`.                                              |
 | Seleção de texto (`::selection`)                       | Fundo `accent.selection`, texto `accent.onSelection` (um par auditado).                                    |
 | Cursor de texto, checkboxes, radios, range             | `caret-color: focus.ring`, `accent-color: intent.brand.main`.                                              |
 | Campos com autofill (`:autofill`, `:-webkit-autofill`) | Mantêm as cores de sistema de um campo (`Field`, `FieldText`) em vez do preenchimento azul ou amarelo.     |

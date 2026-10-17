@@ -135,7 +135,7 @@ const Topbar = styled('header', {
 		paddingBlock: spacing[2],
 		paddingInline: spacing[4],
 		borderBlockEnd: `1px solid ${border.subtle}`,
-		backgroundColor: surface.base,
+		backgroundColor: surface.sidebar,
 		[`@media ${breakpointMediaQuery(permanentFrom)}`]: {
 			display: persistent ? 'flex' : 'none',
 			paddingInline: spacing[8],

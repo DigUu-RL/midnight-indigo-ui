@@ -25,7 +25,7 @@ const ScrollingContainer = styled('div')({
 	height: '8rem',
 	overflow: 'auto',
 	border: `1px solid ${border.default}`,
-	backgroundColor: surface.base,
+	backgroundColor: surface.field,
 });
 
 const WideContent = styled('p')({ width: '40rem', margin: 0, padding: spacing[3] });

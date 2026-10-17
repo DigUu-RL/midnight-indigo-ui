@@ -84,11 +84,11 @@ const thumbStyles: CSSObject = {
 	cursor: 'grab',
 };
 
-// The filled part of the track (`official.main`) and the rest (`border.strong`) both meet 3:1 on every surface.
+// The filled part of the track (`official.main`) and the rest (`border.control`) both meet 3:1 on every surface.
 const Range = styled('input', {
 	shouldForwardProp: forwardAllBut('invalid'),
 })<TrackStyleProps>(({ invalid }: TrackStyleProps): CSSObject => {
-	const rest: string = invalid ? intent.error.border : border.strong;
+	const rest: string = invalid ? intent.error.border : border.control;
 
 	return {
 		appearance: 'none',

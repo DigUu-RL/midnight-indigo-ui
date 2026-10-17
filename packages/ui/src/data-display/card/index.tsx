@@ -69,7 +69,7 @@ const StyledCard = styled('div', {
 		border: `1px solid ${border.default}`,
 		borderRadius: radius.large,
 		backgroundColor: surface.raised,
-		boxShadow: cardVariant === 'elevated' ? elevation.medium : elevation.none,
+		boxShadow: cardVariant === 'elevated' ? elevation.card : elevation.none,
 		color: text.primary,
 	};
 });

@@ -137,7 +137,7 @@ accessible name, and throws on a blank one. Both stay focusable while `loading`,
 
 ### Card, CardHeader, CardContent
 
-A raised surface (`surface.raised`, `border.default`), `outline` or `elevated` (adds `elevation.medium`). The title
+A raised surface (`surface.raised`, `border.default`), `outline` or `elevated` (adds `elevation.card`). The title
 is a heading of level 3 by default (`headingLevel` 2–6): choose it from the outline of the page. With
 `as='section'` or `as='article'` the card becomes a region named by its header title; without a header, give it an
 `aria-label`.

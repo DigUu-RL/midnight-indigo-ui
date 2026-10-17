@@ -43,9 +43,10 @@ const switchWidth: string = '2.25rem';
 const switchHeight: string = '1.25rem';
 const thumbSize: string = '0.875rem';
 
+// The boundary is `brand.border`, which meets 3:1 on every surface where the `brand.main` fill does not.
 const filled: CSSObject = {
 	backgroundColor: intent.brand.main,
-	borderColor: intent.brand.main,
+	borderColor: intent.brand.border,
 };
 
 // The mark is a pseudo-element in `contrastText`, a pair of the contrast audit with `brand.main`.
@@ -76,7 +77,7 @@ const kindStyles: Record<ChoiceKind, CSSObject> = {
 		width: boxSize,
 		height: boxSize,
 		borderRadius: radius.pill,
-		'&:checked': { borderColor: intent.brand.main },
+		'&:checked': { borderColor: intent.brand.border },
 		'&:checked::before': {
 			width: '0.5rem',
 			height: '0.5rem',
@@ -134,8 +135,8 @@ const StyledChoiceInput = styled('input', {
 		margin: 0,
 		borderWidth: kind === 'switch' ? '1px' : '2px',
 		borderStyle: 'solid',
-		borderColor: invalid ? intent.error.border : border.strong,
-		backgroundColor: surface.sunken,
+		borderColor: invalid ? intent.error.border : border.control,
+		backgroundColor: surface.field,
 		cursor: 'pointer',
 		'&::before': { content: '""', boxSizing: 'border-box' },
 		...colorTransitionStyles,
