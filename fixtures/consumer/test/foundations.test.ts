@@ -18,8 +18,9 @@ test('the public stylesheet declares every typographic role and the icon sizes',
 	const stylesheet: string = readFileSync(stylesheetPath, 'utf8');
 
 	assert.equal(typographyRoles.length, Object.keys(tokens.typography).length);
-	assert.match(stylesheet, /--mi-typography-body-font-size: 1rem;/);
-	assert.match(stylesheet, /--mi-typography-code-font-family: ui-monospace/);
+	assert.match(stylesheet, /--mi-typography-body-font-size: 0\.9375rem;/);
+	assert.match(stylesheet, /--mi-typography-overline-text-transform: uppercase;/);
+	assert.match(stylesheet, /--mi-typography-code-font-family: 'Geist Mono Variable', 'Geist Mono'/);
 	assert.match(stylesheet, /--mi-icon-size-medium: 1\.25rem;/);
 });
 

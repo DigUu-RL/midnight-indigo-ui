@@ -20,6 +20,7 @@
 		"@emotion/react": "catalog:",
 		"@emotion/styled": "catalog:",
 		"@fontsource-variable/geist": "catalog:",
+		"@fontsource-variable/geist-mono": "catalog:",
 		"@iconify-json/academicons": "^1.2.4",
 		"@iconify-json/akar-icons": "^1.2.7",
 		"@iconify-json/andrsrxn": "^1.2.0",

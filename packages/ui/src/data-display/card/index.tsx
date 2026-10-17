@@ -5,7 +5,7 @@ import type { CSSObject } from '@mui/material/styles';
 import { createContext, use, useId } from 'react';
 import type { ComponentPropsWithRef, Context, ReactElement, ReactNode } from 'react';
 
-import { forwardAllBut } from '#src/shared/appearance.ts';
+import { forwardAllBut, prettyWrapStyles } from '#src/shared/appearance.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 
 const { spacing, typography, surface, border, text, radius, elevation }: typeof themeVariables =
@@ -83,10 +83,16 @@ const Header = styled('div')({
 
 const HeaderText = styled('div')({ flex: '1 1 12rem', minWidth: 0 });
 
-const Title = styled('h3')({ ...typography.headingSmall, margin: 0, color: text.primary });
+const Title = styled('h3')({
+	...typography.headingSmall,
+	...prettyWrapStyles,
+	margin: 0,
+	color: text.primary,
+});
 
 const Subtitle = styled('p')({
 	...typography.bodySmall,
+	...prettyWrapStyles,
 	margin: `${spacing[1]} 0 0`,
 	color: text.secondary,
 });

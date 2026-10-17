@@ -276,6 +276,7 @@ const renderTypography = (): string[] => {
 			code(style.lineHeight),
 			code(style.fontWeight),
 			code(style.letterSpacing),
+			code(style.textTransform),
 			tokenDescriptions.typography[role],
 		];
 	});
@@ -285,11 +286,12 @@ const renderTypography = (): string[] => {
 		'',
 		tokenDescriptions.groups.typography,
 		'',
-		'Every role has the fields `fontFamily`, `fontSize`, `fontWeight`, `lineHeight` and `letterSpacing`, declared as',
-		`${code(cssVariableName(['typography', '<role>', '<field>']))}, e.g. ${code(cssVariableName(['typography', 'body', 'fontSize']))}.`,
+		'Every role has the fields `fontFamily`, `fontSize`, `fontWeight`, `lineHeight`, `letterSpacing` and',
+		`${code('textTransform')}, declared as ${code(cssVariableName(['typography', '<role>', '<field>']))}, e.g.`,
+		`${code(cssVariableName(['typography', 'body', 'fontSize']))}.`,
 		'',
 		...renderTable(
-			['Role', 'Font', 'Size', 'Line height', 'Weight', 'Letter spacing', 'Usage'],
+			['Role', 'Font', 'Size', 'Line height', 'Weight', 'Letter spacing', 'Transform', 'Usage'],
 			rows,
 		),
 		'',

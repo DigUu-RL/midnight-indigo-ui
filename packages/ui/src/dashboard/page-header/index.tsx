@@ -3,6 +3,7 @@
 import { styled } from '@mui/material/styles';
 import type { ComponentPropsWithRef, ReactElement, ReactNode } from 'react';
 
+import { prettyWrapStyles } from '#src/shared/appearance.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 
 const { spacing, typography, text }: typeof themeVariables = themeVariables;
@@ -40,6 +41,7 @@ const Text = styled('div')({ flex: '1 1 20rem', minWidth: 0 });
 
 const Title = styled('h1')({
 	...typography.headingLarge,
+	...prettyWrapStyles,
 	margin: 0,
 	overflowWrap: 'anywhere',
 	color: text.primary,
@@ -47,6 +49,7 @@ const Title = styled('h1')({
 
 const Description = styled('p')({
 	...typography.body,
+	...prettyWrapStyles,
 	margin: `${spacing[2]} 0 0`,
 	color: text.secondary,
 });

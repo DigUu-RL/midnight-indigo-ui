@@ -3,6 +3,7 @@
 import { styled } from '@mui/material/styles';
 import type { ComponentPropsWithRef, ReactElement, ReactNode } from 'react';
 
+import { prettyWrapStyles } from '#src/shared/appearance.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 
 const { spacing, typography, fontWeight, radius, text, iconSize }: typeof themeVariables =
@@ -65,12 +66,18 @@ const IconFrame = styled('span')({
 
 const Title = styled('p')({
 	...typography.headingSmall,
+	...prettyWrapStyles,
 	margin: 0,
 	fontWeight: fontWeight.semibold,
 	color: text.primary,
 });
 
-const Description = styled('p')({ ...typography.bodySmall, maxWidth: '40rem', margin: 0 });
+const Description = styled('p')({
+	...typography.bodySmall,
+	...prettyWrapStyles,
+	maxWidth: '40rem',
+	margin: 0,
+});
 
 const Action = styled('div')({ marginTop: spacing[2] });
 

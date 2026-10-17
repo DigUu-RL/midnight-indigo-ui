@@ -11,7 +11,7 @@ import type {
 	ReactNode,
 } from 'react';
 
-import { focusRingStyles, forwardAllBut } from '#src/shared/appearance.ts';
+import { focusRingStyles, forwardAllBut, numericTextStyles } from '#src/shared/appearance.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 import { FormField } from '#src/forms/form-field/index.tsx';
 import type { FieldProps, FormFieldControlProps } from '#src/forms/form-field/index.tsx';
@@ -141,10 +141,10 @@ const Range = styled('input', {
 // The value is already read from the slider (`aria-valuetext`), so the visible copy is hidden from the tree.
 const Output = styled('output')({
 	...typography.label,
+	...numericTextStyles,
 	minWidth: '3ch',
 	textAlign: 'end',
 	color: text.secondary,
-	fontVariantNumeric: 'tabular-nums',
 });
 
 const Row = styled('div')({ display: 'flex', alignItems: 'center', gap: spacing[3] });

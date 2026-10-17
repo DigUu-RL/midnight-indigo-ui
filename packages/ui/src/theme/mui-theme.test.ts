@@ -43,11 +43,22 @@ describe('toMuiTheme', (): void => {
 		expect(muiTheme.typography.body1).toMatchObject(typography.body);
 		expect(muiTheme.typography.body2).toMatchObject(typography.bodySmall);
 		expect(muiTheme.typography.caption).toMatchObject(typography.caption);
+		expect(muiTheme.typography.overline).toMatchObject(typography.overline);
 
 		expect(muiTheme.typography.button).toMatchObject({
 			...typography.label,
 			textTransform: 'none',
 		});
+	});
+
+	it('keeps headings and paragraphs from ending on a single short word', (): void => {
+		(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body1', 'body2'] as const).forEach(
+			(variant: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body1' | 'body2'): void => {
+				expect(muiTheme.typography[variant]).toMatchObject({ textWrap: 'pretty' });
+			},
+		);
+
+		expect(muiTheme.typography.caption).not.toHaveProperty('textWrap');
 	});
 
 	it('maps the layer tokens to the Material UI stacking order', (): void => {

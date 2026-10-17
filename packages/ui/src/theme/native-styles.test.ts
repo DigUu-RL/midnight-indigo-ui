@@ -10,7 +10,8 @@ import {
 } from '#src/theme/native-styles.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 
-const { border, focus, accent, text, surface, intent }: typeof themeVariables = themeVariables;
+const { border, focus, accent, text, surface, intent, fontFamily }: typeof themeVariables =
+	themeVariables;
 
 const ruleOf = (styles: CSSObject, selector: string): CSSObject => {
 	return styles[selector] as CSSObject;
@@ -142,6 +143,17 @@ describe('nativeBaselineStyles', (): void => {
 			':where(blockquote)',
 		].forEach((selector: string): void => {
 			expect(nativeBaselineStyles[selector]).toBeDefined();
+		});
+	});
+
+	it('sets code in Geist Mono with tabular digits and wraps headings and paragraphs pretty', (): void => {
+		expect(ruleOf(nativeBaselineStyles, ':where(code, kbd, pre, samp)')).toEqual({
+			fontFamily: fontFamily.mono,
+			fontVariantNumeric: 'tabular-nums',
+		});
+
+		expect(ruleOf(nativeBaselineStyles, ':where(h1, h2, h3, h4, h5, h6, p)')).toEqual({
+			textWrap: 'pretty',
 		});
 	});
 

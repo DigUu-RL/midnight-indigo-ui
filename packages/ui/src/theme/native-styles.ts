@@ -103,7 +103,11 @@ export const nativeBaselineStyles: CSSObject = {
 		borderBlockStart: `1px solid ${border.default}`,
 		color: 'inherit',
 	},
-	':where(code, kbd, pre, samp)': { fontFamily: fontFamily.mono },
+	':where(h1, h2, h3, h4, h5, h6, p)': { textWrap: 'pretty' },
+	':where(code, kbd, pre, samp)': {
+		fontFamily: fontFamily.mono,
+		fontVariantNumeric: 'tabular-nums',
+	},
 	':where(kbd)': {
 		paddingBlock: '0.1em',
 		paddingInline: '0.4em',

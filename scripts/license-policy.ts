@@ -23,6 +23,10 @@ export const allowedExceptions: Readonly<Record<string, LicenseException>> = {
 		license: 'OFL-1.1',
 		reason: 'Font files: the SIL Open Font License allows bundling them with any software (D02).',
 	},
+	'@fontsource-variable/geist-mono': {
+		license: 'OFL-1.1',
+		reason: 'Font files: the SIL Open Font License allows bundling them with any software (D02).',
+	},
 	'caniuse-lite': {
 		license: 'CC-BY-4.0',
 		reason: 'Browser support data used by the Next.js build; attribution travels with the package.',

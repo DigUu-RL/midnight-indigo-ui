@@ -6,7 +6,7 @@ import { useId } from 'react';
 import type { ComponentPropsWithRef, ReactElement, ReactNode } from 'react';
 
 import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { forwardAllBut, visuallyHiddenStyles } from '#src/shared/appearance.ts';
+import { forwardAllBut, numericTextStyles, visuallyHiddenStyles } from '#src/shared/appearance.ts';
 import { Glyph } from '#src/shared/glyphs/index.tsx';
 import type { GlyphName } from '#src/shared/glyphs/index.tsx';
 import { themeVariables } from '#src/theme/theme-variables.ts';
@@ -115,6 +115,7 @@ const IconSlot = styled('span')({ display: 'inline-flex', flexShrink: 0, color: 
 
 const Value = styled('p')({
 	...typography.display,
+	...numericTextStyles,
 	margin: 0,
 	overflowWrap: 'anywhere',
 	color: text.primary,
@@ -136,6 +137,7 @@ const Change = styled('span', {
 		display: 'inline-flex',
 		alignItems: 'center',
 		gap: spacing[1],
+		...numericTextStyles,
 		fontWeight: fontWeight.semibold,
 		color: sentimentColors[sentiment],
 	};

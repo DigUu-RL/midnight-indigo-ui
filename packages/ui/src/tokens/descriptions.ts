@@ -86,7 +86,7 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 		motion:
 			'Durations and easing curves. Durations become 0ms under `prefers-reduced-motion: reduce`.',
 		fontFamily:
-			'Font stacks. Geist Sans is self-hosted by the application; the system fonts after it are the fallback.',
+			'Font stacks. Geist Sans and Geist Mono are self-hosted by the application; the system fonts after them are the fallback.',
 		fontWeight: 'Font weights used by the typographic roles.',
 		typography:
 			'Typographic roles. Sizes are in rem, so they follow the browser text size and zoom; line heights are unitless.',
@@ -235,13 +235,13 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 	},
 	fontFamily: {
 		sans: 'Interface text: every role except `code`.',
-		mono: 'Code, identifiers and values that must align character by character.',
+		mono: 'Code, and always numbers, identifiers and amounts, with tabular digits.',
 	},
 	fontWeight: {
-		regular: 'Body text, captions and code.',
-		medium: 'Labels of controls, tabs and menu items.',
-		semibold: 'Headings.',
-		bold: 'Display text.',
+		regular: 'Body text and captions.',
+		medium: 'Labels of controls, tabs and menu items, and code.',
+		semibold: 'Small headings and the overline.',
+		bold: 'Display text and the large and medium headings.',
 	},
 	typography: {
 		display: 'Key figures and hero titles; at most one per view.',
@@ -252,6 +252,8 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 		bodySmall: 'Dense text: table cells, secondary list text and helper text.',
 		label: 'Buttons, form labels, tabs and menu items.',
 		caption: 'Timestamps, footnotes and annotations; never the only place of essential content.',
+		overline:
+			'Uppercase eyebrow above a title and labels of navigation groups; a few words at most.',
 		code: 'Inline code, identifiers and monospace values.',
 	},
 	iconSize: {

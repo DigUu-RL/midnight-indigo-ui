@@ -103,6 +103,18 @@ export const colorTransitionStyles: CSSObject = {
 /** Media query of the reduced motion preference, as a style object key. */
 export const reducedMotion: string = `@media ${reducedMotionMediaQuery}`;
 
+/** Numbers, identifiers and amounts: Geist Mono with tabular digits, so values line up from row to row. */
+export const numericTextStyles: CSSObject = {
+	fontFamily: themeVariables.fontFamily.mono,
+	fontVariantNumeric: 'tabular-nums',
+};
+
+/**
+ * Headings and paragraphs: the browser avoids leaving a single short word on the last line. `text-wrap` is a shorthand
+ * that resets the wrapping mode, so spread it before any `whiteSpace` that prevents wrapping.
+ */
+export const prettyWrapStyles: CSSObject = { textWrap: 'pretty' };
+
 /** Hides content visually while keeping it in the accessibility tree. */
 export const visuallyHiddenStyles: CSSObject = {
 	position: 'absolute',

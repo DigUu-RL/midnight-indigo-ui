@@ -18,6 +18,7 @@ import { IconButton } from '#src/buttons/icon-button/index.tsx';
 import {
 	colorTransitionStyles,
 	forwardAllBut,
+	numericTextStyles,
 	visuallyHiddenStyles,
 } from '#src/shared/appearance.ts';
 import { Glyph } from '#src/shared/glyphs/index.tsx';
@@ -255,7 +256,7 @@ const FileName = styled('span')({
 	whiteSpace: 'nowrap',
 });
 
-const FileSize = styled('span')({ color: text.secondary, fontVariantNumeric: 'tabular-nums' });
+const FileSize = styled('span')({ ...numericTextStyles, color: text.secondary });
 
 const Status = styled('div')({ ...typography.bodySmall, color: intent.error.text });
 

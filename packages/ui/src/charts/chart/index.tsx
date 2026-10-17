@@ -12,7 +12,7 @@ import type {
 } from 'react';
 
 import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { focusRingStyles, visuallyHiddenStyles } from '#src/shared/appearance.ts';
+import { focusRingStyles, prettyWrapStyles, visuallyHiddenStyles } from '#src/shared/appearance.ts';
 import { Glyph } from '#src/shared/glyphs/index.tsx';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 import { useUiTheme } from '#src/theme/ui-provider.tsx';
@@ -158,6 +158,7 @@ const Heading = styled('div')({
 
 const Title = styled('p')({
 	...typography.headingSmall,
+	...prettyWrapStyles,
 	margin: 0,
 	fontWeight: fontWeight.semibold,
 	color: text.primary,
@@ -165,7 +166,12 @@ const Title = styled('p')({
 
 const HiddenTitle = styled('p')(visuallyHiddenStyles);
 
-const Description = styled('p')({ ...typography.bodySmall, margin: 0, color: text.secondary });
+const Description = styled('p')({
+	...typography.bodySmall,
+	...prettyWrapStyles,
+	margin: 0,
+	color: text.secondary,
+});
 
 const StaleNotice = styled('p')({
 	display: 'inline-flex',

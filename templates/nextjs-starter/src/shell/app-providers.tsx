@@ -1,8 +1,9 @@
 // The providers of every page (Server Component). The Emotion cache provider must wrap `UiProvider` so that Material UI
 // styles are collected during server rendering and streamed into the `<head>` instead of being injected after
-// hydration. Geist Sans is self-hosted: the font package ships the files, the bundler serves them and no request leaves
-// the origin.
+// hydration. Geist Sans and Geist Mono are self-hosted: the font packages ship the files, the bundler serves them and no
+// request leaves the origin.
 import '@fontsource-variable/geist';
+import '@fontsource-variable/geist-mono';
 import { ToastProvider } from '@midnight-indigo/ui/feedback';
 import type { Messages } from '@midnight-indigo/ui/i18n';
 import { UiProvider } from '@midnight-indigo/ui/theme';

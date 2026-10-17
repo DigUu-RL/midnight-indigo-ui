@@ -27,14 +27,15 @@ import { UiProvider } from '@midnight-indigo/ui/theme';
 | `::placeholder`                                        | `text.muted`, totalmente opaco.                                                                            |
 | `a`, `a:hover`                                         | `accent.link`, `accent.linkHover`.                                                                         |
 | `hr`, `kbd`, `mark`, `abbr[title]`, `blockquote`       | Bordas e superfícies do tema; `mark` usa o par suave de alerta; `abbr` é sublinhado pontilhado.            |
-| `code`, `kbd`, `pre`, `samp`                           | Pilha monoespaçada.                                                                                        |
+| `code`, `kbd`, `pre`, `samp`                           | Geist Mono (`fontFamily.mono`) com algarismos tabulares.                                                   |
+| `h1`–`h6`, `p`                                         | `text-wrap: pretty`, para que a última linha não fique com uma única palavra curta.                        |
 | Rolagem                                                | `scroll-behavior: smooth` apenas para quem não pediu movimento reduzido.                                   |
 | Páginas com a barra superior do `DashboardLayout`      | `scroll-padding-top` igual à altura dela, para que âncoras e elementos focados parem abaixo dela.          |
 | Navegadores móveis                                     | Sem destaque de toque; `text-size-adjust: 100%` (sem aumento automático do texto).                         |
 
 Toda regra de elemento fica dentro de `:where()`, cuja especificidade é zero: qualquer classe de um componente ou da
 aplicação vence. A baseline nunca redefine margens, alturas de linha ou tamanhos de fonte do conteúdo. Títulos,
-parágrafos e listas mantêm os padrões do navegador.
+parágrafos e listas mantêm os padrões do navegador, exceto pelo `text-wrap: pretty`.
 
 ### Modos de alto contraste
 

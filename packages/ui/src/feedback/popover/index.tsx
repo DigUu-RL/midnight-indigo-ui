@@ -6,7 +6,7 @@ import type { Theme } from '@mui/material/styles';
 import { useEffect, useId, useRef, useState } from 'react';
 import type { ReactElement, ReactNode, RefCallback, RefObject } from 'react';
 
-import { assertLabel } from '#src/shared/appearance.ts';
+import { assertLabel, prettyWrapStyles } from '#src/shared/appearance.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 import {
 	anchoredRootStyles,
@@ -55,6 +55,7 @@ const focusTargetAttributes: Record<string, string> = { 'data-mui-focusable': ''
 const Title = styled('div')({
 	marginBlockEnd: spacing[3],
 	...typography.headingSmall,
+	...prettyWrapStyles,
 	color: text.primary,
 });
 
