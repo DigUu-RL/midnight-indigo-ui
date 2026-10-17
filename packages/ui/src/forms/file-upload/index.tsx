@@ -32,7 +32,7 @@ const {
 	radius,
 	surface,
 	text,
-	border,
+	stroke,
 	state,
 	focus,
 	intent,
@@ -171,14 +171,14 @@ const Zone = styled('div', {
 		flexWrap: 'wrap',
 		alignItems: 'center',
 		gap: spacing[3],
+		// The zone is decorative: the choose button inside it is the control, with its own boundary.
 		...(framed
 			? {
 					padding: spacing[4],
-					borderWidth: '1px',
-					borderStyle: 'dashed',
+					border: stroke.dashed,
 					borderRadius: radius.medium,
-					borderColor: invalid ? intent.error.border : border.strong,
-					backgroundColor: dragging ? state.hover : surface.sunken,
+					...(invalid ? { borderColor: intent.error.border } : {}),
+					backgroundColor: dragging ? state.hover : surface.field,
 				}
 			: {}),
 		color: disabled ? state.disabledText : text.secondary,

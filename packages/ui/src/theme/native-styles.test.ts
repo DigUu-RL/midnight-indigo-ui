@@ -20,7 +20,7 @@ describe('scrollbarStyles', (): void => {
 	it('colors the scrollbar of Chromium and Firefox with the theme', (): void => {
 		expect(scrollbarStyles).toMatchObject({
 			scrollbarWidth: 'thin',
-			scrollbarColor: `${border.strong} transparent`,
+			scrollbarColor: `${border.control} transparent`,
 		});
 	});
 
@@ -36,7 +36,7 @@ describe('scrollbarStyles', (): void => {
 		);
 
 		expect(ruleOf(scrollbarStyles, '&::-webkit-scrollbar-thumb')).toMatchObject({
-			backgroundColor: border.strong,
+			backgroundColor: border.control,
 		});
 
 		expect(ruleOf(scrollbarStyles, '&::-webkit-scrollbar-thumb:hover')).toEqual({
@@ -53,8 +53,8 @@ describe('scrollbarStyles', (): void => {
 
 describe('autofillStyles', (): void => {
 	it('paints the given background above the one of the browser, and the given text color', (): void => {
-		expect(autofillStyles(surface.sunken, text.primary)).toEqual({
-			boxShadow: `inset 0 0 0 100vmax ${surface.sunken}`,
+		expect(autofillStyles(surface.field, text.primary)).toEqual({
+			boxShadow: `inset 0 0 0 100vmax ${surface.field}`,
 			WebkitTextFillColor: text.primary,
 			filter: 'none',
 		});
@@ -75,7 +75,7 @@ describe('nativeBaselineStyles', (): void => {
 	it('colors the page scrollbar on the canvas', (): void => {
 		expect(html).toMatchObject({
 			scrollbarWidth: 'thin',
-			scrollbarColor: `${border.strong} ${surface.canvas}`,
+			scrollbarColor: `${border.control} ${surface.canvas}`,
 		});
 	});
 

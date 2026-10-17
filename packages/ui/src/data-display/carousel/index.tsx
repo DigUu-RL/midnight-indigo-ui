@@ -124,12 +124,12 @@ const PickerButton = styled('button')({
 		width: spacing[2],
 		height: spacing[2],
 		borderRadius: radius.pill,
-		backgroundColor: border.strong,
+		backgroundColor: border.control,
 		...colorTransitionStyles,
 		transitionProperty: 'background-color, width',
 	},
 	'&:hover::before': { backgroundColor: intent.brand.hover },
-	'&[aria-current="true"]::before': { width: spacing[4], backgroundColor: intent.brand.main },
+	'&[aria-current="true"]::before': { width: spacing[4], backgroundColor: intent.brand.border },
 });
 
 const editableSelector: string =

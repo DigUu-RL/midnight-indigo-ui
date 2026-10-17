@@ -147,7 +147,7 @@ const Root = styled('div', {
 		padding: spacing[3],
 		overflow: 'hidden',
 		borderInlineEnd: `1px solid ${border.subtle}`,
-		backgroundColor: surface.base,
+		backgroundColor: surface.sidebar,
 		color: text.secondary,
 		transitionProperty: 'width',
 		transitionDuration: motion.duration.moderate,

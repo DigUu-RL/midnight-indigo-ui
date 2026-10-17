@@ -41,7 +41,7 @@ const Root = styled('form')({
 	padding: spacing[4],
 	border: `1px solid ${border.subtle}`,
 	borderRadius: radius.large,
-	backgroundColor: surface.base,
+	backgroundColor: surface.raised,
 });
 
 const Fields = styled('div')({

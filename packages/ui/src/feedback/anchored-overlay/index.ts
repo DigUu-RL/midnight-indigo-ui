@@ -65,7 +65,7 @@ export const anchoredSurfaceStyles: CSSObject = {
 	backgroundColor: surface.overlay,
 	// Material UI lightens dark papers with a gradient; the surface tokens already set the elevation.
 	backgroundImage: 'none',
-	boxShadow: elevation.medium,
+	boxShadow: elevation.overlay,
 	color: text.primary,
 	...typography.body,
 	outline: 'none',

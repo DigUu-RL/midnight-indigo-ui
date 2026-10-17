@@ -3,6 +3,7 @@ import { contrastRatio, formatContrastRatio } from '#src/tokens/color.ts';
 import type { DesignTokens, SurfaceTokens } from '#src/tokens/design-tokens.ts';
 import { semanticIntents } from '#src/tokens/intents.ts';
 import type { IntentTokens, SemanticIntent } from '#src/tokens/intents.ts';
+import { surfaceLayers } from '#src/tokens/surface-layers.ts';
 
 /** Minimum ratios: 4.5:1 for normal text; 3:1 for large text and required non-text indicators. */
 export const contrastMinimums = {
@@ -30,20 +31,12 @@ export interface ContrastResult extends ContrastPair {
 	message: string;
 }
 
-const surfaceNames: readonly (keyof SurfaceTokens)[] = [
-	'canvas',
-	'sunken',
-	'base',
-	'raised',
-	'overlay',
-];
-
 const onEverySurface = (
 	foreground: string,
 	requirement: ContrastRequirement,
 	usage: string,
 ): ContrastPair[] => {
-	return surfaceNames.map((surface: keyof SurfaceTokens): ContrastPair => {
+	return surfaceLayers.map((surface: keyof SurfaceTokens): ContrastPair => {
 		return { foreground, background: `surface.${surface}`, requirement, usage };
 	});
 };
@@ -74,8 +67,12 @@ const intentPairs = (intent: SemanticIntent): ContrastPair[] => {
 		...filledStates,
 		...containerStates,
 		...onEverySurface(path('text'), 'text', `${intent} text, ghost and outline labels`),
-		...onEverySurface(path('border'), 'nonText', `Boundary of an outlined ${intent} control`),
-		...onEverySurface(path('main'), 'nonText', `Boundary of a filled ${intent} control`),
+		// Filled controls are bounded by `border` too, so `main` alone never has to stand out from the surface.
+		...onEverySurface(
+			path('border'),
+			'nonText',
+			`Boundary of an outlined or filled ${intent} control, and ${intent} indicators`,
+		),
 		{
 			foreground: path('main'),
 			background: path('container'),
@@ -106,7 +103,7 @@ export const createContrastPairs = (tokens: Readonly<DesignTokens>): ContrastPai
 		...onEverySurface('text.primary', 'text', 'Body text and headings'),
 		...onEverySurface('text.secondary', 'text', 'Supporting text'),
 		...onEverySurface('text.muted', 'text', 'Placeholders, hints and captions'),
-		...onEverySurface('border.strong', 'nonText', 'Boundary of inputs and interactive controls'),
+		...onEverySurface('border.control', 'nonText', 'Boundary of inputs and interactive controls'),
 		...onEverySurface('focus.ring', 'nonText', 'Focus indicator'),
 		...onEverySurface('accent.link', 'text', 'Links'),
 		...onEverySurface('accent.linkHover', 'text', 'Hovered links'),

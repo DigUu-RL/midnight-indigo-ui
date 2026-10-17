@@ -7,8 +7,8 @@ import type { CDPSession, Locator, Page } from '@playwright/test';
 import { expectNoAxeViolations } from '#test/support/accessibility.ts';
 import { expect, test } from '#test/support/fixtures.ts';
 
-// `border.strong`, the color of the scrollbar thumb, as browsers serialize it.
-const borderStrong: string = 'rgb(110, 98, 163)';
+// `border.control`, the color of the scrollbar thumb, as browsers serialize it.
+const borderControl: string = 'rgb(110, 98, 163)';
 
 const openScenario = async (page: Page, baseline: boolean = true): Promise<void> => {
 	await page.goto(`/?scenario=native${baseline ? '' : '&baseline=false'}`);
@@ -108,8 +108,8 @@ test('the page and an inner container draw their scrollbars in the theme colors'
 		return;
 	}
 
-	expect(await computedStyleOf(page.locator('html'), 'scrollbar-color')).toContain(borderStrong);
-	expect(await computedStyleOf(container, 'scrollbar-color')).toContain(borderStrong);
+	expect(await computedStyleOf(page.locator('html'), 'scrollbar-color')).toContain(borderControl);
+	expect(await computedStyleOf(container, 'scrollbar-color')).toContain(borderControl);
 });
 
 test('native controls render in the dark color scheme', async ({ page }): Promise<void> => {

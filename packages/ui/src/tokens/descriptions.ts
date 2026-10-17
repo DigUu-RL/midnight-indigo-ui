@@ -16,6 +16,7 @@ import type {
 	MidnightScaleStep,
 	RadiusTokens,
 	StateTokens,
+	StrokeTokens,
 	SurfaceTokens,
 	TextTokens,
 	TypographyRole,
@@ -36,6 +37,7 @@ export interface TokenDescriptions {
 	surface: Record<keyof SurfaceTokens, string>;
 	text: Record<keyof TextTokens, string>;
 	border: Record<keyof BorderTokens, string>;
+	stroke: Record<keyof StrokeTokens, string>;
 	focus: Record<keyof FocusTokens, string>;
 	accent: Record<keyof AccentTokens, string>;
 	state: Record<keyof StateTokens, string>;
@@ -56,9 +58,11 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 	groups: {
 		color:
 			'Fixed color scales of the project identity, from the lightest step to the darkest. A theme palette does not change them; prefer the semantic groups in components.',
-		surface: 'Background layers, from the deepest to the most elevated.',
+		surface:
+			'Background layers, from the darkest to the lightest; each one is lighter than the layer below it.',
 		text: 'Text colors by emphasis.',
 		border: 'Boundaries and dividers.',
+		stroke: 'Complete border lines, as values of the CSS `border` shorthand.',
 		focus:
 			'Focus-visible indicator, drawn as an offset outline so it never relies on color change alone.',
 		accent: 'Brand accents applied outside components: links and text selection.',
@@ -70,7 +74,7 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 		radius: 'Corner radius scale; components pick a step instead of sharing a single radius.',
 		spacing: 'Single spacing scale, in steps of 0.25rem.',
 		elevation:
-			'Shadows calibrated for the dark canvas; pair them with a lighter surface and a border.',
+			'Shadows calibrated for the dark canvas; pair them with a lighter surface and a border. `official` and `brand` are colored by the `main` of their intent.',
 		layer:
 			'Stacking order (`z-index`) of the layers above the page. Overlays take them already; use them for your own layers.',
 		backdrop: 'Scrim behind modal overlays, which keeps the page visible but out of reach.',
@@ -104,10 +108,12 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 	},
 	surface: {
 		canvas: 'Main application background.',
-		sunken: 'Areas recessed below the canvas, such as wells and code blocks.',
-		base: 'Navigation and base structural surfaces.',
-		raised: 'Cards and elevated controls.',
-		overlay: 'Menus, popovers, tooltips and dialogs.',
+		field: 'Background of inputs and choice controls, and of recessed areas such as code blocks.',
+		sidebar: 'Sidebar, top bar and other navigation structure.',
+		tableHeader: 'Header row of tables, recessed below the raised body.',
+		raised: 'Cards, panels and tables.',
+		dialog: 'Dialogs and drawers.',
+		overlay: 'Menus, popovers, tooltips and toasts, the lightest layer.',
 	},
 	text: {
 		primary: 'Body text and headings.',
@@ -120,7 +126,12 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 	border: {
 		subtle: 'Dividers and decorative separation.',
 		default: 'Default indigo border of containers.',
-		strong: 'Boundary of inputs and interactive controls; meets 3:1 on every surface.',
+		strong:
+			'Emphasized decorative borders, such as hovered tiles and dashed empty areas; below 3:1.',
+		control: 'Boundary of inputs and interactive controls; meets 3:1 on every surface.',
+	},
+	stroke: {
+		dashed: 'Dashed `border.strong` line of empty states and drop zones.',
 	},
 	focus: {
 		ring: 'Focus indicator color, the official pink; meets 3:1 on every surface.',
@@ -183,9 +194,11 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 	},
 	elevation: {
 		none: 'Flat, on the canvas.',
-		low: 'Raised cards and controls.',
-		medium: 'Menus and popovers.',
-		high: 'Dialogs.',
+		card: 'Elevated cards and panels.',
+		overlay: 'Menus, popovers, tooltips and chart tooltips.',
+		dialog: 'Dialogs, drawers and toasts.',
+		official: 'Pink glow of the main action (filled `official` button).',
+		brand: 'Indigo glow of a filled `brand` control.',
 	},
 	layer: {
 		base: 'Content of the page.',
@@ -198,6 +211,7 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 	},
 	backdrop: {
 		scrim: 'Translucent canvas behind dialogs and drawers.',
+		blur: 'Blur radius of the page behind the scrim (`backdrop-filter: blur()`).',
 	},
 	fontFamily: {
 		sans: 'Interface text: every role except `code`.',

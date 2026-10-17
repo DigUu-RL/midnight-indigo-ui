@@ -139,7 +139,7 @@ const Popup = styled('div')({
 	borderColor: border.default,
 	borderRadius: radius.medium,
 	backgroundColor: surface.overlay,
-	boxShadow: elevation.medium,
+	boxShadow: elevation.overlay,
 });
 
 const Listbox = styled('ul')({ margin: 0, padding: 0, listStyle: 'none' });

@@ -20,10 +20,13 @@ type IntentVariables = ThemeVariables['intent'][SemanticIntent];
 /** Matches an element that can be interacted with: not disabled, nor marked `aria-disabled`. */
 export const enabledSelector: string = ':not(:disabled):not([aria-disabled="true"])';
 
-/** Every pair below is part of the contrast audit (`auditContrast`), for each intent. */
+/**
+ * Every pair below is part of the contrast audit (`auditContrast`), for each intent. A solid fill is bounded by
+ * `border`, which equals `main` unless `main` is below 3:1 on some surface (as `brand.main` on the lighter ones).
+ */
 const restingColors = (colors: IntentVariables): Record<Appearance, CSSObject> => {
 	return {
-		solid: { backgroundColor: colors.main, borderColor: colors.main, color: colors.contrastText },
+		solid: { backgroundColor: colors.main, borderColor: colors.border, color: colors.contrastText },
 		soft: {
 			backgroundColor: colors.container,
 			borderColor: 'transparent',

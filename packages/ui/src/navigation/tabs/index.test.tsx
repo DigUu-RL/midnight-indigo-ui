@@ -52,7 +52,7 @@ describe('Tabs', (): void => {
 		const rules: string = styleRulesOf(selectedTab()).join('');
 
 		expect(rules).toContain(
-			'&[aria-selected="true"]::after,&[aria-current="page"]::after{background-color:var(--mi-intent-brand-main);}',
+			'&[aria-selected="true"]::after,&[aria-current="page"]::after{background-color:var(--mi-intent-brand-border);}',
 		);
 
 		expect(rules).not.toContain('--mi-intent-official-');

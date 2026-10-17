@@ -1,5 +1,6 @@
 // The complete design token set: base groups plus intents derived from their sources. Dark-only by design.
-import type { HexColor } from '#src/tokens/color.ts';
+import { parseHexColor } from '#src/tokens/color.ts';
+import type { HexColor, RgbColor } from '#src/tokens/color.ts';
 import {
 	brandMainColor,
 	defaultIntentSources,
@@ -59,11 +60,14 @@ export interface ColorTokens {
 	midnight: MidnightScale;
 }
 
+/** Background layers, declared from the darkest to the lightest. */
 export interface SurfaceTokens {
 	canvas: HexColor;
-	sunken: HexColor;
-	base: HexColor;
+	field: HexColor;
+	sidebar: HexColor;
+	tableHeader: HexColor;
 	raised: HexColor;
+	dialog: HexColor;
 	overlay: HexColor;
 }
 
@@ -79,6 +83,12 @@ export interface BorderTokens {
 	subtle: HexColor;
 	default: HexColor;
 	strong: HexColor;
+	control: HexColor;
+}
+
+/** Complete border lines, as values of the CSS `border` shorthand. */
+export interface StrokeTokens {
+	dashed: string;
 }
 
 export interface FocusTokens {
@@ -126,9 +136,11 @@ export type SpacingTokens = Record<SpacingStep, string>;
 
 export interface ElevationTokens {
 	none: string;
-	low: string;
-	medium: string;
-	high: string;
+	card: string;
+	overlay: string;
+	dialog: string;
+	official: string;
+	brand: string;
 }
 
 /** Stacking order (`z-index`) of the layers above the page, from the lowest to the highest. */
@@ -144,6 +156,7 @@ export interface LayerTokens {
 
 export interface BackdropTokens {
 	scrim: string;
+	blur: string;
 }
 
 export interface MotionTokens {
@@ -209,6 +222,7 @@ export interface DesignTokens {
 	surface: SurfaceTokens;
 	text: TextTokens;
 	border: BorderTokens;
+	stroke: StrokeTokens;
 	focus: FocusTokens;
 	accent: AccentTokens;
 	state: StateTokens;
@@ -278,12 +292,15 @@ export const midnightScale: Readonly<MidnightScale> = {
 	'850': '#05040E',
 };
 
+// Each layer is lighter than the one below it; the luminance steps are documented in tokens.md (`surfaceLayers`).
 export const surfaceTokens: Readonly<SurfaceTokens> = {
-	canvas: '#020108',
-	sunken: '#030209',
-	base: '#040208',
-	raised: '#0A0716',
-	overlay: '#110C22',
+	canvas: midnightScale['850'],
+	field: midnightScale['800'],
+	sidebar: midnightScale['750'],
+	tableHeader: midnightScale['700'],
+	raised: midnightScale['650'],
+	dialog: midnightScale['600'],
+	overlay: midnightScale['500'],
 };
 
 export const textTokens: Readonly<TextTokens> = {
@@ -294,10 +311,16 @@ export const textTokens: Readonly<TextTokens> = {
 	inverse: surfaceTokens.canvas,
 };
 
+// `strong` is below 3:1 on the canvas, so the boundary of a control, which must meet it, is `control`.
 export const borderTokens: Readonly<BorderTokens> = {
-	subtle: '#1F1838',
-	default: '#352A5E',
-	strong: '#6E62A3',
+	subtle: midnightScale['450'],
+	default: midnightScale['350'],
+	strong: midnightScale['300'],
+	control: midnightScale['250'],
+};
+
+export const strokeTokens: Readonly<StrokeTokens> = {
+	dashed: `1px dashed ${borderTokens.strong}`,
 };
 
 // The official pink, like the main action: focus and the primary action share the color that draws the eye.
@@ -307,10 +330,11 @@ export const focusTokens: Readonly<FocusTokens> = {
 	offset: '2px',
 };
 
+// Pressed sits between hover and selected, so each state is lighter than the previous one.
 export const stateTokens: Readonly<StateTokens> = {
-	hover: '#16112B',
-	pressed: '#1D1636',
-	selected: '#241B44',
+	hover: midnightScale['550'],
+	pressed: midnightScale['450'],
+	selected: midnightScale['400'],
 	disabledSurface: '#0E0B1C',
 	disabledText: textTokens.disabled,
 	disabledBorder: '#2A2445',
@@ -339,13 +363,22 @@ export const spacingTokens: Readonly<SpacingTokens> = {
 	'16': '4rem',
 };
 
-// Shadows are barely visible on the dark canvas, so elevation pairs them with lighter surfaces and borders.
-export const elevationTokens: Readonly<ElevationTokens> = {
-	none: 'none',
-	low: '0 1px 2px 0 rgb(0 0 0 / 0.6)',
-	medium: '0 4px 12px -2px rgb(0 0 0 / 0.7)',
-	high: '0 12px 32px -4px rgb(0 0 0 / 0.8)',
+/** A color as CSS `rgb()` with an alpha channel, from 0 (transparent) to 1 (opaque). */
+const translucent = (color: string, alpha: number): string => {
+	const { red, green, blue }: RgbColor = parseHexColor(color);
+	return `rgb(${String(red)} ${String(green)} ${String(blue)} / ${String(alpha)})`;
 };
+
+// Shadows are barely visible on the dark canvas, so elevation pairs them with lighter surfaces and borders. The
+// colored shadows (`official`, `brand`) follow the intent `main` of the theme and are added by `createDesignTokens`.
+export const elevationTokens: Readonly<Omit<ElevationTokens, 'official' | 'brand'>> = {
+	none: 'none',
+	card: '0 1px 2px 0 rgb(0 0 0 / 0.5), 0 4px 12px -4px rgb(0 0 0 / 0.5)',
+	overlay: '0 8px 24px -6px rgb(0 0 0 / 0.7)',
+	dialog: '0 24px 48px -12px rgb(0 0 0 / 0.8)',
+};
+
+const coloredShadow = (color: string): string => `0 6px 20px -6px ${translucent(color, 0.45)}`;
 
 // Spaced by 100 so an application can slot its own layer in between. A popover or a menu opened inside a dialog
 // stays above it, toasts stay above dialogs, and tooltips above everything.
@@ -359,9 +392,10 @@ export const layerTokens: Readonly<LayerTokens> = {
 	tooltip: '1600',
 };
 
-// The canvas at 72%: the page behind a dialog stays recognizable but recedes.
+// The canvas at 72%, blurred: the page behind a dialog stays recognizable but recedes.
 export const backdropTokens: Readonly<BackdropTokens> = {
-	scrim: 'rgb(2 1 8 / 0.72)',
+	scrim: translucent(surfaceTokens.canvas, 0.72),
+	blur: '4px',
 };
 
 export const motionTokens: Readonly<MotionTokens> = {
@@ -468,6 +502,7 @@ export const createDesignTokens = (
 		surface: { ...surfaceTokens },
 		text: { ...textTokens },
 		border: { ...borderTokens },
+		stroke: { ...strokeTokens },
 		focus: { ...focusTokens },
 		accent: {
 			link: intent.official.text,
@@ -486,7 +521,11 @@ export const createDesignTokens = (
 		},
 		radius: { ...radiusTokens },
 		spacing: { ...spacingTokens },
-		elevation: { ...elevationTokens },
+		elevation: {
+			...elevationTokens,
+			official: coloredShadow(intent.official.main),
+			brand: coloredShadow(intent.brand.main),
+		},
 		layer: { ...layerTokens },
 		backdrop: { ...backdropTokens },
 		motion: {

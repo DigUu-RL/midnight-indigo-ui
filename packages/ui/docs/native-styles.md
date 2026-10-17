@@ -19,7 +19,7 @@ import { UiProvider } from '@midnight-indigo/ui/theme';
 | Native element                                       | Style                                                                                        |
 | ---------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | Document                                             | `color-scheme: dark`, so native controls, date pickers and form popups render dark.          |
-| Page scrollbar                                       | Thin, thumb `border.strong` on a `surface.canvas` track.                                     |
+| Page scrollbar                                       | Thin, thumb `border.control` on a `surface.canvas` track.                                    |
 | Text selection (`::selection`)                       | `accent.selection` background, `accent.onSelection` text (an audited pair).                  |
 | Caret, checkboxes, radios, range                     | `caret-color: focus.ring`, `accent-color: intent.brand.main`.                                |
 | Autofilled fields (`:autofill`, `:-webkit-autofill`) | Keep the system colors of a field (`Field`, `FieldText`) instead of the blue or yellow fill. |

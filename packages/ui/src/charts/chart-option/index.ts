@@ -163,7 +163,7 @@ const tooltipOf = (
 		borderColor: tokens.border.default,
 		textStyle: { ...textStyleOf(appearance), color: tokens.text.primary },
 		axisPointer: { type: 'line', lineStyle: { color: tokens.chart.axis } },
-		extraCssText: `box-shadow: ${tokens.elevation.medium};`,
+		extraCssText: `box-shadow: ${tokens.elevation.overlay};`,
 	};
 };
 
@@ -247,7 +247,7 @@ const dataZoomOf = (
 			showDetail: false,
 			brushSelect: false,
 			borderColor: tokens.border.default,
-			backgroundColor: tokens.surface.sunken,
+			backgroundColor: tokens.surface.field,
 			fillerColor: tokens.intent.official.container,
 			handleStyle: { color: tokens.intent.official.main, borderColor: tokens.intent.official.main },
 			moveHandleStyle: { color: tokens.intent.official.main },

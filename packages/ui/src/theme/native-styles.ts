@@ -24,18 +24,18 @@ export const forcedColorsMediaQuery: string = '(forced-colors: active)';
 const noMotionPreferenceMediaQuery: string = '(prefers-reduced-motion: no-preference)';
 
 // Chromium 121+ and Firefox read `scrollbar-color`, and Chromium then ignores the `::-webkit-scrollbar` pseudo-elements,
-// which remain for WebKit. The thumb is `border.strong`, which meets 3:1 on every surface; the track shows the surface
+// which remain for WebKit. The thumb is `border.control`, which meets 3:1 on every surface; the track shows the surface
 // below it. In the high contrast modes `scrollbar-color` returns to `auto` and the system draws the scrollbar again.
 const createScrollbarStyles = (track: string): CSSObject => {
 	return {
 		scrollbarWidth: 'thin',
-		scrollbarColor: `${border.strong} ${track}`,
+		scrollbarColor: `${border.control} ${track}`,
 		'&::-webkit-scrollbar': { width: '0.625rem', height: '0.625rem' },
 		'&::-webkit-scrollbar-track': { backgroundColor: track },
 		'&::-webkit-scrollbar-thumb': {
 			border: '2px solid transparent',
 			borderRadius: radius.pill,
-			backgroundColor: border.strong,
+			backgroundColor: border.control,
 			backgroundClip: 'padding-box',
 		},
 		'&::-webkit-scrollbar-thumb:hover': { backgroundColor: text.muted },

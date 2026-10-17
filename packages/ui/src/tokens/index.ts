@@ -62,12 +62,15 @@ export type {
 	SpacingStep,
 	SpacingTokens,
 	StateTokens,
+	StrokeTokens,
 	SurfaceTokens,
 	TextTokens,
 	TypographyRole,
 	TypographyStyle,
 	TypographyTokens,
 } from '#src/tokens/design-tokens.ts';
+export { measureSurfaceLayers, surfaceLayers } from '#src/tokens/surface-layers.ts';
+export type { SurfaceLayerMeasure } from '#src/tokens/surface-layers.ts';
 export {
 	brandMainColor,
 	defaultIntentSources,
