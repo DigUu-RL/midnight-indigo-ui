@@ -27,6 +27,7 @@ const {
 	border,
 	text,
 	intent,
+	controlHeight,
 }: typeof themeVariables = themeVariables;
 
 /** `comfortable` (default) for reading; `compact` for dense tables that people scan. */
@@ -87,7 +88,7 @@ const ScrollContainer = styled('div')({
 	overflowX: 'auto',
 	...scrollbarStyles,
 	border: `1px solid ${border.subtle}`,
-	borderRadius: radius.large,
+	borderRadius: radius.card,
 	backgroundColor: surface.raised,
 	...focusRingStyles,
 });
@@ -178,11 +179,11 @@ const SortButton = styled('button', {
 		justifyContent: justifications[cellAlign],
 		gap: spacing[1],
 		width: '100%',
-		minHeight: '2.5rem',
+		minHeight: controlHeight.medium,
 		margin: 0,
 		padding: paddings[density],
 		border: 0,
-		borderRadius: radius.small,
+		borderRadius: radius.controlSmall,
 		background: 'none',
 		font: 'inherit',
 		letterSpacing: 'inherit',

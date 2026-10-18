@@ -35,8 +35,8 @@ const defaultHeights: Record<SkeletonShape, string> = {
 };
 
 const radii: Record<SkeletonShape, string> = {
-	text: themeVariables.radius.small,
-	rectangle: themeVariables.radius.medium,
+	text: themeVariables.radius.controlSmall,
+	rectangle: themeVariables.radius.control,
 	circle: themeVariables.radius.pill,
 };
 

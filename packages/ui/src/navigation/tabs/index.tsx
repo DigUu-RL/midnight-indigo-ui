@@ -61,7 +61,7 @@ const TabIcon = styled('span')(tabIconStyles);
 
 const Panel = styled('div')({
 	paddingBlock: spacing[4],
-	borderRadius: radius.small,
+	borderRadius: radius.controlSmall,
 	...focusRingStyles,
 });
 

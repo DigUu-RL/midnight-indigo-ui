@@ -3,9 +3,11 @@ import type {
 	AccentTokens,
 	BackdropTokens,
 	BorderTokens,
+	CardTokens,
 	ChartTokens,
 	ColorScaleStep,
 	ColorTokens,
+	ControlHeightTokens,
 	DesignTokens,
 	ElevationTokens,
 	FocusTokens,
@@ -19,6 +21,7 @@ import type {
 	StrokeTokens,
 	SurfaceTokens,
 	TextTokens,
+	TonalIconTokens,
 	TypographyRole,
 } from '#src/tokens/design-tokens.ts';
 import type { IntentTokens, SemanticIntent } from '#src/tokens/intents.ts';
@@ -48,6 +51,8 @@ export interface TokenDescriptions {
 	supportFields: Record<keyof SupportColorTokens, string>;
 	chart: Record<keyof ChartTokens, string>;
 	radius: Record<keyof RadiusTokens, string>;
+	controlHeight: Record<keyof ControlHeightTokens, string>;
+	card: Record<keyof CardTokens, string>;
 	elevation: Record<keyof ElevationTokens, string>;
 	layer: Record<keyof LayerTokens, string>;
 	backdrop: Record<keyof BackdropTokens, string>;
@@ -55,6 +60,7 @@ export interface TokenDescriptions {
 	fontWeight: Record<keyof FontWeightTokens, string>;
 	typography: Record<TypographyRole, string>;
 	iconSize: Record<keyof IconSizeTokens, string>;
+	tonalIcon: Record<keyof TonalIconTokens, string>;
 }
 
 export const tokenDescriptions: Readonly<TokenDescriptions> = {
@@ -76,8 +82,12 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 		support:
 			'Support colors harmonized with the pink and the indigo, for categories, tags, avatars and charts. They carry no meaning: status is the job of the intents.',
 		chart: 'Chart marks and chrome.',
-		radius: 'Corner radius scale; components pick a step instead of sharing a single radius.',
+		radius:
+			'Corner radius by role: the radius depends on the kind of element, never on the component that draws it.',
 		spacing: 'Single spacing scale, in steps of 0.25rem.',
+		controlHeight:
+			'Heights of buttons, fields and other controls, so controls of the same size align side by side.',
+		card: 'Inner spacing of cards and panels, and the gap between the cards of a grid.',
 		elevation:
 			'Shadows calibrated for the dark canvas; pair them with a lighter surface and a border. `official` and `brand` are colored by the `main` of their intent.',
 		layer:
@@ -92,6 +102,8 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 			'Typographic roles. Sizes are in rem, so they follow the browser text size and zoom; line heights are unitless.',
 		iconSize:
 			'Fixed icon sizes. Icons inline with text use `1em` instead, to follow the text size.',
+		tonalIcon:
+			'Sides of a tonal icon: a glyph centered on a square tinted with the soft color of an intent or a support color.',
 	},
 	color: {
 		pink: 'Brand pink, built around the official pink `#FF6AC1`.',
@@ -206,11 +218,26 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 	},
 	radius: {
 		none: 'Square corners.',
-		small: 'Small controls, checkboxes and tags.',
-		medium: 'Buttons and inputs.',
-		large: 'Cards and panels.',
-		extraLarge: 'Dialogs and large surfaces.',
-		pill: 'Fully rounded chips and pills.',
+		checkbox: 'Checkboxes.',
+		controlSmall:
+			'Small controls and the items inside other surfaces: menu items, options, tabs, tooltips and inline code.',
+		control: 'Buttons, fields, navigation items and other medium and large controls.',
+		overlay: 'Menus, popovers, listboxes and toasts.',
+		card: 'Cards, panels, tables and alerts.',
+		dialog: 'Dialogs.',
+		pill: 'Fully rounded chips, badges, avatars, switches and tracks.',
+	},
+	controlHeight: {
+		small: 'Small buttons, fields and other controls (`size="small"`).',
+		medium: 'Default height of buttons and other controls (`size="medium"`).',
+		large: 'Large buttons, fields and other controls (`size="large"`).',
+		field: 'Text fields, selects and comboboxes of medium size.',
+	},
+	card: {
+		paddingBlock: 'Top and bottom padding of a card.',
+		paddingInline: 'Side padding of a card.',
+		gap: 'Space between the sections of a card: header, content and footer.',
+		gridGap: 'Space between the cards of a grid, such as the key figures of a dashboard.',
 	},
 	elevation: {
 		none: 'Flat, on the canvas.',
@@ -260,5 +287,10 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 		small: 'Dense controls and inline status icons.',
 		medium: 'Default size inside buttons, inputs and menu items.',
 		large: 'Standalone icons, empty states and icon-only toolbars.',
+	},
+	tonalIcon: {
+		kpi: 'Key figure (KPI) cards.',
+		list: 'Leading icon of list rows.',
+		alert: 'Alerts and inline messages.',
 	},
 };

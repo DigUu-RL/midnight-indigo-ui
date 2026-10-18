@@ -10,7 +10,8 @@ import { themeVariables } from '#src/theme/theme-variables.ts';
 import { patternOpacity } from '#src/charts/chart-option/index.ts';
 import type { FillPattern, MarkerShape } from '#src/charts/chart-option/index.ts';
 
-const { spacing, typography, radius, surface, text, state }: typeof themeVariables = themeVariables;
+const { controlHeight, spacing, typography, radius, surface, text, state }: typeof themeVariables =
+	themeVariables;
 
 export interface LegendItem {
 	label: string;
@@ -42,10 +43,10 @@ const ToggleButton = styled('button')({
 	display: 'inline-flex',
 	alignItems: 'center',
 	gap: spacing[2],
-	minHeight: '2rem',
+	minHeight: controlHeight.small,
 	padding: `0 ${spacing[2]}`,
 	border: 0,
-	borderRadius: radius.small,
+	borderRadius: radius.controlSmall,
 	background: 'transparent',
 	cursor: 'pointer',
 	...typography.bodySmall,

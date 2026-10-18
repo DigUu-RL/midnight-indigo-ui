@@ -195,10 +195,12 @@
     --mi-chart-label: #C3BDDC;
     --mi-chart-tooltip-surface: #1B1638;
     --mi-radius-none: 0;
-    --mi-radius-small: 4px;
-    --mi-radius-medium: 8px;
-    --mi-radius-large: 12px;
-    --mi-radius-extra-large: 16px;
+    --mi-radius-checkbox: 5px;
+    --mi-radius-control-small: 7px;
+    --mi-radius-control: 8px;
+    --mi-radius-overlay: 10px;
+    --mi-radius-card: 12px;
+    --mi-radius-dialog: 14px;
     --mi-radius-pill: 9999px;
     --mi-spacing-0: 0;
     --mi-spacing-1: 0.25rem;
@@ -211,6 +213,14 @@
     --mi-spacing-10: 2.5rem;
     --mi-spacing-12: 3rem;
     --mi-spacing-16: 4rem;
+    --mi-control-height-small: 2rem;
+    --mi-control-height-medium: 2.5rem;
+    --mi-control-height-large: 3rem;
+    --mi-control-height-field: 2.625rem;
+    --mi-card-padding-block: 1.25rem;
+    --mi-card-padding-inline: 1.375rem;
+    --mi-card-gap: 1rem;
+    --mi-card-grid-gap: 1.25rem;
     --mi-elevation-none: none;
     --mi-elevation-card: 0 1px 2px 0 rgb(0 0 0 / 0.5), 0 4px 12px -4px rgb(0 0 0 / 0.5);
     --mi-elevation-overlay: 0 8px 24px -6px rgb(0 0 0 / 0.7);
@@ -302,6 +312,9 @@
     --mi-icon-size-small: 1rem;
     --mi-icon-size-medium: 1.25rem;
     --mi-icon-size-large: 1.5rem;
+    --mi-tonal-icon-kpi: 2.625rem;
+    --mi-tonal-icon-list: 2.25rem;
+    --mi-tonal-icon-alert: 1.75rem;
   }
 
   @media (prefers-reduced-motion: reduce) {

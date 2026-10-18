@@ -39,6 +39,22 @@ describe('KpiGrid', (): void => {
 		);
 	});
 
+	it('spaces the cards by the card grid gap unless given a gap', (): void => {
+		const { rerender } = render(<KpiGrid label='Key figures' items={items} />);
+
+		// The last declaration wins.
+		const effectiveGap = (): string | undefined => {
+			return styleRulesOf(screen.getByRole('list'))
+				.join('')
+				.match(/(?<![\w-])gap:[^;]+/g)
+				?.at(-1);
+		};
+
+		expect(effectiveGap()).toBe('gap:var(--mi-card-grid-gap)');
+		rerender(<KpiGrid label='Key figures' items={items} gap='8' />);
+		expect(effectiveGap()).toBe('gap:var(--mi-spacing-8)');
+	});
+
 	it('shows every figure as loading', (): void => {
 		render(<KpiGrid label='Key figures' items={items} loading />);
 

@@ -7,6 +7,8 @@ import type { ComponentPropsWithRef, MouseEvent, ReactElement, ReactNode } from 
 import {
 	appearanceStyles,
 	colorTransitionStyles,
+	controlHeights,
+	controlRadii,
 	disabledStyles,
 	focusRingStyles,
 	forwardAllBut,
@@ -17,7 +19,7 @@ import { CircularIndicator } from '#src/shared/circular-indicator/index.tsx';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 import type { SemanticIntent } from '#src/tokens/index.ts';
 
-const { spacing, typography, fontWeight, iconSize, radius }: typeof themeVariables = themeVariables;
+const { spacing, typography, fontWeight, iconSize }: typeof themeVariables = themeVariables;
 
 /** Attributes of `<button>` that the button components accept; `color` is replaced by `intent`. */
 export type NativeButtonAttributes = Omit<ComponentPropsWithRef<'button'>, 'color' | 'children'>;
@@ -40,12 +42,6 @@ interface ButtonStyleProps {
 	fullWidth: boolean;
 }
 
-const minimumHeights: Record<ControlSize, string> = {
-	small: '2rem',
-	medium: '2.5rem',
-	large: '3rem',
-};
-
 const labelSizeStyles: Record<ControlSize, CSSObject> = {
 	small: { ...typography.label, gap: spacing[1], paddingInline: spacing[3] },
 	medium: { ...typography.label, gap: spacing[2], paddingInline: spacing[4] },
@@ -60,7 +56,7 @@ const labelSizeStyles: Record<ControlSize, CSSObject> = {
 // Icon-only buttons are square; `fontSize` sizes the icons that follow the text (`1em`).
 const iconOnlySizeStyles = (size: ControlSize): CSSObject => {
 	return {
-		width: minimumHeights[size],
+		width: controlHeights[size],
 		padding: 0,
 		fontSize: iconSize[size],
 		lineHeight: 1,
@@ -82,12 +78,12 @@ const StyledButton = styled('button', {
 		width: fullWidth ? '100%' : 'auto',
 		alignItems: 'center',
 		justifyContent: 'center',
-		minHeight: minimumHeights[size],
+		minHeight: controlHeights[size],
 		margin: 0,
 		paddingBlock: spacing[1],
 		borderWidth: '1px',
 		borderStyle: 'solid',
-		borderRadius: radius.medium,
+		borderRadius: controlRadii[size],
 		textAlign: 'center',
 		textDecoration: 'none',
 		cursor: 'pointer',

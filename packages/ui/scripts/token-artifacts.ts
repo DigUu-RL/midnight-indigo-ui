@@ -69,12 +69,15 @@ const tokenPurposes: Partial<Record<TokenGroup, Readonly<Record<string, string>>
 	state: tokenDescriptions.state,
 	chart: tokenDescriptions.chart,
 	radius: tokenDescriptions.radius,
+	controlHeight: tokenDescriptions.controlHeight,
+	card: tokenDescriptions.card,
 	elevation: tokenDescriptions.elevation,
 	layer: tokenDescriptions.layer,
 	backdrop: tokenDescriptions.backdrop,
 	fontFamily: tokenDescriptions.fontFamily,
 	fontWeight: tokenDescriptions.fontWeight,
 	iconSize: tokenDescriptions.iconSize,
+	tonalIcon: tokenDescriptions.tonalIcon,
 };
 
 const describeToken = (group: TokenGroup, name: string): string => {
@@ -365,6 +368,8 @@ const documentedGroups: readonly TokenGroup[] = [
 	'chart',
 	'radius',
 	'spacing',
+	'controlHeight',
+	'card',
 	'elevation',
 	'layer',
 	'backdrop',
@@ -387,7 +392,8 @@ export const renderTokenDocument = (): string => {
 		'intent `main` values are provisional proposals until the stable API.',
 		'',
 		'How to apply the typography, icon and motion tokens: [foundations.md](./foundations.md). How to use the color',
-		'scales: [palette.md](./palette.md).',
+		'scales: [palette.md](./palette.md). Which radius, height and spacing each component takes:',
+		'[components.md](./components.md#shape-and-scale).',
 		'',
 		'## Tokens',
 		'',
@@ -400,6 +406,7 @@ export const renderTokenDocument = (): string => {
 		...documentedGroups.slice(6).flatMap(renderGroup),
 		...renderTypography(),
 		...renderGroup('iconSize'),
+		...renderGroup('tonalIcon'),
 		...renderBreakpoints(),
 		...renderContrast(),
 	].join('\n');

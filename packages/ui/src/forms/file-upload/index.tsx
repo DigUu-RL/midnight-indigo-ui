@@ -37,6 +37,7 @@ const {
 	state,
 	focus,
 	intent,
+	controlHeight,
 }: typeof themeVariables = themeVariables;
 
 /** Why a file was not added. */
@@ -177,7 +178,7 @@ const Zone = styled('div', {
 			? {
 					padding: spacing[4],
 					border: stroke.dashed,
-					borderRadius: radius.medium,
+					borderRadius: radius.card,
 					...(invalid ? { borderColor: intent.error.border } : {}),
 					backgroundColor: dragging ? state.hover : surface.field,
 				}
@@ -199,10 +200,10 @@ const ChooseButton = styled('label', {
 		display: 'inline-flex',
 		alignItems: 'center',
 		gap: spacing[2],
-		minHeight: '2.5rem',
+		minHeight: controlHeight.medium,
 		paddingInline: spacing[4],
 		boxSizing: 'border-box',
-		borderRadius: radius.medium,
+		borderRadius: radius.control,
 		borderWidth: '1px',
 		borderStyle: 'solid',
 		...typography.label,
@@ -242,7 +243,7 @@ const FileItem = styled('li')({
 	alignItems: 'center',
 	gap: spacing[2],
 	paddingInlineStart: spacing[3],
-	borderRadius: radius.medium,
+	borderRadius: radius.control,
 	backgroundColor: surface.raised,
 	...typography.bodySmall,
 	color: text.primary,

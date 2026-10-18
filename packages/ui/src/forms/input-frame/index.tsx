@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import type { CSSObject } from '@mui/material/styles';
 import type { ComponentPropsWithRef, ReactElement, ReactNode } from 'react';
 
-import { colorTransitionStyles, forwardAllBut } from '#src/shared/appearance.ts';
+import { colorTransitionStyles, controlRadii, forwardAllBut } from '#src/shared/appearance.ts';
 import type { ControlSize } from '#src/shared/appearance.ts';
 import { CircularIndicator } from '#src/shared/circular-indicator/index.tsx';
 import { autofillStyles } from '#src/theme/native-styles.ts';
@@ -14,7 +14,7 @@ import { hasContent } from '#src/forms/form-field/index.tsx';
 const {
 	spacing,
 	typography,
-	radius,
+	controlHeight,
 	surface,
 	text,
 	border,
@@ -43,11 +43,11 @@ interface FrameStyleProps {
 	multiline: boolean;
 }
 
-/** Same heights as the buttons, so fields and buttons align in a row. */
-export const controlHeights: Record<ControlSize, string> = {
-	small: '2rem',
-	medium: '2.5rem',
-	large: '3rem',
+/** The heights of the buttons, except the medium size, which is 2 px taller (`controlHeight.field`). */
+const fieldHeights: Record<ControlSize, string> = {
+	small: controlHeight.small,
+	medium: controlHeight.field,
+	large: controlHeight.large,
 };
 
 const textStyles: Record<ControlSize, CSSObject> = {
@@ -89,11 +89,11 @@ export const frameStyles = (props: FrameStyleProps): CSSObject => {
 		alignItems: props.multiline ? 'stretch' : 'center',
 		gap: spacing[2],
 		width: '100%',
-		minHeight: controlHeights[props.frameSize],
+		minHeight: fieldHeights[props.frameSize],
 		paddingInline: props.frameSize === 'small' ? spacing[2] : spacing[3],
 		borderWidth: '1px',
 		borderStyle: 'solid',
-		borderRadius: radius.medium,
+		borderRadius: controlRadii[props.frameSize],
 		backgroundColor: surface.field,
 		color: text.primary,
 		...textStyles[props.frameSize],

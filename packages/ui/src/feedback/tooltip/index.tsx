@@ -61,7 +61,7 @@ const tooltipStyles: SxProps<Theme> = {
 	borderWidth: '1px',
 	borderStyle: 'solid',
 	borderColor: border.default,
-	borderRadius: radius.small,
+	borderRadius: radius.controlSmall,
 	backgroundColor: surface.overlay,
 	boxShadow: elevation.overlay,
 	color: text.primary,

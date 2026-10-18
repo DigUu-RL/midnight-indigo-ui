@@ -78,7 +78,7 @@ const Root = styled('section')({
 	minWidth: 0,
 });
 
-const Viewport = styled('div')({ overflow: 'hidden', borderRadius: radius.large });
+const Viewport = styled('div')({ overflow: 'hidden', borderRadius: radius.card });
 
 const Track = styled('div')({
 	display: 'flex',

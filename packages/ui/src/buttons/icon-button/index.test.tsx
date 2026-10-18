@@ -48,8 +48,8 @@ describe('IconButton', (): void => {
 		const button: HTMLElement = screen.getByRole('button', { name: 'Refresh' });
 		await user.click(button);
 
-		expect(declarationsOf(button, '&')).toContain('width:2rem;');
-		expect(declarationsOf(button, '&')).toContain('min-height:2rem;');
+		expect(declarationsOf(button, '&')).toContain('width:var(--mi-control-height-small);');
+		expect(declarationsOf(button, '&')).toContain('min-height:var(--mi-control-height-small);');
 		expect(button.getAttribute('aria-busy')).toBe('true');
 		expect(handleClick).not.toHaveBeenCalled();
 	});

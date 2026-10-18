@@ -137,7 +137,7 @@ const Popup = styled('div')({
 	borderWidth: '1px',
 	borderStyle: 'solid',
 	borderColor: border.default,
-	borderRadius: radius.medium,
+	borderRadius: radius.overlay,
 	backgroundColor: surface.overlay,
 	boxShadow: elevation.overlay,
 });
@@ -152,7 +152,7 @@ const Option = styled('li')({
 	gap: spacing[2],
 	minHeight: '2.25rem',
 	paddingInline: spacing[2],
-	borderRadius: radius.small,
+	borderRadius: radius.controlSmall,
 	...typography.body,
 	color: text.primary,
 	cursor: 'pointer',

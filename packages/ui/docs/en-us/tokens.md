@@ -10,7 +10,8 @@ Every token is exported by `@midnight-indigo/ui/tokens` and declared as a CSS cu
 intent `main` values are provisional proposals until the stable API.
 
 How to apply the typography, icon and motion tokens: [foundations.md](./foundations.md). How to use the color
-scales: [palette.md](./palette.md).
+scales: [palette.md](./palette.md). Which radius, height and spacing each component takes:
+[components.md](./components.md#shape-and-scale).
 
 ## Tokens
 
@@ -263,16 +264,18 @@ Chart marks and chrome.
 
 ### `radius`
 
-Corner radius scale; components pick a step instead of sharing a single radius.
+Corner radius by role: the radius depends on the kind of element, never on the component that draws it.
 
 | Token | CSS variable | Value | Purpose |
 | --- | --- | --- | --- |
 | `radius.none` | `--mi-radius-none` | `0` | Square corners. |
-| `radius.small` | `--mi-radius-small` | `4px` | Small controls, checkboxes and tags. |
-| `radius.medium` | `--mi-radius-medium` | `8px` | Buttons and inputs. |
-| `radius.large` | `--mi-radius-large` | `12px` | Cards and panels. |
-| `radius.extraLarge` | `--mi-radius-extra-large` | `16px` | Dialogs and large surfaces. |
-| `radius.pill` | `--mi-radius-pill` | `9999px` | Fully rounded chips and pills. |
+| `radius.checkbox` | `--mi-radius-checkbox` | `5px` | Checkboxes. |
+| `radius.controlSmall` | `--mi-radius-control-small` | `7px` | Small controls and the items inside other surfaces: menu items, options, tabs, tooltips and inline code. |
+| `radius.control` | `--mi-radius-control` | `8px` | Buttons, fields, navigation items and other medium and large controls. |
+| `radius.overlay` | `--mi-radius-overlay` | `10px` | Menus, popovers, listboxes and toasts. |
+| `radius.card` | `--mi-radius-card` | `12px` | Cards, panels, tables and alerts. |
+| `radius.dialog` | `--mi-radius-dialog` | `14px` | Dialogs. |
+| `radius.pill` | `--mi-radius-pill` | `9999px` | Fully rounded chips, badges, avatars, switches and tracks. |
 
 ### `spacing`
 
@@ -291,6 +294,28 @@ Single spacing scale, in steps of 0.25rem.
 | `spacing.10` | `--mi-spacing-10` | `2.5rem` |  |
 | `spacing.12` | `--mi-spacing-12` | `3rem` |  |
 | `spacing.16` | `--mi-spacing-16` | `4rem` |  |
+
+### `controlHeight`
+
+Heights of buttons, fields and other controls, so controls of the same size align side by side.
+
+| Token | CSS variable | Value | Purpose |
+| --- | --- | --- | --- |
+| `controlHeight.small` | `--mi-control-height-small` | `2rem` | Small buttons, fields and other controls (`size="small"`). |
+| `controlHeight.medium` | `--mi-control-height-medium` | `2.5rem` | Default height of buttons and other controls (`size="medium"`). |
+| `controlHeight.large` | `--mi-control-height-large` | `3rem` | Large buttons, fields and other controls (`size="large"`). |
+| `controlHeight.field` | `--mi-control-height-field` | `2.625rem` | Text fields, selects and comboboxes of medium size. |
+
+### `card`
+
+Inner spacing of cards and panels, and the gap between the cards of a grid.
+
+| Token | CSS variable | Value | Purpose |
+| --- | --- | --- | --- |
+| `card.paddingBlock` | `--mi-card-padding-block` | `1.25rem` | Top and bottom padding of a card. |
+| `card.paddingInline` | `--mi-card-padding-inline` | `1.375rem` | Side padding of a card. |
+| `card.gap` | `--mi-card-gap` | `1rem` | Space between the sections of a card: header, content and footer. |
+| `card.gridGap` | `--mi-card-grid-gap` | `1.25rem` | Space between the cards of a grid, such as the key figures of a dashboard. |
 
 ### `elevation`
 
@@ -392,6 +417,16 @@ Fixed icon sizes. Icons inline with text use `1em` instead, to follow the text s
 | `iconSize.small` | `--mi-icon-size-small` | `1rem` | Dense controls and inline status icons. |
 | `iconSize.medium` | `--mi-icon-size-medium` | `1.25rem` | Default size inside buttons, inputs and menu items. |
 | `iconSize.large` | `--mi-icon-size-large` | `1.5rem` | Standalone icons, empty states and icon-only toolbars. |
+
+### `tonalIcon`
+
+Sides of a tonal icon: a glyph centered on a square tinted with the soft color of an intent or a support color.
+
+| Token | CSS variable | Value | Purpose |
+| --- | --- | --- | --- |
+| `tonalIcon.kpi` | `--mi-tonal-icon-kpi` | `2.625rem` | Key figure (KPI) cards. |
+| `tonalIcon.list` | `--mi-tonal-icon-list` | `2.25rem` | Leading icon of list rows. |
+| `tonalIcon.alert` | `--mi-tonal-icon-alert` | `1.75rem` | Alerts and inline messages. |
 
 ### `breakpoints`
 

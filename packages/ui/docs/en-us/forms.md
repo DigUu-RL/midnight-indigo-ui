@@ -44,7 +44,7 @@ Every field takes the same props directly — there is no wrapper to compose:
 | `readOnly`        | Focusable and submitted, not editable; dashed boundary instead of the filled look.                         |
 | `loading`         | `aria-busy`, a ring in the field and a hidden `'Loading'` text in the description.                         |
 | `prefix`/`suffix` | Units, currency, decorative icons; their text is read in the description, so the name stays the label.     |
-| `size`            | 32 / 40 / 48 px, the button heights, so fields and buttons align.                                          |
+| `size`            | 32 / 42 / 48 px: the button heights, except the medium field, 2 px taller (`controlHeight.field`).         |
 
 Other attributes and `ref` reach the native element (so `autoComplete`, `inputMode`, `pattern`, `onBlur` and
 libraries that need the element work); `className` and `style` go to the root of the field. Every field works

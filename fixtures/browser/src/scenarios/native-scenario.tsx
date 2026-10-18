@@ -14,7 +14,7 @@ const Panel = styled('section')({
 	marginBlockEnd: spacing[6],
 	padding: spacing[4],
 	border: `1px solid ${border.subtle}`,
-	borderRadius: radius.large,
+	borderRadius: radius.card,
 	backgroundColor: surface.raised,
 });
 
