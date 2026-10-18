@@ -78,7 +78,7 @@ const Separator = styled('span')({
 });
 
 const interactiveStyles: CSSObject = {
-	borderRadius: radius.small,
+	borderRadius: radius.controlSmall,
 	...colorTransitionStyles,
 	...focusRingStyles,
 };

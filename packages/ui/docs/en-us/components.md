@@ -56,18 +56,38 @@ switches, a selected chip, the current page and the active tab already do. See
 
 ## Shape and scale
 
-Components share the radius and spacing scales of the tokens; the radius depends on the kind of element, not on the
-component.
+Components take their geometry from the tokens: radii from `radius`, heights from `controlHeight`, spacing from
+`spacing` and `card`. No component spells out a radius, a control height or a spacing of its own (checked in CI).
+The radius names a role, not a size, so every element of a role has the same corners, whatever its component:
 
-| Component          | Radius                      | Heights / sides                        | Inner spacing                |
-| ------------------ | --------------------------- | -------------------------------------- | ---------------------------- |
-| Button, IconButton | `radius.medium`             | 32 / 40 / 48 px (`small` … `large`)    | `spacing.3` – `spacing.5`    |
-| Chip               | `radius.pill`               | 24 / 32 px                             | `spacing.2` – `spacing.3`    |
-| Badge              | `radius.pill`               | 20 px (8 px dot)                       | `spacing.1`                  |
-| Avatar             | `radius.pill`               | 32 / 40 / 48 px                        | —                            |
-| Card               | `radius.large`              | —                                      | `spacing.5`, gap `spacing.4` |
-| ProgressBar        | `radius.pill`               | 4 / 6 / 8 px bar, 16 / 24 / 40 px ring | —                            |
-| Skeleton           | `small` / `medium` / `pill` | one line (`1lh`), `6rem`, `2.5rem`     | —                            |
+| Role (`radius.*`) | Value  | Elements                                                              |
+| ----------------- | ------ | --------------------------------------------------------------------- |
+| `checkbox`        | 5 px   | Checkboxes                                                            |
+| `controlSmall`    | 7 px   | Small controls; menu items, options, tabs, tooltips, inline code      |
+| `control`         | 8 px   | Medium and large buttons and fields, navigation items, pagination     |
+| `overlay`         | 10 px  | Menus, popovers, listboxes, toasts                                    |
+| `card`            | 12 px  | Cards, KPI cards, panels, tables, alerts, the file drop zone          |
+| `dialog`          | 14 px  | Dialogs                                                               |
+| `pill`            | 9999px | Chips, badges, avatars, switches, radios, sliders and progress tracks |
+
+Controls of the same size have the same height (`controlHeight`), so they align in a row: 32 / 40 / 48 px for
+`small` / `medium` / `large`. A medium text field (`TextField`, `Select`, `Combobox` and the other fields) is 42 px
+(`controlHeight.field`), 2 px taller than a medium button.
+
+| Component          | Radius                              | Heights / sides                        | Inner spacing                        |
+| ------------------ | ----------------------------------- | -------------------------------------- | ------------------------------------ |
+| Button, IconButton | `controlSmall` / `control`          | 32 / 40 / 48 px (`small` … `large`)    | `spacing.3` – `spacing.5`            |
+| Text fields        | `controlSmall` / `control`          | 32 / 42 / 48 px (`small` … `large`)    | `spacing.2` – `spacing.3`            |
+| Chip               | `pill`                              | 24 / 32 px                             | `spacing.2` – `spacing.3`            |
+| Badge              | `pill`                              | 20 px (8 px dot)                       | `spacing.1`                          |
+| Avatar             | `pill`                              | 32 / 40 / 48 px                        | —                                    |
+| Card, StatCard     | `card`                              | —                                      | 20 × 22 px (`card.padding*`), gap 16 |
+| KpiGrid            | —                                   | —                                      | 20 px between cards (`card.gridGap`) |
+| ProgressBar        | `pill`                              | 4 / 6 / 8 px bar, 16 / 24 / 40 px ring | —                                    |
+| Skeleton           | `controlSmall` / `control` / `pill` | one line (`1lh`), `6rem`, `2.5rem`     | —                                    |
+
+A tonal icon (a glyph on a tinted square) is 42 px in a key figure, 36 px in a list row and 28 px in an alert
+(`tonalIcon.kpi`, `list` and `alert`).
 
 Every interactive target is at least 24 × 24 px (WCAG 2.2, 2.5.8). Sizes are in `rem`, so they follow zoom.
 

@@ -40,7 +40,7 @@ const Root = styled('form')({
 	gap: spacing[4],
 	padding: spacing[4],
 	border: `1px solid ${border.subtle}`,
-	borderRadius: radius.large,
+	borderRadius: radius.card,
 	backgroundColor: surface.raised,
 });
 

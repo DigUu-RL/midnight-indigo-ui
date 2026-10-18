@@ -113,7 +113,7 @@ export const nativeBaselineStyles: CSSObject = {
 		paddingInline: '0.4em',
 		border: `1px solid ${border.default}`,
 		borderBlockEndWidth: '2px',
-		borderRadius: radius.small,
+		borderRadius: radius.controlSmall,
 		backgroundColor: surface.raised,
 		color: text.primary,
 	},

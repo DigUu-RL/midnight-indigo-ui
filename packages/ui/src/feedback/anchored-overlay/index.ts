@@ -61,7 +61,7 @@ export const anchoredSurfaceStyles: CSSObject = {
 	borderWidth: '1px',
 	borderStyle: 'solid',
 	borderColor: border.default,
-	borderRadius: radius.large,
+	borderRadius: radius.overlay,
 	backgroundColor: surface.overlay,
 	// Material UI lightens dark papers with a gradient; the surface tokens already set the elevation.
 	backgroundImage: 'none',

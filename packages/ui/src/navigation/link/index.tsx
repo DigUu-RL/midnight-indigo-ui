@@ -69,7 +69,7 @@ const StyledLink = styled('a', {
 	shouldForwardProp: forwardAllBut('linkVariant'),
 })<LinkStyleProps>(({ linkVariant }: LinkStyleProps): CSSObject => {
 	return {
-		borderRadius: radius.small,
+		borderRadius: radius.controlSmall,
 		color: accent.link,
 		textDecorationLine: linkVariant === 'inline' ? 'underline' : 'none',
 		textDecorationThickness: '1px',

@@ -15,6 +15,20 @@ export type Appearance = 'solid' | 'soft' | 'outline' | 'ghost';
 /** Sizes shared by controls. */
 export type ControlSize = 'small' | 'medium' | 'large';
 
+/** Height of a control of each size, the same for every control, so controls of the same size align in a row. */
+export const controlHeights: Readonly<Record<ControlSize, string>> = {
+	small: themeVariables.controlHeight.small,
+	medium: themeVariables.controlHeight.medium,
+	large: themeVariables.controlHeight.large,
+};
+
+/** Corner radius of a control of each size: a small control is slightly less rounded. */
+export const controlRadii: Readonly<Record<ControlSize, string>> = {
+	small: themeVariables.radius.controlSmall,
+	medium: themeVariables.radius.control,
+	large: themeVariables.radius.control,
+};
+
 type IntentVariables = ThemeVariables['intent'][SemanticIntent];
 
 /** Matches an element that can be interacted with: not disabled, nor marked `aria-disabled`. */

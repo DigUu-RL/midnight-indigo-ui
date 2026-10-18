@@ -8,8 +8,16 @@ import type { ComponentPropsWithRef, Context, ReactElement, ReactNode } from 're
 import { forwardAllBut, prettyWrapStyles } from '#src/shared/appearance.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 
-const { spacing, typography, surface, border, text, radius, elevation }: typeof themeVariables =
-	themeVariables;
+const {
+	spacing,
+	card,
+	typography,
+	surface,
+	border,
+	text,
+	radius,
+	elevation,
+}: typeof themeVariables = themeVariables;
 
 export type CardVariant = 'outline' | 'elevated';
 
@@ -63,11 +71,11 @@ const StyledCard = styled('div', {
 		boxSizing: 'border-box',
 		display: 'flex',
 		flexDirection: 'column',
-		gap: spacing[4],
+		gap: card.gap,
 		minWidth: 0,
-		padding: spacing[5],
+		padding: `${card.paddingBlock} ${card.paddingInline}`,
 		border: `1px solid ${border.default}`,
-		borderRadius: radius.large,
+		borderRadius: radius.card,
 		backgroundColor: surface.raised,
 		boxShadow: cardVariant === 'elevated' ? elevation.card : elevation.none,
 		color: text.primary,

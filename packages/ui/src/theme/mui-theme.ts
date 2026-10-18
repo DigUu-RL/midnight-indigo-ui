@@ -113,7 +113,7 @@ export const toMuiTheme = (
 				disabledBackground: state.disabledSurface,
 			},
 		},
-		shape: { borderRadius: Number.parseFloat(radius.medium) },
+		shape: { borderRadius: Number.parseFloat(radius.control) },
 		typography: toTypography(theme.tokens),
 		transitions: toTransitions(theme.tokens, reducedMotion),
 		// `theme.breakpoints` and `useMediaQuery` of the application switch at the same widths as the library.

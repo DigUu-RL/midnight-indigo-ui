@@ -10,6 +10,7 @@ import {
 	renderStylesheet,
 	renderTokenDocument,
 } from '#scripts/token-artifacts.ts';
+import { tokens } from '#src/tokens/index.ts';
 
 const packageRoot: string = fileURLToPath(new URL('..', import.meta.url));
 const sourceDirectory: string = join(packageRoot, 'src');
@@ -84,6 +85,56 @@ describe('typography tokens instead of literal fonts and sizes', (): void => {
 			).toEqual([]);
 		},
 	);
+});
+
+describe('geometry tokens instead of literal radii, spacing and control heights', (): void => {
+	const componentFiles: string[] = productionFiles.filter((file: string): boolean => {
+		return !isTokenSource(file);
+	});
+
+	// A number in the value of a radius property, e.g. `borderRadius: '8px'`. Keywords such as `inherit` stay.
+	const literalRadiusPattern: RegExp = /border\w*radius\s*:\s*(?:\d|['"`][^'"`]*\d)/gi;
+
+	// A length in rem or px inside the literal value of a spacing property. Lengths in em follow the text and stay.
+	const literalSpacingPattern: RegExp =
+		/\b(?:padding|margin|gap|rowGap|columnGap|inset)\w*\s*:\s*['"`][^'"`]*?(?<![\w$])-?\d*\.?\d+(?:rem|px)\b/gi;
+
+	// Hairlines (1 and 2 px) are strokes, not spacing: they line up with the border and focus widths.
+	const isHairline = (match: string): boolean => /(?<![\w.])-?[12]px$/.test(match);
+
+	// A control height given as the literal height or width of an element, e.g. `minHeight: '2.5rem'`.
+	const controlHeightPattern: RegExp = new RegExp(
+		`\\b(?:min|max)?(?:height|width|blockSize|inlineSize)\\s*:\\s*['"](?:${Object.values(
+			tokens.controlHeight,
+		)
+			.map((height: string): string => height.replaceAll('.', '\\.'))
+			.join('|')})['"]`,
+		'gi',
+	);
+
+	it.each(componentFiles)('%s takes radii from `radius`', (file: string): void => {
+		expect(
+			readSource(file).match(literalRadiusPattern) ?? [],
+			'Reference a role of `themeVariables.radius` instead',
+		).toEqual([]);
+	});
+
+	it.each(componentFiles)('%s takes spacing from `spacing` and `card`', (file: string): void => {
+		const literals: string[] = (readSource(file).match(literalSpacingPattern) ?? []).filter(
+			(match: string): boolean => !isHairline(match),
+		);
+
+		expect(literals, 'Reference `themeVariables.spacing` or `themeVariables.card` instead').toEqual(
+			[],
+		);
+	});
+
+	it.each(componentFiles)('%s takes control heights from `controlHeight`', (file: string): void => {
+		expect(
+			readSource(file).match(controlHeightPattern) ?? [],
+			'Reference `themeVariables.controlHeight` (or `controlHeights` of `shared/appearance.ts`) instead',
+		).toEqual([]);
+	});
 });
 
 describe('dark-only', (): void => {

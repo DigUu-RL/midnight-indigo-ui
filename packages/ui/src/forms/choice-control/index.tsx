@@ -49,22 +49,22 @@ const filled: CSSObject = {
 	borderColor: intent.brand.border,
 };
 
-// The mark is a pseudo-element in `contrastText`, a pair of the contrast audit with `brand.main`.
+// The mark is a pseudo-element in `contrastText`, a pair of the contrast audit with `brand.main`. It is raised a little,
+// so the rotated check looks centered in the box.
 const checkMark: CSSObject = {
 	width: '0.3rem',
 	height: '0.6rem',
-	marginBlockStart: '-0.1rem',
 	borderStyle: 'solid',
 	borderColor: intent.brand.contrastText,
 	borderWidth: '0 2px 2px 0',
-	transform: 'rotate(45deg)',
+	transform: 'translateY(-0.05rem) rotate(45deg)',
 };
 
 const kindStyles: Record<ChoiceKind, CSSObject> = {
 	checkbox: {
 		width: boxSize,
 		height: boxSize,
-		borderRadius: radius.small,
+		borderRadius: radius.checkbox,
 		'&:checked, &:indeterminate': filled,
 		'&:checked::before': checkMark,
 		'&:indeterminate::before': {
@@ -173,12 +173,15 @@ const ChoiceLabel = styled('label', {
 		alignItems: 'flex-start',
 		gap: spacing[2],
 		minHeight: '1.5rem',
-		paddingBlock: '0.1875rem',
+		paddingBlock: spacing[1],
 		boxSizing: 'border-box',
 		...typography.body,
 		color: rowDisabled ? state.disabledText : text.primary,
 		cursor: rowDisabled ? 'not-allowed' : 'pointer',
-		'& > input': { marginBlockStart: '0.1875rem' },
+		// Centered on the first line of the label.
+		'& > input': {
+			marginBlockStart: `calc((${typography.body.lineHeight} * ${typography.body.fontSize} - ${boxSize}) / 2)`,
+		},
 	};
 });
 

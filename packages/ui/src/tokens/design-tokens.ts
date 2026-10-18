@@ -123,18 +123,44 @@ export interface ChartTokens {
 	tooltipSurface: HexColor;
 }
 
+/** Corner radius by role: every element of a role takes the same radius, whatever its component. */
 export interface RadiusTokens {
 	none: string;
-	small: string;
-	medium: string;
-	large: string;
-	extraLarge: string;
+	checkbox: string;
+	controlSmall: string;
+	control: string;
+	overlay: string;
+	card: string;
+	dialog: string;
 	pill: string;
 }
 
 export type SpacingStep = '0' | '1' | '2' | '3' | '4' | '5' | '6' | '8' | '10' | '12' | '16';
 
 export type SpacingTokens = Record<SpacingStep, string>;
+
+/** Heights of the controls: `small`, `medium` and `large` follow `ControlSize`, `field` is a medium text field. */
+export interface ControlHeightTokens {
+	small: string;
+	medium: string;
+	large: string;
+	field: string;
+}
+
+/** Inner spacing of a card and the gap between the cards of a grid. */
+export interface CardTokens {
+	paddingBlock: string;
+	paddingInline: string;
+	gap: string;
+	gridGap: string;
+}
+
+/** Sides of a tonal icon (a glyph on a tinted square), by where it appears. */
+export interface TonalIconTokens {
+	kpi: string;
+	list: string;
+	alert: string;
+}
 
 export interface ElevationTokens {
 	none: string;
@@ -235,6 +261,8 @@ export interface DesignTokens {
 	chart: ChartTokens;
 	radius: RadiusTokens;
 	spacing: SpacingTokens;
+	controlHeight: ControlHeightTokens;
+	card: CardTokens;
 	elevation: ElevationTokens;
 	layer: LayerTokens;
 	backdrop: BackdropTokens;
@@ -243,6 +271,7 @@ export interface DesignTokens {
 	fontWeight: FontWeightTokens;
 	typography: TypographyTokens;
 	iconSize: IconSizeTokens;
+	tonalIcon: TonalIconTokens;
 }
 
 // `400` is the official pink and `300` its hover. The lighter steps mix it with white, the darker ones with the
@@ -345,12 +374,15 @@ export const stateTokens: Readonly<StateTokens> = {
 	disabledBorder: '#2A2445',
 };
 
+// The larger the element, the rounder its corners: from the checkbox to the dialog.
 export const radiusTokens: Readonly<RadiusTokens> = {
 	none: '0',
-	small: '4px',
-	medium: '8px',
-	large: '12px',
-	extraLarge: '16px',
+	checkbox: '5px',
+	controlSmall: '7px',
+	control: '8px',
+	overlay: '10px',
+	card: '12px',
+	dialog: '14px',
 	pill: '9999px',
 };
 
@@ -366,6 +398,29 @@ export const spacingTokens: Readonly<SpacingTokens> = {
 	'10': '2.5rem',
 	'12': '3rem',
 	'16': '4rem',
+};
+
+// 32, 40, 48 and 42 px. A medium text field is 2 px taller than a medium button, room for its text and border.
+export const controlHeightTokens: Readonly<ControlHeightTokens> = {
+	small: spacingTokens['8'],
+	medium: spacingTokens['10'],
+	large: spacingTokens['12'],
+	field: '2.625rem',
+};
+
+// 20 × 22 px with a gap of 16, and 20 px between cards. The inline padding is the only value off the 4 px grid.
+export const cardTokens: Readonly<CardTokens> = {
+	paddingBlock: spacingTokens['5'],
+	paddingInline: '1.375rem',
+	gap: spacingTokens['4'],
+	gridGap: spacingTokens['5'],
+};
+
+// 42, 36 and 28 px.
+export const tonalIconTokens: Readonly<TonalIconTokens> = {
+	kpi: '2.625rem',
+	list: '2.25rem',
+	alert: '1.75rem',
 };
 
 // Shadows are barely visible on the dark canvas, so elevation pairs them with lighter surfaces and borders. The
@@ -544,6 +599,8 @@ export const createDesignTokens = (
 		},
 		radius: { ...radiusTokens },
 		spacing: { ...spacingTokens },
+		controlHeight: { ...controlHeightTokens },
+		card: { ...cardTokens },
 		elevation: {
 			...elevationTokens,
 			official: coloredShadow(intent.official.main),
@@ -563,6 +620,7 @@ export const createDesignTokens = (
 			}),
 		) as TypographyTokens,
 		iconSize: { ...iconSizeTokens },
+		tonalIcon: { ...tonalIconTokens },
 	});
 };
 

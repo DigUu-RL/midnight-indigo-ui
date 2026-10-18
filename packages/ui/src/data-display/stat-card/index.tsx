@@ -15,6 +15,7 @@ import { Skeleton } from '#src/data-display/skeleton/index.tsx';
 
 const {
 	spacing,
+	card,
 	typography,
 	fontWeight,
 	radius,
@@ -95,9 +96,9 @@ const Root = styled('div')({
 	flexDirection: 'column',
 	gap: spacing[2],
 	minWidth: 0,
-	padding: spacing[5],
+	padding: `${card.paddingBlock} ${card.paddingInline}`,
 	border: `1px solid ${border.default}`,
-	borderRadius: radius.large,
+	borderRadius: radius.card,
 	backgroundColor: surface.raised,
 	color: text.secondary,
 });

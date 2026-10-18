@@ -63,7 +63,7 @@ const Root = styled('section')({
 	gap: spacing[2],
 	padding: spacing[4],
 	borderInlineStart: `4px solid ${intent.error.main}`,
-	borderRadius: radius.medium,
+	borderRadius: radius.card,
 	backgroundColor: surface.raised,
 	color: text.primary,
 	// Focus arrives here by script, after a submission; the ring shows where it went.
@@ -95,7 +95,7 @@ const Link = styled('a')({
 	color: intent.error.text,
 	textDecoration: 'underline',
 	textUnderlineOffset: '0.15em',
-	borderRadius: radius.small,
+	borderRadius: radius.controlSmall,
 	...focusRingStyles,
 });
 

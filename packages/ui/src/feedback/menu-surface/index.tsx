@@ -90,7 +90,7 @@ const Item = styled(MuiMenuItem, { shouldForwardProp: forwardAllBut('destructive
 		minHeight: '2.25rem',
 		paddingBlock: spacing[1],
 		paddingInline: spacing[2],
-		borderRadius: radius.small,
+		borderRadius: radius.controlSmall,
 		...typography.body,
 		color: destructive ? intent.error.text : text.primary,
 		'&:hover': highlighted,

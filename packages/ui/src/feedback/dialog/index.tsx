@@ -96,7 +96,7 @@ const Panel = styled('div', { shouldForwardProp: forwardAllBut('dialogSize') })<
 		borderWidth: '1px',
 		borderStyle: 'solid',
 		borderColor: border.default,
-		borderRadius: radius.extraLarge,
+		borderRadius: radius.dialog,
 		backgroundColor: surface.dialog,
 		boxShadow: elevation.dialog,
 		color: text.primary,

@@ -25,6 +25,7 @@ const {
 	state,
 	iconSize,
 	intent: intentVariables,
+	controlHeight,
 }: typeof themeVariables = themeVariables;
 
 /** Emphasis of the alert: `soft` tints the background, `outline` draws the boundary and `solid` fills it. */
@@ -110,7 +111,7 @@ const Root = styled('div', {
 		paddingInline: spacing[4],
 		borderWidth: '1px',
 		borderStyle: 'solid',
-		borderRadius: radius.medium,
+		borderRadius: radius.card,
 		...typography.bodySmall,
 		...contentColors(alertIntent, alertVariant),
 		'& > [data-alert-icon]': {
@@ -150,11 +151,11 @@ const DismissButton = styled('button', {
 		display: 'inline-flex',
 		alignItems: 'center',
 		justifyContent: 'center',
-		width: '2rem',
-		height: '2rem',
+		width: controlHeight.small,
+		height: controlHeight.small,
 		padding: 0,
 		border: 'none',
-		borderRadius: radius.medium,
+		borderRadius: radius.controlSmall,
 		backgroundColor: 'transparent',
 		color: 'inherit',
 		fontSize: iconSize.small,

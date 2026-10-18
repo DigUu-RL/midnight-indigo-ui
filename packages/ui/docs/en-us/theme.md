@@ -141,7 +141,7 @@ when the user prefers reduced motion:
 | `palette.text`                                | `text.primary`, `text.secondary`, `text.disabled`                              |
 | `palette.divider`                             | `border.default`                                                               |
 | `palette.action`                              | `state.hover`, `state.selected`, `state.disabledText`, `state.disabledSurface` |
-| `shape.borderRadius`                          | `radius.medium`                                                                |
+| `shape.borderRadius`                          | `radius.control`                                                               |
 | `typography.fontFamily`                       | `fontFamily.sans`                                                              |
 | `typography.h1`, `h2`, `h3`                   | `typography.display`, `headingLarge`, `headingMedium`                          |
 | `typography.h4`, `h5`, `h6`                   | `typography.headingSmall`                                                      |

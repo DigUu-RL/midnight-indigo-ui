@@ -203,7 +203,7 @@ const Viewport = styled('section', { shouldForwardProp: forwardAllBut('placement
 const Item = styled('li')({
 	width: '24rem',
 	maxWidth: '100%',
-	borderRadius: radius.medium,
+	borderRadius: radius.overlay,
 	backgroundColor: surface.overlay,
 	boxShadow: elevation.dialog,
 	pointerEvents: 'auto',

@@ -189,7 +189,7 @@ const SkipLink = styled('a')({
 		overflow: 'visible',
 		clip: 'auto',
 		whiteSpace: 'normal',
-		borderRadius: radius.medium,
+		borderRadius: radius.control,
 		backgroundColor: intent.official.main,
 		color: intent.official.contrastText,
 		...typography.label,

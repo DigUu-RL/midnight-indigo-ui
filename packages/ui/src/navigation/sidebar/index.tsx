@@ -37,6 +37,7 @@ const {
 	iconSize,
 	intent,
 	motion,
+	controlHeight,
 }: typeof themeVariables = themeVariables;
 
 /** A destination (with `href`, a link) or an action (with `onSelect` only, a button), e.g. `'New report'`. */
@@ -209,12 +210,12 @@ const itemStyles = ({ collapsed }: { collapsed: boolean }): CSSObject => {
 		justifyContent: collapsed ? 'center' : 'flex-start',
 		gap: spacing[3],
 		width: '100%',
-		minHeight: '2.5rem',
+		minHeight: controlHeight.medium,
 		margin: 0,
 		paddingBlock: spacing[2],
 		paddingInline: collapsed ? 0 : spacing[3],
 		border: 0,
-		borderRadius: radius.medium,
+		borderRadius: radius.control,
 		background: 'none',
 		color: text.secondary,
 		...typography.label,

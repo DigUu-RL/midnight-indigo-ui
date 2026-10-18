@@ -192,7 +192,7 @@ const Toolbar = styled('div')({
 const Surface = styled('div')({
 	position: 'relative',
 	minWidth: 0,
-	borderRadius: themeVariables.radius.medium,
+	borderRadius: themeVariables.radius.control,
 	...focusRingStyles,
 });
 

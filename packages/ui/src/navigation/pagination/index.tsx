@@ -18,8 +18,15 @@ import { breakpointMediaQuery } from '#src/tokens/index.ts';
 import { useLinkAs } from '#src/navigation/navigation-provider/index.tsx';
 import type { LinkComponent } from '#src/navigation/navigation-provider/index.tsx';
 
-const { spacing, typography, fontWeight, radius, text, state }: typeof themeVariables =
-	themeVariables;
+const {
+	controlHeight,
+	spacing,
+	typography,
+	fontWeight,
+	radius,
+	text,
+	state,
+}: typeof themeVariables = themeVariables;
 
 /** A page number, or a gap of hidden pages. */
 export type PaginationEntry = number | 'start-gap' | 'end-gap';
@@ -140,7 +147,7 @@ const StatusItem = styled('li')({
 const Gap = styled('span')({
 	display: 'inline-flex',
 	justifyContent: 'center',
-	minWidth: '2.5rem',
+	minWidth: controlHeight.medium,
 	color: text.muted,
 });
 
@@ -150,13 +157,13 @@ const controlStyles: CSSObject = {
 	display: 'inline-flex',
 	alignItems: 'center',
 	justifyContent: 'center',
-	minWidth: '2.5rem',
-	minHeight: '2.5rem',
+	minWidth: controlHeight.medium,
+	minHeight: controlHeight.medium,
 	margin: 0,
 	paddingInline: spacing[2],
 	borderWidth: '1px',
 	borderStyle: 'solid',
-	borderRadius: radius.medium,
+	borderRadius: radius.control,
 	font: 'inherit',
 	letterSpacing: 'inherit',
 	textDecoration: 'none',
