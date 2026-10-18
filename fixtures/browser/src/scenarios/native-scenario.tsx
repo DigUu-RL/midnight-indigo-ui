@@ -103,6 +103,12 @@ export const NativeScenario = (): ReactElement => {
 						<label>
 							Volume <input type='range' defaultValue='60' />
 						</label>
+
+						<label>
+							Accent <input type='color' defaultValue='#5e48d6' />
+						</label>
+
+						<button type='submit'>Save</button>
 					</Controls>
 				</form>
 			</Panel>

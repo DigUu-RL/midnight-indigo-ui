@@ -181,7 +181,11 @@ describe('UiProvider baseline', (): void => {
 
 		expect(css).toContain('color-scheme:dark');
 		expect(css).toContain('::selection{background-color:var(--mi-accent-selection)');
-		expect(css).toContain('scrollbar-color:var(--mi-border-control) var(--mi-surface-canvas)');
+		expect(css).toContain('scrollbar-color:var(--mi-border-default) var(--mi-surface-canvas)');
+
+		expect(css).toMatch(
+			/:where\(button, input:not\([^{]+\), select, textarea\)\{[^}]*appearance:none/,
+		);
 
 		expect(css).toContain(
 			':where(:focus-visible){outline:var(--mi-focus-width) solid var(--mi-focus-ring)',
