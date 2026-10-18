@@ -37,12 +37,15 @@ Para aplicar a baseline sem o `UiProvider`, passe `createNativeBaselineStyles(th
 | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
 | Documento                                              | `color-scheme: dark`, para que seletores de data e popups de formulário fiquem escuros.                                     |
 | `button`, `input`, `select`, `textarea`                | Reset: `appearance: none`, `font: inherit`, `color: inherit`, sem fundo, sem borda.                                         |
+| Controles desabilitados                                | Texto `text.disabled` e cursor `not-allowed`; um botão de arquivo desabilitado sobre `state.disabledSurface`.               |
 | `select` (simples)                                     | O glyph `chevronDown` em `text.muted` no fim da linha (`text.disabled` quando desabilitado).                                |
 | `option`, `optgroup`                                   | Fundo `surface.overlay`, texto `text.primary`.                                                                              |
 | `input` `checkbox`, `radio`                            | Caixa `border.control` sobre `surface.field`; marcado, `intent.brand.main` com o glyph `check` (ou `minus`) ou um ponto.    |
 | `input` `range`                                        | Barra `border.default`, polegar `intent.brand.main` (e preenchimento no Firefox).                                           |
 | `input` `color`                                        | Quadrado `controlHeight.small` com borda `border.control` e amostra arredondada.                                            |
 | Campos de data e hora                                  | O glyph `calendar` (ou `clock`) no indicador do navegador, que continua abrindo o seletor no clique.                        |
+| `input` com um `datalist`                              | O glyph `chevronDown` em `text.muted` no botão que abre as sugestões.                                                       |
+| `input` `search`                                       | O glyph `close` em `text.muted` no botão que limpa o campo, mostrado quando o navegador o mostra.                           |
 | `input` `number`                                       | Sem botões de incremento.                                                                                                   |
 | `::file-selector-button`                               | Um botão secundário: `surface.raised`, borda `border.control`, `text.primary`.                                              |
 | `progress`, `meter`                                    | Barra `border.subtle`; valor em `intent.brand.main` (medidores: sucesso, alerta, erro por região).                          |
@@ -83,8 +86,8 @@ nunca depende do polegar.
 Nos temas de contraste do Windows (`forced-colors: active`), as cores de sistema substituem o tema: as barras de
 rolagem voltam a ser as do sistema, a seleção, o anel de foco e `mark` usam `Highlight`, `HighlightText`, `Mark` e
 `MarkText`, e os controles nativos recuperam a aparência, o fundo e a borda do sistema (`revert`), para que os limites
-deles continuem visíveis. As partes desenhadas dentro deles (trilhos e polegares de ranges, amostras de cor, indicadores
-de data, botões de arquivo, barras de progresso e medidores) voltam inteiras ao navegador (`all: revert`), e `summary`
+deles continuem visíveis; os desabilitados usam `GrayText`. As partes desenhadas dentro deles (trilhos e polegares de
+ranges, amostras de cor, botões de data, de sugestões e de limpar, botões de arquivo, barras de progresso e medidores) voltam inteiras ao navegador (`all: revert`), e `summary`
 mostra o marcador do sistema no lugar do chevron, uma imagem de cor fixa. Nada na biblioteca define `forced-color-adjust`, então o navegador mantém o controle de todas
 as cores.
 

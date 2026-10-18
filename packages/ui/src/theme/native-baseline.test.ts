@@ -24,6 +24,7 @@ const {
 	radius,
 	typography,
 	fontFamily,
+	state,
 }: typeof themeVariables = themeVariables;
 
 const ruleOf = (styles: CSSObject, selector: string): CSSObject => {
@@ -101,6 +102,26 @@ describe('nativeBaselineStyles', (): void => {
 		});
 	});
 
+	it('gives disabled controls back a look of their own, which the reset drops', (): void => {
+		const disabledControls: string =
+			':where(button:disabled, input:disabled, select:disabled, textarea:disabled)';
+
+		expect(ruleOf(nativeBaselineStyles, disabledControls)).toEqual({
+			color: text.disabled,
+			cursor: 'not-allowed',
+		});
+
+		expect(
+			ruleOf(nativeBaselineStyles, ':where(input:disabled)::file-selector-button'),
+		).toMatchObject({ backgroundColor: state.disabledSurface, color: text.disabled });
+
+		expect(nativeBaselineStyles[':where(input)::file-selector-button:hover']).toBeUndefined();
+
+		expect(
+			ruleOf(nativeBaselineStyles, ':where(input[type="range"]:disabled)::-moz-range-progress'),
+		).toEqual({ backgroundColor: text.disabled });
+	});
+
 	it('draws checkboxes and radios with the brand fill and the check glyph of the theme', (): void => {
 		expect(
 			ruleOf(nativeBaselineStyles, ':where(input[type="checkbox"], input[type="radio"])'),
@@ -169,6 +190,22 @@ describe('nativeBaselineStyles', (): void => {
 		expect(
 			ruleOf(nativeBaselineStyles, ':where(input[type="time"])::-webkit-calendar-picker-indicator'),
 		).toEqual({ backgroundImage: glyphImage('clock', tokens.text.muted) });
+	});
+
+	it('draws the suggestions button of a datalist field and the clear button of a search field with the theme', (): void => {
+		expect(
+			ruleOf(nativeBaselineStyles, ':where(input[list])::-webkit-calendar-picker-indicator'),
+		).toEqual({
+			color: 'transparent',
+			backgroundImage: glyphImage('chevronDown', tokens.text.muted),
+		});
+
+		expect(
+			ruleOf(nativeBaselineStyles, ':where(input[type="search"])::-webkit-search-cancel-button'),
+		).toMatchObject({
+			appearance: 'none',
+			background: `${glyphImage('close', tokens.text.muted)} center / contain no-repeat`,
+		});
 	});
 
 	it('hides the spin buttons of number fields', (): void => {
@@ -384,6 +421,9 @@ describe('nativeBaselineStyles', (): void => {
 			':where(:focus-visible)': { outlineColor: 'Highlight' },
 			':where(mark)': { backgroundColor: 'Mark', color: 'MarkText' },
 			[nativeControlSelector]: { appearance: 'revert', background: 'revert', border: 'revert' },
+			':where(button:disabled, input:disabled, select:disabled, textarea:disabled)': {
+				color: 'GrayText',
+			},
 			':where(progress, meter)': { all: 'revert' },
 			':where(summary)': { display: 'revert', listStyle: 'revert' },
 			':where(summary)::before': { display: 'none' },
@@ -399,6 +439,8 @@ describe('nativeBaselineStyles', (): void => {
 			':where(input[type="color"])::-webkit-color-swatch',
 			':where(input[type="color"])::-moz-color-swatch',
 			':where(input)::-webkit-calendar-picker-indicator',
+			':where(input[list])::-webkit-calendar-picker-indicator',
+			':where(input[type="search"])::-webkit-search-cancel-button',
 			':where(input)::file-selector-button',
 			':where(progress)::-webkit-progress-value',
 			':where(progress)::-moz-progress-bar',
