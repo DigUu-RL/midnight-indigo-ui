@@ -1,6 +1,7 @@
 // What the browser draws by itself, styled by the baseline of `UiProvider`: the page scrollbar (the page is taller than
-// the viewport), a container scrolling with `scrollbarStyles`, native controls, the placeholder, a card form that
-// Chromium can autofill from a test (native fields and a `TextField`), and the native text elements.
+// the viewport), a container scrolling with `scrollbarStyles`, native controls and their states, the placeholder, the
+// structural elements (table, lists, `pre`, `details`, `fieldset`, a modal `dialog`), a card form that Chromium can
+// autofill from a test (native fields and a `TextField`), and the native text elements.
 import { TextField } from '@midnight-indigo/ui/forms';
 import { scrollbarStyles, themeVariables } from '@midnight-indigo/ui/theme';
 import { styled } from '@mui/material/styles';
@@ -46,6 +47,15 @@ const lines: string[] = Array.from({ length: 12 }, (_: unknown, index: number): 
 
 const preventSubmission = (event: SubmitEvent<HTMLFormElement>): void => {
 	event.preventDefault();
+};
+
+// Only a script can make a checkbox indeterminate.
+const markIndeterminate = (checkbox: HTMLInputElement | null): void => {
+	if (checkbox !== null) checkbox.indeterminate = true;
+};
+
+const openDialog = (): void => {
+	document.querySelector<HTMLDialogElement>('#native-dialog')?.showModal();
 };
 
 export const NativeScenario = (): ReactElement => {
@@ -108,6 +118,14 @@ export const NativeScenario = (): ReactElement => {
 							Accent <input type='color' defaultValue='#5e48d6' />
 						</label>
 
+						<label>
+							Quantity <input type='number' defaultValue='3' />
+						</label>
+
+						<label>
+							Attachment <input type='file' />
+						</label>
+
 						<button type='submit'>Save</button>
 					</Controls>
 				</form>
@@ -146,6 +164,138 @@ export const NativeScenario = (): ReactElement => {
 
 				<hr />
 				<blockquote>A quotation set apart from the text around it.</blockquote>
+			</Panel>
+
+			<Panel aria-labelledby='states-title' data-testid='states'>
+				<h2 id='states-title'>Control states</h2>
+
+				<Controls>
+					<label>
+						<input type='checkbox' ref={markIndeterminate} /> Partially selected
+					</label>
+
+					<label>
+						<input type='checkbox' /> Unchecked
+					</label>
+
+					<label>
+						<input type='checkbox' defaultChecked disabled /> Locked
+					</label>
+
+					<label>
+						<input type='radio' name='size' /> Small
+					</label>
+
+					<label>
+						<input type='radio' name='size' defaultChecked disabled /> Large
+					</label>
+
+					<label>
+						Disabled country{' '}
+						<select disabled defaultValue='br'>
+							<option value='br'>Brazil</option>
+						</select>
+					</label>
+
+					<label>
+						Upload <progress value={70} max={100} />
+					</label>
+
+					<label>
+						Loading <progress />
+					</label>
+
+					<label>
+						Disk <meter value={0.3} low={0.5} high={0.8} optimum={0} />
+					</label>
+
+					<label>
+						Memory <meter value={0.65} low={0.5} high={0.8} optimum={0} />
+					</label>
+
+					<label>
+						Battery <meter value={0.9} low={0.5} high={0.8} optimum={0} />
+					</label>
+				</Controls>
+			</Panel>
+
+			<Panel aria-labelledby='structure-title' data-testid='structure'>
+				<h2 id='structure-title'>Structural elements</h2>
+
+				<table>
+					<caption>Bounty hunters</caption>
+
+					<thead>
+						<tr>
+							<th scope='col'>Name</th>
+							<th scope='col'>Ship</th>
+							<th scope='col'>Bounty</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<td>Spike Spiegel</td>
+							<td>Swordfish II</td>
+							<td>12,000</td>
+						</tr>
+
+						<tr>
+							<td>Faye Valentine</td>
+							<td>Red Tail</td>
+							<td>8,500</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<ul>
+					<li>Samus Aran</li>
+					<li>Leia Organa</li>
+				</ul>
+
+				<ol>
+					<li>Land on Zebes</li>
+					<li>Find the Varia Suit</li>
+				</ol>
+
+				<dl>
+					<dt>Ship</dt>
+					<dd>Gunship</dd>
+				</dl>
+
+				<pre>
+					<code>{'pnpm check\npnpm test:browser'}</code>
+				</pre>
+
+				<details>
+					<summary>Closed section</summary>
+					Hidden content.
+				</details>
+
+				<details open>
+					<summary>Open section</summary>
+					Content of an open section.
+				</details>
+
+				<fieldset>
+					<legend>Notifications</legend>
+
+					<label>
+						<input type='checkbox' defaultChecked /> Email
+					</label>
+				</fieldset>
+
+				<button type='button' onClick={openDialog}>
+					Open dialog
+				</button>
+
+				<dialog id='native-dialog' aria-labelledby='dialog-title'>
+					<h2 id='dialog-title'>Native dialog</h2>
+
+					<form method='dialog'>
+						<button type='submit'>Close</button>
+					</form>
+				</dialog>
 			</Panel>
 
 			<PageFiller aria-hidden='true' />

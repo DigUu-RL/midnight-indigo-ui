@@ -1,33 +1,20 @@
-// What the browser draws by itself (scrollbars, selection, autofill, native controls, focus, text elements) in the
-// colors of the theme. Every value is a `var(--mi-*)` reference, so the styles follow any palette given to `UiProvider`.
+// Styles for what the browser draws by itself (scrollbars, autofill) in the colors of the theme, shared by the
+// components and the global baseline (`native-baseline.ts`). Every value is a `var(--mi-*)` reference, so the styles
+// follow any palette given to `UiProvider`.
 import type { CSSObject } from '@mui/material/styles';
 
-import { stickyTopbarAttribute, topbarHeight } from '#src/shared/layout-metrics.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 
-const {
-	spacing,
-	radius,
-	surface,
-	text,
-	border,
-	focus,
-	accent,
-	intent,
-	fontFamily,
-}: typeof themeVariables = themeVariables;
+const { radius, border }: typeof themeVariables = themeVariables;
 
 /** Media query of the high contrast modes (Windows contrast themes), where the system colors replace the theme. */
 export const forcedColorsMediaQuery: string = '(forced-colors: active)';
-
-// Smooth scrolling is motion: only users who expressed no preference get it.
-const noMotionPreferenceMediaQuery: string = '(prefers-reduced-motion: no-preference)';
 
 // Chromium 121+ and Firefox read `scrollbar-color`, and Chromium then ignores the `::-webkit-scrollbar` pseudo-elements,
 // which remain for WebKit. The thumb is `border.default`, thin and discreet: an accepted exception of the contrast audit
 // (`contrastExceptions`), since scrolling never depends on it; hovered, it lights up to `border.control`. The track shows
 // the surface below it. In the high contrast modes `scrollbar-color` returns to `auto` and the system draws it again.
-const createScrollbarStyles = (track: string): CSSObject => {
+export const createScrollbarStyles = (track: string): CSSObject => {
 	return {
 		scrollbarWidth: 'thin',
 		scrollbarColor: `${border.default} ${track}`,
@@ -75,96 +62,4 @@ export const autofillStyles = (background: string, textColor: string): CSSObject
 		// Older Firefox tints the field with a filter instead.
 		filter: 'none',
 	};
-};
-
-// A native field outside the components has no background of its own, so the autofill paints the field of the theme.
-const nativeFieldAutofillStyles: CSSObject = autofillStyles(surface.field, text.primary);
-
-/**
- * Native controls reset to the theme: no appearance, font, color, background or border of the browser. Checkboxes,
- * radios, ranges and color pickers keep their native drawing (tinted by `accent-color`) until the theme draws them, so
- * they never become invisible.
- */
-export const nativeControlSelector: string =
-	':where(button, input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"]), select, textarea)';
-
-/**
- * Global styles of `UiProvider` with `baseline`. The tokens of the theme come before any default of the browser, and
- * element selectors are wrapped in `:where()`, whose specificity is zero, so any class of a component or of the
- * application wins over them; nothing resets margins or typography of the content. The high contrast modes keep the
- * system colors: nothing here sets `forced-color-adjust`, and native controls get their system look back.
- */
-export const nativeBaselineStyles: CSSObject = {
-	html: {
-		colorScheme: 'dark',
-		accentColor: intent.brand.main,
-		caretColor: focus.ring,
-		WebkitTapHighlightColor: 'transparent',
-		WebkitTextSizeAdjust: '100%',
-		textSizeAdjust: '100%',
-		...createScrollbarStyles(surface.canvas),
-	},
-	// Anchored targets and focused elements scroll into view below the sticky top bar, on the pages that have one.
-	[`:where(html:has([${stickyTopbarAttribute}]))`]: { scrollPaddingBlockStart: topbarHeight },
-	[`@media ${noMotionPreferenceMediaQuery}`]: { html: { scrollBehavior: 'smooth' } },
-	'::selection': { backgroundColor: accent.selection, color: accent.onSelection },
-	':where(:focus-visible)': {
-		outline: `${focus.width} solid ${focus.ring}`,
-		outlineOffset: focus.offset,
-	},
-	[nativeControlSelector]: {
-		appearance: 'none',
-		font: 'inherit',
-		letterSpacing: 'inherit',
-		color: 'inherit',
-		background: 'transparent',
-		border: 0,
-	},
-	// Below 4.5:1 on purpose: an accepted exception of the contrast audit, since the placeholder is only an example.
-	':where(input, textarea)::placeholder': { color: text.placeholder, opacity: 1 },
-	':where(input, textarea, select):-webkit-autofill': nativeFieldAutofillStyles,
-	':where(input, textarea, select):autofill': nativeFieldAutofillStyles,
-	':where(a)': { color: accent.link, textUnderlineOffset: '0.15em' },
-	':where(a:hover)': { color: accent.linkHover },
-	':where(hr)': {
-		height: 0,
-		border: 0,
-		borderBlockStart: `1px solid ${border.default}`,
-		color: 'inherit',
-	},
-	':where(h1, h2, h3, h4, h5, h6, p)': { textWrap: 'pretty' },
-	':where(code, kbd, pre, samp)': {
-		fontFamily: fontFamily.mono,
-		fontVariantNumeric: 'tabular-nums',
-	},
-	':where(kbd)': {
-		paddingBlock: '0.1em',
-		paddingInline: '0.4em',
-		border: `1px solid ${border.default}`,
-		borderBlockEndWidth: '2px',
-		borderRadius: radius.controlSmall,
-		backgroundColor: surface.raised,
-		color: text.primary,
-	},
-	':where(mark)': {
-		backgroundColor: intent.warning.container,
-		color: intent.warning.onContainer,
-	},
-	':where(abbr[title])': {
-		textDecoration: 'underline dotted',
-		textUnderlineOffset: '0.15em',
-		cursor: 'help',
-	},
-	':where(blockquote)': {
-		paddingInlineStart: spacing[4],
-		borderInlineStart: `${spacing[1]} solid ${border.default}`,
-		color: text.secondary,
-	},
-	[`@media ${forcedColorsMediaQuery}`]: {
-		'::selection': { backgroundColor: 'Highlight', color: 'HighlightText' },
-		':where(:focus-visible)': { outlineColor: 'Highlight' },
-		':where(mark)': { backgroundColor: 'Mark', color: 'MarkText' },
-		// Without the reset, the browser draws the boundaries of the controls in the system colors again.
-		[nativeControlSelector]: { appearance: 'revert', background: 'revert', border: 'revert' },
-	},
 };
