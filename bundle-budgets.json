@@ -3,37 +3,37 @@
 	"entries": {
 		"@midnight-indigo/ui": {
 			"initial": {
-				"baseline": 30305,
-				"budget": 33536
+				"baseline": 31030,
+				"budget": 34304
 			}
 		},
 		"@midnight-indigo/ui/tokens": {
 			"initial": {
-				"baseline": 8922,
-				"budget": 9984
+				"baseline": 10290,
+				"budget": 11520
 			}
 		},
 		"@midnight-indigo/ui/theme": {
 			"initial": {
-				"baseline": 7501,
-				"budget": 8448
+				"baseline": 8242,
+				"budget": 9216
 			}
 		},
 		"@midnight-indigo/ui/buttons": {
 			"initial": {
-				"baseline": 5206,
+				"baseline": 5211,
 				"budget": 5888
 			}
 		},
 		"@midnight-indigo/ui/forms": {
 			"initial": {
-				"baseline": 18367,
+				"baseline": 18366,
 				"budget": 20224
 			}
 		},
 		"@midnight-indigo/ui/forms/date-pickers": {
 			"initial": {
-				"baseline": 6324,
+				"baseline": 6329,
 				"budget": 7168
 			}
 		},
@@ -45,32 +45,32 @@
 		},
 		"@midnight-indigo/ui/feedback": {
 			"initial": {
-				"baseline": 14668,
+				"baseline": 14672,
 				"budget": 16384
 			}
 		},
 		"@midnight-indigo/ui/layout": {
 			"initial": {
-				"baseline": 4495,
+				"baseline": 4499,
 				"budget": 5120
 			}
 		},
 		"@midnight-indigo/ui/navigation": {
 			"initial": {
-				"baseline": 13493,
+				"baseline": 13496,
 				"budget": 14848
 			}
 		},
 		"@midnight-indigo/ui/data-display": {
 			"initial": {
-				"baseline": 16072,
+				"baseline": 16076,
 				"budget": 17920
 			}
 		},
 		"@midnight-indigo/ui/charts": {
 			"initial": {
-				"baseline": 21768,
-				"budget": 24064
+				"baseline": 22503,
+				"budget": 24832
 			},
 			"onDemand": {
 				"baseline": 208357,
@@ -85,62 +85,62 @@
 		},
 		"@midnight-indigo/ui/dashboard": {
 			"initial": {
-				"baseline": 13963,
-				"budget": 15360
+				"baseline": 13967,
+				"budget": 15616
 			}
 		},
 		"@midnight-indigo/ui/icons": {
 			"initial": {
-				"baseline": 5114,
+				"baseline": 5118,
 				"budget": 5632
 			}
 		},
 		"@midnight-indigo/ui/icons: one imported icon": {
 			"initial": {
-				"baseline": 5049,
+				"baseline": 5053,
 				"budget": 5632
 			}
 		},
 		"starter: /en-us": {
 			"initial": {
-				"baseline": 303861,
-				"budget": 334336
+				"baseline": 304615,
+				"budget": 335104
 			}
 		},
 		"starter: /en-us/orders": {
 			"initial": {
-				"baseline": 292073,
-				"budget": 321536
+				"baseline": 292827,
+				"budget": 322304
 			}
 		},
 		"starter: /en-us/reports": {
 			"initial": {
-				"baseline": 297079,
-				"budget": 326912
+				"baseline": 297833,
+				"budget": 327680
 			}
 		},
 		"starter: /en-us/customers/new": {
 			"initial": {
-				"baseline": 291369,
-				"budget": 320512
+				"baseline": 292123,
+				"budget": 321536
 			}
 		},
 		"starter: /en-us/settings/appearance": {
 			"initial": {
-				"baseline": 287773,
-				"budget": 316672
+				"baseline": 288524,
+				"budget": 317440
 			}
 		},
 		"starter: /en-us/icons": {
 			"initial": {
-				"baseline": 286972,
-				"budget": 315904
+				"baseline": 287726,
+				"budget": 316672
 			}
 		},
 		"starter: /gallery": {
 			"initial": {
-				"baseline": 319552,
-				"budget": 351744
+				"baseline": 320307,
+				"budget": 352512
 			}
 		},
 		"starter: chart engine": {

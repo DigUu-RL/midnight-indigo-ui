@@ -2,10 +2,12 @@
 export { breakpointMediaQuery, breakpointNames, breakpoints } from '#src/tokens/breakpoints.ts';
 export type { Breakpoint } from '#src/tokens/breakpoints.ts';
 export {
+	compositeOver,
 	contrastRatio,
 	ensureContrast,
 	formatContrastRatio,
 	isHexColor,
+	isTranslucentColor,
 	mixColors,
 	normalizeHexColor,
 	parseHexColor,
@@ -16,12 +18,24 @@ export {
 export type { HexColor, RgbColor } from '#src/tokens/color.ts';
 export {
 	auditContrast,
+	contrastExceptions,
+	contrastExemptTokens,
 	contrastMinimums,
 	createContrastPairs,
+	describeContrastPair,
 	evaluateContrastPair,
+	findContrastException,
+	findUnauditedColorTokens,
+	formatContrastReport,
+	listColorTokenPaths,
 	resolveTokenPath,
 } from '#src/tokens/contrast.ts';
-export type { ContrastPair, ContrastRequirement, ContrastResult } from '#src/tokens/contrast.ts';
+export type {
+	ContrastException,
+	ContrastPair,
+	ContrastRequirement,
+	ContrastResult,
+} from '#src/tokens/contrast.ts';
 export {
 	createTokenStylesheet,
 	cssLayers,

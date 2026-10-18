@@ -4,6 +4,9 @@ import {
 	breakpointMediaQuery,
 	breakpointNames,
 	breakpoints,
+	contrastExceptions,
+	contrastExemptTokens,
+	contrastMinimums,
 	createTokenStylesheet,
 	cssVariableName,
 	formatContrastRatio,
@@ -19,6 +22,7 @@ import {
 import type {
 	Breakpoint,
 	ColorTokens,
+	ContrastException,
 	ContrastResult,
 	DesignTokens,
 	HexColor,
@@ -305,23 +309,62 @@ const renderContrast = (): string[] => {
 	const results: ContrastResult[] = auditContrast(tokens);
 
 	const rows: string[][] = results.map((result: ContrastResult): string[] => {
+		const background: string =
+			result.backdrop === undefined
+				? code(result.background)
+				: `${code(result.background)} over ${code(result.backdrop)}`;
+
+		const verdict: string = result.passes ? 'Pass' : '**Fail**';
+
 		return [
 			code(result.foreground),
-			code(result.background),
+			background,
 			formatContrastRatio(result.ratio),
 			formatContrastRatio(result.minimum),
 			result.usage,
-			result.passes ? 'Pass' : '**Fail**',
+			result.exception === undefined ? verdict : `${verdict} (exception)`,
 		];
 	});
+
+	const exceptionRows: string[][] = contrastExceptions.map(
+		(exception: ContrastException): string[] => {
+			return [
+				code(exception.foreground),
+				code(exception.background),
+				formatContrastRatio(contrastMinimums[exception.requirement]),
+				formatContrastRatio(exception.minimum),
+				exception.justification,
+			];
+		},
+	);
+
+	const exemptRows: string[][] = Object.entries(contrastExemptTokens).map(
+		([pattern, reason]: [string, string]): string[] => [code(pattern), reason],
+	);
 
 	return [
 		'## Contrast pairs',
 		'',
-		'Every pair below is checked in CI against WCAG 2.2 AA: 4.5:1 for text, 3:1 for non-text indicators.',
-		'Ratios are truncated, never rounded up. All colors are opaque, so the ratio is that of the rendered pair.',
+		'Every pair below is checked in CI against WCAG 2.2 AA: 4.5:1 for text, 3:1 for large text and non-text',
+		'indicators. Ratios are truncated, never rounded up. A translucent background (`support.*.soft`) is composited',
+		'over the surface named after "over", so the ratio is that of the rendered pair. Every color token is either in a',
+		'pair or exempt below; a new color token in neither fails the audit.',
 		'',
 		...renderTable(['Foreground', 'Background', 'Ratio', 'Minimum', 'Usage', 'Result'], rows),
+		'',
+		'### Accepted exceptions',
+		'',
+		'Pairs of the v2 design accepted below the WCAG minimum. Each one keeps the lowest ratio it may reach: a token',
+		'change that lowers it further still fails.',
+		'',
+		...renderTable(
+			['Foreground', 'Background', 'WCAG minimum', 'Accepted minimum', 'Justification'],
+			exceptionRows,
+		),
+		'',
+		'### Tokens outside the pairs',
+		'',
+		...renderTable(['Token', 'Reason'], exemptRows),
 		'',
 	];
 };

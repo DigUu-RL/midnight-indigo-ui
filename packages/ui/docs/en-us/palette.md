@@ -128,6 +128,31 @@ soft('#3FD0C9'); // 'rgb(63 208 201 / 0.16)'
 The chart series (`chart.series`) are the support colors, starting with pink, violet and blue; red comes last, as it
 also reads as an error.
 
+## Contrast audit
+
+`auditContrast(tokens)` measures every text/background pair of the palette against WCAG 2.2 AA: 4.5:1 for text,
+3:1 for large text and non-text indicators. The pairs are derived from the token structure (text × surfaces × intents ×
+support colors on their tonal backgrounds, composited over each surface), so a new surface, intent or support color is
+audited by itself, and a new color token outside the pairs fails the test until it gets a pair or a documented
+exemption. The test runs in `pnpm test` and in CI and, on failure, lists every failing pair with its tokens, ratio and
+usage. The full list is in [contrast pairs](./tokens.md#contrast-pairs).
+
+The v2 design accepts four pairs below the minimum. Each keeps the lowest ratio it may reach, so a token change that
+lowers it further still fails:
+
+| Pair                                  | Ratio | Where                           | Why it is accepted                                                                                 |
+| ------------------------------------- | ----- | ------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `border.default` on `surface.field`   | 1.4:1 | Outline of a text field         | The visible label and the field background identify the field; focus draws the pink border, at 3:1 |
+| `border.strong` on `surface.field`    | 2.1:1 | Outline of a hovered text field | Hover is extra feedback, never the only way to find the field                                      |
+| `text.placeholder` on `surface.field` | 3.8:1 | Placeholder                     | An example of the value, never the only instruction: the label stays visible                       |
+| `border.default` on `surface.canvas`  | 1.5:1 | Thumb of the page scrollbar     | Scrolling does not depend on it; high contrast modes restore the system scrollbar                  |
+
+```ts
+import { auditContrast, formatContrastReport, tokens } from '@midnight-indigo/ui/tokens';
+
+formatContrastReport(auditContrast(tokens)); // '' when every pair passes
+```
+
 ## Scales and theme
 
 The scales are fixed: a theme created with `createUiTheme` changes the semantic intents, never `tokens.color`. With a

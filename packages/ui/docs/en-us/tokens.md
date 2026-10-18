@@ -117,6 +117,7 @@ Text colors by emphasis.
 | `text.primary` | `--mi-text-primary` | `#F2EFFC` | Body text and headings. |
 | `text.secondary` | `--mi-text-secondary` | `#C3BDDC` | Supporting text and descriptions. |
 | `text.muted` | `--mi-text-muted` | `#9790B8` | Placeholders, hints and captions; still meets 4.5:1. |
+| `text.placeholder` | `--mi-text-placeholder` | `#6E62A3` | Placeholder of text fields, only on `surface.field`; an accepted exception below 4.5:1, so a placeholder never carries information the label lacks. |
 | `text.disabled` | `--mi-text-disabled` | `#5E5880` | Text of disabled controls; exempt from contrast minimums, never used to signal loading. |
 | `text.inverse` | `--mi-text-inverse` | `#05040E` | Text on light fills. |
 
@@ -445,8 +446,10 @@ larger default text size gets the layout of a narrower viewport. How the compone
 
 ## Contrast pairs
 
-Every pair below is checked in CI against WCAG 2.2 AA: 4.5:1 for text, 3:1 for non-text indicators.
-Ratios are truncated, never rounded up. All colors are opaque, so the ratio is that of the rendered pair.
+Every pair below is checked in CI against WCAG 2.2 AA: 4.5:1 for text, 3:1 for large text and non-text
+indicators. Ratios are truncated, never rounded up. A translucent background (`support.*.soft`) is composited
+over the surface named after "over", so the ratio is that of the rendered pair. Every color token is either in a
+pair or exempt below; a new color token in neither fails the audit.
 
 | Foreground | Background | Ratio | Minimum | Usage | Result |
 | --- | --- | --- | --- | --- | --- |
@@ -650,19 +653,231 @@ Ratios are truncated, never rounded up. All colors are opaque, so the ratio is t
 | `intent.info.border` | `surface.dialog` | 8.56:1 | 3.00:1 | Boundary of an outlined or filled info control, and info indicators | Pass |
 | `intent.info.border` | `surface.overlay` | 8.23:1 | 3.00:1 | Boundary of an outlined or filled info control, and info indicators | Pass |
 | `intent.info.main` | `intent.info.container` | 8.02:1 | 3.00:1 | info progress indicator on its track | Pass |
+| `support.pink.text` | `support.pink.soft` over `surface.canvas` | 6.48:1 | 4.50:1 | Label of a pink tag, chip or avatar | Pass |
+| `support.pink.main` | `support.pink.soft` over `surface.canvas` | 6.48:1 | 3.00:1 | Icon on a pink tonal background | Pass |
+| `support.pink.main` | `surface.canvas` | 7.84:1 | 3.00:1 | pink dot, marker or chart mark | Pass |
+| `support.pink.text` | `support.pink.soft` over `surface.field` | 6.29:1 | 4.50:1 | Label of a pink tag, chip or avatar | Pass |
+| `support.pink.main` | `support.pink.soft` over `surface.field` | 6.29:1 | 3.00:1 | Icon on a pink tonal background | Pass |
+| `support.pink.main` | `surface.field` | 7.71:1 | 3.00:1 | pink dot, marker or chart mark | Pass |
+| `support.pink.text` | `support.pink.soft` over `surface.sidebar` | 6.16:1 | 4.50:1 | Label of a pink tag, chip or avatar | Pass |
+| `support.pink.main` | `support.pink.soft` over `surface.sidebar` | 6.16:1 | 3.00:1 | Icon on a pink tonal background | Pass |
+| `support.pink.main` | `surface.sidebar` | 7.61:1 | 3.00:1 | pink dot, marker or chart mark | Pass |
+| `support.pink.text` | `support.pink.soft` over `surface.tableHeader` | 5.87:1 | 4.50:1 | Label of a pink tag, chip or avatar | Pass |
+| `support.pink.main` | `support.pink.soft` over `surface.tableHeader` | 5.87:1 | 3.00:1 | Icon on a pink tonal background | Pass |
+| `support.pink.main` | `surface.tableHeader` | 7.35:1 | 3.00:1 | pink dot, marker or chart mark | Pass |
+| `support.pink.text` | `support.pink.soft` over `surface.raised` | 5.61:1 | 4.50:1 | Label of a pink tag, chip or avatar | Pass |
+| `support.pink.main` | `support.pink.soft` over `surface.raised` | 5.61:1 | 3.00:1 | Icon on a pink tonal background | Pass |
+| `support.pink.main` | `surface.raised` | 7.11:1 | 3.00:1 | pink dot, marker or chart mark | Pass |
+| `support.pink.text` | `support.pink.soft` over `surface.dialog` | 5.39:1 | 4.50:1 | Label of a pink tag, chip or avatar | Pass |
+| `support.pink.main` | `support.pink.soft` over `surface.dialog` | 5.39:1 | 3.00:1 | Icon on a pink tonal background | Pass |
+| `support.pink.main` | `surface.dialog` | 6.90:1 | 3.00:1 | pink dot, marker or chart mark | Pass |
+| `support.pink.text` | `support.pink.soft` over `surface.overlay` | 5.17:1 | 4.50:1 | Label of a pink tag, chip or avatar | Pass |
+| `support.pink.main` | `support.pink.soft` over `surface.overlay` | 5.17:1 | 3.00:1 | Icon on a pink tonal background | Pass |
+| `support.pink.main` | `surface.overlay` | 6.63:1 | 3.00:1 | pink dot, marker or chart mark | Pass |
+| `support.violet.text` | `support.violet.soft` over `surface.canvas` | 5.87:1 | 4.50:1 | Label of a violet tag, chip or avatar | Pass |
+| `support.violet.main` | `support.violet.soft` over `surface.canvas` | 5.20:1 | 3.00:1 | Icon on a violet tonal background | Pass |
+| `support.violet.main` | `surface.canvas` | 6.15:1 | 3.00:1 | violet dot, marker or chart mark | Pass |
+| `support.violet.text` | `support.violet.soft` over `surface.field` | 5.70:1 | 4.50:1 | Label of a violet tag, chip or avatar | Pass |
+| `support.violet.main` | `support.violet.soft` over `surface.field` | 5.05:1 | 3.00:1 | Icon on a violet tonal background | Pass |
+| `support.violet.main` | `surface.field` | 6.05:1 | 3.00:1 | violet dot, marker or chart mark | Pass |
+| `support.violet.text` | `support.violet.soft` over `surface.sidebar` | 5.62:1 | 4.50:1 | Label of a violet tag, chip or avatar | Pass |
+| `support.violet.main` | `support.violet.soft` over `surface.sidebar` | 4.98:1 | 3.00:1 | Icon on a violet tonal background | Pass |
+| `support.violet.main` | `surface.sidebar` | 5.97:1 | 3.00:1 | violet dot, marker or chart mark | Pass |
+| `support.violet.text` | `support.violet.soft` over `surface.tableHeader` | 5.31:1 | 4.50:1 | Label of a violet tag, chip or avatar | Pass |
+| `support.violet.main` | `support.violet.soft` over `surface.tableHeader` | 4.71:1 | 3.00:1 | Icon on a violet tonal background | Pass |
+| `support.violet.main` | `surface.tableHeader` | 5.77:1 | 3.00:1 | violet dot, marker or chart mark | Pass |
+| `support.violet.text` | `support.violet.soft` over `surface.raised` | 5.08:1 | 4.50:1 | Label of a violet tag, chip or avatar | Pass |
+| `support.violet.main` | `support.violet.soft` over `surface.raised` | 4.50:1 | 3.00:1 | Icon on a violet tonal background | Pass |
+| `support.violet.main` | `surface.raised` | 5.58:1 | 3.00:1 | violet dot, marker or chart mark | Pass |
+| `support.violet.text` | `support.violet.soft` over `surface.dialog` | 4.92:1 | 4.50:1 | Label of a violet tag, chip or avatar | Pass |
+| `support.violet.main` | `support.violet.soft` over `surface.dialog` | 4.36:1 | 3.00:1 | Icon on a violet tonal background | Pass |
+| `support.violet.main` | `surface.dialog` | 5.41:1 | 3.00:1 | violet dot, marker or chart mark | Pass |
+| `support.violet.text` | `support.violet.soft` over `surface.overlay` | 4.67:1 | 4.50:1 | Label of a violet tag, chip or avatar | Pass |
+| `support.violet.main` | `support.violet.soft` over `surface.overlay` | 4.14:1 | 3.00:1 | Icon on a violet tonal background | Pass |
+| `support.violet.main` | `surface.overlay` | 5.20:1 | 3.00:1 | violet dot, marker or chart mark | Pass |
+| `support.blue.text` | `support.blue.soft` over `surface.canvas` | 7.69:1 | 4.50:1 | Label of a blue tag, chip or avatar | Pass |
+| `support.blue.main` | `support.blue.soft` over `surface.canvas` | 7.69:1 | 3.00:1 | Icon on a blue tonal background | Pass |
+| `support.blue.main` | `surface.canvas` | 9.73:1 | 3.00:1 | blue dot, marker or chart mark | Pass |
+| `support.blue.text` | `support.blue.soft` over `surface.field` | 7.53:1 | 4.50:1 | Label of a blue tag, chip or avatar | Pass |
+| `support.blue.main` | `support.blue.soft` over `surface.field` | 7.53:1 | 3.00:1 | Icon on a blue tonal background | Pass |
+| `support.blue.main` | `surface.field` | 9.57:1 | 3.00:1 | blue dot, marker or chart mark | Pass |
+| `support.blue.text` | `support.blue.soft` over `surface.sidebar` | 7.32:1 | 4.50:1 | Label of a blue tag, chip or avatar | Pass |
+| `support.blue.main` | `support.blue.soft` over `surface.sidebar` | 7.32:1 | 3.00:1 | Icon on a blue tonal background | Pass |
+| `support.blue.main` | `surface.sidebar` | 9.44:1 | 3.00:1 | blue dot, marker or chart mark | Pass |
+| `support.blue.text` | `support.blue.soft` over `surface.tableHeader` | 6.97:1 | 4.50:1 | Label of a blue tag, chip or avatar | Pass |
+| `support.blue.main` | `support.blue.soft` over `surface.tableHeader` | 6.97:1 | 3.00:1 | Icon on a blue tonal background | Pass |
+| `support.blue.main` | `surface.tableHeader` | 9.13:1 | 3.00:1 | blue dot, marker or chart mark | Pass |
+| `support.blue.text` | `support.blue.soft` over `surface.raised` | 6.59:1 | 4.50:1 | Label of a blue tag, chip or avatar | Pass |
+| `support.blue.main` | `support.blue.soft` over `surface.raised` | 6.59:1 | 3.00:1 | Icon on a blue tonal background | Pass |
+| `support.blue.main` | `surface.raised` | 8.82:1 | 3.00:1 | blue dot, marker or chart mark | Pass |
+| `support.blue.text` | `support.blue.soft` over `surface.dialog` | 6.39:1 | 4.50:1 | Label of a blue tag, chip or avatar | Pass |
+| `support.blue.main` | `support.blue.soft` over `surface.dialog` | 6.39:1 | 3.00:1 | Icon on a blue tonal background | Pass |
+| `support.blue.main` | `surface.dialog` | 8.56:1 | 3.00:1 | blue dot, marker or chart mark | Pass |
+| `support.blue.text` | `support.blue.soft` over `surface.overlay` | 6.05:1 | 4.50:1 | Label of a blue tag, chip or avatar | Pass |
+| `support.blue.main` | `support.blue.soft` over `surface.overlay` | 6.05:1 | 3.00:1 | Icon on a blue tonal background | Pass |
+| `support.blue.main` | `surface.overlay` | 8.23:1 | 3.00:1 | blue dot, marker or chart mark | Pass |
+| `support.green.text` | `support.green.soft` over `surface.canvas` | 7.68:1 | 4.50:1 | Label of a green tag, chip or avatar | Pass |
+| `support.green.main` | `support.green.soft` over `surface.canvas` | 7.68:1 | 3.00:1 | Icon on a green tonal background | Pass |
+| `support.green.main` | `surface.canvas` | 9.65:1 | 3.00:1 | green dot, marker or chart mark | Pass |
+| `support.green.text` | `support.green.soft` over `surface.field` | 7.55:1 | 4.50:1 | Label of a green tag, chip or avatar | Pass |
+| `support.green.main` | `support.green.soft` over `surface.field` | 7.55:1 | 3.00:1 | Icon on a green tonal background | Pass |
+| `support.green.main` | `surface.field` | 9.49:1 | 3.00:1 | green dot, marker or chart mark | Pass |
+| `support.green.text` | `support.green.soft` over `surface.sidebar` | 7.35:1 | 4.50:1 | Label of a green tag, chip or avatar | Pass |
+| `support.green.main` | `support.green.soft` over `surface.sidebar` | 7.35:1 | 3.00:1 | Icon on a green tonal background | Pass |
+| `support.green.main` | `surface.sidebar` | 9.36:1 | 3.00:1 | green dot, marker or chart mark | Pass |
+| `support.green.text` | `support.green.soft` over `surface.tableHeader` | 7.02:1 | 4.50:1 | Label of a green tag, chip or avatar | Pass |
+| `support.green.main` | `support.green.soft` over `surface.tableHeader` | 7.02:1 | 3.00:1 | Icon on a green tonal background | Pass |
+| `support.green.main` | `surface.tableHeader` | 9.05:1 | 3.00:1 | green dot, marker or chart mark | Pass |
+| `support.green.text` | `support.green.soft` over `surface.raised` | 6.64:1 | 4.50:1 | Label of a green tag, chip or avatar | Pass |
+| `support.green.main` | `support.green.soft` over `surface.raised` | 6.64:1 | 3.00:1 | Icon on a green tonal background | Pass |
+| `support.green.main` | `surface.raised` | 8.74:1 | 3.00:1 | green dot, marker or chart mark | Pass |
+| `support.green.text` | `support.green.soft` over `surface.dialog` | 6.44:1 | 4.50:1 | Label of a green tag, chip or avatar | Pass |
+| `support.green.main` | `support.green.soft` over `surface.dialog` | 6.44:1 | 3.00:1 | Icon on a green tonal background | Pass |
+| `support.green.main` | `surface.dialog` | 8.49:1 | 3.00:1 | green dot, marker or chart mark | Pass |
+| `support.green.text` | `support.green.soft` over `surface.overlay` | 6.12:1 | 4.50:1 | Label of a green tag, chip or avatar | Pass |
+| `support.green.main` | `support.green.soft` over `surface.overlay` | 6.12:1 | 3.00:1 | Icon on a green tonal background | Pass |
+| `support.green.main` | `surface.overlay` | 8.16:1 | 3.00:1 | green dot, marker or chart mark | Pass |
+| `support.amber.text` | `support.amber.soft` over `surface.canvas` | 8.79:1 | 4.50:1 | Label of a amber tag, chip or avatar | Pass |
+| `support.amber.main` | `support.amber.soft` over `surface.canvas` | 8.79:1 | 3.00:1 | Icon on a amber tonal background | Pass |
+| `support.amber.main` | `surface.canvas` | 11.38:1 | 3.00:1 | amber dot, marker or chart mark | Pass |
+| `support.amber.text` | `support.amber.soft` over `surface.field` | 8.63:1 | 4.50:1 | Label of a amber tag, chip or avatar | Pass |
+| `support.amber.main` | `support.amber.soft` over `surface.field` | 8.63:1 | 3.00:1 | Icon on a amber tonal background | Pass |
+| `support.amber.main` | `surface.field` | 11.20:1 | 3.00:1 | amber dot, marker or chart mark | Pass |
+| `support.amber.text` | `support.amber.soft` over `surface.sidebar` | 8.40:1 | 4.50:1 | Label of a amber tag, chip or avatar | Pass |
+| `support.amber.main` | `support.amber.soft` over `surface.sidebar` | 8.40:1 | 3.00:1 | Icon on a amber tonal background | Pass |
+| `support.amber.main` | `surface.sidebar` | 11.05:1 | 3.00:1 | amber dot, marker or chart mark | Pass |
+| `support.amber.text` | `support.amber.soft` over `surface.tableHeader` | 7.94:1 | 4.50:1 | Label of a amber tag, chip or avatar | Pass |
+| `support.amber.main` | `support.amber.soft` over `surface.tableHeader` | 7.94:1 | 3.00:1 | Icon on a amber tonal background | Pass |
+| `support.amber.main` | `surface.tableHeader` | 10.68:1 | 3.00:1 | amber dot, marker or chart mark | Pass |
+| `support.amber.text` | `support.amber.soft` over `surface.raised` | 7.56:1 | 4.50:1 | Label of a amber tag, chip or avatar | Pass |
+| `support.amber.main` | `support.amber.soft` over `surface.raised` | 7.56:1 | 3.00:1 | Icon on a amber tonal background | Pass |
+| `support.amber.main` | `surface.raised` | 10.32:1 | 3.00:1 | amber dot, marker or chart mark | Pass |
+| `support.amber.text` | `support.amber.soft` over `surface.dialog` | 7.31:1 | 4.50:1 | Label of a amber tag, chip or avatar | Pass |
+| `support.amber.main` | `support.amber.soft` over `surface.dialog` | 7.31:1 | 3.00:1 | Icon on a amber tonal background | Pass |
+| `support.amber.main` | `surface.dialog` | 10.02:1 | 3.00:1 | amber dot, marker or chart mark | Pass |
+| `support.amber.text` | `support.amber.soft` over `surface.overlay` | 6.96:1 | 4.50:1 | Label of a amber tag, chip or avatar | Pass |
+| `support.amber.main` | `support.amber.soft` over `surface.overlay` | 6.96:1 | 3.00:1 | Icon on a amber tonal background | Pass |
+| `support.amber.main` | `surface.overlay` | 9.62:1 | 3.00:1 | amber dot, marker or chart mark | Pass |
+| `support.red.text` | `support.red.soft` over `surface.canvas` | 5.94:1 | 4.50:1 | Label of a red tag, chip or avatar | Pass |
+| `support.red.main` | `support.red.soft` over `surface.canvas` | 5.17:1 | 3.00:1 | Icon on a red tonal background | Pass |
+| `support.red.main` | `surface.canvas` | 6.01:1 | 3.00:1 | red dot, marker or chart mark | Pass |
+| `support.red.text` | `support.red.soft` over `surface.field` | 5.84:1 | 4.50:1 | Label of a red tag, chip or avatar | Pass |
+| `support.red.main` | `support.red.soft` over `surface.field` | 5.08:1 | 3.00:1 | Icon on a red tonal background | Pass |
+| `support.red.main` | `surface.field` | 5.91:1 | 3.00:1 | red dot, marker or chart mark | Pass |
+| `support.red.text` | `support.red.soft` over `surface.sidebar` | 5.71:1 | 4.50:1 | Label of a red tag, chip or avatar | Pass |
+| `support.red.main` | `support.red.soft` over `surface.sidebar` | 4.97:1 | 3.00:1 | Icon on a red tonal background | Pass |
+| `support.red.main` | `surface.sidebar` | 5.83:1 | 3.00:1 | red dot, marker or chart mark | Pass |
+| `support.red.text` | `support.red.soft` over `surface.tableHeader` | 5.44:1 | 4.50:1 | Label of a red tag, chip or avatar | Pass |
+| `support.red.main` | `support.red.soft` over `surface.tableHeader` | 4.73:1 | 3.00:1 | Icon on a red tonal background | Pass |
+| `support.red.main` | `surface.tableHeader` | 5.63:1 | 3.00:1 | red dot, marker or chart mark | Pass |
+| `support.red.text` | `support.red.soft` over `surface.raised` | 5.21:1 | 4.50:1 | Label of a red tag, chip or avatar | Pass |
+| `support.red.main` | `support.red.soft` over `surface.raised` | 4.53:1 | 3.00:1 | Icon on a red tonal background | Pass |
+| `support.red.main` | `surface.raised` | 5.44:1 | 3.00:1 | red dot, marker or chart mark | Pass |
+| `support.red.text` | `support.red.soft` over `surface.dialog` | 5.05:1 | 4.50:1 | Label of a red tag, chip or avatar | Pass |
+| `support.red.main` | `support.red.soft` over `surface.dialog` | 4.39:1 | 3.00:1 | Icon on a red tonal background | Pass |
+| `support.red.main` | `surface.dialog` | 5.29:1 | 3.00:1 | red dot, marker or chart mark | Pass |
+| `support.red.text` | `support.red.soft` over `surface.overlay` | 4.83:1 | 4.50:1 | Label of a red tag, chip or avatar | Pass |
+| `support.red.main` | `support.red.soft` over `surface.overlay` | 4.20:1 | 3.00:1 | Icon on a red tonal background | Pass |
+| `support.red.main` | `surface.overlay` | 5.08:1 | 3.00:1 | red dot, marker or chart mark | Pass |
+| `support.turquoise.text` | `support.turquoise.soft` over `surface.canvas` | 8.39:1 | 4.50:1 | Label of a turquoise tag, chip or avatar | Pass |
+| `support.turquoise.main` | `support.turquoise.soft` over `surface.canvas` | 8.39:1 | 3.00:1 | Icon on a turquoise tonal background | Pass |
+| `support.turquoise.main` | `surface.canvas` | 10.75:1 | 3.00:1 | turquoise dot, marker or chart mark | Pass |
+| `support.turquoise.text` | `support.turquoise.soft` over `surface.field` | 8.22:1 | 4.50:1 | Label of a turquoise tag, chip or avatar | Pass |
+| `support.turquoise.main` | `support.turquoise.soft` over `surface.field` | 8.22:1 | 3.00:1 | Icon on a turquoise tonal background | Pass |
+| `support.turquoise.main` | `surface.field` | 10.57:1 | 3.00:1 | turquoise dot, marker or chart mark | Pass |
+| `support.turquoise.text` | `support.turquoise.soft` over `surface.sidebar` | 8.02:1 | 4.50:1 | Label of a turquoise tag, chip or avatar | Pass |
+| `support.turquoise.main` | `support.turquoise.soft` over `surface.sidebar` | 8.02:1 | 3.00:1 | Icon on a turquoise tonal background | Pass |
+| `support.turquoise.main` | `surface.sidebar` | 10.43:1 | 3.00:1 | turquoise dot, marker or chart mark | Pass |
+| `support.turquoise.text` | `support.turquoise.soft` over `surface.tableHeader` | 7.63:1 | 4.50:1 | Label of a turquoise tag, chip or avatar | Pass |
+| `support.turquoise.main` | `support.turquoise.soft` over `surface.tableHeader` | 7.63:1 | 3.00:1 | Icon on a turquoise tonal background | Pass |
+| `support.turquoise.main` | `surface.tableHeader` | 10.08:1 | 3.00:1 | turquoise dot, marker or chart mark | Pass |
+| `support.turquoise.text` | `support.turquoise.soft` over `surface.raised` | 7.22:1 | 4.50:1 | Label of a turquoise tag, chip or avatar | Pass |
+| `support.turquoise.main` | `support.turquoise.soft` over `surface.raised` | 7.22:1 | 3.00:1 | Icon on a turquoise tonal background | Pass |
+| `support.turquoise.main` | `surface.raised` | 9.74:1 | 3.00:1 | turquoise dot, marker or chart mark | Pass |
+| `support.turquoise.text` | `support.turquoise.soft` over `surface.dialog` | 6.98:1 | 4.50:1 | Label of a turquoise tag, chip or avatar | Pass |
+| `support.turquoise.main` | `support.turquoise.soft` over `surface.dialog` | 6.98:1 | 3.00:1 | Icon on a turquoise tonal background | Pass |
+| `support.turquoise.main` | `surface.dialog` | 9.46:1 | 3.00:1 | turquoise dot, marker or chart mark | Pass |
+| `support.turquoise.text` | `support.turquoise.soft` over `surface.overlay` | 6.63:1 | 4.50:1 | Label of a turquoise tag, chip or avatar | Pass |
+| `support.turquoise.main` | `support.turquoise.soft` over `surface.overlay` | 6.63:1 | 3.00:1 | Icon on a turquoise tonal background | Pass |
+| `support.turquoise.main` | `surface.overlay` | 9.09:1 | 3.00:1 | turquoise dot, marker or chart mark | Pass |
+| `support.orange.text` | `support.orange.soft` over `surface.canvas` | 6.78:1 | 4.50:1 | Label of a orange tag, chip or avatar | Pass |
+| `support.orange.main` | `support.orange.soft` over `surface.canvas` | 6.78:1 | 3.00:1 | Icon on a orange tonal background | Pass |
+| `support.orange.main` | `surface.canvas` | 8.26:1 | 3.00:1 | orange dot, marker or chart mark | Pass |
+| `support.orange.text` | `support.orange.soft` over `surface.field` | 6.61:1 | 4.50:1 | Label of a orange tag, chip or avatar | Pass |
+| `support.orange.main` | `support.orange.soft` over `surface.field` | 6.61:1 | 3.00:1 | Icon on a orange tonal background | Pass |
+| `support.orange.main` | `surface.field` | 8.12:1 | 3.00:1 | orange dot, marker or chart mark | Pass |
+| `support.orange.text` | `support.orange.soft` over `surface.sidebar` | 6.45:1 | 4.50:1 | Label of a orange tag, chip or avatar | Pass |
+| `support.orange.main` | `support.orange.soft` over `surface.sidebar` | 6.45:1 | 3.00:1 | Icon on a orange tonal background | Pass |
+| `support.orange.main` | `surface.sidebar` | 8.01:1 | 3.00:1 | orange dot, marker or chart mark | Pass |
+| `support.orange.text` | `support.orange.soft` over `surface.tableHeader` | 6.16:1 | 4.50:1 | Label of a orange tag, chip or avatar | Pass |
+| `support.orange.main` | `support.orange.soft` over `surface.tableHeader` | 6.16:1 | 3.00:1 | Icon on a orange tonal background | Pass |
+| `support.orange.main` | `surface.tableHeader` | 7.75:1 | 3.00:1 | orange dot, marker or chart mark | Pass |
+| `support.orange.text` | `support.orange.soft` over `surface.raised` | 5.84:1 | 4.50:1 | Label of a orange tag, chip or avatar | Pass |
+| `support.orange.main` | `support.orange.soft` over `surface.raised` | 5.84:1 | 3.00:1 | Icon on a orange tonal background | Pass |
+| `support.orange.main` | `surface.raised` | 7.48:1 | 3.00:1 | orange dot, marker or chart mark | Pass |
+| `support.orange.text` | `support.orange.soft` over `surface.dialog` | 5.65:1 | 4.50:1 | Label of a orange tag, chip or avatar | Pass |
+| `support.orange.main` | `support.orange.soft` over `surface.dialog` | 5.65:1 | 3.00:1 | Icon on a orange tonal background | Pass |
+| `support.orange.main` | `surface.dialog` | 7.27:1 | 3.00:1 | orange dot, marker or chart mark | Pass |
+| `support.orange.text` | `support.orange.soft` over `surface.overlay` | 5.39:1 | 4.50:1 | Label of a orange tag, chip or avatar | Pass |
+| `support.orange.main` | `support.orange.soft` over `surface.overlay` | 5.39:1 | 3.00:1 | Icon on a orange tonal background | Pass |
+| `support.orange.main` | `surface.overlay` | 6.98:1 | 3.00:1 | orange dot, marker or chart mark | Pass |
 | `chart.series.1` | `surface.canvas` | 7.84:1 | 3.00:1 | Chart series mark | Pass |
 | `chart.series.1` | `surface.raised` | 7.11:1 | 3.00:1 | Chart series mark | Pass |
+| `chart.series.1` | `chart.tooltipSurface` | 6.63:1 | 3.00:1 | Chart series mark | Pass |
 | `chart.series.2` | `surface.canvas` | 6.15:1 | 3.00:1 | Chart series mark | Pass |
 | `chart.series.2` | `surface.raised` | 5.58:1 | 3.00:1 | Chart series mark | Pass |
+| `chart.series.2` | `chart.tooltipSurface` | 5.20:1 | 3.00:1 | Chart series mark | Pass |
 | `chart.series.3` | `surface.canvas` | 9.73:1 | 3.00:1 | Chart series mark | Pass |
 | `chart.series.3` | `surface.raised` | 8.82:1 | 3.00:1 | Chart series mark | Pass |
+| `chart.series.3` | `chart.tooltipSurface` | 8.23:1 | 3.00:1 | Chart series mark | Pass |
 | `chart.series.4` | `surface.canvas` | 9.65:1 | 3.00:1 | Chart series mark | Pass |
 | `chart.series.4` | `surface.raised` | 8.74:1 | 3.00:1 | Chart series mark | Pass |
+| `chart.series.4` | `chart.tooltipSurface` | 8.16:1 | 3.00:1 | Chart series mark | Pass |
 | `chart.series.5` | `surface.canvas` | 11.38:1 | 3.00:1 | Chart series mark | Pass |
 | `chart.series.5` | `surface.raised` | 10.32:1 | 3.00:1 | Chart series mark | Pass |
+| `chart.series.5` | `chart.tooltipSurface` | 9.62:1 | 3.00:1 | Chart series mark | Pass |
 | `chart.series.6` | `surface.canvas` | 10.75:1 | 3.00:1 | Chart series mark | Pass |
 | `chart.series.6` | `surface.raised` | 9.74:1 | 3.00:1 | Chart series mark | Pass |
+| `chart.series.6` | `chart.tooltipSurface` | 9.09:1 | 3.00:1 | Chart series mark | Pass |
 | `chart.series.7` | `surface.canvas` | 8.26:1 | 3.00:1 | Chart series mark | Pass |
 | `chart.series.7` | `surface.raised` | 7.48:1 | 3.00:1 | Chart series mark | Pass |
+| `chart.series.7` | `chart.tooltipSurface` | 6.98:1 | 3.00:1 | Chart series mark | Pass |
 | `chart.series.8` | `surface.canvas` | 6.01:1 | 3.00:1 | Chart series mark | Pass |
 | `chart.series.8` | `surface.raised` | 5.44:1 | 3.00:1 | Chart series mark | Pass |
+| `chart.series.8` | `chart.tooltipSurface` | 5.08:1 | 3.00:1 | Chart series mark | Pass |
+| `chart.label` | `surface.canvas` | 11.29:1 | 4.50:1 | Chart labels | Pass |
+| `chart.label` | `surface.raised` | 10.23:1 | 4.50:1 | Chart labels | Pass |
+| `chart.label` | `chart.tooltipSurface` | 9.54:1 | 4.50:1 | Chart labels | Pass |
+| `border.default` | `surface.field` | 1.44:1 | 1.40:1 | Outline of a text field | Pass (exception) |
+| `border.strong` | `surface.field` | 2.08:1 | 2.00:1 | Outline of a hovered text field | Pass (exception) |
+| `text.placeholder` | `surface.field` | 3.76:1 | 3.70:1 | Placeholder of a text field | Pass (exception) |
+| `border.default` | `surface.canvas` | 1.46:1 | 1.40:1 | Thumb of the page scrollbar | Pass (exception) |
+
+### Accepted exceptions
+
+Pairs of the v2 design accepted below the WCAG minimum. Each one keeps the lowest ratio it may reach: a token
+change that lowers it further still fails.
+
+| Foreground | Background | WCAG minimum | Accepted minimum | Justification |
+| --- | --- | --- | --- | --- |
+| `border.default` | `surface.field` | 3.00:1 | 1.40:1 | Outline of the v2 text fields. The field is identified by its visible label and its own background, and the focused field gets the pink focus border, which meets 3:1. |
+| `border.strong` | `surface.field` | 3.00:1 | 2.00:1 | Outline of a hovered v2 text field: hover is extra feedback, never the only way to find the field. |
+| `text.placeholder` | `surface.field` | 4.50:1 | 3.70:1 | Placeholder of the v2 text fields: an example of the expected value, never the only instruction, since every field has a visible label. |
+| `border.default` | `surface.canvas` | 3.00:1 | 1.40:1 | Thumb of the page scrollbar (revises the 3:1 of F20): scrolling does not depend on it, and the high contrast modes give the scrollbar back to the system. |
+
+### Tokens outside the pairs
+
+| Token | Reason |
+| --- | --- |
+| `color.*.*` | Raw scales: they are audited through the semantic tokens that take their values. |
+| `text.disabled` | Disabled controls are exempt from WCAG 1.4.3 and 1.4.11. |
+| `text.inverse` | Dark ink of filled controls, audited as `intent.*.contrastText`. |
+| `border.subtle` | Decorative separation inside containers; grouping never depends on it alone. |
+| `state.disabledSurface` | Disabled controls are exempt from WCAG 1.4.3 and 1.4.11. |
+| `state.disabledText` | Disabled controls are exempt from WCAG 1.4.3 and 1.4.11. |
+| `state.disabledBorder` | Disabled controls are exempt from WCAG 1.4.3 and 1.4.11. |
+| `intent.*.light` | Tint of the intent, audited where it is used: `accent.linkHover`. |
+| `intent.*.dark` | Shade of the intent for decoration; it never carries text or a required indicator. |
+| `chart.grid` | Decorative gridlines; values are read from the labels and the tooltip. |
+| `chart.axis` | Decorative axis line; values are read from the labels and the tooltip. |
+| `backdrop.scrim` | Scrim behind dialogs; nothing is read on it. |
