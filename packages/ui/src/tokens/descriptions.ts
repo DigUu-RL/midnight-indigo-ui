@@ -136,6 +136,8 @@ export const tokenDescriptions: Readonly<TokenDescriptions> = {
 		primary: 'Body text and headings.',
 		secondary: 'Supporting text and descriptions.',
 		muted: 'Placeholders, hints and captions; still meets 4.5:1.',
+		placeholder:
+			'Placeholder of text fields, only on `surface.field`; an accepted exception below 4.5:1, so a placeholder never carries information the label lacks.',
 		disabled:
 			'Text of disabled controls; exempt from contrast minimums, never used to signal loading.',
 		inverse: 'Text on light fills.',

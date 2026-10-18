@@ -77,6 +77,7 @@ export interface TextTokens {
 	primary: HexColor;
 	secondary: HexColor;
 	muted: HexColor;
+	placeholder: HexColor;
 	disabled: HexColor;
 	inverse: HexColor;
 }
@@ -341,6 +342,8 @@ export const textTokens: Readonly<TextTokens> = {
 	primary: '#F2EFFC',
 	secondary: '#C3BDDC',
 	muted: '#9790B8',
+	// Below 4.5:1 on `field` by design: an accepted exception of the contrast audit (`contrastExceptions`).
+	placeholder: midnightScale['250'],
 	disabled: '#5E5880',
 	inverse: surfaceTokens.canvas,
 };

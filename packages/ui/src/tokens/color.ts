@@ -68,6 +68,30 @@ export const translucent = (color: string, alpha: number): string => {
 	return `rgb(${String(red)} ${String(green)} ${String(blue)} / ${String(alpha)})`;
 };
 
+const translucentColorPattern: RegExp = /^rgb\((\d+) (\d+) (\d+) \/ ([\d.]+)\)$/;
+
+/** Whether `value` is a translucent color written by `translucent`, such as `rgb(255 106 193 / 0.16)`. */
+export const isTranslucentColor = (value: string): boolean => translucentColorPattern.test(value);
+
+/**
+ * The opaque color seen when `color` is drawn over `backdrop`. `color` is a hex color, returned as is, or a
+ * translucent color written by `translucent`.
+ */
+export const compositeOver = (color: string, backdrop: string): HexColor => {
+	const match: RegExpExecArray | null = translucentColorPattern.exec(color);
+	if (match === null) return normalizeHexColor(color);
+
+	const [, red = '0', green = '0', blue = '0', alpha = '1']: string[] = match;
+
+	const opaque: HexColor = formatHexColor({
+		red: Number(red),
+		green: Number(green),
+		blue: Number(blue),
+	});
+
+	return mixColors(opaque, backdrop, Number(alpha));
+};
+
 /** Range of the tonal backgrounds built by `soft`: the share of the color over the surface below it. */
 export const softAlpha = {
 	minimum: 0.14,

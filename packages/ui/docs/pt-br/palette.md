@@ -128,6 +128,31 @@ soft('#3FD0C9'); // 'rgb(63 208 201 / 0.16)'
 As séries de gráfico (`chart.series`) são as cores de apoio, começando por rosa, violeta e azul; o vermelho vem por
 último, porque também é lido como erro.
 
+## Auditoria de contraste
+
+`auditContrast(tokens)` mede cada par texto/fundo da paleta contra o WCAG 2.2 AA: 4.5:1 para texto, 3:1 para texto
+grande e indicadores não textuais. Os pares derivam da estrutura dos tokens (texto × superfícies × intents × cores de
+apoio sobre os fundos tonais, compostos sobre cada superfície), então uma nova superfície, intent ou cor de apoio é
+auditada sozinha, e um novo token de cor fora dos pares reprova o teste até ganhar um par ou uma isenção documentada. O
+teste roda em `pnpm test` e no CI e, ao falhar, lista cada par reprovado com os tokens, a razão e o uso. A lista
+completa está em [pares de contraste](../en-us/tokens.md#contrast-pairs).
+
+O design v2 aceita quatro pares abaixo do mínimo. Cada um guarda a menor razão que pode atingir, então uma mudança de
+token que a reduza ainda mais continua reprovando:
+
+| Par                                      | Razão | Onde                              | Por que é aceito                                                                        |
+| ---------------------------------------- | ----- | --------------------------------- | --------------------------------------------------------------------------------------- |
+| `border.default` sobre `surface.field`   | 1.4:1 | Contorno de um campo de texto     | O rótulo visível e o fundo do campo o identificam; o foco desenha a borda rosa, com 3:1 |
+| `border.strong` sobre `surface.field`    | 2.1:1 | Contorno de um campo sob o cursor | O hover é um retorno extra, nunca o único jeito de achar o campo                        |
+| `text.placeholder` sobre `surface.field` | 3.8:1 | Placeholder                       | Um exemplo do valor, nunca a única instrução: o rótulo continua visível                 |
+| `border.default` sobre `surface.canvas`  | 1.5:1 | Polegar da barra de rolagem       | A rolagem não depende dele; os modos de alto contraste devolvem a barra do sistema      |
+
+```ts
+import { auditContrast, formatContrastReport, tokens } from '@midnight-indigo/ui/tokens';
+
+formatContrastReport(auditContrast(tokens)); // '' quando todos os pares passam
+```
+
 ## Escalas e tema
 
 As escalas são fixas: um tema criado com `createUiTheme` muda as intenções semânticas, nunca `tokens.color`. Com um

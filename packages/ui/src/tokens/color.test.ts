@@ -1,10 +1,12 @@
 import { describe, expect, it } from 'vitest';
 
 import {
+	compositeOver,
 	contrastRatio,
 	ensureContrast,
 	formatContrastRatio,
 	isHexColor,
+	isTranslucentColor,
 	mixColors,
 	normalizeHexColor,
 	parseHexColor,
@@ -58,6 +60,23 @@ describe('translucent and soft', (): void => {
 	it('keeps the alpha within the tonal range of 14–18%', (): void => {
 		expect(soft('#8F7AFB', 0.5)).toBe('rgb(143 122 251 / 0.18)');
 		expect(soft('#8F7AFB', 0)).toBe('rgb(143 122 251 / 0.14)');
+	});
+
+	it('recognizes the translucent colors it writes', (): void => {
+		expect(isTranslucentColor(soft('#8F7AFB'))).toBe(true);
+
+		expect(
+			['#8F7AFB', 'rgb(143, 122, 251)', '0 1px 2px 0 rgb(0 0 0 / 0.5)'].some(isTranslucentColor),
+		).toBe(false);
+	});
+
+	it('composites a translucent color over its backdrop, like the browser', (): void => {
+		expect(compositeOver(translucent('#FFFFFF', 0.5), '#000000')).toBe('#808080');
+		expect(compositeOver(soft('#FF6AC1'), '#13102B')).toBe(mixColors('#FF6AC1', '#13102B', 0.16));
+	});
+
+	it('returns an opaque color as is, normalized', (): void => {
+		expect(compositeOver('#f6c', '#000000')).toBe('#FF66CC');
 	});
 });
 

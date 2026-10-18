@@ -17,6 +17,7 @@ import { createThemeStylesheet, createUiTheme } from '@midnight-indigo/ui/theme'
 import type { UiTheme, UiThemeConfig } from '@midnight-indigo/ui/theme';
 import {
 	auditContrast,
+	describeContrastPair,
 	isHexColor,
 	normalizeHexColor,
 	semanticIntents,
@@ -210,7 +211,7 @@ export const PaletteEditor = (): ReactElement => {
 						<ul className='contrast-failures'>
 							{failures.map((failure: ContrastResult): ReactElement => {
 								return (
-									<li key={`${failure.foreground} ${failure.background}`}>
+									<li key={describeContrastPair(failure)}>
 										<code>{failure.foreground}</code> / <code>{failure.background}</code>
 										{': '}
 										{t('appearance.contrast.ratio', {
