@@ -3,14 +3,14 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
-import type { Theme } from '@mui/material/styles';
+import type { CSSObject, Theme } from '@mui/material/styles';
 import { createContext, use, useMemo } from 'react';
 import type { Context, ReactElement, ReactNode } from 'react';
 
 import { createThemeStylesheet, defaultUiTheme } from '#src/theme/create-ui-theme.ts';
 import type { UiTheme } from '#src/theme/create-ui-theme.ts';
 import { toMuiTheme } from '#src/theme/mui-theme.ts';
-import { nativeBaselineStyles } from '#src/theme/native-styles.ts';
+import { createNativeBaselineStyles } from '#src/theme/native-baseline.ts';
 import { usePrefersReducedMotion } from '#src/theme/use-prefers-reduced-motion.ts';
 
 export interface UiProviderProps {
@@ -74,6 +74,11 @@ export const UiProvider = ({
 		[theme, reducedMotion],
 	);
 
+	const baselineStyles: CSSObject = useMemo(
+		(): CSSObject => createNativeBaselineStyles(theme),
+		[theme],
+	);
+
 	return (
 		<UiThemeContext value={theme}>
 			<style href={`midnight-indigo-theme-${hashText(stylesheet)}`} precedence='midnight-indigo'>
@@ -82,7 +87,7 @@ export const UiProvider = ({
 
 			<MuiThemeProvider theme={muiTheme}>
 				{baseline ? <CssBaseline enableColorScheme /> : null}
-				{baseline ? <GlobalStyles styles={nativeBaselineStyles} /> : null}
+				{baseline ? <GlobalStyles styles={baselineStyles} /> : null}
 				{children}
 			</MuiThemeProvider>
 		</UiThemeContext>

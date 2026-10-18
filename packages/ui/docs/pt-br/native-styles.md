@@ -3,10 +3,12 @@
 [English](../en-us/native-styles.md)
 
 Os componentes seguem o tema, mas o navegador também desenha coisas por conta própria: as barras de rolagem, a seleção
-de texto, o fundo dos campos preenchidos automaticamente, os controles nativos (botões, campos, `select`, campos de data
-e hora) e o anel de foco padrão. Sem tratamento, eles aparecem com a aparência do navegador e quebram a aparência escura
-de qualquer página. Com `baseline` (o padrão), o `UiProvider` os reseta e os estiliza com os tokens do tema: nenhum
-elemento mostra um estilo padrão do navegador.
+de texto, o fundo dos campos preenchidos automaticamente, os controles nativos (botões, campos, `select`, checkboxes,
+radios, ranges, campos de data e hora, barras de progresso e medidores), elementos estruturais sem componente próprio
+(tabelas, listas, `details`, `fieldset`, `dialog`) e o anel de foco padrão. Sem tratamento, eles aparecem com a
+aparência do navegador e quebram a aparência escura de qualquer página. Com `baseline` (o padrão), o `UiProvider` os
+reseta e os estiliza com os tokens do tema: nenhum elemento mostra um estilo padrão do navegador, no Chromium, no
+Firefox e no WebKit.
 
 ```tsx
 import { UiProvider } from '@midnight-indigo/ui/theme';
@@ -19,35 +21,57 @@ import { UiProvider } from '@midnight-indigo/ui/theme';
 
 Os tokens do tema vêm antes de qualquer padrão do navegador: onde o tema tem um valor, o padrão do navegador é resetado
 e substituído por ele. Para mudar a aparência de um elemento nativo, mude o tema (a paleta passada a `createUiTheme` ou
-ao `UiProvider`); a baseline lê toda cor como uma referência `var(--mi-*)`, então segue essa paleta sozinha. Toda regra
-de elemento fica dentro de `:where()`, cuja especificidade é zero, então uma classe de um componente ou da aplicação
-ainda vence, mas a baseline não foi feita para ser sobrescrita elemento a elemento.
+ao `UiProvider`); a baseline lê toda cor como uma referência `var(--mi-*)`, então segue essa paleta sozinha. Os glyphs
+que ela desenha como imagens (o chevron de um `select`, o check de um checkbox, o ícone dos campos de data e hora, o
+chevron de `summary`) e o fundo atrás de um diálogo não conseguem ler uma custom property: o `UiProvider` os resolve a
+partir do próprio `theme`. Toda regra de elemento fica dentro de `:where()`, cuja especificidade é zero, então uma
+classe de um componente ou da aplicação ainda vence, mas a baseline não foi feita para ser sobrescrita elemento a
+elemento.
+
+Para aplicar a baseline sem o `UiProvider`, passe `createNativeBaselineStyles(theme)` ao `GlobalStyles` do Material UI
+(`nativeBaselineStyles` é o mesmo para o tema oficial).
 
 ## O que a baseline estiliza
 
-| Elemento nativo                                        | Estilo                                                                                                      |
-| ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
-| Documento                                              | `color-scheme: dark`, para que seletores de data e popups de formulário fiquem escuros.                     |
-| `button`, `input`, `select`, `textarea`                | Reset: `appearance: none`, `font: inherit`, `color: inherit`, sem fundo, sem borda.                         |
-| `input` `checkbox`, `radio`, `range`, `color`          | Fora do reset, para nunca ficarem invisíveis: desenho nativo tingido por `accent-color: intent.brand.main`. |
-| Barra de rolagem da página                             | Fina, polegar `border.default` sobre trilho `surface.canvas`; com o cursor em cima, `border.control`.       |
-| Seleção de texto (`::selection`)                       | Fundo `accent.selection` (brand), texto `accent.onSelection` (um par auditado).                             |
-| Cursor de texto                                        | `caret-color: focus.ring` (o rosa oficial).                                                                 |
-| Campos com autofill (`:autofill`, `:-webkit-autofill`) | Fundo `surface.field` e texto `text.primary` em vez do preenchimento azul ou amarelo.                       |
-| Foco de elementos nativos (`:focus-visible`)           | O anel de foco rosa dos componentes: `focus.width` sólido `focus.ring`, deslocamento `focus.offset`.        |
-| `::placeholder`                                        | `text.placeholder`, totalmente opaco.                                                                       |
-| `a`, `a:hover`                                         | `accent.link`, `accent.linkHover`.                                                                          |
-| `hr`, `kbd`, `mark`, `abbr[title]`, `blockquote`       | Bordas e superfícies do tema; `mark` usa o par suave de alerta; `abbr` é sublinhado pontilhado.             |
-| `code`, `kbd`, `pre`, `samp`                           | Geist Mono (`fontFamily.mono`) com algarismos tabulares.                                                    |
-| `h1`–`h6`, `p`                                         | `text-wrap: pretty`, para que a última linha não fique com uma única palavra curta.                         |
-| Rolagem                                                | `scroll-behavior: smooth` apenas para quem não pediu movimento reduzido.                                    |
-| Páginas com a barra superior do `DashboardLayout`      | `scroll-padding-top` igual à altura dela, para que âncoras e elementos focados parem abaixo dela.           |
-| Navegadores móveis                                     | Sem destaque de toque; `text-size-adjust: 100%` (sem aumento automático do texto).                          |
+| Elemento nativo                                        | Estilo                                                                                                                      |
+| ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
+| Documento                                              | `color-scheme: dark`, para que seletores de data e popups de formulário fiquem escuros.                                     |
+| `button`, `input`, `select`, `textarea`                | Reset: `appearance: none`, `font: inherit`, `color: inherit`, sem fundo, sem borda.                                         |
+| `select` (simples)                                     | O glyph `chevronDown` em `text.muted` no fim da linha (`text.disabled` quando desabilitado).                                |
+| `option`, `optgroup`                                   | Fundo `surface.overlay`, texto `text.primary`.                                                                              |
+| `input` `checkbox`, `radio`                            | Caixa `border.control` sobre `surface.field`; marcado, `intent.brand.main` com o glyph `check` (ou `minus`) ou um ponto.    |
+| `input` `range`                                        | Barra `border.default`, polegar `intent.brand.main` (e preenchimento no Firefox).                                           |
+| `input` `color`                                        | Quadrado `controlHeight.small` com borda `border.control` e amostra arredondada.                                            |
+| Campos de data e hora                                  | O glyph `calendar` (ou `clock`) no indicador do navegador, que continua abrindo o seletor no clique.                        |
+| `input` `number`                                       | Sem botões de incremento.                                                                                                   |
+| `::file-selector-button`                               | Um botão secundário: `surface.raised`, borda `border.control`, `text.primary`.                                              |
+| `progress`, `meter`                                    | Barra `border.subtle`; valor em `intent.brand.main` (medidores: sucesso, alerta, erro por região).                          |
+| `progress` sem valor                                   | Um segmento percorre a barra; fica parado com a preferência por movimento reduzido.                                         |
+| `fieldset`, `legend`                                   | Borda `border.subtle` com o raio de um card; legenda semibold em `text.primary`.                                            |
+| `details`, `summary`                                   | O glyph `chevronRight` no lugar do marcador, virado para baixo quando aberto (espelhado da direita para a esquerda).        |
+| `dialog`, `::backdrop`                                 | `surface.dialog`, `border.subtle`, `radius.dialog`, `elevation.dialog`; fundo `backdrop.scrim`, desfocado.                  |
+| `table`, `th`, `td`                                    | Bordas colapsadas, cabeçalho `surface.tableHeader` em caixa alta 11/600 `text.muted`, linhas separadas por `border.subtle`. |
+| `ul`, `ol`, `::marker`, `dl`                           | Recuo `spacing.6`; marcadores em `text.muted` (algarismos tabulares); `dt` semibold, `dd` em `text.secondary`.              |
+| `pre`                                                  | Bloco `surface.field` com borda `border.subtle` e as barras de rolagem do tema.                                             |
+| Barra de rolagem da página                             | Fina, polegar `border.default` sobre trilho `surface.canvas`; com o cursor em cima, `border.control`.                       |
+| Seleção de texto (`::selection`)                       | Fundo `accent.selection` (brand), texto `accent.onSelection` (um par auditado).                                             |
+| Cursor de texto                                        | `caret-color: focus.ring` (o rosa oficial).                                                                                 |
+| Campos com autofill (`:autofill`, `:-webkit-autofill`) | Fundo `surface.field` e texto `text.primary` em vez do preenchimento azul ou amarelo.                                       |
+| Foco de elementos nativos (`:focus-visible`)           | O anel de foco rosa dos componentes: `focus.width` sólido `focus.ring`, deslocamento `focus.offset`.                        |
+| `::placeholder`                                        | `text.placeholder`, totalmente opaco.                                                                                       |
+| `a`, `a:hover`                                         | `accent.link`, `accent.linkHover`.                                                                                          |
+| `hr`, `kbd`, `mark`, `abbr[title]`, `blockquote`       | Bordas e superfícies do tema; `mark` usa o par suave de alerta; `abbr` é sublinhado pontilhado.                             |
+| `code`, `kbd`, `pre`, `samp`                           | Geist Mono (`fontFamily.mono`) com algarismos tabulares; `code` em linha sobre `surface.overlay`.                           |
+| `h1`–`h6`, `p`                                         | `text-wrap: pretty`, para que a última linha não fique com uma única palavra curta.                                         |
+| Rolagem                                                | `scroll-behavior: smooth` apenas para quem não pediu movimento reduzido.                                                    |
+| Páginas com a barra superior do `DashboardLayout`      | `scroll-padding-top` igual à altura dela, para que âncoras e elementos focados parem abaixo dela.                           |
+| Navegadores móveis                                     | Sem destaque de toque; `text-size-adjust: 100%` (sem aumento automático do texto).                                          |
 
-A baseline nunca redefine margens, alturas de linha ou tamanhos de fonte do conteúdo. Títulos, parágrafos e listas
-mantêm os padrões do navegador, exceto pelo `text-wrap: pretty`. Um controle nativo resetado recebe a fonte e a cor do
-elemento pai e não desenha borda própria; checkboxes, radios, ranges, seletores de cor e o chevron de um `select`
-nativo passam a ser desenhados pelo tema em uma versão posterior.
+A baseline nunca redefine margens ou alturas de linha do conteúdo. Títulos e parágrafos mantêm os padrões do navegador,
+exceto pelo `text-wrap: pretty`. Um controle nativo resetado recebe a fonte e a cor do elemento pai e não desenha borda
+própria, a menos que o tema desenhe uma (checkboxes, radios, seletores de cor, o botão de arquivo). O Firefox não
+desenha nem o indicador dos campos de data nem os botões de incremento como pseudo-elementos: o botão de data dele
+mantém a cor do texto do campo, e `appearance: none` remove os botões de incremento.
 
 O placeholder (`text.placeholder`, 3,8:1 sobre `surface.field`) e o polegar da barra de rolagem da página
 (`border.default`, 1,5:1 sobre `surface.canvas`) ficam abaixo do mínimo da WCAG de propósito: são exceções aceitas da
@@ -59,7 +83,9 @@ nunca depende do polegar.
 Nos temas de contraste do Windows (`forced-colors: active`), as cores de sistema substituem o tema: as barras de
 rolagem voltam a ser as do sistema, a seleção, o anel de foco e `mark` usam `Highlight`, `HighlightText`, `Mark` e
 `MarkText`, e os controles nativos recuperam a aparência, o fundo e a borda do sistema (`revert`), para que os limites
-deles continuem visíveis. Nada na biblioteca define `forced-color-adjust`, então o navegador mantém o controle de todas
+deles continuem visíveis. As partes desenhadas dentro deles (trilhos e polegares de ranges, amostras de cor, indicadores
+de data, botões de arquivo, barras de progresso e medidores) voltam inteiras ao navegador (`all: revert`), e `summary`
+mostra o marcador do sistema no lugar do chevron, uma imagem de cor fixa. Nada na biblioteca define `forced-color-adjust`, então o navegador mantém o controle de todas
 as cores.
 
 ## Contêineres roláveis
@@ -118,10 +144,13 @@ Ele continua declarando as custom properties dos tokens em `:root`, com `color-s
 ## Testes
 
 `fixtures/browser/test/native` roda em Chromium, Firefox e WebKit: screenshots da página, de um contêiner rolável, dos
-controles nativos e da seleção com o anel de foco; o estilo computado de cada controle nativo (os resetados com
-`appearance: none`, sem fundo, sem borda e com a fonte da página; checkboxes, radios, ranges e seletores de cor ainda
-desenhados pelo navegador); um autofill real no Chromium (pelo protocolo do DevTools), em que um campo da biblioteca
-precisa ficar igual antes e depois e um campo nativo recebe o campo do tema; axe com contraste; o modo de alto
-contraste emulado, com os controles do sistema de volta; e a página com a baseline desligada. O Firefox headless
+controles nativos e dos estados deles, dos elementos estruturais, de um diálogo modal e da seleção com o anel de foco;
+o estilo computado de cada controle nativo (os resetados com `appearance: none`, sem fundo, sem borda e com a fonte da
+página; checkboxes, radios, ranges e seletores de cor desenhados pelo tema), das barras de progresso e dos medidores,
+dos indicadores de data e dos botões de incremento (Chromium e WebKit), de tabelas, listas, `pre`, `summary` e
+`fieldset`, e do fundo atrás de um diálogo; um autofill real no Chromium (pelo protocolo do DevTools), em que um campo
+da biblioteca precisa ficar igual antes e depois e um campo nativo recebe o campo do tema; axe com contraste; o modo
+de alto contraste emulado, com os controles do sistema e o marcador de `summary` de volta; e a página com a baseline
+desligada. O Firefox headless
 esconde as barras de rolagem e o WebKit as sobrepõe, então nessas engines são verificados o `scrollbar-color`
 computado (Firefox) e os pseudo-elementos interpretados (WebKit).

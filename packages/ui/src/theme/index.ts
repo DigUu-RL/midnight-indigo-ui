@@ -7,11 +7,11 @@ export {
 export type { CreateUiThemeOptions, UiTheme } from '#src/theme/create-ui-theme.ts';
 export { toMuiTheme } from '#src/theme/mui-theme.ts';
 export type { MuiThemeOptions } from '#src/theme/mui-theme.ts';
+export { createNativeBaselineStyles, nativeBaselineStyles } from '#src/theme/native-baseline.ts';
 export {
 	autofillStyles,
 	forcedColorsMediaQuery,
 	hiddenScrollbarStyles,
-	nativeBaselineStyles,
 	scrollbarStyles,
 } from '#src/theme/native-styles.ts';
 export { parseUiThemeConfig, UiThemeConfigError } from '#src/theme/theme-config.ts';

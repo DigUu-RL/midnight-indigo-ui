@@ -1,6 +1,6 @@
 // What the browser draws by itself, styled by the baseline of `UiProvider`, in Chromium, Firefox and WebKit: scrollbars
-// of the page and of an inner container, native controls, autofill, selection and focus, the high contrast modes, and no
-// global style at all with the baseline turned off. Update the baselines on purpose only:
+// of the page and of an inner container, native controls and their states, the structural elements, a modal dialog,
+// autofill, selection and focus, the high contrast modes, and no global style at all with the baseline turned off. Update the baselines on purpose only:
 // `pnpm --filter @midnight-indigo/browser-tests test:visual:update` (see the wiki, "Testes e integração contínua").
 import type { CDPSession, Locator, Page } from '@playwright/test';
 
@@ -11,8 +11,23 @@ import { expect, test } from '#test/support/fixtures.ts';
 const borderDefault: string = 'rgb(44, 37, 88)';
 const surfaceField: string = 'rgb(8, 6, 21)';
 
-// Native controls reset by the baseline, and the ones it leaves to the browser until the theme draws them.
-const resetControls: string[] = ['Email', 'Date', 'Time', 'Country', 'Save'];
+// `border.subtle`, `border.control`, `text.muted` and `intent.brand.main`, as browsers serialize them.
+const borderSubtle: string = 'rgb(30, 25, 64)';
+const borderControl: string = 'rgb(110, 98, 163)';
+const textMuted: string = 'rgb(151, 144, 184)';
+const brandMain: string = 'rgb(94, 72, 214)';
+
+// Native controls reset to no background nor border, and the ones the theme then draws with its own.
+const resetControls: string[] = [
+	'Email',
+	'Date',
+	'Time',
+	'Country',
+	'Quantity',
+	'Attachment',
+	'Save',
+];
+
 const drawnControls: string[] = ['Subscribed', 'Monthly', 'Volume', 'Accent'];
 
 const openScenario = async (page: Page, baseline: boolean = true): Promise<void> => {
@@ -24,10 +39,17 @@ const openScenario = async (page: Page, baseline: boolean = true): Promise<void>
 	});
 };
 
-const computedStyleOf = async (locator: Locator, property: string): Promise<string> => {
-	return locator.evaluate((element: Element, name: string): string => {
-		return getComputedStyle(element).getPropertyValue(name);
-	}, property);
+const computedStyleOf = async (
+	locator: Locator,
+	property: string,
+	pseudoElement?: string,
+): Promise<string> => {
+	return locator.evaluate(
+		(element: Element, [name, pseudo]: [string, string | undefined]): string => {
+			return getComputedStyle(element, pseudo).getPropertyValue(name);
+		},
+		[property, pseudoElement] as [string, string | undefined],
+	);
 };
 
 /**
@@ -63,6 +85,8 @@ const rulesMatching = async (page: Page, fragment: string): Promise<string[]> =>
 // there the computed style (Firefox) and the parsed pseudo-elements (WebKit) show that the engine applies the theme.
 // The end of a field, inside its border, where a short value never reaches: what the user sees as its background.
 const interiorOf = async (page: Page, field: Locator): Promise<Buffer> => {
+	await field.scrollIntoViewIfNeeded();
+
 	const box: { x: number; y: number; width: number; height: number } | null =
 		await field.boundingBox();
 
@@ -148,7 +172,11 @@ test('native controls show no default style of the browser', async ({
 	for (const name of resetControls) {
 		const control: Locator = controlNamed(page, name);
 
-		expect(await computedStyleOf(control, 'appearance'), name).toBe('none');
+		// Firefox hides the spin buttons of a number field only with the appearance of a plain text field.
+		const appearance: string =
+			browserName === 'firefox' && name === 'Quantity' ? 'textfield' : 'none';
+
+		expect(await computedStyleOf(control, 'appearance'), name).toBe(appearance);
 		expect(await computedStyleOf(control, 'background-color'), name).toBe('rgba(0, 0, 0, 0)');
 		expect(await computedStyleOf(control, 'border-top-width'), name).toBe('0px');
 
@@ -161,12 +189,136 @@ test('native controls show no default style of the browser', async ({
 		expect(await computedStyleOf(control, 'color'), name).toBe(pageColor);
 	}
 
-	// Without their native drawing they would be invisible.
+	// Without the native drawing, the theme draws them, so they never become invisible.
 	for (const name of drawnControls) {
 		const control: Locator = controlNamed(page, name);
 
-		expect(await computedStyleOf(control, 'appearance'), name).not.toBe('none');
+		expect(await computedStyleOf(control, 'appearance'), name).toBe('none');
 	}
+
+	expect(await computedStyleOf(controlNamed(page, 'Accent'), 'border-top-color')).toBe(
+		borderControl,
+	);
+
+	// Checked, the box and the radio take the brand color.
+	for (const name of ['Subscribed', 'Monthly']) {
+		const control: Locator = controlNamed(page, name);
+
+		expect(await computedStyleOf(control, 'border-top-color'), name).toBe(brandMain);
+		expect(await computedStyleOf(control, 'background-color'), name).toBe(brandMain);
+	}
+
+	expect(await computedStyleOf(controlNamed(page, 'Subscribed'), 'background-image')).toContain(
+		'data:image/svg+xml',
+	);
+
+	expect(await computedStyleOf(controlNamed(page, 'Country'), 'background-image')).toContain(
+		'data:image/svg+xml',
+	);
+});
+
+test('the states of the controls, progress bars and meters follow the theme', async ({
+	page,
+}): Promise<void> => {
+	await openScenario(page);
+	const states: Locator = page.getByTestId('states');
+
+	expect(await computedStyleOf(states.getByLabel('Partially selected'), 'background-color')).toBe(
+		brandMain,
+	);
+
+	for (const bar of [states.getByLabel('Upload'), states.getByLabel('Disk')]) {
+		expect(await computedStyleOf(bar, 'appearance')).toBe('none');
+		expect(await computedStyleOf(bar, 'background-color')).toBe(borderSubtle);
+		expect(await computedStyleOf(bar, 'background-image')).toBe('none');
+	}
+
+	await expect(states).toHaveScreenshot('control-states.png');
+});
+
+// Chromium and WebKit draw the icon of a date or time field and the spin buttons of a number field as pseudo-elements,
+// whose computed style they do not expose: the parsed rules show that the engine applies them, `native-controls.png`
+// shows the icons. Firefox has neither (its spin buttons go away with `appearance: none`).
+test('date fields show the icon of the theme on the indicator that opens the picker, number fields no spin buttons', async ({
+	page,
+	browserName,
+}): Promise<void> => {
+	test.skip(browserName === 'firefox', 'Firefox draws no indicator pseudo-element.');
+	await openScenario(page);
+
+	const indicatorRules: string[] = await rulesMatching(page, '::-webkit-calendar-picker-indicator');
+
+	expect(indicatorRules).toEqual(
+		expect.arrayContaining([
+			expect.stringMatching(
+				/^:where\(input\)::-webkit-calendar-picker-indicator \{.*data:image\/svg\+xml/,
+			),
+			expect.stringMatching(
+				/^:where\(input\[type="time"\]\)::-webkit-calendar-picker-indicator \{.*data:image\/svg\+xml/,
+			),
+		]),
+	);
+
+	// Hidden, not removed: a click on the indicator still opens the picker.
+	indicatorRules.forEach((rule: string): void => {
+		expect(rule).not.toMatch(/display: none|pointer-events: none/);
+	});
+
+	expect(await rulesMatching(page, '::-webkit-inner-spin-button')).toEqual(
+		expect.arrayContaining([expect.stringContaining('display: none')]),
+	);
+});
+
+test('tables, lists, preformatted text, disclosures and fieldsets show no default style of the browser', async ({
+	page,
+}): Promise<void> => {
+	await openScenario(page);
+	const structure: Locator = page.getByTestId('structure');
+	const header: Locator = structure.getByRole('columnheader', { name: 'Name' });
+
+	expect(await computedStyleOf(header, 'text-transform')).toBe('uppercase');
+	expect(await computedStyleOf(header, 'font-size')).toBe('11px');
+	expect(await computedStyleOf(header, 'font-weight')).toBe('600');
+	expect(await computedStyleOf(header, 'text-align')).toBe('start');
+
+	const secondRow: Locator = structure.getByRole('row', { name: /Faye Valentine/ });
+	expect(await computedStyleOf(secondRow, 'border-top-color')).toBe(borderSubtle);
+
+	const summary: Locator = structure.locator('summary').first();
+	expect(await computedStyleOf(summary, 'list-style-type')).toBe('none');
+
+	expect(await computedStyleOf(summary, 'background-image', '::before')).toContain(
+		'data:image/svg+xml',
+	);
+
+	expect(await computedStyleOf(structure.locator('li').first(), 'color', '::marker')).toBe(
+		textMuted,
+	);
+
+	expect(await computedStyleOf(structure.locator('pre'), 'border-top-color')).toBe(borderSubtle);
+
+	expect(await computedStyleOf(structure.locator('fieldset'), 'border-top-color')).toBe(
+		borderSubtle,
+	);
+
+	await expect(structure).toHaveScreenshot('structural-elements.png');
+	await expectNoAxeViolations(page);
+});
+
+test('a modal dialog dims the page with the scrim of the theme', async ({
+	page,
+}): Promise<void> => {
+	await openScenario(page);
+	await page.getByRole('button', { name: 'Open dialog' }).click();
+
+	const dialog: Locator = page.getByRole('dialog', { name: 'Native dialog' });
+	await expect(dialog).toBeVisible();
+
+	expect(await computedStyleOf(dialog, 'background-color', '::backdrop')).toBe(
+		'rgba(5, 4, 14, 0.72)',
+	);
+
+	await expect(page).toHaveScreenshot('dialog.png');
 });
 
 test('the engine parses the rule that keeps the colors of autofilled fields', async ({
@@ -247,10 +399,27 @@ test('the high contrast modes keep the system colors', async ({ page }): Promise
 		await computedStyleOf(page.getByRole('link', { name: 'documentation' }), 'forced-color-adjust'),
 	).toBe('auto');
 
-	// The controls get their system look back, so their boundaries stay visible.
-	for (const name of resetControls) {
+	// The controls, progress bars and meters get their system look back, so their boundaries stay visible. A file input
+	// has no appearance of its own: its button does.
+	const controls: string[] = [...resetControls, ...drawnControls].filter(
+		(name: string): boolean => name !== 'Attachment',
+	);
+
+	for (const name of controls) {
 		expect(await computedStyleOf(controlNamed(page, name), 'appearance'), name).not.toBe('none');
 	}
+
+	const states: Locator = page.getByTestId('states');
+
+	for (const name of ['Upload', 'Disk']) {
+		expect(await computedStyleOf(states.getByLabel(name), 'appearance'), name).not.toBe('none');
+	}
+
+	// The marker of the system takes the place of the chevron, an image in a fixed color.
+	const summary: Locator = page.getByTestId('structure').locator('summary').first();
+
+	expect(await computedStyleOf(summary, 'display')).toBe('list-item');
+	expect(await computedStyleOf(summary, 'display', '::before')).toBe('none');
 });
 
 test('with the baseline turned off, no global style is applied', async ({

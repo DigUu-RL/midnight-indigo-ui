@@ -12,6 +12,7 @@ import { reducedMotionMediaQuery } from '#src/tokens/index.ts';
 import type { HexColor } from '#src/tokens/index.ts';
 import { createUiTheme, defaultUiTheme } from '#src/theme/create-ui-theme.ts';
 import type { CreateUiThemeOptions, UiTheme } from '#src/theme/create-ui-theme.ts';
+import { glyphImage } from '#src/theme/native-baseline.ts';
 import { UiProvider, useUiTheme } from '#src/theme/ui-provider.tsx';
 
 interface ThemeSnapshot {
@@ -183,12 +184,26 @@ describe('UiProvider baseline', (): void => {
 		expect(css).toContain('::selection{background-color:var(--mi-accent-selection)');
 		expect(css).toContain('scrollbar-color:var(--mi-border-default) var(--mi-surface-canvas)');
 
-		expect(css).toMatch(
-			/:where\(button, input:not\([^{]+\), select, textarea\)\{[^}]*appearance:none/,
-		);
+		expect(css).toMatch(/:where\(button, input, select, textarea\)\{[^}]*appearance:none/);
 
 		expect(css).toContain(
 			':where(:focus-visible){outline:var(--mi-focus-width) solid var(--mi-focus-ring)',
+		);
+	});
+
+	it('draws the glyph images of the baseline in the colors of its theme', async (): Promise<void> => {
+		const theme: UiTheme = createUiTheme({ palette: { brand: { main: customMain } } }, silent);
+
+		await renderInBrowser(
+			<UiProvider theme={theme}>
+				<ThemeProbe />
+			</UiProvider>,
+		);
+
+		const check: string = glyphImage('check', theme.tokens.intent.brand.contrastText);
+
+		expect(globalStylesText()).toContain(
+			`:where(input[type="checkbox"]:checked){background-image:${check};}`,
 		);
 	});
 

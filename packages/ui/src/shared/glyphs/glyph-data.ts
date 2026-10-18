@@ -5,11 +5,13 @@ export type GlyphName =
 	| 'alert'
 	| 'arrowDown'
 	| 'arrowUp'
+	| 'calendar'
 	| 'check'
 	| 'checkCircle'
 	| 'chevronDown'
 	| 'chevronLeft'
 	| 'chevronRight'
+	| 'clock'
 	| 'close'
 	| 'externalLink'
 	| 'eye'
@@ -44,6 +46,12 @@ export const glyphData: Readonly<Record<GlyphName, IconifyIconData>> = {
 		height: 24,
 		body: '<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m6-8l-6-6m-6 6l6-6"/>',
 	},
+	// tabler:calendar
+	calendar: {
+		width: 24,
+		height: 24,
+		body: '<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm12-4v4M8 3v4m-4 4h16m-9 4h1m0 0v3"/>',
+	},
 	// tabler:check
 	check: {
 		width: 24,
@@ -73,6 +81,12 @@ export const glyphData: Readonly<Record<GlyphName, IconifyIconData>> = {
 		width: 24,
 		height: 24,
 		body: '<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 6l6 6l-6 6"/>',
+	},
+	// tabler:clock
+	clock: {
+		width: 24,
+		height: 24,
+		body: '<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0"/><path d="M12 7v5l3 3"/></g>',
 	},
 	// tabler:x
 	close: {
