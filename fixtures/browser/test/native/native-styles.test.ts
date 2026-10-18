@@ -7,8 +7,13 @@ import type { CDPSession, Locator, Page } from '@playwright/test';
 import { expectNoAxeViolations } from '#test/support/accessibility.ts';
 import { expect, test } from '#test/support/fixtures.ts';
 
-// `border.control`, the color of the scrollbar thumb, as browsers serialize it.
-const borderControl: string = 'rgb(110, 98, 163)';
+// `border.default`, the color of the scrollbar thumb, and `surface.field`, as browsers serialize them.
+const borderDefault: string = 'rgb(44, 37, 88)';
+const surfaceField: string = 'rgb(8, 6, 21)';
+
+// Native controls reset by the baseline, and the ones it leaves to the browser until the theme draws them.
+const resetControls: string[] = ['Email', 'Date', 'Time', 'Country', 'Save'];
+const drawnControls: string[] = ['Subscribed', 'Monthly', 'Volume', 'Accent'];
 
 const openScenario = async (page: Page, baseline: boolean = true): Promise<void> => {
 	await page.goto(`/?scenario=native${baseline ? '' : '&baseline=false'}`);
@@ -23,6 +28,18 @@ const computedStyleOf = async (locator: Locator, property: string): Promise<stri
 	return locator.evaluate((element: Element, name: string): string => {
 		return getComputedStyle(element).getPropertyValue(name);
 	}, property);
+};
+
+/**
+ * A native control of the controls panel, by its label or, for a button, by its text. The label is matched as a prefix:
+ * the name of a `select` wrapped in its label also carries the selected option.
+ */
+const controlNamed = (page: Page, name: string): Locator => {
+	const controls: Locator = page.getByTestId('controls');
+
+	return controls
+		.getByLabel(new RegExp(`^\\s*${name}\\b`))
+		.or(controls.getByRole('button', { name, exact: true }));
 };
 
 // WebKit has no `scrollbar-color` and draws the `::-webkit-scrollbar` pseudo-elements instead.
@@ -108,8 +125,8 @@ test('the page and an inner container draw their scrollbars in the theme colors'
 		return;
 	}
 
-	expect(await computedStyleOf(page.locator('html'), 'scrollbar-color')).toContain(borderControl);
-	expect(await computedStyleOf(container, 'scrollbar-color')).toContain(borderControl);
+	expect(await computedStyleOf(page.locator('html'), 'scrollbar-color')).toContain(borderDefault);
+	expect(await computedStyleOf(container, 'scrollbar-color')).toContain(borderDefault);
 });
 
 test('native controls render in the dark color scheme', async ({ page }): Promise<void> => {
@@ -118,6 +135,38 @@ test('native controls render in the dark color scheme', async ({ page }): Promis
 
 	expect(await computedStyleOf(page.locator('html'), 'color-scheme')).toBe('dark');
 	await expect(controls).toHaveScreenshot('native-controls.png');
+});
+
+test('native controls show no default style of the browser', async ({
+	page,
+	browserName,
+}): Promise<void> => {
+	await openScenario(page);
+	const pageFont: string = await computedStyleOf(page.locator('body'), 'font-family');
+	const pageColor: string = await computedStyleOf(page.locator('body'), 'color');
+
+	for (const name of resetControls) {
+		const control: Locator = controlNamed(page, name);
+
+		expect(await computedStyleOf(control, 'appearance'), name).toBe('none');
+		expect(await computedStyleOf(control, 'background-color'), name).toBe('rgba(0, 0, 0, 0)');
+		expect(await computedStyleOf(control, 'border-top-width'), name).toBe('0px');
+
+		// WebKit draws the `select` in the inherited font (`native-controls.png` shows it), but its computed style reports
+		// the default font of the engine, so there only that screenshot checks the font and the color.
+		const tagName: string = await control.evaluate((element: Element): string => element.tagName);
+		if (browserName === 'webkit' && tagName === 'SELECT') continue;
+
+		expect(await computedStyleOf(control, 'font-family'), name).toBe(pageFont);
+		expect(await computedStyleOf(control, 'color'), name).toBe(pageColor);
+	}
+
+	// Without their native drawing they would be invisible.
+	for (const name of drawnControls) {
+		const control: Locator = controlNamed(page, name);
+
+		expect(await computedStyleOf(control, 'appearance'), name).not.toBe('none');
+	}
 });
 
 test('the engine parses the rule that keeps the colors of autofilled fields', async ({
@@ -134,7 +183,7 @@ test('the engine parses the rule that keeps the colors of autofilled fields', as
 });
 
 // Only Chromium can autofill a field from a test, through the DevTools protocol, and only with a payment card.
-test('an autofilled field keeps its background and text colors', async ({
+test('an autofilled field keeps the colors of the theme', async ({
 	page,
 	browserName,
 }): Promise<void> => {
@@ -143,22 +192,21 @@ test('an autofilled field keeps its background and text colors', async ({
 
 	const card: Locator = page.getByTestId('card');
 
-	// A native field and a field of the library, neither of which the autofill focuses.
-	const fields: Locator[] = [card.getByLabel('Security code'), card.getByLabel('Name on card')];
-
-	const interiorsBefore: Buffer[] = await Promise.all(
-		fields.map(async (field: Locator): Promise<Buffer> => interiorOf(page, field)),
-	);
+	// A field of the library and a native field, neither of which the autofill focuses.
+	const libraryField: Locator = card.getByLabel('Name on card');
+	const nativeField: Locator = card.getByLabel('Security code');
+	const interiorBefore: Buffer = await interiorOf(page, libraryField);
 
 	await autofillCard(page, '[name="card-number"]');
 
-	for (const [index, field] of fields.entries()) {
+	for (const field of [libraryField, nativeField]) {
 		await expect.poll(async (): Promise<boolean> => field.evaluate(isAutofilled)).toBe(true);
-
-		expect((await interiorOf(page, field)).equals(interiorsBefore[index] ?? Buffer.alloc(0))).toBe(
-			true,
-		);
 	}
+
+	expect((await interiorOf(page, libraryField)).equals(interiorBefore)).toBe(true);
+
+	// The native field has no background of its own, so the autofill paints the field of the theme.
+	expect(await computedStyleOf(nativeField, 'box-shadow')).toContain(surfaceField);
 
 	await expect(card).toHaveScreenshot('autofilled-card.png');
 });
@@ -198,6 +246,11 @@ test('the high contrast modes keep the system colors', async ({ page }): Promise
 	expect(
 		await computedStyleOf(page.getByRole('link', { name: 'documentation' }), 'forced-color-adjust'),
 	).toBe('auto');
+
+	// The controls get their system look back, so their boundaries stay visible.
+	for (const name of resetControls) {
+		expect(await computedStyleOf(controlNamed(page, name), 'appearance'), name).not.toBe('none');
+	}
 });
 
 test('with the baseline turned off, no global style is applied', async ({

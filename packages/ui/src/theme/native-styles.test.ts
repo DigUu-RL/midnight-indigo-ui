@@ -5,10 +5,13 @@ import { topbarHeight } from '#src/shared/layout-metrics.ts';
 import {
 	autofillStyles,
 	forcedColorsMediaQuery,
+	hiddenScrollbarStyles,
 	nativeBaselineStyles,
+	nativeControlSelector,
 	scrollbarStyles,
 } from '#src/theme/native-styles.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
+import { tokens } from '#src/tokens/index.ts';
 
 const { border, focus, accent, text, surface, intent, fontFamily }: typeof themeVariables =
 	themeVariables;
@@ -18,10 +21,10 @@ const ruleOf = (styles: CSSObject, selector: string): CSSObject => {
 };
 
 describe('scrollbarStyles', (): void => {
-	it('colors the scrollbar of Chromium and Firefox with the theme', (): void => {
+	it('draws a thin scrollbar in Chromium and Firefox with the discreet thumb of the theme', (): void => {
 		expect(scrollbarStyles).toMatchObject({
 			scrollbarWidth: 'thin',
-			scrollbarColor: `${border.control} transparent`,
+			scrollbarColor: `${border.default} transparent`,
 		});
 	});
 
@@ -36,18 +39,33 @@ describe('scrollbarStyles', (): void => {
 			]),
 		);
 
+		expect(ruleOf(scrollbarStyles, '&::-webkit-scrollbar')).toEqual({
+			width: '0.5rem',
+			height: '0.5rem',
+		});
+
 		expect(ruleOf(scrollbarStyles, '&::-webkit-scrollbar-thumb')).toMatchObject({
-			backgroundColor: border.control,
+			backgroundColor: border.default,
 		});
 
 		expect(ruleOf(scrollbarStyles, '&::-webkit-scrollbar-thumb:hover')).toEqual({
-			backgroundColor: text.muted,
+			backgroundColor: border.control,
 		});
 	});
 
 	it('gives the scrollbar back to the system in the high contrast modes', (): void => {
 		expect(ruleOf(scrollbarStyles, `@media ${forcedColorsMediaQuery}`)).toEqual({
 			scrollbarColor: 'auto',
+		});
+	});
+});
+
+describe('hiddenScrollbarStyles', (): void => {
+	it('hides the scrollbar in every engine and gives it back in the high contrast modes', (): void => {
+		expect(hiddenScrollbarStyles).toEqual({
+			scrollbarWidth: 'none',
+			'&::-webkit-scrollbar': { display: 'none' },
+			[`@media ${forcedColorsMediaQuery}`]: { scrollbarWidth: 'auto' },
 		});
 	});
 });
@@ -76,7 +94,7 @@ describe('nativeBaselineStyles', (): void => {
 	it('colors the page scrollbar on the canvas', (): void => {
 		expect(html).toMatchObject({
 			scrollbarWidth: 'thin',
-			scrollbarColor: `${border.control} ${surface.canvas}`,
+			scrollbarColor: `${border.default} ${surface.canvas}`,
 		});
 	});
 
@@ -101,34 +119,58 @@ describe('nativeBaselineStyles', (): void => {
 		});
 	});
 
-	it('colors the selection with the audited selection pair', (): void => {
+	it('resets the appearance, font, color, background and border of the native controls', (): void => {
+		expect(ruleOf(nativeBaselineStyles, nativeControlSelector)).toEqual({
+			appearance: 'none',
+			font: 'inherit',
+			letterSpacing: 'inherit',
+			color: 'inherit',
+			background: 'transparent',
+			border: 0,
+		});
+	});
+
+	// Without their native drawing they would be invisible until the theme draws them.
+	it('leaves checkboxes, radios, ranges and color pickers out of the reset', (): void => {
+		expect(nativeControlSelector).toBe(
+			':where(button, input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"]), select, textarea)',
+		);
+	});
+
+	it('colors the selection with the brand selection pair', (): void => {
+		expect(tokens.accent.selection).toBe(tokens.intent.brand.containerPressed);
+
 		expect(ruleOf(nativeBaselineStyles, '::selection')).toEqual({
 			backgroundColor: accent.selection,
 			color: accent.onSelection,
 		});
 	});
 
-	it('draws the focus ring of the theme on native elements', (): void => {
+	it('draws the pink focus ring of the theme on native elements', (): void => {
+		expect(tokens.focus.ring).toBe(tokens.intent.official.main);
+
 		expect(ruleOf(nativeBaselineStyles, ':where(:focus-visible)')).toEqual({
 			outline: `${focus.width} solid ${focus.ring}`,
 			outlineOffset: focus.offset,
 		});
 	});
 
-	it('keeps the system colors of a native field when it is autofilled', (): void => {
+	it('paints the field of the theme on a native field when it is autofilled', (): void => {
 		const selectors: string[] = [
 			':where(input, textarea, select):-webkit-autofill',
 			':where(input, textarea, select):autofill',
 		];
 
 		selectors.forEach((selector: string): void => {
-			expect(ruleOf(nativeBaselineStyles, selector)).toEqual(autofillStyles('Field', 'FieldText'));
+			expect(ruleOf(nativeBaselineStyles, selector)).toEqual(
+				autofillStyles(surface.field, text.primary),
+			);
 		});
 	});
 
 	it('styles the placeholder and the native text elements', (): void => {
 		expect(ruleOf(nativeBaselineStyles, ':where(input, textarea)::placeholder')).toEqual({
-			color: text.muted,
+			color: text.placeholder,
 			opacity: 1,
 		});
 
@@ -173,11 +215,12 @@ describe('nativeBaselineStyles', (): void => {
 		expect(serialized).not.toMatch(/"margin|"lineHeight"|forcedColorAdjust/);
 	});
 
-	it('uses the system colors in the high contrast modes', (): void => {
+	it('uses the system colors and the system controls in the high contrast modes', (): void => {
 		expect(nativeBaselineStyles[`@media ${forcedColorsMediaQuery}`]).toEqual({
 			'::selection': { backgroundColor: 'Highlight', color: 'HighlightText' },
 			':where(:focus-visible)': { outlineColor: 'Highlight' },
 			':where(mark)': { backgroundColor: 'Mark', color: 'MarkText' },
+			[nativeControlSelector]: { appearance: 'revert', background: 'revert', border: 'revert' },
 		});
 	});
 });

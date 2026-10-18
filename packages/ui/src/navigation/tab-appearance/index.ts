@@ -2,13 +2,16 @@
 import type { CSSObject } from '@mui/material/styles';
 
 import { colorTransitionStyles } from '#src/shared/appearance.ts';
-import { scrollbarStyles } from '#src/theme/native-styles.ts';
+import { hiddenScrollbarStyles } from '#src/theme/native-styles.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 
 const { spacing, typography, radius, text, border, state, focus, intent }: typeof themeVariables =
 	themeVariables;
 
-/** A row that scrolls sideways when the tabs do not fit, e.g. on a phone, instead of wrapping or overflowing. */
+/**
+ * A row that scrolls sideways when the tabs do not fit, e.g. on a phone, instead of wrapping or overflowing. It shows no
+ * scrollbar: the tab cut at the edge shows that the row continues, and focusing a tab scrolls it into view.
+ */
 export const tabRowStyles: CSSObject = {
 	display: 'flex',
 	gap: spacing[1],
@@ -17,7 +20,7 @@ export const tabRowStyles: CSSObject = {
 	padding: 0,
 	overflowX: 'auto',
 	overscrollBehaviorX: 'contain',
-	...scrollbarStyles,
+	...hiddenScrollbarStyles,
 	listStyle: 'none',
 	borderBlockEnd: `1px solid ${border.subtle}`,
 };

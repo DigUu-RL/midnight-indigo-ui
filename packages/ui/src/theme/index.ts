@@ -10,6 +10,7 @@ export type { MuiThemeOptions } from '#src/theme/mui-theme.ts';
 export {
 	autofillStyles,
 	forcedColorsMediaQuery,
+	hiddenScrollbarStyles,
 	nativeBaselineStyles,
 	scrollbarStyles,
 } from '#src/theme/native-styles.ts';

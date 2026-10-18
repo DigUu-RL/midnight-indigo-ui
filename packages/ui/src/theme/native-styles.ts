@@ -24,21 +24,22 @@ export const forcedColorsMediaQuery: string = '(forced-colors: active)';
 const noMotionPreferenceMediaQuery: string = '(prefers-reduced-motion: no-preference)';
 
 // Chromium 121+ and Firefox read `scrollbar-color`, and Chromium then ignores the `::-webkit-scrollbar` pseudo-elements,
-// which remain for WebKit. The thumb is `border.control`, which meets 3:1 on every surface; the track shows the surface
-// below it. In the high contrast modes `scrollbar-color` returns to `auto` and the system draws the scrollbar again.
+// which remain for WebKit. The thumb is `border.default`, thin and discreet: an accepted exception of the contrast audit
+// (`contrastExceptions`), since scrolling never depends on it; hovered, it lights up to `border.control`. The track shows
+// the surface below it. In the high contrast modes `scrollbar-color` returns to `auto` and the system draws it again.
 const createScrollbarStyles = (track: string): CSSObject => {
 	return {
 		scrollbarWidth: 'thin',
-		scrollbarColor: `${border.control} ${track}`,
-		'&::-webkit-scrollbar': { width: '0.625rem', height: '0.625rem' },
+		scrollbarColor: `${border.default} ${track}`,
+		'&::-webkit-scrollbar': { width: '0.5rem', height: '0.5rem' },
 		'&::-webkit-scrollbar-track': { backgroundColor: track },
 		'&::-webkit-scrollbar-thumb': {
 			border: '2px solid transparent',
 			borderRadius: radius.pill,
-			backgroundColor: border.control,
+			backgroundColor: border.default,
 			backgroundClip: 'padding-box',
 		},
-		'&::-webkit-scrollbar-thumb:hover': { backgroundColor: text.muted },
+		'&::-webkit-scrollbar-thumb:hover': { backgroundColor: border.control },
 		'&::-webkit-scrollbar-corner': { backgroundColor: track },
 		[`@media ${forcedColorsMediaQuery}`]: { scrollbarColor: 'auto' },
 	};
@@ -49,6 +50,16 @@ const createScrollbarStyles = (track: string): CSSObject => {
  * spread it into the styles of that container. The track is transparent, so it works on any surface.
  */
 export const scrollbarStyles: CSSObject = createScrollbarStyles('transparent');
+
+/**
+ * No visible scrollbar, for a row that scrolls sideways and shows by itself that it continues, such as a row of tabs:
+ * it still scrolls by touch, trackpad, wheel and keyboard focus. The high contrast modes give the system scrollbar back.
+ */
+export const hiddenScrollbarStyles: CSSObject = {
+	scrollbarWidth: 'none',
+	'&::-webkit-scrollbar': { display: 'none' },
+	[`@media ${forcedColorsMediaQuery}`]: { scrollbarWidth: 'auto' },
+};
 
 /**
  * Keeps the colors of a field when the browser autofills it. Browsers paint an autofilled field with `!important`
@@ -66,13 +77,22 @@ export const autofillStyles = (background: string, textColor: string): CSSObject
 	};
 };
 
-// A native field outside the components keeps the system colors of a field in the dark color scheme.
-const nativeFieldAutofillStyles: CSSObject = autofillStyles('Field', 'FieldText');
+// A native field outside the components has no background of its own, so the autofill paints the field of the theme.
+const nativeFieldAutofillStyles: CSSObject = autofillStyles(surface.field, text.primary);
 
 /**
- * Global styles of `UiProvider` with `baseline`. Element selectors are wrapped in `:where()`, whose specificity is
- * zero, so any class of a component or of the application wins over them; nothing resets margins or typography of
- * the content. The high contrast modes keep the system colors: nothing here sets `forced-color-adjust`.
+ * Native controls reset to the theme: no appearance, font, color, background or border of the browser. Checkboxes,
+ * radios, ranges and color pickers keep their native drawing (tinted by `accent-color`) until the theme draws them, so
+ * they never become invisible.
+ */
+export const nativeControlSelector: string =
+	':where(button, input:not([type="checkbox"], [type="radio"], [type="range"], [type="color"]), select, textarea)';
+
+/**
+ * Global styles of `UiProvider` with `baseline`. The tokens of the theme come before any default of the browser, and
+ * element selectors are wrapped in `:where()`, whose specificity is zero, so any class of a component or of the
+ * application wins over them; nothing resets margins or typography of the content. The high contrast modes keep the
+ * system colors: nothing here sets `forced-color-adjust`, and native controls get their system look back.
  */
 export const nativeBaselineStyles: CSSObject = {
 	html: {
@@ -92,7 +112,16 @@ export const nativeBaselineStyles: CSSObject = {
 		outline: `${focus.width} solid ${focus.ring}`,
 		outlineOffset: focus.offset,
 	},
-	':where(input, textarea)::placeholder': { color: text.muted, opacity: 1 },
+	[nativeControlSelector]: {
+		appearance: 'none',
+		font: 'inherit',
+		letterSpacing: 'inherit',
+		color: 'inherit',
+		background: 'transparent',
+		border: 0,
+	},
+	// Below 4.5:1 on purpose: an accepted exception of the contrast audit, since the placeholder is only an example.
+	':where(input, textarea)::placeholder': { color: text.placeholder, opacity: 1 },
 	':where(input, textarea, select):-webkit-autofill': nativeFieldAutofillStyles,
 	':where(input, textarea, select):autofill': nativeFieldAutofillStyles,
 	':where(a)': { color: accent.link, textUnderlineOffset: '0.15em' },
@@ -135,5 +164,7 @@ export const nativeBaselineStyles: CSSObject = {
 		'::selection': { backgroundColor: 'Highlight', color: 'HighlightText' },
 		':where(:focus-visible)': { outlineColor: 'Highlight' },
 		':where(mark)': { backgroundColor: 'Mark', color: 'MarkText' },
+		// Without the reset, the browser draws the boundaries of the controls in the system colors again.
+		[nativeControlSelector]: { appearance: 'revert', background: 'revert', border: 'revert' },
 	},
 };
