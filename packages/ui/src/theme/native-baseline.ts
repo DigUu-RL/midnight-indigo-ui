@@ -111,6 +111,8 @@ const controlPartSelectors: string[] = [
 	':where(input[type="color"])::-webkit-color-swatch-wrapper',
 	...colorSwatchSelectors,
 	':where(input)::-webkit-calendar-picker-indicator',
+	':where(input[list])::-webkit-calendar-picker-indicator',
+	':where(input[type="search"])::-webkit-search-cancel-button',
 	':where(input)::-webkit-inner-spin-button',
 	':where(input)::-webkit-outer-spin-button',
 	':where(input)::file-selector-button',
@@ -146,7 +148,8 @@ type BaselineGlyph =
 	| 'indeterminate'
 	| 'disabledCheck'
 	| 'calendar'
-	| 'clock';
+	| 'clock'
+	| 'clear';
 
 /**
  * Global styles of `UiProvider` with `baseline`, for a theme. The tokens of the theme come before any default of the
@@ -166,6 +169,7 @@ export const createNativeBaselineStyles = (theme: UiTheme = defaultUiTheme): CSS
 		disabledCheck: glyphImage('check', tokens.text.disabled),
 		calendar: glyphImage('calendar', tokens.text.muted),
 		clock: glyphImage('clock', tokens.text.muted),
+		clear: glyphImage('close', tokens.text.muted),
 	};
 
 	return {
@@ -203,6 +207,11 @@ export const createNativeBaselineStyles = (theme: UiTheme = defaultUiTheme): CSS
 			color: 'inherit',
 			background: 'transparent',
 			border: 0,
+		},
+		// The reset drops the disabled look of the browser, so the theme gives it back.
+		':where(button:disabled, input:disabled, select:disabled, textarea:disabled)': {
+			color: text.disabled,
+			cursor: 'not-allowed',
 		},
 		// Below 4.5:1 on purpose: an accepted exception of the contrast audit, since the placeholder is only an example.
 		':where(input, textarea)::placeholder': { color: text.placeholder, opacity: 1 },
@@ -281,6 +290,7 @@ export const createNativeBaselineStyles = (theme: UiTheme = defaultUiTheme): CSS
 			backgroundColor: intent.brand.main,
 		}),
 		...ruleForEach(disabledRangeThumbSelectors, { backgroundColor: text.disabled }),
+		':where(input[type="range"]:disabled)::-moz-range-progress': { backgroundColor: text.disabled },
 		':where(input[type="color"])': {
 			boxSizing: 'border-box',
 			inlineSize: controlHeight.small,
@@ -305,9 +315,23 @@ export const createNativeBaselineStyles = (theme: UiTheme = defaultUiTheme): CSS
 		':where(input[type="time"])::-webkit-calendar-picker-indicator': {
 			backgroundImage: glyphs.clock,
 		},
+		// Chromium draws the button that opens the suggestions of a `datalist` on the same indicator, with an arrow of its own
+		// in the text color: a transparent color hides the arrow, the image draws the chevron of the theme.
+		':where(input[list])::-webkit-calendar-picker-indicator': {
+			color: 'transparent',
+			backgroundImage: glyphs.chevron,
+		},
 		':where(input:disabled)::-webkit-calendar-picker-indicator': {
 			opacity: 0.4,
 			cursor: 'not-allowed',
+		},
+		// The browser still decides when the button that clears a search field shows; the theme only draws it.
+		':where(input[type="search"])::-webkit-search-cancel-button': {
+			appearance: 'none',
+			inlineSize: iconSize.small,
+			blockSize: iconSize.small,
+			background: `${glyphs.clear} center / contain no-repeat`,
+			cursor: 'pointer',
 		},
 		':where(input)::-webkit-inner-spin-button': { display: 'none' },
 		':where(input)::-webkit-outer-spin-button': { display: 'none' },
@@ -325,7 +349,13 @@ export const createNativeBaselineStyles = (theme: UiTheme = defaultUiTheme): CSS
 			fontWeight: fontWeight.medium,
 			cursor: 'pointer',
 		},
-		':where(input)::file-selector-button:hover': { backgroundColor: state.hover },
+		':where(input:enabled)::file-selector-button:hover': { backgroundColor: state.hover },
+		':where(input:disabled)::file-selector-button': {
+			borderColor: state.disabledBorder,
+			backgroundColor: state.disabledSurface,
+			color: text.disabled,
+			cursor: 'not-allowed',
+		},
 		':where(progress, meter)': {
 			appearance: 'none',
 			blockSize: barHeight,
@@ -521,6 +551,9 @@ export const createNativeBaselineStyles = (theme: UiTheme = defaultUiTheme): CSS
 			':where(mark)': { backgroundColor: 'Mark', color: 'MarkText' },
 			// Without the reset, the browser draws the boundaries of the controls in the system colors again.
 			[nativeControlSelector]: { appearance: 'revert', background: 'revert', border: 'revert' },
+			':where(button:disabled, input:disabled, select:disabled, textarea:disabled)': {
+				color: 'GrayText',
+			},
 			':where(progress, meter)': revertedRule,
 			...ruleForEach(controlPartSelectors, revertedRule),
 			// The chevron of the theme is an image in a fixed color: the system marker takes its place.

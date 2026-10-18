@@ -35,12 +35,15 @@ UI (`nativeBaselineStyles` is the same for the official theme).
 | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | Document                                             | `color-scheme: dark`, so date pickers and form popups render dark.                                                |
 | `button`, `input`, `select`, `textarea`              | Reset: `appearance: none`, `font: inherit`, `color: inherit`, no background, no border.                           |
+| Disabled controls                                    | `text.disabled` text and the `not-allowed` cursor; a disabled file button on `state.disabledSurface`.             |
 | `select` (single)                                    | The `chevronDown` glyph in `text.muted` at the end of the line (`text.disabled` when disabled).                   |
 | `option`, `optgroup`                                 | `surface.overlay` background, `text.primary` text.                                                                |
 | `input` `checkbox`, `radio`                          | `border.control` box on `surface.field`; checked, `intent.brand.main` with a `check` (or `minus`) glyph or a dot. |
 | `input` `range`                                      | `border.default` bar, `intent.brand.main` thumb (and fill in Firefox).                                            |
 | `input` `color`                                      | `controlHeight.small` square with a `border.control` border and a rounded swatch.                                 |
 | Date and time fields                                 | The `calendar` (or `clock`) glyph on the indicator of the browser, which still opens the picker on click.         |
+| `input` with a `datalist`                            | The `chevronDown` glyph in `text.muted` on the button that opens the suggestions.                                 |
+| `input` `search`                                     | The `close` glyph in `text.muted` on the button that clears the field, shown when the browser shows it.           |
 | `input` `number`                                     | No spin buttons.                                                                                                  |
 | `::file-selector-button`                             | A secondary button: `surface.raised`, `border.control` border, `text.primary`.                                    |
 | `progress`, `meter`                                  | `border.subtle` bar; value in `intent.brand.main` (meters: success, warning, error by region).                    |
@@ -80,9 +83,9 @@ thumb.
 
 In the Windows contrast themes (`forced-colors: active`), the system colors replace the theme: scrollbars return to the
 system ones, the selection, the focus ring and `mark` use `Highlight`, `HighlightText`, `Mark` and `MarkText`, and the
-native controls get their system appearance, background and border back (`revert`), so their boundaries stay visible.
-The parts drawn inside them (range tracks and thumbs, color swatches, date indicators, file buttons, progress bars and
-meters) return to the browser as a whole (`all: revert`), and `summary` shows the marker of the system instead of the
+native controls get their system appearance, background and border back (`revert`), so their boundaries stay visible;
+disabled ones use `GrayText`. The parts drawn inside them (range tracks and thumbs, color swatches, date, suggestion and
+clear buttons, file buttons, progress bars and meters) return to the browser as a whole (`all: revert`), and `summary` shows the marker of the system instead of the
 chevron, an image in a fixed color.
 Nothing in the library sets `forced-color-adjust`, so the browser keeps control of every color.
 

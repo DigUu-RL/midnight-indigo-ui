@@ -1,7 +1,8 @@
 // What the browser draws by itself, styled by the baseline of `UiProvider`: the page scrollbar (the page is taller than
 // the viewport), a container scrolling with `scrollbarStyles`, native controls and their states, the placeholder, the
 // structural elements (table, lists, `pre`, `details`, `fieldset`, a modal `dialog`), a card form that Chromium can
-// autofill from a test (native fields and a `TextField`), and the native text elements.
+// autofill from a test (native fields and a `TextField`), the native text elements, and a catalog of every other form
+// control, field state and content element, so that every element the browser can draw is on the page.
 import { TextField } from '@midnight-indigo/ui/forms';
 import { scrollbarStyles, themeVariables } from '@midnight-indigo/ui/theme';
 import { styled } from '@mui/material/styles';
@@ -44,6 +45,11 @@ const PageFiller = styled('div')({ height: '150vh' });
 const lines: string[] = Array.from({ length: 12 }, (_: unknown, index: number): string => {
 	return `Line ${String(index + 1)} of a container that scrolls inside the page.`;
 });
+
+// The picture of an image button, inline so that the scenario loads nothing.
+const launchImage: string = `data:image/svg+xml,${encodeURIComponent(
+	'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#5e48d6"/></svg>',
+)}`;
 
 const preventSubmission = (event: SubmitEvent<HTMLFormElement>): void => {
 	event.preventDefault();
@@ -296,6 +302,204 @@ export const NativeScenario = (): ReactElement => {
 						<button type='submit'>Close</button>
 					</form>
 				</dialog>
+			</Panel>
+
+			<Panel aria-labelledby='catalog-title' data-testid='catalog'>
+				<h2 id='catalog-title'>Every form control</h2>
+
+				<form onSubmit={preventSubmission}>
+					<Controls>
+						<label>
+							Callsign <input type='text' defaultValue='Hunter' />
+						</label>
+
+						<label>
+							Passcode <input type='password' defaultValue='metroid' />
+						</label>
+
+						<label>
+							Search <input type='search' defaultValue='Varia Suit' />
+						</label>
+
+						<label>
+							Phone <input type='tel' defaultValue='+55 11 5555-0100' />
+						</label>
+
+						<label>
+							Website <input type='url' defaultValue='https://example.com' />
+						</label>
+
+						<label>
+							Planet <input type='text' list='planet-options' defaultValue='Zebes' />
+						</label>
+
+						<datalist id='planet-options'>
+							<option value='Zebes' />
+							<option value='SR388' />
+							<option value='Tallon IV' />
+						</datalist>
+
+						<label>
+							Departure <input type='datetime-local' defaultValue='2026-10-15T09:30' />
+						</label>
+
+						<label>
+							Month <input type='month' defaultValue='2026-10' />
+						</label>
+
+						<label>
+							Week <input type='week' defaultValue='2026-W42' />
+						</label>
+
+						<label>
+							Mission log <textarea rows={3} defaultValue='Landed on Zebes.' />
+						</label>
+
+						<label>
+							Crew{' '}
+							<select multiple defaultValue={['spike']}>
+								<optgroup label='Bebop'>
+									<option value='spike'>Spike Spiegel</option>
+									<option value='faye'>Faye Valentine</option>
+								</optgroup>
+
+								<optgroup label='Rebellion'>
+									<option value='leia'>Leia Organa</option>
+								</optgroup>
+							</select>
+						</label>
+
+						<label>
+							Sector{' '}
+							<select size={3} defaultValue='alpha'>
+								<option value='alpha'>Alpha</option>
+								<option value='beta'>Beta</option>
+								<option value='gamma'>Gamma</option>
+							</select>
+						</label>
+
+						<label>
+							Total <output>42</output>
+						</label>
+
+						<button type='reset'>Reset</button>
+						<button type='button'>Preview</button>
+						<input type='submit' value='Send' />
+						<input type='reset' value='Clear' />
+						<input type='button' value='Ping' />
+						<input type='image' alt='Launch' src={launchImage} width={24} height={24} />
+						<input type='hidden' name='mission' value='zebes' />
+					</Controls>
+				</form>
+			</Panel>
+
+			<Panel aria-labelledby='field-states-title' data-testid='field-states'>
+				<h2 id='field-states-title'>Field states</h2>
+
+				<Controls>
+					<label>
+						Empty <input type='text' placeholder='Spike Spiegel' />
+					</label>
+
+					<label>
+						Hovered <input type='text' defaultValue='Faye Valentine' />
+					</label>
+
+					<label>
+						Focused <input type='text' defaultValue='Jet Black' />
+					</label>
+
+					<label>
+						Read only <input type='text' readOnly defaultValue='Edward Wong' />
+					</label>
+
+					<label>
+						Disabled <input type='text' disabled defaultValue='Ein' />
+					</label>
+
+					<label>
+						Invalid <input type='email' required defaultValue='not an email' />
+					</label>
+
+					<label>
+						Disabled date <input type='date' disabled defaultValue='2026-10-15' />
+					</label>
+
+					<label>
+						Disabled volume <input type='range' disabled defaultValue='30' />
+					</label>
+
+					<label>
+						Disabled attachment <input type='file' disabled />
+					</label>
+
+					<label>
+						Disabled notes <textarea rows={2} disabled defaultValue='Archived.' />
+					</label>
+
+					<button type='button' disabled>
+						Unavailable
+					</button>
+				</Controls>
+			</Panel>
+
+			<Panel aria-labelledby='content-title' data-testid='content'>
+				<h2 id='content-title'>Content elements</h2>
+				<h1>Heading of level 1</h1>
+				<h3>Heading of level 3</h3>
+				<h4>Heading of level 4</h4>
+				<h5>Heading of level 5</h5>
+				<h6>Heading of level 6</h6>
+
+				<p>
+					<strong>Strong</strong>, <b>bold</b>, <em>emphasis</em>, <i>idiomatic</i>,{' '}
+					<u>annotated</u>, <s>no longer accurate</s>, <del>deleted</del>, <ins>inserted</ins>,{' '}
+					<small>small print</small>, H<sub>2</sub>O, E = mc<sup>2</sup>, <q>a short quote</q>,{' '}
+					<cite>Metroid Prime</cite>, <dfn>definition</dfn>, <var>bounty</var>,{' '}
+					<samp>Mission complete</samp> and <time dateTime='2026-10-15'>October 15</time>.
+				</p>
+
+				<figure>
+					<blockquote>Every bounty has a story.</blockquote>
+					<figcaption>Spike Spiegel</figcaption>
+				</figure>
+
+				<address>Bebop, Mars orbit</address>
+
+				<menu>
+					<li>Dock</li>
+					<li>Refuel</li>
+				</menu>
+
+				<table>
+					<caption>Bounties collected</caption>
+
+					<thead>
+						<tr>
+							<th scope='col'>Hunter</th>
+							<th scope='col'>Total</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<th scope='row'>Spike Spiegel</th>
+							<td>12,000</td>
+						</tr>
+
+						<tr>
+							<th scope='row'>Jet Black</th>
+							<td>9,000</td>
+						</tr>
+					</tbody>
+
+					<tfoot>
+						<tr>
+							<th scope='row'>Crew</th>
+							<td>21,000</td>
+						</tr>
+					</tfoot>
+				</table>
 			</Panel>
 
 			<PageFiller aria-hidden='true' />

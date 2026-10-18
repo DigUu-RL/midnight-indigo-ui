@@ -1,6 +1,8 @@
 // What the browser draws by itself, styled by the baseline of `UiProvider`, in Chromium, Firefox and WebKit: scrollbars
 // of the page and of an inner container, native controls and their states, the structural elements, a modal dialog,
-// autofill, selection and focus, the high contrast modes, and no global style at all with the baseline turned off. Update the baselines on purpose only:
+// autofill, selection and focus, the high contrast modes, and no global style at all with the baseline turned off. A
+// catalog of every form control, field state and content element guards the whole baseline against regressions: no
+// control may keep the native appearance of the browser. Update the baselines on purpose only:
 // `pnpm --filter @midnight-indigo/browser-tests test:visual:update` (see the wiki, "Testes e integração contínua").
 import type { CDPSession, Locator, Page } from '@playwright/test';
 
@@ -29,6 +31,108 @@ const resetControls: string[] = [
 ];
 
 const drawnControls: string[] = ['Subscribed', 'Monthly', 'Volume', 'Accent'];
+
+// Every type an `input` can have, as written in the markup: an engine that does not know one reports `text` as its type.
+const inputTypes: string[] = [
+	'button',
+	'checkbox',
+	'color',
+	'date',
+	'datetime-local',
+	'email',
+	'file',
+	'hidden',
+	'image',
+	'month',
+	'number',
+	'password',
+	'radio',
+	'range',
+	'reset',
+	'search',
+	'submit',
+	'tel',
+	'text',
+	'time',
+	'url',
+	'week',
+];
+
+// The other elements the browser gives a style of its own, which the scenario must show too.
+const nativeElements: string[] = [
+	'button[type="submit"]',
+	'button[type="reset"]',
+	'button[type="button"]',
+	'button:disabled',
+	'textarea',
+	'select:not([multiple], [size])',
+	'select[multiple]',
+	'select[size]',
+	'optgroup',
+	'datalist',
+	'output',
+	'progress[value]',
+	'progress:not([value])',
+	'meter',
+	'input:read-only:not([type="hidden"])',
+	'input:disabled',
+	'input:invalid',
+	'input:placeholder-shown',
+	'input:indeterminate',
+	'fieldset',
+	'legend',
+	'details',
+	'details[open]',
+	'summary',
+	'dialog',
+	'table',
+	'caption',
+	'thead',
+	'tbody',
+	'tfoot',
+	'th[scope="row"]',
+	'ul',
+	'ol',
+	'menu',
+	'dl',
+	'pre',
+	'blockquote',
+	'figure',
+	'figcaption',
+	'address',
+	'hr',
+	'h1',
+	'h2',
+	'h3',
+	'h4',
+	'h5',
+	'h6',
+	'a[href]',
+	'abbr[title]',
+	'b',
+	'cite',
+	'code',
+	'del',
+	'dfn',
+	'em',
+	'i',
+	'ins',
+	'kbd',
+	'mark',
+	'q',
+	's',
+	'samp',
+	'small',
+	'strong',
+	'sub',
+	'sup',
+	'time',
+	'u',
+	'var',
+];
+
+// Every element the baseline resets: none of them may keep the native drawing of the browser.
+const controlSelector: string = 'button, input, select, textarea, progress, meter';
 
 const openScenario = async (page: Page, baseline: boolean = true): Promise<void> => {
 	await page.goto(`/?scenario=native${baseline ? '' : '&baseline=false'}`);
@@ -215,6 +319,102 @@ test('native controls show no default style of the browser', async ({
 	expect(await computedStyleOf(controlNamed(page, 'Country'), 'background-image')).toContain(
 		'data:image/svg+xml',
 	);
+});
+
+test('the scenario shows every type of input and every element the browser styles by itself', async ({
+	page,
+}): Promise<void> => {
+	await openScenario(page);
+
+	const types: string[] = await page.evaluate((): string[] => {
+		return [...document.querySelectorAll('input')].map((input: HTMLInputElement): string => {
+			return input.getAttribute('type') ?? 'text';
+		});
+	});
+
+	expect([...new Set(types)].sort()).toEqual(inputTypes);
+
+	const missing: string[] = await page.evaluate((selectors: string[]): string[] => {
+		return selectors.filter(
+			(selector: string): boolean => document.querySelector(selector) === null,
+		);
+	}, nativeElements);
+
+	expect(missing).toEqual([]);
+});
+
+// The regression guard of the whole baseline: a control that a new engine, a new type or a change of the baseline leaves
+// with the native drawing of the browser fails here, whatever panel it is in.
+test('no control keeps the native appearance of the browser', async ({
+	page,
+	browserName,
+}): Promise<void> => {
+	await openScenario(page);
+
+	const appearances: { control: string; appearance: string }[] = await page.evaluate(
+		(selector: string): { control: string; appearance: string }[] => {
+			return [...document.querySelectorAll(selector)].map(
+				(element: Element): { control: string; appearance: string } => {
+					const type: string | null = element.getAttribute('type');
+
+					const name: string = (
+						element.closest('label')?.textContent ?? element.textContent
+					).trim();
+
+					return {
+						control: `${element.tagName.toLowerCase()}${type === null ? '' : `[type="${type}"]`} ${name}`,
+						appearance: getComputedStyle(element).getPropertyValue('appearance'),
+					};
+				},
+			);
+		},
+		controlSelector,
+	);
+
+	expect(appearances.length).toBeGreaterThan(inputTypes.length);
+
+	// Firefox hides the spin buttons of a number field only with the appearance of a plain text field.
+	const expectedAppearance = (control: string): string => {
+		return browserName === 'firefox' && control.startsWith('input[type="number"]')
+			? 'textfield'
+			: 'none';
+	};
+
+	const native: string[] = appearances
+		.filter(({ control, appearance }: { control: string; appearance: string }): boolean => {
+			return appearance !== expectedAppearance(control);
+		})
+		.map(({ control, appearance }: { control: string; appearance: string }): string => {
+			return `${control}: ${appearance}`;
+		});
+
+	expect(native).toEqual([]);
+});
+
+test('every form control and every state of a field follow the theme', async ({
+	page,
+}): Promise<void> => {
+	await openScenario(page);
+	const catalog: Locator = page.getByTestId('catalog');
+	const fieldStates: Locator = page.getByTestId('field-states');
+
+	await expect(catalog).toHaveScreenshot('form-catalog.png');
+
+	await fieldStates.getByLabel('Hovered').hover();
+	await fieldStates.getByLabel('Focused').focus();
+
+	await expect(fieldStates).toHaveScreenshot('field-states.png');
+	await expectNoAxeViolations(page);
+});
+
+test('the content elements show no default style of the browser', async ({
+	page,
+}): Promise<void> => {
+	await openScenario(page);
+	const content: Locator = page.getByTestId('content');
+
+	expect(await computedStyleOf(content.locator('tfoot tr'), 'border-top-color')).toBe(borderSubtle);
+	await expect(content).toHaveScreenshot('content-elements.png');
 });
 
 test('the states of the controls, progress bars and meters follow the theme', async ({
