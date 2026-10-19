@@ -39,6 +39,16 @@ export type {
 	SidebarMenuButtonProps,
 	SidebarProps,
 } from '#src/navigation/sidebar/index.tsx';
+export {
+	defaultTableOfContentsLabels,
+	TableOfContents,
+} from '#src/navigation/table-of-contents/index.tsx';
+export type {
+	TableOfContentsItem,
+	TableOfContentsLabels,
+	TableOfContentsLevel,
+	TableOfContentsProps,
+} from '#src/navigation/table-of-contents/index.tsx';
 export { TabNavigation } from '#src/navigation/tab-navigation/index.tsx';
 export type {
 	TabNavigationItem,

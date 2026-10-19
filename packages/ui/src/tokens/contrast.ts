@@ -221,6 +221,28 @@ const chartPairs = (tokens: Readonly<DesignTokens>): ContrastPair[] => {
 	return [...seriesPairs, ...labelPairs];
 };
 
+// Code blocks sit on `surface.field`, a highlighted line on `state.selected`; the syntax takes the text of the support
+// colors, and comments, punctuation and line numbers the neutral text tokens.
+const codePairs = (): ContrastPair[] => {
+	const syntaxColors: string[] = [
+		'text.primary',
+		'text.secondary',
+		'text.muted',
+		...supportColorNames.map((color: SupportColor): string => `support.${color}.text`),
+	];
+
+	return ['surface.field', 'state.selected'].flatMap((background: string): ContrastPair[] => {
+		return syntaxColors.map((foreground: string): ContrastPair => {
+			const usage: string =
+				background === 'state.selected'
+					? 'Syntax on a highlighted line of a code block'
+					: 'Syntax in a code block';
+
+			return { foreground, background, requirement: 'text', usage };
+		});
+	});
+};
+
 const exceptionPairs = (): ContrastPair[] => {
 	return contrastExceptions.map((exception: ContrastException): ContrastPair => {
 		const { foreground, background, requirement, usage }: ContrastException = exception;
@@ -268,6 +290,7 @@ export const createContrastPairs = (tokens: Readonly<DesignTokens>): ContrastPai
 			return supportPairs(tokens, color);
 		}),
 		...chartPairs(tokens),
+		...codePairs(),
 		...exceptionPairs(),
 	];
 };

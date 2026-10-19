@@ -178,10 +178,52 @@ test('the chart engine module depends only on ECharts subpaths', (): void => {
 	]);
 });
 
+// Code components render tokens computed beforehand; Shiki is behind the dynamic `import()` of `highlightCode`, so a
+// page that only shows code never loads it.
+test('@midnight-indigo/ui/code loads Shiki only on demand', (): void => {
+	const { files, packages }: ImportGraph = importGraphOf('@midnight-indigo/ui/code');
+
+	const dynamicImports: string[] = files.flatMap((file: string): string[] => {
+		return [
+			...readFileSync(resolve(distributionDirectory, file), 'utf8').matchAll(dynamicImportPattern),
+		].map((match: RegExpExecArray): string => {
+			return relative(
+				distributionDirectory,
+				resolve(dirname(resolve(distributionDirectory, file)), match[1]),
+			)
+				.split(sep)
+				.join('/');
+		});
+	});
+
+	assert.deepEqual(
+		packages.filter((name: string): boolean => !allowedPackages.test(name)),
+		[],
+	);
+
+	assert.deepEqual(dynamicImports, ['code/highlighter/index.js']);
+	assert.ok(!files.includes('code/highlighter/index.js'));
+
+	assert.deepEqual(
+		files.filter((file: string): boolean => {
+			return heavyDomains.some((domain: string): boolean => file.startsWith(domain));
+		}),
+		[],
+	);
+});
+
+test('the highlighter module depends only on Shiki subpaths', (): void => {
+	const highlighterPackages: string[] = listSpecifiers(
+		resolve(distributionDirectory, 'code/highlighter/index.js'),
+	).filter((specifier: string): boolean => !specifier.startsWith('.'));
+
+	assert.deepEqual(highlighterPackages.toSorted(), ['shiki/core', 'shiki/engine/javascript']);
+});
+
 test('compiled files keep no subpath import of the source tree', (): void => {
 	const leaked: string[] = lightEntries
 		.concat(optionalEntries.map(([specifier]: [string, RegExp]): string => specifier))
-		.concat(['@midnight-indigo/ui/dashboard'])
+		.concat(['@midnight-indigo/ui/dashboard', '@midnight-indigo/ui/code'])
 		.flatMap((specifier: string): string[] => importGraphOf(specifier).packages)
 		.filter((name: string): boolean => name.startsWith('#'));
 

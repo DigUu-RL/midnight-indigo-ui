@@ -1,18 +1,15 @@
 'use client';
 // Panels of the same view, one shown at a time, switched by a row of tabs (WAI-ARIA tabs pattern).
 import { styled } from '@mui/material/styles';
-import { useId, useRef, useState } from 'react';
-import type {
-	ComponentPropsWithRef,
-	KeyboardEvent,
-	ReactElement,
-	ReactNode,
-	RefObject,
-} from 'react';
+import type { ComponentPropsWithRef, ReactElement, ReactNode } from 'react';
 
 import { focusRingStyles } from '#src/shared/appearance.ts';
 import { themeVariables } from '#src/theme/theme-variables.ts';
 import { tabIconStyles, tabRowStyles, tabStyles } from '#src/navigation/tab-appearance/index.ts';
+import { useTabList } from '#src/navigation/tab-list/index.ts';
+import type { TabList, TabsActivation } from '#src/navigation/tab-list/index.ts';
+
+export type { TabsActivation } from '#src/navigation/tab-list/index.ts';
 
 const { spacing, radius }: typeof themeVariables = themeVariables;
 
@@ -28,12 +25,6 @@ export interface TabItem {
 	/** Keeps the tab visible but skipped by the arrow keys and not selectable. */
 	disabled?: boolean | undefined;
 }
-
-/**
- * `automatic` selects a tab as soon as the arrow keys focus it; `manual` waits for Enter or Space, for panels that
- * are slow to show.
- */
-export type TabsActivation = 'automatic' | 'manual';
 
 export interface TabsProps extends Omit<
 	ComponentPropsWithRef<'div'>,
@@ -80,59 +71,9 @@ export const Tabs = ({
 	keepMounted = false,
 	...attributes
 }: TabsProps): ReactElement => {
-	const baseId: string = useId();
-	const [uncontrolledValue, setUncontrolledValue] = useState<string | undefined>(defaultValue);
-
-	const tabElements: RefObject<Map<string, HTMLButtonElement>> = useRef(
-		new Map<string, HTMLButtonElement>(),
+	const { selectedValue, tabId, panelId, select, handleKeyDown, registerTab }: TabList = useTabList(
+		{ items, value, defaultValue, onValueChange, activation },
 	);
-
-	const enabledItems: TabItem[] = items.filter((item: TabItem): boolean => item.disabled !== true);
-	const requestedValue: string | undefined = value ?? uncontrolledValue;
-
-	const selectedValue: string | undefined = enabledItems.some((item: TabItem): boolean => {
-		return item.id === requestedValue;
-	})
-		? requestedValue
-		: enabledItems[0]?.id;
-
-	const tabId = (id: string): string => `${baseId}-tab-${id}`;
-	const panelId = (id: string): string => `${baseId}-panel-${id}`;
-
-	const select = (id: string): void => {
-		if (id === selectedValue) return;
-		if (value === undefined) setUncontrolledValue(id);
-		onValueChange?.(id);
-	};
-
-	const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>): void => {
-		const focusedIndex: number = enabledItems.findIndex((item: TabItem): boolean => {
-			return tabElements.current.get(item.id) === event.target;
-		});
-
-		if (focusedIndex < 0 || enabledItems.length === 0) return;
-
-		const rightToLeft: boolean = getComputedStyle(event.currentTarget).direction === 'rtl';
-		const forward: string = rightToLeft ? 'ArrowLeft' : 'ArrowRight';
-		const backward: string = rightToLeft ? 'ArrowRight' : 'ArrowLeft';
-		const count: number = enabledItems.length;
-
-		const targets: Record<string, number> = {
-			[forward]: (focusedIndex + 1) % count,
-			[backward]: (focusedIndex - 1 + count) % count,
-			Home: 0,
-			End: count - 1,
-		};
-
-		const targetIndex: number | undefined = targets[event.key];
-		if (targetIndex === undefined) return;
-		event.preventDefault();
-
-		const target: TabItem | undefined = enabledItems[targetIndex];
-		if (target === undefined) return;
-		tabElements.current.get(target.id)?.focus();
-		if (activation === 'automatic') select(target.id);
-	};
 
 	return (
 		<div {...attributes}>
@@ -144,13 +85,7 @@ export const Tabs = ({
 					return (
 						<Tab
 							key={item.id}
-							ref={(element: HTMLButtonElement | null): (() => void) => {
-								if (element !== null) tabElements.current.set(item.id, element);
-
-								return (): void => {
-									tabElements.current.delete(item.id);
-								};
-							}}
+							ref={registerTab(item.id)}
 							type='button'
 							role='tab'
 							id={tabId(item.id)}

@@ -8,7 +8,7 @@ typography, icons and motion are explained in [foundations.md](./foundations.md)
 
 | Subpath                            | Components                                                                                                                                                                |
 | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `@midnight-indigo/ui/buttons`      | `Button`, `IconButton`                                                                                                                                                    |
+| `@midnight-indigo/ui/buttons`      | `Button`, `IconButton`, `CopyButton`                                                                                                                                      |
 | `@midnight-indigo/ui/data-display` | `Card`, `CardHeader`, `CardContent`, `Chip`, `Badge`, `Avatar`, `Divider`, `Skeleton`, `Carousel`; tables, lists, KPIs and states in [data-display.md](./data-display.md) |
 | `@midnight-indigo/ui/feedback`     | `ProgressBar` (linear and circular); alerts, toasts and overlays in [feedback.md](./feedback.md)                                                                          |
 | `@midnight-indigo/ui/layout`       | `Container`, `Stack`, `Grid`, `GridItem`, `useBreakpoint`; see [navigation.md](./navigation.md)                                                                           |
@@ -154,6 +154,16 @@ const plus = (
 Native `<button>`, `type="button"` by default (pass `type="submit"` in forms). `IconButton` requires `label`, its
 accessible name, and throws on a blank one. Both stay focusable while `loading`, and also when marked
 `aria-disabled`, which the Carousel uses so that focus is not lost at the first and last slides.
+
+### CopyButton
+
+Copies `value` (a string, or a function read at the moment of the copy) with the Clipboard API. An icon button by
+default (`label` names it, `labels.copy` otherwise: "Copy"), or with its name visible (`showLabel`). After a copy the
+icon becomes a check mark and the intent `success`; when the clipboard refuses the text (outside a secure context, or
+denied) an alert and `error`. The name never changes under the focus: the result (`labels.copied`, `labels.failed`) is
+announced by a live region next to the button, every time, and the button returns to rest after `feedbackDuration`
+(2000 ms). `onCopied` and `onCopyFailed` report the result; an `onClick` that calls `preventDefault()` cancels the copy.
+`CodeBlock` uses it for its copy button (see [code.md](./code.md)).
 
 ### Card, CardHeader, CardContent
 

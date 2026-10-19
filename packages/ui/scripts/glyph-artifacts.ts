@@ -17,6 +17,7 @@ export const glyphSources: Readonly<Record<string, string>> = {
 	chevronRight: 'chevron-right',
 	clock: 'clock',
 	close: 'x',
+	copy: 'copy',
 	externalLink: 'external-link',
 	eye: 'eye',
 	eyeOff: 'eye-off',

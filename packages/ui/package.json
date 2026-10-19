@@ -76,6 +76,10 @@
 			"types": "./dist/icons/index.d.ts",
 			"default": "./dist/icons/index.js"
 		},
+		"./code": {
+			"types": "./dist/code/index.d.ts",
+			"default": "./dist/code/index.js"
+		},
 		"./styles.css": "./dist/styles.css",
 		"./package.json": "./package.json"
 	},
@@ -99,7 +103,8 @@
 		"react": "^19.0.0",
 		"react-dom": "^19.0.0",
 		"react-hook-form": "^7.55.0",
-		"react-i18next": "^17.0.0"
+		"react-i18next": "^17.0.0",
+		"shiki": "^4.0.0"
 	},
 	"peerDependenciesMeta": {
 		"@mui/x-date-pickers": {
@@ -118,6 +123,9 @@
 			"optional": true
 		},
 		"react-i18next": {
+			"optional": true
+		},
+		"shiki": {
 			"optional": true
 		}
 	},
@@ -144,6 +152,7 @@
 		"react-dom": "catalog:",
 		"react-hook-form": "catalog:",
 		"react-i18next": "catalog:",
+		"shiki": "catalog:",
 		"tsdown": "catalog:",
 		"typescript": "catalog:",
 		"vite": "catalog:",

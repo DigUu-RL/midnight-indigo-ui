@@ -132,7 +132,8 @@ As séries de gráfico (`chart.series`) são as cores de apoio, começando por r
 
 `auditContrast(tokens)` mede cada par texto/fundo da paleta contra o WCAG 2.2 AA: 4.5:1 para texto, 3:1 para texto
 grande e indicadores não textuais. Os pares derivam da estrutura dos tokens (texto × superfícies × intents × cores de
-apoio sobre os fundos tonais, compostos sobre cada superfície), então uma nova superfície, intent ou cor de apoio é
+apoio sobre os fundos tonais, compostos sobre cada superfície × as cores de sintaxe dos
+[blocos de código](./code.md#cores)), então uma nova superfície, intent ou cor de apoio é
 auditada sozinha, e um novo token de cor fora dos pares reprova o teste até ganhar um par ou uma isenção documentada. O
 teste roda em `pnpm test` e no CI e, ao falhar, lista cada par reprovado com os tokens, a razão e o uso. A lista
 completa está em [pares de contraste](../en-us/tokens.md#contrast-pairs).

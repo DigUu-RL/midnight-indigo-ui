@@ -267,6 +267,11 @@ export const createComponentLabels = (
 			),
 		}),
 		chart: chartLabels(translator),
+		codeBlock: defined<'codeBlock'>({
+			code: text('codeBlock.code'),
+			files: text('codeBlock.files'),
+			copy: text('codeBlock.copy'),
+		}),
 		combobox: defined<'combobox'>({
 			noOptions: text('combobox.noOptions'),
 			loading: text('combobox.loading'),
@@ -282,6 +287,11 @@ export const createComponentLabels = (
 		confirmDialog: defined<'confirmDialog'>({
 			confirm: text('confirmDialog.confirm'),
 			cancel: text('confirmDialog.cancel'),
+		}),
+		copyButton: defined<'copyButton'>({
+			copy: text('copyButton.copy'),
+			copied: text('copyButton.copied'),
+			failed: text('copyButton.failed'),
 		}),
 		dashboardLayout: defined<'dashboardLayout'>({
 			skipToContent: text('dashboardLayout.skipToContent'),
@@ -369,6 +379,7 @@ export const createComponentLabels = (
 			flat: text('statCard.flat'),
 			loading: text('statCard.loading'),
 		}),
+		tableOfContents: defined<'tableOfContents'>({ title: text('tableOfContents.title') }),
 		textArea: defined<'textArea'>({
 			characterCount: resolves(
 				['textArea.characterCount', { count: 2 }],

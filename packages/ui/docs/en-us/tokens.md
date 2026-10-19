@@ -848,6 +848,28 @@ pair or exempt below; a new color token in neither fails the audit.
 | `chart.label` | `surface.canvas` | 11.29:1 | 4.50:1 | Chart labels | Pass |
 | `chart.label` | `surface.raised` | 10.23:1 | 4.50:1 | Chart labels | Pass |
 | `chart.label` | `chart.tooltipSurface` | 9.54:1 | 4.50:1 | Chart labels | Pass |
+| `text.primary` | `surface.field` | 17.69:1 | 4.50:1 | Syntax in a code block | Pass |
+| `text.secondary` | `surface.field` | 11.10:1 | 4.50:1 | Syntax in a code block | Pass |
+| `text.muted` | `surface.field` | 6.68:1 | 4.50:1 | Syntax in a code block | Pass |
+| `support.pink.text` | `surface.field` | 7.71:1 | 4.50:1 | Syntax in a code block | Pass |
+| `support.violet.text` | `surface.field` | 6.83:1 | 4.50:1 | Syntax in a code block | Pass |
+| `support.blue.text` | `surface.field` | 9.57:1 | 4.50:1 | Syntax in a code block | Pass |
+| `support.green.text` | `surface.field` | 9.49:1 | 4.50:1 | Syntax in a code block | Pass |
+| `support.amber.text` | `surface.field` | 11.20:1 | 4.50:1 | Syntax in a code block | Pass |
+| `support.red.text` | `surface.field` | 6.80:1 | 4.50:1 | Syntax in a code block | Pass |
+| `support.turquoise.text` | `surface.field` | 10.57:1 | 4.50:1 | Syntax in a code block | Pass |
+| `support.orange.text` | `surface.field` | 8.12:1 | 4.50:1 | Syntax in a code block | Pass |
+| `text.primary` | `state.selected` | 13.24:1 | 4.50:1 | Syntax on a highlighted line of a code block | Pass |
+| `text.secondary` | `state.selected` | 8.31:1 | 4.50:1 | Syntax on a highlighted line of a code block | Pass |
+| `text.muted` | `state.selected` | 5.00:1 | 4.50:1 | Syntax on a highlighted line of a code block | Pass |
+| `support.pink.text` | `state.selected` | 5.77:1 | 4.50:1 | Syntax on a highlighted line of a code block | Pass |
+| `support.violet.text` | `state.selected` | 5.11:1 | 4.50:1 | Syntax on a highlighted line of a code block | Pass |
+| `support.blue.text` | `state.selected` | 7.16:1 | 4.50:1 | Syntax on a highlighted line of a code block | Pass |
+| `support.green.text` | `state.selected` | 7.10:1 | 4.50:1 | Syntax on a highlighted line of a code block | Pass |
+| `support.amber.text` | `state.selected` | 8.38:1 | 4.50:1 | Syntax on a highlighted line of a code block | Pass |
+| `support.red.text` | `state.selected` | 5.09:1 | 4.50:1 | Syntax on a highlighted line of a code block | Pass |
+| `support.turquoise.text` | `state.selected` | 7.91:1 | 4.50:1 | Syntax on a highlighted line of a code block | Pass |
+| `support.orange.text` | `state.selected` | 6.08:1 | 4.50:1 | Syntax on a highlighted line of a code block | Pass |
 | `border.default` | `surface.field` | 1.44:1 | 1.40:1 | Outline of a text field | Pass (exception) |
 | `border.strong` | `surface.field` | 2.08:1 | 2.00:1 | Outline of a hovered text field | Pass (exception) |
 | `text.placeholder` | `surface.field` | 3.76:1 | 3.70:1 | Placeholder of a text field | Pass (exception) |

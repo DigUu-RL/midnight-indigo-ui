@@ -37,6 +37,8 @@ const publicSubpaths: readonly string[] = [
 	'./i18n',
 	'./dashboard',
 	'./icons',
+	// Highlighting loads the optional peer `shiki` on demand (F14, see Decisões técnicas).
+	'./code',
 ];
 
 const nonCodeExports: readonly string[] = ['./styles.css', './package.json'];
