@@ -12,7 +12,8 @@
 			"newCustomer": "New customer",
 			"appearance": "Appearance",
 			"gallery": "Component gallery",
-			"icons": "Icons"
+			"icons": "Icons",
+			"components": "Components"
 		},
 		"language": "Language",
 		"notifications": "Notifications"
@@ -311,6 +312,93 @@
 		"others": {
 			"one": "{{count, number}} other set",
 			"other": "{{count, number}} other sets"
+		}
+	},
+	"explorer": {
+		"header": {
+			"title": "Components",
+			"description": "Every component of the library, with its variants, a playground, examples with their code and its props."
+		},
+		"navigation": {
+			"label": "Components",
+			"search": "Search components",
+			"overview": "All components",
+			"results": {
+				"one": "{{count, number}} component found",
+				"other": "{{count, number}} components found"
+			},
+			"noResults": "No component matches “{{query}}”."
+		},
+		"subpaths": {
+			"buttons": "Buttons",
+			"dataDisplay": "Data display"
+		},
+		"page": {
+			"usage": "Import",
+			"variants": "Variants and states",
+			"playground": "Playground",
+			"examples": "Examples",
+			"api": "Props",
+			"accessibility": "Accessibility",
+			"states": "States",
+			"default": "default",
+			"preview": "Preview",
+			"code": "Code",
+			"exampleTabs": "{{title}}: preview and code"
+		},
+		"playground": {
+			"preview": "Component with the chosen props",
+			"controls": "Props",
+			"reset": "Reset props"
+		},
+		"api": {
+			"caption": "Props of {{component}}",
+			"prop": "Prop",
+			"type": "Type",
+			"default": "Default",
+			"description": "Description",
+			"required": "required",
+			"native": "Attribute of the native element, passed on unchanged."
+		},
+		"components": {
+			"button": {
+				"summary": "Action with a visible text label.",
+				"description": "Use it for actions inside the page: saving, confirming, opening a dialog. Mark the main action of a view with the `official` intent; to go to another page, use a `Link`.",
+				"examples": {
+					"actions": {
+						"title": "Actions of a form",
+						"description": "One `official` solid button for the main action; the others stay soft or ghost."
+					},
+					"loading": {
+						"title": "Operation in progress",
+						"description": "`loading` keeps the label, the look and the focus while the action runs, and tells assistive technologies that the button is busy."
+					}
+				},
+				"accessibility": {
+					"name": "The visible label is the accessible name; for a button with only an icon, use `IconButton`.",
+					"type": "It is a native button with `type=\"button\"`; pass `type=\"submit\"` in forms.",
+					"loading": "`loading` sets `aria-busy` and ignores activation without taking the focus away; `disabled` means the action is unavailable."
+				}
+			},
+			"chip": {
+				"summary": "Compact label for an attribute, a status or a filter.",
+				"description": "A chip with only a label is text; with `onClick` it is a button, with `selected` a toggle, and `onDelete` gives it a separate delete button.",
+				"examples": {
+					"statuses": {
+						"title": "Statuses",
+						"description": "Soft chips, one intent per status, with the status written in the label."
+					},
+					"filters": {
+						"title": "Filters",
+						"description": "Selectable chips in a named group: each one is a toggle button."
+					}
+				},
+				"accessibility": {
+					"text": "A chip without `onClick` is plain text, not a control.",
+					"toggle": "With `onClick` it is a native button; with `selected` it is a toggle with `aria-pressed`, and its check mark is a shape besides the color.",
+					"remove": "The delete button is separate, a tab stop of its own, named by `deleteLabel`, e.g. `Remove Status: open`."
+				}
+			}
 		}
 	}
 }

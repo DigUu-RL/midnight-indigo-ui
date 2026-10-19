@@ -37,8 +37,9 @@ export type ChipVariant = Exclude<Appearance, 'ghost'>;
 export type ChipSize = 'small' | 'medium';
 
 interface ChipBaseProps extends Omit<ComponentPropsWithRef<'span'>, 'children' | 'onClick'> {
+	/** Visible text; it is also the accessible name of the chip and of its button. */
 	label: ReactNode;
-	/** Defaults to `'default'`. */
+	/** Meaning of the attribute or status. Defaults to `'default'`. */
 	intent?: SemanticIntent;
 	/** Defaults to `'soft'`. A selected chip is always a `solid` `brand` chip with a check mark. */
 	variant?: ChipVariant;
@@ -46,17 +47,29 @@ interface ChipBaseProps extends Omit<ComponentPropsWithRef<'span'>, 'children' |
 	size?: ChipSize;
 	/** Decorative content before the label. */
 	icon?: ReactNode;
+	/** Dims the chip and disables its buttons. */
 	disabled?: boolean;
 }
 
 /** A chip with `onClick` is a button; with `selected` it is a toggle (`aria-pressed`), e.g. a filter. */
 type ChipActionProps =
 	| { onClick?: undefined; selected?: never }
-	| { onClick: (event: MouseEvent<HTMLButtonElement>) => void; selected?: boolean };
+	| {
+			/** Makes the chip a button. */
+			onClick: (event: MouseEvent<HTMLButtonElement>) => void;
+			/** Makes the button a toggle (`aria-pressed`), e.g. a filter; needs `onClick`. */
+			selected?: boolean;
+	  };
 
 /** A removable chip has a separate delete button, which needs its own name, e.g. `'Remove Status: open'`. */
 type ChipDeleteProps =
-	{ onDelete?: undefined; deleteLabel?: never } | { onDelete: () => void; deleteLabel: string };
+	| { onDelete?: undefined; deleteLabel?: never }
+	| {
+			/** Adds a delete button after the label. */
+			onDelete: () => void;
+			/** Name of the delete button, e.g. `'Remove Status: open'`; needs `onDelete`. */
+			deleteLabel: string;
+	  };
 
 export type ChipProps = ChipBaseProps & ChipActionProps & ChipDeleteProps;
 

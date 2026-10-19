@@ -244,3 +244,267 @@
 	align-items: center;
 	gap: var(--mi-spacing-3);
 }
+
+/* Component explorer: its navigation beside the page when the content area is wide enough, above it otherwise. The
+   container is the content area of the shell, not the viewport, so the open or collapsed sidebar counts; an element
+   never queries itself, hence the layout inside it. */
+.explorer {
+	container-type: inline-size;
+}
+
+.explorer-layout {
+	display: grid;
+	gap: var(--mi-spacing-8);
+}
+
+.explorer-content {
+	container-type: inline-size;
+	min-width: 0;
+}
+
+.explorer-navigation {
+	display: grid;
+	align-content: start;
+	gap: var(--mi-spacing-3);
+	max-height: 18rem;
+	overflow-y: auto;
+	padding: var(--mi-spacing-1);
+}
+
+@container (min-width: 52rem) {
+	.explorer-layout {
+		grid-template-columns: 13rem minmax(0, 1fr);
+	}
+
+	/* Sticks below the top bar of the shell and scrolls by itself when the list is taller than the window. */
+	.explorer-navigation {
+		position: sticky;
+		top: var(--mi-spacing-4);
+		max-height: calc(100dvh - 6rem);
+	}
+}
+
+/* Empty until a search runs, so announcing a result never moves the list. */
+.explorer-navigation-status {
+	min-height: 1lh;
+	margin: 0;
+	color: var(--mi-text-secondary);
+	font: var(--mi-typography-body-small-font-weight) var(--mi-typography-body-small-font-size) /
+		var(--mi-typography-body-small-line-height) var(--mi-typography-body-small-font-family);
+}
+
+.explorer-navigation-group > ul {
+	display: grid;
+	gap: var(--mi-spacing-1);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.explorer-navigation-title {
+	margin: 0 0 var(--mi-spacing-1);
+	color: var(--mi-text-muted);
+	font: var(--mi-typography-overline-font-weight) var(--mi-typography-overline-font-size) /
+		var(--mi-typography-overline-line-height) var(--mi-typography-overline-font-family);
+	letter-spacing: var(--mi-typography-overline-letter-spacing);
+	text-transform: var(--mi-typography-overline-text-transform);
+}
+
+.explorer-section {
+	display: grid;
+	gap: var(--mi-spacing-4);
+	margin-block-start: var(--mi-spacing-10);
+}
+
+.explorer-section > h2 {
+	margin: 0;
+}
+
+.explorer-subpath {
+	color: var(--mi-text-secondary);
+}
+
+.explorer-cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+	gap: var(--mi-spacing-3);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.explorer-card {
+	display: grid;
+	gap: var(--mi-spacing-1);
+	height: 100%;
+	box-sizing: border-box;
+	padding: var(--mi-spacing-4);
+	border: 1px solid var(--mi-border-subtle);
+	border-radius: var(--mi-radius-card);
+	background: var(--mi-surface-raised);
+	color: var(--mi-text-primary);
+	text-decoration: none;
+}
+
+.explorer-card:hover {
+	border-color: var(--mi-border-strong);
+}
+
+.explorer-card-name {
+	font-weight: var(--mi-font-weight-semibold);
+}
+
+.explorer-card-description {
+	color: var(--mi-text-secondary);
+	font: var(--mi-typography-body-small-font-weight) var(--mi-typography-body-small-font-size) /
+		var(--mi-typography-body-small-line-height) var(--mi-typography-body-small-font-family);
+}
+
+/* Page of a component: the table of contents beside the content when there is room for both. */
+.component-page {
+	display: grid;
+	gap: var(--mi-spacing-8);
+}
+
+.component-page-content {
+	min-width: 0;
+}
+
+.component-page-contents {
+	display: none;
+}
+
+@container (min-width: 60rem) {
+	.component-page {
+		grid-template-columns: minmax(0, 1fr) 12rem;
+	}
+
+	.component-page-contents {
+		position: sticky;
+		top: var(--mi-spacing-4);
+		display: block;
+		align-self: start;
+	}
+}
+
+/* Every variant and state of a component: one row per prop, each value under its sample. */
+.variant-grid {
+	display: grid;
+	gap: var(--mi-spacing-6);
+}
+
+.variant-row {
+	display: grid;
+	gap: var(--mi-spacing-3);
+	margin: 0;
+}
+
+.variant-row > figcaption {
+	color: var(--mi-text-secondary);
+}
+
+.variant-samples {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--mi-spacing-4);
+	margin: 0;
+	padding: var(--mi-spacing-4);
+	border: 1px solid var(--mi-border-subtle);
+	border-radius: var(--mi-radius-card);
+	list-style: none;
+}
+
+.variant-sample {
+	display: grid;
+	justify-items: start;
+	align-content: start;
+	gap: var(--mi-spacing-2);
+}
+
+.variant-sample > code {
+	color: var(--mi-text-muted);
+}
+
+.example {
+	display: grid;
+	gap: var(--mi-spacing-2);
+}
+
+.example > h3,
+.example > p {
+	margin: 0;
+}
+
+.example-stage,
+.playground-stage {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	min-height: 8rem;
+	padding: var(--mi-spacing-6);
+	border: 1px solid var(--mi-border-subtle);
+	border-radius: var(--mi-radius-card);
+	background: var(--mi-surface-canvas);
+}
+
+.playground {
+	display: grid;
+	gap: var(--mi-spacing-4);
+}
+
+.playground-controls {
+	display: grid;
+	justify-items: start;
+	gap: var(--mi-spacing-4);
+}
+
+.playground-title {
+	margin: 0;
+	font: var(--mi-typography-label-font-weight) var(--mi-typography-label-font-size) /
+		var(--mi-typography-label-line-height) var(--mi-typography-label-font-family);
+}
+
+.playground-fields {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+	align-items: start;
+	gap: var(--mi-spacing-4);
+	justify-self: stretch;
+}
+
+/* Names and default values are read whole: they never break inside, the description column wraps instead. */
+th > code.api-token,
+td > code.api-token {
+	white-space: nowrap;
+	overflow-wrap: normal;
+	word-break: normal;
+}
+
+/* A type breaks between its words only; on a narrow screen the table scrolls sideways instead of squeezing it. */
+td > code.api-type {
+	display: inline-block;
+	min-width: 10rem;
+	overflow-wrap: normal;
+	word-break: normal;
+}
+
+.api-description {
+	min-width: 16rem;
+}
+
+.api-required {
+	display: block;
+	color: var(--mi-text-muted);
+	font: var(--mi-typography-overline-font-weight) var(--mi-typography-overline-font-size) /
+		var(--mi-typography-overline-line-height) var(--mi-typography-overline-font-family);
+	letter-spacing: var(--mi-typography-overline-letter-spacing);
+	text-transform: var(--mi-typography-overline-text-transform);
+}
+
+.accessibility-notes {
+	display: grid;
+	gap: var(--mi-spacing-2);
+	margin: 0;
+	padding-inline-start: var(--mi-spacing-5);
+}

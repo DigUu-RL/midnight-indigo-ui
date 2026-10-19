@@ -1,0 +1,78 @@
+{
+	"Button": {
+		"children": {
+			"source": "Visible label; it is also the accessible name.",
+			"translation": "Rótulo visível; também é o nome acessível."
+		},
+		"intent": {
+			"source": "Meaning of the action. Defaults to `'default'`; mark the main action of a view with `'official'`.",
+			"translation": "Significado da ação. Padrão: `'default'`; marque a ação principal de uma tela com `'official'`."
+		},
+		"variant": {
+			"source": "Emphasis. Defaults to `'soft'`.",
+			"translation": "Ênfase. Padrão: `'soft'`."
+		},
+		"size": {
+			"source": "Defaults to `'medium'`. Every size is at least 32 px high, above the WCAG 2.2 minimum target.",
+			"translation": "Padrão: `'medium'`. Todo tamanho tem pelo menos 32 px de altura, acima do alvo mínimo da WCAG 2.2."
+		},
+		"loading": {
+			"source": "Operation in progress: shows a ring in place of `startIcon`, sets `aria-busy` and ignores activation, but the button keeps its look and its focus. Use it instead of `disabled`, which means the action is unavailable.",
+			"translation": "Operação em andamento: mostra um anel no lugar de `startIcon`, define `aria-busy` e ignora a ativação, mas o botão mantém a aparência e o foco. Use no lugar de `disabled`, que significa que a ação está indisponível."
+		},
+		"startIcon": {
+			"source": "Decorative content before the label, typically an `Icon`.",
+			"translation": "Conteúdo decorativo antes do rótulo, normalmente um `Icon`."
+		},
+		"endIcon": {
+			"source": "Decorative content after the label.",
+			"translation": "Conteúdo decorativo depois do rótulo."
+		},
+		"fullWidth": {
+			"source": "Takes the full width of its container.",
+			"translation": "Ocupa toda a largura do contêiner."
+		}
+	},
+	"Chip": {
+		"label": {
+			"source": "Visible text; it is also the accessible name of the chip and of its button.",
+			"translation": "Texto visível; também é o nome acessível do chip e do seu botão."
+		},
+		"intent": {
+			"source": "Meaning of the attribute or status. Defaults to `'default'`.",
+			"translation": "Significado do atributo ou status. Padrão: `'default'`."
+		},
+		"variant": {
+			"source": "Defaults to `'soft'`. A selected chip is always a `solid` `brand` chip with a check mark.",
+			"translation": "Padrão: `'soft'`. Um chip selecionado é sempre um chip `solid` `brand` com uma marca de seleção."
+		},
+		"size": {
+			"source": "24 or 32 px high. Defaults to `'medium'`.",
+			"translation": "24 ou 32 px de altura. Padrão: `'medium'`."
+		},
+		"icon": {
+			"source": "Decorative content before the label.",
+			"translation": "Conteúdo decorativo antes do rótulo."
+		},
+		"disabled": {
+			"source": "Dims the chip and disables its buttons.",
+			"translation": "Esmaece o chip e desativa os seus botões."
+		},
+		"onClick": {
+			"source": "Makes the chip a button.",
+			"translation": "Torna o chip um botão."
+		},
+		"selected": {
+			"source": "Makes the button a toggle (`aria-pressed`), e.g. a filter; needs `onClick`.",
+			"translation": "Torna o botão um alternador (`aria-pressed`), por exemplo um filtro; exige `onClick`."
+		},
+		"onDelete": {
+			"source": "Adds a delete button after the label.",
+			"translation": "Adiciona um botão de remover depois do rótulo."
+		},
+		"deleteLabel": {
+			"source": "Name of the delete button, e.g. `'Remove Status: open'`; needs `onDelete`.",
+			"translation": "Nome do botão de remover, por exemplo `'Remove Status: open'`; exige `onDelete`."
+		}
+	}
+}

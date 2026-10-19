@@ -1,0 +1,206 @@
+{
+	"Button": [
+		{
+			"name": "children",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Visible label; it is also the accessible name.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "intent",
+			"type": "SemanticIntent",
+			"required": false,
+			"defaultValue": "'default'",
+			"description": "Meaning of the action. Defaults to `'default'`; mark the main action of a view with `'official'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["official", "brand", "default", "success", "warning", "error", "info"]
+		},
+		{
+			"name": "variant",
+			"type": "ButtonVariant",
+			"required": false,
+			"defaultValue": "'soft'",
+			"description": "Emphasis. Defaults to `'soft'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["solid", "soft", "outline", "ghost"]
+		},
+		{
+			"name": "size",
+			"type": "ButtonSize",
+			"required": false,
+			"defaultValue": "'medium'",
+			"description": "Defaults to `'medium'`. Every size is at least 32 px high, above the WCAG 2.2 minimum target.",
+			"native": false,
+			"kind": "enum",
+			"options": ["small", "medium", "large"]
+		},
+		{
+			"name": "loading",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Operation in progress: shows a ring in place of `startIcon`, sets `aria-busy` and ignores activation, but the button keeps its look and its focus. Use it instead of `disabled`, which means the action is unavailable.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "startIcon",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Decorative content before the label, typically an `Icon`.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "endIcon",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Decorative content after the label.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "fullWidth",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Takes the full width of its container.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "type",
+			"type": "\"submit\" | \"reset\" | \"button\"",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "enum",
+			"options": ["button", "submit", "reset"]
+		}
+	],
+	"Chip": [
+		{
+			"name": "label",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Visible text; it is also the accessible name of the chip and of its button.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "intent",
+			"type": "SemanticIntent",
+			"required": false,
+			"defaultValue": "'default'",
+			"description": "Meaning of the attribute or status. Defaults to `'default'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["official", "brand", "default", "success", "warning", "error", "info"]
+		},
+		{
+			"name": "variant",
+			"type": "ChipVariant",
+			"required": false,
+			"defaultValue": "'soft'",
+			"description": "Defaults to `'soft'`. A selected chip is always a `solid` `brand` chip with a check mark.",
+			"native": false,
+			"kind": "enum",
+			"options": ["solid", "soft", "outline"]
+		},
+		{
+			"name": "size",
+			"type": "ChipSize",
+			"required": false,
+			"defaultValue": "'medium'",
+			"description": "24 or 32 px high. Defaults to `'medium'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["small", "medium"]
+		},
+		{
+			"name": "icon",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Decorative content before the label.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Dims the chip and disables its buttons.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "onClick",
+			"type": "(event: MouseEvent<HTMLButtonElement, MouseEvent>) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Makes the chip a button.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "selected",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Makes the button a toggle (`aria-pressed`), e.g. a filter; needs `onClick`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "onDelete",
+			"type": "() => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Adds a delete button after the label.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "deleteLabel",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Name of the delete button, e.g. `'Remove Status: open'`; needs `onDelete`.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		}
+	]
+}

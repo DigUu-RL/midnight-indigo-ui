@@ -12,6 +12,7 @@ backend and no account: the data is generated in `src/dashboard/demo-data.ts` an
 | Reports           | `/en-us/reports`             | One chart of each factory: line, composed, bar, donut and gauge          |
 | New customer      | `/en-us/customers/new`       | A validated form whose checks and submission are Server Actions          |
 | Appearance        | `/en-us/settings/appearance` | Palette editor: preview, contrast audit and the `theme.json` to export   |
+| Components        | `/en-us/components`          | Component explorer: variants, playground, examples with code, props      |
 | Page not found    | any other path               | The 404 page, in the language of the path, inside the shell              |
 | Component gallery | `/gallery`                   | Every component of the library (English only; used for visual review)    |
 
@@ -63,7 +64,7 @@ src/
 │   ├── [locale]/            # every page of the application, once per locale
 │   │   ├── layout.tsx       # root layout: <html lang>, providers and the shell
 │   │   ├── page.tsx         # sales overview
-│   │   └── orders/ reports/ customers/new/ settings/appearance/ icons/
+│   │   └── orders/ reports/ customers/new/ settings/appearance/ icons/ components/
 │   ├── gallery/             # the component gallery, with its own root layout
 │   └── global-not-found.tsx # the 404 page of any path no route matches
 ├── proxy.ts                 # sends paths without a locale to the preferred one
@@ -71,6 +72,7 @@ src/
 ├── messages/                # en-us.json and pt-br.json
 ├── shell/                   # providers, the dashboard shell, the language links
 ├── icons/                   # the installed icon sets, the icon browser (server only)
+├── explorer/                # the component explorer: catalog, examples, playgrounds, generated props
 ├── dashboard/ orders/ reports/ customers/ appearance/
 ├── theme.json               # the palette of the application
 └── theme.ts
@@ -126,6 +128,24 @@ and intent, and copies the code to use it. It runs on the server: the browser re
   `ICON-NOTICES.pt-BR.md`) do it, and list each excluded set with the reason. Keep one of them in your application.
 - The sets take about 330 MB in `node_modules` and are not part of any page bundle. To ship fewer, remove the
   `@iconify-json/*` dependencies you do not use and their entries in `src/icons/icon-sets.ts`.
+
+## Component explorer
+
+**Components** (`/en-us/components`) has a page per component, built at build time in each language: its import, every
+variant and state, a playground whose code follows the props chosen, realistic examples with a **Code** tab, its props
+and its accessibility notes. Each example is a file of its own in `src/explorer/examples/` that imports only
+`@midnight-indigo/ui/*` and React; the page reads that file, so the code shown is the code that runs, colored by Shiki
+on the server (no highlighter reaches the browser).
+
+To add a component, in the repository of the library:
+
+1. List it in `src/explorer/catalog.ts` (subpath, examples, base props, controls, variants, states, notes).
+2. Write its examples, add them and the component to `src/explorer/bindings.tsx`, and add the component to the
+   playground of its subpath in `src/explorer/playgrounds/`.
+3. Run `pnpm build`, then `node scripts/generate-explorer-api.ts` in the starter, which writes its props from the
+   types of the library to `src/explorer/component-api.json`.
+4. Write its texts in both `src/messages/*.json` (`explorer.components.<name>`) and translate the description of each
+   prop in `src/explorer/prop-descriptions.pt-br.json`. The tests list whatever is missing or stale.
 
 ## Replacing the demo
 

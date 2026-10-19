@@ -78,6 +78,8 @@ const starterRoutes: readonly string[] = [
 	'/en-us/customers/new',
 	'/en-us/settings/appearance',
 	'/en-us/icons',
+	'/en-us/components',
+	'/en-us/components/chip',
 	'/gallery',
 ];
 

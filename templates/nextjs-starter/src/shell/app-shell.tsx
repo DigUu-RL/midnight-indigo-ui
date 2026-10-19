@@ -30,11 +30,24 @@ export const AppShell = ({ locale, children }: AppShellProps): ReactElement => {
 	const pathname: string = usePathname();
 	const home: string = `/${locale}`;
 
+	// A destination with pages below it stays current on them, e.g. the explorer on the page of a component.
 	const current: Destination | undefined = destinations.find(
 		(destination: Destination): boolean => {
-			return pathname === `${home}${destination.path}`;
+			const path: string = `${home}${destination.path}`;
+
+			const isParent: boolean =
+				destination.childLabel !== undefined && pathname.startsWith(`${path}/`);
+
+			return pathname === path || isParent;
 		},
 	);
+
+	const destinationPath: string = `${home}${current?.path ?? ''}`;
+
+	const childLabel: string | undefined =
+		current === undefined || pathname === destinationPath
+			? undefined
+			: current.childLabel?.(pathname.slice(destinationPath.length + 1).split('/')[0] ?? '');
 
 	const navigation: SidebarEntry[] = [
 		...destinations.map((destination: Destination): SidebarEntry => {
@@ -76,7 +89,12 @@ export const AppShell = ({ locale, children }: AppShellProps): ReactElement => {
 					<Breadcrumbs
 						items={[
 							{ id: 'home', label: t('shell.navigation.overview'), href: home },
-							{ id: current.name, label: t(`shell.navigation.${current.name}`) },
+							{
+								id: current.name,
+								label: t(`shell.navigation.${current.name}`),
+								...(childLabel === undefined ? {} : { href: destinationPath }),
+							},
+							...(childLabel === undefined ? [] : [{ id: 'child', label: childLabel }]),
 						]}
 					/>
 				)

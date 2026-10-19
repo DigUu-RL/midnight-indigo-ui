@@ -5,14 +5,18 @@ import { IconifyIcon } from '@midnight-indigo/ui/icons';
 import type { IconifyIconData } from '@midnight-indigo/ui/icons';
 import type { ReactElement } from 'react';
 
+import { findComponent } from '#src/explorer/catalog.ts';
+
 export type DestinationName =
-	'overview' | 'orders' | 'reports' | 'newCustomer' | 'appearance' | 'icons';
+	'overview' | 'orders' | 'reports' | 'newCustomer' | 'appearance' | 'icons' | 'components';
 
 export interface Destination {
 	name: DestinationName;
 	/** Path after the locale; `''` is the home page. */
 	path: string;
 	icon: ReactElement;
+	/** Name of a page below this one, from the next segment of its path, for the breadcrumbs. */
+	childLabel?: (segment: string) => string | undefined;
 }
 
 // tabler:icons, Tabler Icons (MIT), copied as data from the icon browser: only this icon reaches the bundle.
@@ -57,6 +61,14 @@ export const destinations: readonly Destination[] = [
 		),
 	},
 	{ name: 'icons', path: '/icons', icon: <IconifyIcon icon={iconsIcon} decorative /> },
+	{
+		name: 'components',
+		path: '/components',
+		icon: icon(
+			'M12 2 2 7l10 5 10-5zM4.2 10.9 2 12l10 5 10-5-2.2-1.1L12 14.8zm0 5L2 17l10 5 10-5-2.2-1.1L12 19.8z',
+		),
+		childLabel: (segment: string): string | undefined => findComponent(segment)?.name,
+	},
 ];
 
 export const galleryIcon: ReactElement = icon('M4 4h7v7H4zm9 0h7v7h-7zM4 13h7v7H4zm9 0h7v7h-7z');

@@ -23,6 +23,8 @@ interface ApplicationPage {
 	path: string;
 	/** Message of its `h1`. */
 	heading: string;
+	/** The `h1` is `heading` itself, a name the page does not translate (a component of the explorer). */
+	literal?: boolean;
 }
 
 const locales: readonly Locale[] = [
@@ -38,6 +40,9 @@ const applicationPages: readonly ApplicationPage[] = [
 	{ path: '/settings/appearance', heading: 'appearance.header.title' },
 	{ path: '/icons', heading: 'icons.header.title' },
 	{ path: '/icons/attribution', heading: 'iconAttribution.header.title' },
+	{ path: '/components', heading: 'explorer.header.title' },
+	{ path: '/components/button', heading: 'Button', literal: true },
+	{ path: '/components/chip', heading: 'Chip', literal: true },
 ];
 
 const themeStyleMarker: string = 'data-href="midnight-indigo-theme-';
@@ -133,8 +138,9 @@ locales.forEach((locale: Locale): void => {
 	);
 
 	describe(`in ${locale.tag}`, (): void => {
-		applicationPages.forEach(({ path, heading }: ApplicationPage): void => {
+		applicationPages.forEach(({ path, heading, literal = false }: ApplicationPage): void => {
 			const url: string = `/${locale.segment}${path}`;
+			const headingText: string = literal ? heading : messageAt(locale.messages, heading);
 
 			test(`${url} is rendered on the server in its language, styled from the first flush`, async (): Promise<void> => {
 				const page: StreamedPage = await readStreamedPage(`${server.origin}${url}`);
@@ -143,10 +149,7 @@ locales.forEach((locale: Locale): void => {
 				assert.equal(page.status, 200);
 				assert.match(page.html, new RegExp(`<html lang="${locale.tag}"`));
 
-				assert.match(
-					page.html,
-					new RegExp(`<h1[^>]*>${escapeHtml(messageAt(locale.messages, heading))}</h1>`),
-				);
+				assert.match(page.html, new RegExp(`<h1[^>]*>${escapeHtml(headingText)}</h1>`));
 
 				assert.ok(
 					head.includes(escapeHtml(messageAt(locale.messages, 'app.name'))),
