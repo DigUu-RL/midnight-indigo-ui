@@ -34,6 +34,18 @@ describe('SearchField', (): void => {
 		await expectNoAxeViolations(container);
 	});
 
+	// The native baseline draws a clear button in every search input; the field has its own.
+	it('hides the clear button of the browser, so there is only one', (): void => {
+		render(<SearchField label='Search bounties' defaultValue='Spike Spiegel' />);
+
+		const styles: string = [...document.querySelectorAll('style')]
+			.map((style: HTMLStyleElement): string => style.textContent)
+			.join('');
+
+		expect(styles).toMatch(/::-webkit-search-cancel-button\{display:none;\}/);
+		expect(screen.getAllByRole('button', { name: 'Clear search' })).toHaveLength(1);
+	});
+
 	it('clears with Escape, also when controlled', async (): Promise<void> => {
 		const user: UserEvent = userEvent.setup();
 

@@ -12,7 +12,8 @@
 			"newCustomer": "Novo cliente",
 			"appearance": "Aparência",
 			"gallery": "Galeria de componentes",
-			"icons": "Ícones"
+			"icons": "Ícones",
+			"components": "Componentes"
 		},
 		"language": "Idioma",
 		"notifications": "Notificações"
@@ -316,6 +317,94 @@
 			"one": "{{count, number}} outro conjunto",
 			"many": "{{count, number}} de outros conjuntos",
 			"other": "{{count, number}} outros conjuntos"
+		}
+	},
+	"explorer": {
+		"header": {
+			"title": "Componentes",
+			"description": "Todos os componentes da biblioteca, com suas variantes, um playground, exemplos com o código e as props."
+		},
+		"navigation": {
+			"label": "Componentes",
+			"search": "Buscar componentes",
+			"overview": "Todos os componentes",
+			"results": {
+				"one": "{{count, number}} componente encontrado",
+				"many": "{{count, number}} de componentes encontrados",
+				"other": "{{count, number}} componentes encontrados"
+			},
+			"noResults": "Nenhum componente corresponde a “{{query}}”."
+		},
+		"subpaths": {
+			"buttons": "Botões",
+			"dataDisplay": "Exibição de dados"
+		},
+		"page": {
+			"usage": "Importação",
+			"variants": "Variantes e estados",
+			"playground": "Playground",
+			"examples": "Exemplos",
+			"api": "Props",
+			"accessibility": "Acessibilidade",
+			"states": "Estados",
+			"default": "padrão",
+			"preview": "Prévia",
+			"code": "Código",
+			"exampleTabs": "{{title}}: prévia e código"
+		},
+		"playground": {
+			"preview": "Componente com as props escolhidas",
+			"controls": "Props",
+			"reset": "Restaurar props"
+		},
+		"api": {
+			"caption": "Props de {{component}}",
+			"prop": "Prop",
+			"type": "Tipo",
+			"default": "Padrão",
+			"description": "Descrição",
+			"required": "obrigatória",
+			"native": "Atributo do elemento nativo, repassado sem alteração."
+		},
+		"components": {
+			"button": {
+				"summary": "Ação com um rótulo de texto visível.",
+				"description": "Use para ações dentro da página: salvar, confirmar, abrir um diálogo. Marque a ação principal de uma tela com o intent `official`; para ir a outra página, use um `Link`.",
+				"examples": {
+					"actions": {
+						"title": "Ações de um formulário",
+						"description": "Um botão `official` sólido para a ação principal; os demais ficam suaves ou fantasmas."
+					},
+					"loading": {
+						"title": "Operação em andamento",
+						"description": "`loading` mantém o rótulo, a aparência e o foco enquanto a ação acontece, e avisa as tecnologias assistivas que o botão está ocupado."
+					}
+				},
+				"accessibility": {
+					"name": "O rótulo visível é o nome acessível; para um botão só com ícone, use `IconButton`.",
+					"type": "É um botão nativo com `type=\"button\"`; passe `type=\"submit\"` em formulários.",
+					"loading": "`loading` define `aria-busy` e ignora a ativação sem tirar o foco; `disabled` significa que a ação está indisponível."
+				}
+			},
+			"chip": {
+				"summary": "Rótulo compacto para um atributo, um status ou um filtro.",
+				"description": "Um chip só com rótulo é texto; com `onClick` é um botão, com `selected` um alternador, e `onDelete` lhe dá um botão de remover separado.",
+				"examples": {
+					"statuses": {
+						"title": "Status",
+						"description": "Chips suaves, um intent por status, com o status escrito no rótulo."
+					},
+					"filters": {
+						"title": "Filtros",
+						"description": "Chips selecionáveis num grupo nomeado: cada um é um botão alternador."
+					}
+				},
+				"accessibility": {
+					"text": "Um chip sem `onClick` é texto simples, não um controle.",
+					"toggle": "Com `onClick` é um botão nativo; com `selected` é um alternador com `aria-pressed`, e a marca de seleção é uma forma além da cor.",
+					"remove": "O botão de remover é separado, uma parada de tabulação própria, nomeado por `deleteLabel`, por exemplo `Remove Status: open`."
+				}
+			}
 		}
 	}
 }

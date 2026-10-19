@@ -134,6 +134,8 @@ export const controlResetStyles: CSSObject = {
 	// An autofilled control keeps the colors of the frame (only an enabled, editable field is autofilled).
 	'&:-webkit-autofill': controlAutofillStyles,
 	'&:autofill': controlAutofillStyles,
+	// `SearchField` draws its own clear button, named and translated; the native one would be a second.
+	'&::-webkit-search-cancel-button': { display: 'none' },
 };
 
 const StyledTextInput = styled('input')(controlResetStyles);

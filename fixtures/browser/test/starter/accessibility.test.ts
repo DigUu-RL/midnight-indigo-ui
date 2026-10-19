@@ -23,6 +23,18 @@ test('an open menu has no accessibility violation', async ({ page }): Promise<vo
 	await expectNoAxeViolations(page);
 });
 
+test('the pages of the component explorer have no accessibility violation', async ({
+	page,
+}): Promise<void> => {
+	for (const path of ['/en-us/components', '/en-us/components/chip', '/pt-br/components/button']) {
+		await page.goto(path);
+		await expectNoAxeViolations(page);
+	}
+
+	await page.getByRole('tab', { name: 'Código' }).first().click();
+	await expectNoAxeViolations(page);
+});
+
 test.describe('on a phone', (): void => {
 	test.use({ viewport: { width: 390, height: 844 } });
 
