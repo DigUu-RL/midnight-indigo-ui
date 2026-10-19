@@ -56,6 +56,11 @@ export const brazilianPortugueseMessages: LibraryMessages = {
 		gauge: '{{value}}, numa escala de {{minimum}} a {{maximum}}.',
 		zoomRange: 'Mostrando de {{first}} a {{last}}.',
 	},
+	codeBlock: {
+		code: 'Código',
+		files: 'Arquivos',
+		copy: 'Copiar código',
+	},
 	combobox: {
 		noOptions: 'Nenhuma opção',
 		loading: 'Carregando opções',
@@ -68,6 +73,11 @@ export const brazilianPortugueseMessages: LibraryMessages = {
 	confirmDialog: {
 		confirm: 'Confirmar',
 		cancel: 'Cancelar',
+	},
+	copyButton: {
+		copy: 'Copiar',
+		copied: 'Copiado',
+		failed: 'Não foi possível copiar',
 	},
 	dashboardLayout: {
 		skipToContent: 'Pular para o conteúdo principal',
@@ -185,6 +195,9 @@ export const brazilianPortugueseMessages: LibraryMessages = {
 		down: 'Queda de',
 		flat: 'Sem variação',
 		loading: 'Carregando',
+	},
+	tableOfContents: {
+		title: 'Nesta página',
 	},
 	textArea: {
 		characterCount: {

@@ -55,6 +55,11 @@ export const englishMessages: LibraryMessages = {
 		gauge: '{{value}}, on a scale from {{minimum}} to {{maximum}}.',
 		zoomRange: 'Showing {{first}} to {{last}}.',
 	},
+	codeBlock: {
+		code: 'Code',
+		files: 'Files',
+		copy: 'Copy code',
+	},
 	combobox: {
 		noOptions: 'No options',
 		loading: 'Loading options',
@@ -66,6 +71,11 @@ export const englishMessages: LibraryMessages = {
 	confirmDialog: {
 		confirm: 'Confirm',
 		cancel: 'Cancel',
+	},
+	copyButton: {
+		copy: 'Copy',
+		copied: 'Copied',
+		failed: 'Could not copy',
 	},
 	dashboardLayout: {
 		skipToContent: 'Skip to main content',
@@ -179,6 +189,9 @@ export const englishMessages: LibraryMessages = {
 		down: 'Down',
 		flat: 'No change',
 		loading: 'Loading',
+	},
+	tableOfContents: {
+		title: 'On this page',
 	},
 	textArea: {
 		characterCount: {

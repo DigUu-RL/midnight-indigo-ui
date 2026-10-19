@@ -1,7 +1,9 @@
 import type { i18n as I18nInstance } from 'i18next';
 import { describe, expect, it } from 'vitest';
 
+import { defaultCopyButtonLabels } from '#src/buttons/copy-button/index.tsx';
 import { defaultChartLabels } from '#src/charts/chart-labels/index.ts';
+import { defaultCodeBlockLabels } from '#src/code/code-block/index.tsx';
 import { defaultDashboardLayoutLabels } from '#src/dashboard/dashboard-layout/index.tsx';
 import { defaultFilterBarLabels } from '#src/dashboard/filter-bar/index.tsx';
 import { defaultCarouselLabels } from '#src/data-display/carousel/index.tsx';
@@ -28,6 +30,7 @@ import { defaultBreadcrumbsLabels } from '#src/navigation/breadcrumbs/index.tsx'
 import { defaultLinkLabels } from '#src/navigation/link/index.tsx';
 import { defaultPaginationLabels } from '#src/navigation/pagination/index.tsx';
 import { defaultSidebarLabels } from '#src/navigation/sidebar/index.tsx';
+import { defaultTableOfContentsLabels } from '#src/navigation/table-of-contents/index.tsx';
 import type {
 	ComponentLabels,
 	ComponentLabelTypes,
@@ -47,8 +50,10 @@ const defaults: Defaults = {
 	breadcrumbs: defaultBreadcrumbsLabels,
 	carousel: defaultCarouselLabels,
 	chart: defaultChartLabels,
+	codeBlock: defaultCodeBlockLabels,
 	combobox: defaultComboboxLabels,
 	confirmDialog: defaultConfirmDialogLabels,
+	copyButton: defaultCopyButtonLabels,
 	dashboardLayout: defaultDashboardLayoutLabels,
 	dataTable: defaultDataTableLabels,
 	dialog: defaultDialogLabels,
@@ -67,6 +72,7 @@ const defaults: Defaults = {
 	searchField: defaultSearchFieldLabels,
 	sidebar: defaultSidebarLabels,
 	statCard: defaultStatCardLabels,
+	tableOfContents: defaultTableOfContentsLabels,
 	textArea: defaultTextAreaLabels,
 	toast: defaultToastLabels,
 };

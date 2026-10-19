@@ -18,6 +18,7 @@ needs the dashboard: they work in any React application. The application shell b
 | `Tabs`                         | Panels of the same page, one at a time                               | `navigation` |
 | `TabNavigation`                | Sections of an area, each its own page, shown as tabs                | `navigation` |
 | `Pagination`                   | Moving between the pages of a long list                              | `navigation` |
+| `TableOfContents`              | The sections of a long page, with the one being read marked          | `navigation` |
 | `Sidebar`, `SidebarMenuButton` | The main navigation of an application                                | `navigation` |
 
 Menus of actions (`Menu`, `ContextMenu`, with their items) are overlays and live in [feedback.md](./feedback.md#popover-menu-contextmenu-and-tooltip).
@@ -173,6 +174,30 @@ const [mobileOpen, setMobileOpen] = useState(false);
   close button close it, and focus returns to the menu button. Choosing an item closes the drawer; so does growing the
   viewport past the breakpoint.
 
+## Table of contents
+
+`TableOfContents` is a `nav` named by its visible title (`labels.title`, "On this page") with an ordered list of links
+to the sections of the page (`#id` of the element that starts each one, usually its heading). `level` (1 to 3)
+indents the sections inside others.
+
+The current section has `aria-current="location"`, primary text and a 2 px bar in `intent.brand.border`, like the
+selected tab. It is the last section whose start is above a line `scrollOffset` pixels (96 by default; make it the
+height of a sticky header plus some room) below the top of the viewport, or the first section before any reaches it;
+at the end of the scroll it is the last one, even when it is too short to reach the line. The component follows the
+scroll of the page and of any scrolling container (such as the main area of `DashboardLayout`), at most once per frame.
+A followed link stays current until the user scrolls with the wheel, touch, keys or pointer. `activeId` controls the
+current section and `onActiveIdChange` reports it.
+
+```tsx
+<TableOfContents
+	items={[
+		{ id: 'installation', label: 'Installation' },
+		{ id: 'usage', label: 'Usage' },
+		{ id: 'props', label: 'Props', level: 2 },
+	]}
+/>
+```
+
 ## Translations
 
 Pass the texts in the interface language; everything the components write themselves is in `labels`:
@@ -184,9 +209,11 @@ Pass the texts in the interface language; everything the components write themse
 | `Pagination`            | `navigation`, `previous`, `next`, `page(page)`, `status(page, pageCount)` |
 | `Sidebar`               | `collapse`, `expand`, `close`; the landmark name is `label`               |
 | `SidebarMenuButton`     | `label`                                                                   |
+| `TableOfContents`       | `title`                                                                   |
 | `Tabs`, `TabNavigation` | the landmark or tablist name is `label`                                   |
 
-The defaults (`defaultLinkLabels`, `defaultBreadcrumbsLabels`, `defaultPaginationLabels`, `defaultSidebarLabels`) are
+The defaults (`defaultLinkLabels`, `defaultBreadcrumbsLabels`, `defaultPaginationLabels`, `defaultSidebarLabels`,
+`defaultTableOfContentsLabels`) are
 exported in English.
 
 ## Tests

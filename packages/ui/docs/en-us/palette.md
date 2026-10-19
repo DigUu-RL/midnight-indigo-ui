@@ -132,7 +132,8 @@ also reads as an error.
 
 `auditContrast(tokens)` measures every text/background pair of the palette against WCAG 2.2 AA: 4.5:1 for text,
 3:1 for large text and non-text indicators. The pairs are derived from the token structure (text × surfaces × intents ×
-support colors on their tonal backgrounds, composited over each surface), so a new surface, intent or support color is
+support colors on their tonal backgrounds, composited over each surface × the syntax colors of
+[code blocks](./code.md#colors)), so a new surface, intent or support color is
 audited by itself, and a new color token outside the pairs fails the test until it gets a pair or a documented
 exemption. The test runs in `pnpm test` and in CI and, on failure, lists every failing pair with its tokens, ratio and
 usage. The full list is in [contrast pairs](./tokens.md#contrast-pairs).

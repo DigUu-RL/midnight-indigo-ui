@@ -5,7 +5,9 @@
 import { createContext, use, useMemo } from 'react';
 import type { Context, ReactElement, ReactNode } from 'react';
 
+import type { CopyButtonLabels } from '#src/buttons/copy-button/index.tsx';
 import type { ChartLabels } from '#src/charts/chart-labels/index.ts';
+import type { CodeBlockLabels } from '#src/code/code-block/index.tsx';
 import type { DashboardLayoutLabels } from '#src/dashboard/dashboard-layout/index.tsx';
 import type { FilterBarLabels } from '#src/dashboard/filter-bar/index.tsx';
 import type { CarouselLabels } from '#src/data-display/carousel/index.tsx';
@@ -31,6 +33,7 @@ import type { BreadcrumbsLabels } from '#src/navigation/breadcrumbs/index.tsx';
 import type { LinkLabels } from '#src/navigation/link/index.tsx';
 import type { PaginationLabels } from '#src/navigation/pagination/index.tsx';
 import type { SidebarLabels } from '#src/navigation/sidebar/index.tsx';
+import type { TableOfContentsLabels } from '#src/navigation/table-of-contents/index.tsx';
 
 /** The labels type of each component that has translatable texts, by component name. */
 export interface ComponentLabelTypes {
@@ -38,8 +41,10 @@ export interface ComponentLabelTypes {
 	breadcrumbs: BreadcrumbsLabels;
 	carousel: CarouselLabels;
 	chart: ChartLabels;
+	codeBlock: CodeBlockLabels;
 	combobox: ComboboxLabels;
 	confirmDialog: ConfirmDialogLabels;
+	copyButton: CopyButtonLabels;
 	dashboardLayout: DashboardLayoutLabels;
 	dataTable: DataTableLabels;
 	dialog: DialogLabels;
@@ -58,6 +63,7 @@ export interface ComponentLabelTypes {
 	searchField: SearchFieldLabels;
 	sidebar: SidebarLabels;
 	statCard: StatCardLabels;
+	tableOfContents: TableOfContentsLabels;
 	textArea: TextAreaLabels;
 	toast: ToastLabels;
 }

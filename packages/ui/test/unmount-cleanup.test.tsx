@@ -33,6 +33,7 @@ import { Combobox } from '#src/forms/combobox/index.tsx';
 import type { ComboboxOption } from '#src/forms/combobox/index.tsx';
 import { Form } from '#src/forms/form/index.tsx';
 import { TextField } from '#src/forms/text-field/index.tsx';
+import { TableOfContents } from '#src/navigation/table-of-contents/index.tsx';
 import { UiProvider } from '#src/theme/ui-provider.tsx';
 
 interface Sale {
@@ -91,6 +92,8 @@ const Page = ({ overlaysOpen }: PageProps): ReactElement => {
 				<ToastOnMount />
 
 				<DashboardLayout navigation={navigation} brand={<a href='/'>Acme</a>}>
+					<TableOfContents items={[{ id: 'sales', label: 'Sales' }]} />
+
 					<Form>
 						<TextField label='Name' name='name' />
 						<Combobox label='City' name='city' options={cities} />
@@ -189,6 +192,7 @@ it('releases listeners, media queries, observers, intervals and the chart engine
 	expect(held.length).toBeGreaterThan(before.length);
 	expect(held).toContain('ResizeObserver');
 	expect(held).toContain('IntersectionObserver');
+	expect(held).toContain('document scroll (capture)');
 	expect(countMediaQueryListeners()).toBeGreaterThan(0);
 
 	// A frame requested before the unmount still runs once; an animation that keeps requesting frames would not stop.
