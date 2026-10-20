@@ -10,16 +10,17 @@ import { NumberField, Select, Switch, TextField } from '@midnight-indigo/ui/form
 import { useI18n } from '@midnight-indigo/ui/i18n';
 import type { I18nValue } from '@midnight-indigo/ui/i18n';
 import { createElement, useId, useState } from 'react';
-import type { ComponentType, ReactElement, ReactNode } from 'react';
+import type { ComponentType, ReactElement } from 'react';
 
 import type { PlaygroundValue, SampleWidth } from '#src/explorer/catalog.ts';
 import type { ComponentProp } from '#src/explorer/component-api.ts';
 import type { SampleCode } from '#src/explorer/sample-code.ts';
+import type { SampleValue } from '#src/explorer/samples.tsx';
 import { snippetOf } from '#src/explorer/snippet.ts';
 
-/** A prop that takes an element: the sample rendered on the server, and its code. */
+/** A prop that takes an element or an object: the sample, rendered on the server, and its code. */
 export interface PlaygroundSlot {
-	element: ReactNode;
+	element: SampleValue;
 	code: SampleCode;
 }
 
@@ -62,26 +63,42 @@ const initialValuesOf = (controls: readonly ComponentProp[], baseProps: Values):
 	};
 };
 
-/** Props given to the component: the empty optional texts are left out, as the snippet leaves them out. */
-const renderedValuesOf = (controls: readonly ComponentProp[], values: Values): Values => {
-	return Object.fromEntries(
-		Object.entries(values).filter(([name, value]: [string, PlaygroundValue]): boolean => {
-			const prop: ComponentProp | undefined = controls.find((control: ComponentProp): boolean => {
-				return control.name === name;
-			});
+const isBlank = (value: PlaygroundValue | undefined): boolean => {
+	return typeof value === 'string' && value.trim() === '';
+};
 
-			return value !== '' || prop?.required === true;
-		}),
+/**
+ * Props given to the component and written in its code: the blank optional texts are left out, and a blank required
+ * text keeps its initial value, since the components refuse a blank name (e.g. the `label` of an `IconButton`).
+ */
+const renderedValuesOf = (
+	controls: readonly ComponentProp[],
+	values: Values,
+	baseProps: Values,
+): Values => {
+	return Object.fromEntries(
+		Object.entries(values).flatMap(
+			([name, value]: [string, PlaygroundValue]): [string, PlaygroundValue][] => {
+				const prop: ComponentProp | undefined = controls.find((control: ComponentProp): boolean => {
+					return control.name === name;
+				});
+
+				if (prop === undefined || !isBlank(value)) return [[name, value]];
+				return prop.required ? [[name, initialValueOf(prop, baseProps)]] : [];
+			},
+		),
 	);
 };
 
 interface ControlProps {
 	prop: ComponentProp;
 	value: PlaygroundValue;
+	/** Shown under a required text left blank. */
+	requiredMessage: string;
 	onChange: (value: PlaygroundValue) => void;
 }
 
-const Control = ({ prop, value, onChange }: ControlProps): ReactElement | null => {
+const Control = ({ prop, value, requiredMessage, onChange }: ControlProps): ReactElement | null => {
 	if (prop.kind === 'enum') {
 		return (
 			<Select
@@ -114,7 +131,14 @@ const Control = ({ prop, value, onChange }: ControlProps): ReactElement | null =
 	}
 
 	return prop.kind === 'string' || prop.kind === 'node' ? (
-		<TextField label={prop.name} size='small' value={String(value)} onValueChange={onChange} />
+		<TextField
+			label={prop.name}
+			size='small'
+			required={prop.required}
+			error={prop.required && isBlank(value) ? requiredMessage : undefined}
+			value={String(value)}
+			onValueChange={onChange}
+		/>
 	) : null;
 };
 
@@ -139,15 +163,17 @@ export const createPlayground = (
 		});
 
 		// The values come from the controls and the samples of the props of this very component.
-		const component: ComponentType<Record<string, ReactNode>> | undefined = components[
-			name
-		] as unknown as ComponentType<Record<string, ReactNode>> | undefined;
+		const component: ComponentType<Record<string, SampleValue | PlaygroundValue>> | undefined =
+			components[name] as unknown as
+				ComponentType<Record<string, SampleValue | PlaygroundValue>> | undefined;
+
+		const rendered: Values = renderedValuesOf(controls, values, baseProps);
 
 		const code: string = snippetOf({
 			name,
 			subpath,
 			props: controls,
-			values,
+			values: rendered,
 			slots: Object.fromEntries(
 				Object.entries(slots).map(
 					([prop, slot]: [string, PlaygroundSlot]): [string, SampleCode] => {
@@ -157,8 +183,8 @@ export const createPlayground = (
 			),
 		});
 
-		const elements: Readonly<Record<string, ReactNode>> = Object.fromEntries(
-			Object.entries(slots).map(([prop, slot]: [string, PlaygroundSlot]): [string, ReactNode] => {
+		const elements: Readonly<Record<string, SampleValue>> = Object.fromEntries(
+			Object.entries(slots).map(([prop, slot]: [string, PlaygroundSlot]): [string, SampleValue] => {
 				return [prop, slot.element];
 			}),
 		);
@@ -170,9 +196,7 @@ export const createPlayground = (
 					role='group'
 					aria-label={t('explorer.playground.preview')}
 				>
-					{component === undefined
-						? null
-						: createElement(component, { ...renderedValuesOf(controls, values), ...elements })}
+					{component === undefined ? null : createElement(component, { ...rendered, ...elements })}
 				</div>
 
 				<section className='playground-controls' aria-labelledby={controlsLabelId}>
@@ -187,6 +211,7 @@ export const createPlayground = (
 									key={prop.name}
 									prop={prop}
 									value={values[prop.name] ?? ''}
+									requiredMessage={t('explorer.playground.required')}
 									onChange={(value: PlaygroundValue): void => {
 										setValues((current: Values): Values => ({ ...current, [prop.name]: value }));
 									}}

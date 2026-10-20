@@ -425,6 +425,13 @@
 	color: var(--mi-text-muted);
 }
 
+/* A divider takes the size of the row or block it separates, so a sample of one gets a box to draw its line in. */
+.variant-sample > hr,
+.playground-stage > hr {
+	inline-size: 12rem;
+	min-block-size: 3rem;
+}
+
 /* Samples of a layout component: as wide as their cell, with their bounds drawn so the alignment shows. */
 .variant-samples-full {
 	display: grid;

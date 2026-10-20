@@ -21,7 +21,10 @@ export interface ExplorerComponent {
 	examples: readonly string[];
 	/** Props of every rendering on the page, e.g. the label the component requires. */
 	baseProps: Readonly<Record<string, PlaygroundValue>>;
-	/** Props of every rendering that take an element, e.g. the icon of an `IconButton`: a sample of `sample-code.ts`. */
+	/**
+	 * Props of every rendering that take an element or an object, e.g. the icon of an `IconButton` or the `change` of a
+	 * `StatCard`: a sample of `sample-code.ts`.
+	 */
 	slots: Readonly<Record<string, SampleName>>;
 	sampleWidth: SampleWidth;
 	/** Props the playground lets the reader change. */
@@ -80,6 +83,66 @@ export const explorerComponents = [
 		accessibility: ['name', 'announcement', 'clipboard'],
 	},
 	{
+		name: 'Avatar',
+		subpath: 'data-display',
+		parts: [],
+		examples: ['profile', 'crew'],
+		baseProps: { name: 'Spike Spiegel' },
+		slots: {},
+		sampleWidth: 'content',
+		controls: ['name', 'size', 'intent', 'decorative'],
+		variants: ['size', 'intent'],
+		// A decorative avatar looks the same; only assistive technologies tell it apart.
+		states: [],
+		nativeProps: [],
+		accessibility: ['name', 'decorative', 'image'],
+	},
+	{
+		name: 'Badge',
+		subpath: 'data-display',
+		parts: [],
+		examples: ['notifications', 'presence'],
+		baseProps: { label: '3 unread messages', content: 3 },
+		slots: { children: 'pilotAvatar' },
+		sampleWidth: 'content',
+		// `content` takes a number or a text, so it has no control. `label` has none either: a badge needs it or
+		// `decorative`, which the type tells only by their union, so a blank label would leave the badge without both.
+		controls: ['max', 'intent', 'variant', 'dot', 'showZero', 'invisible'],
+		variants: ['intent', 'variant'],
+		states: ['dot'],
+		nativeProps: [],
+		accessibility: ['label', 'decorative', 'dot'],
+	},
+	{
+		name: 'Card',
+		subpath: 'data-display',
+		parts: ['CardHeader', 'CardContent'],
+		examples: ['profile', 'articles'],
+		baseProps: {},
+		slots: { children: 'briefSections' },
+		sampleWidth: 'full',
+		controls: ['variant', 'as'],
+		variants: ['variant'],
+		states: [],
+		nativeProps: ['children'],
+		accessibility: ['region', 'heading', 'actions'],
+	},
+	{
+		name: 'Carousel',
+		subpath: 'data-display',
+		parts: [],
+		examples: ['reports', 'controlled'],
+		baseProps: { label: 'Featured planets' },
+		slots: { children: 'planetSlides' },
+		sampleWidth: 'full',
+		// `defaultIndex` only counts on the first render, so its example shows it.
+		controls: ['label', 'loop'],
+		variants: [],
+		states: [],
+		nativeProps: [],
+		accessibility: ['region', 'keyboard', 'hidden', 'motion'],
+	},
+	{
 		name: 'Chip',
 		subpath: 'data-display',
 		parts: [],
@@ -93,6 +156,48 @@ export const explorerComponents = [
 		states: [],
 		nativeProps: [],
 		accessibility: ['text', 'toggle', 'remove'],
+	},
+	{
+		name: 'Divider',
+		subpath: 'data-display',
+		parts: [],
+		examples: ['toolbar', 'sections'],
+		baseProps: {},
+		slots: {},
+		sampleWidth: 'content',
+		controls: ['orientation', 'decorative'],
+		variants: ['orientation'],
+		states: [],
+		nativeProps: [],
+		accessibility: ['separator', 'decorative', 'contrast'],
+	},
+	{
+		name: 'List',
+		subpath: 'data-display',
+		parts: ['ListItem'],
+		examples: ['crew', 'ranking'],
+		baseProps: {},
+		slots: { children: 'crewItems' },
+		sampleWidth: 'full',
+		controls: ['ordered', 'divided'],
+		variants: [],
+		states: [],
+		nativeProps: ['children'],
+		accessibility: ['count', 'controls', 'table'],
+	},
+	{
+		name: 'StatCard',
+		subpath: 'data-display',
+		parts: [],
+		examples: ['indicators', 'loading'],
+		baseProps: { label: 'Bounties collected', value: '2.4M woolongs' },
+		slots: { change: 'bountyChange' },
+		sampleWidth: 'content',
+		controls: ['label', 'value', 'description', 'loading'],
+		variants: [],
+		states: ['loading'],
+		nativeProps: [],
+		accessibility: ['group', 'trend', 'loading'],
 	},
 	{
 		name: 'Container',

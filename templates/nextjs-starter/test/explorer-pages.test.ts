@@ -186,6 +186,26 @@ test('a sample given to a prop is rendered as the code of the playground writes 
 	assert.ok(compact(text).includes(compact("import { Icon } from '@midnight-indigo/ui/icons';")));
 });
 
+test('an object given to a prop is rendered and written as the code of the playground writes it', async (): Promise<void> => {
+	const { html }: StreamedPage = await readStreamedPage(
+		`${server.origin}/en-us/components/stat-card`,
+	);
+
+	const text: string = textOf(html);
+
+	assert.ok(compact(text).includes(compact(`change={${sampleCodes.bountyChange.code}}`)));
+	assert.match(text, /Up 12%/);
+});
+
+test('a list of elements given to a prop stays a list of children', async (): Promise<void> => {
+	const { html }: StreamedPage = await readStreamedPage(
+		`${server.origin}/en-us/components/carousel`,
+	);
+
+	assert.match(html, /role="group" aria-roledescription="slide" aria-label="3 of 3"/);
+	assert.ok(textOf(html).includes('Dagobah'));
+});
+
 test('a component with parts documents them, and a page without variants leaves out their section', async (): Promise<void> => {
 	const { html }: StreamedPage = await readStreamedPage(`${server.origin}/en-us/components/grid`);
 	const text: string = textOf(html);

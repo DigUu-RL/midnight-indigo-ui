@@ -36,6 +36,7 @@ import type { PlaygroundSlot } from '#src/explorer/playground.tsx';
 import { sampleCodes } from '#src/explorer/sample-code.ts';
 import type { SampleName } from '#src/explorer/sample-code.ts';
 import { sampleElements } from '#src/explorer/samples.tsx';
+import type { SampleValue } from '#src/explorer/samples.tsx';
 import type { LocaleSegment } from '#src/i18n/locales.ts';
 import { getTranslator, localeOf } from '#src/i18n/server.ts';
 
@@ -91,9 +92,11 @@ const slotsOf = (component: ExplorerComponent): Record<string, PlaygroundSlot> =
 	);
 };
 
-const elementsOf = (slots: Readonly<Record<string, PlaygroundSlot>>): Record<string, ReactNode> => {
+const elementsOf = (
+	slots: Readonly<Record<string, PlaygroundSlot>>,
+): Record<string, SampleValue> => {
 	return Object.fromEntries(
-		Object.entries(slots).map(([prop, slot]: [string, PlaygroundSlot]): [string, ReactNode] => {
+		Object.entries(slots).map(([prop, slot]: [string, PlaygroundSlot]): [string, SampleValue] => {
 			return [prop, slot.element];
 		}),
 	);

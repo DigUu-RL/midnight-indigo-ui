@@ -350,7 +350,8 @@
 		"playground": {
 			"preview": "Component with the chosen props",
 			"controls": "Props",
-			"reset": "Reset props"
+			"reset": "Reset props",
+			"required": "Required: the preview and the code keep the initial value."
 		},
 		"api": {
 			"caption": "Props of {{component}}",
@@ -436,6 +437,147 @@
 					"text": "A chip without `onClick` is plain text, not a control.",
 					"toggle": "With `onClick` it is a native button; with `selected` it is a toggle with `aria-pressed`, and its check mark is a shape besides the color.",
 					"remove": "The delete button is separate, a tab stop of its own, named by `deleteLabel`, e.g. `Remove Status: open`."
+				}
+			},
+			"avatar": {
+				"summary": "Picture or initials of a person or an entity.",
+				"description": "Shows the image of `src`, or the initials of `name` when there is none or it fails to load. The `name` is also its accessible name, unless `decorative` hides it next to a name already written.",
+				"examples": {
+					"profile": {
+						"title": "Next to the name",
+						"description": "The name is written beside it, so the avatar is `decorative` and is not read twice."
+					},
+					"crew": {
+						"title": "A crew",
+						"description": "Avatars alone in a list: each one is named by its `name`, and the initials come from its first and last words."
+					}
+				},
+				"accessibility": {
+					"name": "Without `decorative`, the avatar is an image (`role='img'`) named by `name`; the initials are hidden.",
+					"decorative": "With `decorative` it is hidden from assistive technologies: use it when the name is next to it.",
+					"image": "With `src`, the image takes `name` as its `alt`, or an empty `alt` when decorative."
+				}
+			},
+			"badge": {
+				"summary": "Count or dot attached to an element, e.g. unread messages.",
+				"description": "Wraps the element it marks. `content` takes a number or a short text, and numbers above `max` show as `99+`; `dot` shows a dot instead, and `invisible` hides it when there is nothing new.",
+				"examples": {
+					"notifications": {
+						"title": "Notifications",
+						"description": "A count with a `label` read after the button; the second button already says the count, so its badge is `decorative`."
+					},
+					"presence": {
+						"title": "Presence",
+						"description": "Dots on avatars tell who is online; `invisible` hides the dot of someone offline."
+					}
+				},
+				"accessibility": {
+					"label": "The visual count is hidden from assistive technologies: `label` states what it means, as hidden text next to the element.",
+					"decorative": "Mark it `decorative` when the element already says it, e.g. an `IconButton` labelled `Alerts, 120 unread`.",
+					"dot": "A dot has no text, so its `label` is the only way to tell what it means."
+				}
+			},
+			"card": {
+				"summary": "Raised surface grouping related content, with an optional header.",
+				"description": "`CardHeader` gives a title and its subtitle, with room for an avatar before and controls after; `CardContent` holds the rest. `variant='elevated'` adds a shadow for a card over other content.",
+				"parts": {
+					"cardHeader": "The title of the card, a heading of `headingLevel`, with its `subtitle`, `avatar` and `action`.",
+					"cardContent": "The body of the card, in secondary text."
+				},
+				"examples": {
+					"profile": {
+						"title": "A profile",
+						"description": "A `section` named by its title, with an avatar, an actions button and chips in the content."
+					},
+					"articles": {
+						"title": "Entries of a log",
+						"description": "A list of `article` cards in a `Grid`, each one with its heading one level below the section."
+					}
+				},
+				"accessibility": {
+					"region": "With `as='section'` or `as='article'`, the card is a region named by the title of its `CardHeader`, or by `aria-label` without one.",
+					"heading": "Pick `headingLevel` from the outline of the page, not from the size: the title looks the same at any level.",
+					"actions": "Links and buttons go in `action` or in the content, never around the whole card."
+				}
+			},
+			"carousel": {
+				"summary": "Slides shown one at a time, with buttons to move between them.",
+				"description": "Each child is a slide. The previous and next buttons and one button per position move between them; `loop` goes from the last to the first. It never moves by itself.",
+				"examples": {
+					"reports": {
+						"title": "Reports",
+						"description": "Cards as slides, with `loop` so the next button of the last slide goes back to the first."
+					},
+					"controlled": {
+						"title": "Controlled",
+						"description": "`index` and `onIndexChange` keep the slide in the state of the parent, which shows it and can move it."
+					}
+				},
+				"accessibility": {
+					"region": "A region named by `label`, announced as a carousel; each slide is a group named by its position, e.g. `2 of 3`.",
+					"keyboard": "The arrow keys move between slides and Home and End go to the ends; the position buttons are a single tab stop.",
+					"hidden": "The hidden slides are `inert`: their content is neither focused nor read.",
+					"motion": "There is no autoplay, and the transition is instant with reduced motion."
+				}
+			},
+			"divider": {
+				"summary": "Thin line separating groups of content.",
+				"description": "Horizontal by default, between blocks; `orientation='vertical'` separates the items of a row and stretches to its height.",
+				"examples": {
+					"toolbar": {
+						"title": "Groups of buttons",
+						"description": "A vertical divider between the editing buttons and the others of a row."
+					},
+					"sections": {
+						"title": "Sections",
+						"description": "A separator between the header and the details, and a `decorative` line before a note."
+					}
+				},
+				"accessibility": {
+					"separator": "It is announced as a separator, vertical ones with `aria-orientation`.",
+					"decorative": "With `decorative` it is hidden from assistive technologies: use it when headings or lists already group the content.",
+					"contrast": "The line is lighter than 3:1, so the grouping never depends on it alone: keep the spacing or the headings."
+				}
+			},
+			"list": {
+				"summary": "A list of records, one per row, with content before and after each one.",
+				"description": "Each `ListItem` has a title, an optional supporting line, and `leading` and `trailing` content such as an `Avatar`, a value or a `Chip`. `ordered` renders an ordered list.",
+				"parts": {
+					"listItem": "A row: its `title` and `description`, between `leading` and `trailing`."
+				},
+				"examples": {
+					"crew": {
+						"title": "Crew",
+						"description": "Decorative avatars before each name, since the title already says it, and a status chip after."
+					},
+					"ranking": {
+						"title": "Ranking",
+						"description": "An `ordered` list, whose position is announced; the title writes it too, since the list has no markers."
+					}
+				},
+				"accessibility": {
+					"count": "A native list, `ul` or `ol`: assistive technologies announce the number of items and the position of each one.",
+					"controls": "Links and buttons go in `title` or `trailing`, never around the whole item.",
+					"table": "For records compared column by column, use a `Table`."
+				}
+			},
+			"statCard": {
+				"summary": "Key figure of a dashboard: what is measured, its value and how it changed.",
+				"description": "`change` gives the variation and its trend, whose color follows the sentiment: a rising cost is `negative`. `description` adds the context, and `loading` shows a placeholder.",
+				"examples": {
+					"indicators": {
+						"title": "Indicators",
+						"description": "Three cards in a `Grid`: a rising revenue, a rising cost with `sentiment: 'negative'`, and no change."
+					},
+					"loading": {
+						"title": "Loading",
+						"description": "`loading` replaces the value and the change with a placeholder, and announces that it loads."
+					}
+				},
+				"accessibility": {
+					"group": "A group named by `label`.",
+					"trend": "The trend is told by an arrow and by hidden text, e.g. `Up 12%`, and the sentiment by color: neither rests on color alone.",
+					"loading": "While it loads, the card is `aria-busy` and announces `labels.loading` in place of the value."
 				}
 			},
 			"container": {
