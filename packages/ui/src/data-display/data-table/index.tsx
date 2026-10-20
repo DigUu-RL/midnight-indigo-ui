@@ -104,7 +104,16 @@ export const defaultDataTableLabels: Readonly<DataTableLabels> = Object.freeze({
  * the changes through `onSortChange` and `onPageChange`.
  */
 type DataTableProcessingProps =
-	{ processing?: 'client'; rowCount?: never } | { processing: 'server'; rowCount: number };
+	| {
+			/** Who sorts, filters and pages the rows: the table (`client`) or the server. Defaults to `'client'`. */
+			processing?: 'client';
+			rowCount?: never;
+	  }
+	| {
+			processing: 'server';
+			/** With `processing="server"`, the number of rows that match, across every page. */
+			rowCount: number;
+	  };
 
 export type DataTableProps<Row> = Omit<ComponentPropsWithRef<'div'>, 'children'> &
 	DataTableProcessingProps & {
@@ -116,6 +125,7 @@ export type DataTableProps<Row> = Omit<ComponentPropsWithRef<'div'>, 'children'>
 		density?: TableDensity;
 		/** Keep the same array between renders (a constant or `useMemo`): the search index depends on it. */
 		columns: readonly DataTableColumn<Row>[];
+		/** Every row, or only the current page with `processing="server"`. Keep the same array between renders too. */
 		rows: readonly Row[];
 		/** Stable key of each row. */
 		getRowId: (row: Row) => string;
@@ -135,11 +145,11 @@ export type DataTableProps<Row> = Omit<ComponentPropsWithRef<'div'>, 'children'>
 		onSortChange?: (sort: SortState) => void;
 		/** The current page (from 1), when the parent controls it. */
 		page?: number;
-		/** Initial page when uncontrolled. Defaults to 1. */
+		/** Initial page when uncontrolled. Defaults to `1`. */
 		defaultPage?: number;
 		/** Called with the new page, also when sorting or filtering returns to the first page. */
 		onPageChange?: (page: number) => void;
-		/** Rows per page. Defaults to 10. */
+		/** Rows per page. Defaults to `10`. */
 		pageSize?: number;
 		/** Text filter: the rows whose `filterValue` contain every word, ignoring case and accents. */
 		filter?: string;

@@ -98,7 +98,7 @@
 			"description": "",
 			"native": true,
 			"kind": "enum",
-			"options": ["button", "submit", "reset"]
+			"options": ["submit", "reset", "button"]
 		}
 	],
 	"IconButton": [
@@ -180,7 +180,7 @@
 			"description": "",
 			"native": true,
 			"kind": "enum",
-			"options": ["button", "submit", "reset"]
+			"options": ["submit", "reset", "button"]
 		}
 	],
 	"CopyButton": [
@@ -458,7 +458,7 @@
 			"description": "Defaults to `'div'`. A `section` or `article` without a `CardHeader` needs an `aria-label`.",
 			"native": false,
 			"kind": "enum",
-			"options": ["article", "div", "section"]
+			"options": ["div", "section", "article"]
 		},
 		{
 			"name": "variant",
@@ -669,7 +669,7 @@
 		},
 		{
 			"name": "onClick",
-			"type": "(event: MouseEvent<HTMLButtonElement, MouseEvent>) => void",
+			"type": "(event: MouseEvent<HTMLButtonElement>) => void",
 			"required": false,
 			"defaultValue": null,
 			"description": "Makes the chip a button.",
@@ -876,6 +876,558 @@
 			"options": []
 		}
 	],
+	"Skeleton": [
+		{
+			"name": "shape",
+			"type": "SkeletonShape",
+			"required": false,
+			"defaultValue": "'text'",
+			"description": "`text` is one line of the surrounding font size; `circle` has the `width` as diameter. Defaults to `'text'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["text", "rectangle", "circle"]
+		},
+		{
+			"name": "width",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "CSS length. Defaults to the full width (`text`, `rectangle`) or `2.5rem` (`circle`).",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "height",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "CSS length. Defaults to one line (`text`), `6rem` (`rectangle`) or the width (`circle`).",
+			"native": false,
+			"kind": "string",
+			"options": []
+		}
+	],
+	"SkeletonText": [
+		{
+			"name": "lines",
+			"type": "number",
+			"required": false,
+			"defaultValue": "3",
+			"description": "Number of lines. Defaults to `3`.",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Announced when the placeholders appear. Defaults to the provided `loadingStatus.loading`, or `'Loading'`.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		}
+	],
+	"SkeletonList": [
+		{
+			"name": "items",
+			"type": "number",
+			"required": false,
+			"defaultValue": "3",
+			"description": "Number of rows. Defaults to `3`.",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "withLeading",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": "false",
+			"description": "Shows a circle before each row, as for an `Avatar`. Defaults to `false`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Announced when the placeholders appear. Defaults to the provided `loadingStatus.loading`, or `'Loading'`.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		}
+	],
+	"EmptyState": [
+		{
+			"name": "title",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "What is missing or what went wrong, in a few words.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "What it means and what the user can do next.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "icon",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Decorative icon in place of the default glyph.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "action",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Next step, typically a `Button`.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "headingLevel",
+			"type": "StateMessageHeadingLevel",
+			"required": false,
+			"defaultValue": null,
+			"description": "Renders the title as a heading of this level, when the state replaces a whole section of the page. Without it (default), the title is a paragraph, as inside a table or a card that already has a heading.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"ErrorState": [
+		{
+			"name": "announce",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": "true",
+			"description": "Announces the error when it appears (`role=\"alert\"`). Defaults to `true`; turn it off when the error is part of the page from the first render, e.g. rendered by the server.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "onRetry",
+			"type": "() => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Shows a retry button that calls it, unless an `action` is given.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "labels",
+			"type": "Partial<ErrorStateLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultErrorStateLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "title",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "What is missing or what went wrong, in a few words.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "What it means and what the user can do next.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "icon",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Decorative icon in place of the default glyph.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "action",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Next step, typically a `Button`.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "headingLevel",
+			"type": "StateMessageHeadingLevel",
+			"required": false,
+			"defaultValue": null,
+			"description": "Renders the title as a heading of this level, when the state replaces a whole section of the page. Without it (default), the title is a paragraph, as inside a table or a card that already has a heading.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"Table": [
+		{
+			"name": "caption",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Name of the table, rendered as its `<caption>`. Required: every table needs a name.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "hideCaption",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": "false",
+			"description": "Hides the caption visually; it still names the table for assistive technologies. Defaults to `false`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "density",
+			"type": "TableDensity",
+			"required": false,
+			"defaultValue": "'comfortable'",
+			"description": "Defaults to `'comfortable'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["comfortable", "compact"]
+		},
+		{
+			"name": "children",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "node",
+			"options": []
+		}
+	],
+	"TableHead": [],
+	"TableBody": [],
+	"TableFooter": [],
+	"TableRow": [],
+	"TableHeaderCell": [
+		{
+			"name": "scope",
+			"type": "'col' | 'row' | 'colgroup' | 'rowgroup'",
+			"required": false,
+			"defaultValue": null,
+			"description": "`col` (default) for column headers; `row` for the cell that names a row, e.g. its first column.",
+			"native": false,
+			"kind": "enum",
+			"options": ["col", "row", "colgroup", "rowgroup"]
+		},
+		{
+			"name": "align",
+			"type": "TableCellAlign",
+			"required": false,
+			"defaultValue": "'start'",
+			"description": "Defaults to `'start'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["start", "center", "end"]
+		},
+		{
+			"name": "onSort",
+			"type": "() => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Makes the header a sort button. The parent updates `sortDirection`, and usually the rows, in response.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "sortDirection",
+			"type": "SortDirection | null",
+			"required": false,
+			"defaultValue": null,
+			"description": "Direction the table is sorted by this column, or `null` when it is sorted by another one.",
+			"native": false,
+			"kind": "enum",
+			"options": ["ascending", "descending"]
+		}
+	],
+	"TableCell": [
+		{
+			"name": "align",
+			"type": "TableCellAlign",
+			"required": false,
+			"defaultValue": "'start'",
+			"description": "Defaults to `'start'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["start", "center", "end"]
+		}
+	],
+	"DataTable": [
+		{
+			"name": "processing",
+			"type": "'client' | 'server'",
+			"required": false,
+			"defaultValue": "'client'",
+			"description": "Who sorts, filters and pages the rows: the table (`client`) or the server. Defaults to `'client'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["client", "server"]
+		},
+		{
+			"name": "rowCount",
+			"type": "number",
+			"required": false,
+			"defaultValue": null,
+			"description": "With `processing=\"server\"`, the number of rows that match, across every page.",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "caption",
+			"type": "string",
+			"required": true,
+			"defaultValue": null,
+			"description": "Name of the table. Required: it also names the scroll region and the pagination.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "hideCaption",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": "false",
+			"description": "Hides the caption visually, e.g. under a heading that says the same. Defaults to `false`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "density",
+			"type": "TableDensity",
+			"required": false,
+			"defaultValue": "'comfortable'",
+			"description": "Defaults to `'comfortable'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["comfortable", "compact"]
+		},
+		{
+			"name": "columns",
+			"type": "readonly DataTableColumn<Row>[]",
+			"required": true,
+			"defaultValue": null,
+			"description": "Keep the same array between renders (a constant or `useMemo`): the search index depends on it.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "rows",
+			"type": "readonly Row[]",
+			"required": true,
+			"defaultValue": null,
+			"description": "Every row, or only the current page with `processing=\"server\"`. Keep the same array between renders too.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "getRowId",
+			"type": "(row: Row) => string",
+			"required": true,
+			"defaultValue": null,
+			"description": "Stable key of each row.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "status",
+			"type": "DataTableStatus",
+			"required": false,
+			"defaultValue": "'ready'",
+			"description": "Defaults to `'ready'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["ready", "loading", "error"]
+		},
+		{
+			"name": "errorDescription",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Explanation under the title of the error state.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "onRetry",
+			"type": "() => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Shows a retry button in the error state.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "emptyState",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Replaces the default empty state, e.g. with an `EmptyState` that has an action.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "sort",
+			"type": "SortState | null",
+			"required": false,
+			"defaultValue": null,
+			"description": "The sorting, when the parent controls it; `null` for the order of `rows`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "defaultSort",
+			"type": "SortState | null",
+			"required": false,
+			"defaultValue": "null",
+			"description": "Initial sorting when uncontrolled. Defaults to `null`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "onSortChange",
+			"type": "(sort: SortState) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the new sorting. Each header toggles between ascending and descending.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "page",
+			"type": "number",
+			"required": false,
+			"defaultValue": null,
+			"description": "The current page (from 1), when the parent controls it.",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "defaultPage",
+			"type": "number",
+			"required": false,
+			"defaultValue": "1",
+			"description": "Initial page when uncontrolled. Defaults to `1`.",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "onPageChange",
+			"type": "(page: number) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the new page, also when sorting or filtering returns to the first page.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "pageSize",
+			"type": "number",
+			"required": false,
+			"defaultValue": "10",
+			"description": "Rows per page. Defaults to `10`.",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "filter",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Text filter: the rows whose `filterValue` contain every word, ignoring case and accents.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "locale",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Locale of sorting and filtering. Defaults to the runtime locale.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "labels",
+			"type": "Partial<DataTableLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultDataTableLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "paginationLabels",
+			"type": "Partial<PaginationLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides texts of the pagination.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
 	"Container": [
 		{
 			"name": "as",
@@ -885,7 +1437,7 @@
 			"description": "Defaults to `'div'`. Use `'main'` once per page, for its main content.",
 			"native": false,
 			"kind": "enum",
-			"options": ["article", "div", "footer", "header", "main", "section"]
+			"options": ["div", "main", "section", "article", "header", "footer"]
 		},
 		{
 			"name": "size",
@@ -927,7 +1479,7 @@
 			"description": "Defaults to `'div'`.",
 			"native": false,
 			"kind": "enum",
-			"options": ["article", "div", "footer", "header", "ol", "section", "ul"]
+			"options": ["div", "section", "article", "header", "footer", "ul", "ol"]
 		},
 		{
 			"name": "direction",
@@ -957,7 +1509,7 @@
 			"description": "Defaults to `'stretch'`.",
 			"native": false,
 			"kind": "enum",
-			"options": ["center", "start", "end", "stretch", "baseline"]
+			"options": ["start", "center", "end", "stretch", "baseline"]
 		},
 		{
 			"name": "justify",
@@ -967,7 +1519,7 @@
 			"description": "Defaults to `'start'`.",
 			"native": false,
 			"kind": "enum",
-			"options": ["center", "start", "end", "between"]
+			"options": ["start", "center", "end", "between"]
 		},
 		{
 			"name": "wrap",
@@ -1019,7 +1571,7 @@
 			"description": "Defaults to `'div'`; use a list when the items are a collection, with `GridItem as='li'`.",
 			"native": false,
 			"kind": "enum",
-			"options": ["div", "ol", "section", "ul"]
+			"options": ["div", "section", "ul", "ol"]
 		},
 		{
 			"name": "gap",
@@ -1051,7 +1603,7 @@
 			"description": "Defaults to `'div'`.",
 			"native": false,
 			"kind": "enum",
-			"options": ["article", "div", "li", "section"]
+			"options": ["div", "section", "article", "li"]
 		},
 		{
 			"name": "span",

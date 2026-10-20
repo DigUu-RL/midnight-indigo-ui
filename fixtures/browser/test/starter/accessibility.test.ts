@@ -41,6 +41,13 @@ const explorerPages: readonly string[] = [
 	'/pt-br/components/divider',
 	'/en-us/components/list',
 	'/en-us/components/stat-card',
+	'/en-us/components/skeleton',
+	'/pt-br/components/skeleton-text',
+	'/en-us/components/skeleton-list',
+	'/en-us/components/empty-state',
+	'/pt-br/components/error-state',
+	'/en-us/components/table',
+	'/en-us/components/data-table',
 ];
 
 // A table wider than its column (the props of a component) becomes a focusable region once it is hydrated and measured;

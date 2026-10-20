@@ -206,7 +206,16 @@ const DescriptionOf = ({
 	return prop.description === '' ? '—' : <DocumentationText text={prop.description} />;
 };
 
+/** The props of a component, or a sentence for a part with none of its own, e.g. `TableRow`. */
 export const ApiTable = ({ name, props, translate }: ApiTableProps): ReactElement => {
+	if (props.length === 0) {
+		return (
+			<p>
+				<DocumentationText text={translate('explorer.api.nativeOnly', { component: name })} />
+			</p>
+		);
+	}
+
 	return (
 		<Table caption={translate('explorer.api.caption', { component: name })}>
 			<TableHead>

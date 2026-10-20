@@ -22,6 +22,23 @@ test('a control changes the component and its code', async ({ page }): Promise<v
 	);
 });
 
+// The columns hold functions, which come to the browser from a client module.
+test('a data table of the playground filters its rows with its sample columns', async ({
+	page,
+}): Promise<void> => {
+	await page.goto('/en-us/components/data-table');
+	const playground: Locator = page.locator('.playground');
+
+	const preview: Locator = playground.getByRole('group', {
+		name: 'Component with the chosen props',
+	});
+
+	await playground.getByRole('textbox', { name: 'filter', exact: true }).fill('Mars');
+
+	await expect(preview.getByRole('rowheader')).toHaveText(['Asimov Solensan', 'Teddy Bomber']);
+	await expect(playground.locator('pre')).toContainText("filter='Mars'");
+});
+
 test('a required text left blank keeps its initial value', async ({ page }): Promise<void> => {
 	await page.goto('/en-us/components/avatar');
 	const playground: Locator = page.locator('.playground');
