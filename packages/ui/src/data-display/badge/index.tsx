@@ -24,7 +24,16 @@ export type BadgeVariant = Extract<Appearance, 'solid' | 'soft'>;
  * already says it, e.g. an `IconButton` labelled `'Notifications, 3 unread'`.
  */
 export type BadgeAccessibility =
-	{ label: string; decorative?: never } | { decorative: true; label?: never };
+	| {
+			/** What the badge means, e.g. `'3 unread messages'`, read in place of the visual count. */
+			label: string;
+			decorative?: never;
+	  }
+	| {
+			/** The anchor already says what the badge means, so the badge is not announced. */
+			decorative: true;
+			label?: never;
+	  };
 
 export type BadgeProps = Omit<ComponentPropsWithRef<'span'>, 'children' | 'content'> &
 	BadgeAccessibility & {
@@ -32,7 +41,7 @@ export type BadgeProps = Omit<ComponentPropsWithRef<'span'>, 'children' | 'conte
 		children: ReactNode;
 		/** Number or short text. Numbers above `max` show as `max+`. */
 		content?: number | string;
-		/** Defaults to 99. */
+		/** Defaults to `99`. */
 		max?: number;
 		/** Shows a dot instead of `content`. */
 		dot?: boolean;

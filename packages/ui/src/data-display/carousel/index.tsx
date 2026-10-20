@@ -59,7 +59,7 @@ export interface CarouselProps extends Omit<
 	children: ReactNode;
 	/** Index of the visible slide, when the parent controls it. */
 	index?: number;
-	/** Initial slide when uncontrolled. Defaults to 0. */
+	/** Initial slide when uncontrolled. Defaults to `0`. */
 	defaultIndex?: number;
 	/** Called with the index of the slide that should become visible. */
 	onIndexChange?: (index: number) => void;

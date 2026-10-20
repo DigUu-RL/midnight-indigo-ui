@@ -356,7 +356,8 @@
 		"playground": {
 			"preview": "Componente com as props escolhidas",
 			"controls": "Props",
-			"reset": "Restaurar props"
+			"reset": "Restaurar props",
+			"required": "Obrigatório: a prévia e o código mantêm o valor inicial."
 		},
 		"api": {
 			"caption": "Props de {{component}}",
@@ -442,6 +443,147 @@
 					"text": "Um chip sem `onClick` é texto simples, não um controle.",
 					"toggle": "Com `onClick` é um botão nativo; com `selected` é um alternador com `aria-pressed`, e a marca de seleção é uma forma além da cor.",
 					"remove": "O botão de remover é separado, uma parada de tabulação própria, nomeado por `deleteLabel`, por exemplo `Remove Status: open`."
+				}
+			},
+			"avatar": {
+				"summary": "Foto ou iniciais de uma pessoa ou entidade.",
+				"description": "Mostra a imagem de `src`, ou as iniciais de `name` quando não há imagem ou ela falha ao carregar. O `name` também é o seu nome acessível, a menos que `decorative` o esconda ao lado de um nome já escrito.",
+				"examples": {
+					"profile": {
+						"title": "Ao lado do nome",
+						"description": "O nome está escrito ao lado, então o avatar é `decorative` e não é lido duas vezes."
+					},
+					"crew": {
+						"title": "Uma tripulação",
+						"description": "Avatares sozinhos numa lista: cada um é nomeado pelo seu `name`, e as iniciais vêm da primeira e da última palavra."
+					}
+				},
+				"accessibility": {
+					"name": "Sem `decorative`, o avatar é uma imagem (`role='img'`) nomeada por `name`; as iniciais ficam escondidas.",
+					"decorative": "Com `decorative` ele fica escondido das tecnologias assistivas: use quando o nome estiver ao lado.",
+					"image": "Com `src`, a imagem recebe `name` como `alt`, ou um `alt` vazio quando decorativa."
+				}
+			},
+			"badge": {
+				"summary": "Contagem ou ponto preso a um elemento, por exemplo mensagens não lidas.",
+				"description": "Envolve o elemento que marca. `content` recebe um número ou um texto curto, e números acima de `max` aparecem como `99+`; `dot` mostra um ponto no lugar, e `invisible` o esconde quando não há nada novo.",
+				"examples": {
+					"notifications": {
+						"title": "Notificações",
+						"description": "Uma contagem com um `label` lido depois do botão; o segundo botão já diz a contagem, então o seu badge é `decorative`."
+					},
+					"presence": {
+						"title": "Presença",
+						"description": "Pontos nos avatares dizem quem está online; `invisible` esconde o ponto de quem está offline."
+					}
+				},
+				"accessibility": {
+					"label": "A contagem visual fica escondida das tecnologias assistivas: `label` diz o que ela significa, como texto oculto ao lado do elemento.",
+					"decorative": "Marque `decorative` quando o elemento já disser isso, por exemplo um `IconButton` nomeado `Alerts, 120 unread`.",
+					"dot": "Um ponto não tem texto, então o seu `label` é a única forma de dizer o que ele significa."
+				}
+			},
+			"card": {
+				"summary": "Superfície elevada que agrupa conteúdo relacionado, com cabeçalho opcional.",
+				"description": "`CardHeader` dá um título e o seu subtítulo, com espaço para um avatar antes e controles depois; `CardContent` guarda o resto. `variant='elevated'` adiciona uma sombra para um card sobre outro conteúdo.",
+				"parts": {
+					"cardHeader": "O título do card, um heading de `headingLevel`, com o seu `subtitle`, `avatar` e `action`.",
+					"cardContent": "O corpo do card, em texto secundário."
+				},
+				"examples": {
+					"profile": {
+						"title": "Um perfil",
+						"description": "Uma `section` nomeada pelo seu título, com um avatar, um botão de ações e chips no conteúdo."
+					},
+					"articles": {
+						"title": "Entradas de um diário",
+						"description": "Uma lista de cards `article` num `Grid`, cada um com o seu heading um nível abaixo da seção."
+					}
+				},
+				"accessibility": {
+					"region": "Com `as='section'` ou `as='article'`, o card é uma região nomeada pelo título do seu `CardHeader`, ou por `aria-label` sem ele.",
+					"heading": "Escolha `headingLevel` pela estrutura da página, não pelo tamanho: o título tem a mesma aparência em qualquer nível.",
+					"actions": "Links e botões vão em `action` ou no conteúdo, nunca em volta do card inteiro."
+				}
+			},
+			"carousel": {
+				"summary": "Slides mostrados um de cada vez, com botões para passar entre eles.",
+				"description": "Cada filho é um slide. Os botões de anterior e próximo e um botão por posição passam entre eles; `loop` vai do último ao primeiro. Ele nunca avança sozinho.",
+				"examples": {
+					"reports": {
+						"title": "Relatórios",
+						"description": "Cards como slides, com `loop` para que o botão de próximo do último slide volte ao primeiro."
+					},
+					"controlled": {
+						"title": "Controlado",
+						"description": "`index` e `onIndexChange` mantêm o slide no estado do pai, que o mostra e pode movê-lo."
+					}
+				},
+				"accessibility": {
+					"region": "Uma região nomeada por `label`, anunciada como carrossel; cada slide é um grupo nomeado pela sua posição, por exemplo `2 of 3`.",
+					"keyboard": "As setas passam entre os slides e Home e End vão para as pontas; os botões de posição são uma única parada de tabulação.",
+					"hidden": "Os slides escondidos são `inert`: o seu conteúdo não recebe foco nem é lido.",
+					"motion": "Não há reprodução automática, e a transição é instantânea com movimento reduzido."
+				}
+			},
+			"divider": {
+				"summary": "Linha fina que separa grupos de conteúdo.",
+				"description": "Horizontal por padrão, entre blocos; `orientation='vertical'` separa os itens de uma linha e se estica até a altura dela.",
+				"examples": {
+					"toolbar": {
+						"title": "Grupos de botões",
+						"description": "Um divisor vertical entre os botões de edição e os demais de uma linha."
+					},
+					"sections": {
+						"title": "Seções",
+						"description": "Um separador entre o cabeçalho e os detalhes, e uma linha `decorative` antes de uma nota."
+					}
+				},
+				"accessibility": {
+					"separator": "É anunciado como separador, os verticais com `aria-orientation`.",
+					"decorative": "Com `decorative` ele fica escondido das tecnologias assistivas: use quando headings ou listas já agrupam o conteúdo.",
+					"contrast": "A linha é mais clara que 3:1, então o agrupamento nunca depende só dela: mantenha o espaçamento ou os headings."
+				}
+			},
+			"list": {
+				"summary": "Uma lista de registros, um por linha, com conteúdo antes e depois de cada um.",
+				"description": "Cada `ListItem` tem um título, uma linha de apoio opcional e conteúdo `leading` e `trailing`, como um `Avatar`, um valor ou um `Chip`. `ordered` renderiza uma lista ordenada.",
+				"parts": {
+					"listItem": "Uma linha: o seu `title` e `description`, entre `leading` e `trailing`."
+				},
+				"examples": {
+					"crew": {
+						"title": "Tripulação",
+						"description": "Avatares decorativos antes de cada nome, já que o título o diz, e um chip de status depois."
+					},
+					"ranking": {
+						"title": "Classificação",
+						"description": "Uma lista `ordered`, cuja posição é anunciada; o título também a escreve, já que a lista não tem marcadores."
+					}
+				},
+				"accessibility": {
+					"count": "Uma lista nativa, `ul` ou `ol`: as tecnologias assistivas anunciam o número de itens e a posição de cada um.",
+					"controls": "Links e botões vão em `title` ou `trailing`, nunca em volta do item inteiro.",
+					"table": "Para registros comparados coluna a coluna, use uma `Table`."
+				}
+			},
+			"statCard": {
+				"summary": "Número-chave de um dashboard: o que é medido, o seu valor e como mudou.",
+				"description": "`change` dá a variação e a sua tendência, cuja cor segue o sentimento: um custo que sobe é `negative`. `description` acrescenta o contexto, e `loading` mostra um placeholder.",
+				"examples": {
+					"indicators": {
+						"title": "Indicadores",
+						"description": "Três cards num `Grid`: uma receita que sobe, um custo que sobe com `sentiment: 'negative'` e um valor sem mudança."
+					},
+					"loading": {
+						"title": "Carregando",
+						"description": "`loading` troca o valor e a variação por um placeholder, e anuncia que está carregando."
+					}
+				},
+				"accessibility": {
+					"group": "Um grupo nomeado por `label`.",
+					"trend": "A tendência é dita por uma seta e por texto oculto, por exemplo `Up 12%`, e o sentimento pela cor: nenhum depende só da cor.",
+					"loading": "Enquanto carrega, o card fica `aria-busy` e anuncia `labels.loading` no lugar do valor."
 				}
 			},
 			"container": {

@@ -29,11 +29,12 @@ export type CardHeadingLevel = 2 | 3 | 4 | 5 | 6;
 export interface CardProps extends ComponentPropsWithRef<'div'> {
 	/** Defaults to `'div'`. A `section` or `article` without a `CardHeader` needs an `aria-label`. */
 	as?: CardElement;
-	/** `outline` (default) separates by the border; `elevated` adds a shadow, e.g. for a card over other content. */
+	/** Defaults to `'outline'`, separated by the border; `elevated` adds a shadow, e.g. for a card over other content. */
 	variant?: CardVariant;
 }
 
 export interface CardHeaderProps extends Omit<ComponentPropsWithRef<'div'>, 'title'> {
+	/** Heading of the card; it names a `section` or `article` card. */
 	title: ReactNode;
 	/** Supporting line under the title. */
 	subtitle?: ReactNode;
@@ -41,7 +42,7 @@ export interface CardHeaderProps extends Omit<ComponentPropsWithRef<'div'>, 'tit
 	avatar?: ReactNode;
 	/** Controls at the end of the header, e.g. an `IconButton`. */
 	action?: ReactNode;
-	/** Level of the title heading; pick it from the document outline, not from the size. Defaults to 3. */
+	/** Level of the title heading; pick it from the document outline, not from the size. Defaults to `3`. */
 	headingLevel?: CardHeadingLevel;
 }
 

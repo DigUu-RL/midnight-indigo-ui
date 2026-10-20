@@ -214,5 +214,195 @@
 			"source": "Defaults to `1`; responsive, e.g. `{ compact: 'full', expanded: 2 }`.",
 			"translation": "Padrão: `1`; responsivo, por exemplo `{ compact: 'full', expanded: 2 }`."
 		}
+	},
+	"Avatar": {
+		"name": {
+			"source": "Name of the person or entity: the accessible name and the source of the initials. Cannot be blank.",
+			"translation": "Nome da pessoa ou entidade: o nome acessível e a origem das iniciais. Não pode ser vazio."
+		},
+		"src": {
+			"source": "Image URL. Without it, or when it fails to load, the initials are shown.",
+			"translation": "URL da imagem. Sem ela, ou quando ela falha ao carregar, as iniciais são mostradas."
+		},
+		"size": {
+			"source": "32, 40 or 48 px. Defaults to `'medium'`.",
+			"translation": "32, 40 ou 48 px. Padrão: `'medium'`."
+		},
+		"intent": {
+			"source": "Color of the initials, on its soft container. Defaults to `'default'`.",
+			"translation": "Cor das iniciais, sobre o seu contêiner suave. Padrão: `'default'`."
+		},
+		"decorative": {
+			"source": "Hides the avatar from assistive technologies when the name is already next to it.",
+			"translation": "Esconde o avatar das tecnologias assistivas quando o nome já está ao lado."
+		}
+	},
+	"Badge": {
+		"label": {
+			"source": "What the badge means, e.g. `'3 unread messages'`, read in place of the visual count.",
+			"translation": "O que o badge significa, por exemplo `'3 unread messages'`, lido no lugar da contagem visual."
+		},
+		"decorative": {
+			"source": "The anchor already says what the badge means, so the badge is not announced.",
+			"translation": "O elemento já diz o que o badge significa, então o badge não é anunciado."
+		},
+		"children": {
+			"source": "Element the badge is attached to.",
+			"translation": "Elemento ao qual o badge está preso."
+		},
+		"content": {
+			"source": "Number or short text. Numbers above `max` show as `max+`.",
+			"translation": "Número ou texto curto. Números acima de `max` aparecem como `max+`."
+		},
+		"max": {
+			"source": "Defaults to `99`.",
+			"translation": "Padrão: `99`."
+		},
+		"dot": {
+			"source": "Shows a dot instead of `content`.",
+			"translation": "Mostra um ponto no lugar de `content`."
+		},
+		"showZero": {
+			"source": "Shows a count of 0, which is hidden by default.",
+			"translation": "Mostra uma contagem de 0, que fica escondida por padrão."
+		},
+		"invisible": {
+			"source": "Hides the badge, e.g. when there is nothing new.",
+			"translation": "Esconde o badge, por exemplo quando não há nada novo."
+		},
+		"intent": {
+			"source": "Defaults to `'official'`.",
+			"translation": "Padrão: `'official'`."
+		},
+		"variant": {
+			"source": "Defaults to `'solid'`.",
+			"translation": "Padrão: `'solid'`."
+		}
+	},
+	"Card": {
+		"as": {
+			"source": "Defaults to `'div'`. A `section` or `article` without a `CardHeader` needs an `aria-label`.",
+			"translation": "Padrão: `'div'`. Uma `section` ou `article` sem `CardHeader` precisa de um `aria-label`."
+		},
+		"variant": {
+			"source": "Defaults to `'outline'`, separated by the border; `elevated` adds a shadow, e.g. for a card over other content.",
+			"translation": "Padrão: `'outline'`, separado pela borda; `elevated` adiciona uma sombra, por exemplo para um card sobre outro conteúdo."
+		}
+	},
+	"CardHeader": {
+		"title": {
+			"source": "Heading of the card; it names a `section` or `article` card.",
+			"translation": "Heading do card; nomeia um card `section` ou `article`."
+		},
+		"subtitle": {
+			"source": "Supporting line under the title.",
+			"translation": "Linha de apoio sob o título."
+		},
+		"avatar": {
+			"source": "Content before the title, e.g. an `Avatar`.",
+			"translation": "Conteúdo antes do título, por exemplo um `Avatar`."
+		},
+		"action": {
+			"source": "Controls at the end of the header, e.g. an `IconButton`.",
+			"translation": "Controles no fim do cabeçalho, por exemplo um `IconButton`."
+		},
+		"headingLevel": {
+			"source": "Level of the title heading; pick it from the document outline, not from the size. Defaults to `3`.",
+			"translation": "Nível do heading do título; escolha-o pela estrutura do documento, não pelo tamanho. Padrão: `3`."
+		}
+	},
+	"Carousel": {
+		"label": {
+			"source": "Accessible name of the carousel, e.g. `'Featured reports'`. Cannot be blank.",
+			"translation": "Nome acessível do carrossel, por exemplo `'Featured reports'`. Não pode ser vazio."
+		},
+		"children": {
+			"source": "One child per slide.",
+			"translation": "Um filho por slide."
+		},
+		"index": {
+			"source": "Index of the visible slide, when the parent controls it.",
+			"translation": "Índice do slide visível, quando o pai o controla."
+		},
+		"defaultIndex": {
+			"source": "Initial slide when uncontrolled. Defaults to `0`.",
+			"translation": "Slide inicial quando não controlado. Padrão: `0`."
+		},
+		"onIndexChange": {
+			"source": "Called with the index of the slide that should become visible.",
+			"translation": "Chamado com o índice do slide que deve ficar visível."
+		},
+		"loop": {
+			"source": "Goes from the last slide to the first and back. Defaults to `false`.",
+			"translation": "Vai do último slide ao primeiro e de volta. Padrão: `false`."
+		},
+		"labels": {
+			"source": "Overrides some or all of `defaultCarouselLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultCarouselLabels`."
+		}
+	},
+	"Divider": {
+		"orientation": {
+			"source": "Defaults to `'horizontal'`. A vertical divider stretches to the height of its flex row.",
+			"translation": "Padrão: `'horizontal'`. Um divisor vertical se estica até a altura da sua linha flex."
+		},
+		"decorative": {
+			"source": "Hides the line from assistive technologies when it only decorates, e.g. between items that are already grouped by headings or lists. Defaults to `false`: the divider is announced as a separator.",
+			"translation": "Esconde a linha das tecnologias assistivas quando ela só decora, por exemplo entre itens já agrupados por headings ou listas. Padrão: `false`: o divisor é anunciado como separador."
+		}
+	},
+	"List": {
+		"ordered": {
+			"source": "Renders an `<ol>`, for lists whose order means something (a ranking, steps). Defaults to `false`.",
+			"translation": "Renderiza um `<ol>`, para listas cuja ordem significa algo (uma classificação, passos). Padrão: `false`."
+		},
+		"divided": {
+			"source": "Draws a line between the items. Defaults to `true`.",
+			"translation": "Desenha uma linha entre os itens. Padrão: `true`."
+		}
+	},
+	"ListItem": {
+		"title": {
+			"source": "Main text of the item. Links and buttons go here or in `trailing`, never around the whole item.",
+			"translation": "Texto principal do item. Links e botões vão aqui ou em `trailing`, nunca em volta do item inteiro."
+		},
+		"description": {
+			"source": "Supporting line under the title.",
+			"translation": "Linha de apoio sob o título."
+		},
+		"leading": {
+			"source": "Content before the text, e.g. an `Avatar` or an icon.",
+			"translation": "Conteúdo antes do texto, por exemplo um `Avatar` ou um ícone."
+		},
+		"trailing": {
+			"source": "Content after the text, e.g. a value, a `Chip` or an `IconButton`.",
+			"translation": "Conteúdo depois do texto, por exemplo um valor, um `Chip` ou um `IconButton`."
+		}
+	},
+	"StatCard": {
+		"label": {
+			"source": "What is measured, e.g. `'Revenue'`. It names the card.",
+			"translation": "O que é medido, por exemplo `'Revenue'`. Nomeia o card."
+		},
+		"value": {
+			"source": "The value, formatted for the locale.",
+			"translation": "O valor, formatado para o idioma."
+		},
+		"description": {
+			"source": "Context of the value or of the change, e.g. `'vs. last month'`.",
+			"translation": "Contexto do valor ou da variação, por exemplo `'vs. last month'`."
+		},
+		"icon": {
+			"source": "Decorative icon at the end of the label.",
+			"translation": "Ícone decorativo no fim do rótulo."
+		},
+		"loading": {
+			"source": "Shows a placeholder in place of the value and the change. Defaults to `false`.",
+			"translation": "Mostra um placeholder no lugar do valor e da variação. Padrão: `false`."
+		},
+		"labels": {
+			"source": "Overrides some or all of `defaultStatCardLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultStatCardLabels`."
+		}
 	}
 }

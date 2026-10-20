@@ -19,11 +19,12 @@ import type { ComponentType, ReactElement, ReactNode } from 'react';
 import type { AnyComponent } from '#src/explorer/bindings.tsx';
 import type { PlaygroundValue, SampleWidth } from '#src/explorer/catalog.ts';
 import type { ComponentProp } from '#src/explorer/component-api.ts';
+import type { SampleValue } from '#src/explorer/samples.tsx';
 
 type Values = Readonly<Record<string, PlaygroundValue>>;
 
-/** The samples of the props that take an element, by prop. */
-type Slots = Readonly<Record<string, ReactNode>>;
+/** The samples of the props that take an element or an object, by prop. */
+type Slots = Readonly<Record<string, SampleValue>>;
 
 /** A text of the TSDoc: the spans between backticks are code. */
 export const DocumentationText = ({ text }: { text: string }): ReactElement => {
@@ -47,11 +48,14 @@ interface SampleProps {
 	caption: string;
 }
 
+/** The props a sample is rendered with: the values of the catalog and the samples of its slots. */
+type RenderedProps = Readonly<Record<string, PlaygroundValue | SampleValue>>;
+
 // The values come from the catalog and the generated API of this very component.
 const Sample = ({ component, values, slots, caption }: SampleProps): ReactElement => {
 	return (
 		<li className='variant-sample'>
-			{createElement(component as unknown as ComponentType<Slots>, { ...values, ...slots })}
+			{createElement(component as unknown as ComponentType<RenderedProps>, { ...values, ...slots })}
 			<Code>{caption}</Code>
 		</li>
 	);

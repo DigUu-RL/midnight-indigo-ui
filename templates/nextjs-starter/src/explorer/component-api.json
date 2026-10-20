@@ -295,6 +295,317 @@
 			"options": []
 		}
 	],
+	"Avatar": [
+		{
+			"name": "name",
+			"type": "string",
+			"required": true,
+			"defaultValue": null,
+			"description": "Name of the person or entity: the accessible name and the source of the initials. Cannot be blank.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "src",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Image URL. Without it, or when it fails to load, the initials are shown.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "size",
+			"type": "AvatarSize",
+			"required": false,
+			"defaultValue": "'medium'",
+			"description": "32, 40 or 48 px. Defaults to `'medium'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["small", "medium", "large"]
+		},
+		{
+			"name": "intent",
+			"type": "SemanticIntent",
+			"required": false,
+			"defaultValue": "'default'",
+			"description": "Color of the initials, on its soft container. Defaults to `'default'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["official", "brand", "default", "success", "warning", "error", "info"]
+		},
+		{
+			"name": "decorative",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Hides the avatar from assistive technologies when the name is already next to it.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		}
+	],
+	"Badge": [
+		{
+			"name": "label",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "What the badge means, e.g. `'3 unread messages'`, read in place of the visual count.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "decorative",
+			"type": "true",
+			"required": false,
+			"defaultValue": null,
+			"description": "The anchor already says what the badge means, so the badge is not announced.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "children",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Element the badge is attached to.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "content",
+			"type": "number | string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Number or short text. Numbers above `max` show as `max+`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "max",
+			"type": "number",
+			"required": false,
+			"defaultValue": "99",
+			"description": "Defaults to `99`.",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "dot",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Shows a dot instead of `content`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "showZero",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Shows a count of 0, which is hidden by default.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "invisible",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Hides the badge, e.g. when there is nothing new.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "intent",
+			"type": "SemanticIntent",
+			"required": false,
+			"defaultValue": "'official'",
+			"description": "Defaults to `'official'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["official", "brand", "default", "success", "warning", "error", "info"]
+		},
+		{
+			"name": "variant",
+			"type": "BadgeVariant",
+			"required": false,
+			"defaultValue": "'solid'",
+			"description": "Defaults to `'solid'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["solid", "soft"]
+		}
+	],
+	"Card": [
+		{
+			"name": "as",
+			"type": "CardElement",
+			"required": false,
+			"defaultValue": "'div'",
+			"description": "Defaults to `'div'`. A `section` or `article` without a `CardHeader` needs an `aria-label`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["article", "div", "section"]
+		},
+		{
+			"name": "variant",
+			"type": "CardVariant",
+			"required": false,
+			"defaultValue": "'outline'",
+			"description": "Defaults to `'outline'`, separated by the border; `elevated` adds a shadow, e.g. for a card over other content.",
+			"native": false,
+			"kind": "enum",
+			"options": ["outline", "elevated"]
+		},
+		{
+			"name": "children",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "node",
+			"options": []
+		}
+	],
+	"CardHeader": [
+		{
+			"name": "title",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Heading of the card; it names a `section` or `article` card.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "subtitle",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Supporting line under the title.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "avatar",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Content before the title, e.g. an `Avatar`.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "action",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Controls at the end of the header, e.g. an `IconButton`.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "headingLevel",
+			"type": "CardHeadingLevel",
+			"required": false,
+			"defaultValue": "3",
+			"description": "Level of the title heading; pick it from the document outline, not from the size. Defaults to `3`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"CardContent": [],
+	"Carousel": [
+		{
+			"name": "label",
+			"type": "string",
+			"required": true,
+			"defaultValue": null,
+			"description": "Accessible name of the carousel, e.g. `'Featured reports'`. Cannot be blank.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "children",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "One child per slide.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "index",
+			"type": "number",
+			"required": false,
+			"defaultValue": null,
+			"description": "Index of the visible slide, when the parent controls it.",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "defaultIndex",
+			"type": "number",
+			"required": false,
+			"defaultValue": "0",
+			"description": "Initial slide when uncontrolled. Defaults to `0`.",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "onIndexChange",
+			"type": "(index: number) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the index of the slide that should become visible.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "loop",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": "false",
+			"description": "Goes from the last slide to the first and back. Defaults to `false`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "labels",
+			"type": "Partial<CarouselLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultCarouselLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
 	"Chip": [
 		{
 			"name": "label",
@@ -394,6 +705,174 @@
 			"description": "Name of the delete button, e.g. `'Remove Status: open'`; needs `onDelete`.",
 			"native": false,
 			"kind": "string",
+			"options": []
+		}
+	],
+	"Divider": [
+		{
+			"name": "orientation",
+			"type": "DividerOrientation",
+			"required": false,
+			"defaultValue": "'horizontal'",
+			"description": "Defaults to `'horizontal'`. A vertical divider stretches to the height of its flex row.",
+			"native": false,
+			"kind": "enum",
+			"options": ["horizontal", "vertical"]
+		},
+		{
+			"name": "decorative",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": "false",
+			"description": "Hides the line from assistive technologies when it only decorates, e.g. between items that are already grouped by headings or lists. Defaults to `false`: the divider is announced as a separator.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		}
+	],
+	"List": [
+		{
+			"name": "ordered",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": "false",
+			"description": "Renders an `<ol>`, for lists whose order means something (a ranking, steps). Defaults to `false`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "divided",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": "true",
+			"description": "Draws a line between the items. Defaults to `true`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "children",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "node",
+			"options": []
+		}
+	],
+	"ListItem": [
+		{
+			"name": "title",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Main text of the item. Links and buttons go here or in `trailing`, never around the whole item.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Supporting line under the title.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "leading",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Content before the text, e.g. an `Avatar` or an icon.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "trailing",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Content after the text, e.g. a value, a `Chip` or an `IconButton`.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		}
+	],
+	"StatCard": [
+		{
+			"name": "label",
+			"type": "string",
+			"required": true,
+			"defaultValue": null,
+			"description": "What is measured, e.g. `'Revenue'`. It names the card.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "value",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "The value, formatted for the locale.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "change",
+			"type": "StatChange",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Context of the value or of the change, e.g. `'vs. last month'`.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "icon",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Decorative icon at the end of the label.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "loading",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": "false",
+			"description": "Shows a placeholder in place of the value and the change. Defaults to `false`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "labels",
+			"type": "Partial<StatCardLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultStatCardLabels`.",
+			"native": false,
+			"kind": "other",
 			"options": []
 		}
 	],
