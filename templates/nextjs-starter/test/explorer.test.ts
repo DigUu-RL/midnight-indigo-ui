@@ -164,6 +164,29 @@ describe('the props', (): void => {
 		);
 	});
 
+	// The checker orders the values of a union as it first met them, e.g. `'row'` of `TableHeaderCell` before
+	// `'column'` of `Stack`; the page shows them as the library writes them.
+	test('list the values of a union in the order the library writes them, through its aliases', (): void => {
+		const optionsOf = (component: string, name: string): string[] | undefined => {
+			return generatedApi[component]?.find((prop: ComponentProp): boolean => prop.name === name)
+				?.options;
+		};
+
+		assert.deepEqual(optionsOf('Stack', 'direction'), ['column', 'row']);
+		assert.deepEqual(optionsOf('Stack', 'justify'), ['start', 'center', 'end', 'between']);
+		assert.deepEqual(optionsOf('DataTable', 'status'), ['ready', 'loading', 'error']);
+	});
+
+	test('join the types of a prop that each member of a union declares', (): void => {
+		const typeOf = (name: string): string | undefined => {
+			return generatedApi.DataTable?.find((prop: ComponentProp): boolean => prop.name === name)
+				?.type;
+		};
+
+		assert.equal(typeOf('processing'), "'client' | 'server'");
+		assert.equal(typeOf('rowCount'), 'number');
+	});
+
 	test('are described in Brazilian Portuguese from the current English text', (): void => {
 		const problems: string[] = explorerComponents
 			.flatMap((component: ExplorerComponent): string[] => documentedNamesOf(component))
@@ -323,6 +346,34 @@ describe('the code of the playground', (): void => {
 		assert.match(
 			merged,
 			/import \{ Card, CardContent, CardHeader \} from '@midnight-indigo\/ui\/data-display';/,
+		);
+	});
+
+	test('writes once, before the component, the declarations and the types the samples share', (): void => {
+		const snippet: string = snippetOf({
+			name: 'DataTable',
+			subpath: 'data-display',
+			props: [],
+			values: { caption: 'Wanted bounties' },
+			slots: {
+				columns: sampleCodes.bountyColumns,
+				rows: sampleCodes.bounties,
+				getRowId: sampleCodes.bountyRowId,
+			},
+		});
+
+		assert.match(
+			snippet,
+			/^import \{ DataTable \} from '@midnight-indigo\/ui\/data-display';\nimport type \{ DataTableColumn \} from '@midnight-indigo\/ui\/data-display';\nimport type \{ ReactElement \} from 'react';\n\ninterface Bounty \{/,
+		);
+
+		assert.equal(snippet.match(/interface Bounty/g)?.length, 1);
+		assert.match(snippet, /\n\];\n\nconst bounties: readonly Bounty\[\] = \[\n/);
+		assert.match(snippet, /\n\];\n\nexport const DataTableExample = \(\): ReactElement => \{/);
+
+		assert.match(
+			snippet,
+			/\t\t\tcolumns=\{bountyColumns\}\n\t\t\trows=\{bounties\}\n\t\t\tgetRowId=\{\(bounty: Bounty\): string => bounty\.name\}\n/,
 		);
 	});
 

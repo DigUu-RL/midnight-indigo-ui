@@ -206,6 +206,28 @@ test('a list of elements given to a prop stays a list of children', async (): Pr
 	assert.ok(textOf(html).includes('Dagobah'));
 });
 
+test('functions given to a prop come from a client module, and their code from the declarations of the snippet', async (): Promise<void> => {
+	const { html }: StreamedPage = await readStreamedPage(
+		`${server.origin}/en-us/components/data-table`,
+	);
+
+	const text: string = textOf(html);
+
+	assert.match(html, /<th scope="row"[^>]*>Vincent Volaju<\/th>/);
+	assert.ok(text.includes('300,000,000 woolongs'));
+	assert.ok(compact(text).includes(compact(sampleCodes.bountyColumns.declarations[1])));
+	assert.ok(compact(text).includes(compact('getRowId={(bounty: Bounty): string => bounty.name}')));
+});
+
+test('a part without props of its own says so instead of an empty table', async (): Promise<void> => {
+	const { html }: StreamedPage = await readStreamedPage(`${server.origin}/en-us/components/table`);
+	const text: string = textOf(html);
+
+	assert.ok(text.includes('TableRow has no props of its own'));
+	assert.doesNotMatch(html, /<caption[^>]*>Props of TableRow<\/caption>/);
+	assert.match(html, /<caption[^>]*>Props of TableHeaderCell<\/caption>/);
+});
+
 test('a component with parts documents them, and a page without variants leaves out their section', async (): Promise<void> => {
 	const { html }: StreamedPage = await readStreamedPage(`${server.origin}/en-us/components/grid`);
 	const text: string = textOf(html);

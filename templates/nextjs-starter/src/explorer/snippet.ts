@@ -1,7 +1,7 @@
 // The code of what the playground shows: a component with the props the reader chose, as a TypeScript module that
 // compiles as is (a test type-checks the snippets of every component). Props left at their default are left out; the
 // other values (the props of the catalog without a control) and the samples of the props that take an element are
-// always written.
+// always written, after the declarations they refer to.
 import type { PlaygroundValue } from '#src/explorer/catalog.ts';
 import type { ComponentProp } from '#src/explorer/component-api.ts';
 import type { SampleCode } from '#src/explorer/sample-code.ts';
@@ -71,32 +71,81 @@ const elementLines = (
 	];
 };
 
-/** The imports of the component and of its samples, one line per subpath, in the order of the subpaths. */
+type ImportedNames = Readonly<Record<string, readonly string[]>>;
+
+/** The names of each subpath, merged from every sample. */
+const namesBySubpathOf = (
+	imports: readonly ImportedNames[],
+	initial: ReadonlyMap<string, ReadonlySet<string>>,
+): Map<string, Set<string>> => {
+	const namesBySubpath: Map<string, Set<string>> = new Map<string, Set<string>>(
+		[...initial.entries()].map(
+			([subpath, names]: [string, ReadonlySet<string>]): [string, Set<string>] => {
+				return [subpath, new Set(names)];
+			},
+		),
+	);
+
+	imports.forEach((sampleImports: ImportedNames): void => {
+		Object.entries(sampleImports).forEach(([subpath, names]: [string, readonly string[]]): void => {
+			const known: Set<string> = namesBySubpath.get(subpath) ?? new Set<string>();
+			namesBySubpath.set(subpath, new Set([...known, ...names]));
+		});
+	});
+
+	return namesBySubpath;
+};
+
+/**
+ * The imports of the component and of its samples, in the order of the subpaths: for each one, a line of its values
+ * and a line of its types.
+ */
 const importLines = (
 	name: string,
 	subpath: string,
 	slots: Readonly<Record<string, SampleCode>>,
 ): string[] => {
-	const namesBySubpath: Map<string, Set<string>> = new Map<string, Set<string>>([
-		[subpath, new Set([name])],
-	]);
+	const samples: SampleCode[] = Object.values(slots);
 
-	Object.values(slots).forEach((sample: SampleCode): void => {
-		Object.entries(sample.imports).forEach(
-			([sampleSubpath, names]: [string, readonly string[]]): void => {
-				const known: Set<string> = namesBySubpath.get(sampleSubpath) ?? new Set<string>();
-				namesBySubpath.set(sampleSubpath, new Set([...known, ...names]));
-			},
-		);
+	const values: Map<string, Set<string>> = namesBySubpathOf(
+		samples.map((sample: SampleCode): ImportedNames => sample.imports),
+		new Map([[subpath, new Set([name])]]),
+	);
+
+	const types: Map<string, Set<string>> = namesBySubpathOf(
+		samples.map((sample: SampleCode): ImportedNames => sample.typeImports ?? {}),
+		new Map(),
+	);
+
+	const subpaths: string[] = [...new Set([...values.keys(), ...types.keys()])].sort(
+		(first: string, second: string): number => first.localeCompare(second),
+	);
+
+	return subpaths.flatMap((importedSubpath: string): string[] => {
+		const source: string = `'@midnight-indigo/ui/${importedSubpath}'`;
+		const valueNames: string[] = [...(values.get(importedSubpath) ?? [])].sort();
+		const typeNames: string[] = [...(types.get(importedSubpath) ?? [])].sort();
+
+		return [
+			...(valueNames.length === 0 ? [] : [`import { ${valueNames.join(', ')} } from ${source};`]),
+			...(typeNames.length === 0
+				? []
+				: [`import type { ${typeNames.join(', ')} } from ${source};`]),
+		];
 	});
+};
 
-	return [...namesBySubpath.entries()]
-		.sort(([first]: [string, Set<string>], [second]: [string, Set<string>]): number => {
-			return first.localeCompare(second);
-		})
-		.map(([importedSubpath, names]: [string, Set<string>]): string => {
-			return `import { ${[...names].sort().join(', ')} } from '@midnight-indigo/ui/${importedSubpath}';`;
-		});
+/** The declarations of the samples, each one once, in the order the samples need them, then a blank line. */
+const declarationLines = (slots: Readonly<Record<string, SampleCode>>): string[] => {
+	const declarations: string[] = [
+		...new Set(
+			Object.values(slots).flatMap((sample: SampleCode): readonly string[] => {
+				return sample.declarations ?? [];
+			}),
+		),
+	];
+
+	return declarations.flatMap((declaration: string): string[] => [...declaration.split('\n'), '']);
 };
 
 export const snippetOf = ({ name, subpath, props, values, slots = {} }: SnippetSource): string => {
@@ -145,6 +194,7 @@ export const snippetOf = ({ name, subpath, props, values, slots = {} }: SnippetS
 		...importLines(name, subpath, slots),
 		"import type { ReactElement } from 'react';",
 		'',
+		...declarationLines(slots),
 	];
 
 	const signature: string = `export const ${name}Example = (): ReactElement =>`;

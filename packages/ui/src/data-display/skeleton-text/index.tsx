@@ -9,7 +9,7 @@ import type { LoadingStatusProps } from '#src/data-display/loading-status/index.
 import { Skeleton } from '#src/data-display/skeleton/index.tsx';
 
 export interface SkeletonTextProps extends LoadingStatusProps {
-	/** Number of lines. Defaults to 3. */
+	/** Number of lines. Defaults to `3`. */
 	lines?: number;
 }
 

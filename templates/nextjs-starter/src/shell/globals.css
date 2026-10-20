@@ -432,6 +432,11 @@
 	min-block-size: 3rem;
 }
 
+/* A skeleton, the only sample hidden from assistive technologies, fills its container, so its sample gets a width. */
+.variant-sample:has(> [aria-hidden='true']:first-child) {
+	inline-size: 12rem;
+}
+
 /* Samples of a layout component: as wide as their cell, with their bounds drawn so the alignment shows. */
 .variant-samples-full {
 	display: grid;

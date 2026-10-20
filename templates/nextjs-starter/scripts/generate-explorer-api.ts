@@ -91,16 +91,26 @@ const documentationOf = (property: typescript.Symbol, checker: typescript.TypeCh
 		.trim();
 };
 
-/** The type as written in the declaration, when there is only one; the type the checker computes otherwise. */
+/** The type as written in the declaration, if it is a property with a type. */
+const writtenTypeOf = (declaration: typescript.Declaration): string | undefined => {
+	return typescript.isPropertySignature(declaration) ? declaration.type?.getText() : undefined;
+};
+
+/**
+ * The types as written in the declarations, joined when the prop is declared by each member of a union (e.g.
+ * `processing` of a `DataTable`), without the `never` of the members that forbid it; the type the checker computes
+ * otherwise.
+ */
 const typeTextOf = (property: typescript.Symbol, checker: typescript.TypeChecker): string => {
 	const declarations: typescript.Declaration[] = property.getDeclarations() ?? [];
-	const [declaration] = declarations;
+	const writtenTypes: (string | undefined)[] = declarations.map(writtenTypeOf);
 
 	const written: string | undefined =
-		declarations.length === 1 &&
-		declaration !== undefined &&
-		typescript.isPropertySignature(declaration)
-			? declaration.type?.getText()
+		declarations.length > 0 &&
+		writtenTypes.every((type: string | undefined): boolean => type !== undefined)
+			? [...new Set(writtenTypes)]
+					.filter((type: string | undefined): boolean => type !== 'never')
+					.join(' | ')
 			: undefined;
 
 	return withoutUndefined(
@@ -111,6 +121,73 @@ const typeTextOf = (property: typescript.Symbol, checker: typescript.TypeChecker
 				typescript.TypeFormatFlags.NoTruncation,
 			),
 	);
+};
+
+/**
+ * The string literals of a type node in the order they are written, following the aliases it refers to, e.g.
+ * `'column'` and `'row'` of `Responsive<StackDirection>`.
+ */
+const writtenLiteralsOf = (
+	node: typescript.Node,
+	checker: typescript.TypeChecker,
+	visited: ReadonlySet<typescript.Node>,
+): string[] => {
+	if (visited.has(node)) return [];
+	const seen: ReadonlySet<typescript.Node> = new Set([...visited, node]);
+
+	if (typescript.isLiteralTypeNode(node) && typescript.isStringLiteral(node.literal)) {
+		return [node.literal.text];
+	}
+
+	if (!typescript.isTypeReferenceNode(node)) {
+		return node.getChildren().flatMap((child: typescript.Node): string[] => {
+			return writtenLiteralsOf(child, checker, seen);
+		});
+	}
+
+	const symbol: typescript.Symbol | undefined = checker.getSymbolAtLocation(node.typeName);
+
+	const target: typescript.Symbol | undefined =
+		symbol !== undefined && (symbol.flags & typescript.SymbolFlags.Alias) !== 0
+			? checker.getAliasedSymbol(symbol)
+			: symbol;
+
+	const alias: typescript.TypeAliasDeclaration | undefined = target
+		?.getDeclarations()
+		?.find(typescript.isTypeAliasDeclaration);
+
+	return [
+		...(node.typeArguments ?? []).flatMap((argument: typescript.TypeNode): string[] => {
+			return writtenLiteralsOf(argument, checker, seen);
+		}),
+		...(alias === undefined ? [] : writtenLiteralsOf(alias.type, checker, seen)),
+	];
+};
+
+/** The values of an `enum` prop in the order the library writes them, not in the order the checker created them. */
+const orderedOptions = (
+	options: readonly string[],
+	property: typescript.Symbol,
+	checker: typescript.TypeChecker,
+): string[] => {
+	const written: string[] = (property.getDeclarations() ?? []).flatMap(
+		(declaration: typescript.Declaration): string[] => {
+			const typeNode: typescript.TypeNode | undefined = typescript.isPropertySignature(declaration)
+				? declaration.type
+				: undefined;
+
+			return typeNode === undefined ? [] : writtenLiteralsOf(typeNode, checker, new Set());
+		},
+	);
+
+	const positionOf = (option: string): number => {
+		const position: number = written.indexOf(option);
+		return position === -1 ? written.length : position;
+	};
+
+	return [...options].sort((first: string, second: string): number => {
+		return positionOf(first) - positionOf(second);
+	});
 };
 
 /**
@@ -218,6 +295,12 @@ const describeComponent = (
 				checker.getTypeOfSymbol(property),
 			);
 
+			const { kind, options }: { kind: PropKind; options: string[] } = kindOf(
+				resolved,
+				type,
+				checker,
+			);
+
 			return {
 				name: property.name,
 				type,
@@ -225,7 +308,8 @@ const describeComponent = (
 				defaultValue: defaultPattern.exec(description)?.[1]?.slice(1, -1) ?? null,
 				description,
 				native,
-				...kindOf(resolved, type, checker),
+				kind,
+				options: orderedOptions(options, property, checker),
 			};
 		});
 };

@@ -360,7 +360,8 @@
 			"default": "Default",
 			"description": "Description",
 			"required": "required",
-			"native": "Attribute of the native element, passed on unchanged."
+			"native": "Attribute of the native element, passed on unchanged.",
+			"nativeOnly": "`{{component}}` has no props of its own: it takes the attributes of its native element."
 		},
 		"components": {
 			"button": {
@@ -578,6 +579,149 @@
 					"group": "A group named by `label`.",
 					"trend": "The trend is told by an arrow and by hidden text, e.g. `Up 12%`, and the sentiment by color: neither rests on color alone.",
 					"loading": "While it loads, the card is `aria-busy` and announces `labels.loading` in place of the value."
+				}
+			},
+			"skeleton": {
+				"summary": "Placeholder with the shape of content that is still loading.",
+				"description": "`shape` follows what it stands for: a line of `text`, a `rectangle` for a picture or a card, a `circle` for an avatar. Compose several into the layout of the content; for paragraphs and lists, `SkeletonText` and `SkeletonList` already do.",
+				"examples": {
+					"profile": {
+						"title": "A profile",
+						"description": "A `circle` and two lines of `text` in the place of an avatar and a name, inside a region marked `aria-busy`."
+					},
+					"gallery": {
+						"title": "A gallery",
+						"description": "A `rectangle` per picture, with a line for its title, in the `Grid` the content will fill."
+					}
+				},
+				"accessibility": {
+					"hidden": "It is always hidden from assistive technologies: a placeholder has nothing to read.",
+					"busy": "Mark the region that loads with `aria-busy` and a name, so its content is announced once, when it arrives.",
+					"motion": "The pulse is slow, and stops with reduced motion."
+				}
+			},
+			"skeletonText": {
+				"summary": "Placeholder of a paragraph that is still loading.",
+				"description": "As many lines as `lines`, the last one shorter. It announces `label` once, so a screen reader hears that the text loads instead of a row of placeholders.",
+				"examples": {
+					"article": {
+						"title": "A log entry",
+						"description": "The placeholder holds the place of the paragraph until it arrives, while the region around it is `aria-busy`."
+					},
+					"card": {
+						"title": "Inside a card",
+						"description": "The header is already known, so only the content waits, with two lines."
+					}
+				},
+				"accessibility": {
+					"status": "A status region (`role='status'`): it announces `label` once, and the lines are hidden.",
+					"label": "Without `label` it announces the `loadingStatus.loading` text of the provider, or `Loading`: say what loads when several things do.",
+					"replace": "Put the content in its place when it arrives, and turn off the `aria-busy` of the region then."
+				}
+			},
+			"skeletonList": {
+				"summary": "Placeholder of a list that is still loading.",
+				"description": "As many rows as `items`, each one with two lines of text; `withLeading` adds a circle before each row, as for the `Avatar` of a `ListItem`. Like `SkeletonText`, it announces `label` once.",
+				"examples": {
+					"crew": {
+						"title": "A crew",
+						"description": "As many rows as the list will have, with `withLeading` for its avatars, replaced by the `List` when it arrives."
+					},
+					"compact": {
+						"title": "Inside a card",
+						"description": "Five rows without a leading circle, for items that have no avatar."
+					}
+				},
+				"accessibility": {
+					"status": "A status region (`role='status'`): it announces `label` once, and the rows are hidden.",
+					"label": "Without `label` it announces the `loadingStatus.loading` text of the provider, or `Loading`: say what loads when several things do.",
+					"replace": "Put the list in its place when it arrives, and turn off the `aria-busy` of the region then."
+				}
+			},
+			"emptyState": {
+				"summary": "Tells that there is nothing to show yet, and what to do next.",
+				"description": "A `title`, a `description` and an `action` around a neutral icon: an empty list is not an error. Inside a card or a table its title is a paragraph; `headingLevel` makes it a heading when it fills a whole section.",
+				"examples": {
+					"firstUse": {
+						"title": "First use",
+						"description": "Nothing exists yet, so the action creates the first one; `headingLevel={4}` fits the title into the outline of the page."
+					},
+					"search": {
+						"title": "No results",
+						"description": "When a search finds nothing, the title repeats it and the action clears it; a status message announces the count."
+					}
+				},
+				"accessibility": {
+					"static": "It is static content: it is read where it is, not announced when it appears.",
+					"heading": "Pick `headingLevel` from the outline of the page, and leave it out inside a component that already has a heading.",
+					"results": "When it replaces results, announce the new count with a status message, as `DataTable` does."
+				}
+			},
+			"errorState": {
+				"summary": "Tells that content could not be loaded, and offers to try again.",
+				"description": "`onRetry` shows a retry button, named by `labels.retry`; `action` puts any other action in its place. It announces itself as an alert when it appears, unless `announce` is off.",
+				"examples": {
+					"retry": {
+						"title": "Try again",
+						"description": "`onRetry` loads again. The first error is on the page from the start, so only the next one is announced, with `announce`."
+					},
+					"offline": {
+						"title": "Another action",
+						"description": "An `action` in place of the retry button, when trying again would not help."
+					}
+				},
+				"accessibility": {
+					"alert": "With `announce` (the default) it is an alert (`role='alert'`), read as soon as it appears; turn it off when it is on the page from the first render, e.g. rendered by the server.",
+					"color": "The error is told by the icon, the title and the color together: never by color alone.",
+					"retry": "It does not move the focus. The retry button is named by `labels.retry`, translated with the rest of the interface."
+				}
+			},
+			"table": {
+				"summary": "Native table styled with the tokens, for data in rows and columns.",
+				"description": "Compose it with `TableHead`, `TableBody`, `TableFooter`, `TableRow`, `TableHeaderCell` and `TableCell`. `caption` names it, `density='compact'` tightens it for scanning, and it scrolls sideways when the columns do not fit.",
+				"parts": {
+					"tableHead": "The rows of column headers (`thead`).",
+					"tableBody": "The rows of data (`tbody`).",
+					"tableFooter": "The rows of totals or notes (`tfoot`).",
+					"tableRow": "A row (`tr`).",
+					"tableHeaderCell": "A header cell (`th`): of its column by default, of its row with `scope='row'`; `onSort` makes it a sort button.",
+					"tableCell": "A data cell (`td`), aligned by `align`: numbers to the `end`."
+				},
+				"examples": {
+					"bounties": {
+						"title": "Rows and a total",
+						"description": "The name heads each row (`scope='row'`), the rewards align to the `end`, and a `TableFooter` sums them."
+					},
+					"sortable": {
+						"title": "A sortable column",
+						"description": "`onSort` and `sortDirection` make a header a sort button, and the parent sorts the rows; `density='compact'` tightens them."
+					}
+				},
+				"accessibility": {
+					"caption": "`caption` is required: it names the table, also when `hideCaption` hides it under a heading that says the same.",
+					"headers": "Name every column with a `TableHeaderCell`, and each row with one of `scope='row'` when a cell identifies it: screen readers read them with each cell.",
+					"scroll": "When the columns do not fit, the container scrolls sideways and becomes a focusable region named by the caption, so the keyboard scrolls it too.",
+					"layout": "A table is for data compared across rows and columns; for layout, use `Grid` or `Stack`."
+				}
+			},
+			"dataTable": {
+				"summary": "Table of records with sorting, a text filter and pagination.",
+				"description": "Give it `columns`, `rows` and `getRowId`: each column renders its `cell`, sorts by its `sortValue` and is searched by its `filterValue`. `status` shows the loading and error states; with `processing='server'`, the server sorts, filters and pages, and the table reports the changes.",
+				"examples": {
+					"filter": {
+						"title": "Search and pages",
+						"description": "A `SearchField` drives `filter`; the rows start sorted by reward with `defaultSort`, five per page."
+					},
+					"states": {
+						"title": "States",
+						"description": "`status` shows placeholders or the error state with `onRetry`; `emptyState` replaces the default message when there are no rows."
+					}
+				},
+				"accessibility": {
+					"sort": "Sortable headers are buttons, and `aria-sort` tells which column orders the rows.",
+					"announcements": "A polite status message announces the new order, the visible rows or the number of results after each change.",
+					"pagination": "The pages are a `Pagination` landmark named from `caption`, and the rows keep their `aria-rowindex` across pages.",
+					"states": "While it loads, the table is `aria-busy`; an error is announced, and an empty table shows an `EmptyState`."
 				}
 			},
 			"container": {

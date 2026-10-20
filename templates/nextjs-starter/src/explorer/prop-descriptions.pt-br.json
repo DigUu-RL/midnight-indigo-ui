@@ -404,5 +404,231 @@
 			"source": "Overrides some or all of `defaultStatCardLabels`.",
 			"translation": "Substitui alguns ou todos os textos de `defaultStatCardLabels`."
 		}
+	},
+	"Skeleton": {
+		"shape": {
+			"source": "`text` is one line of the surrounding font size; `circle` has the `width` as diameter. Defaults to `'text'`.",
+			"translation": "`text` é uma linha do tamanho da fonte ao redor; `circle` tem a `width` como diâmetro. Padrão: `'text'`."
+		},
+		"width": {
+			"source": "CSS length. Defaults to the full width (`text`, `rectangle`) or `2.5rem` (`circle`).",
+			"translation": "Medida CSS. Padrão: a largura toda (`text`, `rectangle`) ou `2.5rem` (`circle`)."
+		},
+		"height": {
+			"source": "CSS length. Defaults to one line (`text`), `6rem` (`rectangle`) or the width (`circle`).",
+			"translation": "Medida CSS. Padrão: uma linha (`text`), `6rem` (`rectangle`) ou a largura (`circle`)."
+		}
+	},
+	"SkeletonText": {
+		"lines": {
+			"source": "Number of lines. Defaults to `3`.",
+			"translation": "Número de linhas. Padrão: `3`."
+		},
+		"label": {
+			"source": "Announced when the placeholders appear. Defaults to the provided `loadingStatus.loading`, or `'Loading'`.",
+			"translation": "Anunciado quando os placeholders aparecem. Padrão: o `loadingStatus.loading` do provider, ou `'Loading'`."
+		}
+	},
+	"SkeletonList": {
+		"items": {
+			"source": "Number of rows. Defaults to `3`.",
+			"translation": "Número de linhas. Padrão: `3`."
+		},
+		"withLeading": {
+			"source": "Shows a circle before each row, as for an `Avatar`. Defaults to `false`.",
+			"translation": "Mostra um círculo antes de cada linha, como para um `Avatar`. Padrão: `false`."
+		},
+		"label": {
+			"source": "Announced when the placeholders appear. Defaults to the provided `loadingStatus.loading`, or `'Loading'`.",
+			"translation": "Anunciado quando os placeholders aparecem. Padrão: o `loadingStatus.loading` do provider, ou `'Loading'`."
+		}
+	},
+	"EmptyState": {
+		"title": {
+			"source": "What is missing or what went wrong, in a few words.",
+			"translation": "O que falta ou o que deu errado, em poucas palavras."
+		},
+		"description": {
+			"source": "What it means and what the user can do next.",
+			"translation": "O que isso significa e o que a pessoa pode fazer a seguir."
+		},
+		"icon": {
+			"source": "Decorative icon in place of the default glyph.",
+			"translation": "Ícone decorativo no lugar do glifo padrão."
+		},
+		"action": {
+			"source": "Next step, typically a `Button`.",
+			"translation": "Próximo passo, normalmente um `Button`."
+		},
+		"headingLevel": {
+			"source": "Renders the title as a heading of this level, when the state replaces a whole section of the page. Without it (default), the title is a paragraph, as inside a table or a card that already has a heading.",
+			"translation": "Renderiza o título como um heading deste nível, quando o estado substitui uma seção inteira da página. Sem ele (padrão), o título é um parágrafo, como dentro de uma tabela ou de um card que já tem um heading."
+		}
+	},
+	"ErrorState": {
+		"announce": {
+			"source": "Announces the error when it appears (`role=\"alert\"`). Defaults to `true`; turn it off when the error is part of the page from the first render, e.g. rendered by the server.",
+			"translation": "Anuncia o erro quando ele aparece (`role=\"alert\"`). Padrão: `true`; desligue quando o erro faz parte da página desde a primeira renderização, por exemplo renderizado pelo servidor."
+		},
+		"onRetry": {
+			"source": "Shows a retry button that calls it, unless an `action` is given.",
+			"translation": "Mostra um botão de tentar de novo que a chama, a menos que uma `action` seja dada."
+		},
+		"labels": {
+			"source": "Overrides some or all of `defaultErrorStateLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultErrorStateLabels`."
+		},
+		"title": {
+			"source": "What is missing or what went wrong, in a few words.",
+			"translation": "O que falta ou o que deu errado, em poucas palavras."
+		},
+		"description": {
+			"source": "What it means and what the user can do next.",
+			"translation": "O que isso significa e o que a pessoa pode fazer a seguir."
+		},
+		"icon": {
+			"source": "Decorative icon in place of the default glyph.",
+			"translation": "Ícone decorativo no lugar do glifo padrão."
+		},
+		"action": {
+			"source": "Next step, typically a `Button`.",
+			"translation": "Próximo passo, normalmente um `Button`."
+		},
+		"headingLevel": {
+			"source": "Renders the title as a heading of this level, when the state replaces a whole section of the page. Without it (default), the title is a paragraph, as inside a table or a card that already has a heading.",
+			"translation": "Renderiza o título como um heading deste nível, quando o estado substitui uma seção inteira da página. Sem ele (padrão), o título é um parágrafo, como dentro de uma tabela ou de um card que já tem um heading."
+		}
+	},
+	"Table": {
+		"caption": {
+			"source": "Name of the table, rendered as its `<caption>`. Required: every table needs a name.",
+			"translation": "Nome da tabela, renderizado como o seu `<caption>`. Obrigatório: toda tabela precisa de um nome."
+		},
+		"hideCaption": {
+			"source": "Hides the caption visually; it still names the table for assistive technologies. Defaults to `false`.",
+			"translation": "Esconde a legenda visualmente; ela continua nomeando a tabela para as tecnologias assistivas. Padrão: `false`."
+		},
+		"density": {
+			"source": "Defaults to `'comfortable'`.",
+			"translation": "Padrão: `'comfortable'`."
+		}
+	},
+	"TableHeaderCell": {
+		"scope": {
+			"source": "`col` (default) for column headers; `row` for the cell that names a row, e.g. its first column.",
+			"translation": "`col` (padrão) para cabeçalhos de coluna; `row` para a célula que nomeia uma linha, por exemplo a primeira coluna."
+		},
+		"align": {
+			"source": "Defaults to `'start'`.",
+			"translation": "Padrão: `'start'`."
+		},
+		"onSort": {
+			"source": "Makes the header a sort button. The parent updates `sortDirection`, and usually the rows, in response.",
+			"translation": "Torna o cabeçalho um botão de ordenação. O pai atualiza `sortDirection`, e normalmente as linhas, em resposta."
+		},
+		"sortDirection": {
+			"source": "Direction the table is sorted by this column, or `null` when it is sorted by another one.",
+			"translation": "Direção em que a tabela está ordenada por esta coluna, ou `null` quando está ordenada por outra."
+		}
+	},
+	"TableCell": {
+		"align": {
+			"source": "Defaults to `'start'`.",
+			"translation": "Padrão: `'start'`."
+		}
+	},
+	"DataTable": {
+		"processing": {
+			"source": "Who sorts, filters and pages the rows: the table (`client`) or the server. Defaults to `'client'`.",
+			"translation": "Quem ordena, filtra e pagina as linhas: a tabela (`client`) ou o servidor. Padrão: `'client'`."
+		},
+		"rowCount": {
+			"source": "With `processing=\"server\"`, the number of rows that match, across every page.",
+			"translation": "Com `processing=\"server\"`, o número de linhas que atendem ao filtro, somando todas as páginas."
+		},
+		"caption": {
+			"source": "Name of the table. Required: it also names the scroll region and the pagination.",
+			"translation": "Nome da tabela. Obrigatório: ele também nomeia a região de rolagem e a paginação."
+		},
+		"hideCaption": {
+			"source": "Hides the caption visually, e.g. under a heading that says the same. Defaults to `false`.",
+			"translation": "Esconde a legenda visualmente, por exemplo sob um heading que diz o mesmo. Padrão: `false`."
+		},
+		"density": {
+			"source": "Defaults to `'comfortable'`.",
+			"translation": "Padrão: `'comfortable'`."
+		},
+		"columns": {
+			"source": "Keep the same array between renders (a constant or `useMemo`): the search index depends on it.",
+			"translation": "Mantenha o mesmo array entre renderizações (uma constante ou `useMemo`): o índice de busca depende dele."
+		},
+		"rows": {
+			"source": "Every row, or only the current page with `processing=\"server\"`. Keep the same array between renders too.",
+			"translation": "Todas as linhas, ou só a página atual com `processing=\"server\"`. Mantenha o mesmo array entre renderizações também."
+		},
+		"getRowId": {
+			"source": "Stable key of each row.",
+			"translation": "Chave estável de cada linha."
+		},
+		"status": {
+			"source": "Defaults to `'ready'`.",
+			"translation": "Padrão: `'ready'`."
+		},
+		"errorDescription": {
+			"source": "Explanation under the title of the error state.",
+			"translation": "Explicação sob o título do estado de erro."
+		},
+		"onRetry": {
+			"source": "Shows a retry button in the error state.",
+			"translation": "Mostra um botão de tentar de novo no estado de erro."
+		},
+		"emptyState": {
+			"source": "Replaces the default empty state, e.g. with an `EmptyState` that has an action.",
+			"translation": "Substitui o estado vazio padrão, por exemplo por um `EmptyState` com uma ação."
+		},
+		"sort": {
+			"source": "The sorting, when the parent controls it; `null` for the order of `rows`.",
+			"translation": "A ordenação, quando o pai a controla; `null` para a ordem de `rows`."
+		},
+		"defaultSort": {
+			"source": "Initial sorting when uncontrolled. Defaults to `null`.",
+			"translation": "Ordenação inicial quando não controlada. Padrão: `null`."
+		},
+		"onSortChange": {
+			"source": "Called with the new sorting. Each header toggles between ascending and descending.",
+			"translation": "Chamada com a nova ordenação. Cada cabeçalho alterna entre crescente e decrescente."
+		},
+		"page": {
+			"source": "The current page (from 1), when the parent controls it.",
+			"translation": "A página atual (a partir de 1), quando o pai a controla."
+		},
+		"defaultPage": {
+			"source": "Initial page when uncontrolled. Defaults to `1`.",
+			"translation": "Página inicial quando não controlada. Padrão: `1`."
+		},
+		"onPageChange": {
+			"source": "Called with the new page, also when sorting or filtering returns to the first page.",
+			"translation": "Chamada com a nova página, também quando ordenar ou filtrar volta para a primeira página."
+		},
+		"pageSize": {
+			"source": "Rows per page. Defaults to `10`.",
+			"translation": "Linhas por página. Padrão: `10`."
+		},
+		"filter": {
+			"source": "Text filter: the rows whose `filterValue` contain every word, ignoring case and accents.",
+			"translation": "Filtro de texto: as linhas cujos `filterValue` contêm todas as palavras, ignorando maiúsculas e acentos."
+		},
+		"locale": {
+			"source": "Locale of sorting and filtering. Defaults to the runtime locale.",
+			"translation": "Locale da ordenação e do filtro. Padrão: o locale do ambiente de execução."
+		},
+		"labels": {
+			"source": "Overrides some or all of `defaultDataTableLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultDataTableLabels`."
+		},
+		"paginationLabels": {
+			"source": "Overrides texts of the pagination.",
+			"translation": "Substitui textos da paginação."
+		}
 	}
 }

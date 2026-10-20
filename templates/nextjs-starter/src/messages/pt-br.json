@@ -366,7 +366,8 @@
 			"default": "Padrão",
 			"description": "Descrição",
 			"required": "obrigatória",
-			"native": "Atributo do elemento nativo, repassado sem alteração."
+			"native": "Atributo do elemento nativo, repassado sem alteração.",
+			"nativeOnly": "`{{component}}` não tem props próprias: recebe os atributos do seu elemento nativo."
 		},
 		"components": {
 			"button": {
@@ -584,6 +585,149 @@
 					"group": "Um grupo nomeado por `label`.",
 					"trend": "A tendência é dita por uma seta e por texto oculto, por exemplo `Up 12%`, e o sentimento pela cor: nenhum depende só da cor.",
 					"loading": "Enquanto carrega, o card fica `aria-busy` e anuncia `labels.loading` no lugar do valor."
+				}
+			},
+			"skeleton": {
+				"summary": "Placeholder com a forma de um conteúdo que ainda está carregando.",
+				"description": "`shape` segue o que ele representa: uma linha de `text`, um `rectangle` para uma imagem ou um card, um `circle` para um avatar. Combine vários no layout do conteúdo; para parágrafos e listas, `SkeletonText` e `SkeletonList` já fazem isso.",
+				"examples": {
+					"profile": {
+						"title": "Um perfil",
+						"description": "Um `circle` e duas linhas de `text` no lugar de um avatar e de um nome, dentro de uma região marcada com `aria-busy`."
+					},
+					"gallery": {
+						"title": "Uma galeria",
+						"description": "Um `rectangle` por imagem, com uma linha para o título, no `Grid` que o conteúdo vai preencher."
+					}
+				},
+				"accessibility": {
+					"hidden": "Fica sempre escondido das tecnologias assistivas: um placeholder não tem nada para ler.",
+					"busy": "Marque a região que carrega com `aria-busy` e um nome, para que o conteúdo seja anunciado uma vez, quando chegar.",
+					"motion": "A pulsação é lenta, e para com movimento reduzido."
+				}
+			},
+			"skeletonText": {
+				"summary": "Placeholder de um parágrafo que ainda está carregando.",
+				"description": "Tantas linhas quanto `lines`, a última mais curta. Anuncia `label` uma vez, para que um leitor de tela ouça que o texto está carregando em vez de uma fileira de placeholders.",
+				"examples": {
+					"article": {
+						"title": "Uma entrada do diário",
+						"description": "O placeholder guarda o lugar do parágrafo até ele chegar, enquanto a região ao redor fica `aria-busy`."
+					},
+					"card": {
+						"title": "Dentro de um card",
+						"description": "O cabeçalho já é conhecido, então só o conteúdo espera, com duas linhas."
+					}
+				},
+				"accessibility": {
+					"status": "Uma região de status (`role='status'`): anuncia `label` uma vez, e as linhas ficam escondidas.",
+					"label": "Sem `label`, anuncia o texto `loadingStatus.loading` do provider, ou `Loading`: diga o que carrega quando várias coisas carregam.",
+					"replace": "Coloque o conteúdo no lugar dele quando chegar, e desligue então o `aria-busy` da região."
+				}
+			},
+			"skeletonList": {
+				"summary": "Placeholder de uma lista que ainda está carregando.",
+				"description": "Tantas linhas quanto `items`, cada uma com duas linhas de texto; `withLeading` acrescenta um círculo antes de cada linha, como para o `Avatar` de um `ListItem`. Como `SkeletonText`, anuncia `label` uma vez.",
+				"examples": {
+					"crew": {
+						"title": "Uma tripulação",
+						"description": "Tantas linhas quanto a lista terá, com `withLeading` para os avatares, substituídas pela `List` quando ela chega."
+					},
+					"compact": {
+						"title": "Dentro de um card",
+						"description": "Cinco linhas sem círculo, para itens que não têm avatar."
+					}
+				},
+				"accessibility": {
+					"status": "Uma região de status (`role='status'`): anuncia `label` uma vez, e as linhas ficam escondidas.",
+					"label": "Sem `label`, anuncia o texto `loadingStatus.loading` do provider, ou `Loading`: diga o que carrega quando várias coisas carregam.",
+					"replace": "Coloque a lista no lugar dele quando chegar, e desligue então o `aria-busy` da região."
+				}
+			},
+			"emptyState": {
+				"summary": "Diz que ainda não há nada para mostrar, e o que fazer a seguir.",
+				"description": "Um `title`, uma `description` e uma `action` em volta de um ícone neutro: uma lista vazia não é um erro. Dentro de um card ou de uma tabela o título é um parágrafo; `headingLevel` o torna um heading quando ele ocupa uma seção inteira.",
+				"examples": {
+					"firstUse": {
+						"title": "Primeiro uso",
+						"description": "Ainda não existe nada, então a ação cria o primeiro item; `headingLevel={4}` encaixa o título na estrutura da página."
+					},
+					"search": {
+						"title": "Sem resultados",
+						"description": "Quando uma busca não encontra nada, o título a repete e a ação a limpa; uma mensagem de status anuncia a contagem."
+					}
+				},
+				"accessibility": {
+					"static": "É conteúdo estático: é lido onde está, não é anunciado quando aparece.",
+					"heading": "Escolha `headingLevel` pela estrutura da página, e deixe-o de fora dentro de um componente que já tem um heading.",
+					"results": "Quando ele substitui resultados, anuncie a nova contagem com uma mensagem de status, como faz o `DataTable`."
+				}
+			},
+			"errorState": {
+				"summary": "Diz que um conteúdo não pôde ser carregado, e oferece tentar de novo.",
+				"description": "`onRetry` mostra um botão de tentar de novo, nomeado por `labels.retry`; `action` coloca qualquer outra ação no lugar dele. Ele se anuncia como alerta quando aparece, a menos que `announce` esteja desligado.",
+				"examples": {
+					"retry": {
+						"title": "Tentar de novo",
+						"description": "`onRetry` carrega de novo. O primeiro erro está na página desde o início, então só o próximo é anunciado, com `announce`."
+					},
+					"offline": {
+						"title": "Outra ação",
+						"description": "Uma `action` no lugar do botão de tentar de novo, quando tentar de novo não adiantaria."
+					}
+				},
+				"accessibility": {
+					"alert": "Com `announce` (o padrão) ele é um alerta (`role='alert'`), lido assim que aparece; desligue quando ele está na página desde a primeira renderização, por exemplo renderizado pelo servidor.",
+					"color": "O erro é dito pelo ícone, pelo título e pela cor juntos: nunca só pela cor.",
+					"retry": "Ele não move o foco. O botão de tentar de novo é nomeado por `labels.retry`, traduzido com o resto da interface."
+				}
+			},
+			"table": {
+				"summary": "Tabela nativa estilizada com os tokens, para dados em linhas e colunas.",
+				"description": "Monte-a com `TableHead`, `TableBody`, `TableFooter`, `TableRow`, `TableHeaderCell` e `TableCell`. `caption` a nomeia, `density='compact'` a deixa mais densa para consulta rápida, e ela rola para o lado quando as colunas não cabem.",
+				"parts": {
+					"tableHead": "As linhas de cabeçalhos de coluna (`thead`).",
+					"tableBody": "As linhas de dados (`tbody`).",
+					"tableFooter": "As linhas de totais ou notas (`tfoot`).",
+					"tableRow": "Uma linha (`tr`).",
+					"tableHeaderCell": "Uma célula de cabeçalho (`th`): da sua coluna por padrão, da sua linha com `scope='row'`; `onSort` a torna um botão de ordenação.",
+					"tableCell": "Uma célula de dados (`td`), alinhada por `align`: números no `end`."
+				},
+				"examples": {
+					"bounties": {
+						"title": "Linhas e um total",
+						"description": "O nome encabeça cada linha (`scope='row'`), as recompensas se alinham no `end`, e um `TableFooter` as soma."
+					},
+					"sortable": {
+						"title": "Uma coluna ordenável",
+						"description": "`onSort` e `sortDirection` tornam um cabeçalho um botão de ordenação, e o pai ordena as linhas; `density='compact'` as aproxima."
+					}
+				},
+				"accessibility": {
+					"caption": "`caption` é obrigatória: ela nomeia a tabela, também quando `hideCaption` a esconde sob um heading que diz o mesmo.",
+					"headers": "Nomeie cada coluna com um `TableHeaderCell`, e cada linha com um de `scope='row'` quando uma célula a identifica: os leitores de tela os leem com cada célula.",
+					"scroll": "Quando as colunas não cabem, o contêiner rola para o lado e vira uma região focável nomeada pela legenda, para que o teclado também a role.",
+					"layout": "Uma tabela é para dados comparados entre linhas e colunas; para layout, use `Grid` ou `Stack`."
+				}
+			},
+			"dataTable": {
+				"summary": "Tabela de registros com ordenação, filtro de texto e paginação.",
+				"description": "Passe `columns`, `rows` e `getRowId`: cada coluna renderiza a sua `cell`, ordena pelo seu `sortValue` e é buscada pelo seu `filterValue`. `status` mostra os estados de carregamento e de erro; com `processing='server'`, o servidor ordena, filtra e pagina, e a tabela informa as mudanças.",
+				"examples": {
+					"filter": {
+						"title": "Busca e páginas",
+						"description": "Um `SearchField` controla `filter`; as linhas começam ordenadas pela recompensa com `defaultSort`, cinco por página."
+					},
+					"states": {
+						"title": "Estados",
+						"description": "`status` mostra placeholders ou o estado de erro com `onRetry`; `emptyState` substitui a mensagem padrão quando não há linhas."
+					}
+				},
+				"accessibility": {
+					"sort": "Os cabeçalhos ordenáveis são botões, e `aria-sort` diz qual coluna ordena as linhas.",
+					"announcements": "Uma mensagem de status educada anuncia a nova ordem, as linhas visíveis ou o número de resultados depois de cada mudança.",
+					"pagination": "As páginas são um landmark `Pagination` nomeado a partir de `caption`, e as linhas mantêm o seu `aria-rowindex` entre as páginas.",
+					"states": "Enquanto carrega, a tabela fica `aria-busy`; um erro é anunciado, e uma tabela vazia mostra um `EmptyState`."
 				}
 			},
 			"container": {

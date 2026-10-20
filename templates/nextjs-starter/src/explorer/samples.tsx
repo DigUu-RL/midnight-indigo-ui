@@ -1,18 +1,43 @@
 // The values of the samples of `sample-code.ts`, as its code writes them: the grid of variants and the playground give
-// them to the props that take an element or an object. A sample missing here fails the type check.
-import { Avatar, Card, CardContent, CardHeader, ListItem } from '@midnight-indigo/ui/data-display';
-import type { StatChange } from '@midnight-indigo/ui/data-display';
+// them to the props that take an element, an object or a function. A sample missing here fails the type check.
+import { Button } from '@midnight-indigo/ui/buttons';
+import {
+	Avatar,
+	Card,
+	CardContent,
+	CardHeader,
+	ListItem,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeaderCell,
+	TableRow,
+} from '@midnight-indigo/ui/data-display';
+import type { DataTableColumn, StatChange } from '@midnight-indigo/ui/data-display';
 import { Icon } from '@midnight-indigo/ui/icons';
 import type { ReactElement } from 'react';
 
-import { sampleCrew, samplePlanets } from '#src/explorer/sample-code.ts';
-import type { SampleCrewMember, SampleName, SamplePlanet } from '#src/explorer/sample-code.ts';
+import { bountyColumns, bountyRowId } from '#src/explorer/client-samples.tsx';
+import { sampleBounties, sampleCrew, samplePlanets } from '#src/explorer/sample-code.ts';
+import type {
+	SampleBounty,
+	SampleCrewMember,
+	SampleName,
+	SamplePlanet,
+} from '#src/explorer/sample-code.ts';
 
 /**
  * An element, a list of them (each one a child of its own, e.g. a slide of a `Carousel`, which a fragment would merge
- * into one) or an object a Server Component can pass to a Client Component.
+ * into one), an object a Server Component can pass to a Client Component, or what a client module exports (the
+ * columns of a `DataTable` and its function of the row ids, which hold functions).
  */
-export type SampleValue = ReactElement | readonly ReactElement[] | StatChange;
+export type SampleValue =
+	| ReactElement
+	| readonly ReactElement[]
+	| StatChange
+	| readonly SampleBounty[]
+	| readonly DataTableColumn<SampleBounty>[]
+	| ((bounty: SampleBounty) => string);
 
 const planets: readonly string[] = ['Tatooine', 'Hoth', 'Dagobah', 'Endor'];
 
@@ -75,4 +100,32 @@ export const sampleElements: Readonly<Record<SampleName, SampleValue>> = {
 		</>
 	),
 	bountyChange: { value: '12%', trend: 'up' },
+	newBountyButton: <Button>Post a bounty</Button>,
+	retryButton: <Button variant='soft'>Scan again</Button>,
+	bountyTableRows: (
+		<>
+			<TableHead>
+				<TableRow>
+					<TableHeaderCell>Name</TableHeaderCell>
+					<TableHeaderCell>Last seen</TableHeaderCell>
+					<TableHeaderCell align='end'>Reward</TableHeaderCell>
+				</TableRow>
+			</TableHead>
+
+			<TableBody>
+				{sampleBounties.slice(0, 3).map((bounty: SampleBounty): ReactElement => {
+					return (
+						<TableRow key={bounty.name}>
+							<TableHeaderCell scope='row'>{bounty.name}</TableHeaderCell>
+							<TableCell>{bounty.planet}</TableCell>
+							<TableCell align='end'>{bounty.reward.toLocaleString('en-US')} woolongs</TableCell>
+						</TableRow>
+					);
+				})}
+			</TableBody>
+		</>
+	),
+	bountyColumns,
+	bounties: sampleBounties,
+	bountyRowId,
 };

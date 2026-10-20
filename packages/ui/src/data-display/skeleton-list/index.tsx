@@ -11,7 +11,7 @@ import { Skeleton } from '#src/data-display/skeleton/index.tsx';
 const { spacing, border }: typeof themeVariables = themeVariables;
 
 export interface SkeletonListProps extends LoadingStatusProps {
-	/** Number of rows. Defaults to 3. */
+	/** Number of rows. Defaults to `3`. */
 	items?: number;
 	/** Shows a circle before each row, as for an `Avatar`. Defaults to `false`. */
 	withLeading?: boolean;
