@@ -630,5 +630,141 @@
 			"source": "Overrides texts of the pagination.",
 			"translation": "Substitui textos da paginação."
 		}
+	},
+	"CodeBlock": {
+		"showLineNumbers": {
+			"source": "Numbers each line; the numbers are never copied. Defaults to `false`.",
+			"translation": "Numera cada linha; os números nunca são copiados. Padrão: `false`."
+		},
+		"copyable": {
+			"source": "Shows the copy button. Defaults to `true`.",
+			"translation": "Mostra o botão de copiar. Padrão: `true`."
+		},
+		"labels": {
+			"source": "Overrides some or all of `defaultCodeBlockLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultCodeBlockLabels`."
+		},
+		"code": {
+			"source": "Tokens from `highlightCode`, or a string shown without colors.",
+			"translation": "Tokens de `highlightCode`, ou uma string mostrada sem cores."
+		},
+		"fileName": {
+			"source": "Shown above the code and used as its accessible name.",
+			"translation": "Mostrado acima do código e usado como o seu nome acessível."
+		},
+		"highlightedLines": {
+			"source": "Numbers of the lines to highlight, from 1.",
+			"translation": "Números das linhas a destacar, a partir de 1."
+		},
+		"files": {
+			"source": "The files, one tab each, in order; the copy button copies the file shown.",
+			"translation": "Os arquivos, uma aba cada, em ordem; o botão de copiar copia o arquivo mostrado."
+		},
+		"file": {
+			"source": "Name of the file shown, to control it.",
+			"translation": "Nome do arquivo mostrado, para controlá-lo."
+		},
+		"defaultFile": {
+			"source": "Name of the file shown at first when uncontrolled. Defaults to the first file.",
+			"translation": "Nome do arquivo mostrado de início quando não controlado. Padrão: o primeiro arquivo."
+		},
+		"onFileChange": {
+			"source": "Called with the name of the file the reader picks.",
+			"translation": "Chamada com o nome do arquivo que o leitor escolhe."
+		}
+	},
+	"Alert": {
+		"intent": {
+			"source": "Meaning of the message; it also picks the icon, so the meaning never rests on color. Defaults to `'info'`.",
+			"translation": "Significado da mensagem; também escolhe o ícone, então o significado nunca depende da cor. Padrão: `'info'`."
+		},
+		"variant": {
+			"source": "Defaults to `'soft'`.",
+			"translation": "Padrão: `'soft'`."
+		},
+		"title": {
+			"source": "Short summary, shown in bold before the message.",
+			"translation": "Resumo curto, mostrado em negrito antes da mensagem."
+		},
+		"children": {
+			"source": "The message.",
+			"translation": "A mensagem."
+		},
+		"action": {
+			"source": "Action related to the message, typically a small `Button`.",
+			"translation": "Ação relacionada à mensagem, normalmente um `Button` pequeno."
+		},
+		"icon": {
+			"source": "Decorative icon in place of the intent glyph.",
+			"translation": "Ícone decorativo no lugar do glifo do intent."
+		},
+		"announce": {
+			"source": "Defaults to `'none'`.",
+			"translation": "Padrão: `'none'`."
+		},
+		"onDismiss": {
+			"source": "Shows a dismiss button that calls it. Removing the alert is up to the parent.",
+			"translation": "Mostra um botão de dispensar que a chama. Remover o alerta fica a cargo do pai."
+		},
+		"labels": {
+			"source": "Overrides some or all of `defaultAlertLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultAlertLabels`."
+		}
+	},
+	"ProgressBar": {
+		"label": {
+			"source": "Accessible name: what is progressing, e.g. `'Uploading report.pdf'`. Cannot be blank.",
+			"translation": "Nome acessível: o que está progredindo, por exemplo `'Uploading report.pdf'`. Não pode ficar em branco."
+		},
+		"value": {
+			"source": "Current value between `min` and `max`. Leave it out while the duration is unknown (indeterminate).",
+			"translation": "Valor atual entre `min` e `max`. Deixe de fora enquanto a duração for desconhecida (indeterminado)."
+		},
+		"min": {
+			"source": "Defaults to `0`.",
+			"translation": "Padrão: `0`."
+		},
+		"max": {
+			"source": "Defaults to `100`.",
+			"translation": "Padrão: `100`."
+		},
+		"valueText": {
+			"source": "Readable value for assistive technologies when a percentage is not meaningful, e.g. `'Step 2 of 5'`.",
+			"translation": "Valor legível para tecnologias assistivas quando uma porcentagem não tem significado, por exemplo `'Step 2 of 5'`."
+		},
+		"shape": {
+			"source": "Defaults to `'linear'`.",
+			"translation": "Padrão: `'linear'`."
+		},
+		"intent": {
+			"source": "Defaults to `'official'`.",
+			"translation": "Padrão: `'official'`."
+		},
+		"size": {
+			"source": "Thickness of the bar (4, 6 or 8 px) or side of the ring (16, 24 or 40 px). Defaults to `'medium'`.",
+			"translation": "Espessura da barra (4, 6 ou 8 px) ou lado do anel (16, 24 ou 40 px). Padrão: `'medium'`."
+		}
+	},
+	"Tooltip": {
+		"content": {
+			"source": "Supplementary text, such as a keyboard shortcut or the full form of a truncated label. Plain text only: a tooltip cannot be focused, so links and buttons inside it would be out of reach.",
+			"translation": "Texto complementar, como um atalho de teclado ou a forma completa de um rótulo truncado. Só texto simples: um tooltip não recebe foco, então links e botões dentro dele ficariam fora de alcance."
+		},
+		"children": {
+			"source": "A focusable element that already has an accessible name of its own (e.g. an `IconButton` with its `label`). The tooltip describes it; it never names it, so nothing essential is lost when the tooltip is not shown.",
+			"translation": "Um elemento focável que já tem um nome acessível próprio (por exemplo um `IconButton` com o seu `label`). O tooltip o descreve; nunca o nomeia, então nada essencial se perde quando o tooltip não aparece."
+		},
+		"placement": {
+			"source": "Defaults to `'top'`; it flips when there is no room.",
+			"translation": "Padrão: `'top'`; inverte quando não há espaço."
+		},
+		"delay": {
+			"source": "Milliseconds of hover before the tooltip appears; focus shows it at once. Defaults to `300`.",
+			"translation": "Milissegundos de hover antes de o tooltip aparecer; o foco o mostra na hora. Padrão: `300`."
+		},
+		"container": {
+			"source": "Element that receives the tooltip. Defaults to `document.body`.",
+			"translation": "Elemento que recebe o tooltip. Padrão: `document.body`."
+		}
 	}
 }

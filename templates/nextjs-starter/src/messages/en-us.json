@@ -331,7 +331,9 @@
 		},
 		"subpaths": {
 			"buttons": "Buttons",
+			"code": "Code",
 			"dataDisplay": "Data display",
+			"feedback": "Feedback",
 			"layout": "Layout"
 		},
 		"page": {
@@ -419,6 +421,44 @@
 					"name": "Name it after what it copies, e.g. `Copy invite link`; the name never changes under the focus.",
 					"announcement": "The result (`Copied`, or `Could not copy`) is announced by a live region and shown by the icon and the intent, not by the color alone.",
 					"clipboard": "The Clipboard API needs a secure context (HTTPS or `localhost`); elsewhere the copy fails and says so."
+				}
+			},
+			"code": {
+				"summary": "Short code inside running text: a name, a value, a command.",
+				"description": "A `code` element in the monospace font, with the size of the text around it, so it fits a sentence, a heading or a caption alike. For several lines, use `CodeBlock`.",
+				"examples": {
+					"sentence": {
+						"title": "In a sentence",
+						"description": "The commands and outputs the reader types or looks for, inside the instructions that explain them."
+					},
+					"settings": {
+						"title": "Names and values",
+						"description": "The name of each setting and its value, in a list that describes them."
+					}
+				},
+				"accessibility": {
+					"text": "Screen readers read it as plain text: let the sentence tell what it is, e.g. “run the command”.",
+					"block": "For several lines, use `CodeBlock`: a named group that the keyboard can scroll.",
+					"wrap": "A long value breaks anywhere instead of overflowing, so the page never scrolls sideways on a small screen."
+				}
+			},
+			"codeBlock": {
+				"summary": "Block of source code, colored, with a copy button and one tab per file.",
+				"description": "Color the code with `highlightCode` on the server (or at build time) and give its result to `code`: the browser receives only the tokens, never the highlighter. A string is shown without colors. `showLineNumbers` numbers the lines and `highlightedLines` marks some of them; `files` shows several files, one tab each.",
+				"examples": {
+					"highlighted": {
+						"title": "Colored on the server",
+						"description": "An async Server Component awaits `highlightCode`; `showLineNumbers` and `highlightedLines` point the reader to the line that matters."
+					},
+					"files": {
+						"title": "Several files",
+						"description": "`files` gives each file a tab, and the copy button copies the file shown."
+					}
+				},
+				"accessibility": {
+					"name": "The block is a group named by `fileName`, else by `labels.code`; with `files`, the files are tabs of the WAI-ARIA tabs pattern.",
+					"keyboard": "The code scrolls sideways instead of wrapping, and is a tab stop, so the keyboard can scroll it too.",
+					"copy": "The copy button announces the result, and the line numbers, drawn by CSS, are neither read with the code nor copied."
 				}
 			},
 			"chip": {
@@ -722,6 +762,63 @@
 					"announcements": "A polite status message announces the new order, the visible rows or the number of results after each change.",
 					"pagination": "The pages are a `Pagination` landmark named from `caption`, and the rows keep their `aria-rowindex` across pages.",
 					"states": "While it loads, the table is `aria-busy`; an error is announced, and an empty table shows an `EmptyState`."
+				}
+			},
+			"alert": {
+				"summary": "Message about the page or a task, with an optional action.",
+				"description": "`intent` gives the meaning and picks the icon, `variant` the emphasis. A `title` summarizes the message, `action` adds a related action and `onDismiss` a button that closes it; removing it is up to the parent.",
+				"examples": {
+					"saved": {
+						"title": "Outcome of an action",
+						"description": "A `success` alert that appears after saving: `announce='polite'` reads it without interrupting, and `onDismiss` closes it."
+					},
+					"maintenance": {
+						"title": "With an action",
+						"description": "An `outline` warning, part of the page from the start, with the action that solves it."
+					}
+				},
+				"accessibility": {
+					"announce": "It is static by default. Use `announce='polite'` for an outcome that appears after an action, and `'assertive'` only for a problem that needs attention now.",
+					"icon": "The icon follows the intent, so success, warning and error differ in shape as well as in color.",
+					"dismiss": "The dismiss button is named by `labels.dismiss`; move the focus somewhere sensible when the alert that had it goes away."
+				}
+			},
+			"progressBar": {
+				"summary": "Progress of an operation, as a bar or a ring.",
+				"description": "With `value` (between `min` and `max`) it shows how much is done; without it, that something is going on. `valueText` says the value in words when a percentage means little, e.g. `Part 2 of 5`.",
+				"examples": {
+					"upload": {
+						"title": "Known progress",
+						"description": "The report goes in five parts: `max={5}` and `valueText` tell assistive technologies which part is on its way."
+					},
+					"indeterminate": {
+						"title": "Unknown duration",
+						"description": "Without `value` the bar sweeps and the ring turns; a `small` ring fits next to a line of text."
+					}
+				},
+				"accessibility": {
+					"label": "`label` names it (`aria-label`) and cannot be blank: say what progresses, e.g. `Sending the bounty report`.",
+					"value": "It is a `progressbar` with `aria-valuenow`, `aria-valuemin` and `aria-valuemax`; without `value` they are left out, as ARIA prescribes.",
+					"motion": "With reduced motion, the indeterminate bar pulses in place instead of sweeping."
+				}
+			},
+			"tooltip": {
+				"summary": "Short supplementary text about a control, shown on hover and focus.",
+				"description": "It wraps one focusable element that already has a name, and adds a description: a keyboard shortcut, the full form of a truncated label. `placement` picks its side and flips when there is no room; `delay` is the hover before it appears.",
+				"examples": {
+					"shortcuts": {
+						"title": "Keyboard shortcuts",
+						"description": "Each `IconButton` is named by its `label`; the tooltip only adds the shortcut."
+					},
+					"truncated": {
+						"title": "Truncated labels",
+						"description": "The full name of each ship, cut by an ellipsis; `placement='end'` shows it after the button."
+					}
+				},
+				"accessibility": {
+					"describes": "It describes its trigger (`aria-describedby`) and never names it: a trigger without a name of its own is reported in the console.",
+					"content": "Plain text only: a tooltip cannot be focused, so a link or a button in it would be out of reach. Use a `Popover` for those.",
+					"disabled": "A disabled control receives no hover or focus, so it never shows its tooltip: explain why it is disabled in visible text."
 				}
 			},
 			"container": {

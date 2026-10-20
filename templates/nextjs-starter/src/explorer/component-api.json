@@ -295,6 +295,120 @@
 			"options": []
 		}
 	],
+	"Code": [
+		{
+			"name": "children",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "node",
+			"options": []
+		}
+	],
+	"CodeBlock": [
+		{
+			"name": "showLineNumbers",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": "false",
+			"description": "Numbers each line; the numbers are never copied. Defaults to `false`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "copyable",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": "true",
+			"description": "Shows the copy button. Defaults to `true`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "labels",
+			"type": "Partial<CodeBlockLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultCodeBlockLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "code",
+			"type": "HighlightedCode | string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Tokens from `highlightCode`, or a string shown without colors.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "fileName",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Shown above the code and used as its accessible name.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "highlightedLines",
+			"type": "readonly number[]",
+			"required": false,
+			"defaultValue": null,
+			"description": "Numbers of the lines to highlight, from 1.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "files",
+			"type": "readonly CodeFile[]",
+			"required": false,
+			"defaultValue": null,
+			"description": "The files, one tab each, in order; the copy button copies the file shown.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "file",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Name of the file shown, to control it.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "defaultFile",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Name of the file shown at first when uncontrolled. Defaults to the first file.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "onFileChange",
+			"type": "(name: string) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the name of the file the reader picks.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
 	"Avatar": [
 		{
 			"name": "name",
@@ -1423,6 +1537,232 @@
 			"required": false,
 			"defaultValue": null,
 			"description": "Overrides texts of the pagination.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"Alert": [
+		{
+			"name": "intent",
+			"type": "SemanticIntent",
+			"required": false,
+			"defaultValue": "'info'",
+			"description": "Meaning of the message; it also picks the icon, so the meaning never rests on color. Defaults to `'info'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["official", "brand", "default", "success", "warning", "error", "info"]
+		},
+		{
+			"name": "variant",
+			"type": "AlertVariant",
+			"required": false,
+			"defaultValue": "'soft'",
+			"description": "Defaults to `'soft'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["soft", "outline", "solid"]
+		},
+		{
+			"name": "title",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Short summary, shown in bold before the message.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "children",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "The message.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "action",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Action related to the message, typically a small `Button`.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "icon",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Decorative icon in place of the intent glyph.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "announce",
+			"type": "AlertAnnouncement",
+			"required": false,
+			"defaultValue": "'none'",
+			"description": "Defaults to `'none'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["none", "polite", "assertive"]
+		},
+		{
+			"name": "onDismiss",
+			"type": "() => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Shows a dismiss button that calls it. Removing the alert is up to the parent.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "labels",
+			"type": "Partial<AlertLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultAlertLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"ProgressBar": [
+		{
+			"name": "label",
+			"type": "string",
+			"required": true,
+			"defaultValue": null,
+			"description": "Accessible name: what is progressing, e.g. `'Uploading report.pdf'`. Cannot be blank.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "value",
+			"type": "number",
+			"required": false,
+			"defaultValue": null,
+			"description": "Current value between `min` and `max`. Leave it out while the duration is unknown (indeterminate).",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "min",
+			"type": "number",
+			"required": false,
+			"defaultValue": "0",
+			"description": "Defaults to `0`.",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "max",
+			"type": "number",
+			"required": false,
+			"defaultValue": "100",
+			"description": "Defaults to `100`.",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "valueText",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Readable value for assistive technologies when a percentage is not meaningful, e.g. `'Step 2 of 5'`.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "shape",
+			"type": "ProgressBarShape",
+			"required": false,
+			"defaultValue": "'linear'",
+			"description": "Defaults to `'linear'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["linear", "circular"]
+		},
+		{
+			"name": "intent",
+			"type": "SemanticIntent",
+			"required": false,
+			"defaultValue": "'official'",
+			"description": "Defaults to `'official'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["official", "brand", "default", "success", "warning", "error", "info"]
+		},
+		{
+			"name": "size",
+			"type": "ProgressBarSize",
+			"required": false,
+			"defaultValue": "'medium'",
+			"description": "Thickness of the bar (4, 6 or 8 px) or side of the ring (16, 24 or 40 px). Defaults to `'medium'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["small", "medium", "large"]
+		}
+	],
+	"Tooltip": [
+		{
+			"name": "content",
+			"type": "string",
+			"required": true,
+			"defaultValue": null,
+			"description": "Supplementary text, such as a keyboard shortcut or the full form of a truncated label. Plain text only: a tooltip cannot be focused, so links and buttons inside it would be out of reach.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "children",
+			"type": "ReactElement",
+			"required": true,
+			"defaultValue": null,
+			"description": "A focusable element that already has an accessible name of its own (e.g. an `IconButton` with its `label`). The tooltip describes it; it never names it, so nothing essential is lost when the tooltip is not shown.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "placement",
+			"type": "TooltipPlacement",
+			"required": false,
+			"defaultValue": "'top'",
+			"description": "Defaults to `'top'`; it flips when there is no room.",
+			"native": false,
+			"kind": "enum",
+			"options": ["top", "bottom", "start", "end"]
+		},
+		{
+			"name": "delay",
+			"type": "number",
+			"required": false,
+			"defaultValue": "300",
+			"description": "Milliseconds of hover before the tooltip appears; focus shows it at once. Defaults to `300`.",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "container",
+			"type": "OverlayContainer",
+			"required": false,
+			"defaultValue": "document.body",
+			"description": "Element that receives the tooltip. Defaults to `document.body`.",
 			"native": false,
 			"kind": "other",
 			"options": []
