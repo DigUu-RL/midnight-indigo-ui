@@ -33,6 +33,74 @@
 			"translation": "Ocupa toda a largura do contêiner."
 		}
 	},
+	"IconButton": {
+		"label": {
+			"source": "Accessible name, e.g. `'Close'`: what the action does, not what the icon shows. Cannot be blank.",
+			"translation": "Nome acessível, por exemplo `'Close'`: o que a ação faz, não o que o ícone mostra. Não pode ficar em branco."
+		},
+		"children": {
+			"source": "The icon. It is hidden from assistive technologies, since `label` names the button.",
+			"translation": "O ícone. Fica oculto das tecnologias assistivas, já que `label` nomeia o botão."
+		},
+		"intent": {
+			"source": "Defaults to `'default'`.",
+			"translation": "Padrão: `'default'`."
+		},
+		"variant": {
+			"source": "Defaults to `'ghost'`.",
+			"translation": "Padrão: `'ghost'`."
+		},
+		"size": {
+			"source": "Square side of 32, 40 or 48 px; the icons take the matching `iconSize` token. Defaults to `'medium'`.",
+			"translation": "Quadrado de 32, 40 ou 48 px de lado; os ícones usam o token `iconSize` correspondente. Padrão: `'medium'`."
+		},
+		"loading": {
+			"source": "Operation in progress: the icon becomes a ring; see `Button`.",
+			"translation": "Operação em andamento: o ícone vira um anel; veja `Button`."
+		}
+	},
+	"CopyButton": {
+		"value": {
+			"source": "Text written to the clipboard, or a function that returns it at the moment of the copy.",
+			"translation": "Texto escrito na área de transferência, ou uma função que o retorna no momento da cópia."
+		},
+		"label": {
+			"source": "Name of the button for what it copies, e.g. `'Copy code'`. Defaults to `labels.copy`. Cannot be blank.",
+			"translation": "Nome do botão conforme o que ele copia, por exemplo `'Copy code'`. Padrão: `labels.copy`. Não pode ficar em branco."
+		},
+		"showLabel": {
+			"source": "Shows the name next to the icon. Defaults to `false`: the icon alone.",
+			"translation": "Mostra o nome ao lado do ícone. Padrão: `false`: só o ícone."
+		},
+		"intent": {
+			"source": "Defaults to `'default'`.",
+			"translation": "Padrão: `'default'`."
+		},
+		"variant": {
+			"source": "Defaults to `'ghost'`.",
+			"translation": "Padrão: `'ghost'`."
+		},
+		"size": {
+			"source": "Defaults to `'small'`.",
+			"translation": "Padrão: `'small'`."
+		},
+		"feedbackDuration": {
+			"source": "Time the confirmation stays before the button returns to rest. Defaults to `2000` (ms).",
+			"translation": "Tempo em que a confirmação fica visível antes de o botão voltar ao repouso. Padrão: `2000` (ms)."
+		},
+		"onCopied": {
+			"source": "Called with the copied text.",
+			"translation": "Chamada com o texto copiado."
+		},
+		"onCopyFailed": {
+			"source": "Called when the clipboard refuses the text.",
+			"translation": "Chamada quando a área de transferência recusa o texto."
+		},
+		"labels": {
+			"source": "Overrides some or all of `defaultCopyButtonLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultCopyButtonLabels`."
+		}
+	},
 	"Chip": {
 		"label": {
 			"source": "Visible text; it is also the accessible name of the chip and of its button.",
@@ -73,6 +141,78 @@
 		"deleteLabel": {
 			"source": "Name of the delete button, e.g. `'Remove Status: open'`; needs `onDelete`.",
 			"translation": "Nome do botão de remover, por exemplo `'Remove Status: open'`; exige `onDelete`."
+		}
+	},
+	"Container": {
+		"as": {
+			"source": "Defaults to `'div'`. Use `'main'` once per page, for its main content.",
+			"translation": "Padrão: `'div'`. Use `'main'` uma vez por página, para o conteúdo principal."
+		},
+		"size": {
+			"source": "Defaults to `'large'`.",
+			"translation": "Padrão: `'large'`."
+		},
+		"gutters": {
+			"source": "Side padding of 16, 24 and 32 px (`compact`, `medium`, `expanded` and up). Defaults to `true`.",
+			"translation": "Espaçamento lateral de 16, 24 e 32 px (`compact`, `medium`, `expanded` em diante). Padrão: `true`."
+		}
+	},
+	"Stack": {
+		"as": {
+			"source": "Defaults to `'div'`.",
+			"translation": "Padrão: `'div'`."
+		},
+		"direction": {
+			"source": "Defaults to `'column'`; responsive, e.g. `{ compact: 'column', medium: 'row' }`.",
+			"translation": "Padrão: `'column'`; responsivo, por exemplo `{ compact: 'column', medium: 'row' }`."
+		},
+		"gap": {
+			"source": "Step of the spacing scale between children. Defaults to `'4'` (16 px); responsive.",
+			"translation": "Passo da escala de espaçamento entre os filhos. Padrão: `'4'` (16 px); responsivo."
+		},
+		"align": {
+			"source": "Defaults to `'stretch'`.",
+			"translation": "Padrão: `'stretch'`."
+		},
+		"justify": {
+			"source": "Defaults to `'start'`.",
+			"translation": "Padrão: `'start'`."
+		},
+		"wrap": {
+			"source": "Wraps children onto new lines when a row runs out of room, e.g. a row of buttons at high zoom.",
+			"translation": "Quebra os filhos em novas linhas quando falta espaço numa linha, por exemplo uma linha de botões com zoom alto."
+		}
+	},
+	"Grid": {
+		"columns": {
+			"source": "Number of equal columns. Defaults to `1`; responsive, e.g. `{ compact: 1, medium: 2, large: 4 }`.",
+			"translation": "Número de colunas iguais. Padrão: `1`; responsivo, por exemplo `{ compact: 1, medium: 2, large: 4 }`."
+		},
+		"minColumnWidth": {
+			"source": "Minimum width of a column, e.g. `'16rem'`: the grid fits as many as the width allows, without media queries, and never more than one on a viewport narrower than that.",
+			"translation": "Largura mínima de uma coluna, por exemplo `'16rem'`: a grade encaixa tantas quanto a largura permitir, sem media queries, e nunca mais de uma numa viewport mais estreita que isso."
+		},
+		"as": {
+			"source": "Defaults to `'div'`; use a list when the items are a collection, with `GridItem as='li'`.",
+			"translation": "Padrão: `'div'`; use uma lista quando os itens forem uma coleção, com `GridItem as='li'`."
+		},
+		"gap": {
+			"source": "Step of the spacing scale between rows and columns. Defaults to `'4'` (16 px); responsive.",
+			"translation": "Passo da escala de espaçamento entre linhas e colunas. Padrão: `'4'` (16 px); responsivo."
+		},
+		"children": {
+			"source": "The cells, one per child: wrap a child in a `GridItem` to make it span several columns.",
+			"translation": "As células, uma por filho: envolva um filho num `GridItem` para que ele ocupe várias colunas."
+		}
+	},
+	"GridItem": {
+		"as": {
+			"source": "Defaults to `'div'`.",
+			"translation": "Padrão: `'div'`."
+		},
+		"span": {
+			"source": "Defaults to `1`; responsive, e.g. `{ compact: 'full', expanded: 2 }`.",
+			"translation": "Padrão: `1`; responsivo, por exemplo `{ compact: 'full', expanded: 2 }`."
 		}
 	}
 }

@@ -331,7 +331,8 @@
 		},
 		"subpaths": {
 			"buttons": "Buttons",
-			"dataDisplay": "Data display"
+			"dataDisplay": "Data display",
+			"layout": "Layout"
 		},
 		"page": {
 			"usage": "Import",
@@ -380,6 +381,44 @@
 					"loading": "`loading` sets `aria-busy` and ignores activation without taking the focus away; `disabled` means the action is unavailable."
 				}
 			},
+			"iconButton": {
+				"summary": "Action shown only as an icon, named by a required label.",
+				"description": "Use it where space is short and the icon is well known: a toolbar, the actions of a row, the controls of a player. The `label` says what the action does; when the icon alone is not obvious, use a `Button` with `startIcon`.",
+				"examples": {
+					"actions": {
+						"title": "Actions of a row",
+						"description": "Ghost icon buttons, each one named after the action and the item it acts on; `error` marks the destructive one."
+					},
+					"playback": {
+						"title": "Player controls",
+						"description": "A large solid button for the main action, whose `label` follows the action it performs next."
+					}
+				},
+				"accessibility": {
+					"name": "`label` is the accessible name (`aria-label`) and cannot be blank: name the action, e.g. `Remove Spike Spiegel`, not the icon.",
+					"icon": "The icon is hidden from assistive technologies; mark it `decorative`.",
+					"target": "Every size is a square of at least 32 px, above the WCAG 2.2 minimum target."
+				}
+			},
+			"copyButton": {
+				"summary": "Copies a text to the clipboard and confirms it.",
+				"description": "Put it next to a value the reader will paste elsewhere: a code, a key, a link. `value` can be a function, called at the moment of the copy.",
+				"examples": {
+					"inline": {
+						"title": "Next to a value",
+						"description": "The icon alone, named by `label` after what it copies."
+					},
+					"invite": {
+						"title": "With its name",
+						"description": "`showLabel` shows the name next to the icon, for a copy that is the main action of its area."
+					}
+				},
+				"accessibility": {
+					"name": "Name it after what it copies, e.g. `Copy invite link`; the name never changes under the focus.",
+					"announcement": "The result (`Copied`, or `Could not copy`) is announced by a live region and shown by the icon and the intent, not by the color alone.",
+					"clipboard": "The Clipboard API needs a secure context (HTTPS or `localhost`); elsewhere the copy fails and says so."
+				}
+			},
 			"chip": {
 				"summary": "Compact label for an attribute, a status or a filter.",
 				"description": "A chip with only a label is text; with `onClick` it is a button, with `selected` a toggle, and `onDelete` gives it a separate delete button.",
@@ -397,6 +436,58 @@
 					"text": "A chip without `onClick` is plain text, not a control.",
 					"toggle": "With `onClick` it is a native button; with `selected` it is a toggle with `aria-pressed`, and its check mark is a shape besides the color.",
 					"remove": "The delete button is separate, a tab stop of its own, named by `deleteLabel`, e.g. `Remove Status: open`."
+				}
+			},
+			"container": {
+				"summary": "Centers the content of a page or a section and limits its width.",
+				"description": "Wrap the content of a page in it: `size` limits the line length (`small` for reading and forms, `large` for dashboards) and the side gutters grow with the viewport.",
+				"examples": {
+					"article": {
+						"title": "A text to read",
+						"description": "A `small` container keeps the lines short enough to read, as an `article`."
+					}
+				},
+				"accessibility": {
+					"landmark": "`as` gives it the element of its role: `main` once per page for its main content, `article` or `section` for a region; name a `section` with `aria-label`."
+				}
+			},
+			"stack": {
+				"summary": "Lays its children out in a column or a row, with a gap from the spacing scale.",
+				"description": "The layout of most groups: fields of a form, buttons of a toolbar, items of a list. `direction` and `gap` take one value or one per breakpoint, e.g. `{ compact: 'column', medium: 'row' }`.",
+				"examples": {
+					"header": {
+						"title": "Header of a section",
+						"description": "A column on a phone and a row from `medium` up, with the title and the actions at the ends."
+					},
+					"list": {
+						"title": "A list",
+						"description": "`as='ul'` with `li` children keeps the list semantics without bullets or indentation."
+					}
+				},
+				"accessibility": {
+					"order": "Keep the visual order the order of the code: the reading and focus order follow the code, not the layout.",
+					"list": "With `as='ul'` or `as='ol'`, each child must be an `li`, and the list is announced with its number of items."
+				}
+			},
+			"grid": {
+				"summary": "Two-dimensional layout: equal columns per breakpoint, or as many columns as fit.",
+				"description": "`columns` sets the number of equal columns, per breakpoint if needed; `minColumnWidth` instead fits as many columns of that width as the space allows, without media queries.",
+				"parts": {
+					"gridItem": "A cell that spans several columns, or the whole row with `span='full'`."
+				},
+				"examples": {
+					"dashboard": {
+						"title": "Panels of a dashboard",
+						"description": "One column on a phone, two on a tablet and four on a laptop, where the first panel spans two."
+					},
+					"gallery": {
+						"title": "A gallery",
+						"description": "`minColumnWidth` fits the cards to the width; as a list, each `GridItem` is an `li`."
+					}
+				},
+				"accessibility": {
+					"order": "The reading and focus order follow the code, not the cells: place the items in the order they are read.",
+					"list": "A collection is a list: `as='ul'` with `GridItem as='li'`."
 				}
 			}
 		}

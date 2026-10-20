@@ -2,18 +2,26 @@
 // The playground of a component: a control for each prop the catalog names (a choice for a union, a switch for a
 // boolean, a field for a text or a number), the component rendered with them and its code, updated as they change.
 // Server Components cannot pass a component to a Client Component, so each subpath creates its own playground with
-// `createPlayground` (in `playgrounds/`), which knows the components of that subpath.
+// `createPlayground` (in `playgrounds/`), which knows the components of that subpath. They can pass elements, so the
+// samples of the props that take one (`slots`) come rendered from the page.
 import { Button } from '@midnight-indigo/ui/buttons';
 import { CodeBlock } from '@midnight-indigo/ui/code';
 import { NumberField, Select, Switch, TextField } from '@midnight-indigo/ui/forms';
 import { useI18n } from '@midnight-indigo/ui/i18n';
 import type { I18nValue } from '@midnight-indigo/ui/i18n';
 import { createElement, useId, useState } from 'react';
-import type { ComponentType, ReactElement } from 'react';
+import type { ComponentType, ReactElement, ReactNode } from 'react';
 
-import type { PlaygroundValue } from '#src/explorer/catalog.ts';
+import type { PlaygroundValue, SampleWidth } from '#src/explorer/catalog.ts';
 import type { ComponentProp } from '#src/explorer/component-api.ts';
+import type { SampleCode } from '#src/explorer/sample-code.ts';
 import { snippetOf } from '#src/explorer/snippet.ts';
+
+/** A prop that takes an element: the sample rendered on the server, and its code. */
+export interface PlaygroundSlot {
+	element: ReactNode;
+	code: SampleCode;
+}
 
 export interface PlaygroundProps {
 	/** Name of the component, a key of the components given to `createPlayground`. */
@@ -22,6 +30,8 @@ export interface PlaygroundProps {
 	baseProps: Readonly<Record<string, PlaygroundValue>>;
 	/** The props with a control, in order. */
 	controls: readonly ComponentProp[];
+	slots: Readonly<Record<string, PlaygroundSlot>>;
+	sampleWidth: SampleWidth;
 }
 
 type Values = Readonly<Record<string, PlaygroundValue>>;
@@ -113,7 +123,14 @@ export type PlaygroundComponent = (props: PlaygroundProps) => ReactElement;
 export const createPlayground = (
 	components: Readonly<Record<string, AnyComponent>>,
 ): PlaygroundComponent => {
-	const Playground = ({ name, subpath, baseProps, controls }: PlaygroundProps): ReactElement => {
+	const Playground = ({
+		name,
+		subpath,
+		baseProps,
+		controls,
+		slots,
+		sampleWidth,
+	}: PlaygroundProps): ReactElement => {
 		const { t }: I18nValue = useI18n();
 		const controlsLabelId: string = useId();
 
@@ -121,22 +138,41 @@ export const createPlayground = (
 			return initialValuesOf(controls, baseProps);
 		});
 
-		// The values come from the controls of the props of this very component.
-		const component: ComponentType<Values> | undefined = components[name] as unknown as
-			ComponentType<Values> | undefined;
+		// The values come from the controls and the samples of the props of this very component.
+		const component: ComponentType<Record<string, ReactNode>> | undefined = components[
+			name
+		] as unknown as ComponentType<Record<string, ReactNode>> | undefined;
 
-		const code: string = snippetOf({ name, subpath, props: controls, values });
+		const code: string = snippetOf({
+			name,
+			subpath,
+			props: controls,
+			values,
+			slots: Object.fromEntries(
+				Object.entries(slots).map(
+					([prop, slot]: [string, PlaygroundSlot]): [string, SampleCode] => {
+						return [prop, slot.code];
+					},
+				),
+			),
+		});
+
+		const elements: Readonly<Record<string, ReactNode>> = Object.fromEntries(
+			Object.entries(slots).map(([prop, slot]: [string, PlaygroundSlot]): [string, ReactNode] => {
+				return [prop, slot.element];
+			}),
+		);
 
 		return (
 			<div className='playground'>
 				<div
-					className='playground-stage'
+					className={`playground-stage playground-stage-${sampleWidth}`}
 					role='group'
 					aria-label={t('explorer.playground.preview')}
 				>
 					{component === undefined
 						? null
-						: createElement(component, renderedValuesOf(controls, values))}
+						: createElement(component, { ...renderedValuesOf(controls, values), ...elements })}
 				</div>
 
 				<section className='playground-controls' aria-labelledby={controlsLabelId}>

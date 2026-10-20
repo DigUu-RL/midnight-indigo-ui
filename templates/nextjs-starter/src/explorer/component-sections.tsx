@@ -17,10 +17,13 @@ import { createElement, Fragment } from 'react';
 import type { ComponentType, ReactElement, ReactNode } from 'react';
 
 import type { AnyComponent } from '#src/explorer/bindings.tsx';
-import type { PlaygroundValue } from '#src/explorer/catalog.ts';
+import type { PlaygroundValue, SampleWidth } from '#src/explorer/catalog.ts';
 import type { ComponentProp } from '#src/explorer/component-api.ts';
 
 type Values = Readonly<Record<string, PlaygroundValue>>;
+
+/** The samples of the props that take an element, by prop. */
+type Slots = Readonly<Record<string, ReactNode>>;
 
 /** A text of the TSDoc: the spans between backticks are code. */
 export const DocumentationText = ({ text }: { text: string }): ReactElement => {
@@ -40,14 +43,15 @@ export const DocumentationText = ({ text }: { text: string }): ReactElement => {
 interface SampleProps {
 	component: AnyComponent;
 	values: Values;
+	slots: Slots;
 	caption: string;
 }
 
 // The values come from the catalog and the generated API of this very component.
-const Sample = ({ component, values, caption }: SampleProps): ReactElement => {
+const Sample = ({ component, values, slots, caption }: SampleProps): ReactElement => {
 	return (
 		<li className='variant-sample'>
-			{createElement(component as unknown as ComponentType<Values>, values)}
+			{createElement(component as unknown as ComponentType<Slots>, { ...values, ...slots })}
 			<Code>{caption}</Code>
 		</li>
 	);
@@ -56,6 +60,8 @@ const Sample = ({ component, values, caption }: SampleProps): ReactElement => {
 interface VariantGridProps {
 	component: AnyComponent;
 	baseProps: Values;
+	slots: Slots;
+	sampleWidth: SampleWidth;
 	/** Props with a union of values, each one in a row with every value. */
 	variants: readonly ComponentProp[];
 	/** Boolean props, in one row after the default. */
@@ -66,6 +72,8 @@ interface VariantGridProps {
 export const VariantGrid = ({
 	component,
 	baseProps,
+	slots,
+	sampleWidth,
 	variants,
 	states,
 	translate,
@@ -79,12 +87,13 @@ export const VariantGrid = ({
 							<Code>{prop.name}</Code>
 						</figcaption>
 
-						<ul className='variant-samples'>
+						<ul className={`variant-samples variant-samples-${sampleWidth}`}>
 							{prop.options.map((option: string): ReactElement => {
 								return (
 									<Sample
 										key={option}
 										component={component}
+										slots={slots}
 										values={{ ...baseProps, [prop.name]: option }}
 										caption={option}
 									/>
@@ -99,9 +108,10 @@ export const VariantGrid = ({
 				<figure className='variant-row'>
 					<figcaption>{translate('explorer.page.states')}</figcaption>
 
-					<ul className='variant-samples'>
+					<ul className={`variant-samples variant-samples-${sampleWidth}`}>
 						<Sample
 							component={component}
+							slots={slots}
 							values={baseProps}
 							caption={translate('explorer.page.default')}
 						/>
@@ -111,6 +121,7 @@ export const VariantGrid = ({
 								<Sample
 									key={state}
 									component={component}
+									slots={slots}
 									values={{ ...baseProps, [state]: true }}
 									caption={state}
 								/>

@@ -1,14 +1,19 @@
 // The code of what the playground shows: a component with the props the reader chose, as a TypeScript module that
-// compiles as is (a test type-checks the snippets of every component). Props left at their default are left out.
+// compiles as is (a test type-checks the snippets of every component). Props left at their default are left out; the
+// other values (the props of the catalog without a control) and the samples of the props that take an element are
+// always written.
 import type { PlaygroundValue } from '#src/explorer/catalog.ts';
 import type { ComponentProp } from '#src/explorer/component-api.ts';
+import type { SampleCode } from '#src/explorer/sample-code.ts';
 
 export interface SnippetSource {
 	name: string;
 	subpath: string;
-	/** The props shown, with the API of each one. */
+	/** The props with a control, with the API of each one. */
 	props: readonly ComponentProp[];
 	values: Readonly<Record<string, PlaygroundValue>>;
+	/** The code of the sample of each prop that takes an element. */
+	slots?: Readonly<Record<string, SampleCode>>;
 }
 
 const lineLimit: number = 100;
@@ -37,45 +42,107 @@ const childOf = (value: PlaygroundValue): string => {
 	return /[{}<>\n]|^\s|\s$/.test(text) ? `{${JSON.stringify(text)}}` : text;
 };
 
+const fits = (line: string): boolean => line.length + 'return ;'.length + 2 <= lineLimit;
+
 const elementLines = (
 	name: string,
 	attributes: readonly string[],
-	children: string | undefined,
+	children: readonly string[] | undefined,
 ): string[] => {
 	const opening: string = [name, ...attributes].join(' ');
-
-	const singleLine: string =
-		children === undefined ? `<${opening} />` : `<${opening}>${children}</${name}>`;
-
-	if (singleLine.length + 'return ;'.length + 2 <= lineLimit) return [singleLine];
 	const attributeLines: string[] = attributes.map((attribute: string): string => `\t${attribute}`);
-	if (children === undefined) return [`<${name}`, ...attributeLines, '/>'];
-	return [`<${name}`, ...attributeLines, '>', `\t${children}`, `</${name}>`];
+
+	if (children === undefined) {
+		const selfClosing: string = `<${opening} />`;
+		return fits(selfClosing) ? [selfClosing] : [`<${name}`, ...attributeLines, '/>'];
+	}
+
+	const singleLine: string = `<${opening}>${children.join('')}</${name}>`;
+	if (children.length === 1 && fits(singleLine)) return [singleLine];
+
+	const openingLines: string[] = fits(`<${opening}>`)
+		? [`<${opening}>`]
+		: [`<${name}`, ...attributeLines, '>'];
+
+	return [
+		...openingLines,
+		...children.map((line: string): string => (line === '' ? '' : `\t${line}`)),
+		`</${name}>`,
+	];
 };
 
-export const snippetOf = ({ name, subpath, props, values }: SnippetSource): string => {
+/** The imports of the component and of its samples, one line per subpath, in the order of the subpaths. */
+const importLines = (
+	name: string,
+	subpath: string,
+	slots: Readonly<Record<string, SampleCode>>,
+): string[] => {
+	const namesBySubpath: Map<string, Set<string>> = new Map<string, Set<string>>([
+		[subpath, new Set([name])],
+	]);
+
+	Object.values(slots).forEach((sample: SampleCode): void => {
+		Object.entries(sample.imports).forEach(
+			([sampleSubpath, names]: [string, readonly string[]]): void => {
+				const known: Set<string> = namesBySubpath.get(sampleSubpath) ?? new Set<string>();
+				namesBySubpath.set(sampleSubpath, new Set([...known, ...names]));
+			},
+		);
+	});
+
+	return [...namesBySubpath.entries()]
+		.sort(([first]: [string, Set<string>], [second]: [string, Set<string>]): number => {
+			return first.localeCompare(second);
+		})
+		.map(([importedSubpath, names]: [string, Set<string>]): string => {
+			return `import { ${[...names].sort().join(', ')} } from '@midnight-indigo/ui/${importedSubpath}';`;
+		});
+};
+
+export const snippetOf = ({ name, subpath, props, values, slots = {} }: SnippetSource): string => {
+	const controlled: ReadonlySet<string> = new Set(
+		props.map((prop: ComponentProp): string => prop.name),
+	);
+
 	const shown: ComponentProp[] = props.filter((prop: ComponentProp): boolean => {
 		return !isDefault(prop, values[prop.name]);
 	});
 
-	const attributes: string[] = shown
+	const fixedAttributes: string[] = Object.entries(values)
+		.filter(
+			([prop]: [string, PlaygroundValue]): boolean => !controlled.has(prop) && prop !== 'children',
+		)
+		.map(([prop, value]: [string, PlaygroundValue]): string => attributeOf(prop, value));
+
+	const shownAttributes: string[] = shown
 		.filter((prop: ComponentProp): boolean => prop.name !== 'children')
 		.map((prop: ComponentProp): string => attributeOf(prop.name, values[prop.name] ?? ''));
 
-	const children: PlaygroundValue | undefined = shown.some((prop: ComponentProp): boolean => {
-		return prop.name === 'children';
-	})
-		? values.children
-		: undefined;
+	const slotAttributes: string[] = Object.entries(slots)
+		.filter(([prop]: [string, SampleCode]): boolean => prop !== 'children')
+		.map(([prop, sample]: [string, SampleCode]): string => `${prop}={${sample.code}}`);
+
+	const textChild: PlaygroundValue | undefined =
+		shown.some((prop: ComponentProp): boolean => prop.name === 'children') ||
+		(!controlled.has('children') && values.children !== undefined)
+			? values.children
+			: undefined;
+
+	const children: string[] | undefined =
+		slots.children === undefined
+			? textChild === undefined
+				? undefined
+				: [childOf(textChild)]
+			: slots.children.code.split('\n');
 
 	const element: string[] = elementLines(
 		name,
-		attributes,
-		children === undefined ? undefined : childOf(children),
+		[...fixedAttributes, ...shownAttributes, ...slotAttributes],
+		children,
 	);
 
 	const header: string[] = [
-		`import { ${name} } from '@midnight-indigo/ui/${subpath}';`,
+		...importLines(name, subpath, slots),
 		"import type { ReactElement } from 'react';",
 		'',
 	];
@@ -88,7 +155,7 @@ export const snippetOf = ({ name, subpath, props, values }: SnippetSource): stri
 			: [
 					`${signature} {`,
 					'\treturn (',
-					...element.map((line: string): string => `\t\t${line}`),
+					...element.map((line: string): string => (line === '' ? '' : `\t\t${line}`)),
 					'\t);',
 					'};',
 				];

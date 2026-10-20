@@ -15,6 +15,7 @@ import { bindingOf } from '#src/explorer/bindings.tsx';
 import type { PageBinding } from '#src/explorer/bindings.tsx';
 import {
 	camelCaseOf,
+	documentedNamesOf,
 	exampleFileOf,
 	explorerComponents,
 	findComponent,
@@ -31,6 +32,10 @@ import {
 	VariantGrid,
 } from '#src/explorer/component-sections.tsx';
 import { readExampleCode } from '#src/explorer/example-source.ts';
+import type { PlaygroundSlot } from '#src/explorer/playground.tsx';
+import { sampleCodes } from '#src/explorer/sample-code.ts';
+import type { SampleName } from '#src/explorer/sample-code.ts';
+import { sampleElements } from '#src/explorer/samples.tsx';
 import type { LocaleSegment } from '#src/i18n/locales.ts';
 import { getTranslator, localeOf } from '#src/i18n/server.ts';
 
@@ -75,6 +80,25 @@ const propsNamed = (props: readonly ComponentProp[], names: readonly string[]): 
 	});
 };
 
+/** The samples of the props that take an element, rendered here and passed to the playground with their code. */
+const slotsOf = (component: ExplorerComponent): Record<string, PlaygroundSlot> => {
+	return Object.fromEntries(
+		Object.entries(component.slots).map(
+			([prop, sample]: [string, SampleName]): [string, PlaygroundSlot] => {
+				return [prop, { element: sampleElements[sample], code: sampleCodes[sample] }];
+			},
+		),
+	);
+};
+
+const elementsOf = (slots: Readonly<Record<string, PlaygroundSlot>>): Record<string, ReactNode> => {
+	return Object.fromEntries(
+		Object.entries(slots).map(([prop, slot]: [string, PlaygroundSlot]): [string, ReactNode] => {
+			return [prop, slot.element];
+		}),
+	);
+};
+
 interface SectionProps {
 	id: string;
 	title: string;
@@ -100,9 +124,13 @@ const ComponentPage = async (props: ComponentPageProps): Promise<ReactElement> =
 	const binding: PageBinding = bindingOf(component.name) ?? notFound();
 	const key: string = messageKeyOf(component);
 	const api: ComponentProp[] = propsOf(component.name, locale);
+	const documentedNames: string[] = documentedNamesOf(component);
+	const slots: Record<string, PlaygroundSlot> = slotsOf(component);
+	const variants: ComponentProp[] = propsNamed(api, component.variants);
+	const hasVariants: boolean = variants.length > 0 || component.states.length > 0;
 
 	const importCode: HighlightedCode = await highlightCode(
-		`import { ${component.name} } from '@midnight-indigo/ui/${component.subpath}';`,
+		`import { ${documentedNames.join(', ')} } from '@midnight-indigo/ui/${component.subpath}';`,
 		'tsx',
 	);
 
@@ -121,7 +149,7 @@ const ComponentPage = async (props: ComponentPageProps): Promise<ReactElement> =
 
 	const contents: TableOfContentsItem[] = [
 		{ id: 'usage', label: translate('explorer.page.usage') },
-		{ id: 'variants', label: translate('explorer.page.variants') },
+		...(hasVariants ? [{ id: 'variants', label: translate('explorer.page.variants') }] : []),
 		{ id: 'playground', label: translate('explorer.page.playground') },
 		{ id: 'examples', label: translate('explorer.page.examples') },
 		...examples.map((example: LoadedExample): TableOfContentsItem => {
@@ -132,6 +160,9 @@ const ComponentPage = async (props: ComponentPageProps): Promise<ReactElement> =
 			};
 		}),
 		{ id: 'api', label: translate('explorer.page.api') },
+		...component.parts.map((part: string): TableOfContentsItem => {
+			return { id: `api-${kebabCaseOf(part)}`, label: part, level: 2 };
+		}),
 		{ id: 'accessibility', label: translate('explorer.page.accessibility') },
 	];
 
@@ -150,15 +181,19 @@ const ComponentPage = async (props: ComponentPageProps): Promise<ReactElement> =
 					<CodeBlock code={importCode} />
 				</Section>
 
-				<Section id='variants' title={translate('explorer.page.variants')}>
-					<VariantGrid
-						component={binding.component}
-						baseProps={component.baseProps}
-						variants={propsNamed(api, component.variants)}
-						states={component.states}
-						translate={translate}
-					/>
-				</Section>
+				{hasVariants ? (
+					<Section id='variants' title={translate('explorer.page.variants')}>
+						<VariantGrid
+							component={binding.component}
+							baseProps={component.baseProps}
+							slots={elementsOf(slots)}
+							sampleWidth={component.sampleWidth}
+							variants={variants}
+							states={component.states}
+							translate={translate}
+						/>
+					</Section>
+				) : null}
 
 				<Section id='playground' title={translate('explorer.page.playground')}>
 					<Playground
@@ -166,6 +201,8 @@ const ComponentPage = async (props: ComponentPageProps): Promise<ReactElement> =
 						subpath={component.subpath}
 						baseProps={component.baseProps}
 						controls={propsNamed(api, component.controls)}
+						slots={slots}
+						sampleWidth={component.sampleWidth}
 					/>
 				</Section>
 
@@ -191,6 +228,22 @@ const ComponentPage = async (props: ComponentPageProps): Promise<ReactElement> =
 
 				<Section id='api' title={translate('explorer.page.api')}>
 					<ApiTable name={component.name} props={api} translate={translate} />
+
+					{component.parts.map((part: string): ReactElement => {
+						return (
+							<section key={part} className='api-part' aria-labelledby={`api-${kebabCaseOf(part)}`}>
+								<h3 id={`api-${kebabCaseOf(part)}`} style={themeVariables.typography.headingSmall}>
+									{part}
+								</h3>
+
+								<p>
+									<DocumentationText text={translate(`${key}.parts.${camelCaseOf(part)}`)} />
+								</p>
+
+								<ApiTable name={part} props={propsOf(part, locale)} translate={translate} />
+							</section>
+						);
+					})}
 				</Section>
 
 				<Section id='accessibility' title={translate('explorer.page.accessibility')}>
