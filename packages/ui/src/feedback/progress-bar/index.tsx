@@ -29,9 +29,9 @@ export interface ProgressBarProps extends Omit<
 	label: string;
 	/** Current value between `min` and `max`. Leave it out while the duration is unknown (indeterminate). */
 	value?: number;
-	/** Defaults to 0. */
+	/** Defaults to `0`. */
 	min?: number;
-	/** Defaults to 100. */
+	/** Defaults to `100`. */
 	max?: number;
 	/** Readable value for assistive technologies when a percentage is not meaningful, e.g. `'Step 2 of 5'`. */
 	valueText?: string;

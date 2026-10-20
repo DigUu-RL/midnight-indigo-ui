@@ -455,6 +455,7 @@
 
 .example {
 	display: grid;
+	grid-template-columns: minmax(0, 1fr);
 	gap: var(--mi-spacing-2);
 }
 
@@ -490,8 +491,10 @@
 	display: block;
 }
 
+/* One column as wide as the page, never wider: a long line of code in the stage scrolls inside its block. */
 .playground {
 	display: grid;
+	grid-template-columns: minmax(0, 1fr);
 	gap: var(--mi-spacing-4);
 }
 

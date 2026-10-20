@@ -9,10 +9,10 @@ import { themeVariables } from '@midnight-indigo/ui/theme';
 import type { TFunction } from 'i18next';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import type { ComponentType, ReactElement, ReactNode } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 
 import { bindingOf } from '#src/explorer/bindings.tsx';
-import type { PageBinding } from '#src/explorer/bindings.tsx';
+import type { ExampleComponent, PageBinding } from '#src/explorer/bindings.tsx';
 import {
 	camelCaseOf,
 	documentedNamesOf,
@@ -211,7 +211,7 @@ const ComponentPage = async (props: ComponentPageProps): Promise<ReactElement> =
 
 				<Section id='examples' title={translate('explorer.page.examples')}>
 					{examples.map((example: LoadedExample): ReactElement | null => {
-						const Preview: ComponentType | undefined = binding.examples[example.id];
+						const Preview: ExampleComponent | undefined = binding.examples[example.id];
 						if (Preview === undefined) return null;
 
 						return (

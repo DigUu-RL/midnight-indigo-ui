@@ -39,6 +39,27 @@ test('a data table of the playground filters its rows with its sample columns', 
 	await expect(playground.locator('pre')).toContainText("filter='Mars'");
 });
 
+// The trigger is an element rendered on the server, which the tooltip of the browser wraps. The focus shows the tooltip
+// at once, where the hover waits for its delay.
+test('a tooltip of the playground describes its sample trigger with the chosen text', async ({
+	page,
+}): Promise<void> => {
+	await page.goto('/en-us/components/tooltip');
+	const playground: Locator = page.locator('.playground');
+
+	const trigger: Locator = playground
+		.getByRole('group', { name: 'Component with the chosen props' })
+		.getByRole('button', { name: 'Add crew member' });
+
+	await playground.getByRole('textbox', { name: /^content/ }).fill('Shortcut: Shift + A');
+	await page.keyboard.press('Shift+Tab');
+
+	await expect(trigger).toBeFocused();
+	await expect(page.getByRole('tooltip')).toHaveText('Shortcut: Shift + A');
+	await expect(trigger).toHaveAccessibleDescription('Shortcut: Shift + A');
+	await expect(playground.locator('pre')).toContainText("<Tooltip content='Shortcut: Shift + A'>");
+});
+
 test('a required text left blank keeps its initial value', async ({ page }): Promise<void> => {
 	await page.goto('/en-us/components/avatar');
 	const playground: Locator = page.locator('.playground');

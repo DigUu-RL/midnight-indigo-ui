@@ -1,6 +1,6 @@
 // The values of the samples of `sample-code.ts`, as its code writes them: the grid of variants and the playground give
 // them to the props that take an element, an object or a function. A sample missing here fails the type check.
-import { Button } from '@midnight-indigo/ui/buttons';
+import { Button, IconButton } from '@midnight-indigo/ui/buttons';
 import {
 	Avatar,
 	Card,
@@ -18,7 +18,12 @@ import { Icon } from '@midnight-indigo/ui/icons';
 import type { ReactElement } from 'react';
 
 import { bountyColumns, bountyRowId } from '#src/explorer/client-samples.tsx';
-import { sampleBounties, sampleCrew, samplePlanets } from '#src/explorer/sample-code.ts';
+import {
+	sampleBounties,
+	sampleCrew,
+	sampleJumpSource,
+	samplePlanets,
+} from '#src/explorer/sample-code.ts';
 import type {
 	SampleBounty,
 	SampleCrewMember,
@@ -28,10 +33,11 @@ import type {
 
 /**
  * An element, a list of them (each one a child of its own, e.g. a slide of a `Carousel`, which a fragment would merge
- * into one), an object a Server Component can pass to a Client Component, or what a client module exports (the
- * columns of a `DataTable` and its function of the row ids, which hold functions).
+ * into one), a text or an object a Server Component can pass to a Client Component, or what a client module exports
+ * (the columns of a `DataTable` and its function of the row ids, which hold functions).
  */
 export type SampleValue =
+	| string
 	| ReactElement
 	| readonly ReactElement[]
 	| StatChange
@@ -41,18 +47,22 @@ export type SampleValue =
 
 const planets: readonly string[] = ['Tatooine', 'Hoth', 'Dagobah', 'Endor'];
 
+const plusIcon: ReactElement = (
+	<Icon decorative>
+		<path
+			d='M12 5v14m-7-7h14'
+			fill='none'
+			stroke='currentColor'
+			strokeWidth={2}
+			strokeLinecap='round'
+		/>
+	</Icon>
+);
+
 export const sampleElements: Readonly<Record<SampleName, SampleValue>> = {
-	plusIcon: (
-		<Icon decorative>
-			<path
-				d='M12 5v14m-7-7h14'
-				fill='none'
-				stroke='currentColor'
-				strokeWidth={2}
-				strokeLinecap='round'
-			/>
-		</Icon>
-	),
+	plusIcon,
+	addCrewButton: <IconButton label='Add crew member'>{plusIcon}</IconButton>,
+	jumpSource: sampleJumpSource,
 	missionBrief: (
 		<Card>
 			<CardHeader title='Mission brief' subtitle='Leia Organa' />

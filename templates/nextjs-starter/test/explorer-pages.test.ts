@@ -219,6 +219,19 @@ test('functions given to a prop come from a client module, and their code from t
 	assert.ok(compact(text).includes(compact('getRowId={(bounty: Bounty): string => bounty.name}')));
 });
 
+test('an async example colors its code on the server, and a text given to a prop is declared in the snippet', async (): Promise<void> => {
+	const { html }: StreamedPage = await readStreamedPage(
+		`${server.origin}/en-us/components/code-block`,
+	);
+
+	const text: string = textOf(html);
+
+	assert.match(html, /<pre[^>]*aria-label="hyperdrive\.ts"/);
+	assert.match(html, /data-highlighted="true"/);
+	assert.ok(compact(text).includes(compact(sampleCodes.jumpSource.declarations[0])));
+	assert.ok(compact(text).includes(compact('code={jumpSource}')));
+});
+
 test('a part without props of its own says so instead of an empty table', async (): Promise<void> => {
 	const { html }: StreamedPage = await readStreamedPage(`${server.origin}/en-us/components/table`);
 	const text: string = textOf(html);

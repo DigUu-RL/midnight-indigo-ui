@@ -2,6 +2,7 @@
 // playground of its subpath and its examples. The examples are typed by the catalog, so an example missing here, or
 // one the catalog does not list, fails the type check.
 import { Button, CopyButton, IconButton } from '@midnight-indigo/ui/buttons';
+import { Code, CodeBlock } from '@midnight-indigo/ui/code';
 import {
 	Avatar,
 	Badge,
@@ -19,10 +20,13 @@ import {
 	StatCard,
 	Table,
 } from '@midnight-indigo/ui/data-display';
+import { Alert, ProgressBar, Tooltip } from '@midnight-indigo/ui/feedback';
 import { Container, Grid, Stack } from '@midnight-indigo/ui/layout';
 import type { ComponentType, ReactElement } from 'react';
 
 import type { ComponentName, ExampleId } from '#src/explorer/catalog.ts';
+import { DockingBayNotice } from '#src/explorer/examples/alert/maintenance.tsx';
+import { FlightPlanSaved } from '#src/explorer/examples/alert/saved.tsx';
 import { CrewAvatars } from '#src/explorer/examples/avatar/crew.tsx';
 import { PilotProfile } from '#src/explorer/examples/avatar/profile.tsx';
 import { InboxNotifications } from '#src/explorer/examples/badge/notifications.tsx';
@@ -35,6 +39,10 @@ import { FlightRoute } from '#src/explorer/examples/carousel/controlled.tsx';
 import { BountyReports } from '#src/explorer/examples/carousel/reports.tsx';
 import { PlanetFilters } from '#src/explorer/examples/chip/filters.tsx';
 import { CrewStatuses } from '#src/explorer/examples/chip/statuses.tsx';
+import { CrewModule } from '#src/explorer/examples/code-block/files.tsx';
+import { HyperdriveCheck } from '#src/explorer/examples/code-block/highlighted.tsx';
+import { JumpInstructions } from '#src/explorer/examples/code/sentence.tsx';
+import { ShipSettings } from '#src/explorer/examples/code/settings.tsx';
 import { CaptainsLog } from '#src/explorer/examples/container/article.tsx';
 import { HyperspaceRoute } from '#src/explorer/examples/copy-button/inline.tsx';
 import { CrewInvite } from '#src/explorer/examples/copy-button/invite.tsx';
@@ -52,6 +60,8 @@ import { CrewMemberActions } from '#src/explorer/examples/icon-button/actions.ts
 import { PlaybackControls } from '#src/explorer/examples/icon-button/playback.tsx';
 import { BebopCrew } from '#src/explorer/examples/list/crew.tsx';
 import { GrandPrixResults } from '#src/explorer/examples/list/ranking.tsx';
+import { SignalScan } from '#src/explorer/examples/progress-bar/indeterminate.tsx';
+import { BountyReportUpload } from '#src/explorer/examples/progress-bar/upload.tsx';
 import { TransmissionsPlaceholder } from '#src/explorer/examples/skeleton-list/compact.tsx';
 import { CrewRoster } from '#src/explorer/examples/skeleton-list/crew.tsx';
 import { LogEntry } from '#src/explorer/examples/skeleton-text/article.tsx';
@@ -64,24 +74,31 @@ import { FleetIndicators } from '#src/explorer/examples/stat-card/indicators.tsx
 import { ShieldStatus } from '#src/explorer/examples/stat-card/loading.tsx';
 import { WeeklyBounties } from '#src/explorer/examples/table/bounties.tsx';
 import { PodraceTimes } from '#src/explorer/examples/table/sortable.tsx';
+import { PlayerShortcuts } from '#src/explorer/examples/tooltip/shortcuts.tsx';
+import { ShipNames } from '#src/explorer/examples/tooltip/truncated.tsx';
 import type { PlaygroundComponent } from '#src/explorer/playground.tsx';
 import { ButtonsPlayground } from '#src/explorer/playgrounds/buttons.tsx';
+import { CodePlayground } from '#src/explorer/playgrounds/code.tsx';
 import { DataDisplayPlayground } from '#src/explorer/playgrounds/data-display.tsx';
+import { FeedbackPlayground } from '#src/explorer/playgrounds/feedback.tsx';
 import { LayoutPlayground } from '#src/explorer/playgrounds/layout.tsx';
 
 /** Any component: the page gives it only props the catalog and the generated API describe. */
 export type AnyComponent = (props: never) => ReactElement | null;
 
+/** An example: a component, or a Server Component that awaits its data, e.g. code colored by `highlightCode`. */
+export type ExampleComponent = ComponentType | (() => Promise<ReactElement>);
+
 interface ComponentBinding<Name extends ComponentName> {
 	component: AnyComponent;
 	playground: PlaygroundComponent;
-	examples: Readonly<Record<ExampleId<Name>, ComponentType>>;
+	examples: Readonly<Record<ExampleId<Name>, ExampleComponent>>;
 }
 
 export interface PageBinding {
 	component: AnyComponent;
 	playground: PlaygroundComponent;
-	examples: Readonly<Record<string, ComponentType>>;
+	examples: Readonly<Record<string, ExampleComponent>>;
 }
 
 const componentBindings: { readonly [Name in ComponentName]: ComponentBinding<Name> } = {
@@ -99,6 +116,16 @@ const componentBindings: { readonly [Name in ComponentName]: ComponentBinding<Na
 		component: CopyButton,
 		playground: ButtonsPlayground,
 		examples: { inline: HyperspaceRoute, invite: CrewInvite },
+	},
+	Code: {
+		component: Code,
+		playground: CodePlayground,
+		examples: { sentence: JumpInstructions, settings: ShipSettings },
+	},
+	CodeBlock: {
+		component: CodeBlock,
+		playground: CodePlayground,
+		examples: { highlighted: HyperdriveCheck, files: CrewModule },
 	},
 	Avatar: {
 		component: Avatar,
@@ -174,6 +201,21 @@ const componentBindings: { readonly [Name in ComponentName]: ComponentBinding<Na
 		component: DataTable,
 		playground: DataDisplayPlayground,
 		examples: { filter: BountySearch, states: ShipmentStates },
+	},
+	Alert: {
+		component: Alert,
+		playground: FeedbackPlayground,
+		examples: { saved: FlightPlanSaved, maintenance: DockingBayNotice },
+	},
+	ProgressBar: {
+		component: ProgressBar,
+		playground: FeedbackPlayground,
+		examples: { upload: BountyReportUpload, indeterminate: SignalScan },
+	},
+	Tooltip: {
+		component: Tooltip,
+		playground: FeedbackPlayground,
+		examples: { shortcuts: PlayerShortcuts, truncated: ShipNames },
 	},
 	Container: {
 		component: Container,

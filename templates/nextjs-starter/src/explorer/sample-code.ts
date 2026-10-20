@@ -111,20 +111,55 @@ const bountyRows: string = [
 	'];',
 ].join('\n');
 
+/** The source a `CodeBlock` of the playground shows. */
+export const sampleJumpSource: string = [
+	'const parsecsOfKesselRun: number = 12;',
+	'',
+	'export const boast = (pilot: string): string => {',
+	"\treturn pilot.concat(' made the Kessel Run in ', String(parsecsOfKesselRun), ' parsecs.');",
+	'};',
+].join('\n');
+
+/** A line of code as a string literal: single-quoted, unless the line has a quote of its own. */
+const stringLiteralOf = (line: string): string => {
+	return line.includes("'") ? JSON.stringify(line) : `'${line.replaceAll('\t', '\\t')}'`;
+};
+
+const jumpSource: string = [
+	'const jumpSource: string = [',
+	...sampleJumpSource.split('\n').map((line: string): string => `\t${stringLiteralOf(line)},`),
+	"].join('\\n');",
+].join('\n');
+
+const plusIcon: string = [
+	'<Icon decorative>',
+	'\t<path',
+	"\t\td='M12 5v14m-7-7h14'",
+	"\t\tfill='none'",
+	"\t\tstroke='currentColor'",
+	'\t\tstrokeWidth={2}',
+	"\t\tstrokeLinecap='round'",
+	'\t/>',
+	'</Icon>',
+].join('\n');
+
 export const sampleCodes = {
 	plusIcon: {
 		imports: { icons: ['Icon'] },
+		code: plusIcon,
+	},
+	addCrewButton: {
+		imports: { buttons: ['IconButton'], icons: ['Icon'] },
 		code: [
-			'<Icon decorative>',
-			'\t<path',
-			"\t\td='M12 5v14m-7-7h14'",
-			"\t\tfill='none'",
-			"\t\tstroke='currentColor'",
-			'\t\tstrokeWidth={2}',
-			"\t\tstrokeLinecap='round'",
-			'\t/>',
-			'</Icon>',
+			"<IconButton label='Add crew member'>",
+			...plusIcon.split('\n').map((line: string): string => `\t${line}`),
+			'</IconButton>',
 		].join('\n'),
+	},
+	jumpSource: {
+		imports: {},
+		declarations: [jumpSource],
+		code: 'jumpSource',
 	},
 	missionBrief: {
 		imports: { 'data-display': ['Card', 'CardContent', 'CardHeader'] },

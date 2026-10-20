@@ -79,11 +79,13 @@ interface SingleCodeProps {
 
 /** Several files, one tab each (WAI-ARIA tabs pattern). */
 interface MultipleFileProps {
+	/** The files, one tab each, in order; the copy button copies the file shown. */
 	files: readonly CodeFile[];
 	/** Name of the file shown, to control it. */
 	file?: string;
 	/** Name of the file shown at first when uncontrolled. Defaults to the first file. */
 	defaultFile?: string;
+	/** Called with the name of the file the reader picks. */
 	onFileChange?: (name: string) => void;
 	code?: never;
 	fileName?: never;

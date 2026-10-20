@@ -337,7 +337,9 @@
 		},
 		"subpaths": {
 			"buttons": "Botões",
+			"code": "Código",
 			"dataDisplay": "Exibição de dados",
+			"feedback": "Feedback",
 			"layout": "Layout"
 		},
 		"page": {
@@ -425,6 +427,44 @@
 					"name": "Nomeie conforme o que ele copia, por exemplo `Copy invite link`; o nome nunca muda sob o foco.",
 					"announcement": "O resultado (`Copied`, ou `Could not copy`) é anunciado por uma região viva e mostrado pelo ícone e pelo intent, não só pela cor.",
 					"clipboard": "A Clipboard API exige um contexto seguro (HTTPS ou `localhost`); fora dele a cópia falha e avisa."
+				}
+			},
+			"code": {
+				"summary": "Código curto no meio do texto: um nome, um valor, um comando.",
+				"description": "Um elemento `code` na fonte monoespaçada, com o tamanho do texto ao redor, então cabe tanto numa frase quanto num título ou numa legenda. Para várias linhas, use `CodeBlock`.",
+				"examples": {
+					"sentence": {
+						"title": "Numa frase",
+						"description": "Os comandos e as saídas que o leitor digita ou procura, dentro das instruções que os explicam."
+					},
+					"settings": {
+						"title": "Nomes e valores",
+						"description": "O nome de cada configuração e o seu valor, numa lista que os descreve."
+					}
+				},
+				"accessibility": {
+					"text": "Leitores de tela o leem como texto comum: deixe a frase dizer o que ele é, por exemplo “execute o comando”.",
+					"block": "Para várias linhas, use `CodeBlock`: um grupo nomeado que o teclado consegue rolar.",
+					"wrap": "Um valor longo quebra em qualquer ponto em vez de transbordar, então a página nunca rola para o lado numa tela pequena."
+				}
+			},
+			"codeBlock": {
+				"summary": "Bloco de código-fonte, colorido, com botão de copiar e uma aba por arquivo.",
+				"description": "Colore o código com `highlightCode` no servidor (ou no build) e passe o resultado para `code`: o navegador recebe só os tokens, nunca o highlighter. Uma string aparece sem cores. `showLineNumbers` numera as linhas e `highlightedLines` destaca algumas; `files` mostra vários arquivos, uma aba cada.",
+				"examples": {
+					"highlighted": {
+						"title": "Colorido no servidor",
+						"description": "Um Server Component assíncrono aguarda `highlightCode`; `showLineNumbers` e `highlightedLines` levam o leitor à linha que importa."
+					},
+					"files": {
+						"title": "Vários arquivos",
+						"description": "`files` dá uma aba a cada arquivo, e o botão de copiar copia o arquivo mostrado."
+					}
+				},
+				"accessibility": {
+					"name": "O bloco é um grupo nomeado por `fileName`, senão por `labels.code`; com `files`, os arquivos são abas do padrão de abas da WAI-ARIA.",
+					"keyboard": "O código rola para o lado em vez de quebrar, e é uma parada de tabulação, então o teclado também consegue rolá-lo.",
+					"copy": "O botão de copiar anuncia o resultado, e os números de linha, desenhados por CSS, não são lidos com o código nem copiados."
 				}
 			},
 			"chip": {
@@ -728,6 +768,63 @@
 					"announcements": "Uma mensagem de status educada anuncia a nova ordem, as linhas visíveis ou o número de resultados depois de cada mudança.",
 					"pagination": "As páginas são um landmark `Pagination` nomeado a partir de `caption`, e as linhas mantêm o seu `aria-rowindex` entre as páginas.",
 					"states": "Enquanto carrega, a tabela fica `aria-busy`; um erro é anunciado, e uma tabela vazia mostra um `EmptyState`."
+				}
+			},
+			"alert": {
+				"summary": "Mensagem sobre a página ou uma tarefa, com uma ação opcional.",
+				"description": "`intent` dá o significado e escolhe o ícone, `variant` a ênfase. Um `title` resume a mensagem, `action` acrescenta uma ação relacionada e `onDismiss` um botão que a fecha; removê-la fica a cargo do pai.",
+				"examples": {
+					"saved": {
+						"title": "Resultado de uma ação",
+						"description": "Um alerta `success` que aparece depois de salvar: `announce='polite'` o lê sem interromper, e `onDismiss` o fecha."
+					},
+					"maintenance": {
+						"title": "Com uma ação",
+						"description": "Um aviso `outline`, parte da página desde o início, com a ação que o resolve."
+					}
+				},
+				"accessibility": {
+					"announce": "Por padrão ele é estático. Use `announce='polite'` para um resultado que aparece depois de uma ação, e `'assertive'` só para um problema que exige atenção agora.",
+					"icon": "O ícone acompanha o intent, então sucesso, aviso e erro diferem na forma além da cor.",
+					"dismiss": "O botão de dispensar é nomeado por `labels.dismiss`; leve o foco para um lugar sensato quando o alerta que o tinha sair."
+				}
+			},
+			"progressBar": {
+				"summary": "Progresso de uma operação, como barra ou anel.",
+				"description": "Com `value` (entre `min` e `max`) mostra quanto já foi feito; sem ele, que algo está em andamento. `valueText` diz o valor em palavras quando uma porcentagem significa pouco, por exemplo `Part 2 of 5`.",
+				"examples": {
+					"upload": {
+						"title": "Progresso conhecido",
+						"description": "O relatório vai em cinco partes: `max={5}` e `valueText` dizem às tecnologias assistivas qual parte está a caminho."
+					},
+					"indeterminate": {
+						"title": "Duração desconhecida",
+						"description": "Sem `value` a barra varre e o anel gira; um anel `small` cabe ao lado de uma linha de texto."
+					}
+				},
+				"accessibility": {
+					"label": "`label` o nomeia (`aria-label`) e não pode ficar em branco: diga o que progride, por exemplo `Sending the bounty report`.",
+					"value": "É um `progressbar` com `aria-valuenow`, `aria-valuemin` e `aria-valuemax`; sem `value` eles ficam de fora, como a ARIA prescreve.",
+					"motion": "Com movimento reduzido, a barra indeterminada pulsa no lugar em vez de varrer."
+				}
+			},
+			"tooltip": {
+				"summary": "Texto curto e complementar sobre um controle, mostrado no hover e no foco.",
+				"description": "Envolve um elemento focável que já tem nome e acrescenta uma descrição: um atalho de teclado, a forma completa de um rótulo truncado. `placement` escolhe o lado e inverte quando não há espaço; `delay` é o hover antes de ele aparecer.",
+				"examples": {
+					"shortcuts": {
+						"title": "Atalhos de teclado",
+						"description": "Cada `IconButton` é nomeado pelo seu `label`; o tooltip só acrescenta o atalho."
+					},
+					"truncated": {
+						"title": "Rótulos truncados",
+						"description": "O nome completo de cada nave, cortado por reticências; `placement='end'` o mostra depois do botão."
+					}
+				},
+				"accessibility": {
+					"describes": "Descreve o gatilho (`aria-describedby`) e nunca o nomeia: um gatilho sem nome próprio é avisado no console.",
+					"content": "Só texto simples: um tooltip não recebe foco, então um link ou um botão dentro dele ficaria fora de alcance. Use um `Popover` para isso.",
+					"disabled": "Um controle desabilitado não recebe hover nem foco, então nunca mostra o tooltip: explique por que está desabilitado em texto visível."
 				}
 			},
 			"container": {

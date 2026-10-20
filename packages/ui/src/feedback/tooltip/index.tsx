@@ -37,7 +37,7 @@ export interface TooltipProps {
 	children: ReactElement;
 	/** Defaults to `'top'`; it flips when there is no room. */
 	placement?: TooltipPlacement;
-	/** Milliseconds of hover before the tooltip appears; focus shows it at once. Defaults to 300. */
+	/** Milliseconds of hover before the tooltip appears; focus shows it at once. Defaults to `300`. */
 	delay?: number;
 	/** Element that receives the tooltip. Defaults to `document.body`. */
 	container?: OverlayContainer;
