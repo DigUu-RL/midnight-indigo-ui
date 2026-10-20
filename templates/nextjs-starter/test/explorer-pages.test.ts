@@ -232,6 +232,33 @@ test('an async example colors its code on the server, and a text given to a prop
 	assert.ok(compact(text).includes(compact('code={jumpSource}')));
 });
 
+test('a modal overlay has no grid, and its playground opens it with a button the code writes too', async (): Promise<void> => {
+	const { html }: StreamedPage = await readStreamedPage(`${server.origin}/en-us/components/dialog`);
+	const text: string = textOf(html);
+
+	assert.doesNotMatch(html, /id="variants"/);
+	assert.match(html, /<button[^>]*>Open the flight plan<\/button>/);
+	assert.doesNotMatch(html, /role="dialog"/);
+	assert.ok(compact(text).includes(compact('const [open, setOpen] = useState<boolean>(false);')));
+	assert.ok(compact(text).includes(compact('onClose={(): void => setOpen(false)}')));
+});
+
+test('the types a component takes are documented with their fields and imported as types', async (): Promise<void> => {
+	const { html }: StreamedPage = await readStreamedPage(`${server.origin}/en-us/components/menu`);
+	const text: string = textOf(html);
+
+	assert.ok(
+		compact(text).includes(
+			compact("import type { MenuItemOption, MenuSeparator } from '@midnight-indigo/ui/feedback';"),
+		),
+	);
+
+	assert.match(html, /<caption[^>]*>Fields of MenuItemOption<\/caption>/);
+	assert.match(html, /<a[^>]*href="#api-menu-separator"/);
+	assert.ok(text.includes('Runs after the menu has closed and focus is back on its trigger'));
+	assert.ok(compact(text).includes(compact(sampleCodes.crewMenuItems.declarations[0])));
+});
+
 test('a part without props of its own says so instead of an empty table', async (): Promise<void> => {
 	const { html }: StreamedPage = await readStreamedPage(`${server.origin}/en-us/components/table`);
 	const text: string = textOf(html);

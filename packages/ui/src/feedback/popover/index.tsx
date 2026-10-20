@@ -27,11 +27,22 @@ const { spacing, typography, text }: typeof themeVariables = themeVariables;
 export type PopoverPlacement = AnchoredPlacement;
 
 /** A popover is named by a visible `title`, or by a `label` when its content already makes the purpose clear. */
-export type PopoverName = { title: string; label?: never } | { label: string; title?: never };
+export type PopoverName =
+	| {
+			/** Visible heading of the popover, which names it. */
+			title: string;
+			label?: never;
+	  }
+	| {
+			/** Accessible name of a popover without a heading, e.g. `'Jump coordinates'`. */
+			label: string;
+			title?: never;
+	  };
 
 export type PopoverProps = PopoverName & {
 	/** The button that opens and closes the popover; it receives `aria-haspopup`, `aria-expanded` and `aria-controls`. */
 	trigger: ReactElement<TriggerProps>;
+	/** Content of the popover: fields, buttons or links, which the keyboard reaches inside it. */
 	children: ReactNode;
 	/** Open state, when the parent controls it. */
 	open?: boolean | undefined;

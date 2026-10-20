@@ -20,7 +20,17 @@ import {
 	StatCard,
 	Table,
 } from '@midnight-indigo/ui/data-display';
-import { Alert, ProgressBar, Tooltip } from '@midnight-indigo/ui/feedback';
+import {
+	Alert,
+	ConfirmDialog,
+	ContextMenu,
+	Dialog,
+	Drawer,
+	Menu,
+	Popover,
+	ProgressBar,
+	Tooltip,
+} from '@midnight-indigo/ui/feedback';
 import { Container, Grid, Stack } from '@midnight-indigo/ui/layout';
 import type { ComponentType, ReactElement } from 'react';
 
@@ -43,13 +53,21 @@ import { CrewModule } from '#src/explorer/examples/code-block/files.tsx';
 import { HyperdriveCheck } from '#src/explorer/examples/code-block/highlighted.tsx';
 import { JumpInstructions } from '#src/explorer/examples/code/sentence.tsx';
 import { ShipSettings } from '#src/explorer/examples/code/settings.tsx';
+import { DeleteLogEntry } from '#src/explorer/examples/confirm-dialog/destructive.tsx';
+import { CollectBounty } from '#src/explorer/examples/confirm-dialog/pending.tsx';
 import { CaptainsLog } from '#src/explorer/examples/container/article.tsx';
+import { MissionLogs } from '#src/explorer/examples/context-menu/logs.tsx';
+import { BountyPoster } from '#src/explorer/examples/context-menu/visible-actions.tsx';
 import { HyperspaceRoute } from '#src/explorer/examples/copy-button/inline.tsx';
 import { CrewInvite } from '#src/explorer/examples/copy-button/invite.tsx';
 import { BountySearch } from '#src/explorer/examples/data-table/filter.tsx';
 import { ShipmentStates } from '#src/explorer/examples/data-table/states.tsx';
+import { CrewManifest } from '#src/explorer/examples/dialog/details.tsx';
+import { RenameShip } from '#src/explorer/examples/dialog/form.tsx';
 import { ShipSpecifications } from '#src/explorer/examples/divider/sections.tsx';
 import { LogbookToolbar } from '#src/explorer/examples/divider/toolbar.tsx';
+import { CrewDetails } from '#src/explorer/examples/drawer/details.tsx';
+import { ShipyardFilters } from '#src/explorer/examples/drawer/filters.tsx';
 import { EmptyBountyBoard } from '#src/explorer/examples/empty-state/first-use.tsx';
 import { PlanetSearch } from '#src/explorer/examples/empty-state/search.tsx';
 import { NoSignal } from '#src/explorer/examples/error-state/offline.tsx';
@@ -60,6 +78,10 @@ import { CrewMemberActions } from '#src/explorer/examples/icon-button/actions.ts
 import { PlaybackControls } from '#src/explorer/examples/icon-button/playback.tsx';
 import { BebopCrew } from '#src/explorer/examples/list/crew.tsx';
 import { GrandPrixResults } from '#src/explorer/examples/list/ranking.tsx';
+import { CrewActions } from '#src/explorer/examples/menu/actions.tsx';
+import { LogbookEditMenu } from '#src/explorer/examples/menu/shortcuts.tsx';
+import { KesselRunRecord } from '#src/explorer/examples/popover/details.tsx';
+import { BountyFilters } from '#src/explorer/examples/popover/filters.tsx';
 import { SignalScan } from '#src/explorer/examples/progress-bar/indeterminate.tsx';
 import { BountyReportUpload } from '#src/explorer/examples/progress-bar/upload.tsx';
 import { TransmissionsPlaceholder } from '#src/explorer/examples/skeleton-list/compact.tsx';
@@ -216,6 +238,36 @@ const componentBindings: { readonly [Name in ComponentName]: ComponentBinding<Na
 		component: Tooltip,
 		playground: FeedbackPlayground,
 		examples: { shortcuts: PlayerShortcuts, truncated: ShipNames },
+	},
+	Popover: {
+		component: Popover,
+		playground: FeedbackPlayground,
+		examples: { filters: BountyFilters, details: KesselRunRecord },
+	},
+	Menu: {
+		component: Menu,
+		playground: FeedbackPlayground,
+		examples: { actions: CrewActions, shortcuts: LogbookEditMenu },
+	},
+	ContextMenu: {
+		component: ContextMenu,
+		playground: FeedbackPlayground,
+		examples: { logs: MissionLogs, visibleActions: BountyPoster },
+	},
+	Dialog: {
+		component: Dialog,
+		playground: FeedbackPlayground,
+		examples: { form: RenameShip, details: CrewManifest },
+	},
+	ConfirmDialog: {
+		component: ConfirmDialog,
+		playground: FeedbackPlayground,
+		examples: { destructive: DeleteLogEntry, pending: CollectBounty },
+	},
+	Drawer: {
+		component: Drawer,
+		playground: FeedbackPlayground,
+		examples: { details: CrewDetails, filters: ShipyardFilters },
 	},
 	Container: {
 		component: Container,

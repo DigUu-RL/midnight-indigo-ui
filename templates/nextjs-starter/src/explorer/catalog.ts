@@ -10,6 +10,17 @@ export type PlaygroundValue = string | number | boolean;
 /** How the samples of the grid of variants are laid out: side by side, or one per line across the page. */
 export type SampleWidth = 'content' | 'full';
 
+/**
+ * The button that opens a modal overlay, which the parent shows through `open`: the grid of variants leaves it out, and
+ * the playground renders the button, opens the overlay with it and closes it from the props that ask to close.
+ */
+export interface Opener {
+	/** Text of the button. */
+	label: string;
+	/** Props the overlay calls to close, e.g. `onClose`, or `onConfirm` and `onCancel`. */
+	closeProps: readonly string[];
+}
+
 export interface ExplorerComponent {
 	/** Name exported by the subpath. */
 	name: string;
@@ -17,6 +28,10 @@ export interface ExplorerComponent {
 	subpath: string;
 	/** Components the page documents with this one, each with its props, e.g. `GridItem` with `Grid`. */
 	parts: readonly string[];
+	/** Types the page documents with their fields, e.g. `MenuItemOption`, the items of a `Menu`. None when absent. */
+	types?: readonly string[];
+	/** The button of the playground of a modal overlay. Absent for the other components. */
+	opener?: Opener;
 	/** Ids of the examples in page order; each one is the file `examples/<slug>/<kebab-case id>.tsx`. */
 	examples: readonly string[];
 	/** Props of every rendering on the page, e.g. the label the component requires. */
@@ -378,6 +393,117 @@ export const explorerComponents = [
 		accessibility: ['describes', 'content', 'disabled'],
 	},
 	{
+		name: 'Popover',
+		subpath: 'feedback',
+		parts: [],
+		examples: ['filters', 'details'],
+		baseProps: { title: 'Jump coordinates', children: 'Kessel, 12 parsecs past the Maw.' },
+		slots: { trigger: 'plotJumpButton' },
+		sampleWidth: 'content',
+		// A popover needs `title` or `label`, which the type tells only by their union, so a blank title would leave it
+		// without both. It shows only while open, so a grid of placements would look the same.
+		controls: ['children', 'placement', 'closeOnOutsideClick'],
+		variants: [],
+		states: [],
+		nativeProps: [],
+		accessibility: ['dialog', 'focus', 'name'],
+	},
+	{
+		name: 'Menu',
+		subpath: 'feedback',
+		parts: [],
+		types: ['MenuItemOption', 'MenuSeparator'],
+		examples: ['actions', 'shortcuts'],
+		baseProps: {},
+		slots: { trigger: 'crewActionsButton', items: 'crewMenuItems' },
+		sampleWidth: 'content',
+		controls: ['placement'],
+		variants: [],
+		states: [],
+		nativeProps: [],
+		accessibility: ['name', 'keyboard', 'select'],
+	},
+	{
+		name: 'ContextMenu',
+		subpath: 'feedback',
+		parts: [],
+		types: ['MenuItemOption', 'MenuSeparator'],
+		examples: ['logs', 'visibleActions'],
+		baseProps: { label: 'Actions for Spike Spiegel' },
+		slots: { children: 'crewMemberCard', items: 'crewMenuItems' },
+		sampleWidth: 'content',
+		controls: ['label', 'disabled'],
+		variants: [],
+		states: [],
+		nativeProps: [],
+		accessibility: ['keyboard', 'focusable', 'discover'],
+	},
+	{
+		name: 'Dialog',
+		subpath: 'feedback',
+		parts: [],
+		examples: ['form', 'details'],
+		baseProps: {
+			title: 'Flight plan',
+			description: 'Check the route before the jump to hyperspace.',
+			children: 'Tatooine to Kessel, 12 parsecs.',
+		},
+		slots: {},
+		sampleWidth: 'content',
+		opener: { label: 'Open the flight plan', closeProps: ['onClose'] },
+		controls: [
+			'title',
+			'description',
+			'children',
+			'size',
+			'closeOnOutsideClick',
+			'hideCloseButton',
+			'role',
+		],
+		// A dialog covers the page while open, so its sizes are seen in the playground.
+		variants: [],
+		states: [],
+		nativeProps: [],
+		accessibility: ['name', 'focus', 'close'],
+	},
+	{
+		name: 'ConfirmDialog',
+		subpath: 'feedback',
+		parts: [],
+		examples: ['destructive', 'pending'],
+		baseProps: {
+			title: 'Release the bounty?',
+			description: 'The bounty on Vicious goes back to the board. This cannot be undone.',
+		},
+		slots: {},
+		sampleWidth: 'content',
+		opener: { label: 'Release the bounty', closeProps: ['onConfirm', 'onCancel'] },
+		controls: ['title', 'description', 'intent', 'size'],
+		variants: [],
+		states: [],
+		nativeProps: [],
+		accessibility: ['alertdialog', 'focus', 'labels'],
+	},
+	{
+		name: 'Drawer',
+		subpath: 'feedback',
+		parts: [],
+		examples: ['details', 'filters'],
+		baseProps: {
+			title: 'Crew details',
+			description: 'Spike Spiegel, bounty hunter of the Bebop.',
+			children: 'Last seen on Mars, on the trail of Asimov Solensan.',
+		},
+		slots: {},
+		sampleWidth: 'content',
+		opener: { label: 'Show crew details', closeProps: ['onClose'] },
+		controls: ['title', 'description', 'children', 'placement', 'size', 'closeOnOutsideClick'],
+		variants: [],
+		states: [],
+		nativeProps: [],
+		accessibility: ['dialog', 'placement', 'close'],
+	},
+	{
 		name: 'Container',
 		subpath: 'layout',
 		parts: [],
@@ -483,6 +609,13 @@ export const documentedNamesOf = (
 	component: Pick<ExplorerComponent, 'name' | 'parts'>,
 ): string[] => {
 	return [component.name, ...component.parts];
+};
+
+/** The components and the types a page describes: its components, then its types. */
+export const describedNamesOf = (
+	component: Pick<ExplorerComponent, 'name' | 'parts' | 'types'>,
+): string[] => {
+	return [...documentedNamesOf(component), ...(component.types ?? [])];
 };
 
 /** File of an example, relative to `src/explorer/examples`. */

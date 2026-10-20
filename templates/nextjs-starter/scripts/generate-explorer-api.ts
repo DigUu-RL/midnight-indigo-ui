@@ -5,7 +5,8 @@
 //
 // A prop is listed when the library declares it, or when the catalog names it in `nativeProps`; the attributes of the
 // native element that the component only passes on are left out. The type is the one the library writes, the
-// description its TSDoc, and the default the code in its `Defaults to …` sentence.
+// description its TSDoc, and the default the code in its `Defaults to …` sentence. The types of the catalog (`types`,
+// e.g. `MenuItemOption`) are described the same way, their fields as props.
 import { realpathSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { dirname, join, resolve, sep } from 'node:path';
@@ -13,7 +14,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import typescript from 'typescript';
 
-import { documentedNamesOf, explorerComponents } from '#src/explorer/catalog.ts';
+import { describedNamesOf, explorerComponents } from '#src/explorer/catalog.ts';
 import type { ExplorerComponent } from '#src/explorer/catalog.ts';
 import type { ComponentApi, ComponentProp, PropKind } from '#src/explorer/component-api.ts';
 
@@ -250,6 +251,25 @@ const propertiesOf = (
 		}, []);
 };
 
+/** The props of a component (the type of its first parameter), or the fields of a type, e.g. `MenuItemOption`. */
+const describedTypeOf = (
+	name: string,
+	symbol: typescript.Symbol,
+	checker: typescript.TypeChecker,
+): typescript.Type => {
+	if (
+		(symbol.flags & (typescript.SymbolFlags.Interface | typescript.SymbolFlags.TypeAlias)) !==
+		0
+	) {
+		return checker.getDeclaredTypeOfSymbol(symbol);
+	}
+
+	const [signature] = checker.getTypeOfSymbol(symbol).getCallSignatures();
+	const [parameter] = signature?.getParameters() ?? [];
+	if (parameter === undefined) throw new Error(`${name} takes no props.`);
+	return checker.getTypeOfSymbol(parameter);
+};
+
 interface DescribedComponent {
 	name: string;
 	subpath: string;
@@ -274,13 +294,9 @@ const describeComponent = (
 			? exported
 			: checker.getAliasedSymbol(exported);
 
-	const [signature] = checker.getTypeOfSymbol(symbol).getCallSignatures();
-	const [parameter] = signature?.getParameters() ?? [];
-	if (parameter === undefined) throw new Error(`${component.name} takes no props.`);
-
 	const nativeProps: readonly string[] = component.nativeProps;
 
-	return propertiesOf(checker.getTypeOfSymbol(parameter), checker)
+	return propertiesOf(describedTypeOf(component.name, symbol, checker), checker)
 		.map((property: typescript.Symbol): [typescript.Symbol, boolean] => {
 			return [property, !(property.getDeclarations() ?? []).some(isLibraryDeclaration)];
 		})
@@ -374,10 +390,11 @@ export const generateComponentApi = (): ComponentApi => {
 			}),
 	);
 
-	// The parts of a component (e.g. `GridItem` of `Grid`) pass on no native attribute of their own.
+	// The parts of a component (e.g. `GridItem` of `Grid`) and its types pass on no native attribute of their own. A type
+	// several pages document is described once.
 	const described: DescribedComponent[] = explorerComponents.flatMap(
 		(component: ExplorerComponent): DescribedComponent[] => {
-			return documentedNamesOf(component).map((name: string): DescribedComponent => {
+			return describedNamesOf(component).map((name: string): DescribedComponent => {
 				return {
 					name,
 					subpath: component.subpath,

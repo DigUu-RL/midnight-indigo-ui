@@ -3,7 +3,8 @@
 // boolean, a field for a text or a number), the component rendered with them and its code, updated as they change.
 // Server Components cannot pass a component to a Client Component, so each subpath creates its own playground with
 // `createPlayground` (in `playgrounds/`), which knows the components of that subpath. They can pass elements, so the
-// samples of the props that take one (`slots`) come rendered from the page.
+// samples of the props that take one (`slots`) come rendered from the page. A modal overlay comes with the button that
+// opens it (`opener`), and closes when it asks to.
 import { Button } from '@midnight-indigo/ui/buttons';
 import { CodeBlock } from '@midnight-indigo/ui/code';
 import { NumberField, Select, Switch, TextField } from '@midnight-indigo/ui/forms';
@@ -12,7 +13,7 @@ import type { I18nValue } from '@midnight-indigo/ui/i18n';
 import { createElement, useId, useState } from 'react';
 import type { ComponentType, ReactElement } from 'react';
 
-import type { PlaygroundValue, SampleWidth } from '#src/explorer/catalog.ts';
+import type { Opener, PlaygroundValue, SampleWidth } from '#src/explorer/catalog.ts';
 import type { ComponentProp } from '#src/explorer/component-api.ts';
 import type { SampleCode } from '#src/explorer/sample-code.ts';
 import type { SampleValue } from '#src/explorer/samples.tsx';
@@ -33,12 +34,17 @@ export interface PlaygroundProps {
 	controls: readonly ComponentProp[];
 	slots: Readonly<Record<string, PlaygroundSlot>>;
 	sampleWidth: SampleWidth;
+	/** The button that opens a modal overlay. */
+	opener?: Opener | undefined;
 }
 
 type Values = Readonly<Record<string, PlaygroundValue>>;
 
 /** Any component: the playground only gives it the values of its controls. */
 type AnyComponent = (props: never) => ReactElement | null;
+
+/** What the component is rendered with: the values of the controls, the samples, and the state of an overlay. */
+type RenderedProps = Record<string, SampleValue | PlaygroundValue | (() => void)>;
 
 /** The value a control starts with: the one of the catalog, else the default of the prop. */
 const initialValueOf = (prop: ComponentProp, baseProps: Values): PlaygroundValue => {
@@ -154,18 +160,19 @@ export const createPlayground = (
 		controls,
 		slots,
 		sampleWidth,
+		opener,
 	}: PlaygroundProps): ReactElement => {
 		const { t }: I18nValue = useI18n();
 		const controlsLabelId: string = useId();
+		const [open, setOpen] = useState<boolean>(false);
 
 		const [values, setValues] = useState<Values>((): Values => {
 			return initialValuesOf(controls, baseProps);
 		});
 
 		// The values come from the controls and the samples of the props of this very component.
-		const component: ComponentType<Record<string, SampleValue | PlaygroundValue>> | undefined =
-			components[name] as unknown as
-				ComponentType<Record<string, SampleValue | PlaygroundValue>> | undefined;
+		const component: ComponentType<RenderedProps> | undefined = components[name] as unknown as
+			ComponentType<RenderedProps> | undefined;
 
 		const rendered: Values = renderedValuesOf(controls, values, baseProps);
 
@@ -181,6 +188,7 @@ export const createPlayground = (
 					},
 				),
 			),
+			opener,
 		});
 
 		const elements: Readonly<Record<string, SampleValue>> = Object.fromEntries(
@@ -189,6 +197,23 @@ export const createPlayground = (
 			}),
 		);
 
+		const overlay: RenderedProps =
+			opener === undefined
+				? {}
+				: {
+						open,
+						...Object.fromEntries(
+							opener.closeProps.map((prop: string): [string, () => void] => {
+								return [
+									prop,
+									(): void => {
+										setOpen(false);
+									},
+								];
+							}),
+						),
+					};
+
 		return (
 			<div className='playground'>
 				<div
@@ -196,7 +221,19 @@ export const createPlayground = (
 					role='group'
 					aria-label={t('explorer.playground.preview')}
 				>
-					{component === undefined ? null : createElement(component, { ...rendered, ...elements })}
+					{opener === undefined ? null : (
+						<Button
+							onClick={(): void => {
+								setOpen(true);
+							}}
+						>
+							{opener.label}
+						</Button>
+					)}
+
+					{component === undefined
+						? null
+						: createElement(component, { ...rendered, ...elements, ...overlay })}
 				</div>
 
 				<section className='playground-controls' aria-labelledby={controlsLabelId}>

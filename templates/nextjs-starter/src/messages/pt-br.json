@@ -369,7 +369,9 @@
 			"description": "Descrição",
 			"required": "obrigatória",
 			"native": "Atributo do elemento nativo, repassado sem alteração.",
-			"nativeOnly": "`{{component}}` não tem props próprias: recebe os atributos do seu elemento nativo."
+			"nativeOnly": "`{{component}}` não tem props próprias: recebe os atributos do seu elemento nativo.",
+			"fieldsCaption": "Campos de {{component}}",
+			"field": "Campo"
 		},
 		"components": {
 			"button": {
@@ -825,6 +827,128 @@
 					"describes": "Descreve o gatilho (`aria-describedby`) e nunca o nomeia: um gatilho sem nome próprio é avisado no console.",
 					"content": "Só texto simples: um tooltip não recebe foco, então um link ou um botão dentro dele ficaria fora de alcance. Use um `Popover` para isso.",
 					"disabled": "Um controle desabilitado não recebe hover nem foco, então nunca mostra o tooltip: explique por que está desabilitado em texto visível."
+				}
+			},
+			"popover": {
+				"summary": "Painel de conteúdo interativo ancorado ao botão que o abre.",
+				"description": "Abre a partir do seu `trigger` com campos, botões ou links: filtros, um formulário curto, detalhes. `title` o nomeia com um título visível, ou `label` sem ele; `placement` escolhe o lado e inverte quando não há espaço. `open` e `onOpenChange` deixam o pai controlá-lo.",
+				"examples": {
+					"filters": {
+						"title": "Filtros com um formulário",
+						"description": "O pai controla `open`, então aplicar os filtros fecha o popover; `closeOnOutsideClick={false}` preserva os campos quando um clique cai fora dele."
+					},
+					"details": {
+						"title": "Detalhes sem título",
+						"description": "`label` nomeia o popover quando o texto já diz do que se trata; `placement='bottom-end'` o alinha ao fim do seu botão."
+					}
+				},
+				"accessibility": {
+					"dialog": "É um `dialog` nomeado pelo `title` ou pelo `label`, e o gatilho recebe `aria-haspopup`, `aria-expanded` e `aria-controls`.",
+					"focus": "Enquanto aberto é modal: o foco entra nele e fica ali, e Escape ou um clique fora o fecham e devolvem o foco ao gatilho.",
+					"name": "Para texto simples que só descreve um controle, use um `Tooltip`: o popover é para conteúdo com que o leitor interage."
+				}
+			},
+			"menu": {
+				"summary": "Lista de ações aberta a partir de um botão.",
+				"description": "`trigger` é o botão que abre o menu e o nomeia; `items` são as ações (`MenuItemOption`) e os separadores (`MenuSeparator`), em ordem. Um item executa o seu `onSelect` depois que o menu fecha, então pode abrir um diálogo.",
+				"types": {
+					"menuItemOption": "Uma ação do menu, uma entrada de `items`.",
+					"menuSeparator": "Uma linha entre grupos de itens, uma entrada de `items`."
+				},
+				"examples": {
+					"actions": {
+						"title": "Ações de cada linha",
+						"description": "Cada `IconButton` nomeia o seu menu pelo tripulante sobre o qual age, e o último item é `destructive`."
+					},
+					"shortcuts": {
+						"title": "Ícones, atalhos e itens desabilitados",
+						"description": "Ícones decorativos, o `shortcut` de cada ação na página e um item `disabled` até haver uma entrada para colar."
+					}
+				},
+				"accessibility": {
+					"name": "O gatilho nomeia o menu: dê a um `IconButton` um `label` que diga sobre o que as ações agem.",
+					"keyboard": "Enter, Espaço e Seta para baixo o abrem no primeiro item, Seta para cima no último; as setas, Home, End e a digitação movem entre os itens, e Escape ou Tab o fecham.",
+					"select": "Selecionar um item fecha o menu e devolve o foco ao gatilho antes de o `onSelect` executar; um item `disabled` continua visível, e as setas o pulam."
+				}
+			},
+			"contextMenu": {
+				"summary": "Menu de ações sobre um elemento, aberto com o botão direito ou pelo teclado.",
+				"description": "Substitui o menu de contexto do navegador no seu filho: o botão direito o abre no ponteiro, Shift+F10 ou a tecla de menu de contexto abaixo do elemento focado. `label` o nomeia, `items` recebe as mesmas entradas de um `Menu`, e `disabled` devolve o menu do navegador.",
+				"types": {
+					"menuItemOption": "Uma ação do menu, uma entrada de `items`.",
+					"menuSeparator": "Uma linha entre grupos de itens, uma entrada de `items`."
+				},
+				"examples": {
+					"logs": {
+						"title": "Ações em cada card",
+						"description": "Cada card recebe foco (`tabIndex={0}`), então o teclado também abre o seu menu; o `label` nomeia o registro sobre o qual age."
+					},
+					"visibleActions": {
+						"title": "As mesmas ações à vista",
+						"description": "Um menu de contexto é difícil de descobrir, então o card também tem um botão de `Menu` com os mesmos itens."
+					}
+				},
+				"accessibility": {
+					"keyboard": "Shift+F10 e a tecla de menu de contexto o abrem abaixo do elemento focado; dentro dele, funciona como um `Menu`, e o foco volta ao elemento ao fechar.",
+					"focusable": "Faça o filho receber foco (`tabIndex={0}`, ou um controle nativo): sem foco, o teclado não consegue abrir o menu.",
+					"discover": "Nada indica que existe um menu de contexto: ofereça as mesmas ações também em algum lugar visível, como um botão de `Menu`."
+				}
+			},
+			"dialog": {
+				"summary": "Diálogo modal para uma tarefa ou uma decisão que interrompe a página.",
+				"description": "O pai controla `open` e o fecha no `onClose`, que diz o que pediu o fechamento: `'escape'`, `'outside'` ou `'close-button'`. `title` o nomeia, `description` o descreve, `actions` ficam no fim com a principal por último, e `size` define a largura máxima.",
+				"examples": {
+					"form": {
+						"title": "Um formulário curto",
+						"description": "`initialFocus` começa no campo, a única coisa a fazer no diálogo; Cancelar e Escape descartam o rascunho."
+					},
+					"details": {
+						"title": "Só informação",
+						"description": "Não há nada a perder, então `closeOnOutsideClick` também o fecha com um clique fora; `size='large'` dá espaço à lista."
+					}
+				},
+				"accessibility": {
+					"name": "É um `dialog` com `aria-modal`, nomeado pelo `title` e descrito pela `description`; `role='alertdialog'` é para uma mensagem urgente que exige resposta.",
+					"focus": "O foco entra nele ao abrir (o painel, ou `initialFocus`), Tab e Shift+Tab ficam dentro dele, e a página por trás fica inerte e não rola.",
+					"close": "Escape e o botão de fechar pedem o fechamento; o foco volta ao elemento que o abriu, ou a `finalFocus` quando esse elemento não existe mais."
+				}
+			},
+			"confirmDialog": {
+				"summary": "Pede a confirmação de uma ação, dizendo a sua consequência, antes que ela aconteça.",
+				"description": "`title` é a pergunta e `description` a consequência. `onConfirm` executa a ação e `onCancel` desiste; `intent='error'` marca uma ação destrutiva, e `labels` nomeia os botões pelo que eles fazem.",
+				"examples": {
+					"destructive": {
+						"title": "Uma ação destrutiva",
+						"description": "`intent='error'` começa o foco no botão de cancelar, e `labels` nomeia os dois botões pela ação."
+					},
+					"pending": {
+						"title": "Uma ação que leva tempo",
+						"description": "`onConfirm` devolve uma promise: enquanto ela está pendente, o botão de confirmar fica ocupado e o diálogo não pode ser dispensado."
+					}
+				},
+				"accessibility": {
+					"alertdialog": "É um `alertdialog`: exige resposta, então um clique fora não o fecha, e Escape cancela.",
+					"focus": "O foco começa no botão de confirmar, ou no de cancelar quando `intent='error'`, para que Enter sozinho nunca destrua nada.",
+					"labels": "Nomeie os botões pela ação (`'Delete entry'`, `'Keep entry'`) em vez dos padrões: cada um é lido sem a pergunta."
+				}
+			},
+			"drawer": {
+				"summary": "Painel modal que desliza de uma borda da tela.",
+				"description": "Para detalhes, filtros ou uma tarefa secundária ao lado da página. Funciona como um `Dialog`: o pai controla `open` e o fecha no `onClose`. `placement` escolhe a borda (`start` e `end` seguem a direção de leitura) e `size` a largura ou a altura.",
+				"examples": {
+					"details": {
+						"title": "Detalhes de uma linha",
+						"description": "Um drawer para a lista inteira: o botão de cada tripulante o preenche, e `closeOnOutsideClick` o fecha com um clique fora."
+					},
+					"filters": {
+						"title": "Filtros pela borda inicial",
+						"description": "`placement='start'` o abre ao lado da lista que ele filtra; ele tem campos, então um clique fora não o fecha."
+					}
+				},
+				"accessibility": {
+					"dialog": "É um `dialog` com `aria-modal`, nomeado pelo `title`: o foco entra nele, fica ali e volta ao gatilho ao fechar.",
+					"placement": "`start` e `end` seguem a direção de leitura: numa página da direita para a esquerda, `end` é a borda esquerda.",
+					"close": "O cabeçalho sempre tem um botão de fechar, e Escape pede o fechamento pelo `onClose`: ninguém depende de um clique fora."
 				}
 			},
 			"container": {

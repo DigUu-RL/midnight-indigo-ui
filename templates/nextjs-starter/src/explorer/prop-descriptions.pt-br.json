@@ -766,5 +766,297 @@
 			"source": "Element that receives the tooltip. Defaults to `document.body`.",
 			"translation": "Elemento que recebe o tooltip. Padrão: `document.body`."
 		}
+	},
+	"Popover": {
+		"title": {
+			"source": "Visible heading of the popover, which names it.",
+			"translation": "Título visível do popover, que o nomeia."
+		},
+		"label": {
+			"source": "Accessible name of a popover without a heading, e.g. `'Jump coordinates'`.",
+			"translation": "Nome acessível de um popover sem título, por exemplo `'Jump coordinates'`."
+		},
+		"trigger": {
+			"source": "The button that opens and closes the popover; it receives `aria-haspopup`, `aria-expanded` and `aria-controls`.",
+			"translation": "O botão que abre e fecha o popover; recebe `aria-haspopup`, `aria-expanded` e `aria-controls`."
+		},
+		"children": {
+			"source": "Content of the popover: fields, buttons or links, which the keyboard reaches inside it.",
+			"translation": "Conteúdo do popover: campos, botões ou links, que o teclado alcança dentro dele."
+		},
+		"open": {
+			"source": "Open state, when the parent controls it.",
+			"translation": "Estado de abertura, quando o pai o controla."
+		},
+		"defaultOpen": {
+			"source": "Initial open state when uncontrolled.",
+			"translation": "Estado de abertura inicial quando não controlado."
+		},
+		"onOpenChange": {
+			"source": "Called with the requested state, on the trigger, Escape or a click outside.",
+			"translation": "Chamado com o estado pedido, no gatilho, no Escape ou num clique fora."
+		},
+		"placement": {
+			"source": "Defaults to `'bottom-start'`; it flips when there is no room.",
+			"translation": "Padrão: `'bottom-start'`; inverte quando não há espaço."
+		},
+		"closeOnOutsideClick": {
+			"source": "Clicking outside closes. Defaults to `true`; disable it when the popover holds input that would be lost.",
+			"translation": "Clicar fora fecha. Padrão: `true`; desative quando o popover tiver dados digitados que se perderiam."
+		},
+		"initialFocus": {
+			"source": "Element focused on open. Defaults to the popover itself.",
+			"translation": "Elemento focado ao abrir. Padrão: o próprio popover."
+		},
+		"container": {
+			"source": "Element that receives the popover. Defaults to `document.body`.",
+			"translation": "Elemento que recebe o popover. Padrão: `document.body`."
+		}
+	},
+	"Menu": {
+		"trigger": {
+			"source": "The button that opens the menu, which also names it. It receives `aria-haspopup=\"menu\"`, `aria-expanded`, `aria-controls` and, when it has none, an `id`.",
+			"translation": "O botão que abre o menu, que também o nomeia. Recebe `aria-haspopup=\"menu\"`, `aria-expanded`, `aria-controls` e, quando não tem, um `id`."
+		},
+		"items": {
+			"source": "Items and separators, in order.",
+			"translation": "Itens e separadores, em ordem."
+		},
+		"placement": {
+			"source": "Defaults to `'bottom-start'`; it flips when there is no room.",
+			"translation": "Padrão: `'bottom-start'`; inverte quando não há espaço."
+		},
+		"container": {
+			"source": "Element that receives the menu. Defaults to `document.body`.",
+			"translation": "Elemento que recebe o menu. Padrão: `document.body`."
+		}
+	},
+	"MenuItemOption": {
+		"id": {
+			"source": "Unique within the menu; used as the React key.",
+			"translation": "Único no menu; usado como chave do React."
+		},
+		"label": {
+			"source": "Text of the item, which names it: a verb for the action, e.g. `'Rename'`.",
+			"translation": "Texto do item, que o nomeia: um verbo para a ação, por exemplo `'Rename'`."
+		},
+		"onSelect": {
+			"source": "Runs after the menu has closed and focus is back on its trigger, so it may open a dialog.",
+			"translation": "Executa depois que o menu fecha e o foco volta ao gatilho, então pode abrir um diálogo."
+		},
+		"icon": {
+			"source": "Decorative icon before the label.",
+			"translation": "Ícone decorativo antes do rótulo."
+		},
+		"disabled": {
+			"source": "Keeps the item visible but skipped by the arrow keys.",
+			"translation": "Mantém o item visível, mas as setas o pulam."
+		},
+		"destructive": {
+			"source": "Marks an action that deletes or cannot be undone: error colors, besides a label that says so.",
+			"translation": "Marca uma ação que apaga ou não pode ser desfeita: cores de erro, além de um rótulo que diga isso."
+		},
+		"shortcut": {
+			"source": "Keyboard shortcut of the same action elsewhere, e.g. `'Control+C'` (`aria-keyshortcuts` syntax).",
+			"translation": "Atalho de teclado da mesma ação em outro lugar, por exemplo `'Control+C'` (sintaxe de `aria-keyshortcuts`)."
+		}
+	},
+	"MenuSeparator": {
+		"id": {
+			"source": "Unique within the menu; used as the React key.",
+			"translation": "Único no menu; usado como chave do React."
+		},
+		"separator": {
+			"source": "Tells the separator from an item.",
+			"translation": "Distingue o separador de um item."
+		}
+	},
+	"ContextMenu": {
+		"label": {
+			"source": "Accessible name of the menu, e.g. `'Actions for report.pdf'`.",
+			"translation": "Nome acessível do menu, por exemplo `'Actions for report.pdf'`."
+		},
+		"children": {
+			"source": "The element the actions apply to. Make it focusable (`tabIndex={0}`, or a native control), so the keyboard can open the menu too; it keeps its own `onContextMenu` and `onKeyDown`.",
+			"translation": "O elemento sobre o qual as ações agem. Faça-o receber foco (`tabIndex={0}`, ou um controle nativo), para que o teclado também abra o menu; ele mantém o seu próprio `onContextMenu` e `onKeyDown`."
+		},
+		"items": {
+			"source": "Items and separators, in order.",
+			"translation": "Itens e separadores, em ordem."
+		},
+		"disabled": {
+			"source": "Shows the browser menu instead, e.g. while the element is disabled.",
+			"translation": "Mostra o menu do navegador no lugar, por exemplo enquanto o elemento está desabilitado."
+		},
+		"container": {
+			"source": "Element that receives the menu. Defaults to `document.body`.",
+			"translation": "Elemento que recebe o menu. Padrão: `document.body`."
+		}
+	},
+	"Dialog": {
+		"title": {
+			"source": "Visible title and accessible name of the dialog (a level 2 heading).",
+			"translation": "Título visível e nome acessível do diálogo (um título de nível 2)."
+		},
+		"description": {
+			"source": "Text under the title, read with the name when the dialog opens (`aria-describedby`).",
+			"translation": "Texto abaixo do título, lido com o nome quando o diálogo abre (`aria-describedby`)."
+		},
+		"children": {
+			"source": "Content of the dialog.",
+			"translation": "Conteúdo do diálogo."
+		},
+		"actions": {
+			"source": "Buttons at the end of the dialog, the main action last.",
+			"translation": "Botões no fim do diálogo, com a ação principal por último."
+		},
+		"size": {
+			"source": "Maximum width: 24, 32 or 48 rem. Defaults to `'medium'`.",
+			"translation": "Largura máxima: 24, 32 ou 48 rem. Padrão: `'medium'`."
+		},
+		"closeOnOutsideClick": {
+			"source": "Clicking outside the panel asks to close. Defaults to `false`, since a dialog often holds a form whose input would be lost; enable it for dialogs that only show information.",
+			"translation": "Clicar fora do painel pede o fechamento. Padrão: `false`, já que um diálogo costuma ter um formulário cujos dados se perderiam; ative para diálogos que só mostram informação."
+		},
+		"hideCloseButton": {
+			"source": "Hides the close button of the header; Escape and the actions still close.",
+			"translation": "Esconde o botão de fechar do cabeçalho; Escape e as ações continuam fechando."
+		},
+		"role": {
+			"source": "`'alertdialog'` for an urgent message that requires a response. Defaults to `'dialog'`.",
+			"translation": "`'alertdialog'` para uma mensagem urgente que exige resposta. Padrão: `'dialog'`."
+		},
+		"labels": {
+			"source": "Overrides some or all of `defaultDialogLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultDialogLabels`."
+		},
+		"open": {
+			"source": "Shows the overlay. The parent owns this state and sets it to `false` in `onClose`.",
+			"translation": "Mostra o overlay. O pai controla esse estado e o muda para `false` no `onClose`."
+		},
+		"onClose": {
+			"source": "Called when the user asks to close; the overlay closes only when the parent sets `open` to `false`.",
+			"translation": "Chamado quando o usuário pede o fechamento; o overlay só fecha quando o pai muda `open` para `false`."
+		},
+		"closeOnEscape": {
+			"source": "Escape asks to close. Defaults to `true`.",
+			"translation": "Escape pede o fechamento. Padrão: `true`."
+		},
+		"initialFocus": {
+			"source": "Element focused when the overlay opens. Defaults to the panel itself, so that its name and description are read first; point it to the first field of a short form, or to the least destructive action.",
+			"translation": "Elemento focado quando o overlay abre. Padrão: o próprio painel, para que o nome e a descrição sejam lidos primeiro; aponte para o primeiro campo de um formulário curto, ou para a ação menos destrutiva."
+		},
+		"finalFocus": {
+			"source": "Element focused when the overlay closes. Defaults to the element that had focus before it opened (usually its trigger); set it when that element no longer exists, e.g. after deleting the row that opened it.",
+			"translation": "Elemento focado quando o overlay fecha. Padrão: o elemento que tinha o foco antes de ele abrir (em geral o gatilho); defina-o quando esse elemento não existir mais, por exemplo depois de apagar a linha que o abriu."
+		},
+		"container": {
+			"source": "Element that receives the overlay. Defaults to `document.body`.",
+			"translation": "Elemento que recebe o overlay. Padrão: `document.body`."
+		}
+	},
+	"ConfirmDialog": {
+		"size": {
+			"source": "Maximum width: 24, 32 or 48 rem. Defaults to `'small'`.",
+			"translation": "Largura máxima: 24, 32 ou 48 rem. Padrão: `'small'`."
+		},
+		"title": {
+			"source": "The question, e.g. `'Delete this report?'`.",
+			"translation": "A pergunta, por exemplo `'Delete this report?'`."
+		},
+		"description": {
+			"source": "The consequence, e.g. `'It will be removed for everyone. This cannot be undone.'`.",
+			"translation": "A consequência, por exemplo `'It will be removed for everyone. This cannot be undone.'`."
+		},
+		"children": {
+			"source": "Additional content between the description and the buttons.",
+			"translation": "Conteúdo adicional entre a descrição e os botões."
+		},
+		"intent": {
+			"source": "Meaning of the action; `'error'` marks a destructive one. Defaults to `'official'`.",
+			"translation": "Significado da ação; `'error'` marca uma ação destrutiva. Padrão: `'official'`."
+		},
+		"onConfirm": {
+			"source": "Performs the action. While a returned promise is pending, the confirm button is busy and the dialog cannot be dismissed; if it rejects, the dialog stays open so the parent can show the error.",
+			"translation": "Executa a ação. Enquanto uma promise devolvida está pendente, o botão de confirmar fica ocupado e o diálogo não pode ser dispensado; se ela for rejeitada, o diálogo continua aberto para que o pai mostre o erro."
+		},
+		"onCancel": {
+			"source": "Called on the cancel button and on Escape.",
+			"translation": "Chamado no botão de cancelar e no Escape."
+		},
+		"labels": {
+			"source": "Overrides some or all of `defaultConfirmDialogLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultConfirmDialogLabels`."
+		},
+		"open": {
+			"source": "Shows the overlay. The parent owns this state and sets it to `false` in `onClose`.",
+			"translation": "Mostra o overlay. O pai controla esse estado e o muda para `false` no `onClose`."
+		},
+		"finalFocus": {
+			"source": "Element focused when the overlay closes. Defaults to the element that had focus before it opened (usually its trigger); set it when that element no longer exists, e.g. after deleting the row that opened it.",
+			"translation": "Elemento focado quando o overlay fecha. Padrão: o elemento que tinha o foco antes de ele abrir (em geral o gatilho); defina-o quando esse elemento não existir mais, por exemplo depois de apagar a linha que o abriu."
+		},
+		"container": {
+			"source": "Element that receives the overlay. Defaults to `document.body`.",
+			"translation": "Elemento que recebe o overlay. Padrão: `document.body`."
+		}
+	},
+	"Drawer": {
+		"title": {
+			"source": "Visible title and accessible name of the drawer (a level 2 heading).",
+			"translation": "Título visível e nome acessível do drawer (um título de nível 2)."
+		},
+		"description": {
+			"source": "Text under the title, read with the name when the drawer opens (`aria-describedby`).",
+			"translation": "Texto abaixo do título, lido com o nome quando o drawer abre (`aria-describedby`)."
+		},
+		"children": {
+			"source": "Content of the drawer.",
+			"translation": "Conteúdo do drawer."
+		},
+		"actions": {
+			"source": "Buttons at the end of the drawer, the main action last.",
+			"translation": "Botões no fim do drawer, com a ação principal por último."
+		},
+		"placement": {
+			"source": "Defaults to `'end'`.",
+			"translation": "Padrão: `'end'`."
+		},
+		"size": {
+			"source": "Width (20, 28 or 40 rem) at `start` and `end`, maximum height (40, 60 or 85%) at `top` and `bottom`. Defaults to `'medium'`.",
+			"translation": "Largura (20, 28 ou 40 rem) em `start` e `end`, altura máxima (40, 60 ou 85%) em `top` e `bottom`. Padrão: `'medium'`."
+		},
+		"closeOnOutsideClick": {
+			"source": "Clicking outside the panel asks to close. Defaults to `false`; enable it when the drawer holds no input.",
+			"translation": "Clicar fora do painel pede o fechamento. Padrão: `false`; ative quando o drawer não tiver campos."
+		},
+		"labels": {
+			"source": "Overrides some or all of `defaultDrawerLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultDrawerLabels`."
+		},
+		"open": {
+			"source": "Shows the overlay. The parent owns this state and sets it to `false` in `onClose`.",
+			"translation": "Mostra o overlay. O pai controla esse estado e o muda para `false` no `onClose`."
+		},
+		"onClose": {
+			"source": "Called when the user asks to close; the overlay closes only when the parent sets `open` to `false`.",
+			"translation": "Chamado quando o usuário pede o fechamento; o overlay só fecha quando o pai muda `open` para `false`."
+		},
+		"closeOnEscape": {
+			"source": "Escape asks to close. Defaults to `true`.",
+			"translation": "Escape pede o fechamento. Padrão: `true`."
+		},
+		"initialFocus": {
+			"source": "Element focused when the overlay opens. Defaults to the panel itself, so that its name and description are read first; point it to the first field of a short form, or to the least destructive action.",
+			"translation": "Elemento focado quando o overlay abre. Padrão: o próprio painel, para que o nome e a descrição sejam lidos primeiro; aponte para o primeiro campo de um formulário curto, ou para a ação menos destrutiva."
+		},
+		"finalFocus": {
+			"source": "Element focused when the overlay closes. Defaults to the element that had focus before it opened (usually its trigger); set it when that element no longer exists, e.g. after deleting the row that opened it.",
+			"translation": "Elemento focado quando o overlay fecha. Padrão: o elemento que tinha o foco antes de ele abrir (em geral o gatilho); defina-o quando esse elemento não existir mais, por exemplo depois de apagar a linha que o abriu."
+		},
+		"container": {
+			"source": "Element that receives the overlay. Defaults to `document.body`.",
+			"translation": "Elemento que recebe o overlay. Padrão: `document.body`."
+		}
 	}
 }

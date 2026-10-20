@@ -12,7 +12,7 @@ import { generateComponentApi } from '#scripts/generate-explorer-api.ts';
 import { starterRoot } from '#test/support/starter-server.ts';
 import {
 	camelCaseOf,
-	documentedNamesOf,
+	describedNamesOf,
 	exampleFileOf,
 	explorerComponents,
 	findComponent,
@@ -98,6 +98,14 @@ describe('the catalog', (): void => {
 			component.controls.forEach((name: string): void => {
 				assert.notEqual(propNamed(component, name)?.kind, 'other', `${component.name}.${name}`);
 			});
+
+			(component.opener?.closeProps ?? []).forEach((name: string): void => {
+				assert.ok(propNamed(component, name), `${component.name} has no prop ${name}.`);
+			});
+
+			(component.types ?? []).forEach((type: string): void => {
+				assert.ok((generatedApi[type] ?? []).length > 0, `${type} has no fields.`);
+			});
 		});
 	});
 
@@ -115,6 +123,9 @@ describe('the catalog', (): void => {
 					}),
 					...component.accessibility.map((note: string): string => `${key}.accessibility.${note}`),
 					...component.parts.map((part: string): string => `${key}.parts.${camelCaseOf(part)}`),
+					...(component.types ?? []).map((type: string): string => {
+						return `${key}.types.${camelCaseOf(type)}`;
+					}),
 				];
 
 				paths.forEach((path: string): void => {
@@ -188,32 +199,36 @@ describe('the props', (): void => {
 	});
 
 	test('are described in Brazilian Portuguese from the current English text', (): void => {
-		const problems: string[] = explorerComponents
-			.flatMap((component: ExplorerComponent): string[] => documentedNamesOf(component))
-			.flatMap((name: string): string[] => {
-				const translations: Readonly<Record<string, { source: string }>> =
-					propTranslations[name] ?? {};
+		const problems: string[] = [
+			...new Set(
+				explorerComponents.flatMap((component: ExplorerComponent): string[] => {
+					return describedNamesOf(component);
+				}),
+			),
+		].flatMap((name: string): string[] => {
+			const translations: Readonly<Record<string, { source: string }>> =
+				propTranslations[name] ?? {};
 
-				const described: ComponentProp[] = (generatedApi[name] ?? []).filter(
-					(prop: ComponentProp): boolean => prop.description !== '',
-				);
+			const described: ComponentProp[] = (generatedApi[name] ?? []).filter(
+				(prop: ComponentProp): boolean => prop.description !== '',
+			);
 
-				const missing: string[] = described
-					.filter((prop: ComponentProp): boolean => {
-						return translations[prop.name]?.source !== prop.description;
-					})
-					.map((prop: ComponentProp): string => {
-						return `${name}.${prop.name}: translate "${prop.description}"`;
-					});
+			const missing: string[] = described
+				.filter((prop: ComponentProp): boolean => {
+					return translations[prop.name]?.source !== prop.description;
+				})
+				.map((prop: ComponentProp): string => {
+					return `${name}.${prop.name}: translate "${prop.description}"`;
+				});
 
-				const unknown: string[] = Object.keys(translations)
-					.filter((propName: string): boolean => {
-						return !described.some((prop: ComponentProp): boolean => prop.name === propName);
-					})
-					.map((propName: string): string => `${name}.${propName}: no such described prop`);
+			const unknown: string[] = Object.keys(translations)
+				.filter((propName: string): boolean => {
+					return !described.some((prop: ComponentProp): boolean => prop.name === propName);
+				})
+				.map((propName: string): string => `${name}.${propName}: no such described prop`);
 
-				return [...missing, ...unknown];
-			});
+			return [...missing, ...unknown];
+		});
 
 		assert.deepEqual(problems, []);
 	});
@@ -377,6 +392,44 @@ describe('the code of the playground', (): void => {
 		);
 	});
 
+	test('writes a modal overlay with the button that opens it and the state of open', (): void => {
+		const snippet: string = snippetOf({
+			name: 'ConfirmDialog',
+			subpath: 'feedback',
+			props: [],
+			values: { title: 'Release the bounty?' },
+			opener: { label: 'Release the bounty', closeProps: ['onConfirm', 'onCancel'] },
+		});
+
+		assert.equal(
+			snippet,
+			[
+				"'use client';",
+				"import { Button } from '@midnight-indigo/ui/buttons';",
+				"import { ConfirmDialog } from '@midnight-indigo/ui/feedback';",
+				"import { useState } from 'react';",
+				"import type { ReactElement } from 'react';",
+				'',
+				'export const ConfirmDialogExample = (): ReactElement => {',
+				'\tconst [open, setOpen] = useState<boolean>(false);',
+				'',
+				'\treturn (',
+				'\t\t<>',
+				'\t\t\t<Button onClick={(): void => setOpen(true)}>Release the bounty</Button>',
+				'',
+				'\t\t\t<ConfirmDialog',
+				"\t\t\t\ttitle='Release the bounty?'",
+				'\t\t\t\topen={open}',
+				'\t\t\t\tonConfirm={(): void => setOpen(false)}',
+				'\t\t\t\tonCancel={(): void => setOpen(false)}',
+				'\t\t\t/>',
+				'\t\t</>',
+				'\t);',
+				'};',
+			].join('\n'),
+		);
+	});
+
 	test('compiles for every value of every control of every component', (): void => {
 		const snippets: Map<string, string> = new Map<string, string>();
 
@@ -427,6 +480,7 @@ describe('the code of the playground', (): void => {
 									},
 								),
 							),
+							opener: component.opener,
 						}),
 					);
 				},

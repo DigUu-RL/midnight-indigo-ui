@@ -53,6 +53,12 @@ const explorerPages: readonly string[] = [
 	'/en-us/components/alert',
 	'/en-us/components/progress-bar',
 	'/pt-br/components/tooltip',
+	'/en-us/components/popover',
+	'/pt-br/components/menu',
+	'/en-us/components/context-menu',
+	'/en-us/components/dialog',
+	'/pt-br/components/confirm-dialog',
+	'/en-us/components/drawer',
 ];
 
 // A table wider than its column (the props of a component) becomes a focusable region once it is hydrated and measured;

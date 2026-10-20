@@ -192,6 +192,8 @@ export const Example = ({
 interface ApiTableProps {
 	name: string;
 	props: readonly ComponentProp[];
+	/** The props are the fields of a type, e.g. `MenuItemOption`. */
+	fields?: boolean;
 	translate: TFunction;
 }
 
@@ -206,8 +208,13 @@ const DescriptionOf = ({
 	return prop.description === '' ? '—' : <DocumentationText text={prop.description} />;
 };
 
-/** The props of a component, or a sentence for a part with none of its own, e.g. `TableRow`. */
-export const ApiTable = ({ name, props, translate }: ApiTableProps): ReactElement => {
+/** The props of a component or the fields of a type, or a sentence for a part with none of its own, e.g. `TableRow`. */
+export const ApiTable = ({
+	name,
+	props,
+	fields = false,
+	translate,
+}: ApiTableProps): ReactElement => {
 	if (props.length === 0) {
 		return (
 			<p>
@@ -217,10 +224,17 @@ export const ApiTable = ({ name, props, translate }: ApiTableProps): ReactElemen
 	}
 
 	return (
-		<Table caption={translate('explorer.api.caption', { component: name })}>
+		<Table
+			caption={translate(fields ? 'explorer.api.fieldsCaption' : 'explorer.api.caption', {
+				component: name,
+			})}
+		>
 			<TableHead>
 				<TableRow>
-					<TableHeaderCell scope='col'>{translate('explorer.api.prop')}</TableHeaderCell>
+					<TableHeaderCell scope='col'>
+						{translate(fields ? 'explorer.api.field' : 'explorer.api.prop')}
+					</TableHeaderCell>
+
 					<TableHeaderCell scope='col'>{translate('explorer.api.type')}</TableHeaderCell>
 					<TableHeaderCell scope='col'>{translate('explorer.api.default')}</TableHeaderCell>
 					<TableHeaderCell scope='col'>{translate('explorer.api.description')}</TableHeaderCell>
