@@ -7,7 +7,7 @@ import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
 import { Button } from '#src/buttons/button/index.tsx';
 import type { SemanticIntent } from '#src/tokens/index.ts';
 import { Dialog } from '#src/feedback/dialog/index.tsx';
-import type { DialogProps } from '#src/feedback/dialog/index.tsx';
+import type { DialogProps, DialogSize } from '#src/feedback/dialog/index.tsx';
 import type { ModalOverlayProps } from '#src/feedback/modal-layer/index.tsx';
 
 /** Texts of the confirmation dialog. Name the action instead of the defaults: `'Delete report'`, `'Keep editing'`. */
@@ -26,7 +26,9 @@ export const defaultConfirmDialogLabels: Readonly<ConfirmDialogLabels> = Object.
 export interface ConfirmDialogProps
 	extends
 		Omit<ModalOverlayProps, 'onClose' | 'initialFocus' | 'closeOnEscape'>,
-		Pick<DialogProps, 'size' | 'className' | 'style' | 'id'> {
+		Pick<DialogProps, 'className' | 'style' | 'id'> {
+	/** Maximum width: 24, 32 or 48 rem. Defaults to `'small'`. */
+	size?: DialogSize;
 	/** The question, e.g. `'Delete this report?'`. */
 	title: ReactNode;
 	/** The consequence, e.g. `'It will be removed for everyone. This cannot be undone.'`. */

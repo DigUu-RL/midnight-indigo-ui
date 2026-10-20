@@ -363,7 +363,9 @@
 			"description": "Description",
 			"required": "required",
 			"native": "Attribute of the native element, passed on unchanged.",
-			"nativeOnly": "`{{component}}` has no props of its own: it takes the attributes of its native element."
+			"nativeOnly": "`{{component}}` has no props of its own: it takes the attributes of its native element.",
+			"fieldsCaption": "Fields of {{component}}",
+			"field": "Field"
 		},
 		"components": {
 			"button": {
@@ -819,6 +821,128 @@
 					"describes": "It describes its trigger (`aria-describedby`) and never names it: a trigger without a name of its own is reported in the console.",
 					"content": "Plain text only: a tooltip cannot be focused, so a link or a button in it would be out of reach. Use a `Popover` for those.",
 					"disabled": "A disabled control receives no hover or focus, so it never shows its tooltip: explain why it is disabled in visible text."
+				}
+			},
+			"popover": {
+				"summary": "Panel of interactive content anchored to the button that opens it.",
+				"description": "It opens from its `trigger` with fields, buttons or links: filters, a short form, details. `title` names it with a visible heading, or `label` without one; `placement` picks its side and flips when there is no room. `open` and `onOpenChange` let the parent control it.",
+				"examples": {
+					"filters": {
+						"title": "Filters with a form",
+						"description": "The parent owns `open`, so applying the filters closes the popover; `closeOnOutsideClick={false}` keeps the fields when a click lands outside."
+					},
+					"details": {
+						"title": "Details without a heading",
+						"description": "`label` names the popover when its text already says what it is about; `placement='bottom-end'` aligns it to the end of its button."
+					}
+				},
+				"accessibility": {
+					"dialog": "It is a `dialog` named by its `title` or `label`, and its trigger receives `aria-haspopup`, `aria-expanded` and `aria-controls`.",
+					"focus": "While open it is modal: focus moves into it and stays there, and Escape or a click outside close it and return focus to the trigger.",
+					"name": "For plain text that only describes a control, use a `Tooltip`: a popover is for content the reader acts on."
+				}
+			},
+			"menu": {
+				"summary": "List of actions opened from a button.",
+				"description": "`trigger` is the button that opens the menu and names it; `items` are its actions (`MenuItemOption`) and separators (`MenuSeparator`), in order. An item runs its `onSelect` after the menu has closed, so it can open a dialog.",
+				"types": {
+					"menuItemOption": "An action of the menu, an entry of `items`.",
+					"menuSeparator": "A line between groups of items, an entry of `items`."
+				},
+				"examples": {
+					"actions": {
+						"title": "Actions of each row",
+						"description": "Each `IconButton` names its menu after the member it acts on, and the last item is `destructive`."
+					},
+					"shortcuts": {
+						"title": "Icons, shortcuts and disabled items",
+						"description": "Decorative icons, the `shortcut` of each action on the page, and an item `disabled` until there is an entry to paste."
+					}
+				},
+				"accessibility": {
+					"name": "The trigger names the menu: give an `IconButton` a `label` that says what the actions apply to.",
+					"keyboard": "Enter, Space and Down open it on the first item, Up on the last; the arrow keys, Home, End and typing move between the items, and Escape or Tab close it.",
+					"select": "Selecting an item closes the menu and returns focus to the trigger before `onSelect` runs; a `disabled` item stays visible, and the arrow keys skip it."
+				}
+			},
+			"contextMenu": {
+				"summary": "Menu of actions on an element, opened with a right click or the keyboard.",
+				"description": "It replaces the browser context menu on its child: a right click opens it at the pointer, Shift+F10 or the context menu key under the focused element. `label` names it, `items` takes the same entries as a `Menu`, and `disabled` gives the browser menu back.",
+				"types": {
+					"menuItemOption": "An action of the menu, an entry of `items`.",
+					"menuSeparator": "A line between groups of items, an entry of `items`."
+				},
+				"examples": {
+					"logs": {
+						"title": "Actions on each card",
+						"description": "Each card is focusable (`tabIndex={0}`), so the keyboard opens its menu too; the `label` names the log it acts on."
+					},
+					"visibleActions": {
+						"title": "The same actions in sight",
+						"description": "A context menu is hard to discover, so the card also has a `Menu` button with the same items."
+					}
+				},
+				"accessibility": {
+					"keyboard": "Shift+F10 and the context menu key open it under the focused element; inside, it behaves like a `Menu`, and focus returns to the element on close.",
+					"focusable": "Make its child focusable (`tabIndex={0}`, or a native control): without focus, the keyboard cannot open the menu.",
+					"discover": "Nothing shows that a context menu exists: offer the same actions somewhere visible as well, such as a `Menu` button."
+				}
+			},
+			"dialog": {
+				"summary": "Modal dialog for a task or a decision that interrupts the page.",
+				"description": "The parent owns `open` and closes it in `onClose`, which says what asked to close: `'escape'`, `'outside'` or `'close-button'`. `title` names it, `description` describes it, `actions` go at its end with the main one last, and `size` sets its maximum width.",
+				"examples": {
+					"form": {
+						"title": "A short form",
+						"description": "`initialFocus` starts on the field, the only thing to do in the dialog; Cancel and Escape discard the draft."
+					},
+					"details": {
+						"title": "Information only",
+						"description": "There is nothing to lose, so `closeOnOutsideClick` closes it on a click outside too; `size='large'` gives the list room."
+					}
+				},
+				"accessibility": {
+					"name": "It is a `dialog` with `aria-modal`, named by its `title` and described by its `description`; `role='alertdialog'` is for an urgent message that requires a response.",
+					"focus": "Focus moves into it on open (the panel, or `initialFocus`), Tab and Shift+Tab stay inside, and the page behind is inert and does not scroll.",
+					"close": "Escape and the close button ask to close; focus returns to the element that opened it, or to `finalFocus` when that element no longer exists."
+				}
+			},
+			"confirmDialog": {
+				"summary": "Asks to confirm an action, stating its consequence, before it happens.",
+				"description": "`title` is the question and `description` the consequence. `onConfirm` performs the action and `onCancel` gives up; `intent='error'` marks a destructive action, and `labels` name the buttons after what they do.",
+				"examples": {
+					"destructive": {
+						"title": "A destructive action",
+						"description": "`intent='error'` starts focus on the cancel button, and `labels` name both buttons after the action."
+					},
+					"pending": {
+						"title": "An action that takes time",
+						"description": "`onConfirm` returns a promise: while it is pending, the confirm button is busy and the dialog cannot be dismissed."
+					}
+				},
+				"accessibility": {
+					"alertdialog": "It is an `alertdialog`: it requires a response, so a click outside does not close it, and Escape cancels.",
+					"focus": "Focus starts on the confirm button, or on the cancel button when `intent='error'`, so that Enter alone never destroys anything.",
+					"labels": "Name the buttons after the action (`'Delete entry'`, `'Keep entry'`) instead of the defaults: each one is read without the question."
+				}
+			},
+			"drawer": {
+				"summary": "Modal panel that slides from an edge of the screen.",
+				"description": "For details, filters or a secondary task beside the page. It behaves like a `Dialog`: the parent owns `open` and closes it in `onClose`. `placement` picks the edge (`start` and `end` follow the reading direction) and `size` its width or height.",
+				"examples": {
+					"details": {
+						"title": "Details of a row",
+						"description": "One drawer for the whole list: the button of each member fills it, and `closeOnOutsideClick` closes it on a click outside."
+					},
+					"filters": {
+						"title": "Filters from the start edge",
+						"description": "`placement='start'` opens it beside the list it filters; it holds fields, so a click outside does not close it."
+					}
+				},
+				"accessibility": {
+					"dialog": "It is a `dialog` with `aria-modal`, named by its `title`: focus moves into it, stays there, and returns to its trigger on close.",
+					"placement": "`start` and `end` follow the reading direction: on a right-to-left page, `end` is the left edge.",
+					"close": "Its header always has a close button, and Escape asks to close through `onClose`: no one depends on a click outside."
 				}
 			},
 			"container": {

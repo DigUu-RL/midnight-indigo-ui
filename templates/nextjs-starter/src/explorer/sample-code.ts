@@ -131,6 +131,35 @@ const jumpSource: string = [
 	"].join('\\n');",
 ].join('\n');
 
+/** An entry of a menu, as `MenuEntry` types it. */
+export type SampleMenuEntry =
+	| { id: string; label: string; shortcut?: string; destructive?: boolean }
+	| { id: string; separator: true };
+
+/** The entries of a menu: plain data, without the `onSelect` the examples give them. */
+export const sampleCrewMenuItems: readonly SampleMenuEntry[] = [
+	{ id: 'message', label: 'Send a message' },
+	{ id: 'assign', label: 'Assign a bounty', shortcut: 'Control+B' },
+	{ id: 'separator', separator: true },
+	{ id: 'remove', label: 'Remove from the crew', destructive: true },
+];
+
+const entryLiteralOf = (entry: SampleMenuEntry): string => {
+	const fields: string = Object.entries(entry)
+		.map(([field, value]: [string, string | boolean]): string => {
+			return `${field}: ${typeof value === 'string' ? `'${value}'` : String(value)}`;
+		})
+		.join(', ');
+
+	return `{ ${fields} }`;
+};
+
+const crewMenuItems: string = [
+	'const crewMenuItems: readonly MenuEntry[] = [',
+	...sampleCrewMenuItems.map((entry: SampleMenuEntry): string => `\t${entryLiteralOf(entry)},`),
+	'];',
+].join('\n');
+
 const plusIcon: string = [
 	'<Icon decorative>',
 	'\t<path',
@@ -269,6 +298,28 @@ export const sampleCodes = {
 		imports: {},
 		declarations: [bountyType],
 		code: '(bounty: Bounty): string => bounty.name',
+	},
+	plotJumpButton: {
+		imports: { buttons: ['Button'] },
+		code: "<Button variant='outline'>Plot the jump</Button>",
+	},
+	crewActionsButton: {
+		imports: { buttons: ['Button'] },
+		code: "<Button variant='outline'>Crew actions</Button>",
+	},
+	crewMenuItems: {
+		imports: {},
+		typeImports: { feedback: ['MenuEntry'] },
+		declarations: [crewMenuItems],
+		code: 'crewMenuItems',
+	},
+	crewMemberCard: {
+		imports: { 'data-display': ['Card', 'CardHeader'] },
+		code: [
+			'<Card tabIndex={0}>',
+			"\t<CardHeader title='Spike Spiegel' subtitle='Right click, or focus and press Shift+F10' />",
+			'</Card>',
+		].join('\n'),
 	},
 } as const satisfies Readonly<Record<string, SampleCode>>;
 

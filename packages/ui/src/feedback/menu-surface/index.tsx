@@ -34,6 +34,7 @@ const {
 export interface MenuItemOption {
 	/** Unique within the menu; used as the React key. */
 	id: string;
+	/** Text of the item, which names it: a verb for the action, e.g. `'Rename'`. */
 	label: string;
 	/** Runs after the menu has closed and focus is back on its trigger, so it may open a dialog. */
 	onSelect?: (() => void) | undefined;
@@ -49,7 +50,9 @@ export interface MenuItemOption {
 
 /** A line between groups of items. */
 export interface MenuSeparator {
+	/** Unique within the menu; used as the React key. */
 	id: string;
+	/** Tells the separator from an item. */
 	separator: true;
 }
 

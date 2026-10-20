@@ -40,12 +40,16 @@ export interface DrawerProps
 	title: ReactNode;
 	/** Text under the title, read with the name when the drawer opens (`aria-describedby`). */
 	description?: ReactNode;
+	/** Content of the drawer. */
 	children?: ReactNode;
 	/** Buttons at the end of the drawer, the main action last. */
 	actions?: ReactNode;
 	/** Defaults to `'end'`. */
 	placement?: DrawerPlacement;
-	/** Width (20, 28 or 40 rem) at `start` and `end`, maximum height (40, 60 or 85%) at `top` and `bottom`. */
+	/**
+	 * Width (20, 28 or 40 rem) at `start` and `end`, maximum height (40, 60 or 85%) at `top` and `bottom`. Defaults to
+	 * `'medium'`.
+	 */
 	size?: DrawerSize;
 	/** Clicking outside the panel asks to close. Defaults to `false`; enable it when the drawer holds no input. */
 	closeOnOutsideClick?: boolean;

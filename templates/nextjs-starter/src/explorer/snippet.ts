@@ -1,8 +1,9 @@
 // The code of what the playground shows: a component with the props the reader chose, as a TypeScript module that
 // compiles as is (a test type-checks the snippets of every component). Props left at their default are left out; the
 // other values (the props of the catalog without a control) and the samples of the props that take an element are
-// always written, after the declarations they refer to.
-import type { PlaygroundValue } from '#src/explorer/catalog.ts';
+// always written, after the declarations they refer to. A modal overlay is written with the button that opens it and
+// the state of `open`.
+import type { Opener, PlaygroundValue } from '#src/explorer/catalog.ts';
 import type { ComponentProp } from '#src/explorer/component-api.ts';
 import type { SampleCode } from '#src/explorer/sample-code.ts';
 
@@ -14,6 +15,8 @@ export interface SnippetSource {
 	values: Readonly<Record<string, PlaygroundValue>>;
 	/** The code of the sample of each prop that takes an element. */
 	slots?: Readonly<Record<string, SampleCode>>;
+	/** The button that opens a modal overlay. */
+	opener?: Opener | undefined;
 }
 
 const lineLimit: number = 100;
@@ -104,11 +107,15 @@ const importLines = (
 	name: string,
 	subpath: string,
 	slots: Readonly<Record<string, SampleCode>>,
+	opener: Opener | undefined,
 ): string[] => {
 	const samples: SampleCode[] = Object.values(slots);
 
 	const values: Map<string, Set<string>> = namesBySubpathOf(
-		samples.map((sample: SampleCode): ImportedNames => sample.imports),
+		[
+			...samples.map((sample: SampleCode): ImportedNames => sample.imports),
+			opener === undefined ? {} : { buttons: ['Button'] },
+		],
 		new Map([[subpath, new Set([name])]]),
 	);
 
@@ -148,7 +155,63 @@ const declarationLines = (slots: Readonly<Record<string, SampleCode>>): string[]
 	return declarations.flatMap((declaration: string): string[] => [...declaration.split('\n'), '']);
 };
 
-export const snippetOf = ({ name, subpath, props, values, slots = {} }: SnippetSource): string => {
+/** The attributes that open and close a modal overlay with the state of the snippet. */
+const overlayAttributesOf = (opener: Opener | undefined): string[] => {
+	if (opener === undefined) return [];
+
+	return [
+		'open={open}',
+		...opener.closeProps.map((prop: string): string => `${prop}={(): void => setOpen(false)}`),
+	];
+};
+
+/** The body of the component: the element, or the button that opens it beside it, with the state of `open`. */
+const bodyLines = (
+	name: string,
+	element: readonly string[],
+	opener: Opener | undefined,
+): string[] => {
+	const signature: string = `export const ${name}Example = (): ReactElement =>`;
+
+	const indented = (lines: readonly string[], tabs: string): string[] => {
+		return lines.map((line: string): string => (line === '' ? '' : `${tabs}${line}`));
+	};
+
+	if (opener === undefined) {
+		return element.length === 1
+			? [`${signature} {`, `\treturn ${element.join('')};`, '};']
+			: [`${signature} {`, '\treturn (', ...indented(element, '\t\t'), '\t);', '};'];
+	}
+
+	const button: string[] = elementLines(
+		'Button',
+		['onClick={(): void => setOpen(true)}'],
+		[childOf(opener.label)],
+	);
+
+	return [
+		`${signature} {`,
+		'\tconst [open, setOpen] = useState<boolean>(false);',
+		'',
+		'\treturn (',
+		'\t\t<>',
+		...indented(button, '\t\t\t'),
+		'',
+		...indented(element, '\t\t\t'),
+		'\t\t</>',
+		'\t);',
+		'};',
+	];
+};
+
+export const snippetOf = ({
+	name,
+	subpath,
+	props,
+	values,
+	slots = {},
+	opener,
+}: SnippetSource): string => {
 	const controlled: ReadonlySet<string> = new Set(
 		props.map((prop: ComponentProp): string => prop.name),
 	);
@@ -186,29 +249,18 @@ export const snippetOf = ({ name, subpath, props, values, slots = {} }: SnippetS
 
 	const element: string[] = elementLines(
 		name,
-		[...fixedAttributes, ...shownAttributes, ...slotAttributes],
+		[...fixedAttributes, ...shownAttributes, ...slotAttributes, ...overlayAttributesOf(opener)],
 		children,
 	);
 
 	const header: string[] = [
-		...importLines(name, subpath, slots),
+		...(opener === undefined ? [] : ["'use client';"]),
+		...importLines(name, subpath, slots, opener),
+		...(opener === undefined ? [] : ["import { useState } from 'react';"]),
 		"import type { ReactElement } from 'react';",
 		'',
 		...declarationLines(slots),
 	];
 
-	const signature: string = `export const ${name}Example = (): ReactElement =>`;
-
-	const body: string[] =
-		element.length === 1
-			? [`${signature} {`, `\treturn ${element.join('')};`, '};']
-			: [
-					`${signature} {`,
-					'\treturn (',
-					...element.map((line: string): string => (line === '' ? '' : `\t\t${line}`)),
-					'\t);',
-					'};',
-				];
-
-	return [...header, ...body].join('\n');
+	return [...header, ...bodyLines(name, element, opener)].join('\n');
 };

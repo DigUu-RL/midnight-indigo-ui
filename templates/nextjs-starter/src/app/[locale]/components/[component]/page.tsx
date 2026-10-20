@@ -1,5 +1,6 @@
 // Page of a component in the explorer (Server Component, built once per component and locale): what it is for, its
-// import, every variant and state, a playground, realistic examples with their code, its props and its accessibility.
+// import, every variant and state, a playground, realistic examples with their code, its props (and the fields of the
+// types it takes) and its accessibility.
 import { CodeBlock, highlightCode } from '@midnight-indigo/ui/code';
 import type { HighlightedCode } from '@midnight-indigo/ui/code';
 import { PageHeader } from '@midnight-indigo/ui/dashboard';
@@ -132,8 +133,14 @@ const ComponentPage = async (props: ComponentPageProps): Promise<ReactElement> =
 	const variants: ComponentProp[] = propsNamed(api, component.variants);
 	const hasVariants: boolean = variants.length > 0 || component.states.length > 0;
 
+	const types: readonly string[] = component.types ?? [];
+	const source: string = `'@midnight-indigo/ui/${component.subpath}'`;
+
 	const importCode: HighlightedCode = await highlightCode(
-		`import { ${documentedNames.join(', ')} } from '@midnight-indigo/ui/${component.subpath}';`,
+		[
+			`import { ${documentedNames.join(', ')} } from ${source};`,
+			...(types.length === 0 ? [] : [`import type { ${types.join(', ')} } from ${source};`]),
+		].join('\n'),
 		'tsx',
 	);
 
@@ -163,8 +170,8 @@ const ComponentPage = async (props: ComponentPageProps): Promise<ReactElement> =
 			};
 		}),
 		{ id: 'api', label: translate('explorer.page.api') },
-		...component.parts.map((part: string): TableOfContentsItem => {
-			return { id: `api-${kebabCaseOf(part)}`, label: part, level: 2 };
+		...[...component.parts, ...types].map((name: string): TableOfContentsItem => {
+			return { id: `api-${kebabCaseOf(name)}`, label: name, level: 2 };
 		}),
 		{ id: 'accessibility', label: translate('explorer.page.accessibility') },
 	];
@@ -206,6 +213,7 @@ const ComponentPage = async (props: ComponentPageProps): Promise<ReactElement> =
 						controls={propsNamed(api, component.controls)}
 						slots={slots}
 						sampleWidth={component.sampleWidth}
+						opener={component.opener}
 					/>
 				</Section>
 
@@ -244,6 +252,22 @@ const ComponentPage = async (props: ComponentPageProps): Promise<ReactElement> =
 								</p>
 
 								<ApiTable name={part} props={propsOf(part, locale)} translate={translate} />
+							</section>
+						);
+					})}
+
+					{types.map((type: string): ReactElement => {
+						return (
+							<section key={type} className='api-part' aria-labelledby={`api-${kebabCaseOf(type)}`}>
+								<h3 id={`api-${kebabCaseOf(type)}`} style={themeVariables.typography.headingSmall}>
+									{type}
+								</h3>
+
+								<p>
+									<DocumentationText text={translate(`${key}.types.${camelCaseOf(type)}`)} />
+								</p>
+
+								<ApiTable name={type} props={propsOf(type, locale)} fields translate={translate} />
 							</section>
 						);
 					})}

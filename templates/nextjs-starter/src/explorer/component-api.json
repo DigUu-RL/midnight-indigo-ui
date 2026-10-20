@@ -1768,6 +1768,712 @@
 			"options": []
 		}
 	],
+	"Popover": [
+		{
+			"name": "title",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Visible heading of the popover, which names it.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Accessible name of a popover without a heading, e.g. `'Jump coordinates'`.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "trigger",
+			"type": "ReactElement<TriggerProps>",
+			"required": true,
+			"defaultValue": null,
+			"description": "The button that opens and closes the popover; it receives `aria-haspopup`, `aria-expanded` and `aria-controls`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "children",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Content of the popover: fields, buttons or links, which the keyboard reaches inside it.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "open",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Open state, when the parent controls it.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "defaultOpen",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Initial open state when uncontrolled.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "onOpenChange",
+			"type": "(open: boolean) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the requested state, on the trigger, Escape or a click outside.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "placement",
+			"type": "PopoverPlacement",
+			"required": false,
+			"defaultValue": "'bottom-start'",
+			"description": "Defaults to `'bottom-start'`; it flips when there is no room.",
+			"native": false,
+			"kind": "enum",
+			"options": ["bottom-start", "bottom-end", "top-start", "top-end"]
+		},
+		{
+			"name": "closeOnOutsideClick",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": "true",
+			"description": "Clicking outside closes. Defaults to `true`; disable it when the popover holds input that would be lost.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "initialFocus",
+			"type": "RefObject<HTMLElement | null>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Element focused on open. Defaults to the popover itself.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "container",
+			"type": "OverlayContainer",
+			"required": false,
+			"defaultValue": "document.body",
+			"description": "Element that receives the popover. Defaults to `document.body`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"Menu": [
+		{
+			"name": "trigger",
+			"type": "ReactElement<TriggerProps>",
+			"required": true,
+			"defaultValue": null,
+			"description": "The button that opens the menu, which also names it. It receives `aria-haspopup=\"menu\"`, `aria-expanded`, `aria-controls` and, when it has none, an `id`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "items",
+			"type": "readonly MenuEntry[]",
+			"required": true,
+			"defaultValue": null,
+			"description": "Items and separators, in order.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "placement",
+			"type": "MenuPlacement",
+			"required": false,
+			"defaultValue": "'bottom-start'",
+			"description": "Defaults to `'bottom-start'`; it flips when there is no room.",
+			"native": false,
+			"kind": "enum",
+			"options": ["bottom-start", "bottom-end", "top-start", "top-end"]
+		},
+		{
+			"name": "container",
+			"type": "OverlayContainer",
+			"required": false,
+			"defaultValue": "document.body",
+			"description": "Element that receives the menu. Defaults to `document.body`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"MenuItemOption": [
+		{
+			"name": "id",
+			"type": "string",
+			"required": true,
+			"defaultValue": null,
+			"description": "Unique within the menu; used as the React key.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"required": true,
+			"defaultValue": null,
+			"description": "Text of the item, which names it: a verb for the action, e.g. `'Rename'`.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "onSelect",
+			"type": "() => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Runs after the menu has closed and focus is back on its trigger, so it may open a dialog.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "icon",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Decorative icon before the label.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Keeps the item visible but skipped by the arrow keys.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "destructive",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Marks an action that deletes or cannot be undone: error colors, besides a label that says so.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "shortcut",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Keyboard shortcut of the same action elsewhere, e.g. `'Control+C'` (`aria-keyshortcuts` syntax).",
+			"native": false,
+			"kind": "string",
+			"options": []
+		}
+	],
+	"MenuSeparator": [
+		{
+			"name": "id",
+			"type": "string",
+			"required": true,
+			"defaultValue": null,
+			"description": "Unique within the menu; used as the React key.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "separator",
+			"type": "true",
+			"required": true,
+			"defaultValue": null,
+			"description": "Tells the separator from an item.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"ContextMenu": [
+		{
+			"name": "label",
+			"type": "string",
+			"required": true,
+			"defaultValue": null,
+			"description": "Accessible name of the menu, e.g. `'Actions for report.pdf'`.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "children",
+			"type": "ReactElement<ContextTargetProps>",
+			"required": true,
+			"defaultValue": null,
+			"description": "The element the actions apply to. Make it focusable (`tabIndex={0}`, or a native control), so the keyboard can open the menu too; it keeps its own `onContextMenu` and `onKeyDown`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "items",
+			"type": "readonly MenuEntry[]",
+			"required": true,
+			"defaultValue": null,
+			"description": "Items and separators, in order.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Shows the browser menu instead, e.g. while the element is disabled.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "container",
+			"type": "OverlayContainer",
+			"required": false,
+			"defaultValue": "document.body",
+			"description": "Element that receives the menu. Defaults to `document.body`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"Dialog": [
+		{
+			"name": "title",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Visible title and accessible name of the dialog (a level 2 heading).",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Text under the title, read with the name when the dialog opens (`aria-describedby`).",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "children",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Content of the dialog.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "actions",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Buttons at the end of the dialog, the main action last.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "size",
+			"type": "DialogSize",
+			"required": false,
+			"defaultValue": "'medium'",
+			"description": "Maximum width: 24, 32 or 48 rem. Defaults to `'medium'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["small", "medium", "large"]
+		},
+		{
+			"name": "closeOnOutsideClick",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": "false",
+			"description": "Clicking outside the panel asks to close. Defaults to `false`, since a dialog often holds a form whose input would be lost; enable it for dialogs that only show information.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "hideCloseButton",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Hides the close button of the header; Escape and the actions still close.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "role",
+			"type": "'dialog' | 'alertdialog'",
+			"required": false,
+			"defaultValue": "'dialog'",
+			"description": "`'alertdialog'` for an urgent message that requires a response. Defaults to `'dialog'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["dialog", "alertdialog"]
+		},
+		{
+			"name": "labels",
+			"type": "Partial<DialogLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultDialogLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "open",
+			"type": "boolean",
+			"required": true,
+			"defaultValue": null,
+			"description": "Shows the overlay. The parent owns this state and sets it to `false` in `onClose`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "onClose",
+			"type": "(reason: OverlayCloseReason) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called when the user asks to close; the overlay closes only when the parent sets `open` to `false`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "closeOnEscape",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": "true",
+			"description": "Escape asks to close. Defaults to `true`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "initialFocus",
+			"type": "RefObject<HTMLElement | null>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Element focused when the overlay opens. Defaults to the panel itself, so that its name and description are read first; point it to the first field of a short form, or to the least destructive action.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "finalFocus",
+			"type": "RefObject<HTMLElement | null>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Element focused when the overlay closes. Defaults to the element that had focus before it opened (usually its trigger); set it when that element no longer exists, e.g. after deleting the row that opened it.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "container",
+			"type": "OverlayContainer",
+			"required": false,
+			"defaultValue": "document.body",
+			"description": "Element that receives the overlay. Defaults to `document.body`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"ConfirmDialog": [
+		{
+			"name": "size",
+			"type": "DialogSize",
+			"required": false,
+			"defaultValue": "'small'",
+			"description": "Maximum width: 24, 32 or 48 rem. Defaults to `'small'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["small", "medium", "large"]
+		},
+		{
+			"name": "title",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "The question, e.g. `'Delete this report?'`.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "The consequence, e.g. `'It will be removed for everyone. This cannot be undone.'`.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "children",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Additional content between the description and the buttons.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "intent",
+			"type": "SemanticIntent",
+			"required": false,
+			"defaultValue": "'official'",
+			"description": "Meaning of the action; `'error'` marks a destructive one. Defaults to `'official'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["official", "brand", "default", "success", "warning", "error", "info"]
+		},
+		{
+			"name": "onConfirm",
+			"type": "() => void | Promise<void>",
+			"required": true,
+			"defaultValue": null,
+			"description": "Performs the action. While a returned promise is pending, the confirm button is busy and the dialog cannot be dismissed; if it rejects, the dialog stays open so the parent can show the error.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "onCancel",
+			"type": "() => void",
+			"required": true,
+			"defaultValue": null,
+			"description": "Called on the cancel button and on Escape.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "labels",
+			"type": "Partial<ConfirmDialogLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultConfirmDialogLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "open",
+			"type": "boolean",
+			"required": true,
+			"defaultValue": null,
+			"description": "Shows the overlay. The parent owns this state and sets it to `false` in `onClose`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "finalFocus",
+			"type": "RefObject<HTMLElement | null>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Element focused when the overlay closes. Defaults to the element that had focus before it opened (usually its trigger); set it when that element no longer exists, e.g. after deleting the row that opened it.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "container",
+			"type": "OverlayContainer",
+			"required": false,
+			"defaultValue": "document.body",
+			"description": "Element that receives the overlay. Defaults to `document.body`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"Drawer": [
+		{
+			"name": "title",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Visible title and accessible name of the drawer (a level 2 heading).",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Text under the title, read with the name when the drawer opens (`aria-describedby`).",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "children",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Content of the drawer.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "actions",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Buttons at the end of the drawer, the main action last.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "placement",
+			"type": "DrawerPlacement",
+			"required": false,
+			"defaultValue": "'end'",
+			"description": "Defaults to `'end'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["start", "end", "top", "bottom"]
+		},
+		{
+			"name": "size",
+			"type": "DrawerSize",
+			"required": false,
+			"defaultValue": "'medium'",
+			"description": "Width (20, 28 or 40 rem) at `start` and `end`, maximum height (40, 60 or 85%) at `top` and `bottom`. Defaults to `'medium'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["small", "medium", "large"]
+		},
+		{
+			"name": "closeOnOutsideClick",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": "false",
+			"description": "Clicking outside the panel asks to close. Defaults to `false`; enable it when the drawer holds no input.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "labels",
+			"type": "Partial<DrawerLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultDrawerLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "open",
+			"type": "boolean",
+			"required": true,
+			"defaultValue": null,
+			"description": "Shows the overlay. The parent owns this state and sets it to `false` in `onClose`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "onClose",
+			"type": "(reason: OverlayCloseReason) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called when the user asks to close; the overlay closes only when the parent sets `open` to `false`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "closeOnEscape",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": "true",
+			"description": "Escape asks to close. Defaults to `true`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "initialFocus",
+			"type": "RefObject<HTMLElement | null>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Element focused when the overlay opens. Defaults to the panel itself, so that its name and description are read first; point it to the first field of a short form, or to the least destructive action.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "finalFocus",
+			"type": "RefObject<HTMLElement | null>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Element focused when the overlay closes. Defaults to the element that had focus before it opened (usually its trigger); set it when that element no longer exists, e.g. after deleting the row that opened it.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "container",
+			"type": "OverlayContainer",
+			"required": false,
+			"defaultValue": "document.body",
+			"description": "Element that receives the overlay. Defaults to `document.body`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
 	"Container": [
 		{
 			"name": "as",

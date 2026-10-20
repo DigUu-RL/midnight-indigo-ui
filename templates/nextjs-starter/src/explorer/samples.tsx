@@ -21,12 +21,14 @@ import { bountyColumns, bountyRowId } from '#src/explorer/client-samples.tsx';
 import {
 	sampleBounties,
 	sampleCrew,
+	sampleCrewMenuItems,
 	sampleJumpSource,
 	samplePlanets,
 } from '#src/explorer/sample-code.ts';
 import type {
 	SampleBounty,
 	SampleCrewMember,
+	SampleMenuEntry,
 	SampleName,
 	SamplePlanet,
 } from '#src/explorer/sample-code.ts';
@@ -42,6 +44,7 @@ export type SampleValue =
 	| readonly ReactElement[]
 	| StatChange
 	| readonly SampleBounty[]
+	| readonly SampleMenuEntry[]
 	| readonly DataTableColumn<SampleBounty>[]
 	| ((bounty: SampleBounty) => string);
 
@@ -138,4 +141,12 @@ export const sampleElements: Readonly<Record<SampleName, SampleValue>> = {
 	bountyColumns,
 	bounties: sampleBounties,
 	bountyRowId,
+	plotJumpButton: <Button variant='outline'>Plot the jump</Button>,
+	crewActionsButton: <Button variant='outline'>Crew actions</Button>,
+	crewMenuItems: sampleCrewMenuItems,
+	crewMemberCard: (
+		<Card tabIndex={0}>
+			<CardHeader title='Spike Spiegel' subtitle='Right click, or focus and press Shift+F10' />
+		</Card>
+	),
 };
