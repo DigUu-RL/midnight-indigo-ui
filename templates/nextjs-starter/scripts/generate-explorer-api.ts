@@ -13,7 +13,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import typescript from 'typescript';
 
-import { explorerComponents } from '#src/explorer/catalog.ts';
+import { documentedNamesOf, explorerComponents } from '#src/explorer/catalog.ts';
 import type { ExplorerComponent } from '#src/explorer/catalog.ts';
 import type { ComponentApi, ComponentProp, PropKind } from '#src/explorer/component-api.ts';
 
@@ -113,6 +113,10 @@ const typeTextOf = (property: typescript.Symbol, checker: typescript.TypeChecker
 	);
 };
 
+/**
+ * How the playground edits a prop. A responsive prop (`Responsive<SpacingStep>`: one value, or an object of values per
+ * breakpoint) is edited by its single value, so the objects of a union are left out.
+ */
 const kindOf = (
 	type: typescript.Type,
 	typeText: string,
@@ -120,10 +124,17 @@ const kindOf = (
 ): { kind: PropKind; options: string[] } => {
 	const members: typescript.Type[] = type.isUnion() ? type.types : [type];
 
-	if (members.every((member: typescript.Type): boolean => member.isStringLiteral())) {
+	const values: typescript.Type[] = members.filter((member: typescript.Type): boolean => {
+		return (member.flags & typescript.TypeFlags.Object) === 0;
+	});
+
+	if (
+		values.length > 0 &&
+		values.every((member: typescript.Type): boolean => member.isStringLiteral())
+	) {
 		return {
 			kind: 'enum',
-			options: members.map(
+			options: values.map(
 				(member: typescript.Type): string => (member as typescript.StringLiteralType).value,
 			),
 		};
@@ -132,8 +143,13 @@ const kindOf = (
 	if (checker.typeToString(type) === 'boolean') return { kind: 'boolean', options: [] };
 	if (typeText === 'ReactNode') return { kind: 'node', options: [] };
 	if ((type.flags & typescript.TypeFlags.String) !== 0) return { kind: 'string', options: [] };
-	if ((type.flags & typescript.TypeFlags.Number) !== 0) return { kind: 'number', options: [] };
-	return { kind: 'other', options: [] };
+	const [value] = values;
+
+	return value !== undefined &&
+		values.length === 1 &&
+		(value.flags & typescript.TypeFlags.Number) !== 0
+		? { kind: 'number', options: [] }
+		: { kind: 'other', options: [] };
 };
 
 /**
@@ -157,8 +173,14 @@ const propertiesOf = (
 		}, []);
 };
 
+interface DescribedComponent {
+	name: string;
+	subpath: string;
+	nativeProps: readonly string[];
+}
+
 const describeComponent = (
-	component: ExplorerComponent,
+	component: DescribedComponent,
 	exports: readonly typescript.Symbol[],
 	checker: typescript.TypeChecker,
 ): ComponentProp[] => {
@@ -268,8 +290,21 @@ export const generateComponentApi = (): ComponentApi => {
 			}),
 	);
 
+	// The parts of a component (e.g. `GridItem` of `Grid`) pass on no native attribute of their own.
+	const described: DescribedComponent[] = explorerComponents.flatMap(
+		(component: ExplorerComponent): DescribedComponent[] => {
+			return documentedNamesOf(component).map((name: string): DescribedComponent => {
+				return {
+					name,
+					subpath: component.subpath,
+					nativeProps: name === component.name ? component.nativeProps : [],
+				};
+			});
+		},
+	);
+
 	return Object.fromEntries(
-		explorerComponents.map((component: ExplorerComponent): [string, ComponentProp[]] => {
+		described.map((component: DescribedComponent): [string, ComponentProp[]] => {
 			return [
 				component.name,
 				describeComponent(component, exportsBySubpath.get(component.subpath) ?? [], checker),

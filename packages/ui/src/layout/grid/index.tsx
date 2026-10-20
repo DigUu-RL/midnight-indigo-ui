@@ -19,7 +19,7 @@ export type GridItemElement = 'div' | 'section' | 'article' | 'li';
 /** Either a number of equal columns (responsive) or the minimum width of a column, never both. */
 type GridColumnProps =
 	| {
-			/** Number of equal columns. Defaults to 1; responsive, e.g. `{ compact: 1, medium: 2, large: 4 }`. */
+			/** Number of equal columns. Defaults to `1`; responsive, e.g. `{ compact: 1, medium: 2, large: 4 }`. */
 			columns?: Responsive<number>;
 			minColumnWidth?: never;
 	  }
@@ -38,6 +38,7 @@ export type GridProps = Omit<ComponentPropsWithRef<'div'>, 'children'> &
 		as?: GridElement;
 		/** Step of the spacing scale between rows and columns. Defaults to `'4'` (16 px); responsive. */
 		gap?: Responsive<SpacingStep>;
+		/** The cells, one per child: wrap a child in a `GridItem` to make it span several columns. */
 		children?: ComponentPropsWithRef<'div'>['children'];
 	};
 
@@ -47,7 +48,7 @@ export type GridSpan = number | 'full';
 export interface GridItemProps extends ComponentPropsWithRef<'div'> {
 	/** Defaults to `'div'`. */
 	as?: GridItemElement;
-	/** Defaults to 1; responsive, e.g. `{ compact: 'full', expanded: 2 }`. */
+	/** Defaults to `1`; responsive, e.g. `{ compact: 'full', expanded: 2 }`. */
 	span?: Responsive<GridSpan>;
 }
 

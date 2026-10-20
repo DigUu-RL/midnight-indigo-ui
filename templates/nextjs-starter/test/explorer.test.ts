@@ -12,6 +12,7 @@ import { generateComponentApi } from '#scripts/generate-explorer-api.ts';
 import { starterRoot } from '#test/support/starter-server.ts';
 import {
 	camelCaseOf,
+	documentedNamesOf,
 	exampleFileOf,
 	explorerComponents,
 	findComponent,
@@ -21,6 +22,8 @@ import {
 import type { ExplorerComponent, PlaygroundValue } from '#src/explorer/catalog.ts';
 import { generatedApi, propTranslations } from '#src/explorer/component-api.ts';
 import type { ComponentProp } from '#src/explorer/component-api.ts';
+import { sampleCodes } from '#src/explorer/sample-code.ts';
+import type { SampleCode, SampleName } from '#src/explorer/sample-code.ts';
 import { snippetOf } from '#src/explorer/snippet.ts';
 import englishMessages from '#src/messages/en-us.json' with { type: 'json' };
 import brazilianPortugueseMessages from '#src/messages/pt-br.json' with { type: 'json' };
@@ -74,6 +77,7 @@ describe('the catalog', (): void => {
 		explorerComponents.forEach((component: ExplorerComponent): void => {
 			const names: string[] = [
 				...Object.keys(component.baseProps),
+				...Object.keys(component.slots),
 				...component.controls,
 				...component.variants,
 				...component.states,
@@ -110,6 +114,7 @@ describe('the catalog', (): void => {
 						return [`${key}.examples.${id}.title`, `${key}.examples.${id}.description`];
 					}),
 					...component.accessibility.map((note: string): string => `${key}.accessibility.${note}`),
+					...component.parts.map((part: string): string => `${key}.parts.${camelCaseOf(part)}`),
 				];
 
 				paths.forEach((path: string): void => {
@@ -160,12 +165,13 @@ describe('the props', (): void => {
 	});
 
 	test('are described in Brazilian Portuguese from the current English text', (): void => {
-		const problems: string[] = explorerComponents.flatMap(
-			(component: ExplorerComponent): string[] => {
+		const problems: string[] = explorerComponents
+			.flatMap((component: ExplorerComponent): string[] => documentedNamesOf(component))
+			.flatMap((name: string): string[] => {
 				const translations: Readonly<Record<string, { source: string }>> =
-					propTranslations[component.name] ?? {};
+					propTranslations[name] ?? {};
 
-				const described: ComponentProp[] = propsOfComponent(component).filter(
+				const described: ComponentProp[] = (generatedApi[name] ?? []).filter(
 					(prop: ComponentProp): boolean => prop.description !== '',
 				);
 
@@ -174,18 +180,17 @@ describe('the props', (): void => {
 						return translations[prop.name]?.source !== prop.description;
 					})
 					.map((prop: ComponentProp): string => {
-						return `${component.name}.${prop.name}: translate "${prop.description}"`;
+						return `${name}.${prop.name}: translate "${prop.description}"`;
 					});
 
 				const unknown: string[] = Object.keys(translations)
-					.filter((name: string): boolean => {
-						return !described.some((prop: ComponentProp): boolean => prop.name === name);
+					.filter((propName: string): boolean => {
+						return !described.some((prop: ComponentProp): boolean => prop.name === propName);
 					})
-					.map((name: string): string => `${component.name}.${name}: no such described prop`);
+					.map((propName: string): string => `${name}.${propName}: no such described prop`);
 
 				return [...missing, ...unknown];
-			},
-		);
+			});
 
 		assert.deepEqual(problems, []);
 	});
@@ -281,6 +286,46 @@ describe('the code of the playground', (): void => {
 		assert.match(button, /<Button>\{"Engage <hyperdrive>"\}<\/Button>/);
 	});
 
+	test('writes the samples of the props that take an element, and the props of the catalog without a control', (): void => {
+		const plusIcon: SampleCode = sampleCodes.plusIcon;
+
+		const snippet: string = snippetOf({
+			name: 'IconButton',
+			subpath: 'buttons',
+			props: [{ ...chip[0], name: 'label', type: 'string', kind: 'string' } as ComponentProp],
+			values: { label: 'Add crew member' },
+			slots: { children: plusIcon },
+		});
+
+		assert.match(
+			snippet,
+			/^import \{ IconButton \} from '@midnight-indigo\/ui\/buttons';\nimport \{ Icon \} from '@midnight-indigo\/ui\/icons';/,
+		);
+
+		assert.match(
+			snippet,
+			/\t\t<IconButton label='Add crew member'>\n\t\t\t<Icon decorative>\n\t\t\t\t<path\n\t\t\t\t\td='M12 5v14m-7-7h14'\n(?:\t\t\t\t\t[^\n]+\n)+\t\t\t\t\/>\n\t\t\t<\/Icon>\n\t\t<\/IconButton>/,
+		);
+
+		assert.match(
+			snippetOf({ name: 'CopyButton', subpath: 'buttons', props: [], values: { value: 'Hoth' } }),
+			/return <CopyButton value='Hoth' \/>;/,
+		);
+
+		const merged: string = snippetOf({
+			name: 'Card',
+			subpath: 'data-display',
+			props: [],
+			values: {},
+			slots: { children: sampleCodes.missionBrief },
+		});
+
+		assert.match(
+			merged,
+			/import \{ Card, CardContent, CardHeader \} from '@midnight-indigo\/ui\/data-display';/,
+		);
+	});
+
 	test('compiles for every value of every control of every component', (): void => {
 		const snippets: Map<string, string> = new Map<string, string>();
 
@@ -324,6 +369,13 @@ describe('the code of the playground', (): void => {
 							subpath: component.subpath,
 							props: controls,
 							values,
+							slots: Object.fromEntries(
+								Object.entries(component.slots).map(
+									([prop, sample]: [string, SampleName]): [string, SampleCode] => {
+										return [prop, sampleCodes[sample]];
+									},
+								),
+							),
 						}),
 					);
 				},

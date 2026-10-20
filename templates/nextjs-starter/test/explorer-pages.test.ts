@@ -12,6 +12,7 @@ import { exampleFileOf, explorerComponents, slugOf } from '#src/explorer/catalog
 import type { ExplorerComponent } from '#src/explorer/catalog.ts';
 import { generatedApi, propTranslations } from '#src/explorer/component-api.ts';
 import type { ComponentProp } from '#src/explorer/component-api.ts';
+import { sampleCodes } from '#src/explorer/sample-code.ts';
 
 const entities: Readonly<Record<string, string>> = {
 	'&amp;': '&',
@@ -167,6 +168,36 @@ test('the states of a component are shown one at a time, after the default', asy
 		html,
 		/<figcaption>States<\/figcaption>.*?<code[^>]*>default<\/code>.*?<code[^>]*>loading<\/code>.*?<code[^>]*>disabled<\/code>/s,
 	);
+});
+
+test('a sample given to a prop is rendered as the code of the playground writes it', async (): Promise<void> => {
+	const { html }: StreamedPage = await readStreamedPage(
+		`${server.origin}/en-us/components/icon-button`,
+	);
+
+	const text: string = textOf(html);
+
+	assert.match(
+		html,
+		/<button[^>]*aria-label="Add crew member"[^>]*>.*?<path d="M12 5v14m-7-7h14"/s,
+	);
+
+	assert.ok(compact(text).includes(compact(sampleCodes.plusIcon.code)));
+	assert.ok(compact(text).includes(compact("import { Icon } from '@midnight-indigo/ui/icons';")));
+});
+
+test('a component with parts documents them, and a page without variants leaves out their section', async (): Promise<void> => {
+	const { html }: StreamedPage = await readStreamedPage(`${server.origin}/en-us/components/grid`);
+	const text: string = textOf(html);
+
+	assert.ok(
+		compact(text).includes(compact("import { Grid, GridItem } from '@midnight-indigo/ui/layout';")),
+	);
+
+	assert.match(html, /<caption[^>]*>Props of GridItem<\/caption>/);
+	assert.match(html, /<a[^>]*href="#api-grid-item"/);
+	assert.doesNotMatch(html, /id="variants"/);
+	assert.ok(text.includes('Tatooine'));
 });
 
 test('in Brazilian Portuguese, the props are described from the translations of the TSDoc', async (): Promise<void> => {

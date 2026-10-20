@@ -101,6 +101,200 @@
 			"options": ["button", "submit", "reset"]
 		}
 	],
+	"IconButton": [
+		{
+			"name": "label",
+			"type": "string",
+			"required": true,
+			"defaultValue": null,
+			"description": "Accessible name, e.g. `'Close'`: what the action does, not what the icon shows. Cannot be blank.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "children",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "The icon. It is hidden from assistive technologies, since `label` names the button.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "intent",
+			"type": "SemanticIntent",
+			"required": false,
+			"defaultValue": "'default'",
+			"description": "Defaults to `'default'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["official", "brand", "default", "success", "warning", "error", "info"]
+		},
+		{
+			"name": "variant",
+			"type": "IconButtonVariant",
+			"required": false,
+			"defaultValue": "'ghost'",
+			"description": "Defaults to `'ghost'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["solid", "soft", "outline", "ghost"]
+		},
+		{
+			"name": "size",
+			"type": "IconButtonSize",
+			"required": false,
+			"defaultValue": "'medium'",
+			"description": "Square side of 32, 40 or 48 px; the icons take the matching `iconSize` token. Defaults to `'medium'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["small", "medium", "large"]
+		},
+		{
+			"name": "loading",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Operation in progress: the icon becomes a ring; see `Button`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "type",
+			"type": "\"submit\" | \"reset\" | \"button\"",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "enum",
+			"options": ["button", "submit", "reset"]
+		}
+	],
+	"CopyButton": [
+		{
+			"name": "value",
+			"type": "string | (() => string)",
+			"required": true,
+			"defaultValue": null,
+			"description": "Text written to the clipboard, or a function that returns it at the moment of the copy.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"required": false,
+			"defaultValue": "labels.copy",
+			"description": "Name of the button for what it copies, e.g. `'Copy code'`. Defaults to `labels.copy`. Cannot be blank.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "showLabel",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": "false",
+			"description": "Shows the name next to the icon. Defaults to `false`: the icon alone.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "intent",
+			"type": "SemanticIntent",
+			"required": false,
+			"defaultValue": "'default'",
+			"description": "Defaults to `'default'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["official", "brand", "default", "success", "warning", "error", "info"]
+		},
+		{
+			"name": "variant",
+			"type": "Appearance",
+			"required": false,
+			"defaultValue": "'ghost'",
+			"description": "Defaults to `'ghost'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["solid", "soft", "outline", "ghost"]
+		},
+		{
+			"name": "size",
+			"type": "ControlSize",
+			"required": false,
+			"defaultValue": "'small'",
+			"description": "Defaults to `'small'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["small", "medium", "large"]
+		},
+		{
+			"name": "feedbackDuration",
+			"type": "number",
+			"required": false,
+			"defaultValue": "2000",
+			"description": "Time the confirmation stays before the button returns to rest. Defaults to `2000` (ms).",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "onCopied",
+			"type": "(text: string) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the copied text.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "onCopyFailed",
+			"type": "(error: unknown) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called when the clipboard refuses the text.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "labels",
+			"type": "Partial<CopyButtonLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultCopyButtonLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "boolean",
+			"options": []
+		}
+	],
 	"Chip": [
 		{
 			"name": "label",
@@ -200,6 +394,194 @@
 			"description": "Name of the delete button, e.g. `'Remove Status: open'`; needs `onDelete`.",
 			"native": false,
 			"kind": "string",
+			"options": []
+		}
+	],
+	"Container": [
+		{
+			"name": "as",
+			"type": "ContainerElement",
+			"required": false,
+			"defaultValue": "'div'",
+			"description": "Defaults to `'div'`. Use `'main'` once per page, for its main content.",
+			"native": false,
+			"kind": "enum",
+			"options": ["article", "div", "footer", "header", "main", "section"]
+		},
+		{
+			"name": "size",
+			"type": "ContainerSize",
+			"required": false,
+			"defaultValue": "'large'",
+			"description": "Defaults to `'large'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["small", "medium", "large", "full"]
+		},
+		{
+			"name": "gutters",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": "true",
+			"description": "Side padding of 16, 24 and 32 px (`compact`, `medium`, `expanded` and up). Defaults to `true`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "children",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "node",
+			"options": []
+		}
+	],
+	"Stack": [
+		{
+			"name": "as",
+			"type": "StackElement",
+			"required": false,
+			"defaultValue": "'div'",
+			"description": "Defaults to `'div'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["article", "div", "footer", "header", "ol", "section", "ul"]
+		},
+		{
+			"name": "direction",
+			"type": "Responsive<StackDirection>",
+			"required": false,
+			"defaultValue": "'column'",
+			"description": "Defaults to `'column'`; responsive, e.g. `{ compact: 'column', medium: 'row' }`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["column", "row"]
+		},
+		{
+			"name": "gap",
+			"type": "Responsive<SpacingStep>",
+			"required": false,
+			"defaultValue": "'4'",
+			"description": "Step of the spacing scale between children. Defaults to `'4'` (16 px); responsive.",
+			"native": false,
+			"kind": "enum",
+			"options": ["0", "1", "2", "3", "4", "5", "6", "8", "10", "12", "16"]
+		},
+		{
+			"name": "align",
+			"type": "StackAlign",
+			"required": false,
+			"defaultValue": "'stretch'",
+			"description": "Defaults to `'stretch'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["center", "start", "end", "stretch", "baseline"]
+		},
+		{
+			"name": "justify",
+			"type": "StackJustify",
+			"required": false,
+			"defaultValue": "'start'",
+			"description": "Defaults to `'start'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["center", "start", "end", "between"]
+		},
+		{
+			"name": "wrap",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Wraps children onto new lines when a row runs out of room, e.g. a row of buttons at high zoom.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "children",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "node",
+			"options": []
+		}
+	],
+	"Grid": [
+		{
+			"name": "columns",
+			"type": "Responsive<number>",
+			"required": false,
+			"defaultValue": "1",
+			"description": "Number of equal columns. Defaults to `1`; responsive, e.g. `{ compact: 1, medium: 2, large: 4 }`.",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "minColumnWidth",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Minimum width of a column, e.g. `'16rem'`: the grid fits as many as the width allows, without media queries, and never more than one on a viewport narrower than that.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "as",
+			"type": "GridElement",
+			"required": false,
+			"defaultValue": "'div'",
+			"description": "Defaults to `'div'`; use a list when the items are a collection, with `GridItem as='li'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["div", "ol", "section", "ul"]
+		},
+		{
+			"name": "gap",
+			"type": "Responsive<SpacingStep>",
+			"required": false,
+			"defaultValue": "'4'",
+			"description": "Step of the spacing scale between rows and columns. Defaults to `'4'` (16 px); responsive.",
+			"native": false,
+			"kind": "enum",
+			"options": ["0", "1", "2", "3", "4", "5", "6", "8", "10", "12", "16"]
+		},
+		{
+			"name": "children",
+			"type": "ComponentPropsWithRef<'div'>['children']",
+			"required": false,
+			"defaultValue": null,
+			"description": "The cells, one per child: wrap a child in a `GridItem` to make it span several columns.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"GridItem": [
+		{
+			"name": "as",
+			"type": "GridItemElement",
+			"required": false,
+			"defaultValue": "'div'",
+			"description": "Defaults to `'div'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["article", "div", "li", "section"]
+		},
+		{
+			"name": "span",
+			"type": "Responsive<GridSpan>",
+			"required": false,
+			"defaultValue": "1",
+			"description": "Defaults to `1`; responsive, e.g. `{ compact: 'full', expanded: 2 }`.",
+			"native": false,
+			"kind": "other",
 			"options": []
 		}
 	]

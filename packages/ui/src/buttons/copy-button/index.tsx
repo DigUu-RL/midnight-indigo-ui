@@ -45,7 +45,7 @@ export interface CopyButtonProps extends Omit<NativeButtonAttributes, 'value' | 
 	variant?: Appearance;
 	/** Defaults to `'small'`. */
 	size?: ControlSize;
-	/** Time the confirmation stays before the button returns to rest. Defaults to 2000 ms. */
+	/** Time the confirmation stays before the button returns to rest. Defaults to `2000` (ms). */
 	feedbackDuration?: number;
 	/** Called with the copied text. */
 	onCopied?: (text: string) => void;

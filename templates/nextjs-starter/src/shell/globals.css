@@ -425,6 +425,22 @@
 	color: var(--mi-text-muted);
 }
 
+/* Samples of a layout component: as wide as their cell, with their bounds drawn so the alignment shows. */
+.variant-samples-full {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(16rem, 100%), 1fr));
+}
+
+.variant-samples-full > .variant-sample {
+	justify-items: stretch;
+}
+
+.variant-samples-full > .variant-sample > :first-child,
+.playground-stage-full > :first-child {
+	outline: 1px dashed var(--mi-border-default);
+	outline-offset: var(--mi-spacing-1);
+}
+
 .example {
 	display: grid;
 	gap: var(--mi-spacing-2);
@@ -432,6 +448,16 @@
 
 .example > h3,
 .example > p {
+	margin: 0;
+}
+
+.api-part {
+	display: grid;
+	gap: var(--mi-spacing-2);
+}
+
+.api-part > h3,
+.api-part > p {
 	margin: 0;
 }
 
@@ -446,6 +472,10 @@
 	border: 1px solid var(--mi-border-subtle);
 	border-radius: var(--mi-radius-card);
 	background: var(--mi-surface-canvas);
+}
+
+.playground-stage-full {
+	display: block;
 }
 
 .playground {

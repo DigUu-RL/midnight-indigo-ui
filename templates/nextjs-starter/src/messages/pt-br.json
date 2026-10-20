@@ -337,7 +337,8 @@
 		},
 		"subpaths": {
 			"buttons": "Botões",
-			"dataDisplay": "Exibição de dados"
+			"dataDisplay": "Exibição de dados",
+			"layout": "Layout"
 		},
 		"page": {
 			"usage": "Importação",
@@ -386,6 +387,44 @@
 					"loading": "`loading` define `aria-busy` e ignora a ativação sem tirar o foco; `disabled` significa que a ação está indisponível."
 				}
 			},
+			"iconButton": {
+				"summary": "Ação mostrada só como um ícone, nomeada por um rótulo obrigatório.",
+				"description": "Use onde falta espaço e o ícone é conhecido: uma barra de ferramentas, as ações de uma linha, os controles de um player. O `label` diz o que a ação faz; quando o ícone sozinho não é óbvio, use um `Button` com `startIcon`.",
+				"examples": {
+					"actions": {
+						"title": "Ações de uma linha",
+						"description": "Botões de ícone fantasmas, cada um nomeado pela ação e pelo item em que age; `error` marca o destrutivo."
+					},
+					"playback": {
+						"title": "Controles de um player",
+						"description": "Um botão sólido grande para a ação principal, cujo `label` acompanha a ação que ele executa em seguida."
+					}
+				},
+				"accessibility": {
+					"name": "`label` é o nome acessível (`aria-label`) e não pode ficar em branco: nomeie a ação, por exemplo `Remove Spike Spiegel`, não o ícone.",
+					"icon": "O ícone fica oculto das tecnologias assistivas; marque-o como `decorative`.",
+					"target": "Todo tamanho é um quadrado de pelo menos 32 px, acima do alvo mínimo da WCAG 2.2."
+				}
+			},
+			"copyButton": {
+				"summary": "Copia um texto para a área de transferência e confirma.",
+				"description": "Coloque ao lado de um valor que o leitor vai colar em outro lugar: um código, uma chave, um link. `value` pode ser uma função, chamada no momento da cópia.",
+				"examples": {
+					"inline": {
+						"title": "Ao lado de um valor",
+						"description": "Só o ícone, nomeado por `label` conforme o que ele copia."
+					},
+					"invite": {
+						"title": "Com o nome",
+						"description": "`showLabel` mostra o nome ao lado do ícone, para uma cópia que é a ação principal da sua área."
+					}
+				},
+				"accessibility": {
+					"name": "Nomeie conforme o que ele copia, por exemplo `Copy invite link`; o nome nunca muda sob o foco.",
+					"announcement": "O resultado (`Copied`, ou `Could not copy`) é anunciado por uma região viva e mostrado pelo ícone e pelo intent, não só pela cor.",
+					"clipboard": "A Clipboard API exige um contexto seguro (HTTPS ou `localhost`); fora dele a cópia falha e avisa."
+				}
+			},
 			"chip": {
 				"summary": "Rótulo compacto para um atributo, um status ou um filtro.",
 				"description": "Um chip só com rótulo é texto; com `onClick` é um botão, com `selected` um alternador, e `onDelete` lhe dá um botão de remover separado.",
@@ -403,6 +442,58 @@
 					"text": "Um chip sem `onClick` é texto simples, não um controle.",
 					"toggle": "Com `onClick` é um botão nativo; com `selected` é um alternador com `aria-pressed`, e a marca de seleção é uma forma além da cor.",
 					"remove": "O botão de remover é separado, uma parada de tabulação própria, nomeado por `deleteLabel`, por exemplo `Remove Status: open`."
+				}
+			},
+			"container": {
+				"summary": "Centraliza o conteúdo de uma página ou seção e limita a sua largura.",
+				"description": "Envolva o conteúdo de uma página nele: `size` limita o comprimento das linhas (`small` para leitura e formulários, `large` para dashboards) e as margens laterais crescem com a viewport.",
+				"examples": {
+					"article": {
+						"title": "Um texto para ler",
+						"description": "Um contêiner `small` mantém as linhas curtas o bastante para a leitura, como um `article`."
+					}
+				},
+				"accessibility": {
+					"landmark": "`as` lhe dá o elemento do seu papel: `main` uma vez por página para o conteúdo principal, `article` ou `section` para uma região; nomeie uma `section` com `aria-label`."
+				}
+			},
+			"stack": {
+				"summary": "Dispõe os filhos em coluna ou em linha, com um espaçamento da escala.",
+				"description": "O layout da maioria dos grupos: campos de um formulário, botões de uma barra, itens de uma lista. `direction` e `gap` aceitam um valor ou um por breakpoint, por exemplo `{ compact: 'column', medium: 'row' }`.",
+				"examples": {
+					"header": {
+						"title": "Cabeçalho de uma seção",
+						"description": "Uma coluna no celular e uma linha a partir de `medium`, com o título e as ações nas pontas."
+					},
+					"list": {
+						"title": "Uma lista",
+						"description": "`as='ul'` com filhos `li` mantém a semântica de lista sem marcadores nem recuo."
+					}
+				},
+				"accessibility": {
+					"order": "Mantenha a ordem visual igual à ordem do código: a ordem de leitura e de foco segue o código, não o layout.",
+					"list": "Com `as='ul'` ou `as='ol'`, cada filho precisa ser um `li`, e a lista é anunciada com o seu número de itens."
+				}
+			},
+			"grid": {
+				"summary": "Layout bidimensional: colunas iguais por breakpoint, ou tantas colunas quanto couberem.",
+				"description": "`columns` define o número de colunas iguais, por breakpoint se preciso; `minColumnWidth` encaixa tantas colunas daquela largura quanto o espaço permitir, sem media queries.",
+				"parts": {
+					"gridItem": "Uma célula que ocupa várias colunas, ou a linha inteira com `span='full'`."
+				},
+				"examples": {
+					"dashboard": {
+						"title": "Painéis de um dashboard",
+						"description": "Uma coluna no celular, duas no tablet e quatro no notebook, onde o primeiro painel ocupa duas."
+					},
+					"gallery": {
+						"title": "Uma galeria",
+						"description": "`minColumnWidth` ajusta os cards à largura; como lista, cada `GridItem` é um `li`."
+					}
+				},
+				"accessibility": {
+					"order": "A ordem de leitura e de foco segue o código, não as células: posicione os itens na ordem em que são lidos.",
+					"list": "Uma coleção é uma lista: `as='ul'` com `GridItem as='li'`."
 				}
 			}
 		}
