@@ -17,6 +17,7 @@ export interface CheckboxGroupProps extends Omit<
 > {
 	/** Shared by every checkbox, so the form submits one entry per checked option. */
 	name?: string | undefined;
+	/** A checkbox for each option, in order. */
 	options: readonly ChoiceOption[];
 	/** Checked values, when the parent controls them. */
 	value?: readonly string[] | undefined;
@@ -24,7 +25,7 @@ export interface CheckboxGroupProps extends Omit<
 	defaultValue?: readonly string[] | undefined;
 	/** Called with the checked values, in the order of `options`. */
 	onValueChange?: ((value: string[]) => void) | undefined;
-	/** Defaults to `'vertical'`. */
+	/** Stacks the options, or puts them in a row that wraps. Defaults to `'vertical'`. */
 	orientation?: ChoiceOrientation | undefined;
 }
 

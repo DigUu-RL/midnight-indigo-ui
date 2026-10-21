@@ -23,6 +23,11 @@ const grammarNames: Readonly<Record<Exclude<CodeLanguage, 'text'>, string>> = {
 	markdown: 'markdown',
 };
 
+// Most time Shiki spends on one line before it leaves the rest of the line without colors. Its default, 500 ms, is too
+// little for the first line of a grammar, which compiles its regular expressions, on a busy machine (a build of every
+// page at once, or the tests beside the lint); a pathological line still stops.
+const tokenizeTimeLimit: number = 5000;
+
 // Bit flags of `ThemedToken.fontStyle`.
 const italicFlag: number = 1;
 const boldFlag: number = 2;
@@ -101,6 +106,6 @@ export const tokenize = async (
 	const highlighter: HighlighterCore = await loadHighlighter();
 
 	return highlighter
-		.codeToTokensBase(code, { lang: grammarNames[language], theme: themeName })
+		.codeToTokensBase(code, { lang: grammarNames[language], theme: themeName, tokenizeTimeLimit })
 		.map((line: ThemedToken[]): CodeLine => mergeTokens(line.map(toCodeToken)));
 };

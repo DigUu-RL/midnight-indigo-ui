@@ -1071,6 +1071,152 @@
 					"format": "O valor é o número como foi digitado, sem separadores; mostre o valor formatado ao lado do campo, não dentro dele."
 				}
 			},
+			"checkbox": {
+				"summary": "Uma escolha única para ligar ou desligar, como aceitar termos.",
+				"description": "Uma caixa de seleção nativa com seu `label` ao lado, e uma `description` e um `error` abaixo. Controlada com `checked` e `onCheckedChange`, ou não controlada com `defaultChecked`; quando marcada, seu `value` (`'on'` por padrão) é enviado com seu `name`. Para uma configuração que vale na hora, use um `Switch`.",
+				"examples": {
+					"terms": {
+						"title": "Obrigatória em um formulário",
+						"description": "Uma caixa `required` cujo `error` aparece quando o leitor envia sem ela, e some assim que ela é marcada."
+					},
+					"selectAll": {
+						"title": "Selecionar todos",
+						"description": "A primeira caixa marca todos os tripulantes, e fica `indeterminate` enquanto só alguns estão marcados."
+					}
+				},
+				"accessibility": {
+					"name": "O `label` envolve o controle, então um clique no texto também o alterna. Sem `label`, nomeie a caixa com `aria-label` ou `aria-labelledby`; uma caixa sem nome lança um erro.",
+					"keyboard": "Tab chega até ela e Espaço a alterna, como em qualquer caixa de seleção nativa.",
+					"indeterminate": "`indeterminate` é anunciado como misto e desenhado como um traço; ele muda só como a caixa aparece e é lida, então defina `checked` também."
+				}
+			},
+			"checkboxGroup": {
+				"summary": "Várias caixas de seleção sob uma legenda, para escolher qualquer número de opções.",
+				"description": "Um `Fieldset` com uma caixa de seleção para cada uma das `options`, que compartilham seu `name`, então o formulário envia uma entrada por opção marcada. Controlado com `value` e `onValueChange`, ou não controlado com `defaultValue`; `orientation` as empilha ou as põe em linha.",
+				"types": {
+					"choiceOption": "Uma opção do grupo, uma entrada de `options`."
+				},
+				"examples": {
+					"channels": {
+						"title": "Ao menos uma",
+						"description": "Um grupo `required` cujo `error` aparece quando o leitor desmarca o último canal: o HTML não tem regra para ao menos uma caixa."
+					},
+					"filters": {
+						"title": "Filtros em linha",
+						"description": "Um grupo `horizontal` filtra uma lista, e uma região de status diz quantas recompensas restam."
+					}
+				},
+				"accessibility": {
+					"legend": "A `legend` nomeia o grupo e é lida quando o foco entra nele; `hideLegend` a mantém só para tecnologias assistivas.",
+					"keyboard": "Tab vai de uma caixa à seguinte, e Espaço alterna cada uma.",
+					"required": "`required` só marca a legenda: verifique que uma opção está marcada e passe o `error`, que descreve o grupo."
+				}
+			},
+			"radioGroup": {
+				"summary": "Botões de opção nativos sob uma legenda, para escolher exatamente uma opção.",
+				"description": "Um `Fieldset` com o papel `radiogroup` e um botão de opção para cada uma das `options`, que compartilham seu `name` (gerado quando omitido). Controlado com `value` e `onValueChange`, ou não controlado com `defaultValue`; `''` não marca nenhuma.",
+				"types": {
+					"choiceOption": "Uma opção do grupo, uma entrada de `options`."
+				},
+				"examples": {
+					"routes": {
+						"title": "Opções com descrições",
+						"description": "Cada opção tem uma `description` lida depois do seu rótulo, e uma rota fechada continua listada, mas `disabled`."
+					},
+					"required": {
+						"title": "Obrigatório, nenhuma marcada",
+						"description": "Nenhuma opção começa marcada, então um envio sem escolha mostra o `error` do grupo."
+					}
+				},
+				"accessibility": {
+					"keyboard": "Tab entra no grupo pela opção marcada, ou pela primeira; as setas movem entre as opções e as marcam.",
+					"checked": "Com `required`, o grupo fica `aria-required` e o formulário pede que uma opção seja marcada.",
+					"radioOrCheckbox": "Use botões de opção quando exatamente uma opção vale, e um `CheckboxGroup` quando qualquer número delas pode valer."
+				}
+			},
+			"switch": {
+				"summary": "Uma configuração de ligar e desligar que vale na hora.",
+				"description": "Uma caixa de seleção nativa com o papel `switch`, anunciada como ligada ou desligada. Controlada com `checked` e `onCheckedChange`, ou não controlada com `defaultChecked`; é enviada como uma caixa de seleção. Em um formulário enviado depois, prefira um `Checkbox`.",
+				"examples": {
+					"settings": {
+						"title": "Configurações aplicadas na hora",
+						"description": "Cada interruptor aplica sua configuração sem botão de salvar, e uma região de status confirma a mudança."
+					},
+					"dependent": {
+						"title": "Uma configuração que habilita outra",
+						"description": "O destino só vale com o piloto automático ligado, então o `Select` fica `disabled` enquanto ele está desligado."
+					}
+				},
+				"accessibility": {
+					"role": "É lido como um interruptor, ligado ou desligado, não como uma caixa marcada; o polegar vai para o fim quando ligado, então o estado não depende da cor.",
+					"immediate": "Use-o só para o que vale na hora, e diga quando valeu, por exemplo em uma região de status.",
+					"keyboard": "Tab chega até ele e Espaço o alterna. Nomeie-o com um `label` ou `aria-label`; um interruptor sem nome lança um erro."
+				}
+			},
+			"select": {
+				"summary": "Escolha de uma opção de uma lista, no select nativo.",
+				"description": "Um `select` nativo com seu `label`, uma `description` e um `error`. `options` recebe opções ou grupos delas; `placeholder` adiciona uma opção vazia no início. Controlado com `value` e `onValueChange`, ou não controlado com `defaultValue`, e enviado com seu `name`.",
+				"types": {
+					"selectOption": "Uma opção da lista, uma entrada de `options` ou de um grupo.",
+					"selectOptionGroup": "Opções sob um nome, uma entrada de `options`."
+				},
+				"examples": {
+					"groups": {
+						"title": "Grupos e placeholder",
+						"description": "Opções agrupadas por sistema, uma opção `disabled`, e um `placeholder` que um select `required` recusa."
+					},
+					"dependent": {
+						"title": "Um select depende de outro",
+						"description": "As luas dependem do sistema: o segundo select espera o primeiro, e um novo sistema limpa a lua."
+					}
+				},
+				"accessibility": {
+					"native": "A lista é a da plataforma: busca por digitação, setas e o seletor dos dispositivos de toque vêm com ela.",
+					"placeholder": "Um `placeholder` é uma opção vazia, não um rótulo: o `label` continua visível acima do select.",
+					"readOnly": "O elemento não tem estado somente leitura: use `disabled`, ou um `TextField` com `readOnly`, para mostrar um valor fixo."
+				}
+			},
+			"combobox": {
+				"summary": "Um campo que filtra uma lista de opções enquanto o leitor digita, para listas longas.",
+				"description": "Um campo de texto com uma lista de `options`, que o texto digitado filtra (`filter`). A opção escolhida é enviada com `name`, como seu valor. Controlado com `value` e `onValueChange`, ou não controlado com `defaultValue`; `inputValue` e `onInputValueChange` dão o texto digitado, por exemplo para buscar as opções.",
+				"types": {
+					"comboboxOption": "Uma opção da lista, uma entrada de `options`."
+				},
+				"examples": {
+					"search": {
+						"title": "Uma lista longa",
+						"description": "`filter='startsWith'` casa o início dos nomes, e `maxVisibleOptions` lista os cinco primeiros: uma mensagem pede para continuar digitando."
+					},
+					"remote": {
+						"title": "Opções de uma requisição",
+						"description": "Cada texto digitado pede ao registro suas opções: o campo fica `loading` enquanto isso, e `filter='none'` mantém a lista como ela vem."
+					}
+				},
+				"accessibility": {
+					"keyboard": "Seta para baixo e para cima abrem a lista e movem o destaque enquanto o foco fica no campo; Enter escolhe, e Esc fecha a lista e depois limpa o texto.",
+					"announce": "A opção destacada é lida quando muda, assim como os textos quando nenhuma opção casa, durante o carregamento e quando mais opções casam do que as mostradas.",
+					"manyOptions": "Para poucas opções, um `Select` ou um `RadioGroup` mostra todas de uma vez; o combobox serve para listas longas demais para percorrer."
+				}
+			},
+			"slider": {
+				"summary": "Escolha de um número em um intervalo, arrastando ou pelo teclado.",
+				"description": "Um campo de intervalo nativo com seu `label`, entre `min` e `max` de `step` em `step`. O valor aparece depois da trilha, escrito por `formatValue`. Controlado com `value` e `onValueChange`, ou não controlado com `defaultValue`, e enviado com seu `name`. `input` recebe um campo para o valor exato.",
+				"examples": {
+					"formatted": {
+						"title": "Valores com unidade",
+						"description": "`formatValue` escreve a porcentagem e os parsecs ao lado da trilha, e as tecnologias assistivas leem o mesmo texto."
+					},
+					"input": {
+						"title": "Com um campo numérico",
+						"description": "Um `NumberField` em `input`, ligado ao mesmo valor, recebe o valor exato de que arrastar só chega perto."
+					}
+				},
+				"accessibility": {
+					"keyboard": "As setas o movem de `step` em `step`, Page Up e Page Down em passos maiores, e Home e End vão às pontas.",
+					"valueText": "`formatValue` também dá o texto lido para o valor (`aria-valuetext`), então uma unidade é ouvida e não só vista.",
+					"precision": "Arrastar não é preciso, nem possível para todos: quando o valor exato importa, dê um campo em `input`."
+				}
+			},
 			"container": {
 				"summary": "Centraliza o conteúdo de uma página ou seção e limita a sua largura.",
 				"description": "Envolva o conteúdo de uma página nele: `size` limita o comprimento das linhas (`small` para leitura e formulários, `large` para dashboards) e as margens laterais crescem com a viewport.",

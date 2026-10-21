@@ -65,6 +65,13 @@ const explorerPages: readonly string[] = [
 	'/en-us/components/password-field',
 	'/en-us/components/search-field',
 	'/pt-br/components/number-field',
+	'/en-us/components/checkbox',
+	'/pt-br/components/checkbox-group',
+	'/en-us/components/radio-group',
+	'/pt-br/components/switch',
+	'/en-us/components/select',
+	'/en-us/components/combobox',
+	'/pt-br/components/slider',
 ];
 
 // A table wider than its column (the props of a component) becomes a focusable region once it is hydrated and measured;

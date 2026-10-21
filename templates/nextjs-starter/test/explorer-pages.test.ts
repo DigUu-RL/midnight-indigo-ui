@@ -333,6 +333,30 @@ test('a field is rendered with its label, and the numbers of the catalog are wri
 	);
 });
 
+test('options and checked values given to props are rendered, and declared or written as the snippet writes them', async (): Promise<void> => {
+	const { html }: StreamedPage = await readStreamedPage(
+		`${server.origin}/en-us/components/checkbox-group`,
+	);
+
+	const text: string = textOf(html);
+
+	assert.match(html, /<input(?=[^>]*type="checkbox")(?=[^>]*value="jet")(?=[^>]*checked="")/);
+	assert.doesNotMatch(html, /<input(?=[^>]*value="faye")(?=[^>]*checked="")/);
+	assert.ok(compact(text).includes(compact(sampleCodes.crewOptions.declarations[0])));
+
+	assert.ok(
+		compact(text).includes(
+			compact("import type { ChoiceOption } from '@midnight-indigo/ui/forms';"),
+		),
+	);
+
+	assert.ok(
+		compact(text).includes(compact("options={crewOptions} defaultValue={['spike', 'jet']}")),
+	);
+
+	assert.match(html, /<caption[^>]*>Fields of ChoiceOption<\/caption>/);
+});
+
 test('a part without props of its own says so instead of an empty table', async (): Promise<void> => {
 	const { html }: StreamedPage = await readStreamedPage(`${server.origin}/en-us/components/table`);
 	const text: string = textOf(html);

@@ -6,7 +6,7 @@ import { Icon } from '@midnight-indigo/ui/icons';
 import type { ReactElement } from 'react';
 
 import type { ExplorerSubpath, SubpathSampleName } from '#src/explorer/catalog.ts';
-import type { SampleBounty, SampleMenuEntry } from '#src/explorer/sample-code.ts';
+import type { SampleBounty, SampleChoice, SampleMenuEntry } from '#src/explorer/sample-code.ts';
 
 /**
  * An element, a list of them (each one a child of its own, e.g. a slide of a `Carousel`, which a fragment would merge
@@ -15,11 +15,13 @@ import type { SampleBounty, SampleMenuEntry } from '#src/explorer/sample-code.ts
  */
 export type SampleValue =
 	| string
+	| readonly string[]
 	| ReactElement
 	| readonly ReactElement[]
 	| StatChange
 	| readonly SampleBounty[]
 	| readonly SampleMenuEntry[]
+	| readonly SampleChoice[]
 	| readonly DataTableColumn<SampleBounty>[]
 	| ((bounty: SampleBounty) => string);
 

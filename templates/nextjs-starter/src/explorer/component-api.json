@@ -3759,6 +3759,1198 @@
 			"options": []
 		}
 	],
+	"Checkbox": [
+		{
+			"name": "indeterminate",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Shows a dash instead of the check, e.g. for \"select all\" when only some items are selected.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "label",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "What the control turns on, in bold beside it, e.g. `'Enable email notifications'`. Optional: without it, name the control with `aria-label` or `aria-labelledby` (e.g. a checkbox in a table row).",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "What happens when it is on, below the label, e.g. `'Sends a notification by email for each new report'`. Read after the name.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "onCheckedChange",
+			"type": "(checked: boolean) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the new state, after `onChange`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "className",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Class of the row.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "style",
+			"type": "CSSProperties",
+			"required": false,
+			"defaultValue": null,
+			"description": "Style of the row.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Unavailable: skipped by Tab and not submitted.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "error",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Error message. When set, the control is `aria-invalid` and the message, marked with an icon, is read with it. Inside a `Form`, a field with a `name` shows the error of that name unless `error` is given.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "required",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Marks the label with an asterisk and the control as `required`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "value",
+			"type": "string | readonly string[] | number",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "defaultChecked",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "checked",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "boolean",
+			"options": []
+		}
+	],
+	"CheckboxGroup": [
+		{
+			"name": "name",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Shared by every checkbox, so the form submits one entry per checked option.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "options",
+			"type": "readonly ChoiceOption[]",
+			"required": true,
+			"defaultValue": null,
+			"description": "A checkbox for each option, in order.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "value",
+			"type": "readonly string[]",
+			"required": false,
+			"defaultValue": null,
+			"description": "Checked values, when the parent controls them.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "defaultValue",
+			"type": "readonly string[]",
+			"required": false,
+			"defaultValue": null,
+			"description": "Initially checked values when uncontrolled.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "onValueChange",
+			"type": "(value: string[]) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the checked values, in the order of `options`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "orientation",
+			"type": "ChoiceOrientation",
+			"required": false,
+			"defaultValue": "'vertical'",
+			"description": "Stacks the options, or puts them in a row that wraps. Defaults to `'vertical'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["vertical", "horizontal"]
+		},
+		{
+			"name": "legend",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Name of the group, read when focus enters it, e.g. `'Delivery address'`.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Disables every control inside, natively.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "error",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Error of the group, e.g. `'Choose at least one channel'`, marked with an icon.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Help text for the whole group.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "required",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Marks the legend with an asterisk; the controls inside carry their own `required`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "hideLegend",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Keeps the legend for assistive technologies only.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		}
+	],
+	"ChoiceOption": [
+		{
+			"name": "value",
+			"type": "string",
+			"required": true,
+			"defaultValue": null,
+			"description": "Submitted with the `name` of the group when checked; unique within the group.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "label",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Text beside the control, which names the option.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Help text for this option.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Keeps the option visible but unavailable.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		}
+	],
+	"RadioGroup": [
+		{
+			"name": "name",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Shared by the radios, which makes them one group; generated when omitted.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "options",
+			"type": "readonly ChoiceOption[]",
+			"required": true,
+			"defaultValue": null,
+			"description": "A radio for each option, in order.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "value",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Checked value, when the parent controls it; `''` checks none.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "defaultValue",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Initially checked value when uncontrolled.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "onValueChange",
+			"type": "(value: string) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the checked value.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "orientation",
+			"type": "ChoiceOrientation",
+			"required": false,
+			"defaultValue": "'vertical'",
+			"description": "Stacks the options, or puts them in a row that wraps. Defaults to `'vertical'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["vertical", "horizontal"]
+		},
+		{
+			"name": "legend",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Name of the group, read when focus enters it, e.g. `'Delivery address'`.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Disables every control inside, natively.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "error",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Error of the group, e.g. `'Choose at least one channel'`, marked with an icon.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Help text for the whole group.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "required",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Marks the legend with an asterisk; the controls inside carry their own `required`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "hideLegend",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Keeps the legend for assistive technologies only.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		}
+	],
+	"Switch": [
+		{
+			"name": "label",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "What the control turns on, in bold beside it, e.g. `'Enable email notifications'`. Optional: without it, name the control with `aria-label` or `aria-labelledby` (e.g. a checkbox in a table row).",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "What happens when it is on, below the label, e.g. `'Sends a notification by email for each new report'`. Read after the name.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "onCheckedChange",
+			"type": "(checked: boolean) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the new state, after `onChange`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "className",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Class of the row.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "style",
+			"type": "CSSProperties",
+			"required": false,
+			"defaultValue": null,
+			"description": "Style of the row.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Unavailable: skipped by Tab and not submitted.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "error",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Error message. When set, the control is `aria-invalid` and the message, marked with an icon, is read with it. Inside a `Form`, a field with a `name` shows the error of that name unless `error` is given.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "required",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Marks the label with an asterisk and the control as `required`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "value",
+			"type": "string | readonly string[] | number",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "defaultChecked",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "checked",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "boolean",
+			"options": []
+		}
+	],
+	"Select": [
+		{
+			"name": "options",
+			"type": "readonly (SelectOption | SelectOptionGroup)[]",
+			"required": true,
+			"defaultValue": null,
+			"description": "Options, or groups of options.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "placeholder",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Text of the empty option (`value=\"\"`), listed first, e.g. `'Choose a state'`. With `required`, choosing it fails validation; without it, it clears the choice. Without a placeholder the first option is selected.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "value",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Selected value, when the parent controls it; `''` selects the empty option.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "defaultValue",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Initial value when uncontrolled.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "onValueChange",
+			"type": "(value: string) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the new value, after `onChange`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "size",
+			"type": "ControlSize",
+			"required": false,
+			"defaultValue": "'medium'",
+			"description": "32, 40 or 48 px high, like the buttons. Defaults to `'medium'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["small", "medium", "large"]
+		},
+		{
+			"name": "className",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Class of the root of the field.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "style",
+			"type": "CSSProperties",
+			"required": false,
+			"defaultValue": null,
+			"description": "Style of the root of the field.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "label",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Visible, persistent label; a placeholder never replaces it.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Unavailable: skipped by Tab and not submitted.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "error",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Error message. When set, the control is `aria-invalid` and the message, marked with an icon, is read with it. Inside a `Form`, a field with a `name` shows the error of that name unless `error` is given.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "loading",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "The field waits for data (e.g. its options): `aria-busy`, a ring and a hidden `'Loading'` text.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Help text, read after the label.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "required",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Marks the label with an asterisk and the control as `required`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "hideLabel",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a search bar).",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "fieldLabels",
+			"type": "Partial<FormFieldLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultFormFieldLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "string",
+			"options": []
+		}
+	],
+	"SelectOption": [
+		{
+			"name": "value",
+			"type": "string",
+			"required": true,
+			"defaultValue": null,
+			"description": "Submitted with the `name` of the select when chosen; unique within it.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"required": true,
+			"defaultValue": null,
+			"description": "Text of the option in the list.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Keeps the option listed but not selectable.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		}
+	],
+	"SelectOptionGroup": [
+		{
+			"name": "label",
+			"type": "string",
+			"required": true,
+			"defaultValue": null,
+			"description": "Name of the group, shown above its options.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "options",
+			"type": "readonly SelectOption[]",
+			"required": true,
+			"defaultValue": null,
+			"description": "Options of the group, in order.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"Combobox": [
+		{
+			"name": "options",
+			"type": "readonly ComboboxOption[]",
+			"required": true,
+			"defaultValue": null,
+			"description": "Options the typed text filters, in order.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "value",
+			"type": "string | null",
+			"required": false,
+			"defaultValue": null,
+			"description": "Value of the chosen option, when the parent controls it; `null` for none.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "defaultValue",
+			"type": "string | null",
+			"required": false,
+			"defaultValue": null,
+			"description": "Initially chosen value when uncontrolled.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "onValueChange",
+			"type": "(value: string | null, option: ComboboxOption | null) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the value of the chosen option, or `null` when cleared.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "inputValue",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Typed text, when the parent controls it (e.g. to fetch options).",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "onInputValueChange",
+			"type": "(inputValue: string) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the typed text.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "filter",
+			"type": "ComboboxFilter",
+			"required": false,
+			"defaultValue": "'contains'",
+			"description": "How the typed text matches the labels: anywhere, at their start, or not at all, when the options already come filtered (e.g. by a request). Defaults to `'contains'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["contains", "startsWith", "none"]
+		},
+		{
+			"name": "maxVisibleOptions",
+			"type": "number",
+			"required": false,
+			"defaultValue": "100",
+			"description": "Most options rendered at once: the first matches are listed, and a message asks to type to narrow the rest. Rendering thousands of options at once freezes the page when the list opens. Defaults to `100`.",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "size",
+			"type": "ControlSize",
+			"required": false,
+			"defaultValue": "'medium'",
+			"description": "32, 40 or 48 px high, like the buttons. Defaults to `'medium'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["small", "medium", "large"]
+		},
+		{
+			"name": "labels",
+			"type": "Partial<ComboboxLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultComboboxLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "className",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Class of the root of the field.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "style",
+			"type": "CSSProperties",
+			"required": false,
+			"defaultValue": null,
+			"description": "Style of the root of the field.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "label",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Visible, persistent label; a placeholder never replaces it.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Unavailable: skipped by Tab and not submitted.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "error",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Error message. When set, the control is `aria-invalid` and the message, marked with an icon, is read with it. Inside a `Form`, a field with a `name` shows the error of that name unless `error` is given.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "loading",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "The field waits for data (e.g. its options): `aria-busy`, a ring and a hidden `'Loading'` text.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Help text, read after the label.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "required",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Marks the label with an asterisk and the control as `required`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "hideLabel",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a search bar).",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "fieldLabels",
+			"type": "Partial<FormFieldLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultFormFieldLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "placeholder",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "string",
+			"options": []
+		}
+	],
+	"ComboboxOption": [
+		{
+			"name": "value",
+			"type": "string",
+			"required": true,
+			"defaultValue": null,
+			"description": "Submitted with the `name` of the combobox when chosen; unique within its options.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "label",
+			"type": "string",
+			"required": true,
+			"defaultValue": null,
+			"description": "Text of the option, which the typed text is matched against and the input shows once chosen.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Keeps the option listed but not selectable.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		}
+	],
+	"Slider": [
+		{
+			"name": "min",
+			"type": "number",
+			"required": false,
+			"defaultValue": "0",
+			"description": "Lowest value. Defaults to `0`.",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "max",
+			"type": "number",
+			"required": false,
+			"defaultValue": "100",
+			"description": "Highest value. Defaults to `100`.",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "step",
+			"type": "number",
+			"required": false,
+			"defaultValue": "1",
+			"description": "Distance between two values, which the arrow keys move by. Defaults to `1`.",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "value",
+			"type": "number",
+			"required": false,
+			"defaultValue": null,
+			"description": "Current value, when the parent controls it.",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "defaultValue",
+			"type": "number",
+			"required": false,
+			"defaultValue": "min",
+			"description": "Initial value when uncontrolled. Defaults to `min`.",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "onValueChange",
+			"type": "(value: number) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the new value, after `onChange`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "formatValue",
+			"type": "(value: number) => string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Text of the value, shown beside the label and read by assistive technologies (`aria-valuetext`), e.g. `(value) => \\`${value} %\\``. Defaults to the number.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "input",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Content after the track, typically a `NumberField` bound to the same value: when precision matters, typing a number is easier than dragging (WCAG 2.5.7).",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "className",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Class of the root of the field.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "style",
+			"type": "CSSProperties",
+			"required": false,
+			"defaultValue": null,
+			"description": "Style of the root of the field.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "label",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Visible, persistent label; a placeholder never replaces it.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Unavailable: skipped by Tab and not submitted.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "error",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Error message. When set, the control is `aria-invalid` and the message, marked with an icon, is read with it. Inside a `Form`, a field with a `name` shows the error of that name unless `error` is given.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Help text, read after the label.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "required",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Marks the label with an asterisk and the control as `required`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "hideLabel",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a search bar).",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "string",
+			"options": []
+		}
+	],
 	"Container": [
 		{
 			"name": "as",

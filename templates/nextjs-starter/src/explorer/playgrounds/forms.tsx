@@ -1,9 +1,16 @@
 'use client';
 // The playground of the components of `@midnight-indigo/ui/forms`.
 import {
+	Checkbox,
+	CheckboxGroup,
+	Combobox,
 	NumberField,
 	PasswordField,
+	RadioGroup,
 	SearchField,
+	Select,
+	Slider,
+	Switch,
 	TextArea,
 	TextField,
 } from '@midnight-indigo/ui/forms';
@@ -17,4 +24,11 @@ export const FormsPlayground: PlaygroundComponent = createPlayground({
 	PasswordField,
 	SearchField,
 	NumberField,
+	Checkbox,
+	CheckboxGroup,
+	RadioGroup,
+	Switch,
+	Select,
+	Combobox,
+	Slider,
 });
