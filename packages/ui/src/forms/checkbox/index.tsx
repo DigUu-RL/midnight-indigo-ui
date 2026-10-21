@@ -30,7 +30,8 @@ export type NativeChoiceAttributes = Omit<
 	| 'role'
 >;
 
-export interface CheckboxProps
+/** Props shared by `Checkbox` and `Switch`. */
+export interface ChoiceControlBaseProps
 	extends
 		Omit<FieldProps, 'label' | 'hideLabel' | 'readOnly' | 'loading' | 'fieldLabels'>,
 		NativeChoiceAttributes {
@@ -44,14 +45,17 @@ export interface CheckboxProps
 	 * after the name.
 	 */
 	description?: ReactNode;
-	/** Shows a dash instead of the check, e.g. for "select all" when only some items are selected. */
-	indeterminate?: boolean | undefined;
 	/** Called with the new state, after `onChange`. */
 	onCheckedChange?: ((checked: boolean) => void) | undefined;
 	/** Class of the row. */
 	className?: string | undefined;
 	/** Style of the row. */
 	style?: CSSProperties | undefined;
+}
+
+export interface CheckboxProps extends ChoiceControlBaseProps {
+	/** Shows a dash instead of the check, e.g. for "select all" when only some items are selected. */
+	indeterminate?: boolean | undefined;
 }
 
 export interface ChoiceFieldProps extends CheckboxProps {

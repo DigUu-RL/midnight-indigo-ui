@@ -262,10 +262,13 @@ export const ChoiceRow = ({
 
 /** An option of CheckboxGroup or RadioGroup. */
 export interface ChoiceOption {
+	/** Submitted with the `name` of the group when checked; unique within the group. */
 	value: string;
+	/** Text beside the control, which names the option. */
 	label: ReactNode;
 	/** Help text for this option. */
 	description?: ReactNode;
+	/** Keeps the option visible but unavailable. */
 	disabled?: boolean | undefined;
 }
 

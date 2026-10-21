@@ -1,8 +1,8 @@
 // The component explorer: its navigation leads from the page of a component to one of another subpath, served by
 // another route, at the public path. In the playground, each control changes the component and its code at once, an
 // overlay opens from its trigger or its button and closes as it asks, a toast is shown through its hook, a field keeps
-// what the reader typed while its props change, and a required text left blank keeps its initial value instead of
-// breaking the page.
+// what the reader typed while its props change, a checkbox shows its dash, a combobox filters its sample options, and a
+// required text left blank keeps its initial value instead of breaking the page.
 import type { Locator } from '@playwright/test';
 
 import { expect, test } from '#test/support/fixtures.ts';
@@ -225,6 +225,50 @@ test('a field of the playground keeps the text typed in it while its props chang
 	await expect(field).toHaveAttribute('aria-invalid', 'true');
 	await expect(field).toHaveAccessibleDescription(/That callsign is taken\./);
 	await expect(playground.locator('pre')).toContainText("error='That callsign is taken.'");
+});
+
+// `indeterminate` exists only as a property of the DOM, which the checkbox sets after it renders.
+test('a checkbox of the playground shows the dash its control asks for', async ({
+	page,
+}): Promise<void> => {
+	await page.goto('/en-us/components/checkbox');
+	const playground: Locator = page.locator('.playground');
+
+	const checkbox: Locator = playground
+		.getByRole('group', { name: 'Component with the chosen props' })
+		.getByRole('checkbox', { name: 'Accept the bounty terms' });
+
+	await playground.getByRole('switch', { name: 'indeterminate' }).click();
+
+	await expect(checkbox).toHaveJSProperty('indeterminate', true);
+
+	await expect(playground.locator('pre')).toContainText(
+		"<Checkbox label='Accept the bounty terms' defaultChecked indeterminate />",
+	);
+});
+
+// The options are plain data the page hands to the playground, so the combobox filters them in the browser.
+test('a combobox of the playground filters its sample options and chooses one', async ({
+	page,
+}): Promise<void> => {
+	await page.goto('/en-us/components/combobox');
+
+	const combobox: Locator = page
+		.locator('.playground')
+		.getByRole('group', { name: 'Component with the chosen props' })
+		.getByRole('combobox', { name: /^Bounty/ });
+
+	await expect(combobox).toHaveValue('Mad Pierrot');
+
+	// Typed key by key, as the reader would, over the label of the chosen option.
+	await combobox.click();
+	await combobox.press('ControlOrMeta+A');
+	await combobox.pressSequentially('Vin');
+	await expect(page.getByRole('listbox').getByRole('option')).toHaveText(['Vincent Volaju']);
+	await combobox.press('ArrowDown');
+	await combobox.press('Enter');
+
+	await expect(combobox).toHaveValue('Vincent Volaju');
 });
 
 test('a required text left blank keeps its initial value', async ({ page }): Promise<void> => {

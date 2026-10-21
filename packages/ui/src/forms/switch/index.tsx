@@ -3,9 +3,10 @@
 import type { ReactElement } from 'react';
 
 import { ChoiceField } from '#src/forms/checkbox/index.tsx';
-import type { CheckboxProps } from '#src/forms/checkbox/index.tsx';
+import type { ChoiceControlBaseProps } from '#src/forms/checkbox/index.tsx';
 
-export type SwitchProps = Omit<CheckboxProps, 'indeterminate'>;
+// The shared props, not an `Omit` of `CheckboxProps`, whose mapped type would lose the order of the props.
+export type SwitchProps = ChoiceControlBaseProps;
 
 /**
  * Native checkbox with `role="switch"`, announced as on or off; Space toggles it and it is submitted like a

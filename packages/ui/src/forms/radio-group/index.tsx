@@ -17,6 +17,7 @@ export interface RadioGroupProps extends Omit<
 > {
 	/** Shared by the radios, which makes them one group; generated when omitted. */
 	name?: string | undefined;
+	/** A radio for each option, in order. */
 	options: readonly ChoiceOption[];
 	/** Checked value, when the parent controls it; `''` checks none. */
 	value?: string | undefined;
@@ -24,7 +25,7 @@ export interface RadioGroupProps extends Omit<
 	defaultValue?: string | undefined;
 	/** Called with the checked value. */
 	onValueChange?: ((value: string) => void) | undefined;
-	/** Defaults to `'vertical'`. */
+	/** Stacks the options, or puts them in a row that wraps. Defaults to `'vertical'`. */
 	orientation?: ChoiceOrientation | undefined;
 }
 

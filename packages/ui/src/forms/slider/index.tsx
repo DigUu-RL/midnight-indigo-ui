@@ -38,11 +38,11 @@ export interface SliderProps
 			| 'max'
 			| 'step'
 		> {
-	/** Defaults to 0. */
+	/** Lowest value. Defaults to `0`. */
 	min?: number | undefined;
-	/** Defaults to 100. */
+	/** Highest value. Defaults to `100`. */
 	max?: number | undefined;
-	/** Defaults to 1. */
+	/** Distance between two values, which the arrow keys move by. Defaults to `1`. */
 	step?: number | undefined;
 	/** Current value, when the parent controls it. */
 	value?: number | undefined;

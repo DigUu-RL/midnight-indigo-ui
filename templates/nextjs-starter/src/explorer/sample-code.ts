@@ -144,7 +144,8 @@ export const sampleCrewMenuItems: readonly SampleMenuEntry[] = [
 	{ id: 'remove', label: 'Remove from the crew', destructive: true },
 ];
 
-const entryLiteralOf = (entry: SampleMenuEntry): string => {
+/** An entry of a list of plain texts and flags as an object literal, e.g. an item of a menu or an option. */
+const entryLiteralOf = (entry: object): string => {
 	const fields: string = Object.entries(entry)
 		.map(([field, value]: [string, string | boolean]): string => {
 			return `${field}: ${typeof value === 'string' ? `'${value}'` : String(value)}`;
@@ -154,11 +155,53 @@ const entryLiteralOf = (entry: SampleMenuEntry): string => {
 	return `{ ${fields} }`;
 };
 
-const crewMenuItems: string = [
-	'const crewMenuItems: readonly MenuEntry[] = [',
-	...sampleCrewMenuItems.map((entry: SampleMenuEntry): string => `\t${entryLiteralOf(entry)},`),
-	'];',
-].join('\n');
+/** A list as a constant of the given type, one entry per line. */
+const listDeclarationOf = (name: string, type: string, entries: readonly object[]): string => {
+	return [
+		`const ${name}: readonly ${type}[] = [`,
+		...entries.map((entry: object): string => `\t${entryLiteralOf(entry)},`),
+		'];',
+	].join('\n');
+};
+
+const crewMenuItems: string = listDeclarationOf('crewMenuItems', 'MenuEntry', sampleCrewMenuItems);
+
+/** An option of a choice, as `ChoiceOption`, `SelectOption` and `ComboboxOption` type it. */
+export interface SampleChoice {
+	value: string;
+	label: string;
+	description?: string;
+}
+
+export const sampleCrewOptions: readonly SampleChoice[] = [
+	{ value: 'spike', label: 'Spike Spiegel' },
+	{ value: 'jet', label: 'Jet Black' },
+	{ value: 'faye', label: 'Faye Valentine' },
+	{ value: 'ed', label: 'Edward Wong' },
+];
+
+/** The crew checked from the start. */
+export const sampleCheckedCrew: readonly string[] = ['spike', 'jet'];
+
+export const sampleShipOptions: readonly SampleChoice[] = [
+	{ value: 'bebop', label: 'Bebop', description: 'Fishing trawler turned home of the crew.' },
+	{ value: 'swordfish', label: 'Swordfish II', description: 'Fast, one seat, no cargo.' },
+	{ value: 'redtail', label: 'Red Tail', description: 'Two seats, long range.' },
+];
+
+export const samplePlanetOptions: readonly SampleChoice[] = [
+	{ value: 'mars', label: 'Mars' },
+	{ value: 'venus', label: 'Venus' },
+	{ value: 'ganymede', label: 'Ganymede' },
+	{ value: 'callisto', label: 'Callisto' },
+	{ value: 'titan', label: 'Titan' },
+];
+
+export const sampleBountyOptions: readonly SampleChoice[] = sampleBounties.map(
+	(bounty: SampleBounty): SampleChoice => {
+		return { value: bounty.name.toLowerCase().replaceAll(' ', '-'), label: bounty.name };
+	},
+);
 
 const plusIcon: string = [
 	'<Icon decorative>',
@@ -320,6 +363,34 @@ export const sampleCodes = {
 			"\t<CardHeader title='Spike Spiegel' subtitle='Right click, or focus and press Shift+F10' />",
 			'</Card>',
 		].join('\n'),
+	},
+	crewOptions: {
+		imports: {},
+		typeImports: { forms: ['ChoiceOption'] },
+		declarations: [listDeclarationOf('crewOptions', 'ChoiceOption', sampleCrewOptions)],
+		code: 'crewOptions',
+	},
+	checkedCrew: {
+		imports: {},
+		code: `[${sampleCheckedCrew.map((value: string): string => `'${value}'`).join(', ')}]`,
+	},
+	shipOptions: {
+		imports: {},
+		typeImports: { forms: ['ChoiceOption'] },
+		declarations: [listDeclarationOf('shipOptions', 'ChoiceOption', sampleShipOptions)],
+		code: 'shipOptions',
+	},
+	planetOptions: {
+		imports: {},
+		typeImports: { forms: ['SelectOption'] },
+		declarations: [listDeclarationOf('planetOptions', 'SelectOption', samplePlanetOptions)],
+		code: 'planetOptions',
+	},
+	bountyOptions: {
+		imports: {},
+		typeImports: { forms: ['ComboboxOption'] },
+		declarations: [listDeclarationOf('bountyOptions', 'ComboboxOption', sampleBountyOptions)],
+		code: 'bountyOptions',
 	},
 } as const satisfies Readonly<Record<string, SampleCode>>;
 

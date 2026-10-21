@@ -1065,6 +1065,152 @@
 					"format": "The value is the number as typed, without separators; show the formatted amount beside the field, not inside it."
 				}
 			},
+			"checkbox": {
+				"summary": "A single choice to turn on or off, such as accepting terms.",
+				"description": "A native checkbox with its `label` beside it, and a `description` and an `error` below. Controlled with `checked` and `onCheckedChange`, or uncontrolled with `defaultChecked`; when checked, its `value` (`'on'` by default) is submitted with its `name`. For a setting that applies at once, use a `Switch`.",
+				"examples": {
+					"terms": {
+						"title": "Required in a form",
+						"description": "A `required` checkbox whose `error` shows once the reader submits without it, and goes away as soon as it is checked."
+					},
+					"selectAll": {
+						"title": "Select all",
+						"description": "The first checkbox checks every member, and is `indeterminate` while only some of them are checked."
+					}
+				},
+				"accessibility": {
+					"name": "The `label` wraps the control, so a click on the text toggles it too. Without a `label`, name the checkbox with `aria-label` or `aria-labelledby`; a checkbox without a name throws.",
+					"keyboard": "Tab reaches it and Space toggles it, as with any native checkbox.",
+					"indeterminate": "`indeterminate` is announced as mixed and drawn as a dash; it changes only how the checkbox looks and is read, so set `checked` too."
+				}
+			},
+			"checkboxGroup": {
+				"summary": "Several checkboxes under one legend, for a choice of any number of options.",
+				"description": "A `Fieldset` with a checkbox for each of the `options`, which share its `name`, so the form submits one entry per checked option. Controlled with `value` and `onValueChange`, or uncontrolled with `defaultValue`; `orientation` stacks them or puts them in a row.",
+				"types": {
+					"choiceOption": "An option of the group, an entry of `options`."
+				},
+				"examples": {
+					"channels": {
+						"title": "At least one",
+						"description": "A `required` group whose `error` shows once the reader unchecks the last channel: HTML has no rule for at least one checkbox."
+					},
+					"filters": {
+						"title": "Filters in a row",
+						"description": "A `horizontal` group filters a list, and a status region says how many bounties are left."
+					}
+				},
+				"accessibility": {
+					"legend": "The `legend` names the group and is read when focus enters it; `hideLegend` keeps it for assistive technologies only.",
+					"keyboard": "Tab moves from one checkbox to the next, and Space toggles each one.",
+					"required": "`required` only marks the legend: check that one option is checked and pass the `error`, which describes the group."
+				}
+			},
+			"radioGroup": {
+				"summary": "Native radios under one legend, for a choice of exactly one option.",
+				"description": "A `Fieldset` with the role `radiogroup` and a radio for each of the `options`, which share its `name` (generated when omitted). Controlled with `value` and `onValueChange`, or uncontrolled with `defaultValue`; `''` checks none.",
+				"types": {
+					"choiceOption": "An option of the group, an entry of `options`."
+				},
+				"examples": {
+					"routes": {
+						"title": "Options with descriptions",
+						"description": "Each option has a `description` read after its label, and a closed route stays listed but `disabled`."
+					},
+					"required": {
+						"title": "Required, none checked",
+						"description": "No option is checked at first, so a submission without a choice shows the `error` of the group."
+					}
+				},
+				"accessibility": {
+					"keyboard": "Tab enters the group at the checked option, or the first one; the arrow keys move between the options and check them.",
+					"checked": "With `required`, the group is `aria-required` and the form asks for one option to be checked.",
+					"radioOrCheckbox": "Use radios when exactly one option applies, and a `CheckboxGroup` when any number of them may."
+				}
+			},
+			"switch": {
+				"summary": "An on and off setting that takes effect at once.",
+				"description": "A native checkbox with the role `switch`, announced as on or off. Controlled with `checked` and `onCheckedChange`, or uncontrolled with `defaultChecked`; it is submitted like a checkbox. In a form submitted later, prefer a `Checkbox`.",
+				"examples": {
+					"settings": {
+						"title": "Settings applied at once",
+						"description": "Each switch applies its setting with no button to save, and a status region confirms the change."
+					},
+					"dependent": {
+						"title": "A setting that enables another",
+						"description": "The destination only counts with the autopilot on, so the `Select` is `disabled` while it is off."
+					}
+				},
+				"accessibility": {
+					"role": "It is read as a switch, on or off, not as a checked box; the thumb moves to the end when on, so the state does not rest on color.",
+					"immediate": "Use it only for what takes effect at once, and say so when it does, e.g. in a status region.",
+					"keyboard": "Tab reaches it and Space toggles it. Name it with a `label` or `aria-label`; a switch without a name throws."
+				}
+			},
+			"select": {
+				"summary": "A choice of one option from a list, on the native select.",
+				"description": "A native `select` with its `label`, a `description` and an `error`. `options` takes options or groups of them; `placeholder` adds an empty option first. Controlled with `value` and `onValueChange`, or uncontrolled with `defaultValue`, and submitted with its `name`.",
+				"types": {
+					"selectOption": "An option of the list, an entry of `options` or of a group.",
+					"selectOptionGroup": "Options under a name, an entry of `options`."
+				},
+				"examples": {
+					"groups": {
+						"title": "Groups and placeholder",
+						"description": "Options grouped by system, an option `disabled`, and a `placeholder` that a `required` select refuses."
+					},
+					"dependent": {
+						"title": "One select depends on another",
+						"description": "The moons depend on the system: the second select waits for the first, and a new system clears the moon."
+					}
+				},
+				"accessibility": {
+					"native": "The list is the one of the platform: type-ahead, arrow keys and the picker of touch devices come with it.",
+					"placeholder": "A `placeholder` is an empty option, not a label: the `label` stays visible above the select.",
+					"readOnly": "The element has no read-only state: use `disabled`, or a `TextField` with `readOnly`, to show a fixed value."
+				}
+			},
+			"combobox": {
+				"summary": "A field that filters a list of options as the reader types, for long lists.",
+				"description": "A text input with a list of `options`, which the typed text filters (`filter`). The chosen option is submitted with `name`, as its value. Controlled with `value` and `onValueChange`, or uncontrolled with `defaultValue`; `inputValue` and `onInputValueChange` give the typed text, e.g. to fetch the options.",
+				"types": {
+					"comboboxOption": "An option of the list, an entry of `options`."
+				},
+				"examples": {
+					"search": {
+						"title": "A long list",
+						"description": "`filter='startsWith'` matches the start of the names, and `maxVisibleOptions` lists the first five: a message asks to keep typing."
+					},
+					"remote": {
+						"title": "Options from a request",
+						"description": "Each typed text asks the registry for its options: the field is `loading` meanwhile, and `filter='none'` keeps the list as it comes."
+					}
+				},
+				"accessibility": {
+					"keyboard": "Down and Up open the list and move the highlight while focus stays in the input; Enter chooses, and Escape closes the list, then clears the text.",
+					"announce": "The highlighted option is read as it changes, and so are the texts when no option matches, while loading, and when more options match than are shown.",
+					"manyOptions": "For a few options, a `Select` or a `RadioGroup` shows them all at once; the combobox suits lists too long to scan."
+				}
+			},
+			"slider": {
+				"summary": "A choice of a number in a range, by dragging or with the keyboard.",
+				"description": "A native range input with its `label`, between `min` and `max` by `step`. The value is shown after the track, written by `formatValue`. Controlled with `value` and `onValueChange`, or uncontrolled with `defaultValue`, and submitted with its `name`. `input` takes a field for the exact value.",
+				"examples": {
+					"formatted": {
+						"title": "Values with a unit",
+						"description": "`formatValue` writes the percent and the parsecs beside the track, and assistive technologies read the same text."
+					},
+					"input": {
+						"title": "With a number field",
+						"description": "A `NumberField` in `input`, bound to the same value, takes the exact amount that dragging only comes close to."
+					}
+				},
+				"accessibility": {
+					"keyboard": "The arrow keys move it by `step`, Page Up and Page Down by larger steps, and Home and End go to the ends.",
+					"valueText": "`formatValue` also gives the text read for the value (`aria-valuetext`), so a unit is heard and not only seen.",
+					"precision": "Dragging is not precise, nor possible for everyone: when the exact value matters, give a field in `input`."
+				}
+			},
 			"container": {
 				"summary": "Centers the content of a page or a section and limits its width.",
 				"description": "Wrap the content of a page in it: `size` limits the line length (`small` for reading and forms, `large` for dashboards) and the side gutters grow with the viewport.",

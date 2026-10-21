@@ -20,14 +20,18 @@ import { controlResetStyles, InputFrame } from '#src/forms/input-frame/index.tsx
 const { spacing, surface, text, iconSize }: typeof themeVariables = themeVariables;
 
 export interface SelectOption {
+	/** Submitted with the `name` of the select when chosen; unique within it. */
 	value: string;
+	/** Text of the option in the list. */
 	label: string;
+	/** Keeps the option listed but not selectable. */
 	disabled?: boolean;
 }
 
 export interface SelectOptionGroup {
 	/** Name of the group, shown above its options. */
 	label: string;
+	/** Options of the group, in order. */
 	options: readonly SelectOption[];
 }
 
@@ -59,7 +63,7 @@ export interface SelectProps
 	defaultValue?: string;
 	/** Called with the new value, after `onChange`. */
 	onValueChange?: (value: string) => void;
-	/** Defaults to `'medium'`. */
+	/** 32, 40 or 48 px high, like the buttons. Defaults to `'medium'`. */
 	size?: ControlSize;
 	/** Class of the root of the field. */
 	className?: string;

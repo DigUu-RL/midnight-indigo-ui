@@ -1,7 +1,7 @@
 // Public subpath `@midnight-indigo/ui/forms`. Date pickers and the React Hook Form adapter have their own subpaths,
 // so their dependencies stay optional.
 export { Checkbox } from '#src/forms/checkbox/index.tsx';
-export type { CheckboxProps } from '#src/forms/checkbox/index.tsx';
+export type { CheckboxProps, ChoiceControlBaseProps } from '#src/forms/checkbox/index.tsx';
 export { CheckboxGroup } from '#src/forms/checkbox-group/index.tsx';
 export type { CheckboxGroupProps } from '#src/forms/checkbox-group/index.tsx';
 export type { ChoiceOption, ChoiceOrientation } from '#src/forms/choice-control/index.tsx';

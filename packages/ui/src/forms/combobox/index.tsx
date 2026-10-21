@@ -39,8 +39,11 @@ const {
 }: typeof themeVariables = themeVariables;
 
 export interface ComboboxOption {
+	/** Submitted with the `name` of the combobox when chosen; unique within its options. */
 	value: string;
+	/** Text of the option, which the typed text is matched against and the input shows once chosen. */
 	label: string;
+	/** Keeps the option listed but not selectable. */
 	disabled?: boolean | undefined;
 }
 
@@ -92,6 +95,7 @@ export interface ComboboxProps
 			| 'defaultValue'
 			| 'onChange'
 		> {
+	/** Options the typed text filters, in order. */
 	options: readonly ComboboxOption[];
 	/** Value of the chosen option, when the parent controls it; `null` for none. */
 	value?: string | null | undefined;
@@ -103,14 +107,17 @@ export interface ComboboxProps
 	inputValue?: string | undefined;
 	/** Called with the typed text. */
 	onInputValueChange?: ((inputValue: string) => void) | undefined;
-	/** Defaults to `'contains'`. */
+	/**
+	 * How the typed text matches the labels: anywhere, at their start, or not at all, when the options already come
+	 * filtered (e.g. by a request). Defaults to `'contains'`.
+	 */
 	filter?: ComboboxFilter | undefined;
 	/**
 	 * Most options rendered at once: the first matches are listed, and a message asks to type to narrow the rest.
-	 * Rendering thousands of options at once freezes the page when the list opens. Defaults to 100.
+	 * Rendering thousands of options at once freezes the page when the list opens. Defaults to `100`.
 	 */
 	maxVisibleOptions?: number | undefined;
-	/** Defaults to `'medium'`. */
+	/** 32, 40 or 48 px high, like the buttons. Defaults to `'medium'`. */
 	size?: ControlSize | undefined;
 	/** Overrides some or all of `defaultComboboxLabels`. */
 	labels?: Partial<ComboboxLabels> | undefined;

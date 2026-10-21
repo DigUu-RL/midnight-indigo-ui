@@ -1480,5 +1480,447 @@
 			"source": "After the value, e.g. `'kg'`; read like `prefix`.",
 			"translation": "Depois do valor, por exemplo `'kg'`; lido como `prefix`."
 		}
+	},
+	"Checkbox": {
+		"indeterminate": {
+			"source": "Shows a dash instead of the check, e.g. for \"select all\" when only some items are selected.",
+			"translation": "Mostra um traço no lugar da marca, por exemplo para \"selecionar todos\" quando só alguns itens estão selecionados."
+		},
+		"label": {
+			"source": "What the control turns on, in bold beside it, e.g. `'Enable email notifications'`. Optional: without it, name the control with `aria-label` or `aria-labelledby` (e.g. a checkbox in a table row).",
+			"translation": "O que o controle liga, em negrito ao lado dele, por exemplo `'Enable email notifications'`. Opcional: sem ele, nomeie o controle com `aria-label` ou `aria-labelledby` (por exemplo uma caixa de seleção em uma linha de tabela)."
+		},
+		"description": {
+			"source": "What happens when it is on, below the label, e.g. `'Sends a notification by email for each new report'`. Read after the name.",
+			"translation": "O que acontece quando está ligado, abaixo do rótulo, por exemplo `'Sends a notification by email for each new report'`. Lido depois do nome."
+		},
+		"onCheckedChange": {
+			"source": "Called with the new state, after `onChange`.",
+			"translation": "Chamada com o novo estado, depois de `onChange`."
+		},
+		"className": {
+			"source": "Class of the row.",
+			"translation": "Classe da linha."
+		},
+		"style": {
+			"source": "Style of the row.",
+			"translation": "Estilo da linha."
+		},
+		"disabled": {
+			"source": "Unavailable: skipped by Tab and not submitted.",
+			"translation": "Indisponível: pulado pelo Tab e não enviado."
+		},
+		"error": {
+			"source": "Error message. When set, the control is `aria-invalid` and the message, marked with an icon, is read with it. Inside a `Form`, a field with a `name` shows the error of that name unless `error` is given.",
+			"translation": "Mensagem de erro. Quando definida, o controle fica `aria-invalid` e a mensagem, marcada com um ícone, é lida com ele. Dentro de um `Form`, um campo com `name` mostra o erro desse nome, a menos que `error` seja dado."
+		},
+		"required": {
+			"source": "Marks the label with an asterisk and the control as `required`.",
+			"translation": "Marca o rótulo com um asterisco e o controle como `required`."
+		}
+	},
+	"CheckboxGroup": {
+		"name": {
+			"source": "Shared by every checkbox, so the form submits one entry per checked option.",
+			"translation": "Compartilhado por todas as caixas, então o formulário envia uma entrada por opção marcada."
+		},
+		"options": {
+			"source": "A checkbox for each option, in order.",
+			"translation": "Uma caixa de seleção para cada opção, em ordem."
+		},
+		"value": {
+			"source": "Checked values, when the parent controls them.",
+			"translation": "Valores marcados, quando o pai os controla."
+		},
+		"defaultValue": {
+			"source": "Initially checked values when uncontrolled.",
+			"translation": "Valores marcados no início, quando não controlado."
+		},
+		"onValueChange": {
+			"source": "Called with the checked values, in the order of `options`.",
+			"translation": "Chamada com os valores marcados, na ordem de `options`."
+		},
+		"orientation": {
+			"source": "Stacks the options, or puts them in a row that wraps. Defaults to `'vertical'`.",
+			"translation": "Empilha as opções, ou as põe em uma linha que quebra. Padrão: `'vertical'`."
+		},
+		"legend": {
+			"source": "Name of the group, read when focus enters it, e.g. `'Delivery address'`.",
+			"translation": "Nome do grupo, lido quando o foco entra nele, por exemplo `'Delivery address'`."
+		},
+		"disabled": {
+			"source": "Disables every control inside, natively.",
+			"translation": "Desabilita todos os controles de dentro, nativamente."
+		},
+		"error": {
+			"source": "Error of the group, e.g. `'Choose at least one channel'`, marked with an icon.",
+			"translation": "Erro do grupo, por exemplo `'Choose at least one channel'`, marcado com um ícone."
+		},
+		"description": {
+			"source": "Help text for the whole group.",
+			"translation": "Texto de ajuda para o grupo inteiro."
+		},
+		"required": {
+			"source": "Marks the legend with an asterisk; the controls inside carry their own `required`.",
+			"translation": "Marca a legenda com um asterisco; os controles de dentro levam seu próprio `required`."
+		},
+		"hideLegend": {
+			"source": "Keeps the legend for assistive technologies only.",
+			"translation": "Mantém a legenda só para tecnologias assistivas."
+		}
+	},
+	"ChoiceOption": {
+		"value": {
+			"source": "Submitted with the `name` of the group when checked; unique within the group.",
+			"translation": "Enviado com o `name` do grupo quando marcado; único no grupo."
+		},
+		"label": {
+			"source": "Text beside the control, which names the option.",
+			"translation": "Texto ao lado do controle, que nomeia a opção."
+		},
+		"description": {
+			"source": "Help text for this option.",
+			"translation": "Texto de ajuda desta opção."
+		},
+		"disabled": {
+			"source": "Keeps the option visible but unavailable.",
+			"translation": "Mantém a opção visível, mas indisponível."
+		}
+	},
+	"RadioGroup": {
+		"name": {
+			"source": "Shared by the radios, which makes them one group; generated when omitted.",
+			"translation": "Compartilhado pelos botões de opção, o que os torna um grupo; gerado quando omitido."
+		},
+		"options": {
+			"source": "A radio for each option, in order.",
+			"translation": "Um botão de opção para cada opção, em ordem."
+		},
+		"value": {
+			"source": "Checked value, when the parent controls it; `''` checks none.",
+			"translation": "Valor marcado, quando o pai o controla; `''` não marca nenhum."
+		},
+		"defaultValue": {
+			"source": "Initially checked value when uncontrolled.",
+			"translation": "Valor marcado no início, quando não controlado."
+		},
+		"onValueChange": {
+			"source": "Called with the checked value.",
+			"translation": "Chamada com o valor marcado."
+		},
+		"orientation": {
+			"source": "Stacks the options, or puts them in a row that wraps. Defaults to `'vertical'`.",
+			"translation": "Empilha as opções, ou as põe em uma linha que quebra. Padrão: `'vertical'`."
+		},
+		"legend": {
+			"source": "Name of the group, read when focus enters it, e.g. `'Delivery address'`.",
+			"translation": "Nome do grupo, lido quando o foco entra nele, por exemplo `'Delivery address'`."
+		},
+		"disabled": {
+			"source": "Disables every control inside, natively.",
+			"translation": "Desabilita todos os controles de dentro, nativamente."
+		},
+		"error": {
+			"source": "Error of the group, e.g. `'Choose at least one channel'`, marked with an icon.",
+			"translation": "Erro do grupo, por exemplo `'Choose at least one channel'`, marcado com um ícone."
+		},
+		"description": {
+			"source": "Help text for the whole group.",
+			"translation": "Texto de ajuda para o grupo inteiro."
+		},
+		"required": {
+			"source": "Marks the legend with an asterisk; the controls inside carry their own `required`.",
+			"translation": "Marca a legenda com um asterisco; os controles de dentro levam seu próprio `required`."
+		},
+		"hideLegend": {
+			"source": "Keeps the legend for assistive technologies only.",
+			"translation": "Mantém a legenda só para tecnologias assistivas."
+		}
+	},
+	"Switch": {
+		"label": {
+			"source": "What the control turns on, in bold beside it, e.g. `'Enable email notifications'`. Optional: without it, name the control with `aria-label` or `aria-labelledby` (e.g. a checkbox in a table row).",
+			"translation": "O que o controle liga, em negrito ao lado dele, por exemplo `'Enable email notifications'`. Opcional: sem ele, nomeie o controle com `aria-label` ou `aria-labelledby` (por exemplo uma caixa de seleção em uma linha de tabela)."
+		},
+		"description": {
+			"source": "What happens when it is on, below the label, e.g. `'Sends a notification by email for each new report'`. Read after the name.",
+			"translation": "O que acontece quando está ligado, abaixo do rótulo, por exemplo `'Sends a notification by email for each new report'`. Lido depois do nome."
+		},
+		"onCheckedChange": {
+			"source": "Called with the new state, after `onChange`.",
+			"translation": "Chamada com o novo estado, depois de `onChange`."
+		},
+		"className": {
+			"source": "Class of the row.",
+			"translation": "Classe da linha."
+		},
+		"style": {
+			"source": "Style of the row.",
+			"translation": "Estilo da linha."
+		},
+		"disabled": {
+			"source": "Unavailable: skipped by Tab and not submitted.",
+			"translation": "Indisponível: pulado pelo Tab e não enviado."
+		},
+		"error": {
+			"source": "Error message. When set, the control is `aria-invalid` and the message, marked with an icon, is read with it. Inside a `Form`, a field with a `name` shows the error of that name unless `error` is given.",
+			"translation": "Mensagem de erro. Quando definida, o controle fica `aria-invalid` e a mensagem, marcada com um ícone, é lida com ele. Dentro de um `Form`, um campo com `name` mostra o erro desse nome, a menos que `error` seja dado."
+		},
+		"required": {
+			"source": "Marks the label with an asterisk and the control as `required`.",
+			"translation": "Marca o rótulo com um asterisco e o controle como `required`."
+		}
+	},
+	"Select": {
+		"options": {
+			"source": "Options, or groups of options.",
+			"translation": "Opções, ou grupos de opções."
+		},
+		"placeholder": {
+			"source": "Text of the empty option (`value=\"\"`), listed first, e.g. `'Choose a state'`. With `required`, choosing it fails validation; without it, it clears the choice. Without a placeholder the first option is selected.",
+			"translation": "Texto da opção vazia (`value=\"\"`), listada primeiro, por exemplo `'Choose a state'`. Com `required`, escolhê-la falha na validação; sem ele, ela limpa a escolha. Sem placeholder, a primeira opção fica selecionada."
+		},
+		"value": {
+			"source": "Selected value, when the parent controls it; `''` selects the empty option.",
+			"translation": "Valor selecionado, quando o pai o controla; `''` seleciona a opção vazia."
+		},
+		"defaultValue": {
+			"source": "Initial value when uncontrolled.",
+			"translation": "Valor inicial quando não controlado."
+		},
+		"onValueChange": {
+			"source": "Called with the new value, after `onChange`.",
+			"translation": "Chamada com o novo valor, depois de `onChange`."
+		},
+		"size": {
+			"source": "32, 40 or 48 px high, like the buttons. Defaults to `'medium'`.",
+			"translation": "32, 40 ou 48 px de altura, como os botões. Padrão: `'medium'`."
+		},
+		"className": {
+			"source": "Class of the root of the field.",
+			"translation": "Classe da raiz do campo."
+		},
+		"style": {
+			"source": "Style of the root of the field.",
+			"translation": "Estilo da raiz do campo."
+		},
+		"label": {
+			"source": "Visible, persistent label; a placeholder never replaces it.",
+			"translation": "Rótulo visível e persistente; um placeholder nunca o substitui."
+		},
+		"disabled": {
+			"source": "Unavailable: skipped by Tab and not submitted.",
+			"translation": "Indisponível: pulado pelo Tab e não enviado."
+		},
+		"error": {
+			"source": "Error message. When set, the control is `aria-invalid` and the message, marked with an icon, is read with it. Inside a `Form`, a field with a `name` shows the error of that name unless `error` is given.",
+			"translation": "Mensagem de erro. Quando definida, o controle fica `aria-invalid` e a mensagem, marcada com um ícone, é lida com ele. Dentro de um `Form`, um campo com `name` mostra o erro desse nome, a menos que `error` seja dado."
+		},
+		"loading": {
+			"source": "The field waits for data (e.g. its options): `aria-busy`, a ring and a hidden `'Loading'` text.",
+			"translation": "O campo aguarda dados (por exemplo suas opções): `aria-busy`, um anel e um texto oculto `'Loading'`."
+		},
+		"description": {
+			"source": "Help text, read after the label.",
+			"translation": "Texto de ajuda, lido depois do rótulo."
+		},
+		"required": {
+			"source": "Marks the label with an asterisk and the control as `required`.",
+			"translation": "Marca o rótulo com um asterisco e o controle como `required`."
+		},
+		"hideLabel": {
+			"source": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a search bar).",
+			"translation": "Mantém o rótulo só para tecnologias assistivas, quando o contexto já o mostra (por exemplo uma barra de busca)."
+		},
+		"fieldLabels": {
+			"source": "Overrides some or all of `defaultFormFieldLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultFormFieldLabels`."
+		}
+	},
+	"SelectOption": {
+		"value": {
+			"source": "Submitted with the `name` of the select when chosen; unique within it.",
+			"translation": "Enviado com o `name` do select quando escolhido; único nele."
+		},
+		"label": {
+			"source": "Text of the option in the list.",
+			"translation": "Texto da opção na lista."
+		},
+		"disabled": {
+			"source": "Keeps the option listed but not selectable.",
+			"translation": "Mantém a opção listada, mas não selecionável."
+		}
+	},
+	"SelectOptionGroup": {
+		"label": {
+			"source": "Name of the group, shown above its options.",
+			"translation": "Nome do grupo, mostrado acima das suas opções."
+		},
+		"options": {
+			"source": "Options of the group, in order.",
+			"translation": "Opções do grupo, em ordem."
+		}
+	},
+	"Combobox": {
+		"options": {
+			"source": "Options the typed text filters, in order.",
+			"translation": "Opções que o texto digitado filtra, em ordem."
+		},
+		"value": {
+			"source": "Value of the chosen option, when the parent controls it; `null` for none.",
+			"translation": "Valor da opção escolhida, quando o pai o controla; `null` para nenhuma."
+		},
+		"defaultValue": {
+			"source": "Initially chosen value when uncontrolled.",
+			"translation": "Valor escolhido no início, quando não controlado."
+		},
+		"onValueChange": {
+			"source": "Called with the value of the chosen option, or `null` when cleared.",
+			"translation": "Chamada com o valor da opção escolhida, ou `null` quando limpa."
+		},
+		"inputValue": {
+			"source": "Typed text, when the parent controls it (e.g. to fetch options).",
+			"translation": "Texto digitado, quando o pai o controla (por exemplo para buscar opções)."
+		},
+		"onInputValueChange": {
+			"source": "Called with the typed text.",
+			"translation": "Chamada com o texto digitado."
+		},
+		"filter": {
+			"source": "How the typed text matches the labels: anywhere, at their start, or not at all, when the options already come filtered (e.g. by a request). Defaults to `'contains'`.",
+			"translation": "Como o texto digitado casa com os rótulos: em qualquer parte, no início, ou de forma nenhuma, quando as opções já vêm filtradas (por exemplo por uma requisição). Padrão: `'contains'`."
+		},
+		"maxVisibleOptions": {
+			"source": "Most options rendered at once: the first matches are listed, and a message asks to type to narrow the rest. Rendering thousands of options at once freezes the page when the list opens. Defaults to `100`.",
+			"translation": "Máximo de opções renderizadas de uma vez: as primeiras que casam são listadas, e uma mensagem pede para digitar para estreitar o resto. Renderizar milhares de opções de uma vez trava a página quando a lista abre. Padrão: `100`."
+		},
+		"size": {
+			"source": "32, 40 or 48 px high, like the buttons. Defaults to `'medium'`.",
+			"translation": "32, 40 ou 48 px de altura, como os botões. Padrão: `'medium'`."
+		},
+		"labels": {
+			"source": "Overrides some or all of `defaultComboboxLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultComboboxLabels`."
+		},
+		"className": {
+			"source": "Class of the root of the field.",
+			"translation": "Classe da raiz do campo."
+		},
+		"style": {
+			"source": "Style of the root of the field.",
+			"translation": "Estilo da raiz do campo."
+		},
+		"label": {
+			"source": "Visible, persistent label; a placeholder never replaces it.",
+			"translation": "Rótulo visível e persistente; um placeholder nunca o substitui."
+		},
+		"disabled": {
+			"source": "Unavailable: skipped by Tab and not submitted.",
+			"translation": "Indisponível: pulado pelo Tab e não enviado."
+		},
+		"error": {
+			"source": "Error message. When set, the control is `aria-invalid` and the message, marked with an icon, is read with it. Inside a `Form`, a field with a `name` shows the error of that name unless `error` is given.",
+			"translation": "Mensagem de erro. Quando definida, o controle fica `aria-invalid` e a mensagem, marcada com um ícone, é lida com ele. Dentro de um `Form`, um campo com `name` mostra o erro desse nome, a menos que `error` seja dado."
+		},
+		"loading": {
+			"source": "The field waits for data (e.g. its options): `aria-busy`, a ring and a hidden `'Loading'` text.",
+			"translation": "O campo aguarda dados (por exemplo suas opções): `aria-busy`, um anel e um texto oculto `'Loading'`."
+		},
+		"description": {
+			"source": "Help text, read after the label.",
+			"translation": "Texto de ajuda, lido depois do rótulo."
+		},
+		"required": {
+			"source": "Marks the label with an asterisk and the control as `required`.",
+			"translation": "Marca o rótulo com um asterisco e o controle como `required`."
+		},
+		"hideLabel": {
+			"source": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a search bar).",
+			"translation": "Mantém o rótulo só para tecnologias assistivas, quando o contexto já o mostra (por exemplo uma barra de busca)."
+		},
+		"fieldLabels": {
+			"source": "Overrides some or all of `defaultFormFieldLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultFormFieldLabels`."
+		}
+	},
+	"ComboboxOption": {
+		"value": {
+			"source": "Submitted with the `name` of the combobox when chosen; unique within its options.",
+			"translation": "Enviado com o `name` do combobox quando escolhido; único entre suas opções."
+		},
+		"label": {
+			"source": "Text of the option, which the typed text is matched against and the input shows once chosen.",
+			"translation": "Texto da opção, com o qual o texto digitado é comparado e que o campo mostra depois de escolhida."
+		},
+		"disabled": {
+			"source": "Keeps the option listed but not selectable.",
+			"translation": "Mantém a opção listada, mas não selecionável."
+		}
+	},
+	"Slider": {
+		"min": {
+			"source": "Lowest value. Defaults to `0`.",
+			"translation": "Menor valor. Padrão: `0`."
+		},
+		"max": {
+			"source": "Highest value. Defaults to `100`.",
+			"translation": "Maior valor. Padrão: `100`."
+		},
+		"step": {
+			"source": "Distance between two values, which the arrow keys move by. Defaults to `1`.",
+			"translation": "Distância entre dois valores, que as setas percorrem. Padrão: `1`."
+		},
+		"value": {
+			"source": "Current value, when the parent controls it.",
+			"translation": "Valor atual, quando o pai o controla."
+		},
+		"defaultValue": {
+			"source": "Initial value when uncontrolled. Defaults to `min`.",
+			"translation": "Valor inicial quando não controlado. Padrão: `min`."
+		},
+		"onValueChange": {
+			"source": "Called with the new value, after `onChange`.",
+			"translation": "Chamada com o novo valor, depois de `onChange`."
+		},
+		"formatValue": {
+			"source": "Text of the value, shown beside the label and read by assistive technologies (`aria-valuetext`), e.g. `(value) => \\`${value} %\\``. Defaults to the number.",
+			"translation": "Texto do valor, mostrado ao lado do rótulo e lido pelas tecnologias assistivas (`aria-valuetext`), por exemplo `(value) => \\`${value} %\\``. Padrão: o número."
+		},
+		"input": {
+			"source": "Content after the track, typically a `NumberField` bound to the same value: when precision matters, typing a number is easier than dragging (WCAG 2.5.7).",
+			"translation": "Conteúdo depois da trilha, tipicamente um `NumberField` ligado ao mesmo valor: quando a precisão importa, digitar um número é mais fácil que arrastar (WCAG 2.5.7)."
+		},
+		"className": {
+			"source": "Class of the root of the field.",
+			"translation": "Classe da raiz do campo."
+		},
+		"style": {
+			"source": "Style of the root of the field.",
+			"translation": "Estilo da raiz do campo."
+		},
+		"label": {
+			"source": "Visible, persistent label; a placeholder never replaces it.",
+			"translation": "Rótulo visível e persistente; um placeholder nunca o substitui."
+		},
+		"disabled": {
+			"source": "Unavailable: skipped by Tab and not submitted.",
+			"translation": "Indisponível: pulado pelo Tab e não enviado."
+		},
+		"error": {
+			"source": "Error message. When set, the control is `aria-invalid` and the message, marked with an icon, is read with it. Inside a `Form`, a field with a `name` shows the error of that name unless `error` is given.",
+			"translation": "Mensagem de erro. Quando definida, o controle fica `aria-invalid` e a mensagem, marcada com um ícone, é lida com ele. Dentro de um `Form`, um campo com `name` mostra o erro desse nome, a menos que `error` seja dado."
+		},
+		"description": {
+			"source": "Help text, read after the label.",
+			"translation": "Texto de ajuda, lido depois do rótulo."
+		},
+		"required": {
+			"source": "Marks the label with an asterisk and the control as `required`.",
+			"translation": "Marca o rótulo com um asterisco e o controle como `required`."
+		},
+		"hideLabel": {
+			"source": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a search bar).",
+			"translation": "Mantém o rótulo só para tecnologias assistivas, quando o contexto já o mostra (por exemplo uma barra de busca)."
+		}
 	}
 }
