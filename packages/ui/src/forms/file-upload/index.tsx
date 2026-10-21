@@ -183,7 +183,9 @@ const Zone = styled('div', {
 					backgroundColor: dragging ? state.hover : surface.field,
 				}
 			: {}),
-		color: disabled ? state.disabledText : text.secondary,
+		// The limits keep their contrast while disabled, like the description of a field: they are text, not a control.
+		color: text.secondary,
+		...(disabled ? { cursor: 'not-allowed' } : {}),
 		...typography.bodySmall,
 		...colorTransitionStyles,
 	};
@@ -465,7 +467,8 @@ export const FileUpload = ({
 								<span aria-hidden='true'>{texts.choose(multiple)}</span>
 							</ChooseButton>
 
-							{dropzone ? <span aria-hidden='true'>{texts.dropHint}</span> : null}
+							{/* A disabled field takes no drop, so it does not invite one. */}
+							{dropzone && !disabled ? <span aria-hidden='true'>{texts.dropHint}</span> : null}
 							{limitsText === '' ? null : <span id={limitsId}>{limitsText}</span>}
 						</Zone>
 

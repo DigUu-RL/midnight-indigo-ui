@@ -2,12 +2,18 @@
 // Submit button that shows the progress of the enclosing `Form`.
 import type { ReactElement } from 'react';
 
+import type { SemanticIntent } from '#src/tokens/index.ts';
 import { Button } from '#src/buttons/button/index.tsx';
-import type { ButtonProps } from '#src/buttons/button/index.tsx';
+import type { ButtonProps, ButtonVariant } from '#src/buttons/button/index.tsx';
 import { useFormSubmission } from '#src/forms/form-context.ts';
 import type { FormSubmission } from '#src/forms/form-context.ts';
 
-export type SubmitButtonProps = Omit<ButtonProps, 'type'>;
+export interface SubmitButtonProps extends Omit<ButtonProps, 'type' | 'intent' | 'variant'> {
+	/** Meaning of the action. Defaults to `'official'`: submitting is the main action of its form. */
+	intent?: SemanticIntent;
+	/** Emphasis. Defaults to `'solid'`. */
+	variant?: ButtonVariant;
+}
 
 /**
  * `Button` with `type="submit"`, `intent='official'` and `variant='solid'` by default. While the enclosing `Form`

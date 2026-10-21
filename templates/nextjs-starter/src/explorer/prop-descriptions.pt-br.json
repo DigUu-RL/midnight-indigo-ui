@@ -1922,5 +1922,327 @@
 			"source": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a search bar).",
 			"translation": "Mantém o rótulo só para tecnologias assistivas, quando o contexto já o mostra (por exemplo uma barra de busca)."
 		}
+	},
+	"FormField": {
+		"label": {
+			"source": "Visible, persistent label; a placeholder never replaces it.",
+			"translation": "Rótulo visível e persistente; um placeholder nunca o substitui."
+		},
+		"hideLabel": {
+			"source": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a search bar).",
+			"translation": "Mantém o rótulo só para tecnologias assistivas, quando o contexto já o mostra (por exemplo uma barra de busca)."
+		},
+		"description": {
+			"source": "Help text, read after the label.",
+			"translation": "Texto de ajuda, lido depois do rótulo."
+		},
+		"error": {
+			"source": "Error message. When set, the control is `aria-invalid` and the message, marked with an icon, is read with it. Inside a `Form`, a field with a `name` shows the error of that name unless `error` is given.",
+			"translation": "Mensagem de erro. Quando definida, o controle fica `aria-invalid` e a mensagem, marcada com um ícone, é lida com ele. Dentro de um `Form`, um campo com `name` mostra o erro desse nome, a menos que `error` seja dado."
+		},
+		"required": {
+			"source": "Marks the label with an asterisk and the control as `required`.",
+			"translation": "Marca o rótulo com um asterisco e o controle como `required`."
+		},
+		"disabled": {
+			"source": "Unavailable: skipped by Tab and not submitted.",
+			"translation": "Indisponível: pulado pelo Tab e não enviado."
+		},
+		"readOnly": {
+			"source": "Focusable and submitted, but not editable.",
+			"translation": "Focável e enviado, mas não editável."
+		},
+		"loading": {
+			"source": "The field waits for data (e.g. its options): `aria-busy`, a ring and a hidden `'Loading'` text.",
+			"translation": "O campo aguarda dados (por exemplo suas opções): `aria-busy`, um anel e um texto oculto `'Loading'`."
+		},
+		"fieldLabels": {
+			"source": "Overrides some or all of `defaultFormFieldLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultFormFieldLabels`."
+		},
+		"controlId": {
+			"source": "Id of the control; generated when omitted.",
+			"translation": "Id do controle; gerado quando omitido."
+		},
+		"labelId": {
+			"source": "Id of the label, for controls whose parts are labelled by it (e.g. the listbox of a combobox).",
+			"translation": "Id do rótulo, para controles cujas partes são nomeadas por ele (por exemplo, a listbox de um combobox)."
+		},
+		"name": {
+			"source": "Name of the control, used to read its error from the enclosing `Form`.",
+			"translation": "Nome do controle, usado para ler seu erro do `Form` que o contém."
+		},
+		"describedBy": {
+			"source": "Extra ids that describe the control, e.g. a character counter.",
+			"translation": "Ids extras que descrevem o controle, por exemplo um contador de caracteres."
+		},
+		"children": {
+			"source": "Renders the control with the given attributes spread on it.",
+			"translation": "Renderiza o controle com os atributos recebidos espalhados nele."
+		}
+	},
+	"Fieldset": {
+		"legend": {
+			"source": "Name of the group, read when focus enters it, e.g. `'Delivery address'`.",
+			"translation": "Nome do grupo, lido quando o foco entra nele, por exemplo `'Delivery address'`."
+		},
+		"hideLegend": {
+			"source": "Keeps the legend for assistive technologies only.",
+			"translation": "Mantém a legenda só para tecnologias assistivas."
+		},
+		"description": {
+			"source": "Help text for the whole group.",
+			"translation": "Texto de ajuda para o grupo inteiro."
+		},
+		"error": {
+			"source": "Error of the group, e.g. `'Choose at least one channel'`, marked with an icon.",
+			"translation": "Erro do grupo, por exemplo `'Choose at least one channel'`, marcado com um ícone."
+		},
+		"required": {
+			"source": "Marks the legend with an asterisk; the controls inside carry their own `required`.",
+			"translation": "Marca a legenda com um asterisco; os controles de dentro levam seu próprio `required`."
+		},
+		"disabled": {
+			"source": "Disables every control inside, natively.",
+			"translation": "Desabilita todos os controles de dentro, nativamente."
+		},
+		"errorName": {
+			"source": "Name of the field the group stands for, to read its error from the enclosing `Form`.",
+			"translation": "Nome do campo que o grupo representa, para ler seu erro do `Form` que o contém."
+		},
+		"children": {
+			"source": "The controls of the group.",
+			"translation": "Os controles do grupo."
+		}
+	},
+	"SubmitButton": {
+		"children": {
+			"source": "Visible label; it is also the accessible name.",
+			"translation": "Rótulo visível; também é o nome acessível."
+		},
+		"loading": {
+			"source": "Operation in progress: shows a ring in place of `startIcon`, sets `aria-busy` and ignores activation, but the button keeps its look and its focus. Use it instead of `disabled`, which means the action is unavailable.",
+			"translation": "Operação em andamento: mostra um anel no lugar de `startIcon`, define `aria-busy` e ignora a ativação, mas o botão mantém a aparência e o foco. Use no lugar de `disabled`, que significa que a ação está indisponível."
+		},
+		"size": {
+			"source": "Defaults to `'medium'`. Every size is at least 32 px high, above the WCAG 2.2 minimum target.",
+			"translation": "Padrão: `'medium'`. Todo tamanho tem pelo menos 32 px de altura, acima do alvo mínimo da WCAG 2.2."
+		},
+		"startIcon": {
+			"source": "Decorative content before the label, typically an `Icon`.",
+			"translation": "Conteúdo decorativo antes do rótulo, normalmente um `Icon`."
+		},
+		"endIcon": {
+			"source": "Decorative content after the label.",
+			"translation": "Conteúdo decorativo depois do rótulo."
+		},
+		"fullWidth": {
+			"source": "Takes the full width of its container.",
+			"translation": "Ocupa toda a largura do contêiner."
+		},
+		"intent": {
+			"source": "Meaning of the action. Defaults to `'official'`: submitting is the main action of its form.",
+			"translation": "Significado da ação. Padrão: `'official'`: enviar é a ação principal do seu formulário."
+		},
+		"variant": {
+			"source": "Emphasis. Defaults to `'solid'`.",
+			"translation": "Ênfase. Padrão: `'solid'`."
+		}
+	},
+	"FileUpload": {
+		"className": {
+			"source": "Class of the root of the field.",
+			"translation": "Classe da raiz do campo."
+		},
+		"style": {
+			"source": "Style of the root of the field.",
+			"translation": "Estilo da raiz do campo."
+		},
+		"label": {
+			"source": "Visible, persistent label; a placeholder never replaces it.",
+			"translation": "Rótulo visível e persistente; um placeholder nunca o substitui."
+		},
+		"disabled": {
+			"source": "Unavailable: skipped by Tab and not submitted.",
+			"translation": "Indisponível: pulado pelo Tab e não enviado."
+		},
+		"error": {
+			"source": "Error message. When set, the control is `aria-invalid` and the message, marked with an icon, is read with it. Inside a `Form`, a field with a `name` shows the error of that name unless `error` is given.",
+			"translation": "Mensagem de erro. Quando definida, o controle fica `aria-invalid` e a mensagem, marcada com um ícone, é lida com ele. Dentro de um `Form`, um campo com `name` mostra o erro desse nome, a menos que `error` seja dado."
+		},
+		"loading": {
+			"source": "The field waits for data (e.g. its options): `aria-busy`, a ring and a hidden `'Loading'` text.",
+			"translation": "O campo aguarda dados (por exemplo suas opções): `aria-busy`, um anel e um texto oculto `'Loading'`."
+		},
+		"description": {
+			"source": "Help text, read after the label.",
+			"translation": "Texto de ajuda, lido depois do rótulo."
+		},
+		"required": {
+			"source": "Marks the label with an asterisk and the control as `required`.",
+			"translation": "Marca o rótulo com um asterisco e o controle como `required`."
+		},
+		"fieldLabels": {
+			"source": "Overrides some or all of `defaultFormFieldLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultFormFieldLabels`."
+		},
+		"accept": {
+			"source": "File types, as in the native `accept`: extensions (`.pdf`) and media types (`image/*`).",
+			"translation": "Tipos de arquivo, como no `accept` nativo: extensões (`.pdf`) e tipos de mídia (`image/*`)."
+		},
+		"maxSize": {
+			"source": "Largest size of each file, in bytes.",
+			"translation": "Maior tamanho de cada arquivo, em bytes."
+		},
+		"maxFiles": {
+			"source": "Most files kept when `multiple`.",
+			"translation": "Máximo de arquivos mantidos quando `multiple`."
+		},
+		"value": {
+			"source": "Chosen files, when the parent controls them.",
+			"translation": "Arquivos escolhidos, quando o pai os controla."
+		},
+		"onFilesChange": {
+			"source": "Called with the files kept after a choice, a drop or a removal.",
+			"translation": "Chamada com os arquivos mantidos depois de uma escolha, de soltar arquivos ou de uma remoção."
+		},
+		"onReject": {
+			"source": "Called with the files left out by the limits.",
+			"translation": "Chamada com os arquivos deixados de fora pelos limites."
+		},
+		"dropzone": {
+			"source": "Shows a drop zone around the button. Defaults to `true`; choosing with the button always works.",
+			"translation": "Mostra uma área para soltar arquivos em volta do botão. Padrão: `true`; escolher com o botão sempre funciona."
+		},
+		"labels": {
+			"source": "Overrides some or all of `defaultFileUploadLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultFileUploadLabels`."
+		}
+	},
+	"Form": {
+		"onSubmit": {
+			"source": "Called with the form data once validation passes; a returned promise keeps the form `submitting`.",
+			"translation": "Chamada com os dados do formulário quando a validação passa; uma promise devolvida mantém o formulário `submitting`."
+		},
+		"validate": {
+			"source": "Errors by field name, from the data; may be async (e.g. a check on the server). It runs on submit and, after a failed submission, on `revalidateOn` — never at each keystroke. Native constraints are checked as well.",
+			"translation": "Erros por nome de campo, a partir dos dados; pode ser assíncrona (por exemplo, uma verificação no servidor). Roda no envio e, depois de um envio que falhou, em `revalidateOn` — nunca a cada tecla. As restrições nativas também são verificadas."
+		},
+		"errors": {
+			"source": "Errors from outside (e.g. returned by the server), shown over the validation ones.",
+			"translation": "Erros de fora (por exemplo, devolvidos pelo servidor), mostrados por cima dos da validação."
+		},
+		"revalidateOn": {
+			"source": "When errors are checked again after a failed submission. Defaults to `'blur'`.",
+			"translation": "Quando os erros são verificados de novo depois de um envio que falhou. Padrão: `'blur'`."
+		},
+		"errorSummary": {
+			"source": "Shows the error summary above the fields; without it, focus goes to the first invalid field. Defaults to `true`.",
+			"translation": "Mostra o resumo de erros acima dos campos; sem ele, o foco vai para o primeiro campo inválido. Padrão: `true`."
+		},
+		"successMessage": {
+			"source": "Announced after a successful submission, e.g. `'Profile saved.'`.",
+			"translation": "Anunciada depois de um envio bem-sucedido, por exemplo `'Profile saved.'`."
+		},
+		"labels": {
+			"source": "Overrides some or all of `defaultFormLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultFormLabels`."
+		}
+	},
+	"FormSubmission": {
+		"status": {
+			"source": "Where the submission is: `'idle'`, `'validating'`, `'invalid'`, `'submitting'`, `'success'` or `'error'`.",
+			"translation": "Em que ponto está o envio: `'idle'`, `'validating'`, `'invalid'`, `'submitting'`, `'success'` ou `'error'`."
+		},
+		"errors": {
+			"source": "Error messages by field `name`: those of the validation, under the ones given to `errors`.",
+			"translation": "Mensagens de erro por `name` de campo: as da validação, sob as passadas em `errors`."
+		},
+		"pending": {
+			"source": "Validation or submission is running.",
+			"translation": "A validação ou o envio está em andamento."
+		}
+	},
+	"FormLabels": {
+		"constraint": {
+			"source": "Message of a failed native constraint (`required`, `type`, `min`, ...), in the language of the interface.",
+			"translation": "Mensagem de uma restrição nativa que falhou (`required`, `type`, `min`, ...), no idioma da interface."
+		},
+		"submissionError": {
+			"source": "Announced when `onSubmit` throws or rejects.",
+			"translation": "Anunciado quando `onSubmit` lança um erro ou rejeita."
+		},
+		"title": {
+			"source": "Heading, e.g. `'There are 2 problems'`.",
+			"translation": "Título, por exemplo `'There are 2 problems'`."
+		}
+	},
+	"FormFieldControlProps": {
+		"id": {
+			"source": "Id of the control, the target of the label.",
+			"translation": "Id do controle, o alvo do rótulo."
+		},
+		"aria-describedby": {
+			"source": "Ids of the description, the error and the loading text, then those of `describedBy`.",
+			"translation": "Ids da descrição, do erro e do texto de carregamento, depois os de `describedBy`."
+		},
+		"aria-invalid": {
+			"source": "`true` while the field shows an error.",
+			"translation": "`true` enquanto o campo mostra um erro."
+		},
+		"aria-busy": {
+			"source": "`true` while the field is `loading`.",
+			"translation": "`true` enquanto o campo está `loading`."
+		},
+		"required": {
+			"source": "The `required` of the field.",
+			"translation": "O `required` do campo."
+		},
+		"disabled": {
+			"source": "The `disabled` of the field.",
+			"translation": "O `disabled` do campo."
+		},
+		"readOnly": {
+			"source": "The `readOnly` of the field.",
+			"translation": "O `readOnly` do campo."
+		}
+	},
+	"FormActions": {
+		"align": {
+			"source": "Where the buttons sit in the row. Defaults to `'start'`, next to the fields they complete.",
+			"translation": "Onde os botões ficam na linha. Padrão: `'start'`, junto dos campos que completam."
+		}
+	},
+	"ErrorSummary": {
+		"errors": {
+			"source": "A link for each error, in the order of the fields; without any, nothing is rendered.",
+			"translation": "Um link para cada erro, na ordem dos campos; sem nenhum, nada é renderizado."
+		},
+		"headingLevel": {
+			"source": "Level of the heading. Defaults to `2`.",
+			"translation": "Nível do título. Padrão: `2`."
+		},
+		"focusKey": {
+			"source": "The summary takes focus when it appears and whenever this key changes, e.g. the submission count: focus moves once per submission, never while the user types. `null` disables it.",
+			"translation": "O resumo recebe o foco quando aparece e sempre que esta chave muda, por exemplo a contagem de envios: o foco se move uma vez por envio, nunca enquanto o usuário digita. `null` desativa isso."
+		},
+		"labels": {
+			"source": "Overrides some or all of `defaultErrorSummaryLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultErrorSummaryLabels`."
+		}
+	},
+	"ErrorSummaryItem": {
+		"message": {
+			"source": "Text of the link, e.g. the error the field shows.",
+			"translation": "Texto do link, por exemplo o erro que o campo mostra."
+		},
+		"targetId": {
+			"source": "Id of the control to focus.",
+			"translation": "Id do controle a focar."
+		},
+		"name": {
+			"source": "Name of the control to focus, looked up in the enclosing form when there is no `targetId`.",
+			"translation": "Nome do controle a focar, procurado no formulário que contém o resumo quando não há `targetId`."
+		}
 	}
 }

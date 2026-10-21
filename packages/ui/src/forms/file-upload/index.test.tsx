@@ -103,6 +103,26 @@ describe('FileUpload', (): void => {
 		);
 	});
 
+	it('takes no drop while disabled, and keeps stating its limits without inviting one', async (): Promise<void> => {
+		const handleFiles = vi.fn();
+
+		const { container } = render(
+			<FileUpload label='Contract' accept='.pdf' disabled onFilesChange={handleFiles} />,
+		);
+
+		const zone: Element | null =
+			container.querySelector('input[type="file"]')?.parentElement ?? null;
+
+		fireEvent.drop(zone ?? document.body, {
+			dataTransfer: { files: [fileOf('contract.pdf', 'application/pdf')] },
+		});
+
+		expect(handleFiles).not.toHaveBeenCalled();
+		expect(container.textContent).not.toContain('or drop them here');
+		expect(container.textContent).toContain('Accepted types: .pdf.');
+		await expectNoAxeViolations(container);
+	});
+
 	it('matches extensions and media types like the native accept', (): void => {
 		expect(matchesAccept(fileOf('a.PDF', ''), '.pdf')).toBe(true);
 		expect(matchesAccept(fileOf('a.png', 'image/png'), 'image/*')).toBe(true);

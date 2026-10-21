@@ -21,6 +21,7 @@ const { spacing, typography, radius, surface, text, intent }: typeof themeVariab
 	themeVariables;
 
 export interface ErrorSummaryItem {
+	/** Text of the link, e.g. the error the field shows. */
 	message: ReactNode;
 	/** Id of the control to focus. */
 	targetId?: string | undefined;
@@ -45,8 +46,9 @@ export const defaultErrorSummaryLabels: Readonly<ErrorSummaryLabels> = Object.fr
 export type ErrorSummaryHeadingLevel = 2 | 3 | 4 | 5 | 6;
 
 export interface ErrorSummaryProps extends Omit<ComponentPropsWithRef<'section'>, 'children'> {
+	/** A link for each error, in the order of the fields; without any, nothing is rendered. */
 	errors: readonly ErrorSummaryItem[];
-	/** Level of the heading. Defaults to 2. */
+	/** Level of the heading. Defaults to `2`. */
 	headingLevel?: ErrorSummaryHeadingLevel | undefined;
 	/**
 	 * The summary takes focus when it appears and whenever this key changes, e.g. the submission count: focus moves
