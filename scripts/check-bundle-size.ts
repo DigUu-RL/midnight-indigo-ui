@@ -70,7 +70,8 @@ const updating: boolean = process.argv.includes('--update');
 const headroom: number = 1.1;
 const budgetStep: number = 256;
 
-// Every page of the application in one locale (the other loads the same scripts) and the component gallery.
+// Every page of the application in one locale (the other loads the same scripts), a page of the explorer from two
+// subpaths (each subpath has a route of its own) and the component gallery.
 const starterRoutes: readonly string[] = [
 	'/en-us',
 	'/en-us/orders',
@@ -80,6 +81,7 @@ const starterRoutes: readonly string[] = [
 	'/en-us/icons',
 	'/en-us/components',
 	'/en-us/components/chip',
+	'/en-us/components/dialog',
 	'/gallery',
 ];
 

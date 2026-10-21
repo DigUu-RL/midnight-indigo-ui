@@ -1,6 +1,10 @@
 // Page of a component in the explorer (Server Component, built once per component and locale): what it is for, its
 // import, every variant and state, a playground, realistic examples with their code, its props (and the fields of the
-// types it takes) and its accessibility.
+// types it takes) and its accessibility. Each subpath serves its pages from a route of its own,
+// `app/[locale]/components/<subpath>/[component]/page.tsx`, made by `createComponentRoute` with the bindings of that
+// subpath alone: Next loads every client module a route reaches, so one route for every component would make each
+// page load the client code of every subpath. The proxy serves the public path `/[locale]/components/<slug>` from it
+// (`explorer/routes.ts`).
 import { CodeBlock, highlightCode } from '@midnight-indigo/ui/code';
 import type { HighlightedCode } from '@midnight-indigo/ui/code';
 import { PageHeader } from '@midnight-indigo/ui/dashboard';
@@ -12,8 +16,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import type { ReactElement, ReactNode } from 'react';
 
-import { bindingOf } from '#src/explorer/bindings.tsx';
-import type { ExampleComponent, PageBinding } from '#src/explorer/bindings.tsx';
+import type { ExampleComponent, PageBinding, RouteBindings } from '#src/explorer/bindings.ts';
 import {
 	camelCaseOf,
 	controlledNameOf,
@@ -24,7 +27,7 @@ import {
 	kebabCaseOf,
 	slugOf,
 } from '#src/explorer/catalog.ts';
-import type { ExplorerComponent } from '#src/explorer/catalog.ts';
+import type { ExplorerComponent, ExplorerSubpath } from '#src/explorer/catalog.ts';
 import { propsOf } from '#src/explorer/component-api.ts';
 import type { ComponentProp } from '#src/explorer/component-api.ts';
 import {
@@ -37,7 +40,6 @@ import { readExampleCode } from '#src/explorer/example-source.ts';
 import type { PlaygroundSlot } from '#src/explorer/playground.tsx';
 import { sampleCodes } from '#src/explorer/sample-code.ts';
 import type { SampleName } from '#src/explorer/sample-code.ts';
-import { sampleElements } from '#src/explorer/samples.tsx';
 import type { SampleValue } from '#src/explorer/samples.tsx';
 import type { LocaleSegment } from '#src/i18n/locales.ts';
 import { getTranslator, localeOf } from '#src/i18n/server.ts';
@@ -53,28 +55,25 @@ interface LoadedExample {
 	code: HighlightedCode;
 }
 
-/** Any other component is a missing page. */
-export const dynamicParams: boolean = false;
+/** What the route of a subpath exports, besides `dynamicParams`, which Next only reads as a literal of the page. */
+export interface ComponentRoute {
+	generateStaticParams: () => { component: string }[];
+	generateMetadata: (props: ComponentPageProps) => Promise<Metadata>;
+	ComponentPage: (props: ComponentPageProps) => Promise<ReactElement>;
+}
 
-export const generateStaticParams = (): { component: string }[] => {
-	return explorerComponents.map((component: ExplorerComponent): { component: string } => {
-		return { component: slugOf(component) };
-	});
-};
-
-const componentOf = async ({ params }: ComponentPageProps): Promise<ExplorerComponent> => {
+/** The component of the page, if its subpath is the one of the route. */
+const componentOf = async (
+	{ params }: ComponentPageProps,
+	subpath: ExplorerSubpath,
+): Promise<ExplorerComponent> => {
 	const { component }: { component: string } = await params;
-	return findComponent(component) ?? notFound();
+	const found: ExplorerComponent | undefined = findComponent(component);
+	return found?.subpath === subpath ? found : notFound();
 };
 
 const messageKeyOf = (component: ExplorerComponent): string => {
 	return `explorer.components.${camelCaseOf(component.name)}`;
-};
-
-export const generateMetadata = async (props: ComponentPageProps): Promise<Metadata> => {
-	const translate: TFunction = await getTranslator(await localeOf(props));
-	const component: ExplorerComponent = await componentOf(props);
-	return { title: component.name, description: translate(`${messageKeyOf(component)}.summary`) };
 };
 
 const propsNamed = (props: readonly ComponentProp[], names: readonly string[]): ComponentProp[] => {
@@ -84,11 +83,15 @@ const propsNamed = (props: readonly ComponentProp[], names: readonly string[]): 
 };
 
 /** The samples of the props that take an element, rendered here and passed to the playground with their code. */
-const slotsOf = (component: ExplorerComponent): Record<string, PlaygroundSlot> => {
+const slotsOf = (
+	component: ExplorerComponent,
+	samples: RouteBindings['samples'],
+): Record<string, PlaygroundSlot> => {
 	return Object.fromEntries(
-		Object.entries(component.slots).map(
-			([prop, sample]: [string, SampleName]): [string, PlaygroundSlot] => {
-				return [prop, { element: sampleElements[sample], code: sampleCodes[sample] }];
+		Object.entries(component.slots).flatMap(
+			([prop, sample]: [string, SampleName]): [string, PlaygroundSlot][] => {
+				const element: SampleValue | undefined = samples[sample];
+				return element === undefined ? [] : [[prop, { element, code: sampleCodes[sample] }]];
 			},
 		),
 	);
@@ -122,15 +125,19 @@ const Section = ({ id, title, children }: SectionProps): ReactElement => {
 	);
 };
 
-const ComponentPage = async (props: ComponentPageProps): Promise<ReactElement> => {
+const renderComponentPage = async (
+	props: ComponentPageProps,
+	subpath: ExplorerSubpath,
+	bindings: RouteBindings,
+): Promise<ReactElement> => {
 	const locale: LocaleSegment = await localeOf(props);
 	const translate: TFunction = await getTranslator(locale);
-	const component: ExplorerComponent = await componentOf(props);
-	const binding: PageBinding = bindingOf(component.name) ?? notFound();
+	const component: ExplorerComponent = await componentOf(props, subpath);
+	const binding: PageBinding = bindings.components[component.name] ?? notFound();
 	const key: string = messageKeyOf(component);
 	const api: ComponentProp[] = propsOf(component.name, locale);
 	const documentedNames: string[] = documentedNamesOf(component);
-	const slots: Record<string, PlaygroundSlot> = slotsOf(component);
+	const slots: Record<string, PlaygroundSlot> = slotsOf(component, bindings.samples);
 	const variants: ComponentProp[] = propsNamed(api, component.variants);
 	const hasVariants: boolean = variants.length > 0 || component.states.length > 0;
 
@@ -182,7 +189,7 @@ const ComponentPage = async (props: ComponentPageProps): Promise<ReactElement> =
 		{ id: 'accessibility', label: translate('explorer.page.accessibility') },
 	];
 
-	const Playground: PageBinding['playground'] = binding.playground;
+	const Playground: RouteBindings['playground'] = bindings.playground;
 
 	return (
 		<div className='component-page'>
@@ -298,4 +305,29 @@ const ComponentPage = async (props: ComponentPageProps): Promise<ReactElement> =
 	);
 };
 
-export default ComponentPage;
+/** The pages of the components of a subpath, which render only what its bindings give. */
+export const createComponentRoute = (
+	subpath: ExplorerSubpath,
+	bindings: RouteBindings,
+): ComponentRoute => {
+	return {
+		generateStaticParams: (): { component: string }[] => {
+			return explorerComponents
+				.filter((component: ExplorerComponent): boolean => component.subpath === subpath)
+				.map((component: ExplorerComponent): { component: string } => {
+					return { component: slugOf(component) };
+				});
+		},
+		generateMetadata: async (props: ComponentPageProps): Promise<Metadata> => {
+			const translate: TFunction = await getTranslator(await localeOf(props));
+			const component: ExplorerComponent = await componentOf(props, subpath);
+			return {
+				title: component.name,
+				description: translate(`${messageKeyOf(component)}.summary`),
+			};
+		},
+		ComponentPage: async (props: ComponentPageProps): Promise<ReactElement> => {
+			return await renderComponentPage(props, subpath, bindings);
+		},
+	};
+};

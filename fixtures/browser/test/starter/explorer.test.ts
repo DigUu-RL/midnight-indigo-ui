@@ -1,9 +1,30 @@
-// The playground of the component explorer: each control changes the component and its code at once, an overlay opens
-// from its trigger or its button and closes as it asks, a toast is shown through its hook, and a required text left
-// blank keeps its initial value instead of breaking the page.
+// The component explorer: its navigation leads from the page of a component to one of another subpath, served by
+// another route, at the public path. In the playground, each control changes the component and its code at once, an
+// overlay opens from its trigger or its button and closes as it asks, a toast is shown through its hook, and a required
+// text left blank keeps its initial value instead of breaking the page.
 import type { Locator } from '@playwright/test';
 
 import { expect, test } from '#test/support/fixtures.ts';
+
+test('the navigation leads to a component of another subpath at its public path', async ({
+	page,
+}): Promise<void> => {
+	await page.goto('/en-us/components/chip');
+	const navigation: Locator = page.getByRole('navigation', { name: 'Components' });
+
+	await navigation.getByRole('link', { name: 'Dialog', exact: true }).click();
+
+	await expect(page).toHaveURL('/en-us/components/dialog');
+	await expect(page.getByRole('heading', { level: 1, name: 'Dialog' })).toBeVisible();
+
+	await expect(navigation.getByRole('link', { name: 'Dialog', exact: true })).toHaveAttribute(
+		'aria-current',
+		'page',
+	);
+
+	await page.getByRole('link', { name: 'Português', exact: true }).click();
+	await expect(page).toHaveURL('/pt-br/components/dialog');
+});
 
 test('a control changes the component and its code', async ({ page }): Promise<void> => {
 	await page.goto('/en-us/components/avatar');

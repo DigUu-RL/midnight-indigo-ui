@@ -11,6 +11,7 @@ import { usePathname } from 'next/navigation';
 import type { ReactElement, ReactNode } from 'react';
 
 import type { LocaleSegment } from '#src/i18n/locales.ts';
+import { publicPathOf } from '#src/explorer/routes.ts';
 import {
 	brandIcon,
 	destinations,
@@ -27,7 +28,7 @@ interface AppShellProps {
 
 export const AppShell = ({ locale, children }: AppShellProps): ReactElement => {
 	const { t }: I18nValue = useI18n();
-	const pathname: string = usePathname();
+	const pathname: string = publicPathOf(usePathname());
 	const home: string = `/${locale}`;
 
 	// A destination with pages below it stays current on them, e.g. the explorer on the page of a component.

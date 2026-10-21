@@ -16,7 +16,7 @@ import type { TFunction } from 'i18next';
 import { createElement, Fragment } from 'react';
 import type { ComponentType, ReactElement, ReactNode } from 'react';
 
-import type { AnyComponent } from '#src/explorer/bindings.tsx';
+import type { AnyComponent } from '#src/explorer/bindings.ts';
 import type { PlaygroundValue, SampleWidth } from '#src/explorer/catalog.ts';
 import type { ComponentProp } from '#src/explorer/component-api.ts';
 import type { SampleValue } from '#src/explorer/samples.tsx';
