@@ -4,7 +4,7 @@
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import type { SpawnSyncReturns } from 'node:child_process';
-import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, rmSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync } from 'node:fs';
 import type { Dirent } from 'node:fs';
 import { createRequire } from 'node:module';
 import { join, posix, relative, sep } from 'node:path';
@@ -60,7 +60,7 @@ before((): void => {
 	const runsOnNode: boolean = /\.[cm]?js$/.test(packageManager);
 
 	rmSync(packedRoot, { recursive: true, force: true });
-	mkdirSync(join(packedRoot, 'node_modules', '@midnight-indigo'), { recursive: true });
+	mkdirSync(installedPackage, { recursive: true });
 
 	const tarball: string =
 		run(
@@ -75,8 +75,9 @@ before((): void => {
 
 	assert.ok(existsSync(tarball), `pnpm pack wrote no tarball (${tarball}).`);
 
-	run('tar', ['-xzf', tarball, '-C', packedRoot], packedRoot);
-	renameSync(join(packedRoot, 'package'), installedPackage);
+	// Straight into place, without the `package/` folder of the tarball: renaming that folder after extracting it failed
+	// on Windows (`EPERM`) while another process still held one of the fresh files.
+	run('tar', ['-xzf', tarball, '-C', installedPackage, '--strip-components=1'], packedRoot);
 
 	manifest = createRequire(join(installedPackage, 'package.json'))(
 		join(installedPackage, 'package.json'),
