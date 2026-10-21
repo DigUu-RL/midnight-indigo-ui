@@ -17,6 +17,7 @@ import {
 	localizePath,
 } from '#src/i18n/locales.ts';
 import type { LocaleSegment } from '#src/i18n/locales.ts';
+import { publicPathOf } from '#src/explorer/routes.ts';
 
 interface LocaleSwitcherProps {
 	locale: LocaleSegment;
@@ -24,7 +25,7 @@ interface LocaleSwitcherProps {
 
 export const LocaleSwitcher = ({ locale }: LocaleSwitcherProps): ReactElement => {
 	const { t }: I18nValue = useI18n();
-	const pathname: string = usePathname();
+	const pathname: string = publicPathOf(usePathname());
 
 	return (
 		<nav aria-label={t('shell.language')} className='locale-switcher'>

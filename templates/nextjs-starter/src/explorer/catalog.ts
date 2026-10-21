@@ -601,6 +601,20 @@ export type ExplorerEntry = (typeof explorerComponents)[number];
 
 export type ComponentName = ExplorerEntry['name'];
 
+export type ExplorerSubpath = ExplorerEntry['subpath'];
+
+export type SubpathComponentName<Subpath extends ExplorerSubpath> = Extract<
+	ExplorerEntry,
+	{ subpath: Subpath }
+>['name'];
+
+type SlotSampleOf<Entry> = Entry extends { slots: infer Slots } ? Slots[keyof Slots] : never;
+
+/** The samples the components of a subpath give to their slots. */
+export type SubpathSampleName<Subpath extends ExplorerSubpath> = SlotSampleOf<
+	Extract<ExplorerEntry, { subpath: Subpath }>
+>;
+
 export type ExampleId<Name extends ComponentName> = Extract<
 	ExplorerEntry,
 	{ name: Name }

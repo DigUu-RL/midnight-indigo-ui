@@ -8,8 +8,8 @@ import { after, before, describe, test } from 'node:test';
 
 import { readStreamedPage, startStarter, starterRoot } from '#test/support/starter-server.ts';
 import type { StarterServer, StreamedPage } from '#test/support/starter-server.ts';
-import { exampleFileOf, explorerComponents, slugOf } from '#src/explorer/catalog.ts';
-import type { ExplorerComponent } from '#src/explorer/catalog.ts';
+import { exampleFileOf, explorerComponents, slugOf, subpathGroups } from '#src/explorer/catalog.ts';
+import type { ExplorerComponent, SubpathGroup } from '#src/explorer/catalog.ts';
 import { generatedApi, propTranslations } from '#src/explorer/component-api.ts';
 import type { ComponentProp } from '#src/explorer/component-api.ts';
 import { sampleCodes } from '#src/explorer/sample-code.ts';
@@ -71,6 +71,11 @@ describe('the page of a component', (): void => {
 	test('is the current page of the navigation of the explorer and of the breadcrumbs', (): void => {
 		assert.match(html, /<a(?=[^>]*href="\/en-us\/components\/chip")(?=[^>]*aria-current="page")/);
 		assert.match(html, /<nav aria-label="Breadcrumb">.*?href="\/en-us\/components".*?Chip/s);
+	});
+
+	test('links to itself in the other language by its public path, not the path of its route', (): void => {
+		assert.match(html, /<a[^>]*href="\/pt-br\/components\/chip"/);
+		assert.doesNotMatch(html, /href="\/[a-z-]+\/components\/data-display\//);
 	});
 
 	test('shows the import of the component from its subpath', (): void => {
@@ -158,6 +163,36 @@ describe('the page of a component', (): void => {
 			sources.filter((source: string): boolean => /createHighlighterCore|oniguruma/.test(source)),
 			[],
 		);
+	});
+});
+
+test('the route of each subpath reaches the playground and the examples of that subpath alone', (): void => {
+	subpathGroups().forEach((group: SubpathGroup): void => {
+		const manifest: string = readFileSync(
+			join(
+				starterRoot,
+				...['.next', 'server', 'app', '[locale]', 'components', group.subpath, '[component]'],
+				'page_client-reference-manifest.js',
+			),
+			'utf8',
+		);
+
+		const playgrounds: Set<string> = new Set<string>(
+			[...manifest.matchAll(/\/src\/explorer\/playgrounds\/([\w-]+)\.tsx/g)].map(
+				(match: RegExpExecArray): string => match[1] ?? '',
+			),
+		);
+
+		const ownSlugs: Set<string> = new Set<string>(group.components.map(slugOf));
+
+		const foreignExamples: Set<string> = new Set<string>(
+			[...manifest.matchAll(/\/src\/explorer\/examples\/([\w-]+)\//g)]
+				.map((match: RegExpExecArray): string => match[1] ?? '')
+				.filter((slug: string): boolean => !ownSlugs.has(slug)),
+		);
+
+		assert.deepEqual([...playgrounds], [group.subpath], group.subpath);
+		assert.deepEqual([...foreignExamples], [], group.subpath);
 	});
 });
 

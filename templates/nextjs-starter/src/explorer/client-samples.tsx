@@ -1,7 +1,7 @@
 'use client';
 // The samples that hold functions, e.g. the columns of a `DataTable`: a Server Component cannot pass a function to a
-// Client Component, but it can pass what a client module exports. The page imports them through `samples.tsx` and only
-// hands them on, so they run in the browser.
+// Client Component, but it can pass what a client module exports. The page imports them through
+// `samples/data-display.tsx` and only hands them on, so they run in the browser.
 import type { DataTableColumn } from '@midnight-indigo/ui/data-display';
 
 import type { SampleBounty } from '#src/explorer/sample-code.ts';

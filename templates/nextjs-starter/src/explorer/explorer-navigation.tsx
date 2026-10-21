@@ -11,6 +11,7 @@ import { useId, useState } from 'react';
 import type { ReactElement } from 'react';
 
 import type { LocaleSegment } from '#src/i18n/locales.ts';
+import { publicPathOf } from '#src/explorer/routes.ts';
 
 export interface NavigationComponent {
 	name: string;
@@ -41,7 +42,7 @@ const matches = (
 
 export const ExplorerNavigation = ({ locale, groups }: ExplorerNavigationProps): ReactElement => {
 	const { t }: I18nValue = useI18n();
-	const pathname: string = usePathname();
+	const pathname: string = publicPathOf(usePathname());
 	const groupIdPrefix: string = useId();
 	const [query, setQuery] = useState<string>('');
 	const normalizedQuery: string = normalizeSearchText(query.trim());

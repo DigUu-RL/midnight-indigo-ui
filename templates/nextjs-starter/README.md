@@ -140,8 +140,10 @@ on the server (no highlighter reaches the browser).
 To add a component, in the repository of the library:
 
 1. List it in `src/explorer/catalog.ts` (subpath, examples, base props, controls, variants, states, notes).
-2. Write its examples, add them and the component to `src/explorer/bindings.tsx`, and add the component to the
-   playground of its subpath in `src/explorer/playgrounds/`.
+2. Write its examples, add them and the component to the bindings of its subpath in `src/explorer/bindings/`, and add
+   the component to the playground of its subpath in `src/explorer/playgrounds/`. A new subpath also gets a route,
+   `src/app/[locale]/components/<subpath>/[component]/page.tsx`, copied from another one: each subpath has its own, so
+   a page loads the code of its subpath alone, and the proxy serves it at `/[locale]/components/<slug>`.
 3. Run `pnpm build`, then `node scripts/generate-explorer-api.ts` in the starter, which writes its props from the
    types of the library to `src/explorer/component-api.json`.
 4. Write its texts in both `src/messages/*.json` (`explorer.components.<name>`) and translate the description of each
