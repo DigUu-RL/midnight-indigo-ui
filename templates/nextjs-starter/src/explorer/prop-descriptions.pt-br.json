@@ -1138,5 +1138,347 @@
 			"source": "Dismisses every toast, including the ones waiting for a free place.",
 			"translation": "Dispensa todos os toasts, inclusive os que esperam um lugar livre."
 		}
+	},
+	"TextField": {
+		"type": {
+			"source": "Gives the right keyboard and validation; set `autoComplete` too (e.g. `'email'`). Defaults to `'text'`.",
+			"translation": "Dá o teclado e a validação certos; defina `autoComplete` também (por exemplo `'email'`). Padrão: `'text'`."
+		},
+		"onValueChange": {
+			"source": "Called with the new text, after `onChange`.",
+			"translation": "Chamada com o novo texto, depois de `onChange`."
+		},
+		"size": {
+			"source": "32, 40 or 48 px high, like the buttons. Defaults to `'medium'`.",
+			"translation": "32, 40 ou 48 px de altura, como os botões. Padrão: `'medium'`."
+		},
+		"className": {
+			"source": "Class of the root of the field.",
+			"translation": "Classe da raiz do campo."
+		},
+		"style": {
+			"source": "Style of the root of the field.",
+			"translation": "Estilo da raiz do campo."
+		},
+		"label": {
+			"source": "Visible, persistent label; a placeholder never replaces it.",
+			"translation": "Rótulo visível e persistente; um placeholder nunca o substitui."
+		},
+		"hideLabel": {
+			"source": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a search bar).",
+			"translation": "Mantém o rótulo só para tecnologias assistivas, quando o contexto já o mostra (por exemplo uma barra de busca)."
+		},
+		"description": {
+			"source": "Help text, read after the label.",
+			"translation": "Texto de ajuda, lido depois do rótulo."
+		},
+		"error": {
+			"source": "Error message. When set, the control is `aria-invalid` and the message, marked with an icon, is read with it. Inside a `Form`, a field with a `name` shows the error of that name unless `error` is given.",
+			"translation": "Mensagem de erro. Quando definida, o controle fica `aria-invalid` e a mensagem, marcada com um ícone, é lida com ele. Dentro de um `Form`, um campo com `name` mostra o erro desse nome, a menos que `error` seja dado."
+		},
+		"required": {
+			"source": "Marks the label with an asterisk and the control as `required`.",
+			"translation": "Marca o rótulo com um asterisco e o controle como `required`."
+		},
+		"disabled": {
+			"source": "Unavailable: skipped by Tab and not submitted.",
+			"translation": "Indisponível: pulado pelo Tab e não enviado."
+		},
+		"readOnly": {
+			"source": "Focusable and submitted, but not editable.",
+			"translation": "Focável e enviado, mas não editável."
+		},
+		"loading": {
+			"source": "The field waits for data (e.g. its options): `aria-busy`, a ring and a hidden `'Loading'` text.",
+			"translation": "O campo aguarda dados (por exemplo suas opções): `aria-busy`, um anel e um texto oculto `'Loading'`."
+		},
+		"fieldLabels": {
+			"source": "Overrides some or all of `defaultFormFieldLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultFormFieldLabels`."
+		},
+		"prefix": {
+			"source": "Before the value, e.g. `'R$'`. Its text is read after the label (by `aria-describedby`), so the name of the field stays its label; an `Icon` marked `decorative` is skipped.",
+			"translation": "Antes do valor, por exemplo `'R$'`. Seu texto é lido depois do rótulo (por `aria-describedby`), então o nome do campo continua sendo seu rótulo; um `Icon` marcado `decorative` é ignorado."
+		},
+		"suffix": {
+			"source": "After the value, e.g. `'kg'`; read like `prefix`.",
+			"translation": "Depois do valor, por exemplo `'kg'`; lido como `prefix`."
+		}
+	},
+	"TextArea": {
+		"resize": {
+			"source": "Which way the reader can drag the corner to resize the field. Defaults to `'vertical'`.",
+			"translation": "Em que direção o leitor pode arrastar o canto para redimensionar o campo. Padrão: `'vertical'`."
+		},
+		"showCount": {
+			"source": "Shows how many characters were typed, and the limit when `maxLength` is set. Defaults to `false`.",
+			"translation": "Mostra quantos caracteres foram digitados, e o limite quando `maxLength` está definido. Padrão: `false`."
+		},
+		"size": {
+			"source": "Text size of the value; the height comes from `rows`. Defaults to `'medium'`.",
+			"translation": "Tamanho do texto do valor; a altura vem de `rows`. Padrão: `'medium'`."
+		},
+		"labels": {
+			"source": "Overrides some or all of `defaultTextAreaLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultTextAreaLabels`."
+		},
+		"className": {
+			"source": "Class of the root of the field.",
+			"translation": "Classe da raiz do campo."
+		},
+		"style": {
+			"source": "Style of the root of the field.",
+			"translation": "Estilo da raiz do campo."
+		},
+		"onValueChange": {
+			"source": "Called with the new text, after `onChange`.",
+			"translation": "Chamada com o novo texto, depois de `onChange`."
+		},
+		"label": {
+			"source": "Visible, persistent label; a placeholder never replaces it.",
+			"translation": "Rótulo visível e persistente; um placeholder nunca o substitui."
+		},
+		"hideLabel": {
+			"source": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a search bar).",
+			"translation": "Mantém o rótulo só para tecnologias assistivas, quando o contexto já o mostra (por exemplo uma barra de busca)."
+		},
+		"description": {
+			"source": "Help text, read after the label.",
+			"translation": "Texto de ajuda, lido depois do rótulo."
+		},
+		"error": {
+			"source": "Error message. When set, the control is `aria-invalid` and the message, marked with an icon, is read with it. Inside a `Form`, a field with a `name` shows the error of that name unless `error` is given.",
+			"translation": "Mensagem de erro. Quando definida, o controle fica `aria-invalid` e a mensagem, marcada com um ícone, é lida com ele. Dentro de um `Form`, um campo com `name` mostra o erro desse nome, a menos que `error` seja dado."
+		},
+		"required": {
+			"source": "Marks the label with an asterisk and the control as `required`.",
+			"translation": "Marca o rótulo com um asterisco e o controle como `required`."
+		},
+		"disabled": {
+			"source": "Unavailable: skipped by Tab and not submitted.",
+			"translation": "Indisponível: pulado pelo Tab e não enviado."
+		},
+		"readOnly": {
+			"source": "Focusable and submitted, but not editable.",
+			"translation": "Focável e enviado, mas não editável."
+		},
+		"loading": {
+			"source": "The field waits for data (e.g. its options): `aria-busy`, a ring and a hidden `'Loading'` text.",
+			"translation": "O campo aguarda dados (por exemplo suas opções): `aria-busy`, um anel e um texto oculto `'Loading'`."
+		},
+		"fieldLabels": {
+			"source": "Overrides some or all of `defaultFormFieldLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultFormFieldLabels`."
+		}
+	},
+	"PasswordField": {
+		"labels": {
+			"source": "Overrides some or all of `defaultPasswordFieldLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultPasswordFieldLabels`."
+		},
+		"defaultVisible": {
+			"source": "Starts with the characters visible. Defaults to `false`.",
+			"translation": "Começa com os caracteres visíveis. Padrão: `false`."
+		},
+		"onValueChange": {
+			"source": "Called with the new text, after `onChange`.",
+			"translation": "Chamada com o novo texto, depois de `onChange`."
+		},
+		"size": {
+			"source": "32, 40 or 48 px high, like the buttons. Defaults to `'medium'`.",
+			"translation": "32, 40 ou 48 px de altura, como os botões. Padrão: `'medium'`."
+		},
+		"className": {
+			"source": "Class of the root of the field.",
+			"translation": "Classe da raiz do campo."
+		},
+		"style": {
+			"source": "Style of the root of the field.",
+			"translation": "Estilo da raiz do campo."
+		},
+		"label": {
+			"source": "Visible, persistent label; a placeholder never replaces it.",
+			"translation": "Rótulo visível e persistente; um placeholder nunca o substitui."
+		},
+		"hideLabel": {
+			"source": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a search bar).",
+			"translation": "Mantém o rótulo só para tecnologias assistivas, quando o contexto já o mostra (por exemplo uma barra de busca)."
+		},
+		"description": {
+			"source": "Help text, read after the label.",
+			"translation": "Texto de ajuda, lido depois do rótulo."
+		},
+		"error": {
+			"source": "Error message. When set, the control is `aria-invalid` and the message, marked with an icon, is read with it. Inside a `Form`, a field with a `name` shows the error of that name unless `error` is given.",
+			"translation": "Mensagem de erro. Quando definida, o controle fica `aria-invalid` e a mensagem, marcada com um ícone, é lida com ele. Dentro de um `Form`, um campo com `name` mostra o erro desse nome, a menos que `error` seja dado."
+		},
+		"required": {
+			"source": "Marks the label with an asterisk and the control as `required`.",
+			"translation": "Marca o rótulo com um asterisco e o controle como `required`."
+		},
+		"disabled": {
+			"source": "Unavailable: skipped by Tab and not submitted.",
+			"translation": "Indisponível: pulado pelo Tab e não enviado."
+		},
+		"readOnly": {
+			"source": "Focusable and submitted, but not editable.",
+			"translation": "Focável e enviado, mas não editável."
+		},
+		"loading": {
+			"source": "The field waits for data (e.g. its options): `aria-busy`, a ring and a hidden `'Loading'` text.",
+			"translation": "O campo aguarda dados (por exemplo suas opções): `aria-busy`, um anel e um texto oculto `'Loading'`."
+		},
+		"fieldLabels": {
+			"source": "Overrides some or all of `defaultFormFieldLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultFormFieldLabels`."
+		},
+		"prefix": {
+			"source": "Before the value, e.g. `'R$'`. Its text is read after the label (by `aria-describedby`), so the name of the field stays its label; an `Icon` marked `decorative` is skipped.",
+			"translation": "Antes do valor, por exemplo `'R$'`. Seu texto é lido depois do rótulo (por `aria-describedby`), então o nome do campo continua sendo seu rótulo; um `Icon` marcado `decorative` é ignorado."
+		},
+		"suffix": {
+			"source": "After the value, e.g. `'kg'`; read like `prefix`.",
+			"translation": "Depois do valor, por exemplo `'kg'`; lido como `prefix`."
+		}
+	},
+	"SearchField": {
+		"labels": {
+			"source": "Overrides some or all of `defaultSearchFieldLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultSearchFieldLabels`."
+		},
+		"clearable": {
+			"source": "Shows a clear button while there is text. Defaults to `true`.",
+			"translation": "Mostra um botão de limpar enquanto há texto. Padrão: `true`."
+		},
+		"onValueChange": {
+			"source": "Called with the new text, after `onChange`.",
+			"translation": "Chamada com o novo texto, depois de `onChange`."
+		},
+		"size": {
+			"source": "32, 40 or 48 px high, like the buttons. Defaults to `'medium'`.",
+			"translation": "32, 40 ou 48 px de altura, como os botões. Padrão: `'medium'`."
+		},
+		"className": {
+			"source": "Class of the root of the field.",
+			"translation": "Classe da raiz do campo."
+		},
+		"style": {
+			"source": "Style of the root of the field.",
+			"translation": "Estilo da raiz do campo."
+		},
+		"label": {
+			"source": "Visible, persistent label; a placeholder never replaces it.",
+			"translation": "Rótulo visível e persistente; um placeholder nunca o substitui."
+		},
+		"hideLabel": {
+			"source": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a search bar).",
+			"translation": "Mantém o rótulo só para tecnologias assistivas, quando o contexto já o mostra (por exemplo uma barra de busca)."
+		},
+		"description": {
+			"source": "Help text, read after the label.",
+			"translation": "Texto de ajuda, lido depois do rótulo."
+		},
+		"error": {
+			"source": "Error message. When set, the control is `aria-invalid` and the message, marked with an icon, is read with it. Inside a `Form`, a field with a `name` shows the error of that name unless `error` is given.",
+			"translation": "Mensagem de erro. Quando definida, o controle fica `aria-invalid` e a mensagem, marcada com um ícone, é lida com ele. Dentro de um `Form`, um campo com `name` mostra o erro desse nome, a menos que `error` seja dado."
+		},
+		"required": {
+			"source": "Marks the label with an asterisk and the control as `required`.",
+			"translation": "Marca o rótulo com um asterisco e o controle como `required`."
+		},
+		"disabled": {
+			"source": "Unavailable: skipped by Tab and not submitted.",
+			"translation": "Indisponível: pulado pelo Tab e não enviado."
+		},
+		"readOnly": {
+			"source": "Focusable and submitted, but not editable.",
+			"translation": "Focável e enviado, mas não editável."
+		},
+		"loading": {
+			"source": "The field waits for data (e.g. its options): `aria-busy`, a ring and a hidden `'Loading'` text.",
+			"translation": "O campo aguarda dados (por exemplo suas opções): `aria-busy`, um anel e um texto oculto `'Loading'`."
+		},
+		"fieldLabels": {
+			"source": "Overrides some or all of `defaultFormFieldLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultFormFieldLabels`."
+		},
+		"prefix": {
+			"source": "Before the value, e.g. `'R$'`. Its text is read after the label (by `aria-describedby`), so the name of the field stays its label; an `Icon` marked `decorative` is skipped.",
+			"translation": "Antes do valor, por exemplo `'R$'`. Seu texto é lido depois do rótulo (por `aria-describedby`), então o nome do campo continua sendo seu rótulo; um `Icon` marcado `decorative` é ignorado."
+		},
+		"suffix": {
+			"source": "After the value, e.g. `'kg'`; read like `prefix`.",
+			"translation": "Depois do valor, por exemplo `'kg'`; lido como `prefix`."
+		}
+	},
+	"NumberField": {
+		"onValueChange": {
+			"source": "Called with the new number, or `null` while the field is empty or not a number.",
+			"translation": "Chamada com o novo número, ou `null` enquanto o campo está vazio ou não é um número."
+		},
+		"steppers": {
+			"source": "Shows buttons that step the value down and up. Defaults to `false`.",
+			"translation": "Mostra botões que diminuem e aumentam o valor. Padrão: `false`."
+		},
+		"labels": {
+			"source": "Overrides some or all of `defaultNumberFieldLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultNumberFieldLabels`."
+		},
+		"size": {
+			"source": "32, 40 or 48 px high, like the buttons. Defaults to `'medium'`.",
+			"translation": "32, 40 ou 48 px de altura, como os botões. Padrão: `'medium'`."
+		},
+		"className": {
+			"source": "Class of the root of the field.",
+			"translation": "Classe da raiz do campo."
+		},
+		"style": {
+			"source": "Style of the root of the field.",
+			"translation": "Estilo da raiz do campo."
+		},
+		"label": {
+			"source": "Visible, persistent label; a placeholder never replaces it.",
+			"translation": "Rótulo visível e persistente; um placeholder nunca o substitui."
+		},
+		"hideLabel": {
+			"source": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a search bar).",
+			"translation": "Mantém o rótulo só para tecnologias assistivas, quando o contexto já o mostra (por exemplo uma barra de busca)."
+		},
+		"description": {
+			"source": "Help text, read after the label.",
+			"translation": "Texto de ajuda, lido depois do rótulo."
+		},
+		"error": {
+			"source": "Error message. When set, the control is `aria-invalid` and the message, marked with an icon, is read with it. Inside a `Form`, a field with a `name` shows the error of that name unless `error` is given.",
+			"translation": "Mensagem de erro. Quando definida, o controle fica `aria-invalid` e a mensagem, marcada com um ícone, é lida com ele. Dentro de um `Form`, um campo com `name` mostra o erro desse nome, a menos que `error` seja dado."
+		},
+		"required": {
+			"source": "Marks the label with an asterisk and the control as `required`.",
+			"translation": "Marca o rótulo com um asterisco e o controle como `required`."
+		},
+		"disabled": {
+			"source": "Unavailable: skipped by Tab and not submitted.",
+			"translation": "Indisponível: pulado pelo Tab e não enviado."
+		},
+		"readOnly": {
+			"source": "Focusable and submitted, but not editable.",
+			"translation": "Focável e enviado, mas não editável."
+		},
+		"loading": {
+			"source": "The field waits for data (e.g. its options): `aria-busy`, a ring and a hidden `'Loading'` text.",
+			"translation": "O campo aguarda dados (por exemplo suas opções): `aria-busy`, um anel e um texto oculto `'Loading'`."
+		},
+		"fieldLabels": {
+			"source": "Overrides some or all of `defaultFormFieldLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultFormFieldLabels`."
+		},
+		"prefix": {
+			"source": "Before the value, e.g. `'R$'`. Its text is read after the label (by `aria-describedby`), so the name of the field stays its label; an `Icon` marked `decorative` is skipped.",
+			"translation": "Antes do valor, por exemplo `'R$'`. Seu texto é lido depois do rótulo (por `aria-describedby`), então o nome do campo continua sendo seu rótulo; um `Icon` marcado `decorative` é ignorado."
+		},
+		"suffix": {
+			"source": "After the value, e.g. `'kg'`; read like `prefix`.",
+			"translation": "Depois do valor, por exemplo `'kg'`; lido como `prefix`."
+		}
 	}
 }

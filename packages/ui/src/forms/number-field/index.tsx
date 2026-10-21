@@ -8,7 +8,7 @@ import { IconButton } from '#src/buttons/icon-button/index.tsx';
 import { Glyph } from '#src/shared/glyphs/index.tsx';
 import { mergeReferences } from '#src/shared/merge-references.ts';
 import { TextFieldBase } from '#src/forms/text-field-base/index.tsx';
-import type { TextControlProps } from '#src/forms/text-field-base/index.tsx';
+import type { TextControlBaseProps } from '#src/forms/text-field-base/index.tsx';
 
 /** Texts of the number field. Translate them with the rest of the interface. */
 export interface NumberFieldLabels {
@@ -21,7 +21,7 @@ export const defaultNumberFieldLabels: Readonly<NumberFieldLabels> = Object.free
 	decrement: 'Decrease',
 });
 
-export interface NumberFieldProps extends Omit<TextControlProps, 'onValueChange'> {
+export interface NumberFieldProps extends TextControlBaseProps {
 	/** Called with the new number, or `null` while the field is empty or not a number. */
 	onValueChange?: (value: number | null) => void;
 	/** Shows buttons that step the value down and up. Defaults to `false`. */

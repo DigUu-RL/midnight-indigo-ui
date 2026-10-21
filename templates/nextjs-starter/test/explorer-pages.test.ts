@@ -316,6 +316,23 @@ test('the types a component takes are documented with their fields and imported 
 	assert.ok(compact(text).includes(compact(sampleCodes.crewMenuItems.declarations[0])));
 });
 
+test('a field is rendered with its label, and the numbers of the catalog are written as expressions', async (): Promise<void> => {
+	const { html }: StreamedPage = await readStreamedPage(
+		`${server.origin}/en-us/components/number-field`,
+	);
+
+	const text: string = textOf(html);
+
+	assert.match(html, /<label[^>]*>Crew members/);
+	assert.match(html, /<input(?=[^>]*type="number")(?=[^>]*min="1")(?=[^>]*max="12")/);
+
+	assert.ok(
+		compact(text).includes(
+			compact("<NumberField defaultValue={4} min={1} max={12} label='Crew members' />"),
+		),
+	);
+});
+
 test('a part without props of its own says so instead of an empty table', async (): Promise<void> => {
 	const { html }: StreamedPage = await readStreamedPage(`${server.origin}/en-us/components/table`);
 	const text: string = textOf(html);

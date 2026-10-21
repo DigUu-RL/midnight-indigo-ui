@@ -70,6 +70,10 @@ export { Switch } from '#src/forms/switch/index.tsx';
 export type { SwitchProps } from '#src/forms/switch/index.tsx';
 export { defaultTextAreaLabels, TextArea } from '#src/forms/text-area/index.tsx';
 export type { TextAreaLabels, TextAreaProps, TextAreaResize } from '#src/forms/text-area/index.tsx';
-export type { NativeInputAttributes, TextControlProps } from '#src/forms/text-field-base/index.tsx';
+export type {
+	NativeInputAttributes,
+	TextControlBaseProps,
+	TextControlProps,
+} from '#src/forms/text-field-base/index.tsx';
 export { TextField } from '#src/forms/text-field/index.tsx';
 export type { TextFieldProps, TextFieldType } from '#src/forms/text-field/index.tsx';
