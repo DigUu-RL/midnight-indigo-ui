@@ -1217,6 +1217,149 @@
 					"precision": "Arrastar não é preciso, nem possível para todos: quando o valor exato importa, dê um campo em `input`."
 				}
 			},
+			"form": {
+				"summary": "Formulário que valida no envio, resume os erros e acompanha o envio.",
+				"description": "Um formulário nativo com `noValidate`: suas restrições (`required`, `type`, `minLength`…) viram mensagens da interface, somadas às de `validate`, que pode esperar o servidor. Um envio que falha mostra um `ErrorSummary` e dá a cada campo com `name` o seu erro; `onSubmit` recebe os dados quando eles são válidos, e uma promise devolvida mantém o formulário `submitting`. Dentro dele, `SubmitButton` mostra o andamento, e `useFormSubmission` e `useFormError` leem o estado.",
+				"types": {
+					"formSubmission": "O que `useFormSubmission` devolve dentro do formulário: seu status, seus erros e se ele está ocupado.",
+					"formLabels": "Os textos do formulário, `labels`: o título do resumo, as restrições nativas e o envio que falhou."
+				},
+				"examples": {
+					"validation": {
+						"title": "Validação no servidor",
+						"description": "Restrições nativas e um `validate` assíncrono que encontra o indicativo já em uso; depois do primeiro envio, sair de um campo atualiza sua mensagem."
+					},
+					"withoutSummary": {
+						"title": "Sem resumo",
+						"description": "Um formulário de um campo com `errorSummary={false}`, para o foco ir ao campo, e `revalidateOn='submit'`, para sua mensagem só mudar no próximo envio."
+					}
+				},
+				"accessibility": {
+					"summary": "Um envio que falha move o foco uma vez, para o resumo ou para o primeiro campo inválido: nunca enquanto o leitor digita.",
+					"messages": "As mensagens são lidas com seus campos, não anunciadas quando mudam, então a validação não interrompe o leitor.",
+					"outcome": "O resultado é anunciado: `successMessage` numa região de status, e um `onSubmit` que falha como alerta."
+				}
+			},
+			"formField": {
+				"summary": "Rótulo, descrição e erro de um controle que a biblioteca não tem.",
+				"description": "Organiza um campo e liga suas partes ao controle: o rótulo por `for`, a descrição, o erro e o texto de carregamento por `aria-describedby`. Seu filho é uma função que recebe esses atributos e renderiza o controle com eles; os campos da biblioteca são feitos sobre ele.",
+				"types": {
+					"formFieldControlProps": "Os atributos que a função filha recebe, para espalhar no controle."
+				},
+				"examples": {
+					"nativeControl": {
+						"title": "Um controle nativo",
+						"description": "Um input de cor vira um campo com rótulo e uma descrição que diz a cor escolhida."
+					},
+					"formError": {
+						"title": "O erro do formulário",
+						"description": "Dentro de um `Form`, o campo com `name='departure'` mostra o erro desse nome, do `required` nativo ou de `validate`."
+					}
+				},
+				"accessibility": {
+					"spread": "Espalhe todos os atributos no elemento que recebe o foco: sem o `id`, o rótulo não nomeia nada.",
+					"name": "O rótulo é um `label` de verdade, sempre visível a não ser com `hideLabel`; um placeholder nunca o substitui.",
+					"custom": "Um controle feito de vários elementos precisa do seu próprio teclado e dos seus papéis; `labelId` nomeia suas partes, por exemplo uma listbox."
+				}
+			},
+			"fieldset": {
+				"summary": "Grupo de controles relacionados nomeado por uma legenda.",
+				"description": "Um `fieldset` nativo e sua `legend`, com uma `description` e um `error` para o grupo todo. `disabled` chega a todos os controles de dentro, nativamente, e `errorName` lê o erro de um campo do `Form` que o contém.",
+				"examples": {
+					"address": {
+						"title": "Um endereço",
+						"description": "Campos que só fazem sentido juntos sob uma legenda `required`, cada um com seu `autoComplete`."
+					},
+					"optionalSection": {
+						"title": "Uma seção sob demanda",
+						"description": "Um switch liga uma seção: enquanto está desligado, `disabled` deixa seus controles fora do foco e fora do envio."
+					}
+				},
+				"accessibility": {
+					"legend": "A `legend` é lida quando o foco entra no grupo, antes do rótulo do primeiro controle.",
+					"disabled": "Um grupo desabilitado é pulado pelo Tab: diga em outro lugar como ligá-lo, como faz o switch do exemplo.",
+					"when": "Agrupe controles que respondem a uma mesma pergunta, como um endereço; um campo sozinho não precisa de fieldset."
+				}
+			},
+			"formActions": {
+				"summary": "Linha dos botões que encerram um formulário.",
+				"description": "Organiza os botões na ordem do código, quebrando a linha em telas estreitas; `align` os põe no início, no fim ou afastados.",
+				"examples": {
+					"steps": {
+						"title": "Etapas de um formulário",
+						"description": "`space-between` põe o caminho de volta no início e o de avanço no fim, na ordem do Tab."
+					},
+					"settings": {
+						"title": "Fim de um card",
+						"description": "`end` põe o botão de salvar e o de descartar sob a borda direita dos campos, com a ação principal primeiro."
+					}
+				},
+				"accessibility": {
+					"order": "A ordem na tela é a ordem do código e do Tab: nunca a inverta com estilos.",
+					"wrap": "Os botões quebram em novas linhas com zoom alto em vez de sair da tela.",
+					"main": "Ponha a ação principal primeiro, para ela ser a primeira que o Tab alcança."
+				}
+			},
+			"submitButton": {
+				"summary": "Botão que envia seu formulário e mostra o andamento.",
+				"description": "Um `Button` com `type='submit'`, `official` e `solid` por padrão. Enquanto o `Form` que o contém valida ou envia, ele fica `loading` sozinho.",
+				"examples": {
+					"pending": {
+						"title": "Enquanto envia",
+						"description": "`onSubmit` espera um segundo e meio: o botão fica `loading` nesse tempo, e o resultado é anunciado."
+					},
+					"signIn": {
+						"title": "Entrar",
+						"description": "Um formulário estreito que termina num único botão `fullWidth`, a única ação da tela."
+					}
+				},
+				"accessibility": {
+					"type": "Ele é sempre `type='submit'`, então Enter num campo do formulário também o envia.",
+					"pending": "Enquanto o formulário está ocupado, o botão mantém o foco e o nome e ignora cliques, então o formulário é enviado uma vez.",
+					"disabled": "Prefira um botão habilitado e um resumo dos erros a um botão desabilitado até o formulário ficar válido, que nunca diz por quê."
+				}
+			},
+			"errorSummary": {
+				"summary": "Lista dos erros de um formulário, com um link para cada campo.",
+				"description": "Uma região nomeada pelo seu título, que recebe o foco quando aparece e sempre que `focusKey` muda; cada link move o foco para o seu campo, por `targetId` ou por `name`. O `Form` já mostra um sozinho: use-o à parte num formulário seu ou para problemas encontrados em outro lugar.",
+				"types": {
+					"errorSummaryItem": "Um erro do resumo, uma entrada de `errors`."
+				},
+				"examples": {
+					"ownForm": {
+						"title": "Um formulário seu",
+						"description": "Um formulário que valida sozinho conta seus envios em `focusKey`, para o resumo receber o foco a cada um, e liga aos campos por `targetId`."
+					},
+					"manifest": {
+						"title": "Problemas encontrados em outro lugar",
+						"description": "Uma verificação da alfândega, com `headingLevel={3}` sob a sua seção e um título próprio em `labels`."
+					}
+				},
+				"accessibility": {
+					"focus": "O foco vai para o resumo uma vez por envio, então o número de problemas é lido uma vez; `focusKey={null}` impede isso, por exemplo num resumo que está na página desde a primeira renderização.",
+					"links": "Cada link move o foco para o seu campo, onde o erro é lido de novo com o rótulo.",
+					"heading": "Escolha `headingLevel` pela estrutura da página, como em qualquer título."
+				}
+			},
+			"fileUpload": {
+				"summary": "Seletor de arquivos com limites, lista dos arquivos escolhidos e área opcional para soltar arquivos.",
+				"description": "Um input de arquivo nativo alcançado pelo Tab pelo seu botão visível. `accept`, `maxSize` e `maxFiles` são informados antes da escolha e aplicados depois; os arquivos escolhidos são listados, cada um com um botão que o remove. A área para soltar arquivos acrescenta um caminho para ponteiros, nunca o único.",
+				"examples": {
+					"dossier": {
+						"title": "Vários arquivos",
+						"description": "PDFs `multiple` de até 2 MB, no máximo três: tente um arquivo maior ou um quarto para ver por que ele fica de fora."
+					},
+					"portrait": {
+						"title": "Uma imagem, controlada",
+						"description": "Uma imagem em `value`, mostrada como avatar assim que é escolhida, sem área para soltar arquivos."
+					}
+				},
+				"accessibility": {
+					"keyboard": "O Tab chega ao botão, e Enter ou Espaço abre o diálogo do sistema; remover um arquivo devolve o foco ao botão.",
+					"limits": "Os limites são lidos com o campo, então são conhecidos antes da escolha.",
+					"rejections": "Os arquivos deixados de fora são listados numa mensagem de status educada, uma vez por escolha."
+				}
+			},
 			"container": {
 				"summary": "Centraliza o conteúdo de uma página ou seção e limita a sua largura.",
 				"description": "Envolva o conteúdo de uma página nele: `size` limita o comprimento das linhas (`small` para leitura e formulários, `large` para dashboards) e as margens laterais crescem com a viewport.",

@@ -203,6 +203,17 @@ export const sampleBountyOptions: readonly SampleChoice[] = sampleBounties.map(
 	},
 );
 
+/** An error of a form, as `ErrorSummaryItem` types it, with a text for its message. */
+export interface SampleFormError {
+	name: string;
+	message: string;
+}
+
+export const sampleMissionErrors: readonly SampleFormError[] = [
+	{ name: 'callsign', message: 'Enter the callsign of the hunter.' },
+	{ name: 'ship', message: 'Choose the ship of the mission.' },
+];
+
 const plusIcon: string = [
 	'<Icon decorative>',
 	'\t<path',
@@ -391,6 +402,46 @@ export const sampleCodes = {
 		typeImports: { forms: ['ComboboxOption'] },
 		declarations: [listDeclarationOf('bountyOptions', 'ComboboxOption', sampleBountyOptions)],
 		code: 'bountyOptions',
+	},
+	hunterFields: {
+		imports: { forms: ['FormActions', 'SubmitButton', 'TextField'] },
+		code: [
+			"<TextField label='Callsign' name='callsign' required minLength={3} />",
+			"<TextField label='Email' name='email' type='email' autoComplete='email' />",
+			'',
+			'<FormActions>',
+			'\t<SubmitButton>Register the hunter</SubmitButton>',
+			'</FormActions>',
+		].join('\n'),
+	},
+	departureControl: {
+		imports: {},
+		typeImports: { forms: ['FormFieldControlProps'] },
+		code: "{(control: FormFieldControlProps): ReactElement => <input {...control} type='time' />}",
+	},
+	landingFields: {
+		imports: { forms: ['TextField'] },
+		code: [
+			"<TextField label='Planet' name='planet' />",
+			"<TextField label='Dock' name='dock' />",
+		].join('\n'),
+	},
+	routeButtons: {
+		imports: { buttons: ['Button'] },
+		code: [
+			"<Button variant='solid'>Save the route</Button>",
+			"<Button variant='ghost'>Cancel</Button>",
+		].join('\n'),
+	},
+	missionErrors: {
+		imports: {},
+		typeImports: { forms: ['ErrorSummaryItem'] },
+		declarations: [listDeclarationOf('missionErrors', 'ErrorSummaryItem', sampleMissionErrors)],
+		code: 'missionErrors',
+	},
+	noFocusKey: {
+		imports: {},
+		code: 'null',
 	},
 } as const satisfies Readonly<Record<string, SampleCode>>;
 

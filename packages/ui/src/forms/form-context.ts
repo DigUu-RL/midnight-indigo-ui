@@ -13,7 +13,9 @@ export type FormStatus = 'idle' | 'validating' | 'invalid' | 'submitting' | 'suc
 export type FormErrors = Readonly<Record<string, string | undefined>>;
 
 export interface FormSubmission {
+	/** Where the submission is: `'idle'`, `'validating'`, `'invalid'`, `'submitting'`, `'success'` or `'error'`. */
 	status: FormStatus;
+	/** Error messages by field `name`: those of the validation, under the ones given to `errors`. */
 	errors: FormErrors;
 	/** Validation or submission is running. */
 	pending: boolean;

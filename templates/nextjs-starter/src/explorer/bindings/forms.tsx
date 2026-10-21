@@ -3,12 +3,19 @@ import {
 	Checkbox,
 	CheckboxGroup,
 	Combobox,
+	ErrorSummary,
+	Fieldset,
+	FileUpload,
+	Form,
+	FormActions,
+	FormField,
 	NumberField,
 	PasswordField,
 	RadioGroup,
 	SearchField,
 	Select,
 	Slider,
+	SubmitButton,
 	Switch,
 	TextArea,
 	TextField,
@@ -21,6 +28,18 @@ import { BountyAlerts } from '#src/explorer/examples/checkbox-group/channels.tsx
 import { PlanetFilter } from '#src/explorer/examples/checkbox-group/filters.tsx';
 import { RegistrySearch } from '#src/explorer/examples/combobox/remote.tsx';
 import { WingmanSearch } from '#src/explorer/examples/combobox/search.tsx';
+import { CargoManifest } from '#src/explorer/examples/error-summary/manifest.tsx';
+import { MissionBriefing } from '#src/explorer/examples/error-summary/own-form.tsx';
+import { LandingSite } from '#src/explorer/examples/fieldset/address.tsx';
+import { CargoSection } from '#src/explorer/examples/fieldset/optional-section.tsx';
+import { BountyDossier } from '#src/explorer/examples/file-upload/dossier.tsx';
+import { HunterPortrait } from '#src/explorer/examples/file-upload/portrait.tsx';
+import { HunterSignUp } from '#src/explorer/examples/form/validation.tsx';
+import { CrewInvite } from '#src/explorer/examples/form/without-summary.tsx';
+import { AlertSettings } from '#src/explorer/examples/form-actions/settings.tsx';
+import { BountySteps } from '#src/explorer/examples/form-actions/steps.tsx';
+import { DepartureDay } from '#src/explorer/examples/form-field/form-error.tsx';
+import { HullPaint } from '#src/explorer/examples/form-field/native-control.tsx';
 import { CargoLoad } from '#src/explorer/examples/number-field/cargo.tsx';
 import { BountyReward } from '#src/explorer/examples/number-field/reward.tsx';
 import { HunterRegistration } from '#src/explorer/examples/password-field/new-password.tsx';
@@ -33,6 +52,8 @@ import { MoonLanding } from '#src/explorer/examples/select/dependent.tsx';
 import { HomePort } from '#src/explorer/examples/select/groups.tsx';
 import { DeflectorSettings } from '#src/explorer/examples/slider/formatted.tsx';
 import { RewardRange } from '#src/explorer/examples/slider/input.tsx';
+import { BountyReport } from '#src/explorer/examples/submit-button/pending.tsx';
+import { HangarSignIn } from '#src/explorer/examples/submit-button/sign-in.tsx';
 import { Autopilot } from '#src/explorer/examples/switch/dependent.tsx';
 import { BebopSettings } from '#src/explorer/examples/switch/settings.tsx';
 import { Transmission } from '#src/explorer/examples/text-area/counter.tsx';
@@ -75,6 +96,31 @@ export const formsBindings: SubpathBindings<'forms'> = {
 		Slider: {
 			component: Slider,
 			examples: { formatted: DeflectorSettings, input: RewardRange },
+		},
+		Form: { component: Form, examples: { validation: HunterSignUp, withoutSummary: CrewInvite } },
+		FormField: {
+			component: FormField,
+			examples: { nativeControl: HullPaint, formError: DepartureDay },
+		},
+		Fieldset: {
+			component: Fieldset,
+			examples: { address: LandingSite, optionalSection: CargoSection },
+		},
+		FormActions: {
+			component: FormActions,
+			examples: { steps: BountySteps, settings: AlertSettings },
+		},
+		SubmitButton: {
+			component: SubmitButton,
+			examples: { pending: BountyReport, signIn: HangarSignIn },
+		},
+		ErrorSummary: {
+			component: ErrorSummary,
+			examples: { ownForm: MissionBriefing, manifest: CargoManifest },
+		},
+		FileUpload: {
+			component: FileUpload,
+			examples: { dossier: BountyDossier, portrait: HunterPortrait },
 		},
 	},
 };

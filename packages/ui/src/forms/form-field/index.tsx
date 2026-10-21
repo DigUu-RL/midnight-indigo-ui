@@ -50,12 +50,19 @@ export interface FieldProps {
 
 /** Attributes that `FormField` gives to the control it renders. */
 export interface FormFieldControlProps {
+	/** Id of the control, the target of the label. */
 	id: string;
+	/** Ids of the description, the error and the loading text, then those of `describedBy`. */
 	'aria-describedby': string | undefined;
+	/** `true` while the field shows an error. */
 	'aria-invalid': true | undefined;
+	/** `true` while the field is `loading`. */
 	'aria-busy': true | undefined;
+	/** The `required` of the field. */
 	required: boolean;
+	/** The `disabled` of the field. */
 	disabled: boolean;
+	/** The `readOnly` of the field. */
 	readOnly: boolean;
 }
 

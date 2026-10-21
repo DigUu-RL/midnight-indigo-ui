@@ -72,6 +72,13 @@ const explorerPages: readonly string[] = [
 	'/en-us/components/select',
 	'/en-us/components/combobox',
 	'/pt-br/components/slider',
+	'/en-us/components/form',
+	'/pt-br/components/form-field',
+	'/en-us/components/fieldset',
+	'/en-us/components/form-actions',
+	'/pt-br/components/submit-button',
+	'/en-us/components/error-summary',
+	'/pt-br/components/file-upload',
 ];
 
 // A table wider than its column (the props of a component) becomes a focusable region once it is hydrated and measured;

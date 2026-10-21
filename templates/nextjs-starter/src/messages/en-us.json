@@ -1211,6 +1211,149 @@
 					"precision": "Dragging is not precise, nor possible for everyone: when the exact value matters, give a field in `input`."
 				}
 			},
+			"form": {
+				"summary": "Form that validates on submit, summarizes the errors and tracks the submission.",
+				"description": "A native form with `noValidate`: its constraints (`required`, `type`, `minLength`…) become messages of the interface, joined by those of `validate`, which may wait for the server. A failed submission shows an `ErrorSummary` and gives each field with a `name` its error; `onSubmit` gets the data once they are valid, and a promise it returns keeps the form `submitting`. Inside it, `SubmitButton` shows the progress, and `useFormSubmission` and `useFormError` read the state.",
+				"types": {
+					"formSubmission": "What `useFormSubmission` returns inside the form: its status, its errors and whether it is busy.",
+					"formLabels": "The texts of the form, `labels`: the title of the summary, the native constraints and the failed submission."
+				},
+				"examples": {
+					"validation": {
+						"title": "Validation on the server",
+						"description": "Native constraints and an async `validate` that finds the callsign taken; after the first submission, leaving a field updates its message."
+					},
+					"withoutSummary": {
+						"title": "Without a summary",
+						"description": "A form of one field with `errorSummary={false}`, so focus goes to the field, and `revalidateOn='submit'`, so its message changes only on the next submission."
+					}
+				},
+				"accessibility": {
+					"summary": "A failed submission moves focus once, to the summary or to the first invalid field: never while the reader types.",
+					"messages": "The messages are read with their fields, not announced as they change, so validation does not interrupt the reader.",
+					"outcome": "The result is announced: `successMessage` in a status region, and a failed `onSubmit` as an alert."
+				}
+			},
+			"formField": {
+				"summary": "Label, description and error of a control the library does not have.",
+				"description": "Lays out a field and links its parts to the control: the label by `for`, the description, the error and the loading text by `aria-describedby`. Its child is a function that gets these attributes and renders the control with them; the fields of the library are built on it.",
+				"types": {
+					"formFieldControlProps": "The attributes the child function gets, to spread on the control."
+				},
+				"examples": {
+					"nativeControl": {
+						"title": "A native control",
+						"description": "A color input becomes a field with a label and a description that says the chosen color."
+					},
+					"formError": {
+						"title": "The error of the form",
+						"description": "Inside a `Form`, the field with `name='departure'` shows the error of that name, from the native `required` or from `validate`."
+					}
+				},
+				"accessibility": {
+					"spread": "Spread every attribute on the element that takes focus: without the `id`, the label names nothing.",
+					"name": "The label is a real `label`, always visible unless `hideLabel`; a placeholder never replaces it.",
+					"custom": "A control made of several elements needs its own keyboard and roles; `labelId` names its parts, e.g. a listbox."
+				}
+			},
+			"fieldset": {
+				"summary": "Group of related controls named by a legend.",
+				"description": "A native `fieldset` and its `legend`, with a `description` and an `error` for the whole group. `disabled` reaches every control inside, natively, and `errorName` reads the error of a field of the enclosing `Form`.",
+				"examples": {
+					"address": {
+						"title": "An address",
+						"description": "Fields that only make sense together under a `required` legend, with their own `autoComplete`."
+					},
+					"optionalSection": {
+						"title": "A section on demand",
+						"description": "A switch turns a section on: while it is off, `disabled` keeps its controls out of focus and out of the submission."
+					}
+				},
+				"accessibility": {
+					"legend": "The `legend` is read when focus enters the group, before the label of the first control.",
+					"disabled": "A disabled group is skipped by Tab: say elsewhere how to turn it on, as the switch of the example does.",
+					"when": "Group controls that share a question, such as an address; a single field needs no fieldset."
+				}
+			},
+			"formActions": {
+				"summary": "Row of the buttons that end a form.",
+				"description": "Lays out the buttons in the order of the source, which wraps on narrow screens; `align` sets them at the start, at the end or apart.",
+				"examples": {
+					"steps": {
+						"title": "Steps of a form",
+						"description": "`space-between` sets the way back at the start and the way forward at the end, in the order of Tab."
+					},
+					"settings": {
+						"title": "End of a card",
+						"description": "`end` sets the save button and the reset under the right edge of the fields, with the main action first."
+					}
+				},
+				"accessibility": {
+					"order": "The order on screen is the order of the source and of Tab: never reverse it with styles.",
+					"wrap": "The buttons wrap onto new lines at high zoom instead of leaving the screen.",
+					"main": "Put the main action first, so it is the first one Tab reaches."
+				}
+			},
+			"submitButton": {
+				"summary": "Button that submits its form and shows its progress.",
+				"description": "A `Button` with `type='submit'`, `official` and `solid` by default. While the enclosing `Form` validates or submits, it is `loading` by itself.",
+				"examples": {
+					"pending": {
+						"title": "While it sends",
+						"description": "`onSubmit` waits a second and a half: the button is `loading` meanwhile, and the result is announced."
+					},
+					"signIn": {
+						"title": "Sign in",
+						"description": "A narrow form that ends in one `fullWidth` button, the only action of the screen."
+					}
+				},
+				"accessibility": {
+					"type": "It is always `type='submit'`, so Enter in a field of the form sends it too.",
+					"pending": "While the form is busy, the button keeps its focus and its name and ignores clicks, so the form is sent once.",
+					"disabled": "Prefer an enabled button and a summary of the errors to a button disabled until the form is valid, which never says why."
+				}
+			},
+			"errorSummary": {
+				"summary": "List of the errors of a form, with a link to each field.",
+				"description": "A region named by its heading, which takes focus when it appears and whenever `focusKey` changes; each link moves focus to its field, by `targetId` or by `name`. `Form` shows one by itself: use it alone for a form of your own or for problems found elsewhere.",
+				"types": {
+					"errorSummaryItem": "An error of the summary, an entry of `errors`."
+				},
+				"examples": {
+					"ownForm": {
+						"title": "A form of your own",
+						"description": "A form that validates by itself counts its submissions in `focusKey`, so the summary takes focus at each one, and links to its fields by `targetId`."
+					},
+					"manifest": {
+						"title": "Problems found elsewhere",
+						"description": "A check of the customs, with `headingLevel={3}` under its section and a title of its own in `labels`."
+					}
+				},
+				"accessibility": {
+					"focus": "Focus moves to the summary once per submission, so the number of problems is read once; `focusKey={null}` stops it, e.g. for a summary on the page from its first render.",
+					"links": "Each link moves focus to its field, where its error is read again with its label.",
+					"heading": "Pick `headingLevel` from the outline of the page, as for any heading."
+				}
+			},
+			"fileUpload": {
+				"summary": "File picker with limits, a list of the chosen files and an optional drop zone.",
+				"description": "A native file input reached with Tab through its visible button. `accept`, `maxSize` and `maxFiles` are stated before choosing and enforced after; the chosen files are listed, each one with a button that removes it. The drop zone adds a way for pointers, never the only one.",
+				"examples": {
+					"dossier": {
+						"title": "Several files",
+						"description": "`multiple` PDFs up to 2 MB, at most three: try a larger file or a fourth one to see why it is left out."
+					},
+					"portrait": {
+						"title": "An image, controlled",
+						"description": "One image in `value`, shown as the avatar as soon as it is chosen, without a drop zone."
+					}
+				},
+				"accessibility": {
+					"keyboard": "Tab reaches the button, and Enter or Space opens the dialog of the system; removing a file moves focus back to the button.",
+					"limits": "The limits are read with the field, so they are known before choosing.",
+					"rejections": "Files left out are listed in a polite status message, once per choice."
+				}
+			},
 			"container": {
 				"summary": "Centers the content of a page or a section and limits its width.",
 				"description": "Wrap the content of a page in it: `size` limits the line length (`small` for reading and forms, `large` for dashboards) and the side gutters grow with the viewport.",

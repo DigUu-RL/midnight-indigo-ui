@@ -32,6 +32,7 @@ export interface FieldsetProps extends Omit<ComponentPropsWithRef<'fieldset'>, '
 	disabled?: boolean | undefined;
 	/** Name of the field the group stands for, to read its error from the enclosing `Form`. */
 	errorName?: string | undefined;
+	/** The controls of the group. */
 	children: ReactNode;
 }
 

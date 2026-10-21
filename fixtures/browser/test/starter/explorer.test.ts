@@ -1,8 +1,9 @@
 // The component explorer: its navigation leads from the page of a component to one of another subpath, served by
 // another route, at the public path. In the playground, each control changes the component and its code at once, an
 // overlay opens from its trigger or its button and closes as it asks, a toast is shown through its hook, a field keeps
-// what the reader typed while its props change, a checkbox shows its dash, a combobox filters its sample options, and a
-// required text left blank keeps its initial value instead of breaking the page.
+// what the reader typed while its props change, a checkbox shows its dash, a combobox filters its sample options, a form
+// summarizes its errors and announces its success, and a required text left blank keeps its initial value instead of
+// breaking the page.
 import type { Locator } from '@playwright/test';
 
 import { expect, test } from '#test/support/fixtures.ts';
@@ -269,6 +270,35 @@ test('a combobox of the playground filters its sample options and chooses one', 
 	await combobox.press('Enter');
 
 	await expect(combobox).toHaveValue('Vincent Volaju');
+});
+
+// The fields are a sample rendered on the server, inside the form the playground renders in the browser.
+test('a form of the playground summarizes its errors, then announces the success its control asks for', async ({
+	page,
+}): Promise<void> => {
+	await page.goto('/en-us/components/form');
+	const playground: Locator = page.locator('.playground');
+
+	const stage: Locator = playground.getByRole('group', {
+		name: 'Component with the chosen props',
+	});
+
+	await playground.getByRole('textbox', { name: /^successMessage/ }).fill('Welcome aboard.');
+	await stage.getByRole('button', { name: 'Register the hunter' }).click();
+
+	await expect(
+		stage.getByRole('region', { name: 'There is 1 problem with this form' }),
+	).toBeFocused();
+
+	await expect(stage.getByRole('textbox', { name: /^Callsign/ })).toHaveAccessibleDescription(
+		/Fill in this field\./,
+	);
+
+	await stage.getByRole('textbox', { name: /^Callsign/ }).fill('Spike');
+	await stage.getByRole('button', { name: 'Register the hunter' }).click();
+
+	await expect(stage.getByRole('status').filter({ hasText: 'Welcome aboard.' })).toBeVisible();
+	await expect(playground.locator('pre')).toContainText("successMessage='Welcome aboard.'");
 });
 
 test('a required text left blank keeps its initial value', async ({ page }): Promise<void> => {

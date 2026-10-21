@@ -357,6 +357,31 @@ test('options and checked values given to props are rendered, and declared or wr
 	assert.match(html, /<caption[^>]*>Fields of ChoiceOption<\/caption>/);
 });
 
+test('a control rendered by a function child comes from a client module, and the snippet writes the function', async (): Promise<void> => {
+	const { html }: StreamedPage = await readStreamedPage(
+		`${server.origin}/en-us/components/form-field`,
+	);
+
+	const text: string = textOf(html);
+
+	assert.match(html, /<label[^>]*for="([^"]+)"[^>]*>Departure time<\/label>/);
+	assert.match(html, /<input(?=[^>]*type="time")(?=[^>]*aria-busy="true")/);
+	assert.ok(compact(text).includes(compact(sampleCodes.departureControl.code)));
+	assert.match(html, /<caption[^>]*>Fields of FormFieldControlProps<\/caption>/);
+});
+
+test('a summary of errors on the page from its first render is written without focus', async (): Promise<void> => {
+	const { html }: StreamedPage = await readStreamedPage(
+		`${server.origin}/en-us/components/error-summary`,
+	);
+
+	const text: string = textOf(html);
+
+	assert.ok(text.includes('There are 2 problems with this form'));
+	assert.ok(compact(text).includes(compact(sampleCodes.missionErrors.declarations[0])));
+	assert.ok(compact(text).includes(compact('errors={missionErrors} focusKey={null}')));
+});
+
 test('a part without props of its own says so instead of an empty table', async (): Promise<void> => {
 	const { html }: StreamedPage = await readStreamedPage(`${server.origin}/en-us/components/table`);
 	const text: string = textOf(html);
