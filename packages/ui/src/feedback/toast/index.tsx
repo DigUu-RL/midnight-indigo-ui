@@ -24,7 +24,9 @@ export type ToastPlacement =
 
 /** A single action of a toast, such as `'Undo'` or `'Retry'`. */
 export interface ToastAction {
+	/** Text of the button, a verb such as `'Undo'`. */
 	label: string;
+	/** Runs when the button is pressed; the toast is dismissed after it. */
 	onAction: () => void;
 }
 
@@ -38,6 +40,7 @@ export interface ToastOptions {
 	intent?: SemanticIntent;
 	/** Short summary in bold before the message. */
 	title?: string;
+	/** What happened, in a short sentence. */
 	message: string;
 	/** Decorative icon in place of the intent glyph, e.g. an `IconifyIcon` marked `decorative`. */
 	icon?: ReactNode;
@@ -53,7 +56,9 @@ export interface ToastOptions {
 export interface ToastApi {
 	/** Shows a toast, or updates the one with the same `id`, and returns its `id`. */
 	show: (options: ToastOptions) => string;
+	/** Dismisses the toast with this `id`; focus on it moves to the next toast, or back to where it was before. */
 	dismiss: (id: string) => void;
+	/** Dismisses every toast, including the ones waiting for a free place. */
 	dismissAll: () => void;
 }
 
@@ -91,10 +96,11 @@ export const minimumToastDuration: number = 5000;
 const minimumActionDuration: number = 10_000;
 
 export interface ToastProviderProps {
+	/** The application, whose components show toasts with `useToast`. */
 	children?: ReactNode;
-	/** Defaults to `'bottom-end'`. */
+	/** Corner or edge of the screen where the toasts appear. Defaults to `'bottom-end'`. */
 	placement?: ToastPlacement;
-	/** Toasts shown at once; the next ones wait for a free place. Defaults to 3. */
+	/** Toasts shown at once; the next ones wait for a free place. Defaults to `3`. */
 	limit?: number;
 	/** Key (`KeyboardEvent.key`) that moves focus to the toasts, and Escape back. Defaults to `'F8'`. */
 	hotkey?: string;

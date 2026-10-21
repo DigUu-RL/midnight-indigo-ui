@@ -1058,5 +1058,85 @@
 			"source": "Element that receives the overlay. Defaults to `document.body`.",
 			"translation": "Elemento que recebe o overlay. Padrão: `document.body`."
 		}
+	},
+	"ToastProvider": {
+		"children": {
+			"source": "The application, whose components show toasts with `useToast`.",
+			"translation": "A aplicação, cujos componentes exibem toasts com `useToast`."
+		},
+		"placement": {
+			"source": "Corner or edge of the screen where the toasts appear. Defaults to `'bottom-end'`.",
+			"translation": "Canto ou borda da tela onde os toasts aparecem. Padrão: `'bottom-end'`."
+		},
+		"limit": {
+			"source": "Toasts shown at once; the next ones wait for a free place. Defaults to `3`.",
+			"translation": "Toasts exibidos ao mesmo tempo; os próximos esperam um lugar livre. Padrão: `3`."
+		},
+		"hotkey": {
+			"source": "Key (`KeyboardEvent.key`) that moves focus to the toasts, and Escape back. Defaults to `'F8'`.",
+			"translation": "Tecla (`KeyboardEvent.key`) que leva o foco aos toasts, e Escape de volta. Padrão: `'F8'`."
+		},
+		"labels": {
+			"source": "Overrides some or all of `defaultToastLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultToastLabels`."
+		},
+		"container": {
+			"source": "Element that receives the notification region. Defaults to `document.body`.",
+			"translation": "Elemento que recebe a região de notificações. Padrão: `document.body`."
+		}
+	},
+	"ToastOptions": {
+		"id": {
+			"source": "Identifies the toast: showing another one with the same `id` updates it in place instead of stacking a copy, and it is announced again only if its text changed. Defaults to a generated identifier.",
+			"translation": "Identifica o toast: exibir outro com o mesmo `id` o atualiza no lugar em vez de empilhar uma cópia, e ele só é anunciado de novo se o texto mudou. Padrão: um identificador gerado."
+		},
+		"intent": {
+			"source": "Meaning of the toast; it picks the icon and how urgently it is announced. Defaults to `'default'`.",
+			"translation": "Significado do toast; escolhe o ícone e a urgência do anúncio. Padrão: `'default'`."
+		},
+		"title": {
+			"source": "Short summary in bold before the message.",
+			"translation": "Resumo curto em negrito antes da mensagem."
+		},
+		"message": {
+			"source": "What happened, in a short sentence.",
+			"translation": "O que aconteceu, numa frase curta."
+		},
+		"icon": {
+			"source": "Decorative icon in place of the intent glyph, e.g. an `IconifyIcon` marked `decorative`.",
+			"translation": "Ícone decorativo no lugar do glifo da intenção, por exemplo um `IconifyIcon` marcado como `decorative`."
+		},
+		"action": {
+			"source": "Runs the action and dismisses the toast. A toast with an action stays at least 10 seconds.",
+			"translation": "Executa a ação e dispensa o toast. Um toast com ação fica pelo menos 10 segundos."
+		},
+		"duration": {
+			"source": "Milliseconds before the toast dismisses itself, or `null` to keep it until the user dismisses it. Defaults to `defaultToastDurations` of the intent; values below `minimumToastDuration` are raised to it.",
+			"translation": "Milissegundos até o toast se dispensar sozinho, ou `null` para mantê-lo até o usuário dispensá-lo. Padrão: `defaultToastDurations` da intenção; valores abaixo de `minimumToastDuration` sobem para ele."
+		}
+	},
+	"ToastAction": {
+		"label": {
+			"source": "Text of the button, a verb such as `'Undo'`.",
+			"translation": "Texto do botão, um verbo como `'Desfazer'`."
+		},
+		"onAction": {
+			"source": "Runs when the button is pressed; the toast is dismissed after it.",
+			"translation": "Executa quando o botão é pressionado; o toast é dispensado depois."
+		}
+	},
+	"ToastApi": {
+		"show": {
+			"source": "Shows a toast, or updates the one with the same `id`, and returns its `id`.",
+			"translation": "Exibe um toast, ou atualiza o que tem o mesmo `id`, e retorna o seu `id`."
+		},
+		"dismiss": {
+			"source": "Dismisses the toast with this `id`; focus on it moves to the next toast, or back to where it was before.",
+			"translation": "Dispensa o toast com esse `id`; o foco nele vai para o próximo toast, ou de volta para onde estava antes."
+		},
+		"dismissAll": {
+			"source": "Dismisses every toast, including the ones waiting for a free place.",
+			"translation": "Dispensa todos os toasts, inclusive os que esperam um lugar livre."
+		}
 	}
 }

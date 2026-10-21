@@ -945,6 +945,30 @@
 					"close": "Its header always has a close button, and Escape asks to close through `onClose`: no one depends on a click outside."
 				}
 			},
+			"toastProvider": {
+				"summary": "Brief notifications about the outcome of an action, shown in a corner of the screen.",
+				"description": "Render one `ToastProvider` around the application, as the root layout of the starter does; any component below shows a toast with `useToast().show()`, which returns its `id`. `intent` picks the icon and how urgently it is announced, `action` adds a button such as Undo, and showing the same `id` again updates the toast in place.",
+				"examples": {
+					"undo": {
+						"title": "Undo an action",
+						"description": "The action happens at once and `action` offers to undo it; a toast with an action stays at least 10 seconds."
+					},
+					"updates": {
+						"title": "Updated in place",
+						"description": "Each step shows the same `id`, so the toast changes instead of stacking; `duration: null` keeps the first one until the next."
+					}
+				},
+				"types": {
+					"toastOptions": "What `show` takes: the text of the toast, its intent, its action and how long it stays.",
+					"toastAction": "The button of a toast: it runs `onAction` and dismisses the toast.",
+					"toastApi": "What `useToast` returns, from any component below the `ToastProvider`."
+				},
+				"accessibility": {
+					"announce": "Each toast is announced once, when it appears, through live regions that exist before it: without interrupting the reader, or at once for `warning` and `error`.",
+					"keyboard": "F8 moves focus to the toasts and Escape returns it; dismissing the focused toast moves focus to the next one, never to the page body.",
+					"duration": "A toast stays at least 5 seconds and pauses while the pointer or focus is on it; an `error` stays until dismissed, so it is never missed."
+				}
+			},
 			"container": {
 				"summary": "Centers the content of a page or a section and limits its width.",
 				"description": "Wrap the content of a page in it: `size` limits the line length (`small` for reading and forms, `large` for dashboards) and the side gutters grow with the viewport.",

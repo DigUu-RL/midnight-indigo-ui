@@ -16,6 +16,7 @@ import { bindingOf } from '#src/explorer/bindings.tsx';
 import type { ExampleComponent, PageBinding } from '#src/explorer/bindings.tsx';
 import {
 	camelCaseOf,
+	controlledNameOf,
 	documentedNamesOf,
 	exampleFileOf,
 	explorerComponents,
@@ -136,9 +137,14 @@ const ComponentPage = async (props: ComponentPageProps): Promise<ReactElement> =
 	const types: readonly string[] = component.types ?? [];
 	const source: string = `'@midnight-indigo/ui/${component.subpath}'`;
 
+	const importedNames: string[] =
+		component.trigger === undefined
+			? documentedNames
+			: [...documentedNames, component.trigger.hook];
+
 	const importCode: HighlightedCode = await highlightCode(
 		[
-			`import { ${documentedNames.join(', ')} } from ${source};`,
+			`import { ${importedNames.join(', ')} } from ${source};`,
 			...(types.length === 0 ? [] : [`import type { ${types.join(', ')} } from ${source};`]),
 		].join('\n'),
 		'tsx',
@@ -210,10 +216,11 @@ const ComponentPage = async (props: ComponentPageProps): Promise<ReactElement> =
 						name={component.name}
 						subpath={component.subpath}
 						baseProps={component.baseProps}
-						controls={propsNamed(api, component.controls)}
+						controls={propsNamed(propsOf(controlledNameOf(component), locale), component.controls)}
 						slots={slots}
 						sampleWidth={component.sampleWidth}
 						opener={component.opener}
+						trigger={component.trigger}
 					/>
 				</Section>
 

@@ -2474,6 +2474,201 @@
 			"options": []
 		}
 	],
+	"ToastProvider": [
+		{
+			"name": "children",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "The application, whose components show toasts with `useToast`.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "placement",
+			"type": "ToastPlacement",
+			"required": false,
+			"defaultValue": "'bottom-end'",
+			"description": "Corner or edge of the screen where the toasts appear. Defaults to `'bottom-end'`.",
+			"native": false,
+			"kind": "enum",
+			"options": [
+				"top-start",
+				"top-center",
+				"top-end",
+				"bottom-start",
+				"bottom-center",
+				"bottom-end"
+			]
+		},
+		{
+			"name": "limit",
+			"type": "number",
+			"required": false,
+			"defaultValue": "3",
+			"description": "Toasts shown at once; the next ones wait for a free place. Defaults to `3`.",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "hotkey",
+			"type": "string",
+			"required": false,
+			"defaultValue": "'F8'",
+			"description": "Key (`KeyboardEvent.key`) that moves focus to the toasts, and Escape back. Defaults to `'F8'`.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "labels",
+			"type": "Partial<ToastLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultToastLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "container",
+			"type": "OverlayContainer",
+			"required": false,
+			"defaultValue": "document.body",
+			"description": "Element that receives the notification region. Defaults to `document.body`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"ToastOptions": [
+		{
+			"name": "id",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Identifies the toast: showing another one with the same `id` updates it in place instead of stacking a copy, and it is announced again only if its text changed. Defaults to a generated identifier.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "intent",
+			"type": "SemanticIntent",
+			"required": false,
+			"defaultValue": "'default'",
+			"description": "Meaning of the toast; it picks the icon and how urgently it is announced. Defaults to `'default'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["official", "brand", "default", "success", "warning", "error", "info"]
+		},
+		{
+			"name": "title",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Short summary in bold before the message.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "message",
+			"type": "string",
+			"required": true,
+			"defaultValue": null,
+			"description": "What happened, in a short sentence.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "icon",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Decorative icon in place of the intent glyph, e.g. an `IconifyIcon` marked `decorative`.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "action",
+			"type": "ToastAction",
+			"required": false,
+			"defaultValue": null,
+			"description": "Runs the action and dismisses the toast. A toast with an action stays at least 10 seconds.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "duration",
+			"type": "number | null",
+			"required": false,
+			"defaultValue": "defaultToastDurations",
+			"description": "Milliseconds before the toast dismisses itself, or `null` to keep it until the user dismisses it. Defaults to `defaultToastDurations` of the intent; values below `minimumToastDuration` are raised to it.",
+			"native": false,
+			"kind": "number",
+			"options": []
+		}
+	],
+	"ToastAction": [
+		{
+			"name": "label",
+			"type": "string",
+			"required": true,
+			"defaultValue": null,
+			"description": "Text of the button, a verb such as `'Undo'`.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "onAction",
+			"type": "() => void",
+			"required": true,
+			"defaultValue": null,
+			"description": "Runs when the button is pressed; the toast is dismissed after it.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"ToastApi": [
+		{
+			"name": "show",
+			"type": "(options: ToastOptions) => string",
+			"required": true,
+			"defaultValue": null,
+			"description": "Shows a toast, or updates the one with the same `id`, and returns its `id`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "dismiss",
+			"type": "(id: string) => void",
+			"required": true,
+			"defaultValue": null,
+			"description": "Dismisses the toast with this `id`; focus on it moves to the next toast, or back to where it was before.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "dismissAll",
+			"type": "() => void",
+			"required": true,
+			"defaultValue": null,
+			"description": "Dismisses every toast, including the ones waiting for a free place.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
 	"Container": [
 		{
 			"name": "as",

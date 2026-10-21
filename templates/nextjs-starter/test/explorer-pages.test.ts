@@ -243,6 +243,28 @@ test('a modal overlay has no grid, and its playground opens it with a button the
 	assert.ok(compact(text).includes(compact('onClose={(): void => setOpen(false)}')));
 });
 
+test('a component driven by a hook imports it, has no grid, and its playground calls it from a button the code writes too', async (): Promise<void> => {
+	const { html }: StreamedPage = await readStreamedPage(
+		`${server.origin}/en-us/components/toast-provider`,
+	);
+
+	const text: string = textOf(html);
+
+	assert.ok(
+		compact(text).includes(
+			compact("import { ToastProvider, useToast } from '@midnight-indigo/ui/feedback';"),
+		),
+	);
+
+	assert.doesNotMatch(html, /id="variants"/);
+	assert.match(html, /<button[^>]*>Show the toast<\/button>/);
+	assert.ok(compact(text).includes(compact('const toast: ToastApi = useToast();')));
+	assert.ok(compact(text).includes(compact("title: 'Bounty collected',")));
+	assert.match(html, /<caption[^>]*>Props of ToastProvider<\/caption>/);
+	assert.match(html, /<caption[^>]*>Fields of ToastOptions<\/caption>/);
+	assert.match(html, /<caption[^>]*>Fields of ToastApi<\/caption>/);
+});
+
 test('the types a component takes are documented with their fields and imported as types', async (): Promise<void> => {
 	const { html }: StreamedPage = await readStreamedPage(`${server.origin}/en-us/components/menu`);
 	const text: string = textOf(html);

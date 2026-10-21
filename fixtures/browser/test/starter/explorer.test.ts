@@ -1,6 +1,6 @@
 // The playground of the component explorer: each control changes the component and its code at once, an overlay opens
-// from its trigger or its button and closes as it asks, and a required text left blank keeps its initial value instead
-// of breaking the page.
+// from its trigger or its button and closes as it asks, a toast is shown through its hook, and a required text left
+// blank keeps its initial value instead of breaking the page.
 import type { Locator } from '@playwright/test';
 
 import { expect, test } from '#test/support/fixtures.ts';
@@ -146,6 +146,43 @@ test('a context menu of the playground opens from the keyboard with the chosen l
 
 	await expect(page.getByRole('menu', { name: 'Actions for Jet Black' })).toBeVisible();
 	await expect(playground.locator('pre')).toContainText("label='Actions for Jet Black'");
+});
+
+// The playground and the examples call `useToast`: the provider of the layout shows the toasts, as in an application.
+test('a toast of the playground is shown with the chosen options by the provider of the layout', async ({
+	page,
+}): Promise<void> => {
+	await page.goto('/en-us/components/toast-provider');
+	const playground: Locator = page.locator('.playground');
+
+	await playground.getByRole('textbox', { name: /^title/ }).fill('Bounty lost');
+	await playground.getByLabel('intent', { exact: true }).selectOption('error');
+	await playground.getByRole('button', { name: 'Show the toast' }).click();
+
+	const toast: Locator = page
+		.getByRole('region', { name: /^Notifications/ })
+		.locator('[data-toast]');
+
+	await expect(toast).toHaveCount(1);
+	await expect(toast).toContainText('Bounty lost');
+	await expect(toast).toContainText('Spike Spiegel delivered Asimov Solensan to the ISSP.');
+	await expect(playground.locator('pre')).toContainText("intent: 'error'");
+	await expect(playground.locator('pre')).toContainText("title: 'Bounty lost'");
+});
+
+test('the action of a toast undoes what the example did', async ({ page }): Promise<void> => {
+	await page.goto('/en-us/components/toast-provider');
+	const crew: Locator = page.getByRole('group', { name: 'Crew of the Bebop' });
+
+	await crew.getByRole('button', { name: 'Remove Jet Black from the crew' }).click();
+	await expect(crew).not.toContainText('Jet Black');
+
+	await page
+		.getByRole('region', { name: /^Notifications/ })
+		.getByRole('button', { name: 'Undo' })
+		.click();
+
+	await expect(crew).toContainText('Jet Black');
 });
 
 test('a required text left blank keeps its initial value', async ({ page }): Promise<void> => {
