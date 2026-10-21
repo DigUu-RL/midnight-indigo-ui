@@ -4,7 +4,8 @@
 // Server Components cannot pass a component to a Client Component, so each subpath creates its own playground with
 // `createPlayground` (in `playgrounds/`), which knows the components of that subpath. They can pass elements, so the
 // samples of the props that take one (`slots`) come rendered from the page. A modal overlay comes with the button that
-// opens it (`opener`), and closes when it asks to.
+// opens it (`opener`), and closes when it asks to. A component driven by a hook (`trigger`, e.g. `useToast` over the
+// provider of the layout) is not rendered: a button calls the hook with the values, from the hooks of the subpath.
 import { Button } from '@midnight-indigo/ui/buttons';
 import { CodeBlock } from '@midnight-indigo/ui/code';
 import { NumberField, Select, Switch, TextField } from '@midnight-indigo/ui/forms';
@@ -13,7 +14,7 @@ import type { I18nValue } from '@midnight-indigo/ui/i18n';
 import { createElement, useId, useState } from 'react';
 import type { ComponentType, ReactElement } from 'react';
 
-import type { Opener, PlaygroundValue, SampleWidth } from '#src/explorer/catalog.ts';
+import type { HookTrigger, Opener, PlaygroundValue, SampleWidth } from '#src/explorer/catalog.ts';
 import type { ComponentProp } from '#src/explorer/component-api.ts';
 import type { SampleCode } from '#src/explorer/sample-code.ts';
 import type { SampleValue } from '#src/explorer/samples.tsx';
@@ -36,12 +37,39 @@ export interface PlaygroundProps {
 	sampleWidth: SampleWidth;
 	/** The button that opens a modal overlay. */
 	opener?: Opener | undefined;
+	/** The hook a button calls with the values, in place of the component. */
+	trigger?: HookTrigger | undefined;
 }
 
 type Values = Readonly<Record<string, PlaygroundValue>>;
 
 /** Any component: the playground only gives it the values of its controls. */
 type AnyComponent = (props: never) => ReactElement | null;
+
+/** Any hook: the playground calls one of the methods of what it returns with the values of its controls. */
+type AnyHook = () => object;
+
+interface HookButtonProps {
+	useHook: AnyHook;
+	method: string;
+	options: Values;
+	label: string;
+}
+
+const HookButton = ({ useHook, method, options, label }: HookButtonProps): ReactElement => {
+	const api: object = useHook();
+
+	return (
+		<Button
+			onClick={(): void => {
+				const call: unknown = Reflect.get(api, method);
+				if (typeof call === 'function') Reflect.apply(call, api, [options]);
+			}}
+		>
+			{label}
+		</Button>
+	);
+};
 
 /** What the component is rendered with: the values of the controls, the samples, and the state of an overlay. */
 type RenderedProps = Record<string, SampleValue | PlaygroundValue | (() => void)>;
@@ -152,6 +180,7 @@ export type PlaygroundComponent = (props: PlaygroundProps) => ReactElement;
 
 export const createPlayground = (
 	components: Readonly<Record<string, AnyComponent>>,
+	hooks: Readonly<Record<string, AnyHook>> = {},
 ): PlaygroundComponent => {
 	const Playground = ({
 		name,
@@ -161,6 +190,7 @@ export const createPlayground = (
 		slots,
 		sampleWidth,
 		opener,
+		trigger,
 	}: PlaygroundProps): ReactElement => {
 		const { t }: I18nValue = useI18n();
 		const controlsLabelId: string = useId();
@@ -189,7 +219,10 @@ export const createPlayground = (
 				),
 			),
 			opener,
+			trigger,
 		});
+
+		const useHook: AnyHook | undefined = trigger === undefined ? undefined : hooks[trigger.hook];
 
 		const elements: Readonly<Record<string, SampleValue>> = Object.fromEntries(
 			Object.entries(slots).map(([prop, slot]: [string, PlaygroundSlot]): [string, SampleValue] => {
@@ -231,7 +264,16 @@ export const createPlayground = (
 						</Button>
 					)}
 
-					{component === undefined
+					{trigger === undefined || useHook === undefined ? null : (
+						<HookButton
+							useHook={useHook}
+							method={trigger.method}
+							options={rendered}
+							label={trigger.label}
+						/>
+					)}
+
+					{component === undefined || trigger !== undefined
 						? null
 						: createElement(component, { ...rendered, ...elements, ...overlay })}
 				</div>

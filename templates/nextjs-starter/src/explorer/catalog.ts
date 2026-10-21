@@ -21,6 +21,24 @@ export interface Opener {
 	closeProps: readonly string[];
 }
 
+/**
+ * The hook that drives a provider the application renders once, e.g. `useToast` over the `ToastProvider` of the root
+ * layout: the playground renders a button that calls a method of the hook with the values of its controls, which are
+ * the fields of the options of that method, not the props of the component.
+ */
+export interface HookTrigger {
+	/** Name of the hook, exported by the subpath of the component. */
+	hook: string;
+	/** Type the hook returns, e.g. `ToastApi`. */
+	api: string;
+	/** Method the button calls, e.g. `show`. */
+	method: string;
+	/** Type of the options of the method, e.g. `ToastOptions`: the controls and the base props are its fields. */
+	options: string;
+	/** Text of the button. */
+	label: string;
+}
+
 export interface ExplorerComponent {
 	/** Name exported by the subpath. */
 	name: string;
@@ -32,6 +50,8 @@ export interface ExplorerComponent {
 	types?: readonly string[];
 	/** The button of the playground of a modal overlay. Absent for the other components. */
 	opener?: Opener;
+	/** The hook the playground calls in place of rendering the component. Absent for the other components. */
+	trigger?: HookTrigger;
 	/** Ids of the examples in page order; each one is the file `examples/<slug>/<kebab-case id>.tsx`. */
 	examples: readonly string[];
 	/** Props of every rendering on the page, e.g. the label the component requires. */
@@ -504,6 +524,34 @@ export const explorerComponents = [
 		accessibility: ['dialog', 'placement', 'close'],
 	},
 	{
+		name: 'ToastProvider',
+		subpath: 'feedback',
+		parts: [],
+		types: ['ToastOptions', 'ToastAction', 'ToastApi'],
+		examples: ['undo', 'updates'],
+		baseProps: {
+			intent: 'success',
+			title: 'Bounty collected',
+			message: 'Spike Spiegel delivered Asimov Solensan to the ISSP.',
+		},
+		slots: {},
+		sampleWidth: 'content',
+		trigger: {
+			hook: 'useToast',
+			api: 'ToastApi',
+			method: 'show',
+			options: 'ToastOptions',
+			label: 'Show the toast',
+		},
+		// `duration` defaults by the intent and `action` takes a function, so their examples show them. The toasts are
+		// shown by the provider of the layout, so there is no grid of variants.
+		controls: ['intent', 'title', 'message'],
+		variants: [],
+		states: [],
+		nativeProps: [],
+		accessibility: ['announce', 'keyboard', 'duration'],
+	},
+	{
 		name: 'Container',
 		subpath: 'layout',
 		parts: [],
@@ -616,6 +664,13 @@ export const describedNamesOf = (
 	component: Pick<ExplorerComponent, 'name' | 'parts' | 'types'>,
 ): string[] => {
 	return [...documentedNamesOf(component), ...(component.types ?? [])];
+};
+
+/** What the playground edits: the options of the method of its hook, else the props of the component. */
+export const controlledNameOf = (
+	component: Pick<ExplorerComponent, 'name' | 'trigger'>,
+): string => {
+	return component.trigger?.options ?? component.name;
 };
 
 /** File of an example, relative to `src/explorer/examples`. */

@@ -29,6 +29,7 @@ import {
 	Menu,
 	Popover,
 	ProgressBar,
+	ToastProvider,
 	Tooltip,
 } from '@midnight-indigo/ui/feedback';
 import { Container, Grid, Stack } from '@midnight-indigo/ui/layout';
@@ -97,6 +98,8 @@ import { ShieldStatus } from '#src/explorer/examples/stat-card/loading.tsx';
 import { WeeklyBounties } from '#src/explorer/examples/table/bounties.tsx';
 import { PodraceTimes } from '#src/explorer/examples/table/sortable.tsx';
 import { PlayerShortcuts } from '#src/explorer/examples/tooltip/shortcuts.tsx';
+import { CrewRemoval } from '#src/explorer/examples/toast-provider/undo.tsx';
+import { LogbookTransmission } from '#src/explorer/examples/toast-provider/updates.tsx';
 import { ShipNames } from '#src/explorer/examples/tooltip/truncated.tsx';
 import type { PlaygroundComponent } from '#src/explorer/playground.tsx';
 import { ButtonsPlayground } from '#src/explorer/playgrounds/buttons.tsx';
@@ -268,6 +271,11 @@ const componentBindings: { readonly [Name in ComponentName]: ComponentBinding<Na
 		component: Drawer,
 		playground: FeedbackPlayground,
 		examples: { details: CrewDetails, filters: ShipyardFilters },
+	},
+	ToastProvider: {
+		component: ToastProvider,
+		playground: FeedbackPlayground,
+		examples: { undo: CrewRemoval, updates: LogbookTransmission },
 	},
 	Container: {
 		component: Container,

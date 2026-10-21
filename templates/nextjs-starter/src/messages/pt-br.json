@@ -951,6 +951,30 @@
 					"close": "O cabeçalho sempre tem um botão de fechar, e Escape pede o fechamento pelo `onClose`: ninguém depende de um clique fora."
 				}
 			},
+			"toastProvider": {
+				"summary": "Notificações breves sobre o resultado de uma ação, exibidas num canto da tela.",
+				"description": "Renderize um `ToastProvider` em volta da aplicação, como faz o layout raiz do starter; qualquer componente abaixo dele exibe um toast com `useToast().show()`, que retorna o seu `id`. `intent` escolhe o ícone e a urgência do anúncio, `action` adiciona um botão como Desfazer, e exibir o mesmo `id` de novo atualiza o toast no lugar.",
+				"examples": {
+					"undo": {
+						"title": "Desfazer uma ação",
+						"description": "A ação acontece na hora e `action` oferece desfazê-la; um toast com ação fica pelo menos 10 segundos."
+					},
+					"updates": {
+						"title": "Atualizado no lugar",
+						"description": "Cada etapa exibe o mesmo `id`, então o toast muda em vez de empilhar; `duration: null` mantém o primeiro até o próximo."
+					}
+				},
+				"types": {
+					"toastOptions": "O que `show` recebe: o texto do toast, a sua intenção, a sua ação e quanto tempo ele fica.",
+					"toastAction": "O botão de um toast: ele executa `onAction` e dispensa o toast.",
+					"toastApi": "O que `useToast` retorna, em qualquer componente abaixo do `ToastProvider`."
+				},
+				"accessibility": {
+					"announce": "Cada toast é anunciado uma vez, quando aparece, por regiões live que existem antes dele: sem interromper a leitura, ou na hora para `warning` e `error`.",
+					"keyboard": "F8 leva o foco aos toasts e Escape o devolve; dispensar o toast focado leva o foco ao próximo, nunca ao corpo da página.",
+					"duration": "Um toast fica pelo menos 5 segundos e pausa enquanto o ponteiro ou o foco está nele; um `error` fica até ser dispensado, para nunca passar despercebido."
+				}
+			},
 			"container": {
 				"summary": "Centraliza o conteúdo de uma página ou seção e limita a sua largura.",
 				"description": "Envolva o conteúdo de uma página nele: `size` limita o comprimento das linhas (`small` para leitura e formulários, `large` para dashboards) e as margens laterais crescem com a viewport.",

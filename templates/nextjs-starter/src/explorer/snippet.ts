@@ -2,8 +2,8 @@
 // compiles as is (a test type-checks the snippets of every component). Props left at their default are left out; the
 // other values (the props of the catalog without a control) and the samples of the props that take an element are
 // always written, after the declarations they refer to. A modal overlay is written with the button that opens it and
-// the state of `open`.
-import type { Opener, PlaygroundValue } from '#src/explorer/catalog.ts';
+// the state of `open`, and a component driven by a hook with the button that calls it with the values as options.
+import type { HookTrigger, Opener, PlaygroundValue } from '#src/explorer/catalog.ts';
 import type { ComponentProp } from '#src/explorer/component-api.ts';
 import type { SampleCode } from '#src/explorer/sample-code.ts';
 
@@ -17,9 +17,14 @@ export interface SnippetSource {
 	slots?: Readonly<Record<string, SampleCode>>;
 	/** The button that opens a modal overlay. */
 	opener?: Opener | undefined;
+	/** The hook a button calls with the values, in place of the component. */
+	trigger?: HookTrigger | undefined;
 }
 
 const lineLimit: number = 100;
+
+/** Columns of a tab, as Prettier counts them. */
+const tabWidth: number = 2;
 
 const literalOf = (value: PlaygroundValue): string => {
 	return typeof value === 'string' ? `'${value}'` : String(value);
@@ -204,6 +209,58 @@ const bodyLines = (
 	];
 };
 
+/** A value as a property of an object: a text in single quotes, unless it holds one. */
+const propertyOf = (name: string, value: PlaygroundValue): string => {
+	if (typeof value !== 'string') return `${name}: ${String(value)}`;
+	return /['\\\n]/.test(value) ? `${name}: ${JSON.stringify(value)}` : `${name}: '${value}'`;
+};
+
+/** A call with an object of options, on one line when it fits at its indentation. */
+const callLines = (call: string, properties: readonly string[], tabs: number): string[] => {
+	const singleLine: string = `${call}({ ${properties.join(', ')} });`;
+	if (tabs * tabWidth + singleLine.length <= lineLimit) return [singleLine];
+	return [`${call}({`, ...properties.map((property: string): string => `\t${property},`), '});'];
+};
+
+/** The button that calls the method of the hook with the options, e.g. `toast.show({ … })`. */
+const triggerSnippetOf = (
+	name: string,
+	subpath: string,
+	properties: readonly string[],
+	trigger: HookTrigger,
+): string => {
+	// `useToast` → `toast`.
+	const variable: string = trigger.hook.replace(
+		/^use(\w)/,
+		(_match: string, letter: string): string => letter.toLowerCase(),
+	);
+
+	const source: string = `'@midnight-indigo/ui/${subpath}'`;
+	const call: string[] = callLines(`${variable}.${trigger.method}`, properties, 4);
+
+	return [
+		"'use client';",
+		"import { Button } from '@midnight-indigo/ui/buttons';",
+		`import { ${trigger.hook} } from ${source};`,
+		`import type { ${trigger.api} } from ${source};`,
+		"import type { ReactElement } from 'react';",
+		'',
+		`export const ${name}Example = (): ReactElement => {`,
+		`\tconst ${variable}: ${trigger.api} = ${trigger.hook}();`,
+		'',
+		'\treturn (',
+		'\t\t<Button',
+		'\t\t\tonClick={(): void => {',
+		...call.map((line: string): string => `\t\t\t\t${line}`),
+		'\t\t\t}}',
+		'\t\t>',
+		`\t\t\t${childOf(trigger.label)}`,
+		'\t\t</Button>',
+		'\t);',
+		'};',
+	].join('\n');
+};
+
 export const snippetOf = ({
 	name,
 	subpath,
@@ -211,6 +268,7 @@ export const snippetOf = ({
 	values,
 	slots = {},
 	opener,
+	trigger,
 }: SnippetSource): string => {
 	const controlled: ReadonlySet<string> = new Set(
 		props.map((prop: ComponentProp): string => prop.name),
@@ -219,6 +277,20 @@ export const snippetOf = ({
 	const shown: ComponentProp[] = props.filter((prop: ComponentProp): boolean => {
 		return !isDefault(prop, values[prop.name]);
 	});
+
+	if (trigger !== undefined) {
+		const shownNames: ReadonlySet<string> = new Set(
+			shown.map((prop: ComponentProp): string => prop.name),
+		);
+
+		const properties: string[] = Object.entries(values)
+			.filter(([prop]: [string, PlaygroundValue]): boolean => {
+				return !controlled.has(prop) || shownNames.has(prop);
+			})
+			.map(([prop, value]: [string, PlaygroundValue]): string => propertyOf(prop, value));
+
+		return triggerSnippetOf(name, subpath, properties, trigger);
+	}
 
 	const fixedAttributes: string[] = Object.entries(values)
 		.filter(

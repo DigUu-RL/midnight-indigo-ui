@@ -12,6 +12,7 @@ import { generateComponentApi } from '#scripts/generate-explorer-api.ts';
 import { starterRoot } from '#test/support/starter-server.ts';
 import {
 	camelCaseOf,
+	controlledNameOf,
 	describedNamesOf,
 	exampleFileOf,
 	explorerComponents,
@@ -19,7 +20,7 @@ import {
 	kebabCaseOf,
 	slugOf,
 } from '#src/explorer/catalog.ts';
-import type { ExplorerComponent, PlaygroundValue } from '#src/explorer/catalog.ts';
+import type { ExplorerComponent, HookTrigger, PlaygroundValue } from '#src/explorer/catalog.ts';
 import { generatedApi, propTranslations } from '#src/explorer/component-api.ts';
 import type { ComponentProp } from '#src/explorer/component-api.ts';
 import { sampleCodes } from '#src/explorer/sample-code.ts';
@@ -51,8 +52,9 @@ const messageAt = (messages: Messages, path: string): string | Messages | undefi
 		}, messages);
 };
 
+/** The props the playground edits: those of the component, or the fields of the options of its hook. */
 const propsOfComponent = (component: ExplorerComponent): readonly ComponentProp[] => {
-	return generatedApi[component.name] ?? [];
+	return generatedApi[controlledNameOf(component)] ?? [];
 };
 
 const propNamed = (component: ExplorerComponent, name: string): ComponentProp | undefined => {
@@ -106,6 +108,18 @@ describe('the catalog', (): void => {
 			(component.types ?? []).forEach((type: string): void => {
 				assert.ok((generatedApi[type] ?? []).length > 0, `${type} has no fields.`);
 			});
+
+			// The page documents the type the hook returns and the options of its method, which that method takes.
+			const trigger: HookTrigger | undefined = component.trigger;
+			if (trigger === undefined) return;
+			assert.ok(component.types?.includes(trigger.api), trigger.api);
+			assert.ok(component.types?.includes(trigger.options), trigger.options);
+
+			const method: ComponentProp | undefined = generatedApi[trigger.api]?.find(
+				(prop: ComponentProp): boolean => prop.name === trigger.method,
+			);
+
+			assert.match(method?.type ?? '', new RegExp(`^\\(options: ${trigger.options}\\)`));
 		});
 	});
 
@@ -430,6 +444,68 @@ describe('the code of the playground', (): void => {
 		);
 	});
 
+	test('writes a component driven by a hook as the button that calls it with the values as options', (): void => {
+		const options: ComponentProp[] = [
+			{ ...chip[1], name: 'intent', defaultValue: "'default'", options: ['default', 'error'] },
+			{ ...chip[0], name: 'title', type: 'string', required: false, kind: 'string' },
+			{ ...chip[0], name: 'message', type: 'string', kind: 'string' },
+		] as ComponentProp[];
+
+		const trigger: HookTrigger = {
+			hook: 'useToast',
+			api: 'ToastApi',
+			method: 'show',
+			options: 'ToastOptions',
+			label: 'Show the toast',
+		};
+
+		assert.equal(
+			snippetOf({
+				name: 'ToastProvider',
+				subpath: 'feedback',
+				props: options,
+				values: { intent: 'error', title: '', message: "Jet Black's ship is out of fuel." },
+				trigger,
+			}),
+			[
+				"'use client';",
+				"import { Button } from '@midnight-indigo/ui/buttons';",
+				"import { useToast } from '@midnight-indigo/ui/feedback';",
+				"import type { ToastApi } from '@midnight-indigo/ui/feedback';",
+				"import type { ReactElement } from 'react';",
+				'',
+				'export const ToastProviderExample = (): ReactElement => {',
+				'\tconst toast: ToastApi = useToast();',
+				'',
+				'\treturn (',
+				'\t\t<Button',
+				'\t\t\tonClick={(): void => {',
+				"\t\t\t\ttoast.show({ intent: 'error', message: \"Jet Black's ship is out of fuel.\" });",
+				'\t\t\t}}',
+				'\t\t>',
+				'\t\t\tShow the toast',
+				'\t\t</Button>',
+				'\t);',
+				'};',
+			].join('\n'),
+		);
+
+		assert.match(
+			snippetOf({
+				name: 'ToastProvider',
+				subpath: 'feedback',
+				props: options,
+				values: {
+					intent: 'default',
+					title: 'Bounty collected',
+					message: 'Spike Spiegel delivered Asimov Solensan to the ISSP.',
+				},
+				trigger,
+			}),
+			/\t\t\t\ttoast\.show\(\{\n\t\t\t\t\ttitle: 'Bounty collected',\n\t\t\t\t\tmessage: '[^']+',\n\t\t\t\t\}\);\n/,
+		);
+	});
+
 	test('compiles for every value of every control of every component', (): void => {
 		const snippets: Map<string, string> = new Map<string, string>();
 
@@ -481,6 +557,7 @@ describe('the code of the playground', (): void => {
 								),
 							),
 							opener: component.opener,
+							trigger: component.trigger,
 						}),
 					);
 				},

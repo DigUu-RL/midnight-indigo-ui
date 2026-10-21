@@ -10,19 +10,23 @@ import {
 	Popover,
 	ProgressBar,
 	Tooltip,
+	useToast,
 } from '@midnight-indigo/ui/feedback';
 
 import { createPlayground } from '#src/explorer/playground.tsx';
 import type { PlaygroundComponent } from '#src/explorer/playground.tsx';
 
-export const FeedbackPlayground: PlaygroundComponent = createPlayground({
-	Alert,
-	ProgressBar,
-	Tooltip,
-	Popover,
-	Menu,
-	ContextMenu,
-	Dialog,
-	ConfirmDialog,
-	Drawer,
-});
+export const FeedbackPlayground: PlaygroundComponent = createPlayground(
+	{
+		Alert,
+		ProgressBar,
+		Tooltip,
+		Popover,
+		Menu,
+		ContextMenu,
+		Dialog,
+		ConfirmDialog,
+		Drawer,
+	},
+	{ useToast },
+);
