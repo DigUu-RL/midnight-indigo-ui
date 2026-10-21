@@ -44,7 +44,7 @@ export interface TextAreaProps
 			ComponentPropsWithRef<'textarea'>,
 			'children' | 'required' | 'disabled' | 'readOnly' | 'className' | 'style'
 		> {
-	/** Defaults to `'vertical'`. */
+	/** Which way the reader can drag the corner to resize the field. Defaults to `'vertical'`. */
 	resize?: TextAreaResize;
 	/** Shows how many characters were typed, and the limit when `maxLength` is set. Defaults to `false`. */
 	showCount?: boolean;

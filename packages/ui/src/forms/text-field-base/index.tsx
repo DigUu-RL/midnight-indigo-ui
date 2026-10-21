@@ -32,14 +32,21 @@ export type NativeInputAttributes = Omit<
 	| 'style'
 >;
 
-/** Props shared by the single-line fields. */
-export interface TextControlProps extends FieldProps, AdornmentProps, NativeInputAttributes {
+/**
+ * Props shared by the single-line fields, but the callback of the value, which `NumberField` gives a number. An
+ * interface of its own rather than an `Omit`, so the props keep the order they are declared in.
+ */
+export interface TextControlBaseProps extends FieldProps, AdornmentProps, NativeInputAttributes {
 	/** 32, 40 or 48 px high, like the buttons. Defaults to `'medium'`. */
 	size?: ControlSize | undefined;
 	/** Class of the root of the field. */
 	className?: string | undefined;
 	/** Style of the root of the field. */
 	style?: CSSProperties | undefined;
+}
+
+/** Props shared by the single-line fields. */
+export interface TextControlProps extends TextControlBaseProps {
 	/** Called with the new text, after `onChange`. */
 	onValueChange?: ((value: string) => void) | undefined;
 }

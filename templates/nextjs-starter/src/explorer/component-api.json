@@ -2669,6 +2669,1096 @@
 			"options": []
 		}
 	],
+	"TextField": [
+		{
+			"name": "type",
+			"type": "TextFieldType",
+			"required": false,
+			"defaultValue": "'text'",
+			"description": "Gives the right keyboard and validation; set `autoComplete` too (e.g. `'email'`). Defaults to `'text'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["text", "email", "tel", "url"]
+		},
+		{
+			"name": "onValueChange",
+			"type": "(value: string) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the new text, after `onChange`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "size",
+			"type": "ControlSize",
+			"required": false,
+			"defaultValue": "'medium'",
+			"description": "32, 40 or 48 px high, like the buttons. Defaults to `'medium'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["small", "medium", "large"]
+		},
+		{
+			"name": "className",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Class of the root of the field.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "style",
+			"type": "CSSProperties",
+			"required": false,
+			"defaultValue": null,
+			"description": "Style of the root of the field.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "label",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Visible, persistent label; a placeholder never replaces it.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "hideLabel",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a search bar).",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Help text, read after the label.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "error",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Error message. When set, the control is `aria-invalid` and the message, marked with an icon, is read with it. Inside a `Form`, a field with a `name` shows the error of that name unless `error` is given.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "required",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Marks the label with an asterisk and the control as `required`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Unavailable: skipped by Tab and not submitted.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "readOnly",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Focusable and submitted, but not editable.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "loading",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "The field waits for data (e.g. its options): `aria-busy`, a ring and a hidden `'Loading'` text.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "fieldLabels",
+			"type": "Partial<FormFieldLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultFormFieldLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "prefix",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Before the value, e.g. `'R$'`. Its text is read after the label (by `aria-describedby`), so the name of the field stays its label; an `Icon` marked `decorative` is skipped.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "suffix",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "After the value, e.g. `'kg'`; read like `prefix`.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "value",
+			"type": "string | readonly string[] | number",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "defaultValue",
+			"type": "string | number | readonly string[]",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "autoComplete",
+			"type": "HTMLInputAutoCompleteAttribute",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "placeholder",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "string",
+			"options": []
+		}
+	],
+	"TextArea": [
+		{
+			"name": "resize",
+			"type": "TextAreaResize",
+			"required": false,
+			"defaultValue": "'vertical'",
+			"description": "Which way the reader can drag the corner to resize the field. Defaults to `'vertical'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["none", "vertical", "both"]
+		},
+		{
+			"name": "showCount",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": "false",
+			"description": "Shows how many characters were typed, and the limit when `maxLength` is set. Defaults to `false`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "size",
+			"type": "ControlSize",
+			"required": false,
+			"defaultValue": "'medium'",
+			"description": "Text size of the value; the height comes from `rows`. Defaults to `'medium'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["small", "medium", "large"]
+		},
+		{
+			"name": "labels",
+			"type": "Partial<TextAreaLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultTextAreaLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "className",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Class of the root of the field.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "style",
+			"type": "CSSProperties",
+			"required": false,
+			"defaultValue": null,
+			"description": "Style of the root of the field.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "onValueChange",
+			"type": "(value: string) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the new text, after `onChange`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "label",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Visible, persistent label; a placeholder never replaces it.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "hideLabel",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a search bar).",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Help text, read after the label.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "error",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Error message. When set, the control is `aria-invalid` and the message, marked with an icon, is read with it. Inside a `Form`, a field with a `name` shows the error of that name unless `error` is given.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "required",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Marks the label with an asterisk and the control as `required`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Unavailable: skipped by Tab and not submitted.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "readOnly",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Focusable and submitted, but not editable.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "loading",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "The field waits for data (e.g. its options): `aria-busy`, a ring and a hidden `'Loading'` text.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "fieldLabels",
+			"type": "Partial<FormFieldLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultFormFieldLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "value",
+			"type": "string | readonly string[] | number",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "defaultValue",
+			"type": "string | number | readonly string[]",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "maxLength",
+			"type": "number",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "placeholder",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "rows",
+			"type": "number",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "number",
+			"options": []
+		}
+	],
+	"PasswordField": [
+		{
+			"name": "labels",
+			"type": "Partial<PasswordFieldLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultPasswordFieldLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "defaultVisible",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": "false",
+			"description": "Starts with the characters visible. Defaults to `false`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "onValueChange",
+			"type": "(value: string) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the new text, after `onChange`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "size",
+			"type": "ControlSize",
+			"required": false,
+			"defaultValue": "'medium'",
+			"description": "32, 40 or 48 px high, like the buttons. Defaults to `'medium'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["small", "medium", "large"]
+		},
+		{
+			"name": "className",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Class of the root of the field.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "style",
+			"type": "CSSProperties",
+			"required": false,
+			"defaultValue": null,
+			"description": "Style of the root of the field.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "label",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Visible, persistent label; a placeholder never replaces it.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "hideLabel",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a search bar).",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Help text, read after the label.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "error",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Error message. When set, the control is `aria-invalid` and the message, marked with an icon, is read with it. Inside a `Form`, a field with a `name` shows the error of that name unless `error` is given.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "required",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Marks the label with an asterisk and the control as `required`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Unavailable: skipped by Tab and not submitted.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "readOnly",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Focusable and submitted, but not editable.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "loading",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "The field waits for data (e.g. its options): `aria-busy`, a ring and a hidden `'Loading'` text.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "fieldLabels",
+			"type": "Partial<FormFieldLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultFormFieldLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "prefix",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Before the value, e.g. `'R$'`. Its text is read after the label (by `aria-describedby`), so the name of the field stays its label; an `Icon` marked `decorative` is skipped.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "suffix",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "After the value, e.g. `'kg'`; read like `prefix`.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "value",
+			"type": "string | readonly string[] | number",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "defaultValue",
+			"type": "string | number | readonly string[]",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "autoComplete",
+			"type": "HTMLInputAutoCompleteAttribute",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"SearchField": [
+		{
+			"name": "labels",
+			"type": "Partial<SearchFieldLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultSearchFieldLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "clearable",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": "true",
+			"description": "Shows a clear button while there is text. Defaults to `true`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "onValueChange",
+			"type": "(value: string) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the new text, after `onChange`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "size",
+			"type": "ControlSize",
+			"required": false,
+			"defaultValue": "'medium'",
+			"description": "32, 40 or 48 px high, like the buttons. Defaults to `'medium'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["small", "medium", "large"]
+		},
+		{
+			"name": "className",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Class of the root of the field.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "style",
+			"type": "CSSProperties",
+			"required": false,
+			"defaultValue": null,
+			"description": "Style of the root of the field.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "label",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Visible, persistent label; a placeholder never replaces it.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "hideLabel",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a search bar).",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Help text, read after the label.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "error",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Error message. When set, the control is `aria-invalid` and the message, marked with an icon, is read with it. Inside a `Form`, a field with a `name` shows the error of that name unless `error` is given.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "required",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Marks the label with an asterisk and the control as `required`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Unavailable: skipped by Tab and not submitted.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "readOnly",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Focusable and submitted, but not editable.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "loading",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "The field waits for data (e.g. its options): `aria-busy`, a ring and a hidden `'Loading'` text.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "fieldLabels",
+			"type": "Partial<FormFieldLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultFormFieldLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "prefix",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Before the value, e.g. `'R$'`. Its text is read after the label (by `aria-describedby`), so the name of the field stays its label; an `Icon` marked `decorative` is skipped.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "suffix",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "After the value, e.g. `'kg'`; read like `prefix`.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "value",
+			"type": "string | readonly string[] | number",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "defaultValue",
+			"type": "string | number | readonly string[]",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "placeholder",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "string",
+			"options": []
+		}
+	],
+	"NumberField": [
+		{
+			"name": "onValueChange",
+			"type": "(value: number | null) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the new number, or `null` while the field is empty or not a number.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "steppers",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": "false",
+			"description": "Shows buttons that step the value down and up. Defaults to `false`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "labels",
+			"type": "Partial<NumberFieldLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultNumberFieldLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "size",
+			"type": "ControlSize",
+			"required": false,
+			"defaultValue": "'medium'",
+			"description": "32, 40 or 48 px high, like the buttons. Defaults to `'medium'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["small", "medium", "large"]
+		},
+		{
+			"name": "className",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Class of the root of the field.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "style",
+			"type": "CSSProperties",
+			"required": false,
+			"defaultValue": null,
+			"description": "Style of the root of the field.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "label",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Visible, persistent label; a placeholder never replaces it.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "hideLabel",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a search bar).",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Help text, read after the label.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "error",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Error message. When set, the control is `aria-invalid` and the message, marked with an icon, is read with it. Inside a `Form`, a field with a `name` shows the error of that name unless `error` is given.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "required",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Marks the label with an asterisk and the control as `required`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Unavailable: skipped by Tab and not submitted.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "readOnly",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Focusable and submitted, but not editable.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "loading",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "The field waits for data (e.g. its options): `aria-busy`, a ring and a hidden `'Loading'` text.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "fieldLabels",
+			"type": "Partial<FormFieldLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultFormFieldLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "prefix",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Before the value, e.g. `'R$'`. Its text is read after the label (by `aria-describedby`), so the name of the field stays its label; an `Icon` marked `decorative` is skipped.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "suffix",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "After the value, e.g. `'kg'`; read like `prefix`.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "value",
+			"type": "string | readonly string[] | number",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "defaultValue",
+			"type": "string | number | readonly string[]",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "max",
+			"type": "number | string",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "min",
+			"type": "number | string",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "step",
+			"type": "number | string",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		}
+	],
 	"Container": [
 		{
 			"name": "as",

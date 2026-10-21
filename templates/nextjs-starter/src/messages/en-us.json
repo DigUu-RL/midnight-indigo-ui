@@ -334,6 +334,7 @@
 			"code": "Code",
 			"dataDisplay": "Data display",
 			"feedback": "Feedback",
+			"forms": "Forms",
 			"layout": "Layout"
 		},
 		"page": {
@@ -967,6 +968,101 @@
 					"announce": "Each toast is announced once, when it appears, through live regions that exist before it: without interrupting the reader, or at once for `warning` and `error`.",
 					"keyboard": "F8 moves focus to the toasts and Escape returns it; dismissing the focused toast moves focus to the next one, never to the page body.",
 					"duration": "A toast stays at least 5 seconds and pauses while the pointer or focus is on it; an `error` stays until dismissed, so it is never missed."
+				}
+			},
+			"textField": {
+				"summary": "Single-line field for a text, an email, a phone number or an address.",
+				"description": "A native `input` with its `label`, a `description` and an `error`, linked to it by ids. `type` gives the right keyboard and validation; `prefix` and `suffix` show a unit or a fixed part of the value. Controlled with `value`, or uncontrolled with `defaultValue` and submitted with its `name`.",
+				"examples": {
+					"validation": {
+						"title": "Validation",
+						"description": "An `email` field that shows its `error` once the reader leaves it, and clears it as soon as the value is valid."
+					},
+					"adornments": {
+						"title": "Prefix and suffix",
+						"description": "A handle after `@` and an address between `https://` and its domain: the fixed parts are not part of the value."
+					}
+				},
+				"accessibility": {
+					"label": "The `label` is visible and stays while the reader types; a `placeholder` never replaces it. `hideLabel` keeps it for assistive technologies only, when the context already shows it.",
+					"error": "With an `error` the field is `aria-invalid` and the message, marked with an icon, is read with it. Say how to fix the value, not only that it is wrong.",
+					"autocomplete": "Give `type` and `autoComplete` (e.g. `email`, `tel`) to fields about the reader, so browsers and password managers can fill them."
+				}
+			},
+			"textArea": {
+				"summary": "Multi-line field for a message, a note or a description.",
+				"description": "A native `textarea` with the label, description and error of every field. `rows` sets its height, `resize` which way the reader can drag it, and `showCount` a counter of the characters, with the limit of `maxLength`.",
+				"examples": {
+					"counter": {
+						"title": "Character counter",
+						"description": "A transmission of up to 140 characters: `maxLength` stops the typing and `showCount` tells how many are used."
+					},
+					"editing": {
+						"title": "Read only until edited",
+						"description": "A log shown `readOnly`, with `resize='none'`, until the button unlocks it."
+					}
+				},
+				"accessibility": {
+					"counter": "The counter describes the field: it is read when the field gets focus, not announced at every keystroke.",
+					"limit": "Tell the limit in the `description` too, since `maxLength` stops the typing without saying why.",
+					"resize": "Keep `vertical` resizing where you can: a reader with a large text size may need a taller field."
+				}
+			},
+			"passwordField": {
+				"summary": "Field for a password, with a button that shows the characters.",
+				"description": "A `TextField` of type `password` whose button shows or hides the characters, keeping the value, the caret and an autofill. `autoComplete` defaults to `current-password`; use `new-password` where the reader chooses one.",
+				"examples": {
+					"signIn": {
+						"title": "Sign in",
+						"description": "A username and a password a password manager can fill, in a form submitted with its button."
+					},
+					"newPassword": {
+						"title": "New password",
+						"description": "A password that starts visible (`defaultVisible`), with its rule in the `description` and an `error` that tells what is missing."
+					}
+				},
+				"accessibility": {
+					"toggle": "The button keeps its name (`labels.showPassword`) and is `aria-pressed` while the password shows, so its state is announced.",
+					"autocomplete": "`current-password` and `new-password` let password managers fill and save the password, which no one then has to remember.",
+					"paste": "Never block pasting into the field: it is how password managers and many readers enter a password."
+				}
+			},
+			"searchField": {
+				"summary": "Field for a search, with a button that clears it.",
+				"description": "A field of type `search` with a magnifier and, while it has text, a clear button (`clearable`); Escape clears it too. Clearing changes the value as typing would and puts the focus back in the field.",
+				"examples": {
+					"filter": {
+						"title": "Filter a list",
+						"description": "The bounties are filtered as the reader types, and a status region says how many are left."
+					},
+					"landmark": {
+						"title": "Search form",
+						"description": "A form with `role='search'`, a field with a hidden label and a submit button; the field is `loading` while the archive answers."
+					}
+				},
+				"accessibility": {
+					"landmark": "Put the field in a `form` with `role='search'` (or a `search` element) to make it a landmark; the field is not one, so a page can have several.",
+					"clear": "The clear button is named by `labels.clear`, and the focus goes back to the field once it is cleared.",
+					"results": "Say how many results are left in a status region (`role='status'`), so the change is announced without moving the focus."
+				}
+			},
+			"numberField": {
+				"summary": "Field for a number, with optional buttons that step it.",
+				"description": "A native `input` of type `number`: `min`, `max` and `step` are checked by the browser, Arrow Up and Down step the value, and `steppers` adds buttons for the pointer. `onValueChange` gives the number, or `null` while the field is empty.",
+				"examples": {
+					"cargo": {
+						"title": "Range and steppers",
+						"description": "The cargo of a ship, from 0 to 40 tonnes in steps of 0.5, with `steppers` and an `error` out of the range."
+					},
+					"reward": {
+						"title": "Amount",
+						"description": "A reward in woolongs: the field holds the number as typed, and the text beside it shows it formatted."
+					}
+				},
+				"accessibility": {
+					"keyboard": "Arrow Up and Down step the value. The steppers are left out of the Tab order (`tabIndex={-1}`), since the keyboard already steps it.",
+					"range": "Tell the range in the `description`: the browser checks `min` and `max`, but does not say them.",
+					"format": "The value is the number as typed, without separators; show the formatted amount beside the field, not inside it."
 				}
 			},
 			"container": {

@@ -340,6 +340,7 @@
 			"code": "Código",
 			"dataDisplay": "Exibição de dados",
 			"feedback": "Feedback",
+			"forms": "Formulários",
 			"layout": "Layout"
 		},
 		"page": {
@@ -973,6 +974,101 @@
 					"announce": "Cada toast é anunciado uma vez, quando aparece, por regiões live que existem antes dele: sem interromper a leitura, ou na hora para `warning` e `error`.",
 					"keyboard": "F8 leva o foco aos toasts e Escape o devolve; dispensar o toast focado leva o foco ao próximo, nunca ao corpo da página.",
 					"duration": "Um toast fica pelo menos 5 segundos e pausa enquanto o ponteiro ou o foco está nele; um `error` fica até ser dispensado, para nunca passar despercebido."
+				}
+			},
+			"textField": {
+				"summary": "Campo de uma linha para um texto, um e-mail, um telefone ou um endereço.",
+				"description": "Um `input` nativo com seu `label`, uma `description` e um `error`, ligados a ele por ids. `type` dá o teclado e a validação certos; `prefix` e `suffix` mostram uma unidade ou uma parte fixa do valor. Controlado com `value`, ou não controlado com `defaultValue` e enviado com seu `name`.",
+				"examples": {
+					"validation": {
+						"title": "Validação",
+						"description": "Um campo `email` que mostra seu `error` quando o leitor sai dele, e o limpa assim que o valor fica válido."
+					},
+					"adornments": {
+						"title": "Prefixo e sufixo",
+						"description": "Um apelido depois de `@` e um endereço entre `https://` e seu domínio: as partes fixas não fazem parte do valor."
+					}
+				},
+				"accessibility": {
+					"label": "O `label` é visível e permanece enquanto o leitor digita; um `placeholder` nunca o substitui. `hideLabel` o mantém só para tecnologias assistivas, quando o contexto já o mostra.",
+					"error": "Com um `error` o campo fica `aria-invalid` e a mensagem, marcada com um ícone, é lida com ele. Diga como corrigir o valor, não só que ele está errado.",
+					"autocomplete": "Dê `type` e `autoComplete` (por exemplo `email`, `tel`) aos campos sobre o leitor, para que navegadores e gerenciadores de senhas possam preenchê-los."
+				}
+			},
+			"textArea": {
+				"summary": "Campo de várias linhas para uma mensagem, uma nota ou uma descrição.",
+				"description": "Um `textarea` nativo com o rótulo, a descrição e o erro de todo campo. `rows` define sua altura, `resize` em que direção o leitor pode arrastá-lo, e `showCount` um contador de caracteres, com o limite de `maxLength`.",
+				"examples": {
+					"counter": {
+						"title": "Contador de caracteres",
+						"description": "Uma transmissão de até 140 caracteres: `maxLength` interrompe a digitação e `showCount` diz quantos foram usados."
+					},
+					"editing": {
+						"title": "Somente leitura até ser editado",
+						"description": "Um registro mostrado `readOnly`, com `resize='none'`, até que o botão o desbloqueie."
+					}
+				},
+				"accessibility": {
+					"counter": "O contador descreve o campo: ele é lido quando o campo recebe o foco, não anunciado a cada tecla.",
+					"limit": "Informe o limite também na `description`, já que `maxLength` interrompe a digitação sem dizer por quê.",
+					"resize": "Mantenha o redimensionamento `vertical` sempre que puder: um leitor com texto grande pode precisar de um campo mais alto."
+				}
+			},
+			"passwordField": {
+				"summary": "Campo para uma senha, com um botão que mostra os caracteres.",
+				"description": "Um `TextField` do tipo `password` cujo botão mostra ou esconde os caracteres, mantendo o valor, o cursor e um preenchimento automático. `autoComplete` tem padrão `current-password`; use `new-password` onde o leitor escolhe uma.",
+				"examples": {
+					"signIn": {
+						"title": "Entrar",
+						"description": "Um nome de usuário e uma senha que um gerenciador de senhas pode preencher, em um formulário enviado com seu botão."
+					},
+					"newPassword": {
+						"title": "Nova senha",
+						"description": "Uma senha que começa visível (`defaultVisible`), com sua regra na `description` e um `error` que diz o que falta."
+					}
+				},
+				"accessibility": {
+					"toggle": "O botão mantém seu nome (`labels.showPassword`) e fica `aria-pressed` enquanto a senha aparece, então seu estado é anunciado.",
+					"autocomplete": "`current-password` e `new-password` permitem que gerenciadores de senhas preencham e salvem a senha, que então ninguém precisa decorar.",
+					"paste": "Nunca bloqueie colar no campo: é assim que gerenciadores de senhas e muitos leitores informam uma senha."
+				}
+			},
+			"searchField": {
+				"summary": "Campo para uma busca, com um botão que o limpa.",
+				"description": "Um campo do tipo `search` com uma lupa e, enquanto tem texto, um botão de limpar (`clearable`); Escape também o limpa. Limpar muda o valor como digitar mudaria e devolve o foco ao campo.",
+				"examples": {
+					"filter": {
+						"title": "Filtrar uma lista",
+						"description": "As recompensas são filtradas enquanto o leitor digita, e uma região de status diz quantas restam."
+					},
+					"landmark": {
+						"title": "Formulário de busca",
+						"description": "Um formulário com `role='search'`, um campo com rótulo oculto e um botão de envio; o campo fica `loading` enquanto o arquivo responde."
+					}
+				},
+				"accessibility": {
+					"landmark": "Coloque o campo em um `form` com `role='search'` (ou um elemento `search`) para torná-lo um landmark; o campo não é um, então uma página pode ter vários.",
+					"clear": "O botão de limpar é nomeado por `labels.clear`, e o foco volta ao campo depois que ele é limpo.",
+					"results": "Diga quantos resultados restam em uma região de status (`role='status'`), para que a mudança seja anunciada sem mover o foco."
+				}
+			},
+			"numberField": {
+				"summary": "Campo para um número, com botões opcionais que o incrementam.",
+				"description": "Um `input` nativo do tipo `number`: `min`, `max` e `step` são verificados pelo navegador, as setas para cima e para baixo mudam o valor, e `steppers` acrescenta botões para o ponteiro. `onValueChange` dá o número, ou `null` enquanto o campo está vazio.",
+				"examples": {
+					"cargo": {
+						"title": "Intervalo e botões",
+						"description": "A carga de uma nave, de 0 a 40 toneladas em passos de 0,5, com `steppers` e um `error` fora do intervalo."
+					},
+					"reward": {
+						"title": "Valor",
+						"description": "Uma recompensa em woolongs: o campo guarda o número como foi digitado, e o texto ao lado o mostra formatado."
+					}
+				},
+				"accessibility": {
+					"keyboard": "As setas para cima e para baixo mudam o valor. Os botões ficam fora da ordem do Tab (`tabIndex={-1}`), já que o teclado já muda o valor.",
+					"range": "Informe o intervalo na `description`: o navegador verifica `min` e `max`, mas não os diz.",
+					"format": "O valor é o número como foi digitado, sem separadores; mostre o valor formatado ao lado do campo, não dentro dele."
 				}
 			},
 			"container": {

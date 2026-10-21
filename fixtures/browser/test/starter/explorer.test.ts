@@ -1,7 +1,8 @@
 // The component explorer: its navigation leads from the page of a component to one of another subpath, served by
 // another route, at the public path. In the playground, each control changes the component and its code at once, an
-// overlay opens from its trigger or its button and closes as it asks, a toast is shown through its hook, and a required
-// text left blank keeps its initial value instead of breaking the page.
+// overlay opens from its trigger or its button and closes as it asks, a toast is shown through its hook, a field keeps
+// what the reader typed while its props change, and a required text left blank keeps its initial value instead of
+// breaking the page.
 import type { Locator } from '@playwright/test';
 
 import { expect, test } from '#test/support/fixtures.ts';
@@ -204,6 +205,26 @@ test('the action of a toast undoes what the example did', async ({ page }): Prom
 		.click();
 
 	await expect(crew).toContainText('Jet Black');
+});
+
+// The playground renders the same field again with the new props, so what the reader typed in it stays.
+test('a field of the playground keeps the text typed in it while its props change', async ({
+	page,
+}): Promise<void> => {
+	await page.goto('/en-us/components/text-field');
+	const playground: Locator = page.locator('.playground');
+
+	const field: Locator = playground
+		.getByRole('group', { name: 'Component with the chosen props' })
+		.getByRole('textbox', { name: /^Callsign/ });
+
+	await field.fill('Red Tail');
+	await playground.getByRole('textbox', { name: /^error/ }).fill('That callsign is taken.');
+
+	await expect(field).toHaveValue('Red Tail');
+	await expect(field).toHaveAttribute('aria-invalid', 'true');
+	await expect(field).toHaveAccessibleDescription(/That callsign is taken\./);
+	await expect(playground.locator('pre')).toContainText("error='That callsign is taken.'");
 });
 
 test('a required text left blank keeps its initial value', async ({ page }): Promise<void> => {
