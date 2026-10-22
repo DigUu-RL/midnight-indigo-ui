@@ -22,6 +22,7 @@ export interface DatePickersProviderProps {
 	 * `@mui/x-date-pickers/locales`; any of them can be overridden.
 	 */
 	localeText?: DatePickersLocaleText | undefined;
+	/** The application, or the part of it with pickers. */
 	children: ReactNode;
 }
 

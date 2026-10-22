@@ -301,6 +301,30 @@ test('a form of the playground summarizes its errors, then announces the success
 	await expect(playground.locator('pre')).toContainText("successMessage='Welcome aboard.'");
 });
 
+// The layout of the route of the pickers gives them the locale of the page; the day is a sample the page passes on.
+test('a date picker of the playground follows the locale of the page and opens its calendar', async ({
+	page,
+}): Promise<void> => {
+	await page.goto('/pt-br/components/date-picker');
+	const playground: Locator = page.locator('.playground');
+	const stage: Locator = playground.locator('.playground-stage');
+
+	await expect(stage.getByRole('spinbutton', { name: 'Dia' })).toHaveText('15');
+	await expect(stage.getByRole('spinbutton', { name: 'Mês' })).toHaveText('06');
+	await stage.getByRole('button', { name: /Escolha uma data/ }).click();
+
+	await expect(page.getByRole('dialog')).toContainText('junho 2071');
+	await expect(page.getByRole('gridcell', { name: '15' })).toHaveAttribute('aria-selected', 'true');
+	await page.keyboard.press('Escape');
+	await expect(page.getByRole('dialog')).toBeHidden();
+
+	await playground.getByRole('switch', { name: 'disableFuture' }).click();
+
+	await expect(playground.locator('pre')).toContainText(
+		"<DatePicker label='Departure day' disableFuture defaultValue={new Date(2071, 5, 15, 12)} />",
+	);
+});
+
 test('a required text left blank keeps its initial value', async ({ page }): Promise<void> => {
 	await page.goto('/en-us/components/avatar');
 	const playground: Locator = page.locator('.playground');

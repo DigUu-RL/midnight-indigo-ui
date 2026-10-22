@@ -11,7 +11,7 @@ import { useId, useState } from 'react';
 import type { ReactElement } from 'react';
 
 import type { LocaleSegment } from '#src/i18n/locales.ts';
-import { publicPathOf } from '#src/explorer/routes.ts';
+import { publicPathOf, routeSegmentOf } from '#src/explorer/routes.ts';
 
 export interface NavigationComponent {
 	name: string;
@@ -87,7 +87,7 @@ export const ExplorerNavigation = ({ locale, groups }: ExplorerNavigationProps):
 			</Link>
 
 			{shown.map((group: NavigationGroup): ReactElement => {
-				const titleId: string = `${groupIdPrefix}-${group.subpath}`;
+				const titleId: string = `${groupIdPrefix}-${routeSegmentOf(group.subpath)}`;
 
 				// Titles rather than headings: the navigation comes before the `h1` of the page.
 				return (

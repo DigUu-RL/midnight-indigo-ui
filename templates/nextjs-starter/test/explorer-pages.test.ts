@@ -12,6 +12,7 @@ import { exampleFileOf, explorerComponents, slugOf, subpathGroups } from '#src/e
 import type { ExplorerComponent, SubpathGroup } from '#src/explorer/catalog.ts';
 import { generatedApi, propTranslations } from '#src/explorer/component-api.ts';
 import type { ComponentProp } from '#src/explorer/component-api.ts';
+import { routeSegmentOf } from '#src/explorer/routes.ts';
 import { sampleCodes } from '#src/explorer/sample-code.ts';
 
 const entities: Readonly<Record<string, string>> = {
@@ -168,10 +169,12 @@ describe('the page of a component', (): void => {
 
 test('the route of each subpath reaches the playground and the examples of that subpath alone', (): void => {
 	subpathGroups().forEach((group: SubpathGroup): void => {
+		const segment: string = routeSegmentOf(group.subpath);
+
 		const manifest: string = readFileSync(
 			join(
 				starterRoot,
-				...['.next', 'server', 'app', '[locale]', 'components', group.subpath, '[component]'],
+				...['.next', 'server', 'app', '[locale]', 'components', segment, '[component]'],
 				'page_client-reference-manifest.js',
 			),
 			'utf8',
@@ -191,7 +194,7 @@ test('the route of each subpath reaches the playground and the examples of that 
 				.filter((slug: string): boolean => !ownSlugs.has(slug)),
 		);
 
-		assert.deepEqual([...playgrounds], [group.subpath], group.subpath);
+		assert.deepEqual([...playgrounds], [segment], group.subpath);
 		assert.deepEqual([...foreignExamples], [], group.subpath);
 	});
 });

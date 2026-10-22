@@ -16,13 +16,14 @@ import type {
 
 /**
  * An element, a list of them (each one a child of its own, e.g. a slide of a `Carousel`, which a fragment would merge
- * into one), a text or an object a Server Component can pass to a Client Component, `null`, or what a client module
- * exports (the columns of a `DataTable` and its function of the row ids, or the control a `FormField` renders, which
- * are functions).
+ * into one), a text, a date or an object a Server Component can pass to a Client Component, `null`, or what a client
+ * module exports (the columns of a `DataTable` and its function of the row ids, or the control a `FormField` renders,
+ * which are functions).
  */
 export type SampleValue =
 	| string
 	| readonly string[]
+	| Date
 	| ReactElement
 	| readonly ReactElement[]
 	| StatChange

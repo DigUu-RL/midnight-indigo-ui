@@ -12,16 +12,21 @@ const { spacing, intent }: typeof themeVariables = themeVariables;
 
 /** Props of the pickers that follow the other fields of the library. */
 export interface PickerFieldProps {
-	/** Visible label of the field. */
+	/** Visible, persistent label; a placeholder never replaces it. */
 	label: ReactNode;
+	/** Help text, read after the label. */
 	description?: ReactNode;
 	/** Error message, shown with an icon; inside a `Form`, the error of `name` is used when omitted. */
 	error?: ReactNode;
+	/** Marks the label with an asterisk and the control as `required`. */
 	required?: boolean | undefined;
+	/** Unavailable: skipped by Tab and not submitted. */
 	disabled?: boolean | undefined;
+	/** Focusable and submitted, but not editable. */
 	readOnly?: boolean | undefined;
 	/** Submitted with the value of the field, formatted as shown. */
 	name?: string | undefined;
+	/** Id of the field, the target of its label. */
 	id?: string | undefined;
 	/** Class of the root of the field. */
 	className?: string | undefined;

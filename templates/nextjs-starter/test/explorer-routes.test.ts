@@ -3,11 +3,14 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
-import { publicPathOf, routePathOf } from '#src/explorer/routes.ts';
+import { publicPathOf, routePathOf, routeSegmentOf } from '#src/explorer/routes.ts';
 
-const subpathOf = (slug: string): string | undefined => {
-	return slug === 'chip' ? 'data-display' : undefined;
+const subpaths: Readonly<Record<string, string>> = {
+	chip: 'data-display',
+	'date-picker': 'forms/date-pickers',
 };
+
+const subpathOf = (slug: string): string | undefined => subpaths[slug];
 
 test('the page of a component is served by the route of its subpath', (): void => {
 	assert.equal(
@@ -18,6 +21,20 @@ test('the page of a component is served by the route of its subpath', (): void =
 	assert.equal(
 		routePathOf('/pt-br/components/chip', subpathOf),
 		'/pt-br/components/data-display/chip',
+	);
+});
+
+test('a nested subpath is one segment of the path of its route', (): void => {
+	assert.equal(routeSegmentOf('forms/date-pickers'), 'forms-date-pickers');
+
+	assert.equal(
+		routePathOf('/en-us/components/date-picker', subpathOf),
+		'/en-us/components/forms-date-pickers/date-picker',
+	);
+
+	assert.equal(
+		publicPathOf('/pt-br/components/forms-date-pickers/date-picker'),
+		'/pt-br/components/date-picker',
 	);
 });
 

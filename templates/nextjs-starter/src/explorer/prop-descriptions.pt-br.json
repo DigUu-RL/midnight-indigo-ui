@@ -2244,5 +2244,181 @@
 			"source": "Name of the control to focus, looked up in the enclosing form when there is no `targetId`.",
 			"translation": "Nome do controle a focar, procurado no formulário que contém o resumo quando não há `targetId`."
 		}
+	},
+	"DatePicker": {
+		"label": {
+			"source": "Visible, persistent label; a placeholder never replaces it.",
+			"translation": "Rótulo visível e persistente; um placeholder nunca o substitui."
+		},
+		"description": {
+			"source": "Help text, read after the label.",
+			"translation": "Texto de ajuda, lido depois do rótulo."
+		},
+		"error": {
+			"source": "Error message, shown with an icon; inside a `Form`, the error of `name` is used when omitted.",
+			"translation": "Mensagem de erro, mostrada com um ícone; dentro de um `Form`, o erro de `name` é usado quando omitida."
+		},
+		"required": {
+			"source": "Marks the label with an asterisk and the control as `required`.",
+			"translation": "Marca o rótulo com um asterisco e o controle como `required`."
+		},
+		"disabled": {
+			"source": "Unavailable: skipped by Tab and not submitted.",
+			"translation": "Indisponível: pulado pelo Tab e não enviado."
+		},
+		"readOnly": {
+			"source": "Focusable and submitted, but not editable.",
+			"translation": "Focável e enviado, mas não editável."
+		},
+		"name": {
+			"source": "Submitted with the value of the field, formatted as shown.",
+			"translation": "Enviado com o valor do campo, formatado como é mostrado."
+		},
+		"id": {
+			"source": "Id of the field, the target of its label.",
+			"translation": "Id do campo, o alvo do seu rótulo."
+		},
+		"className": {
+			"source": "Class of the root of the field.",
+			"translation": "Classe da raiz do campo."
+		},
+		"style": {
+			"source": "Style of the root of the field.",
+			"translation": "Estilo da raiz do campo."
+		},
+		"value": {
+			"source": "Selected value, when the parent controls it.",
+			"translation": "Valor selecionado, quando o pai o controla."
+		},
+		"defaultValue": {
+			"source": "Initial value when uncontrolled.",
+			"translation": "Valor inicial quando não controlado."
+		},
+		"onValueChange": {
+			"source": "Called with the new value, or `null` when cleared or incomplete.",
+			"translation": "Chamada com o novo valor, ou `null` quando limpo ou incompleto."
+		}
+	},
+	"TimePicker": {
+		"label": {
+			"source": "Visible, persistent label; a placeholder never replaces it.",
+			"translation": "Rótulo visível e persistente; um placeholder nunca o substitui."
+		},
+		"description": {
+			"source": "Help text, read after the label.",
+			"translation": "Texto de ajuda, lido depois do rótulo."
+		},
+		"error": {
+			"source": "Error message, shown with an icon; inside a `Form`, the error of `name` is used when omitted.",
+			"translation": "Mensagem de erro, mostrada com um ícone; dentro de um `Form`, o erro de `name` é usado quando omitida."
+		},
+		"required": {
+			"source": "Marks the label with an asterisk and the control as `required`.",
+			"translation": "Marca o rótulo com um asterisco e o controle como `required`."
+		},
+		"disabled": {
+			"source": "Unavailable: skipped by Tab and not submitted.",
+			"translation": "Indisponível: pulado pelo Tab e não enviado."
+		},
+		"readOnly": {
+			"source": "Focusable and submitted, but not editable.",
+			"translation": "Focável e enviado, mas não editável."
+		},
+		"name": {
+			"source": "Submitted with the value of the field, formatted as shown.",
+			"translation": "Enviado com o valor do campo, formatado como é mostrado."
+		},
+		"id": {
+			"source": "Id of the field, the target of its label.",
+			"translation": "Id do campo, o alvo do seu rótulo."
+		},
+		"className": {
+			"source": "Class of the root of the field.",
+			"translation": "Classe da raiz do campo."
+		},
+		"style": {
+			"source": "Style of the root of the field.",
+			"translation": "Estilo da raiz do campo."
+		},
+		"value": {
+			"source": "Selected value, when the parent controls it.",
+			"translation": "Valor selecionado, quando o pai o controla."
+		},
+		"defaultValue": {
+			"source": "Initial value when uncontrolled.",
+			"translation": "Valor inicial quando não controlado."
+		},
+		"onValueChange": {
+			"source": "Called with the new value, or `null` when cleared or incomplete.",
+			"translation": "Chamada com o novo valor, ou `null` quando limpo ou incompleto."
+		}
+	},
+	"DateTimePicker": {
+		"label": {
+			"source": "Visible, persistent label; a placeholder never replaces it.",
+			"translation": "Rótulo visível e persistente; um placeholder nunca o substitui."
+		},
+		"description": {
+			"source": "Help text, read after the label.",
+			"translation": "Texto de ajuda, lido depois do rótulo."
+		},
+		"error": {
+			"source": "Error message, shown with an icon; inside a `Form`, the error of `name` is used when omitted.",
+			"translation": "Mensagem de erro, mostrada com um ícone; dentro de um `Form`, o erro de `name` é usado quando omitida."
+		},
+		"required": {
+			"source": "Marks the label with an asterisk and the control as `required`.",
+			"translation": "Marca o rótulo com um asterisco e o controle como `required`."
+		},
+		"disabled": {
+			"source": "Unavailable: skipped by Tab and not submitted.",
+			"translation": "Indisponível: pulado pelo Tab e não enviado."
+		},
+		"readOnly": {
+			"source": "Focusable and submitted, but not editable.",
+			"translation": "Focável e enviado, mas não editável."
+		},
+		"name": {
+			"source": "Submitted with the value of the field, formatted as shown.",
+			"translation": "Enviado com o valor do campo, formatado como é mostrado."
+		},
+		"id": {
+			"source": "Id of the field, the target of its label.",
+			"translation": "Id do campo, o alvo do seu rótulo."
+		},
+		"className": {
+			"source": "Class of the root of the field.",
+			"translation": "Classe da raiz do campo."
+		},
+		"style": {
+			"source": "Style of the root of the field.",
+			"translation": "Estilo da raiz do campo."
+		},
+		"value": {
+			"source": "Selected value, when the parent controls it.",
+			"translation": "Valor selecionado, quando o pai o controla."
+		},
+		"defaultValue": {
+			"source": "Initial value when uncontrolled.",
+			"translation": "Valor inicial quando não controlado."
+		},
+		"onValueChange": {
+			"source": "Called with the new value, or `null` when cleared or incomplete.",
+			"translation": "Chamada com o novo valor, ou `null` quando limpo ou incompleto."
+		}
+	},
+	"DatePickersProvider": {
+		"locale": {
+			"source": "date-fns locale: order of the sections, month and day names, first day of the week, 12 or 24-hour clock. Defaults to `en-US`. Import only the locales you use, e.g. `import { ptBR } from 'date-fns/locale/pt-BR'`.",
+			"translation": "Locale do date-fns: ordem das partes, nomes dos meses e dos dias, primeiro dia da semana, relógio de 12 ou 24 horas. Padrão: `en-US`. Importe só os locales que usar, por exemplo `import { ptBR } from 'date-fns/locale/pt-BR'`."
+		},
+		"localeText": {
+			"source": "Texts of the pickers (buttons, dialogs, section placeholders), e.g. the `localeText` of `ptBR` from `@mui/x-date-pickers/locales`; any of them can be overridden.",
+			"translation": "Textos dos seletores (botões, diálogos, placeholders das partes), por exemplo o `localeText` de `ptBR` de `@mui/x-date-pickers/locales`; qualquer um deles pode ser substituído."
+		},
+		"children": {
+			"source": "The application, or the part of it with pickers.",
+			"translation": "A aplicação, ou a parte dela com seletores."
+		}
 	}
 }

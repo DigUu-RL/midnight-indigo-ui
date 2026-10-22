@@ -5773,6 +5773,634 @@
 			"options": []
 		}
 	],
+	"DatePicker": [
+		{
+			"name": "label",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Visible, persistent label; a placeholder never replaces it.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Help text, read after the label.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "error",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Error message, shown with an icon; inside a `Form`, the error of `name` is used when omitted.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "required",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Marks the label with an asterisk and the control as `required`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Unavailable: skipped by Tab and not submitted.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "readOnly",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Focusable and submitted, but not editable.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Submitted with the value of the field, formatted as shown.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "id",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Id of the field, the target of its label.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "className",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Class of the root of the field.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "style",
+			"type": "CSSProperties",
+			"required": false,
+			"defaultValue": null,
+			"description": "Style of the root of the field.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "value",
+			"type": "Date | null",
+			"required": false,
+			"defaultValue": null,
+			"description": "Selected value, when the parent controls it.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "defaultValue",
+			"type": "Date | null",
+			"required": false,
+			"defaultValue": null,
+			"description": "Initial value when uncontrolled.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "onValueChange",
+			"type": "(value: Date | null) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the new value, or `null` when cleared or incomplete.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "disableFuture",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "disablePast",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "shouldDisableDate",
+			"type": "(day: PickerValidDate) => boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "minDate",
+			"type": "PickerValidDate",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "maxDate",
+			"type": "PickerValidDate",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "views",
+			"type": "readonly TView[]",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "format",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "string",
+			"options": []
+		}
+	],
+	"TimePicker": [
+		{
+			"name": "label",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Visible, persistent label; a placeholder never replaces it.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Help text, read after the label.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "error",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Error message, shown with an icon; inside a `Form`, the error of `name` is used when omitted.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "required",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Marks the label with an asterisk and the control as `required`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Unavailable: skipped by Tab and not submitted.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "readOnly",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Focusable and submitted, but not editable.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Submitted with the value of the field, formatted as shown.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "id",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Id of the field, the target of its label.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "className",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Class of the root of the field.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "style",
+			"type": "CSSProperties",
+			"required": false,
+			"defaultValue": null,
+			"description": "Style of the root of the field.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "value",
+			"type": "Date | null",
+			"required": false,
+			"defaultValue": null,
+			"description": "Selected value, when the parent controls it.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "defaultValue",
+			"type": "Date | null",
+			"required": false,
+			"defaultValue": null,
+			"description": "Initial value when uncontrolled.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "onValueChange",
+			"type": "(value: Date | null) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the new value, or `null` when cleared or incomplete.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "views",
+			"type": "readonly TimeView[]",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "format",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "minTime",
+			"type": "PickerValidDate",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "maxTime",
+			"type": "PickerValidDate",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "ampm",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "timeSteps",
+			"type": "TimeStepOptions",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"DateTimePicker": [
+		{
+			"name": "label",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Visible, persistent label; a placeholder never replaces it.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Help text, read after the label.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "error",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Error message, shown with an icon; inside a `Form`, the error of `name` is used when omitted.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "required",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Marks the label with an asterisk and the control as `required`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Unavailable: skipped by Tab and not submitted.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "readOnly",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Focusable and submitted, but not editable.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Submitted with the value of the field, formatted as shown.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "id",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Id of the field, the target of its label.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "className",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Class of the root of the field.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "style",
+			"type": "CSSProperties",
+			"required": false,
+			"defaultValue": null,
+			"description": "Style of the root of the field.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "value",
+			"type": "Date | null",
+			"required": false,
+			"defaultValue": null,
+			"description": "Selected value, when the parent controls it.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "defaultValue",
+			"type": "Date | null",
+			"required": false,
+			"defaultValue": null,
+			"description": "Initial value when uncontrolled.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "onValueChange",
+			"type": "(value: Date | null) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the new value, or `null` when cleared or incomplete.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "disableFuture",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "disablePast",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "format",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "ampm",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "timeSteps",
+			"type": "TimeStepOptions",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "minDateTime",
+			"type": "PickerValidDate",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "maxDateTime",
+			"type": "PickerValidDate",
+			"required": false,
+			"defaultValue": null,
+			"description": "",
+			"native": true,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"DatePickersProvider": [
+		{
+			"name": "locale",
+			"type": "Locale",
+			"required": false,
+			"defaultValue": "en-US",
+			"description": "date-fns locale: order of the sections, month and day names, first day of the week, 12 or 24-hour clock. Defaults to `en-US`. Import only the locales you use, e.g. `import { ptBR } from 'date-fns/locale/pt-BR'`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "localeText",
+			"type": "DatePickersLocaleText",
+			"required": false,
+			"defaultValue": null,
+			"description": "Texts of the pickers (buttons, dialogs, section placeholders), e.g. the `localeText` of `ptBR` from `@mui/x-date-pickers/locales`; any of them can be overridden.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "children",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "The application, or the part of it with pickers.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		}
+	],
 	"Container": [
 		{
 			"name": "as",

@@ -79,6 +79,10 @@ const explorerPages: readonly string[] = [
 	'/pt-br/components/submit-button',
 	'/en-us/components/error-summary',
 	'/pt-br/components/file-upload',
+	'/en-us/components/date-picker',
+	'/pt-br/components/time-picker',
+	'/en-us/components/date-time-picker',
+	'/pt-br/components/date-pickers-provider',
 ];
 
 // A table wider than its column (the props of a component) becomes a focusable region once it is hydrated and measured;

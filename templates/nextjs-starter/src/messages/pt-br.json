@@ -341,6 +341,7 @@
 			"dataDisplay": "Exibição de dados",
 			"feedback": "Feedback",
 			"forms": "Formulários",
+			"formsDatePickers": "Seletores de data e horário",
 			"layout": "Layout"
 		},
 		"page": {
@@ -1358,6 +1359,82 @@
 					"keyboard": "O Tab chega ao botão, e Enter ou Espaço abre o diálogo do sistema; remover um arquivo devolve o foco ao botão.",
 					"limits": "Os limites são lidos com o campo, então são conhecidos antes da escolha.",
 					"rejections": "Os arquivos deixados de fora são listados numa mensagem de status educada, uma vez por escolha."
+				}
+			},
+			"datePicker": {
+				"summary": "Campo de data digitado por partes ou escolhido num calendário.",
+				"description": "Um campo de partes (dia, mês e ano, na ordem do idioma) com um botão que abre um calendário, sobre o seletor de data do MUI X. Recebe o rótulo, a descrição, o erro e os estados dos outros campos, e as opções de data do MUI X: `minDate`, `maxDate`, `disablePast`, `shouldDisableDate`, `views`, `format`. `onValueChange` recebe um `Date`, ou `null` enquanto a data está incompleta. Precisa estar dentro de `DatePickersProvider`.",
+				"examples": {
+					"workdays": {
+						"title": "Só dias úteis",
+						"description": "`disablePast` e `shouldDisableDate` deixam os dias passados e os fins de semana fora do calendário."
+					},
+					"trip": {
+						"title": "Uma ida e uma volta",
+						"description": "O `minDate` da volta acompanha a ida, controlada por `value` e `onValueChange`."
+					}
+				},
+				"accessibility": {
+					"sections": "O campo é um grupo de partes: Esquerda e Direita passam de uma a outra, Cima e Baixo mudam a parte focada, e os dígitos a preenchem.",
+					"calendar": "O botão depois das partes abre o calendário num diálogo: as setas andam de dia em dia, Page Up e Page Down de mês em mês, e Esc o fecha.",
+					"locale": "A ordem das partes, seus nomes e os textos do botão vêm do `DatePickersProvider`: nesta página, do idioma da página."
+				}
+			},
+			"timePicker": {
+				"summary": "Campo de horário digitado por partes ou escolhido em listas.",
+				"description": "Horas e minutos (e AM ou PM num relógio de 12 horas) em partes, com um botão que abre listas deles, sobre o seletor de horário do MUI X. Recebe as props dos outros campos e as opções de horário do MUI X: `minTime`, `maxTime`, `ampm`, `timeSteps`, `views`, `format`. Precisa estar dentro de `DatePickersProvider`.",
+				"examples": {
+					"briefing": {
+						"title": "Horário de trabalho",
+						"description": "`minTime` e `maxTime` deixam as horas antes das 8h e depois das 18h fora das listas."
+					},
+					"docking": {
+						"title": "A cada quarto de hora",
+						"description": "`ampm={false}` define um relógio de 24 horas qualquer que seja o idioma, e `timeSteps` lista os minutos de 15 em 15."
+					}
+				},
+				"accessibility": {
+					"sections": "Horas, minutos e, num relógio de 12 horas, AM ou PM são partes: Cima e Baixo mudam a parte focada, e os dígitos a preenchem.",
+					"lists": "O botão abre listas de horas e minutos, percorridas com as setas e escolhidas com Enter.",
+					"clock": "Sem `ampm`, o relógio segue o idioma: 12 horas em inglês americano, 24 em português do Brasil."
+				}
+			},
+			"dateTimePicker": {
+				"summary": "Um campo para data e horário juntos.",
+				"description": "Data e horário nas partes de um só campo, com um botão que abre um calendário e depois listas do horário, sobre o seletor de data e hora do MUI X. Use-o quando o instante é uma só resposta, como uma reunião; senão, um `DatePicker` e um `TimePicker` são mais simples. Suas opções do MUI X: `minDateTime`, `maxDateTime`, `disablePast`, `ampm`, `timeSteps`, `format`. Precisa estar dentro de `DatePickersProvider`.",
+				"examples": {
+					"rendezvous": {
+						"title": "Controlado",
+						"description": "`onValueChange` recebe um `Date` quando todas as partes estão preenchidas; o texto sob o campo o mostra."
+					},
+					"window": {
+						"title": "Uma janela de tempo",
+						"description": "`minDateTime` e `maxDateTime` limitam o instante: no primeiro e no último dia, só as horas dentro da janela podem ser escolhidas."
+					}
+				},
+				"accessibility": {
+					"sections": "Data e horário são digitados num só campo, parte por parte, e informados só quando todas as partes estão preenchidas.",
+					"steps": "O botão abre o calendário, depois as listas do horário, uma visão depois da outra no mesmo diálogo.",
+					"split": "Quando a data e o horário são perguntas separadas, um `DatePicker` e um `TimePicker` são mais fáceis de ler e de preencher."
+				}
+			},
+			"datePickersProvider": {
+				"summary": "Idioma e textos dos seletores de data e horário.",
+				"description": "Coloque-o uma vez em volta dos seletores, junto ao `UiProvider`: o date-fns lê e escreve as datas na ordem de `locale`, e `localeText` traduz os botões e os diálogos do MUI X. Nesta página o layout dá aos seletores o idioma da página; o playground mostra o provider com seus padrões, em inglês americano.",
+				"examples": {
+					"brazilianPortuguese": {
+						"title": "Português do Brasil",
+						"description": "O `ptBR` do date-fns ordena dia, mês e ano com um relógio de 24 horas; o `ptBR` do MUI X traduz seus textos."
+					},
+					"britishEnglish": {
+						"title": "Inglês britânico",
+						"description": "O `enGB` do date-fns põe o dia primeiro e começa a semana na segunda-feira; os textos do MUI X continuam em inglês."
+					}
+				},
+				"accessibility": {
+					"language": "Dê a ele o idioma da página, para que os nomes das partes e os botões sejam lidos no idioma de quem lê.",
+					"server": "O idioma é passado, nunca adivinhado pelo navegador, para que o servidor e o navegador mostrem o mesmo texto.",
+					"timeZone": "Ele não define fuso horário: um `Date` é mostrado no fuso do navegador, que pode não ser o do servidor."
 				}
 			},
 			"container": {
