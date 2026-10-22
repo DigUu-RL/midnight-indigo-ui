@@ -3,6 +3,7 @@
 import {
 	DatePicker,
 	DatePickersProvider,
+	DateRangePicker,
 	DateTimePicker,
 	TimePicker,
 } from '@midnight-indigo/ui/forms/date-pickers';
@@ -12,6 +13,7 @@ import type { PlaygroundComponent } from '#src/explorer/playground.tsx';
 
 export const FormsDatePickersPlayground: PlaygroundComponent = createPlayground({
 	DatePicker,
+	DateRangePicker,
 	TimePicker,
 	DateTimePicker,
 	DatePickersProvider,

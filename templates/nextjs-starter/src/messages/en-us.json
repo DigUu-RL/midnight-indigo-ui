@@ -1356,77 +1356,103 @@
 				}
 			},
 			"datePicker": {
-				"summary": "Date field typed in sections or chosen in a calendar.",
-				"description": "A field of sections (day, month and year, in the order of the locale) with a button that opens a calendar, on the date picker of MUI X. It takes the label, the description, the error and the states of the other fields, and the date options of MUI X: `minDate`, `maxDate`, `disablePast`, `shouldDisableDate`, `views`, `format`. `onValueChange` gets a `Date`, or `null` while the date is incomplete. Must be inside `DatePickersProvider`.",
+				"summary": "Date field with a calendar panel, predefined dates and a footer to apply the choice.",
+				"description": "A field of the library whose date is typed in the order of the locale (the separators come by themselves) or chosen in a panel: predefined dates on the side, a calendar with lists of the month and of the year, and a footer with Clear, Cancel and Apply. `onValueChange` gets a `Date`, or `null` while the typed date is incomplete; `minDate`, `maxDate`, `disablePast`, `disableFuture` and `shouldDisableDate` keep days out. Must be inside `DatePickersProvider`.",
+				"types": {
+					"datePreset": "A date offered beside the calendar: its text, and the date from the start of today."
+				},
 				"examples": {
 					"workdays": {
 						"title": "Weekdays only",
-						"description": "`disablePast` and `shouldDisableDate` leave the past days and the weekends out of the calendar."
+						"description": "`disablePast` and `shouldDisableDate` keep the past days and the weekends out of the calendar and of the presets."
 					},
 					"trip": {
 						"title": "A departure and a return",
-						"description": "The `minDate` of the return follows the departure, controlled by `value` and `onValueChange`."
+						"description": "The `minDate` of the return follows the departure, controlled by `value` and `onValueChange`; a `DateRangePicker` does the same in one field."
 					}
 				},
 				"accessibility": {
-					"sections": "The field is a group of sections: Left and Right move between them, Up and Down change the focused one, and digits fill it in.",
-					"calendar": "The button after the sections opens the calendar in a dialog: the arrow keys move by day, Page Up and Page Down by month, and Escape closes it.",
-					"locale": "The order of the sections, their names and the texts of the button come from the `DatePickersProvider`: on this page, from the language of the page."
+					"typing": "A click in the field opens the panel and keeps focus there, so the date can still be typed; Down moves focus into the calendar.",
+					"calendar": "The arrows move by day and by week, Home and End to the ends of the week, Page Up and Page Down by month, with Shift by year.",
+					"apply": "The choice reaches the field only with Apply; Cancel, Escape or a click outside give focus back to the field without it."
+				}
+			},
+			"dateRangePicker": {
+				"summary": "Range of dates with two months side by side and predefined periods.",
+				"description": "The first and the last day are two fields in one frame, typed or chosen in a panel of two months (`calendars`) with predefined periods: today, tomorrow, the next 7 to 90 days, this month and the next month, quarter and year. The first click starts the range, the second ends it, and the days between follow the pointer. `maxDays` bounds its length. Must be inside `DatePickersProvider`.",
+				"types": {
+					"dateRange": "The value: its first and its last day, each one `null` until it is chosen.",
+					"dateRangePreset": "A period offered beside the calendars: its text, and its first and last day from the start of today."
+				},
+				"examples": {
+					"shoreLeave": {
+						"title": "At most two weeks",
+						"description": "With `maxDays={14}`, the days further from the start cannot end the range; the text under the field counts its days."
+					},
+					"presets": {
+						"title": "Periods of the application",
+						"description": "`presets` replaces the periods of the panel, and `calendars={1}` shows one month."
+					}
+				},
+				"accessibility": {
+					"names": "Each field is named by the label and by its end, `Start` or `End`, so both are told apart.",
+					"choice": "The ends of the chosen range say so in their names, and the days between are marked as selected.",
+					"preview": "The range under the pointer is only a preview: the keyboard chooses the end with Enter, as the pointer does with a click."
 				}
 			},
 			"timePicker": {
-				"summary": "Time field typed in sections or chosen in lists.",
-				"description": "Hours and minutes (and AM or PM on a 12-hour clock) in sections, with a button that opens lists of them, on the time picker of MUI X. It takes the props of the other fields and the time options of MUI X: `minTime`, `maxTime`, `ampm`, `timeSteps`, `views`, `format`. Must be inside `DatePickersProvider`.",
+				"summary": "Time field typed or chosen in lists of the hours and the minutes.",
+				"description": "Hours and minutes (and AM or PM on a 12-hour clock) typed in the field or chosen in lists, applied by the footer of the panel. `minTime`, `maxTime`, `ampm` and `minuteStep` shape the lists. Must be inside `DatePickersProvider`.",
 				"examples": {
 					"briefing": {
 						"title": "Working hours",
-						"description": "`minTime` and `maxTime` leave the hours before 8 AM and after 6 PM out of the lists."
+						"description": "`minTime` and `maxTime` keep the hours before 8 AM and after 6 PM out of the lists and out of the field."
 					},
 					"docking": {
 						"title": "Every quarter of an hour",
-						"description": "`ampm={false}` sets a 24-hour clock whatever the locale, and `timeSteps` lists the minutes by 15."
+						"description": "`ampm={false}` sets a 24-hour clock whatever the locale, and `minuteStep={15}` lists the minutes by 15."
 					}
 				},
 				"accessibility": {
-					"sections": "Hours, minutes and, on a 12-hour clock, AM or PM are sections: Up and Down change the focused one, and digits fill it in.",
-					"lists": "The button opens lists of hours and minutes, moved with the arrow keys and chosen with Enter.",
+					"typing": "The time can be typed in the field; on a 12-hour clock, a or p ends it with AM or PM.",
+					"lists": "Each list is a listbox: the arrows change its choice, Page Up and Page Down by five, Home and End to its ends.",
 					"clock": "Without `ampm`, the clock follows the locale: 12 hours in American English, 24 in Brazilian Portuguese."
 				}
 			},
 			"dateTimePicker": {
 				"summary": "One field for a date and a time together.",
-				"description": "Date and time in the sections of one field, with a button that opens a calendar and then lists of the time, on the date-time picker of MUI X. Use it when the instant is one answer, such as a meeting; otherwise a `DatePicker` and a `TimePicker` are simpler. Its options of MUI X: `minDateTime`, `maxDateTime`, `disablePast`, `ampm`, `timeSteps`, `format`. Must be inside `DatePickersProvider`.",
+				"description": "An instant typed in one field or chosen in a panel of a calendar beside the lists of the time, with the presets and the footer of the `DatePicker`. `minDate` and `maxDate` bound the instant, not only the day. Use it when the instant is one answer, such as a meeting; otherwise a `DatePicker` and a `TimePicker` are simpler. Must be inside `DatePickersProvider`.",
 				"examples": {
 					"rendezvous": {
 						"title": "Controlled",
-						"description": "`onValueChange` gets a `Date` once every section is filled in; the text under the field shows it."
+						"description": "`onValueChange` gets a `Date` once the date and the time are complete; the text under the field shows it."
 					},
 					"window": {
 						"title": "A window of time",
-						"description": "`minDateTime` and `maxDateTime` bound the instant: on the first and the last day, only the hours within the window can be chosen."
+						"description": "`minDate` and `maxDate` bound the instant: on the first and the last day, only the hours within the window can be chosen."
 					}
 				},
 				"accessibility": {
-					"sections": "Date and time are typed in one field, section by section, and reported only once every section is filled in.",
-					"steps": "The button opens the calendar, then the lists of the time, one view after the other in the same dialog.",
+					"typing": "Date and time are typed in one field, in the order of the locale, and reported only once complete.",
+					"panel": "Tab moves from the calendar to the lists of the hours and the minutes, then to the footer.",
 					"split": "When the date and the time are separate questions, a `DatePicker` and a `TimePicker` are easier to read and to fill in."
 				}
 			},
 			"datePickersProvider": {
-				"summary": "Locale and texts of the date and time pickers.",
-				"description": "Put it once around the pickers, next to `UiProvider`: date-fns reads and writes the dates in the order of `locale`, and `localeText` translates the buttons and the dialogs of MUI X. On this page the layout gives the pickers the locale of the page; the playground shows the provider with its defaults, in American English.",
+				"summary": "Locale of the date and time pickers.",
+				"description": "Put it once around the pickers, next to `UiProvider`: the date-fns `locale` gives the order of the parts of the fields, the names of the months and of the days, the first day of the week and the clock. Their texts are component labels, translated by `I18nProvider`. On this page the layout gives the pickers the locale of the page; the playground shows the provider with its default, American English.",
 				"examples": {
 					"brazilianPortuguese": {
 						"title": "Brazilian Portuguese",
-						"description": "The `ptBR` of date-fns orders day, month and year with a 24-hour clock; the `ptBR` of MUI X translates its texts."
+						"description": "The `ptBR` of date-fns orders day, month and year, starts the week on Sunday and uses a 24-hour clock."
 					},
 					"britishEnglish": {
 						"title": "British English",
-						"description": "The `enGB` of date-fns puts the day first and starts the week on Monday; the texts of MUI X stay in English."
+						"description": "The `enGB` of date-fns puts the day first and starts the week on Monday; the texts stay in English."
 					}
 				},
 				"accessibility": {
-					"language": "Give it the locale of the page, so the names of the sections and the buttons are read in the language of the reader.",
+					"language": "Give it the locale of the page, so the names of the days and of the months are read in the language of the reader.",
 					"server": "The locale is passed in, never guessed from the browser, so the server and the browser render the same text.",
 					"timeZone": "It sets no time zone: a `Date` is shown in the time zone of the browser, which may not be the one of the server."
 				}

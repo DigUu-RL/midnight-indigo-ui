@@ -7,14 +7,14 @@ come with it. Styles use only the theme variables (`var(--mi-*)`); the contrast 
 
 ## Imports
 
-| Subpath                                     | Contents                                                                                                                                                                                                                                                  | Extra peers                                      |
-| ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
-| `@midnight-indigo/ui/forms`                 | `FormField`, `Fieldset`, `FormActions`, `TextField`, `TextArea`, `NumberField`, `PasswordField`, `SearchField`, `Select`, `Combobox`, `Checkbox`, `CheckboxGroup`, `RadioGroup`, `Switch`, `Slider`, `FileUpload`, `Form`, `ErrorSummary`, `SubmitButton` | none                                             |
-| `@midnight-indigo/ui/forms/date-pickers`    | `DatePickersProvider`, `DatePicker`, `TimePicker`, `DateTimePicker`                                                                                                                                                                                       | `@mui/x-date-pickers` ^9.14, `date-fns` ^4 (MIT) |
-| `@midnight-indigo/ui/forms/react-hook-form` | `useFieldController`, `useCheckedController`, `toErrorSummaryItems`                                                                                                                                                                                       | `react-hook-form` ^7.55 (MIT)                    |
+| Subpath                                     | Contents                                                                                                                                                                                                                                                  | Extra peers                   |
+| ------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| `@midnight-indigo/ui/forms`                 | `FormField`, `Fieldset`, `FormActions`, `TextField`, `TextArea`, `NumberField`, `PasswordField`, `SearchField`, `Select`, `Combobox`, `Checkbox`, `CheckboxGroup`, `RadioGroup`, `Switch`, `Slider`, `FileUpload`, `Form`, `ErrorSummary`, `SubmitButton` | none                          |
+| `@midnight-indigo/ui/forms/date-pickers`    | `DatePickersProvider`, `DatePicker`, `DateRangePicker`, `TimePicker`, `DateTimePicker`                                                                                                                                                                    | `date-fns` ^4 (MIT)           |
+| `@midnight-indigo/ui/forms/react-hook-form` | `useFieldController`, `useCheckedController`, `toErrorSummaryItems`                                                                                                                                                                                       | `react-hook-form` ^7.55 (MIT) |
 
 The two integrations are separate subpaths with **optional** peer dependencies: `@midnight-indigo/ui/forms` never
-loads MUI X, date-fns nor React Hook Form (the consumer fixture follows its import graph to prove it). Install them
+loads date-fns nor React Hook Form (the consumer fixture follows its import graph to prove it). Install them
 only if you use those subpaths. The root entry does not re-export forms.
 
 ## One field API
@@ -144,44 +144,37 @@ import { toErrorSummaryItems, useCheckedController, useFieldController } from '@
 
 ## Date and time
 
-`DatePicker`, `TimePicker` and `DateTimePicker` wrap the **MIT-licensed community pickers of MUI X** (no paid MUI X
-Pro/Premium feature is used) with the field API of the library: `label`, `description`, `error` (with its icon),
-`required`, `disabled`, `readOnly`, `name`, `value`/`defaultValue`/`onValueChange(Date | null)` — `null` while a
-date is typed only in part. Other MUI X options (`minDate`, `maxDate`, `views`, `ampm`, `format`...) pass through.
-Fields are typed in sections (arrows change the focused section) or chosen in a calendar/time dialog.
+`DatePicker`, `DateRangePicker`, `TimePicker` and `DateTimePicker` are fields of the library (the same frame, label,
+`description`, `error` with its icon, `required`, `disabled`, `readOnly`, `name` and `size` as the other fields), with
+a panel of their own. Only `date-fns` (MIT) is needed, for the locales, the parsing and the formatting.
 
-Localization is given, never inferred, by `DatePickersProvider`:
+- **Typed or chosen.** A click in the field opens the panel and focus stays in the field, so the value can still be
+  typed: the parts come in the order of the locale (`dd/mm/yyyy` in pt-BR) and the separators by themselves. A text is
+  a value once it is complete and can be chosen; until then `onValueChange` gets `null` and the input is invalid, so a
+  `Form` reports it. Down, or the button of the field, moves focus into the panel.
+- **The panel.** Predefined dates or periods on the side (`presets`, or `false` for none), the calendars under a
+  header with the previous and next arrows and the lists of the month and of the year (the years grow as the list is
+  scrolled, and only those in view are rendered), and a footer: **Clear**, **Cancel** (outline, `brand`) and
+  **Apply** (solid, `official`). The choice reaches the field only with Apply; Cancel, Escape or a click outside
+  drop it.
+- **Ranges.** `DateRangePicker` shows two months side by side (`calendars`), two fields (`startName`, `endName`) in one
+  frame, previews the range under the pointer, and takes `maxDays`. Its presets: today, tomorrow, the next 7, 15, 30,
+  60 and 90 days, this month, and the next month, quarter and year.
+- **Constraints.** `minDate`, `maxDate`, `disablePast`, `disableFuture` and `shouldDisableDate(day)`; `minTime`,
+  `maxTime`, `ampm` and `minuteStep` for the times.
+- **Keyboard.** The days follow the date picker dialog of the WAI-ARIA Authoring Practices: arrows by day and week,
+  Home and End, Page Up and Page Down by month (with Shift, by year), Enter or Space to choose.
+
+The locale is given, never inferred, by `DatePickersProvider`; the texts (presets, buttons, placeholders) are the
+component labels `datePicker`, translated by `I18nProvider` like the others or by the `labels` prop:
 
 ```tsx
-import { DatePickersProvider } from '@midnight-indigo/ui/forms/date-pickers';
-import { ptBR as pickersPtBR } from '@mui/x-date-pickers/locales';
+import { DatePickersProvider, DateRangePicker } from '@midnight-indigo/ui/forms/date-pickers';
 import { ptBR } from 'date-fns/locale/pt-BR';
 
-<DatePickersProvider
-	locale={ptBR} // order of sections, month and day names, first weekday, 12/24 h
-	localeText={pickersPtBR.components.MuiLocalizationProvider.defaultProps.localeText} // texts of the controls
->
-	{children}
+<DatePickersProvider locale={ptBR}>
+	<DateRangePicker label='Período' startName='start' endName='end' />
 </DatePickersProvider>;
-```
-
-| Dependency            | License | Why                                                                         |
-| --------------------- | ------- | --------------------------------------------------------------------------- |
-| `@mui/x-date-pickers` | MIT     | Accessible sectioned fields, calendar and time lists on the same MUI base.  |
-| `date-fns`            | MIT     | Adapter: parsing, formatting and locales imported one by one (tree-shaken). |
-
-Pickers are styled by the MUI theme that `UiProvider` derives from the tokens.
-
-**Known typing issue of MUI X (NodeNext without `skipLibCheck`).** The declarations of `@mui/x-date-pickers` import
-`react-transition-group/CSSTransition` without an extension, which ESM resolution cannot find, so `tsc` reports TS7016
-inside `node_modules`. `Bundler` resolution and `skipLibCheck: true` (the default of most templates) are not
-affected. Otherwise, add `@types/react-transition-group` and this declaration (as the consumer fixture does):
-
-```ts
-declare module 'react-transition-group/CSSTransition' {
-	export * from 'react-transition-group/CSSTransition.js';
-	export { default } from 'react-transition-group/CSSTransition.js';
-}
 ```
 
 ## Translation
@@ -189,7 +182,7 @@ declare module 'react-transition-group/CSSTransition' {
 Every default text is replaceable through a `labels` prop, with its defaults exported for reference
 (`defaultFormLabels`, `defaultErrorSummaryLabels`, `defaultFormFieldLabels` via `fieldLabels`,
 `defaultPasswordFieldLabels`, `defaultSearchFieldLabels`, `defaultNumberFieldLabels`, `defaultTextAreaLabels`,
-`defaultComboboxLabels`, `defaultFileUploadLabels`). Texts with numbers are functions, so plurals and word order stay
+`defaultComboboxLabels`, `defaultFileUploadLabels`, `defaultDatePickerLabels`). Texts with numbers are functions, so plurals and word order stay
 in the translation (`title: (count) => ...`). Inside an `I18nProvider`, every field takes its texts from JSON
 resources in pt-BR, en-US or a locale of the application, native validation messages included; the `labels` prop
 still wins. See [i18n.md](./i18n.md).

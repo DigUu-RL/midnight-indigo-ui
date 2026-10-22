@@ -21,6 +21,7 @@ import type { DialogLabels } from '#src/feedback/dialog/index.tsx';
 import type { DrawerLabels } from '#src/feedback/drawer/index.tsx';
 import type { ToastLabels } from '#src/feedback/toast/index.tsx';
 import type { ComboboxLabels } from '#src/forms/combobox/index.tsx';
+import type { DatePickerLabels } from '#src/forms/date-pickers/labels.ts';
 import type { ErrorSummaryLabels } from '#src/forms/error-summary/index.tsx';
 import type { FileUploadLabels } from '#src/forms/file-upload/index.tsx';
 import type { FormLabels } from '#src/forms/form/index.tsx';
@@ -47,6 +48,7 @@ export interface ComponentLabelTypes {
 	copyButton: CopyButtonLabels;
 	dashboardLayout: DashboardLayoutLabels;
 	dataTable: DataTableLabels;
+	datePicker: DatePickerLabels;
 	dialog: DialogLabels;
 	drawer: DrawerLabels;
 	errorState: ErrorStateLabels;

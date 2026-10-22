@@ -9,7 +9,7 @@ import { enGB } from 'date-fns/locale/en-GB';
 import type { ReactElement } from 'react';
 
 // The same language in another region: the day comes before the month, the week starts on Monday and the clock has 24
-// hours. The texts of MUI X stay in English, so `localeText` is not needed.
+// hours, while the texts stay in English.
 export const BritishEnglish = (): ReactElement => {
 	return (
 		<DatePickersProvider locale={enGB}>

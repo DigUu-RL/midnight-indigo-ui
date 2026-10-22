@@ -10,7 +10,7 @@ export const DockingSlot = (): ReactElement => {
 			label='Docking slot'
 			description='Port control of Tharsis books the docks by the quarter of an hour.'
 			ampm={false}
-			timeSteps={{ minutes: 15 }}
+			minuteStep={15}
 			style={{ maxWidth: '20rem' }}
 		/>
 	);

@@ -80,6 +80,7 @@ const explorerPages: readonly string[] = [
 	'/en-us/components/error-summary',
 	'/pt-br/components/file-upload',
 	'/en-us/components/date-picker',
+	'/pt-br/components/date-range-picker',
 	'/pt-br/components/time-picker',
 	'/en-us/components/date-time-picker',
 	'/pt-br/components/date-pickers-provider',
@@ -121,6 +122,20 @@ test('the code of an example in the explorer has no accessibility violation', as
 	await page.goto('/pt-br/components/button');
 	await waitForMeasuredTables(page);
 	await page.getByRole('tab', { name: 'Código' }).first().click();
+	await expectNoAxeViolations(page);
+});
+
+test('the open panel of a range picker, with its list of years, has no accessibility violation', async ({
+	page,
+}): Promise<void> => {
+	await page.goto('/pt-br/components/date-range-picker');
+	await waitForMeasuredTables(page);
+	await page.locator('.playground .playground-stage').getByRole('combobox').first().click();
+	await expect(page.getByRole('dialog', { name: 'Escolher um período' })).toBeVisible();
+	await expectNoAxeViolations(page);
+
+	await page.getByRole('button', { name: 'Ano 2071' }).first().click();
+	await expect(page.getByRole('listbox', { name: 'Ano' })).toBeVisible();
 	await expectNoAxeViolations(page);
 });
 

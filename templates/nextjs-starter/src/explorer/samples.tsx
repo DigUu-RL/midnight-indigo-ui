@@ -3,6 +3,7 @@
 // in `samples/<subpath>.tsx`, which only the route of that subpath reaches; a sample missing there fails the type check.
 import type { DataTableColumn, StatChange } from '@midnight-indigo/ui/data-display';
 import type { FormFieldControlProps } from '@midnight-indigo/ui/forms';
+import type { DateRange } from '@midnight-indigo/ui/forms/date-pickers';
 import { Icon } from '@midnight-indigo/ui/icons';
 import type { ReactElement } from 'react';
 
@@ -24,6 +25,7 @@ export type SampleValue =
 	| string
 	| readonly string[]
 	| Date
+	| DateRange
 	| ReactElement
 	| readonly ReactElement[]
 	| StatChange

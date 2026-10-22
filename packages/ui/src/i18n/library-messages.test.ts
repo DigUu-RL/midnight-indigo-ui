@@ -17,6 +17,7 @@ import { defaultDialogLabels } from '#src/feedback/dialog/index.tsx';
 import { defaultDrawerLabels } from '#src/feedback/drawer/index.tsx';
 import { defaultToastLabels } from '#src/feedback/toast/index.tsx';
 import { defaultComboboxLabels } from '#src/forms/combobox/index.tsx';
+import { defaultDatePickerLabels } from '#src/forms/date-pickers/labels.ts';
 import { defaultErrorSummaryLabels } from '#src/forms/error-summary/index.tsx';
 import { defaultFileUploadLabels } from '#src/forms/file-upload/index.tsx';
 import type { FileLimits } from '#src/forms/file-upload/index.tsx';
@@ -56,6 +57,7 @@ const defaults: Defaults = {
 	copyButton: defaultCopyButtonLabels,
 	dashboardLayout: defaultDashboardLayoutLabels,
 	dataTable: defaultDataTableLabels,
+	datePicker: defaultDatePickerLabels,
 	dialog: defaultDialogLabels,
 	drawer: defaultDrawerLabels,
 	errorState: defaultErrorStateLabels,
@@ -251,6 +253,11 @@ describe('library messages', (): void => {
 
 		expect(labels.form?.title?.(2)).toBe(defaultFormLabels.title(2));
 
+		[1, 7].forEach((count: number): void => {
+			expect(labels.datePicker?.inDays?.(count)).toBe(defaultDatePickerLabels.inDays(count));
+			expect(labels.datePicker?.nextDays?.(count)).toBe(defaultDatePickerLabels.nextDays(count));
+		});
+
 		expect(labels.dataTable?.pagination?.('Orders')).toBe(
 			defaultDataTableLabels.pagination('Orders'),
 		);
@@ -295,6 +302,7 @@ describe('library messages', (): void => {
 		expect(labels.dataTable?.resultCount?.(2_000_000)).toBe('2.000.000 de linhas');
 		expect(labels.dataTable?.sorted?.('Nome', 'ascending')).toBe('Ordenado por Nome, crescente');
 		expect(labels.errorSummary?.title?.(1)).toBe('Há 1 problema neste formulário');
+		expect(labels.datePicker?.nextDays?.(30)).toBe('Próximos 30 dias');
 		expect(labels.fileUpload?.formatSize?.(1536)).toBe('1,5 kB');
 
 		expect(

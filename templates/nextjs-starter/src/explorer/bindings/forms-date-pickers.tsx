@@ -3,6 +3,7 @@
 import {
 	DatePicker,
 	DatePickersProvider,
+	DateRangePicker,
 	DateTimePicker,
 	TimePicker,
 } from '@midnight-indigo/ui/forms/date-pickers';
@@ -12,6 +13,8 @@ import { ShoreLeave } from '#src/explorer/examples/date-picker/trip.tsx';
 import { PaymentDay } from '#src/explorer/examples/date-picker/workdays.tsx';
 import { BrazilianPortuguese } from '#src/explorer/examples/date-pickers-provider/brazilian-portuguese.tsx';
 import { BritishEnglish } from '#src/explorer/examples/date-pickers-provider/british-english.tsx';
+import { HuntWindow } from '#src/explorer/examples/date-range-picker/presets.tsx';
+import { ShoreLeave as ShoreLeaveRange } from '#src/explorer/examples/date-range-picker/shore-leave.tsx';
 import { Rendezvous } from '#src/explorer/examples/date-time-picker/rendezvous.tsx';
 import { GateJump } from '#src/explorer/examples/date-time-picker/window.tsx';
 import { BriefingTime } from '#src/explorer/examples/time-picker/briefing.tsx';
@@ -24,6 +27,10 @@ export const formsDatePickersBindings: SubpathBindings<'forms/date-pickers'> = {
 	samples: formsDatePickersSamples,
 	components: {
 		DatePicker: { component: DatePicker, examples: { workdays: PaymentDay, trip: ShoreLeave } },
+		DateRangePicker: {
+			component: DateRangePicker,
+			examples: { shoreLeave: ShoreLeaveRange, presets: HuntWindow },
+		},
 		TimePicker: {
 			component: TimePicker,
 			examples: { briefing: BriefingTime, docking: DockingSlot },

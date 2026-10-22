@@ -165,13 +165,12 @@ describe('the examples', (): void => {
 	});
 
 	// The code shown is meant to be copied: it can import nothing that only exists in the starter. The locales the
-	// `DatePickersProvider` takes come from its optional peers, date-fns and MUI X.
+	// `DatePickersProvider` takes come from its optional peer, date-fns.
 	test('import only the public subpaths of the library, React and the locales of the date pickers', (): void => {
 		const allowed: readonly RegExp[] = [
 			/^@midnight-indigo\/ui\//,
 			/^react$/,
 			/^date-fns\/locale\/[\w-]+$/,
-			/^@mui\/x-date-pickers\/locales$/,
 		];
 
 		const others: string[] = exampleFiles.flatMap((file: string): string[] => {
