@@ -6,10 +6,10 @@ import type { SubmitEvent } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { Mock } from 'vitest';
 
-import { expectNoAxeViolations } from '#test/component-harness.ts';
-import { FilterBar } from '#src/dashboard/filter-bar/index.tsx';
-import { SearchField } from '#src/forms/search-field/index.tsx';
-import { ComponentLabelsProvider } from '#src/shared/component-labels/index.tsx';
+import { expectNoAxeViolations } from '@/test/component-harness';
+import { FilterBar } from '@/src/dashboard/filter-bar/index';
+import { SearchField } from '@/src/forms/search-field/index';
+import { ComponentLabelsProvider } from '@/src/shared/component-labels/index';
 
 afterEach(cleanup);
 

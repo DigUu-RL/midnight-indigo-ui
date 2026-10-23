@@ -6,9 +6,9 @@ import { getHours, getMinutes, setHours, setMinutes, startOfMinute } from 'date-
 import { useEffect, useId, useRef } from 'react';
 import type { KeyboardEvent, ReactElement, RefObject } from 'react';
 
-import { scrollbarStyles } from '#src/theme/native-styles.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import type { DatePickerLabels } from '#src/forms/date-pickers/labels.ts';
+import { scrollbarStyles } from '@/src/theme/native-styles';
+import { themeVariables } from '@/src/theme/theme-variables';
+import type { DatePickerLabels } from '@/src/forms/date-pickers/labels';
 
 const {
 	spacing,

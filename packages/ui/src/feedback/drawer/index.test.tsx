@@ -6,11 +6,11 @@ import { useState } from 'react';
 import type { ReactElement } from 'react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { expectNoAxeViolations, styleRulesOf } from '#test/component-harness.ts';
-import { Button } from '#src/buttons/button/index.tsx';
-import { Drawer } from '#src/feedback/drawer/index.tsx';
-import type { DrawerPlacement, DrawerProps } from '#src/feedback/drawer/index.tsx';
-import { Menu } from '#src/feedback/menu/index.tsx';
+import { expectNoAxeViolations, styleRulesOf } from '@/test/component-harness';
+import { Button } from '@/src/buttons/button/index';
+import { Drawer } from '@/src/feedback/drawer/index';
+import type { DrawerPlacement, DrawerProps } from '@/src/feedback/drawer/index';
+import { Menu } from '@/src/feedback/menu/index';
 
 afterEach((): void => {
 	cleanup();

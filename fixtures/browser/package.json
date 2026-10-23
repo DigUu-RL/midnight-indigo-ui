@@ -3,10 +3,6 @@
 	"private": true,
 	"description": "Browser suite (Playwright): end-to-end flows, accessibility and visual regression of the starter, and performance scenarios with large datasets.",
 	"type": "module",
-	"imports": {
-		"#src/*": "./src/*",
-		"#test/*": "./test/*"
-	},
 	"scripts": {
 		"build": "vite build",
 		"typecheck": "tsc -p tsconfig.json",

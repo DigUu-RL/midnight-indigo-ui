@@ -3,9 +3,9 @@ import { cleanup, render, screen } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { FormField } from '#src/forms/form-field/index.tsx';
-import type { FormFieldControlProps } from '#src/forms/form-field/index.tsx';
-import { expectNoAxeViolations } from '#test/component-harness.ts';
+import { FormField } from '@/src/forms/form-field/index';
+import type { FormFieldControlProps } from '@/src/forms/form-field/index';
+import { expectNoAxeViolations } from '@/test/component-harness';
 
 afterEach((): void => {
 	cleanup();

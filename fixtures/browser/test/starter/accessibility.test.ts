@@ -1,8 +1,8 @@
 // axe-core on the rendered starter, contrast included, at rest and with overlays open.
 import type { Page } from '@playwright/test';
 
-import { expectNoAxeViolations } from '#test/support/accessibility.ts';
-import { expect, test } from '#test/support/fixtures.ts';
+import { expectNoAxeViolations } from '@/test/support/accessibility';
+import { expect, test } from '@/test/support/fixtures';
 
 test('the page has no accessibility violation', async ({ page }): Promise<void> => {
 	await page.goto('/gallery');

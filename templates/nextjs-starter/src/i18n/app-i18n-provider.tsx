@@ -6,7 +6,7 @@ import { I18nProvider } from '@midnight-indigo/ui/i18n';
 import type { Messages } from '@midnight-indigo/ui/i18n';
 import type { ReactElement, ReactNode } from 'react';
 
-import { currency, localeTags, timeZone } from '#src/i18n/locales.ts';
+import { currency, localeTags, timeZone } from '@/src/i18n/locales';
 
 interface AppI18nProviderProps {
 	/** BCP 47 tag, e.g. `pt-BR`. */

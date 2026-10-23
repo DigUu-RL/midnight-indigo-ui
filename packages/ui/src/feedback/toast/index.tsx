@@ -5,14 +5,14 @@ import type { CSSObject } from '@mui/material/styles';
 import { createContext, use, useEffect, useMemo, useRef, useState } from 'react';
 import type { Context, FocusEvent, KeyboardEvent, ReactElement, ReactNode, RefObject } from 'react';
 
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { Button } from '#src/buttons/button/index.tsx';
-import { forwardAllBut, visuallyHiddenStyles } from '#src/shared/appearance.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import type { SemanticIntent } from '#src/tokens/index.ts';
-import { Alert } from '#src/feedback/alert/index.tsx';
-import { Portal } from '#src/feedback/portal/index.tsx';
-import type { OverlayContainer } from '#src/feedback/portal/index.tsx';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { Button } from '@/src/buttons/button/index';
+import { forwardAllBut, visuallyHiddenStyles } from '@/src/shared/appearance';
+import { themeVariables } from '@/src/theme/theme-variables';
+import type { SemanticIntent } from '@/src/tokens/index';
+import { Alert } from '@/src/feedback/alert/index';
+import { Portal } from '@/src/feedback/portal/index';
+import type { OverlayContainer } from '@/src/feedback/portal/index';
 
 const { spacing, radius, surface, elevation, layer, motion }: typeof themeVariables =
 	themeVariables;

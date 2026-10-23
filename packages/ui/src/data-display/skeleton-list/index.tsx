@@ -3,10 +3,10 @@
 import { styled } from '@mui/material/styles';
 import type { ReactElement } from 'react';
 
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { LoadingStatus } from '#src/data-display/loading-status/index.tsx';
-import type { LoadingStatusProps } from '#src/data-display/loading-status/index.tsx';
-import { Skeleton } from '#src/data-display/skeleton/index.tsx';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { LoadingStatus } from '@/src/data-display/loading-status/index';
+import type { LoadingStatusProps } from '@/src/data-display/loading-status/index';
+import { Skeleton } from '@/src/data-display/skeleton/index';
 
 const { spacing, border }: typeof themeVariables = themeVariables;
 

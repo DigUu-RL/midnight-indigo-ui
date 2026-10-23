@@ -4,11 +4,11 @@ import { styled } from '@mui/material/styles';
 import type { CSSObject } from '@mui/material/styles';
 import type { ComponentPropsWithRef, ReactElement } from 'react';
 
-import { forwardAllBut } from '#src/shared/appearance.ts';
-import { responsiveStyles } from '#src/shared/responsive.ts';
-import type { Responsive } from '#src/shared/responsive.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import type { SpacingStep } from '#src/tokens/index.ts';
+import { forwardAllBut } from '@/src/shared/appearance';
+import { responsiveStyles } from '@/src/shared/responsive';
+import type { Responsive } from '@/src/shared/responsive';
+import { themeVariables } from '@/src/theme/theme-variables';
+import type { SpacingStep } from '@/src/tokens/index';
 
 const { spacing }: typeof themeVariables = themeVariables;
 

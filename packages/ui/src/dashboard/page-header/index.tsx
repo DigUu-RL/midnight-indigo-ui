@@ -3,8 +3,8 @@
 import { styled } from '@mui/material/styles';
 import type { ComponentPropsWithRef, ReactElement, ReactNode } from 'react';
 
-import { prettyWrapStyles } from '#src/shared/appearance.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
+import { prettyWrapStyles } from '@/src/shared/appearance';
+import { themeVariables } from '@/src/theme/theme-variables';
 
 const { spacing, typography, text }: typeof themeVariables = themeVariables;
 

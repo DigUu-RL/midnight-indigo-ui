@@ -1,5 +1,5 @@
 // Generated from Tabler Icons (MIT, https://tabler.io/icons) by `pnpm --filter @midnight-indigo/ui generate:glyphs`. Do not edit by hand.
-import type { IconifyIconData } from '#src/icons/icon-data/index.ts';
+import type { IconifyIconData } from '@/src/icons/icon-data/index';
 
 export type GlyphName =
 	| 'alert'

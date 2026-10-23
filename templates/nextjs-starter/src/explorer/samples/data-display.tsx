@@ -14,10 +14,10 @@ import {
 } from '@midnight-indigo/ui/data-display';
 import type { ReactElement } from 'react';
 
-import { bountyColumns, bountyRowId } from '#src/explorer/client-samples.tsx';
-import { sampleBounties, sampleCrew, samplePlanets } from '#src/explorer/sample-code.ts';
-import type { SampleBounty, SampleCrewMember, SamplePlanet } from '#src/explorer/sample-code.ts';
-import type { SubpathSamples } from '#src/explorer/samples.tsx';
+import { bountyColumns, bountyRowId } from '@/src/explorer/client-samples';
+import { sampleBounties, sampleCrew, samplePlanets } from '@/src/explorer/sample-code';
+import type { SampleBounty, SampleCrewMember, SamplePlanet } from '@/src/explorer/sample-code';
+import type { SubpathSamples } from '@/src/explorer/samples';
 
 export const dataDisplaySamples: SubpathSamples<'data-display'> = {
 	pilotAvatar: <Avatar name='Spike Spiegel' />,

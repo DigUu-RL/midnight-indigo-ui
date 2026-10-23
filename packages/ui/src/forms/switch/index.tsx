@@ -2,8 +2,8 @@
 // On/off setting that applies at once, e.g. notifications on.
 import type { ReactElement } from 'react';
 
-import { ChoiceField } from '#src/forms/checkbox/index.tsx';
-import type { ChoiceControlBaseProps } from '#src/forms/checkbox/index.tsx';
+import { ChoiceField } from '@/src/forms/checkbox/index';
+import type { ChoiceControlBaseProps } from '@/src/forms/checkbox/index';
 
 // The shared props, not an `Omit` of `CheckboxProps`, whose mapped type would lose the order of the props.
 export type SwitchProps = ChoiceControlBaseProps;

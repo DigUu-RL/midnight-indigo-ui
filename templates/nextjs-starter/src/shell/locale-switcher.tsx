@@ -15,9 +15,9 @@ import {
 	localeSegments,
 	localeTags,
 	localizePath,
-} from '#src/i18n/locales.ts';
-import type { LocaleSegment } from '#src/i18n/locales.ts';
-import { publicPathOf } from '#src/explorer/routes.ts';
+} from '@/src/i18n/locales';
+import type { LocaleSegment } from '@/src/i18n/locales';
+import { publicPathOf } from '@/src/explorer/routes';
 
 interface LocaleSwitcherProps {
 	locale: LocaleSegment;

@@ -12,8 +12,8 @@ import { init, use } from 'echarts/core';
 import type { EChartsType } from 'echarts/core';
 import { CanvasRenderer, SVGRenderer } from 'echarts/renderers';
 
-import type { ChartRenderer, ZoomWindow } from '#src/charts/chart-factories/index.ts';
-import type { EngineOption } from '#src/charts/chart-option/index.ts';
+import type { ChartRenderer, ZoomWindow } from '@/src/charts/chart-factories/index';
+import type { EngineOption } from '@/src/charts/chart-option/index';
 
 use([
 	BarChart,

@@ -7,12 +7,12 @@ import { StrictMode, useEffect } from 'react';
 import type { ReactElement } from 'react';
 import { createRoot } from 'react-dom/client';
 
-import { ChartScenario } from '#src/scenarios/chart-scenario.tsx';
-import { ComboboxScenario, SelectScenario } from '#src/scenarios/choice-scenarios.tsx';
-import { ComponentsScenario } from '#src/scenarios/components-scenario.tsx';
-import { DataTableScenario } from '#src/scenarios/data-table-scenario.tsx';
-import { ListScenario } from '#src/scenarios/list-scenario.tsx';
-import { NativeScenario } from '#src/scenarios/native-scenario.tsx';
+import { ChartScenario } from '@/src/scenarios/chart-scenario';
+import { ComboboxScenario, SelectScenario } from '@/src/scenarios/choice-scenarios';
+import { ComponentsScenario } from '@/src/scenarios/components-scenario';
+import { DataTableScenario } from '@/src/scenarios/data-table-scenario';
+import { ListScenario } from '@/src/scenarios/list-scenario';
+import { NativeScenario } from '@/src/scenarios/native-scenario';
 
 const parameters: URLSearchParams = new URLSearchParams(window.location.search);
 const scenario: string = parameters.get('scenario') ?? 'data-table';

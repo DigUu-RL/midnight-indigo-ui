@@ -14,16 +14,16 @@ import type {
 	SyntheticEvent,
 } from 'react';
 
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { IconButton } from '#src/buttons/icon-button/index.tsx';
-import type { ControlSize } from '#src/shared/appearance.ts';
-import { Glyph } from '#src/shared/glyphs/index.tsx';
-import { mergeReferences } from '#src/shared/merge-references.ts';
-import { scrollbarStyles } from '#src/theme/native-styles.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { FormField, HiddenText } from '#src/forms/form-field/index.tsx';
-import type { FieldProps, FormFieldControlProps } from '#src/forms/form-field/index.tsx';
-import { InputFrame, TextInput } from '#src/forms/input-frame/index.tsx';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { IconButton } from '@/src/buttons/icon-button/index';
+import type { ControlSize } from '@/src/shared/appearance';
+import { Glyph } from '@/src/shared/glyphs/index';
+import { mergeReferences } from '@/src/shared/merge-references';
+import { scrollbarStyles } from '@/src/theme/native-styles';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { FormField, HiddenText } from '@/src/forms/form-field/index';
+import type { FieldProps, FormFieldControlProps } from '@/src/forms/form-field/index';
+import { InputFrame, TextInput } from '@/src/forms/input-frame/index';
 
 const {
 	spacing,

@@ -1,6 +1,6 @@
 // Brazilian Portuguese texts of the components, in the `midnight-indigo` namespace. Portuguese has a `many` plural
 // category (millions), so every pluralized text has `many` as well.
-import type { LibraryMessages } from '#src/i18n/library-messages.ts';
+import type { LibraryMessages } from '@/src/i18n/library-messages';
 
 export const brazilianPortugueseMessages: LibraryMessages = {
 	alert: {

@@ -4,9 +4,9 @@ import {
 	mixColors,
 	normalizeHexColor,
 	pickHighestContrast,
-} from '#src/tokens/color.ts';
-import type { HexColor } from '#src/tokens/color.ts';
-import { supportMainColors } from '#src/tokens/support-colors.ts';
+} from '@/src/tokens/color';
+import type { HexColor } from '@/src/tokens/color';
+import { supportMainColors } from '@/src/tokens/support-colors';
 
 export const semanticIntents = [
 	'official',

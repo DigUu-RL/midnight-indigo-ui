@@ -6,7 +6,7 @@ import type { DataTableColumn } from '@midnight-indigo/ui/data-display';
 import type { FormFieldControlProps } from '@midnight-indigo/ui/forms';
 import type { ReactElement } from 'react';
 
-import type { SampleBounty } from '#src/explorer/sample-code.ts';
+import type { SampleBounty } from '@/src/explorer/sample-code';
 
 export const bountyColumns: readonly DataTableColumn<SampleBounty>[] = [
 	{

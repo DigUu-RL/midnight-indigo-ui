@@ -2,8 +2,8 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { expectNoAxeViolations } from '#test/component-harness.ts';
-import { EmptyState } from '#src/data-display/empty-state/index.tsx';
+import { expectNoAxeViolations } from '@/test/component-harness';
+import { EmptyState } from '@/src/data-display/empty-state/index';
 
 afterEach((): void => {
 	cleanup();

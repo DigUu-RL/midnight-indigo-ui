@@ -18,20 +18,20 @@ import type { TabNavigationItem } from '@midnight-indigo/ui/navigation';
 import { useMemo, useState } from 'react';
 import type { ChangeEvent, ReactElement } from 'react';
 
-import type { MonthlyRevenue, Order, Region } from '#src/dashboard/demo-data.ts';
-import { regions } from '#src/dashboard/demo-data.ts';
-import { demoScenarios } from '#src/dashboard/mock-api.ts';
+import type { MonthlyRevenue, Order, Region } from '@/src/dashboard/demo-data';
+import { regions } from '@/src/dashboard/demo-data';
+import { demoScenarios } from '@/src/dashboard/mock-api';
 import type {
 	DashboardQuery,
 	DashboardSnapshot,
 	DemoScenario,
 	PeriodFilter,
 	RegionFilter,
-} from '#src/dashboard/mock-api.ts';
-import { useOrderColumns } from '#src/dashboard/use-order-columns.ts';
-import { useDashboardSnapshot } from '#src/dashboard/use-dashboard-snapshot.ts';
-import type { DashboardRequest } from '#src/dashboard/use-dashboard-snapshot.ts';
-import type { LocaleSegment } from '#src/i18n/locales.ts';
+} from '@/src/dashboard/mock-api';
+import { useOrderColumns } from '@/src/dashboard/use-order-columns';
+import { useDashboardSnapshot } from '@/src/dashboard/use-dashboard-snapshot';
+import type { DashboardRequest } from '@/src/dashboard/use-dashboard-snapshot';
+import type { LocaleSegment } from '@/src/i18n/locales';
 
 interface SalesOverviewProps {
 	locale: LocaleSegment;

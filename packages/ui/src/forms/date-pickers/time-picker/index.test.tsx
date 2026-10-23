@@ -5,9 +5,9 @@ import type { UserEvent } from '@testing-library/user-event';
 import { ptBR } from 'date-fns/locale/pt-BR';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { DatePickersProvider } from '#src/forms/date-pickers/date-pickers-provider/index.tsx';
-import { DateTimePicker } from '#src/forms/date-pickers/date-time-picker/index.tsx';
-import { TimePicker } from '#src/forms/date-pickers/time-picker/index.tsx';
+import { DatePickersProvider } from '@/src/forms/date-pickers/date-pickers-provider/index';
+import { DateTimePicker } from '@/src/forms/date-pickers/date-time-picker/index';
+import { TimePicker } from '@/src/forms/date-pickers/time-picker/index';
 
 beforeEach((): void => {
 	vi.useFakeTimers({ now: new Date(2026, 9, 21, 10, 7), shouldAdvanceTime: true });

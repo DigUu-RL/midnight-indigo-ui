@@ -11,12 +11,12 @@ import {
 	focusRingStyles,
 	forwardAllBut,
 	visuallyHiddenStyles,
-} from '#src/shared/appearance.ts';
-import { Glyph } from '#src/shared/glyphs/index.tsx';
-import type { GlyphName } from '#src/shared/glyphs/index.tsx';
-import { scrollbarStyles } from '#src/theme/native-styles.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import type { SortDirection } from '#src/data-display/row-processing/index.ts';
+} from '@/src/shared/appearance';
+import { Glyph } from '@/src/shared/glyphs/index';
+import type { GlyphName } from '@/src/shared/glyphs/index';
+import { scrollbarStyles } from '@/src/theme/native-styles';
+import { themeVariables } from '@/src/theme/theme-variables';
+import type { SortDirection } from '@/src/data-display/row-processing/index';
 
 const {
 	spacing,

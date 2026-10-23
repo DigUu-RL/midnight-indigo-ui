@@ -11,16 +11,16 @@ import type {
 	RefObject,
 } from 'react';
 
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { IconButton } from '#src/buttons/icon-button/index.tsx';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { IconButton } from '@/src/buttons/icon-button/index';
 import {
 	assertLabel,
 	colorTransitionStyles,
 	focusRingStyles,
 	reducedMotion,
-} from '#src/shared/appearance.ts';
-import { Glyph } from '#src/shared/glyphs/index.tsx';
-import { themeVariables } from '#src/theme/theme-variables.ts';
+} from '@/src/shared/appearance';
+import { Glyph } from '@/src/shared/glyphs/index';
+import { themeVariables } from '@/src/theme/theme-variables';
 
 const { spacing, radius, border, motion, intent }: typeof themeVariables = themeVariables;
 

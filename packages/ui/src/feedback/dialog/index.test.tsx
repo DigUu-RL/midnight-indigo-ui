@@ -7,11 +7,11 @@ import type { ReactElement, RefObject } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { Mock } from 'vitest';
 
-import { expectNoAxeViolations, styleRulesOf } from '#test/component-harness.ts';
-import { Button } from '#src/buttons/button/index.tsx';
-import { Dialog } from '#src/feedback/dialog/index.tsx';
-import type { DialogProps } from '#src/feedback/dialog/index.tsx';
-import type { OverlayCloseReason } from '#src/feedback/modal-layer/index.tsx';
+import { expectNoAxeViolations, styleRulesOf } from '@/test/component-harness';
+import { Button } from '@/src/buttons/button/index';
+import { Dialog } from '@/src/feedback/dialog/index';
+import type { DialogProps } from '@/src/feedback/dialog/index';
+import type { OverlayCloseReason } from '@/src/feedback/modal-layer/index';
 
 afterEach((): void => {
 	cleanup();

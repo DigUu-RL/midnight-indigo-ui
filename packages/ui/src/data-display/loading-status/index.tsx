@@ -3,8 +3,8 @@
 import { styled } from '@mui/material/styles';
 import type { ComponentPropsWithRef, ReactElement, ReactNode } from 'react';
 
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { visuallyHiddenStyles } from '#src/shared/appearance.ts';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { visuallyHiddenStyles } from '@/src/shared/appearance';
 
 /** Text announced while content loads. Translate it with the rest of the interface. */
 export const defaultLoadingLabel: string = 'Loading';

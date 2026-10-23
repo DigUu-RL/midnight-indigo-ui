@@ -2,7 +2,7 @@
 	"extends": "./tsconfig.base.json",
 	"compilerOptions": {
 		"types": ["node"],
-		"allowImportingTsExtensions": true
+		"paths": { "@/*": ["./*"] }
 	},
 	"include": ["scripts", "eslint-rules", "eslint.config.ts"]
 }

@@ -8,7 +8,7 @@ import { enUS } from 'date-fns/locale/en-US';
 import { ptBR } from 'date-fns/locale/pt-BR';
 import type { ReactElement, ReactNode } from 'react';
 
-import type { LocaleSegment } from '#src/i18n/locales.ts';
+import type { LocaleSegment } from '@/src/i18n/locales';
 
 const pickersLocales: Readonly<Record<LocaleSegment, Locale>> = { 'en-us': enUS, 'pt-br': ptBR };
 

@@ -5,10 +5,10 @@ import type { UserEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { Mock } from 'vitest';
 
-import { expectNoAxeViolations, styleRulesOf } from '#test/component-harness.ts';
-import { applyViewportStyles, resetViewport, setViewportWidth } from '#test/viewport.ts';
-import { Pagination, paginationRange } from '#src/navigation/pagination/index.tsx';
-import type { PaginationEntry, PaginationProps } from '#src/navigation/pagination/index.tsx';
+import { expectNoAxeViolations, styleRulesOf } from '@/test/component-harness';
+import { applyViewportStyles, resetViewport, setViewportWidth } from '@/test/viewport';
+import { Pagination, paginationRange } from '@/src/navigation/pagination/index';
+import type { PaginationEntry, PaginationProps } from '@/src/navigation/pagination/index';
 
 afterEach((): void => {
 	cleanup();

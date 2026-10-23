@@ -8,19 +8,19 @@ import {
 	TimePicker,
 } from '@midnight-indigo/ui/forms/date-pickers';
 
-import type { SubpathBindings } from '#src/explorer/bindings.ts';
-import { ShoreLeave } from '#src/explorer/examples/date-picker/trip.tsx';
-import { PaymentDay } from '#src/explorer/examples/date-picker/workdays.tsx';
-import { BrazilianPortuguese } from '#src/explorer/examples/date-pickers-provider/brazilian-portuguese.tsx';
-import { BritishEnglish } from '#src/explorer/examples/date-pickers-provider/british-english.tsx';
-import { HuntWindow } from '#src/explorer/examples/date-range-picker/presets.tsx';
-import { ShoreLeave as ShoreLeaveRange } from '#src/explorer/examples/date-range-picker/shore-leave.tsx';
-import { Rendezvous } from '#src/explorer/examples/date-time-picker/rendezvous.tsx';
-import { GateJump } from '#src/explorer/examples/date-time-picker/window.tsx';
-import { BriefingTime } from '#src/explorer/examples/time-picker/briefing.tsx';
-import { DockingSlot } from '#src/explorer/examples/time-picker/docking.tsx';
-import { FormsDatePickersPlayground } from '#src/explorer/playgrounds/forms-date-pickers.tsx';
-import { formsDatePickersSamples } from '#src/explorer/samples/forms-date-pickers.tsx';
+import type { SubpathBindings } from '@/src/explorer/bindings';
+import { ShoreLeave } from '@/src/explorer/examples/date-picker/trip';
+import { PaymentDay } from '@/src/explorer/examples/date-picker/workdays';
+import { BrazilianPortuguese } from '@/src/explorer/examples/date-pickers-provider/brazilian-portuguese';
+import { BritishEnglish } from '@/src/explorer/examples/date-pickers-provider/british-english';
+import { HuntWindow } from '@/src/explorer/examples/date-range-picker/presets';
+import { ShoreLeave as ShoreLeaveRange } from '@/src/explorer/examples/date-range-picker/shore-leave';
+import { Rendezvous } from '@/src/explorer/examples/date-time-picker/rendezvous';
+import { GateJump } from '@/src/explorer/examples/date-time-picker/window';
+import { BriefingTime } from '@/src/explorer/examples/time-picker/briefing';
+import { DockingSlot } from '@/src/explorer/examples/time-picker/docking';
+import { FormsDatePickersPlayground } from '@/src/explorer/playgrounds/forms-date-pickers';
+import { formsDatePickersSamples } from '@/src/explorer/samples/forms-date-pickers';
 
 export const formsDatePickersBindings: SubpathBindings<'forms/date-pickers'> = {
 	playground: FormsDatePickersPlayground,

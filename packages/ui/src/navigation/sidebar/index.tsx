@@ -5,24 +5,24 @@ import type { CSSObject } from '@mui/material/styles';
 import { useEffect, useId, useState } from 'react';
 import type { ComponentPropsWithRef, ReactElement, ReactNode } from 'react';
 
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { IconButton } from '#src/buttons/icon-button/index.tsx';
-import type { IconButtonProps } from '#src/buttons/icon-button/index.tsx';
-import { Drawer } from '#src/feedback/drawer/index.tsx';
-import { TooltipBase } from '#src/feedback/tooltip/index.tsx';
-import { useBreakpoint } from '#src/layout/use-breakpoint.ts';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { IconButton } from '@/src/buttons/icon-button/index';
+import type { IconButtonProps } from '@/src/buttons/icon-button/index';
+import { Drawer } from '@/src/feedback/drawer/index';
+import { TooltipBase } from '@/src/feedback/tooltip/index';
+import { useBreakpoint } from '@/src/layout/use-breakpoint';
 import {
 	colorTransitionStyles,
 	forwardAllBut,
 	visuallyHiddenStyles,
-} from '#src/shared/appearance.ts';
-import { Glyph } from '#src/shared/glyphs/index.tsx';
-import { scrollbarStyles } from '#src/theme/native-styles.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { breakpointMediaQuery } from '#src/tokens/index.ts';
-import type { Breakpoint } from '#src/tokens/index.ts';
-import { useLinkAs } from '#src/navigation/navigation-provider/index.tsx';
-import type { LinkComponent } from '#src/navigation/navigation-provider/index.tsx';
+} from '@/src/shared/appearance';
+import { Glyph } from '@/src/shared/glyphs/index';
+import { scrollbarStyles } from '@/src/theme/native-styles';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { breakpointMediaQuery } from '@/src/tokens/index';
+import type { Breakpoint } from '@/src/tokens/index';
+import { useLinkAs } from '@/src/navigation/navigation-provider/index';
+import type { LinkComponent } from '@/src/navigation/navigation-provider/index';
 
 const {
 	spacing,

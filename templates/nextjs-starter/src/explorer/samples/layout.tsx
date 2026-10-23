@@ -2,7 +2,7 @@
 import { Avatar, Card, CardContent, CardHeader } from '@midnight-indigo/ui/data-display';
 import type { ReactElement } from 'react';
 
-import type { SubpathSamples } from '#src/explorer/samples.tsx';
+import type { SubpathSamples } from '@/src/explorer/samples';
 
 const planets: readonly string[] = ['Tatooine', 'Hoth', 'Dagobah', 'Endor'];
 

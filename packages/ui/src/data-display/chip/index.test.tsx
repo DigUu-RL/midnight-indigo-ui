@@ -5,9 +5,9 @@ import type { UserEvent } from '@testing-library/user-event';
 import type { ReactElement } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { expectNoAxeViolations, styleRulesOf } from '#test/component-harness.ts';
-import { Chip } from '#src/data-display/chip/index.tsx';
-import type { ChipVariant } from '#src/data-display/chip/index.tsx';
+import { expectNoAxeViolations, styleRulesOf } from '@/test/component-harness';
+import { Chip } from '@/src/data-display/chip/index';
+import type { ChipVariant } from '@/src/data-display/chip/index';
 
 const variants: readonly ChipVariant[] = ['solid', 'soft', 'outline'];
 

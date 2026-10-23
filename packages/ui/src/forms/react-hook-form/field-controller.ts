@@ -13,7 +13,7 @@ import type {
 	UseControllerReturn,
 } from 'react-hook-form';
 
-import type { ErrorSummaryItem } from '#src/forms/error-summary/index.tsx';
+import type { ErrorSummaryItem } from '@/src/forms/error-summary/index';
 
 export interface FieldControllerOptions<
 	Values extends FieldValues,

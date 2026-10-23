@@ -5,16 +5,16 @@ import type { CSSObject } from '@mui/material/styles';
 import { useId } from 'react';
 import type { ComponentPropsWithRef, ReactElement, ReactNode, RefCallback } from 'react';
 
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { forwardAllBut } from '#src/shared/appearance.ts';
-import { scrollbarStyles } from '#src/theme/native-styles.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { forwardAllBut } from '@/src/shared/appearance';
+import { scrollbarStyles } from '@/src/theme/native-styles';
+import { themeVariables } from '@/src/theme/theme-variables';
 import {
 	ModalLayer,
 	OverlaySections,
 	useModalPanelReference,
-} from '#src/feedback/modal-layer/index.tsx';
-import type { ModalOverlayProps } from '#src/feedback/modal-layer/index.tsx';
+} from '@/src/feedback/modal-layer/index';
+import type { ModalOverlayProps } from '@/src/feedback/modal-layer/index';
 
 const { spacing, typography, surface, text, border, elevation, motion }: typeof themeVariables =
 	themeVariables;

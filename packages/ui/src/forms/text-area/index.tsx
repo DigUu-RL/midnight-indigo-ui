@@ -11,13 +11,13 @@ import type {
 	ReactNode,
 } from 'react';
 
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { forwardAllBut } from '#src/shared/appearance.ts';
-import type { ControlSize } from '#src/shared/appearance.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { FormField } from '#src/forms/form-field/index.tsx';
-import type { FieldProps, FormFieldControlProps } from '#src/forms/form-field/index.tsx';
-import { controlResetStyles, InputFrame } from '#src/forms/input-frame/index.tsx';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { forwardAllBut } from '@/src/shared/appearance';
+import type { ControlSize } from '@/src/shared/appearance';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { FormField } from '@/src/forms/form-field/index';
+import type { FieldProps, FormFieldControlProps } from '@/src/forms/form-field/index';
+import { controlResetStyles, InputFrame } from '@/src/forms/input-frame/index';
 
 const { spacing, typography, text, intent }: typeof themeVariables = themeVariables;
 

@@ -13,8 +13,8 @@ import {
 	useToast,
 } from '@midnight-indigo/ui/feedback';
 
-import { createPlayground } from '#src/explorer/playground.tsx';
-import type { PlaygroundComponent } from '#src/explorer/playground.tsx';
+import { createPlayground } from '@/src/explorer/playground';
+import type { PlaygroundComponent } from '@/src/explorer/playground';
 
 export const FeedbackPlayground: PlaygroundComponent = createPlayground(
 	{

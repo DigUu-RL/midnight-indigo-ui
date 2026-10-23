@@ -1,10 +1,10 @@
 import type { i18n as I18nInstance } from 'i18next';
 import { describe, expect, it, vi } from 'vitest';
 
-import { createI18n, initializeI18n } from '#src/i18n/create-i18n.ts';
-import type { I18nOptions } from '#src/i18n/create-i18n.ts';
-import { libraryNamespace } from '#src/i18n/library-messages.ts';
-import type { I18nResources, Messages } from '#src/i18n/library-messages.ts';
+import { createI18n, initializeI18n } from '@/src/i18n/create-i18n';
+import type { I18nOptions } from '@/src/i18n/create-i18n';
+import { libraryNamespace } from '@/src/i18n/library-messages';
+import type { I18nResources, Messages } from '@/src/i18n/library-messages';
 
 // The convention the wiki recommends; nothing requires it.
 const resources: I18nResources = {

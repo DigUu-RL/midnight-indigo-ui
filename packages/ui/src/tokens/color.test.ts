@@ -14,7 +14,7 @@ import {
 	relativeLuminance,
 	soft,
 	translucent,
-} from '#src/tokens/color.ts';
+} from '@/src/tokens/color';
 
 describe('hex colors', (): void => {
 	it('accepts #RGB and #RRGGBB only', (): void => {

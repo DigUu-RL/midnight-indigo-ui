@@ -5,8 +5,8 @@ import type { CSSObject } from '@mui/material/styles';
 import { createContext, use, useId } from 'react';
 import type { ComponentPropsWithRef, Context, ReactElement, ReactNode } from 'react';
 
-import { forwardAllBut, prettyWrapStyles } from '#src/shared/appearance.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
+import { forwardAllBut, prettyWrapStyles } from '@/src/shared/appearance';
+import { themeVariables } from '@/src/theme/theme-variables';
 
 const {
 	spacing,

@@ -2,7 +2,7 @@
 // the same page in the other language and remember the choice, and the page is translated after hydration too.
 import type { Locator, Page } from '@playwright/test';
 
-import { expect, test } from '#test/support/fixtures.ts';
+import { expect, test } from '@/test/support/fixtures';
 
 const languageLinks = (page: Page): Locator => page.getByRole('banner').getByRole('navigation');
 

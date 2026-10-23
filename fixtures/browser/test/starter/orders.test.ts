@@ -2,7 +2,7 @@
 // shows an empty state with a way out when nothing matches.
 import type { Locator, Page } from '@playwright/test';
 
-import { expect, test } from '#test/support/fixtures.ts';
+import { expect, test } from '@/test/support/fixtures';
 
 const table = (page: Page): Locator => page.getByRole('table', { name: 'All orders' });
 

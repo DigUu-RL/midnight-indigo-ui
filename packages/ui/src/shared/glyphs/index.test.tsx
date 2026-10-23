@@ -2,9 +2,9 @@ import { icons as tablerIcons } from '@iconify-json/tabler';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
-import { generationCommand, glyphSources, resolveGlyphs } from '#scripts/glyph-artifacts.ts';
-import { Glyph } from '#src/shared/glyphs/index.tsx';
-import { glyphData } from '#src/shared/glyphs/glyph-data.ts';
+import { generationCommand, glyphSources, resolveGlyphs } from '@/scripts/glyph-artifacts';
+import { Glyph } from '@/src/shared/glyphs/index';
+import { glyphData } from '@/src/shared/glyphs/glyph-data';
 
 describe('glyphs', (): void => {
 	it(`match the installed Tabler icons (regenerate with ${generationCommand})`, (): void => {

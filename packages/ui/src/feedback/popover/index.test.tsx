@@ -7,10 +7,10 @@ import type { ReactElement, RefObject } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { Mock } from 'vitest';
 
-import { expectNoAxeViolations, materialRulesOf } from '#test/component-harness.ts';
-import { Button } from '#src/buttons/button/index.tsx';
-import { Popover } from '#src/feedback/popover/index.tsx';
-import type { PopoverProps } from '#src/feedback/popover/index.tsx';
+import { expectNoAxeViolations, materialRulesOf } from '@/test/component-harness';
+import { Button } from '@/src/buttons/button/index';
+import { Popover } from '@/src/feedback/popover/index';
+import type { PopoverProps } from '@/src/feedback/popover/index';
 
 afterEach((): void => {
 	cleanup();

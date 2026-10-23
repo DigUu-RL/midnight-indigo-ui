@@ -4,9 +4,9 @@ export {
 	toErrorSummaryItems,
 	useCheckedController,
 	useFieldController,
-} from '#src/forms/react-hook-form/field-controller.ts';
+} from '@/src/forms/react-hook-form/field-controller';
 export type {
 	ControlledCheckedProps,
 	ControlledValueProps,
 	FieldControllerOptions,
-} from '#src/forms/react-hook-form/field-controller.ts';
+} from '@/src/forms/react-hook-form/field-controller';

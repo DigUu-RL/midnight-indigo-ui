@@ -4,11 +4,11 @@ import type { PopoverPosition } from '@mui/material/Popover';
 import { cloneElement, useId, useState } from 'react';
 import type { KeyboardEvent, MouseEvent, ReactElement } from 'react';
 
-import { assertLabel } from '#src/shared/appearance.ts';
-import type { TriggerProps } from '#src/feedback/anchored-overlay/index.ts';
-import { MenuSurface } from '#src/feedback/menu-surface/index.tsx';
-import type { MenuEntry } from '#src/feedback/menu-surface/index.tsx';
-import type { OverlayContainer } from '#src/feedback/portal/index.tsx';
+import { assertLabel } from '@/src/shared/appearance';
+import type { TriggerProps } from '@/src/feedback/anchored-overlay/index';
+import { MenuSurface } from '@/src/feedback/menu-surface/index';
+import type { MenuEntry } from '@/src/feedback/menu-surface/index';
+import type { OverlayContainer } from '@/src/feedback/portal/index';
 
 interface ContextTargetProps extends TriggerProps {
 	onContextMenu?: ((event: MouseEvent<HTMLElement>) => void) | undefined;

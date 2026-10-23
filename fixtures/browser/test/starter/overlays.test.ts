@@ -2,7 +2,7 @@
 // report their outcome in a toast.
 import type { Locator } from '@playwright/test';
 
-import { expect, test } from '#test/support/fixtures.ts';
+import { expect, test } from '@/test/support/fixtures';
 
 test('a dialog takes focus, closes with Escape and returns focus to its trigger', async ({
 	page,

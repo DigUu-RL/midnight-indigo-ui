@@ -4,9 +4,9 @@
 import type { Metadata } from 'next';
 import type { ReactElement, ReactNode } from 'react';
 
-import { localeTags } from '#src/i18n/locales.ts';
-import { messagesOf } from '#src/i18n/messages.ts';
-import { AppProviders } from '#src/shell/app-providers.tsx';
+import { localeTags } from '@/src/i18n/locales';
+import { messagesOf } from '@/src/i18n/messages';
+import { AppProviders } from '@/src/shell/app-providers';
 
 interface GalleryLayoutProps {
 	children: ReactNode;

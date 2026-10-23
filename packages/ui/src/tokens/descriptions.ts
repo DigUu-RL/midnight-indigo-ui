@@ -23,9 +23,9 @@ import type {
 	TextTokens,
 	TonalIconTokens,
 	TypographyRole,
-} from '#src/tokens/design-tokens.ts';
-import type { IntentTokens, SemanticIntent } from '#src/tokens/intents.ts';
-import type { SupportColor, SupportColorTokens } from '#src/tokens/support-colors.ts';
+} from '@/src/tokens/design-tokens';
+import type { IntentTokens, SemanticIntent } from '@/src/tokens/intents';
+import type { SupportColor, SupportColorTokens } from '@/src/tokens/support-colors';
 
 /** Steps of a scale with a fixed role; the other steps are tints and shades without one. */
 export interface ColorStepDescriptions {

@@ -5,13 +5,13 @@ import type { TFunction } from 'i18next';
 import type { Metadata } from 'next';
 import type { ReactElement, ReactNode } from 'react';
 
-import { localeSegments, localeTags } from '#src/i18n/locales.ts';
-import type { LocaleSegment } from '#src/i18n/locales.ts';
-import { messagesOf } from '#src/i18n/messages.ts';
-import { getTranslator, localeOf } from '#src/i18n/server.ts';
-import type { LocaleParams } from '#src/i18n/server.ts';
-import { AppProviders } from '#src/shell/app-providers.tsx';
-import { AppShell } from '#src/shell/app-shell.tsx';
+import { localeSegments, localeTags } from '@/src/i18n/locales';
+import type { LocaleSegment } from '@/src/i18n/locales';
+import { messagesOf } from '@/src/i18n/messages';
+import { getTranslator, localeOf } from '@/src/i18n/server';
+import type { LocaleParams } from '@/src/i18n/server';
+import { AppProviders } from '@/src/shell/app-providers';
+import { AppShell } from '@/src/shell/app-shell';
 
 interface LocaleLayoutProps extends LocaleParams {
 	children: ReactNode;

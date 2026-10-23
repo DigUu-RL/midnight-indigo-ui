@@ -1,9 +1,9 @@
 // Look shared by `Tabs` (buttons that switch panels) and `TabNavigation` (links between pages), which differ in role only.
 import type { CSSObject } from '@mui/material/styles';
 
-import { colorTransitionStyles } from '#src/shared/appearance.ts';
-import { hiddenScrollbarStyles } from '#src/theme/native-styles.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
+import { colorTransitionStyles } from '@/src/shared/appearance';
+import { hiddenScrollbarStyles } from '@/src/theme/native-styles';
+import { themeVariables } from '@/src/theme/theme-variables';
 
 const { spacing, typography, radius, text, border, state, focus, intent }: typeof themeVariables =
 	themeVariables;

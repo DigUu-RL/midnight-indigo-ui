@@ -9,12 +9,12 @@ import { Profiler } from 'react';
 import type { ReactElement } from 'react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 
-import { createInvoices } from '#test/large-datasets.ts';
-import type { Invoice } from '#test/large-datasets.ts';
-import { applyViewportStyles, resetViewport, setViewportWidth } from '#test/viewport.ts';
-import { DataTable } from '#src/data-display/data-table/index.tsx';
-import type { DataTableColumn, DataTableProps } from '#src/data-display/data-table/index.tsx';
-import type { SortValue } from '#src/data-display/row-processing/index.ts';
+import { createInvoices } from '@/test/large-datasets';
+import type { Invoice } from '@/test/large-datasets';
+import { applyViewportStyles, resetViewport, setViewportWidth } from '@/test/viewport';
+import { DataTable } from '@/src/data-display/data-table/index';
+import type { DataTableColumn, DataTableProps } from '@/src/data-display/data-table/index';
+import type { SortValue } from '@/src/data-display/row-processing/index';
 
 interface WorkCounters {
 	cells: number;

@@ -7,15 +7,15 @@ import { useTranslation } from 'react-i18next';
 import type { ReactElement, ReactNode } from 'react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { DataTable } from '#src/data-display/data-table/index.tsx';
-import { SkeletonText } from '#src/data-display/skeleton-text/index.tsx';
-import { Dialog } from '#src/feedback/dialog/index.tsx';
-import { Pagination } from '#src/navigation/pagination/index.tsx';
-import { SidebarMenuButton } from '#src/navigation/sidebar/index.tsx';
-import { I18nProvider, useFormatters, useI18n } from '#src/i18n/i18n-provider/index.tsx';
-import type { I18nProviderProps, I18nValue } from '#src/i18n/i18n-provider/index.tsx';
-import { libraryNamespace } from '#src/i18n/library-messages.ts';
-import type { I18nResources } from '#src/i18n/library-messages.ts';
+import { DataTable } from '@/src/data-display/data-table/index';
+import { SkeletonText } from '@/src/data-display/skeleton-text/index';
+import { Dialog } from '@/src/feedback/dialog/index';
+import { Pagination } from '@/src/navigation/pagination/index';
+import { SidebarMenuButton } from '@/src/navigation/sidebar/index';
+import { I18nProvider, useFormatters, useI18n } from '@/src/i18n/i18n-provider/index';
+import type { I18nProviderProps, I18nValue } from '@/src/i18n/i18n-provider/index';
+import { libraryNamespace } from '@/src/i18n/library-messages';
+import type { I18nResources } from '@/src/i18n/library-messages';
 
 interface Order {
 	id: string;

@@ -2,8 +2,8 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { expectNoAxeViolations } from '#test/component-harness.ts';
-import { SkeletonText } from '#src/data-display/skeleton-text/index.tsx';
+import { expectNoAxeViolations } from '@/test/component-harness';
+import { SkeletonText } from '@/src/data-display/skeleton-text/index';
 
 afterEach((): void => {
 	cleanup();

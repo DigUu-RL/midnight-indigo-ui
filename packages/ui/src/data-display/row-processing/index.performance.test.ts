@@ -4,17 +4,17 @@
 // by a server written in TypeScript.
 import { describe, expect, it } from 'vitest';
 
-import { createInvoices } from '#test/large-datasets.ts';
-import type { Invoice } from '#test/large-datasets.ts';
-import { budget, fastestRun } from '#test/performance.ts';
+import { createInvoices } from '@/test/large-datasets';
+import type { Invoice } from '@/test/large-datasets';
+import { budget, fastestRun } from '@/test/performance';
 import {
 	createRowCollator,
 	createSearchIndex,
 	filterRows,
 	pageRows,
 	sortRows,
-} from '#src/data-display/row-processing/index.ts';
-import type { SortValue } from '#src/data-display/row-processing/index.ts';
+} from '@/src/data-display/row-processing/index';
+import type { SortValue } from '@/src/data-display/row-processing/index';
 
 const collator: Intl.Collator = createRowCollator('pt-BR');
 const byCustomer = (invoice: Invoice): SortValue => invoice.customer;

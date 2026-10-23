@@ -3,8 +3,8 @@ import stylistic from '@stylistic/eslint-plugin';
 import { defineConfig } from 'eslint/config';
 import typescriptEslint from 'typescript-eslint';
 
-import { jsxChildrenSpacing } from '#eslint-rules/jsx-children-spacing.ts';
-import { requireBracesForMultilineArrowBody } from '#eslint-rules/require-braces-for-multiline-arrow-body.ts';
+import { jsxChildrenSpacing } from '@/eslint-rules/jsx-children-spacing';
+import { requireBracesForMultilineArrowBody } from '@/eslint-rules/require-braces-for-multiline-arrow-body';
 
 // Statements spanning more than one line are always set apart from their neighbors by blank lines.
 const multilineStatements: string[] = [
@@ -95,16 +95,22 @@ export default defineConfig(
 				{ blankLine: 'always', prev: multilineStatements, next: '*' },
 			],
 
-			// Imports: never relative paths, which break when files move or are renamed. Each workspace maps its folders
-			// in the `imports` of its package.json (`#src/...`); another workspace is imported by its package name.
+			// Imports: never relative paths, which break when files move or are renamed. `@/` is the root of the
+			// workspace (`paths` in its tsconfig; tools/node-aliases for Node) and code files go without an extension;
+			// another workspace is imported by its package name.
 			'no-restricted-imports': [
 				'error',
 				{
 					patterns: [
 						{
-							group: ['./*', '../*', '.', '..'],
+							group: ['./*', '../*', '.', '..', '#*'],
 							message:
-								'Import through the subpath imports of the package (`#src/...`, `#test/...`), or by package name.',
+								'Import through the `@/` alias of the workspace (`@/src/...`, `@/test/...`), or by package name.',
+						},
+						{
+							regex: String.raw`^@/.*\.(ts|tsx)$`,
+							message:
+								'Leave the extension out of imports of code files (`@/src/shared/glyphs/index`).',
 						},
 					],
 				},

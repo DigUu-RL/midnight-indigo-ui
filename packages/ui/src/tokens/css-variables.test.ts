@@ -7,8 +7,8 @@ import {
 	cssVariableReference,
 	listTokenEntries,
 	toCssVariables,
-} from '#src/tokens/css-variables.ts';
-import { tokens } from '#src/tokens/design-tokens.ts';
+} from '@/src/tokens/css-variables';
+import { tokens } from '@/src/tokens/design-tokens';
 
 describe('CSS variable names', (): void => {
 	it('prefix and kebab-case the token path', (): void => {

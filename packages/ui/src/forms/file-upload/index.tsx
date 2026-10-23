@@ -13,19 +13,19 @@ import type {
 	RefObject,
 } from 'react';
 
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { IconButton } from '#src/buttons/icon-button/index.tsx';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { IconButton } from '@/src/buttons/icon-button/index';
 import {
 	colorTransitionStyles,
 	forwardAllBut,
 	numericTextStyles,
 	visuallyHiddenStyles,
-} from '#src/shared/appearance.ts';
-import { Glyph } from '#src/shared/glyphs/index.tsx';
-import { mergeReferences } from '#src/shared/merge-references.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { FormField } from '#src/forms/form-field/index.tsx';
-import type { FieldProps, FormFieldControlProps } from '#src/forms/form-field/index.tsx';
+} from '@/src/shared/appearance';
+import { Glyph } from '@/src/shared/glyphs/index';
+import { mergeReferences } from '@/src/shared/merge-references';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { FormField } from '@/src/forms/form-field/index';
+import type { FieldProps, FormFieldControlProps } from '@/src/forms/form-field/index';
 
 const {
 	spacing,

@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import { useId } from 'react';
 import type { ComponentPropsWithRef, ReactElement, ReactNode } from 'react';
 
-import { themeVariables } from '#src/theme/theme-variables.ts';
+import { themeVariables } from '@/src/theme/theme-variables';
 import {
 	FieldDescription,
 	FieldError,
@@ -13,7 +13,7 @@ import {
 	labelStyles,
 	RequiredMark,
 	useFieldMessages,
-} from '#src/forms/form-field/index.tsx';
+} from '@/src/forms/form-field/index';
 
 const { spacing }: typeof themeVariables = themeVariables;
 

@@ -2,8 +2,8 @@
 // Whether the viewport is at least as wide as a breakpoint, for behavior that CSS alone cannot switch.
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-import { breakpointMediaQuery } from '#src/tokens/index.ts';
-import type { Breakpoint } from '#src/tokens/index.ts';
+import { breakpointMediaQuery } from '@/src/tokens/index';
+import type { Breakpoint } from '@/src/tokens/index';
 
 /**
  * `true` from `breakpoint` up. It is `false` on the server and during hydration, then follows the viewport, so

@@ -2,8 +2,8 @@
 // with contrast, which jsdom cannot do (it has no canvas and does not lay out).
 import type { Locator, Page } from '@playwright/test';
 
-import { expectNoAxeViolations } from '#test/support/accessibility.ts';
-import { expect, test } from '#test/support/fixtures.ts';
+import { expectNoAxeViolations } from '@/test/support/accessibility';
+import { expect, test } from '@/test/support/fixtures';
 
 const openCharts = async (page: Page, pointCount: number = 60): Promise<Locator> => {
 	await page.goto(`/?scenario=chart&size=${String(pointCount)}`);

@@ -12,29 +12,29 @@ import {
 	Tooltip,
 } from '@midnight-indigo/ui/feedback';
 
-import type { SubpathBindings } from '#src/explorer/bindings.ts';
-import { DockingBayNotice } from '#src/explorer/examples/alert/maintenance.tsx';
-import { FlightPlanSaved } from '#src/explorer/examples/alert/saved.tsx';
-import { DeleteLogEntry } from '#src/explorer/examples/confirm-dialog/destructive.tsx';
-import { CollectBounty } from '#src/explorer/examples/confirm-dialog/pending.tsx';
-import { MissionLogs } from '#src/explorer/examples/context-menu/logs.tsx';
-import { BountyPoster } from '#src/explorer/examples/context-menu/visible-actions.tsx';
-import { CrewManifest } from '#src/explorer/examples/dialog/details.tsx';
-import { RenameShip } from '#src/explorer/examples/dialog/form.tsx';
-import { CrewDetails } from '#src/explorer/examples/drawer/details.tsx';
-import { ShipyardFilters } from '#src/explorer/examples/drawer/filters.tsx';
-import { CrewActions } from '#src/explorer/examples/menu/actions.tsx';
-import { LogbookEditMenu } from '#src/explorer/examples/menu/shortcuts.tsx';
-import { KesselRunRecord } from '#src/explorer/examples/popover/details.tsx';
-import { BountyFilters } from '#src/explorer/examples/popover/filters.tsx';
-import { SignalScan } from '#src/explorer/examples/progress-bar/indeterminate.tsx';
-import { BountyReportUpload } from '#src/explorer/examples/progress-bar/upload.tsx';
-import { CrewRemoval } from '#src/explorer/examples/toast-provider/undo.tsx';
-import { LogbookTransmission } from '#src/explorer/examples/toast-provider/updates.tsx';
-import { PlayerShortcuts } from '#src/explorer/examples/tooltip/shortcuts.tsx';
-import { ShipNames } from '#src/explorer/examples/tooltip/truncated.tsx';
-import { FeedbackPlayground } from '#src/explorer/playgrounds/feedback.tsx';
-import { feedbackSamples } from '#src/explorer/samples/feedback.tsx';
+import type { SubpathBindings } from '@/src/explorer/bindings';
+import { DockingBayNotice } from '@/src/explorer/examples/alert/maintenance';
+import { FlightPlanSaved } from '@/src/explorer/examples/alert/saved';
+import { DeleteLogEntry } from '@/src/explorer/examples/confirm-dialog/destructive';
+import { CollectBounty } from '@/src/explorer/examples/confirm-dialog/pending';
+import { MissionLogs } from '@/src/explorer/examples/context-menu/logs';
+import { BountyPoster } from '@/src/explorer/examples/context-menu/visible-actions';
+import { CrewManifest } from '@/src/explorer/examples/dialog/details';
+import { RenameShip } from '@/src/explorer/examples/dialog/form';
+import { CrewDetails } from '@/src/explorer/examples/drawer/details';
+import { ShipyardFilters } from '@/src/explorer/examples/drawer/filters';
+import { CrewActions } from '@/src/explorer/examples/menu/actions';
+import { LogbookEditMenu } from '@/src/explorer/examples/menu/shortcuts';
+import { KesselRunRecord } from '@/src/explorer/examples/popover/details';
+import { BountyFilters } from '@/src/explorer/examples/popover/filters';
+import { SignalScan } from '@/src/explorer/examples/progress-bar/indeterminate';
+import { BountyReportUpload } from '@/src/explorer/examples/progress-bar/upload';
+import { CrewRemoval } from '@/src/explorer/examples/toast-provider/undo';
+import { LogbookTransmission } from '@/src/explorer/examples/toast-provider/updates';
+import { PlayerShortcuts } from '@/src/explorer/examples/tooltip/shortcuts';
+import { ShipNames } from '@/src/explorer/examples/tooltip/truncated';
+import { FeedbackPlayground } from '@/src/explorer/playgrounds/feedback';
+import { feedbackSamples } from '@/src/explorer/samples/feedback';
 
 export const feedbackBindings: SubpathBindings<'feedback'> = {
 	playground: FeedbackPlayground,

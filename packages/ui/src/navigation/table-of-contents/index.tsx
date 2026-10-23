@@ -5,9 +5,9 @@ import type { CSSObject } from '@mui/material/styles';
 import { useEffect, useId, useRef, useState } from 'react';
 import type { ComponentPropsWithRef, ReactElement, ReactNode, RefObject } from 'react';
 
-import { colorTransitionStyles, focusRingStyles, forwardAllBut } from '#src/shared/appearance.ts';
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { themeVariables } from '#src/theme/theme-variables.ts';
+import { colorTransitionStyles, focusRingStyles, forwardAllBut } from '@/src/shared/appearance';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { themeVariables } from '@/src/theme/theme-variables';
 
 const { spacing, typography, radius, text, state, intent }: typeof themeVariables = themeVariables;
 

@@ -4,7 +4,7 @@ import type { ComboboxOption, SelectOption } from '@midnight-indigo/ui/forms';
 import { useMemo } from 'react';
 import type { ReactElement } from 'react';
 
-import { createLabels } from '#src/datasets.ts';
+import { createLabels } from '@/src/datasets';
 
 interface ChoiceScenarioProps {
 	optionCount: number;

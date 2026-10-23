@@ -6,9 +6,9 @@ import type { i18n, TFunction } from 'i18next';
 import { notFound } from 'next/navigation';
 import { cache } from 'react';
 
-import { currency, isLocaleSegment, localeTags, timeZone } from '#src/i18n/locales.ts';
-import type { LocaleSegment } from '#src/i18n/locales.ts';
-import { messagesOf } from '#src/i18n/messages.ts';
+import { currency, isLocaleSegment, localeTags, timeZone } from '@/src/i18n/locales';
+import type { LocaleSegment } from '@/src/i18n/locales';
+import { messagesOf } from '@/src/i18n/messages';
 
 /** `params` of every page and layout under `app/[locale]`. */
 export interface LocaleParams {

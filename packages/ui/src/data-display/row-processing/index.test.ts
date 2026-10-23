@@ -7,8 +7,8 @@ import {
 	pageCountOf,
 	pageRows,
 	sortRows,
-} from '#src/data-display/row-processing/index.ts';
-import type { SortValue } from '#src/data-display/row-processing/index.ts';
+} from '@/src/data-display/row-processing/index';
+import type { SortValue } from '@/src/data-display/row-processing/index';
 
 interface Order {
 	id: number;

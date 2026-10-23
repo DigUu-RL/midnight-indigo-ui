@@ -1,8 +1,8 @@
 // Props that change with the viewport width: one value, or one value per breakpoint (mobile first).
 import type { CSSObject } from '@mui/material/styles';
 
-import { breakpointMediaQuery, breakpointNames } from '#src/tokens/index.ts';
-import type { Breakpoint } from '#src/tokens/index.ts';
+import { breakpointMediaQuery, breakpointNames } from '@/src/tokens/index';
+import type { Breakpoint } from '@/src/tokens/index';
 
 /**
  * A value for every width, or values from some breakpoints up: `{ compact: 'column', expanded: 'row' }` is a column

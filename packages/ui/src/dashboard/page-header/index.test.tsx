@@ -2,8 +2,8 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { expectNoAxeViolations } from '#test/component-harness.ts';
-import { PageHeader } from '#src/dashboard/page-header/index.tsx';
+import { expectNoAxeViolations } from '@/test/component-harness';
+import { PageHeader } from '@/src/dashboard/page-header/index';
 
 afterEach(cleanup);
 

@@ -9,11 +9,11 @@ import type {
 	ReactNode,
 } from 'react';
 
-import type { ControlSize } from '#src/shared/appearance.ts';
-import { FormField } from '#src/forms/form-field/index.tsx';
-import type { FieldProps, FormFieldControlProps } from '#src/forms/form-field/index.tsx';
-import { adornmentIds, InputFrame, TextInput } from '#src/forms/input-frame/index.tsx';
-import type { AdornmentProps } from '#src/forms/input-frame/index.tsx';
+import type { ControlSize } from '@/src/shared/appearance';
+import { FormField } from '@/src/forms/form-field/index';
+import type { FieldProps, FormFieldControlProps } from '@/src/forms/form-field/index';
+import { adornmentIds, InputFrame, TextInput } from '@/src/forms/input-frame/index';
+import type { AdornmentProps } from '@/src/forms/input-frame/index';
 
 /**
  * Attributes of `<input>` that reach the element, `ref` included. `className` and `style` go to the root of the

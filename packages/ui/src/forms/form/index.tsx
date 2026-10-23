@@ -12,16 +12,16 @@ import type {
 	RefObject,
 } from 'react';
 
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { Glyph } from '#src/shared/glyphs/index.tsx';
-import { mergeReferences } from '#src/shared/merge-references.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { constraintFailure } from '#src/forms/constraint-failure.ts';
-import type { ConstraintFailure } from '#src/forms/constraint-failure.ts';
-import { ErrorSummary, findControlByName } from '#src/forms/error-summary/index.tsx';
-import type { ErrorSummaryItem, ErrorSummaryLabels } from '#src/forms/error-summary/index.tsx';
-import { FormContext } from '#src/forms/form-context.ts';
-import type { FormErrors, FormStatus, FormSubmission } from '#src/forms/form-context.ts';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { Glyph } from '@/src/shared/glyphs/index';
+import { mergeReferences } from '@/src/shared/merge-references';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { constraintFailure } from '@/src/forms/constraint-failure';
+import type { ConstraintFailure } from '@/src/forms/constraint-failure';
+import { ErrorSummary, findControlByName } from '@/src/forms/error-summary/index';
+import type { ErrorSummaryItem, ErrorSummaryLabels } from '@/src/forms/error-summary/index';
+import { FormContext } from '@/src/forms/form-context';
+import type { FormErrors, FormStatus, FormSubmission } from '@/src/forms/form-context';
 
 const { spacing, typography, intent }: typeof themeVariables = themeVariables;
 

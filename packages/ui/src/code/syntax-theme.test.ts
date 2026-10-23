@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
-import { syntaxColors, syntaxRules } from '#src/code/syntax-theme.ts';
-import type { SyntaxRule } from '#src/code/syntax-theme.ts';
-import { auditContrast, cssVariableReference, tokens } from '#src/tokens/index.ts';
-import type { ContrastResult } from '#src/tokens/index.ts';
+import { syntaxColors, syntaxRules } from '@/src/code/syntax-theme';
+import type { SyntaxRule } from '@/src/code/syntax-theme';
+import { auditContrast, cssVariableReference, tokens } from '@/src/tokens/index';
+import type { ContrastResult } from '@/src/tokens/index';
 
 const codeBackgrounds: readonly string[] = ['surface.field', 'state.selected'];
 

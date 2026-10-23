@@ -1,6 +1,6 @@
 // Chart definitions: small, typed configurations that describe what to draw, independent of the chart engine. Each
 // factory validates its configuration, fills the defaults and returns a frozen definition for `Chart`.
-import { assertLabel } from '#src/shared/appearance.ts';
+import { assertLabel } from '@/src/shared/appearance';
 
 /** `canvas` (default) draws large datasets faster; `svg` keeps the marks sharp at any zoom and uses less memory. */
 export type ChartRenderer = 'canvas' | 'svg';

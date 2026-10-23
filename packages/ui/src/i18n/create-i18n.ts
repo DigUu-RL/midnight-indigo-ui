@@ -3,10 +3,10 @@
 import i18next from 'i18next';
 import type { BackendModule, i18n as I18nInstance, InitOptions, ReadCallback } from 'i18next';
 
-import { createFormatters } from '#src/i18n/formatters.ts';
-import type { Formatters } from '#src/i18n/formatters.ts';
-import { libraryNamespace, libraryResources, mergeResources } from '#src/i18n/library-messages.ts';
-import type { I18nResources, Messages } from '#src/i18n/library-messages.ts';
+import { createFormatters } from '@/src/i18n/formatters';
+import type { Formatters } from '@/src/i18n/formatters';
+import { libraryNamespace, libraryResources, mergeResources } from '@/src/i18n/library-messages';
+import type { I18nResources, Messages } from '@/src/i18n/library-messages';
 
 export interface I18nOptions {
 	/** Locale to render, e.g. `'pt-BR'`. Given by the application (route, cookie, user setting), never detected. */

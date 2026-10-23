@@ -4,9 +4,9 @@ import { userEvent } from '@testing-library/user-event';
 import type { UserEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { expectNoAxeViolations } from '#test/component-harness.ts';
-import { Select } from '#src/forms/select/index.tsx';
-import type { SelectOption, SelectOptionGroup } from '#src/forms/select/index.tsx';
+import { expectNoAxeViolations } from '@/test/component-harness';
+import { Select } from '@/src/forms/select/index';
+import type { SelectOption, SelectOptionGroup } from '@/src/forms/select/index';
 
 const states: readonly (SelectOption | SelectOptionGroup)[] = [
 	{

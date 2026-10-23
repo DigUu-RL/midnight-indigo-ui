@@ -6,12 +6,12 @@ import {
 	createGaugeChart,
 	createLineChart,
 	createPieChart,
-} from '#src/charts/chart-factories/index.ts';
-import type { ChartDefinition } from '#src/charts/chart-factories/index.ts';
-import { createChartModel } from '#src/charts/chart-model/index.ts';
-import { toEngineOption } from '#src/charts/chart-option/index.ts';
-import type { ChartAppearance, ChartViewState } from '#src/charts/chart-option/index.ts';
-import { tokens } from '#src/tokens/index.ts';
+} from '@/src/charts/chart-factories/index';
+import type { ChartDefinition } from '@/src/charts/chart-factories/index';
+import { createChartModel } from '@/src/charts/chart-model/index';
+import { toEngineOption } from '@/src/charts/chart-option/index';
+import type { ChartAppearance, ChartViewState } from '@/src/charts/chart-option/index';
+import { tokens } from '@/src/tokens/index';
 
 interface Visit {
 	day: string;

@@ -6,17 +6,17 @@ import type { Context, ReactElement, ReactNode } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import type { i18n as I18nInstance, TFunction } from 'i18next';
 
-import { ComponentLabelsProvider } from '#src/shared/component-labels/index.tsx';
-import type { ComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { createComponentLabels } from '#src/i18n/component-labels.ts';
-import { initializeI18n } from '#src/i18n/create-i18n.ts';
-import type { I18nOptions } from '#src/i18n/create-i18n.ts';
-import { createFormatters } from '#src/i18n/formatters.ts';
-import type { Formatters } from '#src/i18n/formatters.ts';
-import { libraryNamespace, mergeResources } from '#src/i18n/library-messages.ts';
-import type { I18nResources, Messages } from '#src/i18n/library-messages.ts';
-import { createRichTranslator } from '#src/i18n/rich-text.ts';
-import type { MalformedMessageHandler, RichTranslator } from '#src/i18n/rich-text.ts';
+import { ComponentLabelsProvider } from '@/src/shared/component-labels/index';
+import type { ComponentLabels } from '@/src/shared/component-labels/index';
+import { createComponentLabels } from '@/src/i18n/component-labels';
+import { initializeI18n } from '@/src/i18n/create-i18n';
+import type { I18nOptions } from '@/src/i18n/create-i18n';
+import { createFormatters } from '@/src/i18n/formatters';
+import type { Formatters } from '@/src/i18n/formatters';
+import { libraryNamespace, mergeResources } from '@/src/i18n/library-messages';
+import type { I18nResources, Messages } from '@/src/i18n/library-messages';
+import { createRichTranslator } from '@/src/i18n/rich-text';
+import type { MalformedMessageHandler, RichTranslator } from '@/src/i18n/rich-text';
 
 export interface I18nProviderProps extends I18nOptions {
 	/** Called once per message and problem of a malformed rich message. Defaults to `console.warn` outside production. */

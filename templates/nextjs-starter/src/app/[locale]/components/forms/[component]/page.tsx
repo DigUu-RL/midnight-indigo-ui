@@ -1,8 +1,8 @@
 // The pages of the components of `@midnight-indigo/ui/forms`, served at `/[locale]/components/<slug>` by the proxy:
 // see `explorer/component-page.tsx`.
-import { formsBindings } from '#src/explorer/bindings/forms.tsx';
-import { createComponentRoute } from '#src/explorer/component-page.tsx';
-import type { ComponentRoute } from '#src/explorer/component-page.tsx';
+import { formsBindings } from '@/src/explorer/bindings/forms';
+import { createComponentRoute } from '@/src/explorer/component-page';
+import type { ComponentRoute } from '@/src/explorer/component-page';
 
 const route: ComponentRoute = createComponentRoute('forms', formsBindings);
 

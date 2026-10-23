@@ -5,9 +5,9 @@ import type { UserEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { Mock } from 'vitest';
 
-import { expectNoAxeViolations } from '#test/component-harness.ts';
-import { ContextMenu } from '#src/feedback/context-menu/index.tsx';
-import type { ContextMenuProps } from '#src/feedback/context-menu/index.tsx';
+import { expectNoAxeViolations } from '@/test/component-harness';
+import { ContextMenu } from '@/src/feedback/context-menu/index';
+import type { ContextMenuProps } from '@/src/feedback/context-menu/index';
 
 afterEach((): void => {
 	cleanup();

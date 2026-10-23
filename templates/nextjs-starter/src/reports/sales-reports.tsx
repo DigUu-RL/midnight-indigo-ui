@@ -31,13 +31,13 @@ import {
 	monthlyRevenueGoal,
 	statusShare,
 	storeRevenue,
-} from '#src/reports/report-data.ts';
+} from '@/src/reports/report-data';
 import type {
 	MonthlyOrders,
 	MonthlyPerformance,
 	StatusShare,
 	StoreRevenue,
-} from '#src/reports/report-data.ts';
+} from '@/src/reports/report-data';
 
 interface Labelled {
 	label: string;

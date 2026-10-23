@@ -7,8 +7,8 @@ import type { TooltipProps as MuiTooltipProps } from '@mui/material/Tooltip';
 import { useEffect, useRef } from 'react';
 import type { ReactElement, RefObject } from 'react';
 
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import type { OverlayContainer } from '#src/feedback/portal/index.tsx';
+import { themeVariables } from '@/src/theme/theme-variables';
+import type { OverlayContainer } from '@/src/feedback/portal/index';
 
 const {
 	spacing,

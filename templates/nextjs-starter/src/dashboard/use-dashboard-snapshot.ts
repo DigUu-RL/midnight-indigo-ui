@@ -3,8 +3,8 @@
 // still running is aborted, so an old answer never replaces a newer one.
 import { useEffect, useState } from 'react';
 
-import { fetchDashboard } from '#src/dashboard/mock-api.ts';
-import type { DashboardQuery, DashboardSnapshot, DemoScenario } from '#src/dashboard/mock-api.ts';
+import { fetchDashboard } from '@/src/dashboard/mock-api';
+import type { DashboardQuery, DashboardSnapshot, DemoScenario } from '@/src/dashboard/mock-api';
 
 export type RequestStatus = 'loading' | 'ready' | 'error';
 

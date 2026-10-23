@@ -13,9 +13,9 @@ import type { I18nValue } from '@midnight-indigo/ui/i18n';
 import { useMemo, useState } from 'react';
 import type { ChangeEvent, ReactElement } from 'react';
 
-import { orders, orderStatuses, regions } from '#src/dashboard/demo-data.ts';
-import type { Order, OrderStatus, Region } from '#src/dashboard/demo-data.ts';
-import { useOrderColumns } from '#src/dashboard/use-order-columns.ts';
+import { orders, orderStatuses, regions } from '@/src/dashboard/demo-data';
+import type { Order, OrderStatus, Region } from '@/src/dashboard/demo-data';
+import { useOrderColumns } from '@/src/dashboard/use-order-columns';
 
 type StatusFilter = OrderStatus | 'all';
 type RegionFilter = Region | 'all';

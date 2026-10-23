@@ -3,8 +3,8 @@
 // included). The 404 page too.
 import type { Locator, Page, Response as PageResponse } from '@playwright/test';
 
-import { expectNoAxeViolations } from '#test/support/accessibility.ts';
-import { expect, test } from '#test/support/fixtures.ts';
+import { expectNoAxeViolations } from '@/test/support/accessibility';
+import { expect, test } from '@/test/support/fixtures';
 
 interface ApplicationPage {
 	path: string;

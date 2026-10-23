@@ -3,7 +3,7 @@
 // hide one in the shell. Update the baselines on purpose only (see starter.test.ts).
 import type { Locator, Page } from '@playwright/test';
 
-import { expect, test } from '#test/support/fixtures.ts';
+import { expect, test } from '@/test/support/fixtures';
 
 const openDashboard = async (page: Page, path: string = '/en-us'): Promise<void> => {
 	await page.goto(path);

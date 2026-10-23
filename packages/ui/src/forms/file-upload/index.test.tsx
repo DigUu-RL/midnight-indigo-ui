@@ -4,8 +4,8 @@ import { userEvent } from '@testing-library/user-event';
 import type { UserEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { FileUpload, matchesAccept } from '#src/forms/file-upload/index.tsx';
-import { expectNoAxeViolations } from '#test/component-harness.ts';
+import { FileUpload, matchesAccept } from '@/src/forms/file-upload/index';
+import { expectNoAxeViolations } from '@/test/component-harness';
 
 const fileOf = (name: string, type: string, size: number = 10): File => {
 	return new File(['x'.repeat(size)], name, { type });

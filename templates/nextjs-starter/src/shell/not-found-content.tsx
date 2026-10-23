@@ -7,7 +7,7 @@ import type { I18nValue } from '@midnight-indigo/ui/i18n';
 import { Link } from '@midnight-indigo/ui/navigation';
 import type { ReactElement } from 'react';
 
-import type { LocaleSegment } from '#src/i18n/locales.ts';
+import type { LocaleSegment } from '@/src/i18n/locales';
 
 interface NotFoundContentProps {
 	locale: LocaleSegment;

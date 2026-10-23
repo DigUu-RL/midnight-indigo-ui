@@ -5,20 +5,20 @@
 // its own, so that the components, which share `native-styles.ts`, never load the theme factory with it.
 import type { CSSObject } from '@mui/material/styles';
 
-import type { IconifyIconData } from '#src/icons/icon-data/index.ts';
-import { glyphData } from '#src/shared/glyphs/glyph-data.ts';
-import type { GlyphName } from '#src/shared/glyphs/glyph-data.ts';
-import { stickyTopbarAttribute, topbarHeight } from '#src/shared/layout-metrics.ts';
-import { defaultUiTheme } from '#src/theme/create-ui-theme.ts';
-import type { UiTheme } from '#src/theme/create-ui-theme.ts';
+import type { IconifyIconData } from '@/src/icons/icon-data/index';
+import { glyphData } from '@/src/shared/glyphs/glyph-data';
+import type { GlyphName } from '@/src/shared/glyphs/glyph-data';
+import { stickyTopbarAttribute, topbarHeight } from '@/src/shared/layout-metrics';
+import { defaultUiTheme } from '@/src/theme/create-ui-theme';
+import type { UiTheme } from '@/src/theme/create-ui-theme';
 import {
 	autofillStyles,
 	createScrollbarStyles,
 	forcedColorsMediaQuery,
 	scrollbarStyles,
-} from '#src/theme/native-styles.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import type { DesignTokens } from '#src/tokens/index.ts';
+} from '@/src/theme/native-styles';
+import { themeVariables } from '@/src/theme/theme-variables';
+import type { DesignTokens } from '@/src/tokens/index';
 
 const {
 	spacing,

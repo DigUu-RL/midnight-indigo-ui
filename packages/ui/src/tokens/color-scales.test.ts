@@ -1,15 +1,15 @@
 import { describe, expect, it } from 'vitest';
 
-import { relativeLuminance } from '#src/tokens/color.ts';
-import { toCssVariables } from '#src/tokens/css-variables.ts';
+import { relativeLuminance } from '@/src/tokens/color';
+import { toCssVariables } from '@/src/tokens/css-variables';
 import {
 	colorScaleSteps,
 	createDesignTokens,
 	midnightScaleSteps,
 	tokens,
-} from '#src/tokens/design-tokens.ts';
-import type { ColorTokens, DesignTokens } from '#src/tokens/design-tokens.ts';
-import { defaultIntentSources } from '#src/tokens/intents.ts';
+} from '@/src/tokens/design-tokens';
+import type { ColorTokens, DesignTokens } from '@/src/tokens/design-tokens';
+import { defaultIntentSources } from '@/src/tokens/intents';
 
 // Values of the v2 standard. Intentionally duplicated: changing an identity color must fail here.
 const officialPink: string = '#FF6AC1';

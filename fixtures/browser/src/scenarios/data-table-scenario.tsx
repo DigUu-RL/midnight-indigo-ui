@@ -6,8 +6,8 @@ import { SearchField } from '@midnight-indigo/ui/forms';
 import { useMemo, useState } from 'react';
 import type { ChangeEvent, ReactElement } from 'react';
 
-import { createInvoices } from '#src/datasets.ts';
-import type { Invoice } from '#src/datasets.ts';
+import { createInvoices } from '@/src/datasets';
+import type { Invoice } from '@/src/datasets';
 
 interface DataTableScenarioProps {
 	rowCount: number;

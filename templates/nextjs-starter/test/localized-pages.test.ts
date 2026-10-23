@@ -4,10 +4,10 @@
 import assert from 'node:assert/strict';
 import { after, before, describe, test } from 'node:test';
 
-import { headOf, readStreamedPage, startStarter } from '#test/support/starter-server.ts';
-import type { StarterServer, StreamedPage } from '#test/support/starter-server.ts';
-import englishMessages from '#src/messages/en-us.json' with { type: 'json' };
-import brazilianPortugueseMessages from '#src/messages/pt-br.json' with { type: 'json' };
+import { headOf, readStreamedPage, startStarter } from '@/test/support/starter-server';
+import type { StarterServer, StreamedPage } from '@/test/support/starter-server';
+import englishMessages from '@/src/messages/en-us.json' with { type: 'json' };
+import brazilianPortugueseMessages from '@/src/messages/pt-br.json' with { type: 'json' };
 
 interface Messages {
 	readonly [key: string]: string | Messages;

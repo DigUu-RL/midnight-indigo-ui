@@ -1,7 +1,7 @@
 import type { CSSObject } from '@mui/material/styles';
 import { describe, expect, it } from 'vitest';
 
-import { responsiveStyles } from '#src/shared/responsive.ts';
+import { responsiveStyles } from '@/src/shared/responsive';
 
 const toWidth = (width: string): CSSObject => ({ width });
 

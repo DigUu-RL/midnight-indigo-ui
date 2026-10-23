@@ -5,9 +5,9 @@ import type { TFunction } from 'i18next';
 import type { Metadata } from 'next';
 import type { ReactElement } from 'react';
 
-import { getTranslator, localeOf } from '#src/i18n/server.ts';
-import type { LocaleParams } from '#src/i18n/server.ts';
-import { SalesReports } from '#src/reports/sales-reports.tsx';
+import { getTranslator, localeOf } from '@/src/i18n/server';
+import type { LocaleParams } from '@/src/i18n/server';
+import { SalesReports } from '@/src/reports/sales-reports';
 
 export const generateMetadata = async (props: LocaleParams): Promise<Metadata> => {
 	const translate: TFunction = await getTranslator(await localeOf(props));

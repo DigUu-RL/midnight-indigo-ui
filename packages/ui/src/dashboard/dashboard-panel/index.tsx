@@ -4,9 +4,9 @@
 import { styled } from '@mui/material/styles';
 import type { ComponentPropsWithRef, ReactElement, ReactNode } from 'react';
 
-import { Card, CardContent, CardHeader } from '#src/data-display/card/index.tsx';
-import type { CardHeadingLevel } from '#src/data-display/card/index.tsx';
-import { themeVariables } from '#src/theme/theme-variables.ts';
+import { Card, CardContent, CardHeader } from '@/src/data-display/card/index';
+import type { CardHeadingLevel } from '@/src/data-display/card/index';
+import { themeVariables } from '@/src/theme/theme-variables';
 
 const { spacing, border }: typeof themeVariables = themeVariables;
 

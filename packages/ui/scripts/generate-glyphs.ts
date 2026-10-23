@@ -8,7 +8,7 @@ import { icons as tablerIcons } from '@iconify-json/tabler';
 import { format, resolveConfig } from 'prettier';
 import type { Options } from 'prettier';
 
-import { glyphSources, renderGlyphModule } from '#scripts/glyph-artifacts.ts';
+import { glyphSources, renderGlyphModule } from '@/scripts/glyph-artifacts';
 
 const modulePath: string = fileURLToPath(
 	new URL('../src/shared/glyphs/glyph-data.ts', import.meta.url),

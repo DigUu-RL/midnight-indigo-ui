@@ -5,8 +5,8 @@ import { createHighlighterCore } from 'shiki/core';
 import type { HighlighterCore, ThemedToken } from 'shiki/core';
 import { createJavaScriptRegexEngine } from 'shiki/engine/javascript';
 
-import type { CodeLanguage, CodeLine, CodeToken } from '#src/code/highlighted-code.ts';
-import { syntaxColors, syntaxRules } from '#src/code/syntax-theme.ts';
+import type { CodeLanguage, CodeLine, CodeToken } from '@/src/code/highlighted-code';
+import { syntaxColors, syntaxRules } from '@/src/code/syntax-theme';
 
 const themeName: string = 'midnight-indigo';
 

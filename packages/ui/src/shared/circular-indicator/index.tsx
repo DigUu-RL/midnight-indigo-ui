@@ -7,7 +7,7 @@ import type { ReactElement } from 'react';
 
 type Keyframes = ReturnType<typeof keyframes>;
 
-import { forwardAllBut, reducedMotion } from '#src/shared/appearance.ts';
+import { forwardAllBut, reducedMotion } from '@/src/shared/appearance';
 
 interface CircularIndicatorProps {
 	/** Completed fraction, from 0 to 1. Leave it out while the duration is unknown. */

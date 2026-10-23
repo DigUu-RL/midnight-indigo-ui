@@ -5,10 +5,10 @@ import { styled } from '@mui/material/styles';
 import { useId } from 'react';
 import type { ReactElement } from 'react';
 
-import { colorTransitionStyles, focusRingStyles } from '#src/shared/appearance.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { patternOpacity } from '#src/charts/chart-option/index.ts';
-import type { FillPattern, MarkerShape } from '#src/charts/chart-option/index.ts';
+import { colorTransitionStyles, focusRingStyles } from '@/src/shared/appearance';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { patternOpacity } from '@/src/charts/chart-option/index';
+import type { FillPattern, MarkerShape } from '@/src/charts/chart-option/index';
 
 const { controlHeight, spacing, typography, radius, surface, text, state }: typeof themeVariables =
 	themeVariables;

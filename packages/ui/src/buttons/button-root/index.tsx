@@ -13,11 +13,11 @@ import {
 	focusRingStyles,
 	forwardAllBut,
 	interactionStyles,
-} from '#src/shared/appearance.ts';
-import type { Appearance, ControlSize } from '#src/shared/appearance.ts';
-import { CircularIndicator } from '#src/shared/circular-indicator/index.tsx';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import type { SemanticIntent } from '#src/tokens/index.ts';
+} from '@/src/shared/appearance';
+import type { Appearance, ControlSize } from '@/src/shared/appearance';
+import { CircularIndicator } from '@/src/shared/circular-indicator/index';
+import { themeVariables } from '@/src/theme/theme-variables';
+import type { SemanticIntent } from '@/src/tokens/index';
 
 const { spacing, typography, fontWeight, iconSize }: typeof themeVariables = themeVariables;
 

@@ -3,9 +3,9 @@
 import { styled } from '@mui/material/styles';
 import type { ComponentPropsWithRef, ReactElement, ReactNode, SubmitEvent } from 'react';
 
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { Button } from '#src/buttons/button/index.tsx';
-import { themeVariables } from '#src/theme/theme-variables.ts';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { Button } from '@/src/buttons/button/index';
+import { themeVariables } from '@/src/theme/theme-variables';
 
 const { spacing, radius, surface, border }: typeof themeVariables = themeVariables;
 

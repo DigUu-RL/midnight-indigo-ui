@@ -5,7 +5,7 @@ import type { UserEvent } from '@testing-library/user-event';
 import type { ReactElement } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { declarationsOf, expectNoAxeViolations } from '#test/component-harness.ts';
+import { declarationsOf, expectNoAxeViolations } from '@/test/component-harness';
 import {
 	Table,
 	TableBody,
@@ -13,8 +13,8 @@ import {
 	TableHead,
 	TableHeaderCell,
 	TableRow,
-} from '#src/data-display/table/index.tsx';
-import type { TableProps } from '#src/data-display/table/index.tsx';
+} from '@/src/data-display/table/index';
+import type { TableProps } from '@/src/data-display/table/index';
 
 afterEach((): void => {
 	cleanup();

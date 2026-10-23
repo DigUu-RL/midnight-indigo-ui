@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
-import { isAllowedExpression, isAllowedLicense } from '#scripts/license-policy.ts';
+import { isAllowedExpression, isAllowedLicense } from '@/scripts/license-policy';
 
 test('permissive licenses and SPDX expressions are allowed for any package', (): void => {
 	assert.equal(isAllowedLicense('MIT', 'react'), true);

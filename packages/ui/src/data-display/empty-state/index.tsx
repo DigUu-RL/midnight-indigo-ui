@@ -2,10 +2,10 @@
 // Tells that there is nothing to show yet, or that a search found nothing, and what to do next.
 import type { ReactElement } from 'react';
 
-import { Glyph } from '#src/shared/glyphs/index.tsx';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { StateMessage } from '#src/data-display/state-message/index.tsx';
-import type { StateMessageContentProps } from '#src/data-display/state-message/index.tsx';
+import { Glyph } from '@/src/shared/glyphs/index';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { StateMessage } from '@/src/data-display/state-message/index';
+import type { StateMessageContentProps } from '@/src/data-display/state-message/index';
 
 export type EmptyStateProps = StateMessageContentProps;
 

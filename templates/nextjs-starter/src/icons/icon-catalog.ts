@@ -8,8 +8,8 @@ import { join } from 'node:path';
 import { getIconData } from '@midnight-indigo/ui/icons';
 import type { IconifyCollection, IconifyIconData, IconName } from '@midnight-indigo/ui/icons';
 
-import { iconSets } from '#src/icons/icon-sets.ts';
-import type { IconSetEntry } from '#src/icons/icon-sets.ts';
+import { iconSets } from '@/src/icons/icon-sets';
+import type { IconSetEntry } from '@/src/icons/icon-sets';
 
 /** An icon set as its `@iconify-json/*` package stores it. */
 interface StoredIconSet extends IconifyCollection {

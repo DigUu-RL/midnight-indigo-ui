@@ -5,19 +5,19 @@ import type { Locale } from 'date-fns';
 import { useState } from 'react';
 import type { ReactElement } from 'react';
 
-import { PickerPanel } from '#src/forms/date-pickers/calendar/picker-panel.tsx';
-import { TimeColumns } from '#src/forms/date-pickers/calendar/time-columns.tsx';
-import { fieldPatternOf, meridiemTextsOf } from '#src/forms/date-pickers/date-format.ts';
-import type { FieldPattern } from '#src/forms/date-pickers/date-format.ts';
-import { usePickersLocale } from '#src/forms/date-pickers/date-pickers-provider/index.tsx';
-import type { DatePickerLabels } from '#src/forms/date-pickers/labels.ts';
+import { PickerPanel } from '@/src/forms/date-pickers/calendar/picker-panel';
+import { TimeColumns } from '@/src/forms/date-pickers/calendar/time-columns';
+import { fieldPatternOf, meridiemTextsOf } from '@/src/forms/date-pickers/date-format';
+import type { FieldPattern } from '@/src/forms/date-pickers/date-format';
+import { usePickersLocale } from '@/src/forms/date-pickers/date-pickers-provider/index';
+import type { DatePickerLabels } from '@/src/forms/date-pickers/labels';
 import {
 	usePickerLabels,
 	usePickerState,
 	usePickerValue,
-} from '#src/forms/date-pickers/picker-field.tsx';
-import type { PickerFieldProps, PickerState } from '#src/forms/date-pickers/picker-field.tsx';
-import { SinglePicker } from '#src/forms/date-pickers/single-picker.tsx';
+} from '@/src/forms/date-pickers/picker-field';
+import type { PickerFieldProps, PickerState } from '@/src/forms/date-pickers/picker-field';
+import { SinglePicker } from '@/src/forms/date-pickers/single-picker';
 
 export interface TimePickerProps extends PickerFieldProps {
 	/** Chosen time, when the parent controls it, on any day; `null` for none. */

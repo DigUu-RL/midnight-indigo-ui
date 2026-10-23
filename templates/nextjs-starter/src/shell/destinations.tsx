@@ -5,7 +5,7 @@ import { IconifyIcon } from '@midnight-indigo/ui/icons';
 import type { IconifyIconData } from '@midnight-indigo/ui/icons';
 import type { ReactElement } from 'react';
 
-import { findComponent } from '#src/explorer/catalog.ts';
+import { findComponent } from '@/src/explorer/catalog';
 
 export type DestinationName =
 	'overview' | 'orders' | 'reports' | 'newCustomer' | 'appearance' | 'icons' | 'components';

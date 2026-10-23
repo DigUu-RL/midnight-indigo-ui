@@ -6,12 +6,12 @@ import type { CSSObject } from '@mui/material/styles';
 import { useEffect, useMemo, useRef } from 'react';
 import type { MouseEvent, ReactElement, ReactNode, Ref, RefCallback, RefObject } from 'react';
 
-import { IconButton } from '#src/buttons/icon-button/index.tsx';
-import { forwardAllBut, prettyWrapStyles } from '#src/shared/appearance.ts';
-import { Glyph } from '#src/shared/glyphs/index.tsx';
-import { mergeReferences } from '#src/shared/merge-references.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import type { OverlayContainer } from '#src/feedback/portal/index.tsx';
+import { IconButton } from '@/src/buttons/icon-button/index';
+import { forwardAllBut, prettyWrapStyles } from '@/src/shared/appearance';
+import { Glyph } from '@/src/shared/glyphs/index';
+import { mergeReferences } from '@/src/shared/merge-references';
+import { themeVariables } from '@/src/theme/theme-variables';
+import type { OverlayContainer } from '@/src/feedback/portal/index';
 
 const { backdrop, layer, motion, spacing, typography, text }: typeof themeVariables =
 	themeVariables;

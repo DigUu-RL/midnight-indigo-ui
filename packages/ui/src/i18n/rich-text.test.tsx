@@ -4,14 +4,14 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it, vi } from 'vitest';
 import type { MockInstance } from 'vitest';
 
-import { createI18n } from '#src/i18n/create-i18n.ts';
+import { createI18n } from '@/src/i18n/create-i18n';
 import {
 	createRichTranslator,
 	defaultRichTags,
 	renderRichText,
 	toPlainText,
-} from '#src/i18n/rich-text.ts';
-import type { MalformedMessageHandler, RichTags, RichTranslator } from '#src/i18n/rich-text.ts';
+} from '@/src/i18n/rich-text';
+import type { MalformedMessageHandler, RichTags, RichTranslator } from '@/src/i18n/rich-text';
 
 const markupOf = (node: ReactNode): string => renderToStaticMarkup(<>{node}</>);
 

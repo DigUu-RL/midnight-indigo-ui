@@ -4,12 +4,12 @@ import type { TFunction } from 'i18next';
 import type { Metadata } from 'next';
 import type { ReactElement } from 'react';
 
-import { demoScenarios } from '#src/dashboard/mock-api.ts';
-import type { DemoScenario } from '#src/dashboard/mock-api.ts';
-import { SalesOverview } from '#src/dashboard/sales-overview.tsx';
-import type { LocaleSegment } from '#src/i18n/locales.ts';
-import { getTranslator, localeOf } from '#src/i18n/server.ts';
-import type { LocaleParams } from '#src/i18n/server.ts';
+import { demoScenarios } from '@/src/dashboard/mock-api';
+import type { DemoScenario } from '@/src/dashboard/mock-api';
+import { SalesOverview } from '@/src/dashboard/sales-overview';
+import type { LocaleSegment } from '@/src/i18n/locales';
+import { getTranslator, localeOf } from '@/src/i18n/server';
+import type { LocaleParams } from '@/src/i18n/server';
 
 type SearchParams = Record<string, string | string[] | undefined>;
 

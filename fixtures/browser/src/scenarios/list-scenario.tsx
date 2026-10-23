@@ -3,8 +3,8 @@ import { List, ListItem } from '@midnight-indigo/ui/data-display';
 import { useMemo } from 'react';
 import type { ReactElement } from 'react';
 
-import { createInvoices } from '#src/datasets.ts';
-import type { Invoice } from '#src/datasets.ts';
+import { createInvoices } from '@/src/datasets';
+import type { Invoice } from '@/src/datasets';
 
 interface ListScenarioProps {
 	itemCount: number;

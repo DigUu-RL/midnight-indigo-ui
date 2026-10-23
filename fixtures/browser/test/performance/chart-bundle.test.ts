@@ -5,7 +5,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { brotliCompressSync, gzipSync } from 'node:zlib';
 
-import { expect, test } from '#test/support/fixtures.ts';
+import { expect, test } from '@/test/support/fixtures';
 
 interface ChunkSize {
 	file: string;

@@ -18,7 +18,7 @@ import {
 	attributionLicenses,
 	iconSetScope,
 	isAllowedLicense,
-} from '#scripts/license-policy.ts';
+} from '@/scripts/license-policy';
 
 interface CollectionInfo {
 	name: string;

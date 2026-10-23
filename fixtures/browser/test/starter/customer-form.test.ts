@@ -2,7 +2,7 @@
 // registered is only known to the server), every message in the language of the page, and a toast after saving.
 import type { Locator, Page } from '@playwright/test';
 
-import { expect, test } from '#test/support/fixtures.ts';
+import { expect, test } from '@/test/support/fixtures';
 
 const fillCustomer = async (page: Page, email: string): Promise<void> => {
 	await page.getByLabel('Full name').fill('Paula Andrade');

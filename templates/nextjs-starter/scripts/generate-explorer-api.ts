@@ -14,9 +14,9 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import typescript from 'typescript';
 
-import { describedNamesOf, explorerComponents } from '#src/explorer/catalog.ts';
-import type { ExplorerComponent } from '#src/explorer/catalog.ts';
-import type { ComponentApi, ComponentProp, PropKind } from '#src/explorer/component-api.ts';
+import { describedNamesOf, explorerComponents } from '@/src/explorer/catalog';
+import type { ExplorerComponent } from '@/src/explorer/catalog';
+import type { ComponentApi, ComponentProp, PropKind } from '@/src/explorer/component-api';
 
 interface Prettier {
 	format: (source: string, options: Record<string, unknown>) => Promise<string>;

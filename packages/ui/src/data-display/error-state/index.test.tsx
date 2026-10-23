@@ -4,8 +4,8 @@ import { userEvent } from '@testing-library/user-event';
 import type { UserEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { expectNoAxeViolations } from '#test/component-harness.ts';
-import { ErrorState } from '#src/data-display/error-state/index.tsx';
+import { expectNoAxeViolations } from '@/test/component-harness';
+import { ErrorState } from '@/src/data-display/error-state/index';
 
 afterEach((): void => {
 	cleanup();

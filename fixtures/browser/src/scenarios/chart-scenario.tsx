@@ -9,8 +9,8 @@ import type {
 import { useEffect, useMemo } from 'react';
 import type { ReactElement } from 'react';
 
-import { createTraffic } from '#src/datasets.ts';
-import type { TrafficPoint } from '#src/datasets.ts';
+import { createTraffic } from '@/src/datasets';
+import type { TrafficPoint } from '@/src/datasets';
 
 interface ChartScenarioProps {
 	pointCount: number;

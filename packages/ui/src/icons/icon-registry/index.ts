@@ -1,7 +1,7 @@
 // Collections registered by the application, so that an icon can be named (`'tabler:home'`) instead of imported.
 // Registration is per JavaScript environment: what the server registers is not on the client, and vice versa.
-import { getIconData } from '#src/icons/icon-data/index.ts';
-import type { IconifyCollection, IconifyIconData, IconName } from '#src/icons/icon-data/index.ts';
+import { getIconData } from '@/src/icons/icon-data/index';
+import type { IconifyCollection, IconifyIconData, IconName } from '@/src/icons/icon-data/index';
 
 const collections: Map<string, IconifyCollection> = new Map<string, IconifyCollection>();
 

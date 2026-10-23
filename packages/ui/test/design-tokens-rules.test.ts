@@ -9,8 +9,8 @@ import {
 	generationCommand,
 	renderStylesheet,
 	renderTokenDocument,
-} from '#scripts/token-artifacts.ts';
-import { tokens } from '#src/tokens/index.ts';
+} from '@/scripts/token-artifacts';
+import { tokens } from '@/src/tokens/index';
 
 const packageRoot: string = fileURLToPath(new URL('..', import.meta.url));
 const sourceDirectory: string = join(packageRoot, 'src');

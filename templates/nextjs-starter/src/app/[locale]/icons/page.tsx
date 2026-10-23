@@ -8,9 +8,9 @@ import type { TFunction } from 'i18next';
 import type { Metadata } from 'next';
 import type { ReactElement } from 'react';
 
-import type { LocaleSegment } from '#src/i18n/locales.ts';
-import { getTranslator, localeOf } from '#src/i18n/server.ts';
-import type { LocaleParams } from '#src/i18n/server.ts';
+import type { LocaleSegment } from '@/src/i18n/locales';
+import { getTranslator, localeOf } from '@/src/i18n/server';
+import type { LocaleParams } from '@/src/i18n/server';
 import {
 	IconDetails,
 	IconResults,
@@ -18,12 +18,12 @@ import {
 	IconSetTable,
 	isSearching,
 	parseIconBrowserQuery,
-} from '#src/icons/icon-browser.tsx';
-import type { IconBrowserQuery, SearchParameters } from '#src/icons/icon-browser.tsx';
-import { findIconData, findIconSet, loadMatches, searchIcons } from '#src/icons/icon-catalog.ts';
-import type { IconSearchResult, LoadedIcon } from '#src/icons/icon-catalog.ts';
-import { iconSets } from '#src/icons/icon-sets.ts';
-import type { IconSetEntry } from '#src/icons/icon-sets.ts';
+} from '@/src/icons/icon-browser';
+import type { IconBrowserQuery, SearchParameters } from '@/src/icons/icon-browser';
+import { findIconData, findIconSet, loadMatches, searchIcons } from '@/src/icons/icon-catalog';
+import type { IconSearchResult, LoadedIcon } from '@/src/icons/icon-catalog';
+import { iconSets } from '@/src/icons/icon-sets';
+import type { IconSetEntry } from '@/src/icons/icon-sets';
 
 interface IconsPageProps extends LocaleParams {
 	searchParams: Promise<SearchParameters>;

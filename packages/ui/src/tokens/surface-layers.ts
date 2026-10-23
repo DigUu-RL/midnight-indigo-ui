@@ -1,6 +1,6 @@
 // Order of the surface layers and how much each one stands out from the layer below it.
-import { contrastRatio, relativeLuminance } from '#src/tokens/color.ts';
-import type { DesignTokens, SurfaceTokens } from '#src/tokens/design-tokens.ts';
+import { contrastRatio, relativeLuminance } from '@/src/tokens/color';
+import type { DesignTokens, SurfaceTokens } from '@/src/tokens/design-tokens';
 
 /** Every surface, from the darkest (the canvas) to the lightest (menus and popovers). */
 export const surfaceLayers: readonly (keyof SurfaceTokens)[] = [

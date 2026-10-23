@@ -1,13 +1,13 @@
 // Syntax highlighting for `CodeBlock`, meant for the server: a Server Component, a build script or a loader computes the
 // tokens, and the browser receives plain data, without Shiki nor any grammar.
-import { normalizeCode, plainCode } from '#src/code/highlighted-code.ts';
-import type { CodeLanguage, CodeLine, HighlightedCode } from '#src/code/highlighted-code.ts';
+import { normalizeCode, plainCode } from '@/src/code/highlighted-code';
+import type { CodeLanguage, CodeLine, HighlightedCode } from '@/src/code/highlighted-code';
 
 type Tokenizer = (code: string, language: Exclude<CodeLanguage, 'text'>) => Promise<CodeLine[]>;
 
 const loadTokenizer = async (): Promise<Tokenizer> => {
 	try {
-		const highlighter: { tokenize: Tokenizer } = await import('#src/code/highlighter/index.ts');
+		const highlighter: { tokenize: Tokenizer } = await import('@/src/code/highlighter/index');
 		return highlighter.tokenize;
 	} catch (error: unknown) {
 		throw new Error(

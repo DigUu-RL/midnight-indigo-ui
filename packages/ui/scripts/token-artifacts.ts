@@ -18,7 +18,7 @@ import {
 	tokenDescriptions,
 	tokens,
 	typographyRoles,
-} from '#src/tokens/index.ts';
+} from '@/src/tokens/index';
 import type {
 	Breakpoint,
 	ColorTokens,
@@ -34,7 +34,7 @@ import type {
 	SurfaceTokens,
 	TypographyRole,
 	TypographyStyle,
-} from '#src/tokens/index.ts';
+} from '@/src/tokens/index';
 
 export const generationCommand: string = 'pnpm --filter @midnight-indigo/ui generate:tokens';
 

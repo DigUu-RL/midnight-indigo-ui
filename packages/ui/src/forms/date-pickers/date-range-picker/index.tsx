@@ -7,10 +7,10 @@ import type { Locale } from 'date-fns';
 import { useId, useState } from 'react';
 import type { CSSProperties, ReactElement } from 'react';
 
-import { IconButton } from '#src/buttons/icon-button/index.tsx';
-import { Glyph } from '#src/shared/glyphs/index.tsx';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { CalendarView } from '#src/forms/date-pickers/calendar/calendar-view.tsx';
+import { IconButton } from '@/src/buttons/icon-button/index';
+import { Glyph } from '@/src/shared/glyphs/index';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { CalendarView } from '@/src/forms/date-pickers/calendar/calendar-view';
 import {
 	defaultRangePresets,
 	emptyRange,
@@ -19,19 +19,19 @@ import {
 	isSameDate,
 	isWithinRange,
 	nextRange,
-} from '#src/forms/date-pickers/calendar/dates.ts';
+} from '@/src/forms/date-pickers/calendar/dates';
 import type {
 	DateConstraints,
 	DateRange,
 	DateRangePreset,
-} from '#src/forms/date-pickers/calendar/dates.ts';
-import type { DaySelection } from '#src/forms/date-pickers/calendar/month-grid.tsx';
-import { PickerPanel } from '#src/forms/date-pickers/calendar/picker-panel.tsx';
-import type { PanelPreset } from '#src/forms/date-pickers/calendar/picker-panel.tsx';
-import { fieldPatternOf, fieldPlaceholderOf } from '#src/forms/date-pickers/date-format.ts';
-import type { FieldPattern } from '#src/forms/date-pickers/date-format.ts';
-import { usePickersLocale } from '#src/forms/date-pickers/date-pickers-provider/index.tsx';
-import type { DatePickerLabels } from '#src/forms/date-pickers/labels.ts';
+} from '@/src/forms/date-pickers/calendar/dates';
+import type { DaySelection } from '@/src/forms/date-pickers/calendar/month-grid';
+import { PickerPanel } from '@/src/forms/date-pickers/calendar/picker-panel';
+import type { PanelPreset } from '@/src/forms/date-pickers/calendar/picker-panel';
+import { fieldPatternOf, fieldPlaceholderOf } from '@/src/forms/date-pickers/date-format';
+import type { FieldPattern } from '@/src/forms/date-pickers/date-format';
+import { usePickersLocale } from '@/src/forms/date-pickers/date-pickers-provider/index';
+import type { DatePickerLabels } from '@/src/forms/date-pickers/labels';
 import {
 	PickerInput,
 	PickerPopup,
@@ -39,16 +39,16 @@ import {
 	usePickerLabels,
 	usePickerState,
 	usePickerValue,
-} from '#src/forms/date-pickers/picker-field.tsx';
+} from '@/src/forms/date-pickers/picker-field';
 import type {
 	PickerFieldProps,
 	PickerInputProps,
 	PickerState,
-} from '#src/forms/date-pickers/picker-field.tsx';
-import { useFormError } from '#src/forms/form-context.ts';
-import { FormField, HiddenText } from '#src/forms/form-field/index.tsx';
-import type { FormFieldControlProps } from '#src/forms/form-field/index.tsx';
-import { InputFrame } from '#src/forms/input-frame/index.tsx';
+} from '@/src/forms/date-pickers/picker-field';
+import { useFormError } from '@/src/forms/form-context';
+import { FormField, HiddenText } from '@/src/forms/form-field/index';
+import type { FormFieldControlProps } from '@/src/forms/form-field/index';
+import { InputFrame } from '@/src/forms/input-frame/index';
 
 const { text }: typeof themeVariables = themeVariables;
 

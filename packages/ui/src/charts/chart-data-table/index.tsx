@@ -4,12 +4,12 @@
 import { useMemo } from 'react';
 import type { ReactElement } from 'react';
 
-import { DataTable } from '#src/data-display/data-table/index.tsx';
-import type { DataTableColumn } from '#src/data-display/data-table/index.tsx';
-import type { ChartLabels } from '#src/charts/chart-labels/index.ts';
-import type { ChartModel } from '#src/charts/chart-model/index.ts';
-import { tabulateChart } from '#src/charts/chart-summary/index.ts';
-import type { DataTableContent } from '#src/charts/chart-summary/index.ts';
+import { DataTable } from '@/src/data-display/data-table/index';
+import type { DataTableColumn } from '@/src/data-display/data-table/index';
+import type { ChartLabels } from '@/src/charts/chart-labels/index';
+import type { ChartModel } from '@/src/charts/chart-model/index';
+import { tabulateChart } from '@/src/charts/chart-summary/index';
+import type { DataTableContent } from '@/src/charts/chart-summary/index';
 
 interface TableRow {
 	id: string;

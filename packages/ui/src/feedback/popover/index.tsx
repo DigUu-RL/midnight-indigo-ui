@@ -6,21 +6,21 @@ import type { Theme } from '@mui/material/styles';
 import { useEffect, useId, useRef, useState } from 'react';
 import type { ReactElement, ReactNode, RefCallback, RefObject } from 'react';
 
-import { assertLabel, prettyWrapStyles } from '#src/shared/appearance.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
+import { assertLabel, prettyWrapStyles } from '@/src/shared/appearance';
+import { themeVariables } from '@/src/theme/theme-variables';
 import {
 	anchoredRootStyles,
 	anchoredSurfaceStyles,
 	anchorOrigins,
 	cloneTrigger,
-} from '#src/feedback/anchored-overlay/index.ts';
+} from '@/src/feedback/anchored-overlay/index';
 import type {
 	AnchoredPlacement,
 	AnchorOrigins,
 	TriggerProps,
-} from '#src/feedback/anchored-overlay/index.ts';
-import { useModalPanelReference } from '#src/feedback/modal-layer/index.tsx';
-import type { OverlayContainer } from '#src/feedback/portal/index.tsx';
+} from '@/src/feedback/anchored-overlay/index';
+import { useModalPanelReference } from '@/src/feedback/modal-layer/index';
+import type { OverlayContainer } from '@/src/feedback/portal/index';
 
 const { spacing, typography, text }: typeof themeVariables = themeVariables;
 

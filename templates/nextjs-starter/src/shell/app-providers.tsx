@@ -10,10 +10,10 @@ import { UiProvider } from '@midnight-indigo/ui/theme';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v16-appRouter';
 import type { ReactElement, ReactNode } from 'react';
 
-import { AppI18nProvider } from '#src/i18n/app-i18n-provider.tsx';
-import { AppNavigationProvider } from '#src/shell/app-navigation-provider.tsx';
-import { theme } from '#src/theme.ts';
-import '#src/shell/globals.css';
+import { AppI18nProvider } from '@/src/i18n/app-i18n-provider';
+import { AppNavigationProvider } from '@/src/shell/app-navigation-provider';
+import { theme } from '@/src/theme';
+import '@/src/shell/globals.css';
 
 interface AppProvidersProps {
 	/** BCP 47 tag, e.g. `pt-BR`. */

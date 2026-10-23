@@ -4,12 +4,12 @@ import {
 	createGaugeChart,
 	createLineChart,
 	createPieChart,
-} from '#src/charts/chart-factories/index.ts';
-import type { ChartDefinition } from '#src/charts/chart-factories/index.ts';
-import { defaultChartLabels } from '#src/charts/chart-labels/index.ts';
-import { createChartModel, isEmptyModel } from '#src/charts/chart-model/index.ts';
-import type { ChartModel } from '#src/charts/chart-model/index.ts';
-import { describePoint, summarizeChart, tabulateChart } from '#src/charts/chart-summary/index.ts';
+} from '@/src/charts/chart-factories/index';
+import type { ChartDefinition } from '@/src/charts/chart-factories/index';
+import { defaultChartLabels } from '@/src/charts/chart-labels/index';
+import { createChartModel, isEmptyModel } from '@/src/charts/chart-model/index';
+import type { ChartModel } from '@/src/charts/chart-model/index';
+import { describePoint, summarizeChart, tabulateChart } from '@/src/charts/chart-summary/index';
 
 interface Sale {
 	month: string;

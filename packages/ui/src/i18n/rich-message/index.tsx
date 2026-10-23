@@ -3,9 +3,9 @@
 // `createRichTranslator` instead.
 import type { ReactElement } from 'react';
 
-import { useI18n } from '#src/i18n/i18n-provider/index.tsx';
-import type { I18nValue } from '#src/i18n/i18n-provider/index.tsx';
-import type { RichTags, RichValues } from '#src/i18n/rich-text.ts';
+import { useI18n } from '@/src/i18n/i18n-provider/index';
+import type { I18nValue } from '@/src/i18n/i18n-provider/index';
+import type { RichTags, RichValues } from '@/src/i18n/rich-text';
 
 export interface RichMessageProps {
 	/** Key of the message, e.g. `'orders.empty'`; `'namespace:key'` reaches another namespace. */

@@ -2,8 +2,8 @@
 // the loading, empty and error states, each with an accessibility audit (contrast included).
 import type { Locator, Page } from '@playwright/test';
 
-import { expectNoAxeViolations } from '#test/support/accessibility.ts';
-import { expect, test } from '#test/support/fixtures.ts';
+import { expectNoAxeViolations } from '@/test/support/accessibility';
+import { expect, test } from '@/test/support/fixtures';
 
 // The mock API answers after 600 ms; the figures are ready once the first card has a value.
 const openDashboard = async (page: Page, path: string = '/en-us'): Promise<void> => {

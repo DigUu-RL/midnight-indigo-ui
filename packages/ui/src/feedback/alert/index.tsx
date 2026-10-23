@@ -10,11 +10,11 @@ import {
 	colorTransitionStyles,
 	focusRingStyles,
 	forwardAllBut,
-} from '#src/shared/appearance.ts';
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { Glyph, intentGlyphs } from '#src/shared/glyphs/index.tsx';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import type { SemanticIntent } from '#src/tokens/index.ts';
+} from '@/src/shared/appearance';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { Glyph, intentGlyphs } from '@/src/shared/glyphs/index';
+import { themeVariables } from '@/src/theme/theme-variables';
+import type { SemanticIntent } from '@/src/tokens/index';
 
 const {
 	spacing,

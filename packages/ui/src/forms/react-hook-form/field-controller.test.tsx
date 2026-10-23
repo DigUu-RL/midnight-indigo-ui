@@ -7,15 +7,15 @@ import { useForm } from 'react-hook-form';
 import type { FieldErrors, UseFormReturn } from 'react-hook-form';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { Checkbox } from '#src/forms/checkbox/index.tsx';
-import { ErrorSummary } from '#src/forms/error-summary/index.tsx';
+import { Checkbox } from '@/src/forms/checkbox/index';
+import { ErrorSummary } from '@/src/forms/error-summary/index';
 import {
 	toErrorSummaryItems,
 	useCheckedController,
 	useFieldController,
-} from '#src/forms/react-hook-form/field-controller.ts';
-import { Select } from '#src/forms/select/index.tsx';
-import { TextField } from '#src/forms/text-field/index.tsx';
+} from '@/src/forms/react-hook-form/field-controller';
+import { Select } from '@/src/forms/select/index';
+import { TextField } from '@/src/forms/text-field/index';
 
 interface Profile {
 	email: string;

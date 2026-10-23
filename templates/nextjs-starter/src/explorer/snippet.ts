@@ -3,9 +3,9 @@
 // other values (the props of the catalog without a control) and the samples of the props that take an element are
 // always written, after the declarations they refer to. A modal overlay is written with the button that opens it and
 // the state of `open`, and a component driven by a hook with the button that calls it with the values as options.
-import type { HookTrigger, Opener, PlaygroundValue } from '#src/explorer/catalog.ts';
-import type { ComponentProp } from '#src/explorer/component-api.ts';
-import type { SampleCode } from '#src/explorer/sample-code.ts';
+import type { HookTrigger, Opener, PlaygroundValue } from '@/src/explorer/catalog';
+import type { ComponentProp } from '@/src/explorer/component-api';
+import type { SampleCode } from '@/src/explorer/sample-code';
 
 export interface SnippetSource {
 	name: string;

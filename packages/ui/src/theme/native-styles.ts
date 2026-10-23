@@ -3,7 +3,7 @@
 // follow any palette given to `UiProvider`.
 import type { CSSObject } from '@mui/material/styles';
 
-import { themeVariables } from '#src/theme/theme-variables.ts';
+import { themeVariables } from '@/src/theme/theme-variables';
 
 const { radius, border }: typeof themeVariables = themeVariables;
 

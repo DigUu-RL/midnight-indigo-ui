@@ -1,7 +1,7 @@
 // Public subpath `@midnight-indigo/ui/charts`. The engine (Apache ECharts, an optional peer dependency) is not imported
 // by this entry: `Chart` loads it on demand, so it is a chunk of its own in the application bundle.
-export { Chart } from '#src/charts/chart/index.tsx';
-export type { ChartProps, ChartSelection, ChartStatus } from '#src/charts/chart/index.tsx';
+export { Chart } from '@/src/charts/chart/index';
+export type { ChartProps, ChartSelection, ChartStatus } from '@/src/charts/chart/index';
 export {
 	createAreaChart,
 	createBarChart,
@@ -9,7 +9,7 @@ export {
 	createGaugeChart,
 	createLineChart,
 	createPieChart,
-} from '#src/charts/chart-factories/index.ts';
+} from '@/src/charts/chart-factories/index';
 export type {
 	AreaChartConfig,
 	AreaChartDefinition,
@@ -43,6 +43,6 @@ export type {
 	ValueAxisSide,
 	ValueFormatter,
 	ZoomWindow,
-} from '#src/charts/chart-factories/index.ts';
-export { defaultChartLabels } from '#src/charts/chart-labels/index.ts';
-export type { ChartLabels } from '#src/charts/chart-labels/index.ts';
+} from '@/src/charts/chart-factories/index';
+export { defaultChartLabels } from '@/src/charts/chart-labels/index';
+export type { ChartLabels } from '@/src/charts/chart-labels/index';

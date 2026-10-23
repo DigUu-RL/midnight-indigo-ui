@@ -1,7 +1,7 @@
 // Support palette harmonized with the pink and the indigo: categories, tags, avatars and charts.
-import { contrastRatio, ensureContrast, mixColors, soft, softAlpha } from '#src/tokens/color.ts';
-import type { HexColor } from '#src/tokens/color.ts';
-import type { IntentDerivationContext } from '#src/tokens/intents.ts';
+import { contrastRatio, ensureContrast, mixColors, soft, softAlpha } from '@/src/tokens/color';
+import type { HexColor } from '@/src/tokens/color';
+import type { IntentDerivationContext } from '@/src/tokens/intents';
 
 export const supportColorNames = [
 	'pink',

@@ -4,8 +4,8 @@ import { userEvent } from '@testing-library/user-event';
 import type { UserEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { expectNoAxeViolations } from '#test/component-harness.ts';
-import { NumberField } from '#src/forms/number-field/index.tsx';
+import { expectNoAxeViolations } from '@/test/component-harness';
+import { NumberField } from '@/src/forms/number-field/index';
 
 afterEach((): void => {
 	cleanup();

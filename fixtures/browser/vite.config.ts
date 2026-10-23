@@ -4,6 +4,8 @@ import { defineConfig } from 'vite';
 import type { Rollup, UserConfig } from 'vite';
 
 const scenariosConfiguration: UserConfig = defineConfig({
+	// `@/src/...`: the alias of `paths` in tsconfig.json.
+	resolve: { tsconfigPaths: true },
 	build: {
 		outDir: 'dist',
 		sourcemap: true,

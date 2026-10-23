@@ -3,13 +3,13 @@
 import { useId, useState } from 'react';
 import type { ReactElement, ReactNode } from 'react';
 
-import { ChoiceField } from '#src/forms/checkbox/index.tsx';
-import { OptionList } from '#src/forms/choice-control/index.tsx';
-import type { ChoiceOption, ChoiceOrientation } from '#src/forms/choice-control/index.tsx';
-import { Fieldset } from '#src/forms/fieldset/index.tsx';
-import type { FieldsetProps } from '#src/forms/fieldset/index.tsx';
-import { useFormError } from '#src/forms/form-context.ts';
-import { hasContent } from '#src/forms/form-field/index.tsx';
+import { ChoiceField } from '@/src/forms/checkbox/index';
+import { OptionList } from '@/src/forms/choice-control/index';
+import type { ChoiceOption, ChoiceOrientation } from '@/src/forms/choice-control/index';
+import { Fieldset } from '@/src/forms/fieldset/index';
+import type { FieldsetProps } from '@/src/forms/fieldset/index';
+import { useFormError } from '@/src/forms/form-context';
+import { hasContent } from '@/src/forms/form-field/index';
 
 export interface RadioGroupProps extends Omit<
 	FieldsetProps,

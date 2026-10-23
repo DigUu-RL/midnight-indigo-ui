@@ -6,7 +6,7 @@ import { useI18n } from '@midnight-indigo/ui/i18n';
 import type { I18nValue } from '@midnight-indigo/ui/i18n';
 import { useMemo } from 'react';
 
-import type { Order } from '#src/dashboard/demo-data.ts';
+import type { Order } from '@/src/dashboard/demo-data';
 
 export const useOrderColumns = (): DataTableColumn<Order>[] => {
 	const { t, formatDate, formatCurrency }: I18nValue = useI18n();

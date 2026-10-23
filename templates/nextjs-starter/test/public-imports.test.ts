@@ -1,13 +1,13 @@
 // The starter uses the library as any other application: through the public subpaths of `@midnight-indigo/ui`, never a
 // file of the repository. Every other import is a dependency of the starter or a file of its own `src`.
 import assert from 'node:assert/strict';
-import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { readdirSync, readFileSync, statSync } from 'node:fs';
 import type { Dirent } from 'node:fs';
 import { createRequire } from 'node:module';
 import { join, relative } from 'node:path';
 import { test } from 'node:test';
 
-import { starterRoot } from '#test/support/starter-server.ts';
+import { starterRoot } from '@/test/support/starter-server';
 
 interface PackageManifest {
 	dependencies?: Record<string, string>;
@@ -55,6 +55,15 @@ const sourceImports: readonly SourceImport[] = listSourceFiles(sourceRoot).flatM
 	},
 );
 
+// Own modules are imported without the extension of code files (`@/src/i18n/locales`).
+const ownModuleExists = (specifier: string): boolean => {
+	const path: string = join(sourceRoot, specifier.slice('@/src/'.length));
+
+	return ['', '.ts', '.tsx', '/index.ts', '/index.tsx'].some((suffix: string): boolean => {
+		return statSync(`${path}${suffix}`, { throwIfNoEntry: false })?.isFile() ?? false;
+	});
+};
+
 const packageNameOf = (specifier: string): string => {
 	const segments: string[] = specifier.split('/');
 	return (specifier.startsWith('@') ? segments.slice(0, 2) : segments.slice(0, 1)).join('/');
@@ -98,8 +107,8 @@ test('own modules exist in src, and packages are dependencies of the starter', (
 	const unresolved: string[] = sourceImports
 		.filter(({ specifier }: SourceImport): boolean => !specifier.startsWith('node:'))
 		.filter(({ specifier }: SourceImport): boolean => {
-			return specifier.startsWith('#src/')
-				? !existsSync(join(sourceRoot, specifier.slice('#src/'.length)))
+			return specifier.startsWith('@/src/')
+				? !ownModuleExists(specifier)
 				: !dependencies.has(packageNameOf(specifier));
 		})
 		.map(({ file, specifier }: SourceImport): string => `${file}: ${specifier}`);

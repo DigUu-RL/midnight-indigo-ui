@@ -1,6 +1,6 @@
 // Colors of the syntax, as TextMate scopes mapped to tokens of the theme. Every color is a `var(--mi-*)` reference, so
 // highlighted code follows the active palette, and each is audited for 4.5:1 on the code block (`auditContrast`).
-import { themeVariables } from '#src/theme/theme-variables.ts';
+import { themeVariables } from '@/src/theme/theme-variables';
 
 const { text, support }: typeof themeVariables = themeVariables;
 

@@ -2,9 +2,9 @@
 import { cleanup, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { expectNoAxeViolations, styleRulesOf } from '#test/component-harness.ts';
-import { KpiGrid } from '#src/dashboard/kpi-grid/index.tsx';
-import type { KpiItem } from '#src/dashboard/kpi-grid/index.tsx';
+import { expectNoAxeViolations, styleRulesOf } from '@/test/component-harness';
+import { KpiGrid } from '@/src/dashboard/kpi-grid/index';
+import type { KpiItem } from '@/src/dashboard/kpi-grid/index';
 
 afterEach(cleanup);
 

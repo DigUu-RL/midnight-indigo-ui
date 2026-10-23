@@ -2,11 +2,11 @@
 // Action shown only as an icon, named by a required label.
 import type { ReactElement, ReactNode } from 'react';
 
-import { assertLabel } from '#src/shared/appearance.ts';
-import type { Appearance, ControlSize } from '#src/shared/appearance.ts';
-import type { SemanticIntent } from '#src/tokens/index.ts';
-import { ButtonRoot, ButtonSlot, LoadingIndicator } from '#src/buttons/button-root/index.tsx';
-import type { NativeButtonAttributes } from '#src/buttons/button-root/index.tsx';
+import { assertLabel } from '@/src/shared/appearance';
+import type { Appearance, ControlSize } from '@/src/shared/appearance';
+import type { SemanticIntent } from '@/src/tokens/index';
+import { ButtonRoot, ButtonSlot, LoadingIndicator } from '@/src/buttons/button-root/index';
+import type { NativeButtonAttributes } from '@/src/buttons/button-root/index';
 
 export type IconButtonVariant = Appearance;
 

@@ -11,10 +11,10 @@ import type {
 	ReactNode,
 } from 'react';
 
-import { focusRingStyles, forwardAllBut, numericTextStyles } from '#src/shared/appearance.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { FormField } from '#src/forms/form-field/index.tsx';
-import type { FieldProps, FormFieldControlProps } from '#src/forms/form-field/index.tsx';
+import { focusRingStyles, forwardAllBut, numericTextStyles } from '@/src/shared/appearance';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { FormField } from '@/src/forms/form-field/index';
+import type { FieldProps, FormFieldControlProps } from '@/src/forms/form-field/index';
 
 const { spacing, typography, radius, text, border, state, intent }: typeof themeVariables =
 	themeVariables;

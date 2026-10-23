@@ -1,7 +1,7 @@
 // English texts of the components, in the `midnight-indigo` namespace. Plain JSON with camelCase keys: `{{value}}`
 // interpolates, an object of plural categories (`one`, `other`, plus `zero`, and `many` where the language has it)
 // pluralizes on `count`, and an object of contexts (`ascending`, `descending`) picks a variant.
-import type { LibraryMessages } from '#src/i18n/library-messages.ts';
+import type { LibraryMessages } from '@/src/i18n/library-messages';
 
 export const englishMessages: LibraryMessages = {
 	alert: {

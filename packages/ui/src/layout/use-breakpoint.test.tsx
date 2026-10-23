@@ -3,8 +3,8 @@ import { cleanup, render, screen } from '@testing-library/react';
 import type { ReactElement } from 'react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { resetViewport, resizeViewport, setViewportWidth } from '#test/viewport.ts';
-import { useBreakpoint } from '#src/layout/use-breakpoint.ts';
+import { resetViewport, resizeViewport, setViewportWidth } from '@/test/viewport';
+import { useBreakpoint } from '@/src/layout/use-breakpoint';
 
 afterEach((): void => {
 	cleanup();

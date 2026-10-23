@@ -10,16 +10,11 @@ import type { SidebarEntry } from '@midnight-indigo/ui/navigation';
 import { usePathname } from 'next/navigation';
 import type { ReactElement, ReactNode } from 'react';
 
-import type { LocaleSegment } from '#src/i18n/locales.ts';
-import { publicPathOf } from '#src/explorer/routes.ts';
-import {
-	brandIcon,
-	destinations,
-	galleryIcon,
-	notificationsIcon,
-} from '#src/shell/destinations.tsx';
-import type { Destination } from '#src/shell/destinations.tsx';
-import { LocaleSwitcher } from '#src/shell/locale-switcher.tsx';
+import type { LocaleSegment } from '@/src/i18n/locales';
+import { publicPathOf } from '@/src/explorer/routes';
+import { brandIcon, destinations, galleryIcon, notificationsIcon } from '@/src/shell/destinations';
+import type { Destination } from '@/src/shell/destinations';
+import { LocaleSwitcher } from '@/src/shell/locale-switcher';
 
 interface AppShellProps {
 	locale: LocaleSegment;

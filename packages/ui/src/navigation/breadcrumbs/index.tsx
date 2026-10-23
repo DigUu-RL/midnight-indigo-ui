@@ -5,12 +5,12 @@ import type { CSSObject } from '@mui/material/styles';
 import { useEffect, useId, useRef, useState } from 'react';
 import type { ComponentPropsWithRef, ReactElement, RefObject } from 'react';
 
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { colorTransitionStyles, focusRingStyles } from '#src/shared/appearance.ts';
-import { Glyph } from '#src/shared/glyphs/index.tsx';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { useLinkAs } from '#src/navigation/navigation-provider/index.tsx';
-import type { LinkComponent } from '#src/navigation/navigation-provider/index.tsx';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { colorTransitionStyles, focusRingStyles } from '@/src/shared/appearance';
+import { Glyph } from '@/src/shared/glyphs/index';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { useLinkAs } from '@/src/navigation/navigation-provider/index';
+import type { LinkComponent } from '@/src/navigation/navigation-provider/index';
 
 const { spacing, typography, fontWeight, radius, text, accent, state }: typeof themeVariables =
 	themeVariables;

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { breakpointMediaQuery, breakpointNames, breakpoints } from '#src/tokens/breakpoints.ts';
-import type { Breakpoint } from '#src/tokens/breakpoints.ts';
+import { breakpointMediaQuery, breakpointNames, breakpoints } from '@/src/tokens/breakpoints';
+import type { Breakpoint } from '@/src/tokens/breakpoints';
 
 describe('breakpoints', (): void => {
 	it('start at zero and increase', (): void => {

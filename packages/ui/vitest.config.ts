@@ -11,6 +11,8 @@ const performanceTestFiles: string = '**/*.performance.test.{ts,tsx}';
 const nodeStreamTestFiles: string[] = ['src/theme/ui-provider.test.tsx'];
 
 const testConfiguration: ViteUserConfig = defineConfig({
+	// `@/src/...`: the alias of `paths` in tsconfig.json.
+	resolve: { tsconfigPaths: true },
 	test: {
 		projects: [
 			{
