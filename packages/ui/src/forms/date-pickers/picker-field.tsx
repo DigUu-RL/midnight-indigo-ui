@@ -194,6 +194,22 @@ const viewportMargin: number = 8;
 /** Lowest height of the panel, when there is less room than that on both sides of the field. */
 const minimumPanelHeight: number = 192;
 
+/** Height of a panel with its calendar, its header and its footer: below the field when there is that much room. */
+const preferredPanelHeight: number = 420;
+
+type PanelPlacement = 'bottom-start' | 'top-start';
+
+/**
+ * The side of the panel, from where the field is alone: below it when the panel fits there or there is more room below,
+ * else above. It never depends on the size of the panel, which the room on its side limits: a placement that did would
+ * flip back and forth between the sides when neither has room for the whole panel.
+ */
+const placementBeside = (field: HTMLElement): PanelPlacement => {
+	const { top, bottom }: DOMRect = field.getBoundingClientRect();
+	const below: number = window.innerHeight - bottom;
+	return below >= preferredPanelHeight || below >= top ? 'bottom-start' : 'top-start';
+};
+
 /**
  * The panel is fixed to the viewport, which a page scroll cannot bring into view: it takes at most the height between
  * the field and the edge of the viewport on its side, and scrolls inside it, so its footer is always reachable.
@@ -229,7 +245,7 @@ export interface PickerPopupProps {
 }
 
 /**
- * The panel of a picker, under its field (above it when there is no room). It is not modal: it opens on a click in
+ * The panel of a picker, under its field (above it when there is more room there). It is not modal: it opens on a click in
  * the field while focus stays there, so the reader can still type; the keyboard reaches it from the field with Down or
  * through the button of the field, then with Tab. It stays in the markup of the field (no portal), so focus moves from
  * one to the other in order and a dialog around the field keeps it inside.
@@ -246,12 +262,12 @@ export const PickerPopup = ({
 		<Popper
 			open={open && anchor !== null}
 			anchorEl={anchor}
-			placement='bottom-start'
+			placement={anchor === null ? 'bottom-start' : placementBeside(anchor)}
 			disablePortal
 			popperOptions={{ strategy: 'fixed' }}
 			modifiers={[
 				{ name: 'offset', options: { offset: [0, panelOffset] } },
-				{ name: 'flip', enabled: true },
+				{ name: 'flip', enabled: false },
 				{ name: 'preventOverflow', options: { padding: viewportMargin } },
 				fitToViewport,
 			]}
