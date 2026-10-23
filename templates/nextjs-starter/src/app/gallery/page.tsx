@@ -3,14 +3,14 @@ import { themeVariables } from '@midnight-indigo/ui/theme';
 import { Suspense } from 'react';
 import type { ReactElement } from 'react';
 
-import { ComponentsShowcase } from '#src/gallery/components-showcase.tsx';
-import { DataDisplayShowcase } from '#src/gallery/data-display-showcase.tsx';
-import { NavigationShowcase } from '#src/gallery/navigation-showcase.tsx';
-import { OverlaysShowcase } from '#src/gallery/overlays-showcase.tsx';
-import { ProfileForm } from '#src/gallery/profile-form.tsx';
-import { StreamedPanel } from '#src/gallery/streamed-panel.tsx';
-import { ThemeSummary } from '#src/gallery/theme-summary.tsx';
-import { TypographySpecimen } from '#src/gallery/typography-specimen.tsx';
+import { ComponentsShowcase } from '@/src/gallery/components-showcase';
+import { DataDisplayShowcase } from '@/src/gallery/data-display-showcase';
+import { NavigationShowcase } from '@/src/gallery/navigation-showcase';
+import { OverlaysShowcase } from '@/src/gallery/overlays-showcase';
+import { ProfileForm } from '@/src/gallery/profile-form';
+import { StreamedPanel } from '@/src/gallery/streamed-panel';
+import { ThemeSummary } from '@/src/gallery/theme-summary';
+import { TypographySpecimen } from '@/src/gallery/typography-specimen';
 
 const GalleryPage = (): ReactElement => {
 	return (

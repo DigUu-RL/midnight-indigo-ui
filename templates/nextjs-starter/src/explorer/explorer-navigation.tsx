@@ -10,8 +10,8 @@ import { usePathname } from 'next/navigation';
 import { useId, useState } from 'react';
 import type { ReactElement } from 'react';
 
-import type { LocaleSegment } from '#src/i18n/locales.ts';
-import { publicPathOf, routeSegmentOf } from '#src/explorer/routes.ts';
+import type { LocaleSegment } from '@/src/i18n/locales';
+import { publicPathOf, routeSegmentOf } from '@/src/explorer/routes';
 
 export interface NavigationComponent {
 	name: string;

@@ -3,11 +3,11 @@
 import { styled } from '@mui/material/styles';
 import type { ReactElement } from 'react';
 
-import { StatCard } from '#src/data-display/stat-card/index.tsx';
-import type { StatCardProps } from '#src/data-display/stat-card/index.tsx';
-import { Grid, GridItem } from '#src/layout/grid/index.tsx';
-import type { GridProps } from '#src/layout/grid/index.tsx';
-import { themeVariables } from '#src/theme/theme-variables.ts';
+import { StatCard } from '@/src/data-display/stat-card/index';
+import type { StatCardProps } from '@/src/data-display/stat-card/index';
+import { Grid, GridItem } from '@/src/layout/grid/index';
+import type { GridProps } from '@/src/layout/grid/index';
+import { themeVariables } from '@/src/theme/theme-variables';
 
 /** One key figure: the props of a `StatCard`, plus an `id` unique within the grid. */
 export interface KpiItem extends Omit<StatCardProps, 'loading' | 'ref'> {

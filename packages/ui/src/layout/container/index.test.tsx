@@ -2,9 +2,9 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { declarationsOf, styleRulesOf } from '#test/component-harness.ts';
-import { Container } from '#src/layout/container/index.tsx';
-import type { ContainerSize } from '#src/layout/container/index.tsx';
+import { declarationsOf, styleRulesOf } from '@/test/component-harness';
+import { Container } from '@/src/layout/container/index';
+import type { ContainerSize } from '@/src/layout/container/index';
 
 afterEach((): void => {
 	cleanup();

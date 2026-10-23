@@ -2,7 +2,7 @@
 import { Button } from '@midnight-indigo/ui/buttons';
 import { FormActions, SubmitButton, TextField } from '@midnight-indigo/ui/forms';
 
-import { departureControl } from '#src/explorer/client-samples.tsx';
+import { departureControl } from '@/src/explorer/client-samples';
 import {
 	sampleBountyOptions,
 	sampleCheckedCrew,
@@ -10,8 +10,8 @@ import {
 	sampleMissionErrors,
 	samplePlanetOptions,
 	sampleShipOptions,
-} from '#src/explorer/sample-code.ts';
-import type { SubpathSamples } from '#src/explorer/samples.tsx';
+} from '@/src/explorer/sample-code';
+import type { SubpathSamples } from '@/src/explorer/samples';
 
 export const formsSamples: SubpathSamples<'forms'> = {
 	crewOptions: sampleCrewOptions,

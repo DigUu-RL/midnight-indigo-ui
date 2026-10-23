@@ -6,9 +6,9 @@ import { useState } from 'react';
 import type { ReactElement } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { expectNoAxeViolations, styleRulesOf } from '#test/component-harness.ts';
-import { reducedMotionMediaQuery } from '#src/tokens/index.ts';
-import { Carousel } from '#src/data-display/carousel/index.tsx';
+import { expectNoAxeViolations, styleRulesOf } from '@/test/component-harness';
+import { reducedMotionMediaQuery } from '@/src/tokens/index';
+import { Carousel } from '@/src/data-display/carousel/index';
 
 const slideNames: readonly string[] = ['Revenue', 'Users', 'Churn'];
 

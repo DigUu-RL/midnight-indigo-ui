@@ -6,7 +6,7 @@
 // breaking the page.
 import type { Locator } from '@playwright/test';
 
-import { expect, test } from '#test/support/fixtures.ts';
+import { expect, test } from '@/test/support/fixtures';
 
 test('the navigation leads to a component of another subpath at its public path', async ({
 	page,

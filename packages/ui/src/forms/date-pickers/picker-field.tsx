@@ -19,21 +19,21 @@ import type {
 
 import type { Locale } from 'date-fns';
 
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import type { ControlSize } from '#src/shared/appearance.ts';
-import { mergeReferences } from '#src/shared/merge-references.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { anchoredSurfaceStyles } from '#src/feedback/anchored-overlay/index.ts';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import type { ControlSize } from '@/src/shared/appearance';
+import { mergeReferences } from '@/src/shared/merge-references';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { anchoredSurfaceStyles } from '@/src/feedback/anchored-overlay/index';
 import {
 	formatFieldValue,
 	hasMeridiem,
 	maskFieldText,
 	parseFieldText,
-} from '#src/forms/date-pickers/date-format.ts';
-import type { FieldPattern } from '#src/forms/date-pickers/date-format.ts';
-import { defaultDatePickerLabels } from '#src/forms/date-pickers/labels.ts';
-import type { DatePickerLabels } from '#src/forms/date-pickers/labels.ts';
-import { TextInput } from '#src/forms/input-frame/index.tsx';
+} from '@/src/forms/date-pickers/date-format';
+import type { FieldPattern } from '@/src/forms/date-pickers/date-format';
+import { defaultDatePickerLabels } from '@/src/forms/date-pickers/labels';
+import type { DatePickerLabels } from '@/src/forms/date-pickers/labels';
+import { TextInput } from '@/src/forms/input-frame/index';
 
 const { layer }: typeof themeVariables = themeVariables;
 

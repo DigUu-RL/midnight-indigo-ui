@@ -7,11 +7,11 @@ import type { ReactElement } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { Mock } from 'vitest';
 
-import { expectNoAxeViolations } from '#test/component-harness.ts';
-import { Button } from '#src/buttons/button/index.tsx';
-import { Dialog } from '#src/feedback/dialog/index.tsx';
-import { ToastProvider, useToast } from '#src/feedback/toast/index.tsx';
-import type { ToastApi, ToastOptions, ToastProviderProps } from '#src/feedback/toast/index.tsx';
+import { expectNoAxeViolations } from '@/test/component-harness';
+import { Button } from '@/src/buttons/button/index';
+import { Dialog } from '@/src/feedback/dialog/index';
+import { ToastProvider, useToast } from '@/src/feedback/toast/index';
+import type { ToastApi, ToastOptions, ToastProviderProps } from '@/src/feedback/toast/index';
 
 interface Captured {
 	api: ToastApi | null;

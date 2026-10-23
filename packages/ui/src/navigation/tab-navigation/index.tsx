@@ -3,9 +3,9 @@
 import { styled } from '@mui/material/styles';
 import type { ComponentPropsWithRef, ReactElement, ReactNode } from 'react';
 
-import { tabIconStyles, tabRowStyles, tabStyles } from '#src/navigation/tab-appearance/index.ts';
-import { useLinkAs } from '#src/navigation/navigation-provider/index.tsx';
-import type { LinkComponent } from '#src/navigation/navigation-provider/index.tsx';
+import { tabIconStyles, tabRowStyles, tabStyles } from '@/src/navigation/tab-appearance/index';
+import { useLinkAs } from '@/src/navigation/navigation-provider/index';
+import type { LinkComponent } from '@/src/navigation/navigation-provider/index';
 
 export interface TabNavigationItem {
 	/** Unique within the navigation; used as the React key. */

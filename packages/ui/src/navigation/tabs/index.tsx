@@ -3,13 +3,13 @@
 import { styled } from '@mui/material/styles';
 import type { ComponentPropsWithRef, ReactElement, ReactNode } from 'react';
 
-import { focusRingStyles } from '#src/shared/appearance.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { tabIconStyles, tabRowStyles, tabStyles } from '#src/navigation/tab-appearance/index.ts';
-import { useTabList } from '#src/navigation/tab-list/index.ts';
-import type { TabList, TabsActivation } from '#src/navigation/tab-list/index.ts';
+import { focusRingStyles } from '@/src/shared/appearance';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { tabIconStyles, tabRowStyles, tabStyles } from '@/src/navigation/tab-appearance/index';
+import { useTabList } from '@/src/navigation/tab-list/index';
+import type { TabList, TabsActivation } from '@/src/navigation/tab-list/index';
 
-export type { TabsActivation } from '#src/navigation/tab-list/index.ts';
+export type { TabsActivation } from '@/src/navigation/tab-list/index';
 
 const { spacing, radius }: typeof themeVariables = themeVariables;
 

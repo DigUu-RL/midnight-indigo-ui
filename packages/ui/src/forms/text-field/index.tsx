@@ -2,8 +2,8 @@
 // Single-line text field with a label, description, error and optional prefix and suffix.
 import type { ReactElement } from 'react';
 
-import { TextFieldBase } from '#src/forms/text-field-base/index.tsx';
-import type { TextControlProps } from '#src/forms/text-field-base/index.tsx';
+import { TextFieldBase } from '@/src/forms/text-field-base/index';
+import type { TextControlProps } from '@/src/forms/text-field-base/index';
 
 /** Types with their own field: `password` (PasswordField), `search` (SearchField), `number` (NumberField). */
 export type TextFieldType = 'text' | 'email' | 'tel' | 'url';

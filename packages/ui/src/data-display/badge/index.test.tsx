@@ -2,9 +2,9 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { declarationsOf, expectNoAxeViolations, styleRulesOf } from '#test/component-harness.ts';
-import { IconButton } from '#src/buttons/icon-button/index.tsx';
-import { Badge, formatBadgeContent } from '#src/data-display/badge/index.tsx';
+import { declarationsOf, expectNoAxeViolations, styleRulesOf } from '@/test/component-harness';
+import { IconButton } from '@/src/buttons/icon-button/index';
+import { Badge, formatBadgeContent } from '@/src/data-display/badge/index';
 
 afterEach((): void => {
 	cleanup();

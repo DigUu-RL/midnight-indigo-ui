@@ -6,9 +6,9 @@ import { userEvent } from '@testing-library/user-event';
 import type { UserEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { createOptionLabels } from '#test/large-datasets.ts';
-import { Combobox } from '#src/forms/combobox/index.tsx';
-import type { ComboboxOption } from '#src/forms/combobox/index.tsx';
+import { createOptionLabels } from '@/test/large-datasets';
+import { Combobox } from '@/src/forms/combobox/index';
+import type { ComboboxOption } from '@/src/forms/combobox/index';
 
 const createOptions = (count: number): ComboboxOption[] => {
 	return createOptionLabels(count).map((label: string, index: number): ComboboxOption => {

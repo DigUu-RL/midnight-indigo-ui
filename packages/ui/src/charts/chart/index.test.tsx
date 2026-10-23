@@ -6,24 +6,24 @@ import type { RenderResult } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { Mock } from 'vitest';
 
-import { expectNoAxeViolations } from '#test/component-harness.ts';
-import { Chart } from '#src/charts/chart/index.tsx';
+import { expectNoAxeViolations } from '@/test/component-harness';
+import { Chart } from '@/src/charts/chart/index';
 import type {
 	ChartEngineEvents,
 	ChartEngineInstance,
 	ChartPoint,
-} from '#src/charts/chart-engine/index.ts';
+} from '@/src/charts/chart-engine/index';
 import {
 	createGaugeChart,
 	createLineChart,
 	createPieChart,
-} from '#src/charts/chart-factories/index.ts';
+} from '@/src/charts/chart-factories/index';
 import type {
 	LineChartDefinition,
 	PieChartDefinition,
 	ZoomWindow,
-} from '#src/charts/chart-factories/index.ts';
-import type { EngineOption } from '#src/charts/chart-option/index.ts';
+} from '@/src/charts/chart-factories/index';
+import type { EngineOption } from '@/src/charts/chart-option/index';
 
 interface FakeInstance {
 	instance: ChartEngineInstance;
@@ -61,7 +61,7 @@ const createChartInstance: Mock<
 	},
 );
 
-vi.mock('#src/charts/chart-engine/index.ts', () => ({ createChartInstance }));
+vi.mock('@/src/charts/chart-engine/index', () => ({ createChartInstance }));
 
 interface Sale {
 	month: string;

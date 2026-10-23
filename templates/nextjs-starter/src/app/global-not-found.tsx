@@ -11,13 +11,13 @@ import {
 	isLocaleSegment,
 	localeHeaderName,
 	localeTags,
-} from '#src/i18n/locales.ts';
-import type { LocaleSegment } from '#src/i18n/locales.ts';
-import { messagesOf } from '#src/i18n/messages.ts';
-import { getTranslator } from '#src/i18n/server.ts';
-import { AppProviders } from '#src/shell/app-providers.tsx';
-import { AppShell } from '#src/shell/app-shell.tsx';
-import { NotFoundContent } from '#src/shell/not-found-content.tsx';
+} from '@/src/i18n/locales';
+import type { LocaleSegment } from '@/src/i18n/locales';
+import { messagesOf } from '@/src/i18n/messages';
+import { getTranslator } from '@/src/i18n/server';
+import { AppProviders } from '@/src/shell/app-providers';
+import { AppShell } from '@/src/shell/app-shell';
+import { NotFoundContent } from '@/src/shell/not-found-content';
 
 const requestedLocale = async (): Promise<LocaleSegment> => {
 	const locale: string | undefined = (await headers()).get(localeHeaderName) ?? undefined;

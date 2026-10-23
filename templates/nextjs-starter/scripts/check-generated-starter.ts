@@ -11,7 +11,7 @@ import type { AddressInfo, Server } from 'node:net';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
-import { createStarter } from '#scripts/create-starter.ts';
+import { createStarter } from '@/scripts/create-starter';
 
 interface PageCheck {
 	path: string;
@@ -34,13 +34,21 @@ const checks: readonly PageCheck[] = [
 
 const serverStartTimeoutInMilliseconds: number = 60_000;
 
+// The generated project lives outside the monorepo, where the alias hook that pnpm loads here
+// (`--import=@midnight-indigo/node-aliases` in `NODE_OPTIONS`) does not exist: Next.js resolves `@/` on its own.
+const standaloneEnvironment: NodeJS.ProcessEnv = {
+	...process.env,
+	NEXT_TELEMETRY_DISABLED: '1',
+	NODE_OPTIONS: '',
+};
+
 const run = (command: string, directory: string): void => {
 	console.log(`$ ${command}`);
 
 	execSync(command, {
 		cwd: directory,
 		stdio: 'inherit',
-		env: { ...process.env, NEXT_TELEMETRY_DISABLED: '1' },
+		env: standaloneEnvironment,
 	});
 };
 
@@ -118,7 +126,7 @@ try {
 		[join(project, 'node_modules', 'next', 'dist', 'bin', 'next'), 'start', '--port', String(port)],
 		{
 			cwd: project,
-			env: { ...process.env, NEXT_TELEMETRY_DISABLED: '1' },
+			env: standaloneEnvironment,
 			stdio: 'ignore',
 		},
 	);

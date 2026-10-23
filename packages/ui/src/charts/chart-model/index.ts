@@ -1,6 +1,6 @@
 // The data of a chart definition read once: formatted categories and numeric values by series. The engine option, the
 // summary, the data table and the keyboard navigation are all derived from this model, so they always agree.
-import { isCartesian } from '#src/charts/chart-factories/index.ts';
+import { isCartesian } from '@/src/charts/chart-factories/index';
 import type {
 	CartesianChartDefinition,
 	CategoryFormatter,
@@ -10,7 +10,7 @@ import type {
 	ComposedSeriesType,
 	PieChartDefinition,
 	ValueFormatter,
-} from '#src/charts/chart-factories/index.ts';
+} from '@/src/charts/chart-factories/index';
 
 export interface ModelSeries {
 	label: string;

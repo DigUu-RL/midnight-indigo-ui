@@ -4,8 +4,8 @@ import { userEvent } from '@testing-library/user-event';
 import type { UserEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { expectNoAxeViolations, declarationsOf } from '#test/component-harness.ts';
-import { TextArea } from '#src/forms/text-area/index.tsx';
+import { expectNoAxeViolations, declarationsOf } from '@/test/component-harness';
+import { TextArea } from '@/src/forms/text-area/index';
 
 afterEach((): void => {
 	cleanup();

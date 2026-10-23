@@ -2,7 +2,7 @@
 // 840 px the sidebar opens as a drawer from its menu button.
 import type { Locator } from '@playwright/test';
 
-import { expect, test } from '#test/support/fixtures.ts';
+import { expect, test } from '@/test/support/fixtures';
 
 test('a link navigates on the client, without reloading the page', async ({
 	page,

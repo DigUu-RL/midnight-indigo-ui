@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
-import { checkPhases, runCheckGate } from '#scripts/check-gate.ts';
-import type { CheckChain, CheckPhase, StepResult } from '#scripts/check-gate.ts';
+import { checkPhases, runCheckGate } from '@/scripts/check-gate';
+import type { CheckChain, CheckPhase, StepResult } from '@/scripts/check-gate';
 
 interface FakeRun {
 	events: string[];

@@ -18,8 +18,8 @@ import {
 	Table,
 } from '@midnight-indigo/ui/data-display';
 
-import { createPlayground } from '#src/explorer/playground.tsx';
-import type { PlaygroundComponent } from '#src/explorer/playground.tsx';
+import { createPlayground } from '@/src/explorer/playground';
+import type { PlaygroundComponent } from '@/src/explorer/playground';
 
 export const DataDisplayPlayground: PlaygroundComponent = createPlayground({
 	Avatar,

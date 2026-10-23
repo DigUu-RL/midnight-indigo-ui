@@ -21,10 +21,10 @@ import { useI18n } from '@midnight-indigo/ui/i18n';
 import type { I18nValue } from '@midnight-indigo/ui/i18n';
 import type { ReactElement } from 'react';
 
-import { createCustomer, validateCustomer } from '#src/customers/actions.ts';
-import { regions } from '#src/dashboard/demo-data.ts';
-import type { Region } from '#src/dashboard/demo-data.ts';
-import type { LocaleSegment } from '#src/i18n/locales.ts';
+import { createCustomer, validateCustomer } from '@/src/customers/actions';
+import { regions } from '@/src/dashboard/demo-data';
+import type { Region } from '@/src/dashboard/demo-data';
+import type { LocaleSegment } from '@/src/i18n/locales';
 
 interface CustomerFormProps {
 	locale: LocaleSegment;

@@ -5,8 +5,8 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-import { findComponent } from '#src/explorer/catalog.ts';
-import { routePathOf } from '#src/explorer/routes.ts';
+import { findComponent } from '@/src/explorer/catalog';
+import { routePathOf } from '@/src/explorer/routes';
 import {
 	defaultLocaleSegment,
 	isLocaleSegment,
@@ -15,8 +15,8 @@ import {
 	localeOfPath,
 	localizePath,
 	negotiateLocale,
-} from '#src/i18n/locales.ts';
-import type { LocaleSegment } from '#src/i18n/locales.ts';
+} from '@/src/i18n/locales';
+import type { LocaleSegment } from '@/src/i18n/locales';
 
 const preferredLocale = (request: NextRequest): LocaleSegment => {
 	const chosen: string | undefined = request.cookies.get(localeCookieName)?.value;

@@ -22,8 +22,8 @@ import {
 	TextField,
 } from '@midnight-indigo/ui/forms';
 
-import { createPlayground } from '#src/explorer/playground.tsx';
-import type { PlaygroundComponent } from '#src/explorer/playground.tsx';
+import { createPlayground } from '@/src/explorer/playground';
+import type { PlaygroundComponent } from '@/src/explorer/playground';
 
 export const FormsPlayground: PlaygroundComponent = createPlayground({
 	TextField,

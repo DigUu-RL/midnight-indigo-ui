@@ -1,6 +1,6 @@
 // Public subpath `@midnight-indigo/ui/tokens`. Framework-agnostic: no React here.
-export { breakpointMediaQuery, breakpointNames, breakpoints } from '#src/tokens/breakpoints.ts';
-export type { Breakpoint } from '#src/tokens/breakpoints.ts';
+export { breakpointMediaQuery, breakpointNames, breakpoints } from '@/src/tokens/breakpoints';
+export type { Breakpoint } from '@/src/tokens/breakpoints';
 export {
 	compositeOver,
 	contrastRatio,
@@ -14,8 +14,8 @@ export {
 	relativeLuminance,
 	soft,
 	softAlpha,
-} from '#src/tokens/color.ts';
-export type { HexColor, RgbColor } from '#src/tokens/color.ts';
+} from '@/src/tokens/color';
+export type { HexColor, RgbColor } from '@/src/tokens/color';
 export {
 	auditContrast,
 	contrastExceptions,
@@ -29,13 +29,13 @@ export {
 	formatContrastReport,
 	listColorTokenPaths,
 	resolveTokenPath,
-} from '#src/tokens/contrast.ts';
+} from '@/src/tokens/contrast';
 export type {
 	ContrastException,
 	ContrastPair,
 	ContrastRequirement,
 	ContrastResult,
-} from '#src/tokens/contrast.ts';
+} from '@/src/tokens/contrast';
 export {
 	createTokenStylesheet,
 	cssLayers,
@@ -45,17 +45,17 @@ export {
 	listTokenEntries,
 	reducedMotionMediaQuery,
 	toCssVariables,
-} from '#src/tokens/css-variables.ts';
-export type { CssLayer, TokenStylesheetOptions } from '#src/tokens/css-variables.ts';
-export { tokenDescriptions } from '#src/tokens/descriptions.ts';
-export type { ColorStepDescriptions, TokenDescriptions } from '#src/tokens/descriptions.ts';
+} from '@/src/tokens/css-variables';
+export type { CssLayer, TokenStylesheetOptions } from '@/src/tokens/css-variables';
+export { tokenDescriptions } from '@/src/tokens/descriptions';
+export type { ColorStepDescriptions, TokenDescriptions } from '@/src/tokens/descriptions';
 export {
 	colorScaleSteps,
 	createDesignTokens,
 	midnightScaleSteps,
 	tokens,
 	typographyRoles,
-} from '#src/tokens/design-tokens.ts';
+} from '@/src/tokens/design-tokens';
 export type {
 	AccentTokens,
 	BackdropTokens,
@@ -87,22 +87,22 @@ export type {
 	TypographyRole,
 	TypographyStyle,
 	TypographyTokens,
-} from '#src/tokens/design-tokens.ts';
+} from '@/src/tokens/design-tokens';
 export {
 	deriveSupportTokens,
 	measureSupportContrast,
 	supportColorFor,
 	supportColorNames,
 	supportMainColors,
-} from '#src/tokens/support-colors.ts';
+} from '@/src/tokens/support-colors';
 export type {
 	SupportColor,
 	SupportColorTokens,
 	SupportContrastMeasure,
 	SupportTokens,
-} from '#src/tokens/support-colors.ts';
-export { measureSurfaceLayers, surfaceLayers } from '#src/tokens/surface-layers.ts';
-export type { SurfaceLayerMeasure } from '#src/tokens/surface-layers.ts';
+} from '@/src/tokens/support-colors';
+export { measureSurfaceLayers, surfaceLayers } from '@/src/tokens/surface-layers';
+export type { SurfaceLayerMeasure } from '@/src/tokens/surface-layers';
 export {
 	brandMainColor,
 	defaultIntentSources,
@@ -110,7 +110,7 @@ export {
 	deriveIntentTokens,
 	officialMainColor,
 	semanticIntents,
-} from '#src/tokens/intents.ts';
+} from '@/src/tokens/intents';
 export type {
 	IntentDerivationContext,
 	IntentPalette,
@@ -118,4 +118,4 @@ export type {
 	IntentSources,
 	IntentTokens,
 	SemanticIntent,
-} from '#src/tokens/intents.ts';
+} from '@/src/tokens/intents';

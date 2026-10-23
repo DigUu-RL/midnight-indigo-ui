@@ -5,9 +5,9 @@ import type { UserEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { Mock } from 'vitest';
 
-import { expectNoAxeViolations, styleRulesOf } from '#test/component-harness.ts';
-import { Tabs } from '#src/navigation/tabs/index.tsx';
-import type { TabItem, TabsProps } from '#src/navigation/tabs/index.tsx';
+import { expectNoAxeViolations, styleRulesOf } from '@/test/component-harness';
+import { Tabs } from '@/src/navigation/tabs/index';
+import type { TabItem, TabsProps } from '@/src/navigation/tabs/index';
 
 afterEach((): void => {
 	cleanup();

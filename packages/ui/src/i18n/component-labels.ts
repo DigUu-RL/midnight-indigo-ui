@@ -6,13 +6,13 @@ import type {
 	ComponentLabels,
 	ComponentLabelTypes,
 	ComponentName,
-} from '#src/shared/component-labels/index.tsx';
-import type { SortDirection } from '#src/data-display/row-processing/index.ts';
-import type { FileLimits, FileRejection } from '#src/forms/file-upload/index.tsx';
-import type { ValidatableElement } from '#src/forms/form/index.tsx';
-import { constraintFailure } from '#src/forms/constraint-failure.ts';
-import { libraryNamespace } from '#src/i18n/library-messages.ts';
-import type { Formatters } from '#src/i18n/formatters.ts';
+} from '@/src/shared/component-labels/index';
+import type { SortDirection } from '@/src/data-display/row-processing/index';
+import type { FileLimits, FileRejection } from '@/src/forms/file-upload/index';
+import type { ValidatableElement } from '@/src/forms/form/index';
+import { constraintFailure } from '@/src/forms/constraint-failure';
+import { libraryNamespace } from '@/src/i18n/library-messages';
+import type { Formatters } from '@/src/i18n/formatters';
 
 type InterpolationValues = Record<string, unknown>;
 

@@ -2,15 +2,15 @@
 // Tabler icons (MIT, decision D07), embedded one by one in `glyph-data.ts` so no icon package is needed at runtime.
 import type { ReactElement } from 'react';
 
-import { Icon } from '#src/icons/icon/index.tsx';
-import type { IconSize } from '#src/icons/icon/index.tsx';
-import { renderIconData } from '#src/icons/icon-data/index.ts';
-import type { RenderedIcon } from '#src/icons/icon-data/index.ts';
-import { glyphData } from '#src/shared/glyphs/glyph-data.ts';
-import type { GlyphName } from '#src/shared/glyphs/glyph-data.ts';
-import type { SemanticIntent } from '#src/tokens/index.ts';
+import { Icon } from '@/src/icons/icon/index';
+import type { IconSize } from '@/src/icons/icon/index';
+import { renderIconData } from '@/src/icons/icon-data/index';
+import type { RenderedIcon } from '@/src/icons/icon-data/index';
+import { glyphData } from '@/src/shared/glyphs/glyph-data';
+import type { GlyphName } from '@/src/shared/glyphs/glyph-data';
+import type { SemanticIntent } from '@/src/tokens/index';
 
-export type { GlyphName } from '#src/shared/glyphs/glyph-data.ts';
+export type { GlyphName } from '@/src/shared/glyphs/glyph-data';
 
 /**
  * Glyph of each intent, so that the meaning of a message never rests on its color alone: a circled exclamation for

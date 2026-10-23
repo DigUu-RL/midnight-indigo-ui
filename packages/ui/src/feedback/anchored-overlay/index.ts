@@ -11,9 +11,9 @@ import type {
 	Ref,
 } from 'react';
 
-import { mergeReferences } from '#src/shared/merge-references.ts';
-import { scrollbarStyles } from '#src/theme/native-styles.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
+import { mergeReferences } from '@/src/shared/merge-references';
+import { scrollbarStyles } from '@/src/theme/native-styles';
+import { themeVariables } from '@/src/theme/theme-variables';
 
 const {
 	spacing,

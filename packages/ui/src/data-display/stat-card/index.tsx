@@ -5,13 +5,13 @@ import type { CSSObject } from '@mui/material/styles';
 import { useId } from 'react';
 import type { ComponentPropsWithRef, ReactElement, ReactNode } from 'react';
 
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { forwardAllBut, numericTextStyles, visuallyHiddenStyles } from '#src/shared/appearance.ts';
-import { Glyph } from '#src/shared/glyphs/index.tsx';
-import type { GlyphName } from '#src/shared/glyphs/index.tsx';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { defaultLoadingLabel } from '#src/data-display/loading-status/index.tsx';
-import { Skeleton } from '#src/data-display/skeleton/index.tsx';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { forwardAllBut, numericTextStyles, visuallyHiddenStyles } from '@/src/shared/appearance';
+import { Glyph } from '@/src/shared/glyphs/index';
+import type { GlyphName } from '@/src/shared/glyphs/index';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { defaultLoadingLabel } from '@/src/data-display/loading-status/index';
+import { Skeleton } from '@/src/data-display/skeleton/index';
 
 const {
 	spacing,

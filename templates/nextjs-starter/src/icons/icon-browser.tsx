@@ -23,12 +23,12 @@ import type { SemanticIntent } from '@midnight-indigo/ui/tokens';
 import type { TFunction } from 'i18next';
 import type { ReactElement } from 'react';
 
-import { CopyCodeButton } from '#src/icons/copy-code-button.tsx';
-import { iconNameOf } from '#src/icons/icon-catalog.ts';
-import type { IconSearchResult, LoadedIcon } from '#src/icons/icon-catalog.ts';
-import { iconSets } from '#src/icons/icon-sets.ts';
-import type { IconSetEntry } from '#src/icons/icon-sets.ts';
-import { dataSnippetOf, nameSnippetOf } from '#src/icons/icon-snippets.ts';
+import { CopyCodeButton } from '@/src/icons/copy-code-button';
+import { iconNameOf } from '@/src/icons/icon-catalog';
+import type { IconSearchResult, LoadedIcon } from '@/src/icons/icon-catalog';
+import { iconSets } from '@/src/icons/icon-sets';
+import type { IconSetEntry } from '@/src/icons/icon-sets';
+import { dataSnippetOf, nameSnippetOf } from '@/src/icons/icon-snippets';
 
 export interface IconBrowserQuery {
 	query: string;

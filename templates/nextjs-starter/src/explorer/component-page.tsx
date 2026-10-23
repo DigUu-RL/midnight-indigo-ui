@@ -16,7 +16,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import type { ReactElement, ReactNode } from 'react';
 
-import type { ExampleComponent, PageBinding, RouteBindings } from '#src/explorer/bindings.ts';
+import type { ExampleComponent, PageBinding, RouteBindings } from '@/src/explorer/bindings';
 import {
 	camelCaseOf,
 	controlledNameOf,
@@ -26,23 +26,23 @@ import {
 	findComponent,
 	kebabCaseOf,
 	slugOf,
-} from '#src/explorer/catalog.ts';
-import type { ExplorerComponent, ExplorerSubpath } from '#src/explorer/catalog.ts';
-import { propsOf } from '#src/explorer/component-api.ts';
-import type { ComponentProp } from '#src/explorer/component-api.ts';
+} from '@/src/explorer/catalog';
+import type { ExplorerComponent, ExplorerSubpath } from '@/src/explorer/catalog';
+import { propsOf } from '@/src/explorer/component-api';
+import type { ComponentProp } from '@/src/explorer/component-api';
 import {
 	ApiTable,
 	DocumentationText,
 	Example,
 	VariantGrid,
-} from '#src/explorer/component-sections.tsx';
-import { readExampleCode } from '#src/explorer/example-source.ts';
-import type { PlaygroundSlot } from '#src/explorer/playground.tsx';
-import { sampleCodes } from '#src/explorer/sample-code.ts';
-import type { SampleName } from '#src/explorer/sample-code.ts';
-import type { SampleValue } from '#src/explorer/samples.tsx';
-import type { LocaleSegment } from '#src/i18n/locales.ts';
-import { getTranslator, localeOf } from '#src/i18n/server.ts';
+} from '@/src/explorer/component-sections';
+import { readExampleCode } from '@/src/explorer/example-source';
+import type { PlaygroundSlot } from '@/src/explorer/playground';
+import { sampleCodes } from '@/src/explorer/sample-code';
+import type { SampleName } from '@/src/explorer/sample-code';
+import type { SampleValue } from '@/src/explorer/samples';
+import type { LocaleSegment } from '@/src/i18n/locales';
+import { getTranslator, localeOf } from '@/src/i18n/server';
 
 interface ComponentPageProps {
 	params: Promise<{ locale: string; component: string }>;

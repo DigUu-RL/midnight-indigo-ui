@@ -10,11 +10,6 @@
 	"files": [
 		"dist"
 	],
-	"imports": {
-		"#src/*": "./src/*",
-		"#test/*": "./test/*",
-		"#scripts/*": "./scripts/*"
-	},
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",

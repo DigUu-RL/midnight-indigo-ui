@@ -8,8 +8,8 @@ import { describe, test } from 'node:test';
 
 import typescript from 'typescript';
 
-import { generateComponentApi } from '#scripts/generate-explorer-api.ts';
-import { starterRoot } from '#test/support/starter-server.ts';
+import { generateComponentApi } from '@/scripts/generate-explorer-api';
+import { starterRoot } from '@/test/support/starter-server';
 import {
 	camelCaseOf,
 	controlledNameOf,
@@ -19,16 +19,16 @@ import {
 	findComponent,
 	kebabCaseOf,
 	slugOf,
-} from '#src/explorer/catalog.ts';
-import type { ExplorerComponent, HookTrigger, PlaygroundValue } from '#src/explorer/catalog.ts';
-import { generatedApi, propTranslations } from '#src/explorer/component-api.ts';
-import type { ComponentProp } from '#src/explorer/component-api.ts';
-import { routeSegmentOf } from '#src/explorer/routes.ts';
-import { sampleCodes } from '#src/explorer/sample-code.ts';
-import type { SampleCode, SampleName } from '#src/explorer/sample-code.ts';
-import { snippetOf } from '#src/explorer/snippet.ts';
-import englishMessages from '#src/messages/en-us.json' with { type: 'json' };
-import brazilianPortugueseMessages from '#src/messages/pt-br.json' with { type: 'json' };
+} from '@/src/explorer/catalog';
+import type { ExplorerComponent, HookTrigger, PlaygroundValue } from '@/src/explorer/catalog';
+import { generatedApi, propTranslations } from '@/src/explorer/component-api';
+import type { ComponentProp } from '@/src/explorer/component-api';
+import { routeSegmentOf } from '@/src/explorer/routes';
+import { sampleCodes } from '@/src/explorer/sample-code';
+import type { SampleCode, SampleName } from '@/src/explorer/sample-code';
+import { snippetOf } from '@/src/explorer/snippet';
+import englishMessages from '@/src/messages/en-us.json' with { type: 'json' };
+import brazilianPortugueseMessages from '@/src/messages/pt-br.json' with { type: 'json' };
 
 interface Messages {
 	readonly [key: string]: string | Messages;

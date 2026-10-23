@@ -7,16 +7,16 @@ import {
 	defaultIntentSources,
 	normalizeHexColor,
 	semanticIntents,
-} from '#src/tokens/index.ts';
+} from '@/src/tokens/index';
 import type {
 	ContrastResult,
 	DesignTokens,
 	IntentSource,
 	IntentSources,
 	SemanticIntent,
-} from '#src/tokens/index.ts';
-import { parseUiThemeConfig } from '#src/theme/theme-config.ts';
-import type { IntentConfig, PaletteConfig, UiThemeConfig } from '#src/theme/theme-config.ts';
+} from '@/src/tokens/index';
+import { parseUiThemeConfig } from '@/src/theme/theme-config';
+import type { IntentConfig, PaletteConfig, UiThemeConfig } from '@/src/theme/theme-config';
 
 /**
  * A resolved theme. Plain, frozen data without functions, so a Server Component can create it and pass it to

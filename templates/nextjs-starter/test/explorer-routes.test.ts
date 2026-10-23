@@ -3,7 +3,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
-import { publicPathOf, routePathOf, routeSegmentOf } from '#src/explorer/routes.ts';
+import { publicPathOf, routePathOf, routeSegmentOf } from '@/src/explorer/routes';
 
 const subpaths: Readonly<Record<string, string>> = {
 	chip: 'data-display',

@@ -4,9 +4,9 @@ import { styled } from '@mui/material/styles';
 import type { CSSObject } from '@mui/material/styles';
 import type { ComponentPropsWithRef, ReactElement } from 'react';
 
-import { forwardAllBut, reducedMotion } from '#src/shared/appearance.ts';
-import { pulse } from '#src/shared/circular-indicator/index.tsx';
-import { themeVariables } from '#src/theme/theme-variables.ts';
+import { forwardAllBut, reducedMotion } from '@/src/shared/appearance';
+import { pulse } from '@/src/shared/circular-indicator/index';
+import { themeVariables } from '@/src/theme/theme-variables';
 
 export type SkeletonShape = 'text' | 'rectangle' | 'circle';
 

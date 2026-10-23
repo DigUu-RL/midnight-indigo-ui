@@ -4,15 +4,15 @@ import { styled } from '@mui/material/styles';
 import { useEffect, useRef, useState } from 'react';
 import type { MouseEvent, ReactElement, RefObject } from 'react';
 
-import { visuallyHiddenStyles } from '#src/shared/appearance.ts';
-import type { Appearance, ControlSize } from '#src/shared/appearance.ts';
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { Glyph } from '#src/shared/glyphs/index.tsx';
-import type { GlyphName } from '#src/shared/glyphs/index.tsx';
-import type { SemanticIntent } from '#src/tokens/index.ts';
-import { Button } from '#src/buttons/button/index.tsx';
-import type { NativeButtonAttributes } from '#src/buttons/button-root/index.tsx';
-import { IconButton } from '#src/buttons/icon-button/index.tsx';
+import { visuallyHiddenStyles } from '@/src/shared/appearance';
+import type { Appearance, ControlSize } from '@/src/shared/appearance';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { Glyph } from '@/src/shared/glyphs/index';
+import type { GlyphName } from '@/src/shared/glyphs/index';
+import type { SemanticIntent } from '@/src/tokens/index';
+import { Button } from '@/src/buttons/button/index';
+import type { NativeButtonAttributes } from '@/src/buttons/button-root/index';
+import { IconButton } from '@/src/buttons/icon-button/index';
 
 /** Texts of the copy button. Translate them with the rest of the interface. */
 export interface CopyButtonLabels {

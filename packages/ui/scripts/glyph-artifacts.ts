@@ -1,6 +1,6 @@
 // Renders the module of glyph data from the Tabler collection.
-import { getIconData } from '#src/icons/icon-data/index.ts';
-import type { IconifyCollection, IconifyIconData } from '#src/icons/icon-data/index.ts';
+import { getIconData } from '@/src/icons/icon-data/index';
+import type { IconifyCollection, IconifyIconData } from '@/src/icons/icon-data/index';
 
 export const generationCommand: string = 'pnpm --filter @midnight-indigo/ui generate:glyphs';
 
@@ -66,7 +66,7 @@ export const renderGlyphModule = (
 
 	return [
 		`// Generated from Tabler Icons (MIT, https://tabler.io/icons) by \`${generationCommand}\`. Do not edit by hand.`,
-		"import type { IconifyIconData } from '#src/icons/icon-data/index.ts';",
+		"import type { IconifyIconData } from '@/src/icons/icon-data/index';",
 		'',
 		`export type GlyphName = ${names.map((glyph: string): string => `'${glyph}'`).join(' | ')};`,
 		'',

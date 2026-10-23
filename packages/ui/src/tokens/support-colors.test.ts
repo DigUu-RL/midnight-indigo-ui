@@ -1,18 +1,18 @@
 import { describe, expect, it } from 'vitest';
 
-import type { HexColor } from '#src/tokens/color.ts';
-import { contrastMinimums } from '#src/tokens/contrast.ts';
-import { tokens } from '#src/tokens/design-tokens.ts';
-import type { SurfaceTokens } from '#src/tokens/design-tokens.ts';
-import { brandMainColor, officialMainColor } from '#src/tokens/intents.ts';
+import type { HexColor } from '@/src/tokens/color';
+import { contrastMinimums } from '@/src/tokens/contrast';
+import { tokens } from '@/src/tokens/design-tokens';
+import type { SurfaceTokens } from '@/src/tokens/design-tokens';
+import { brandMainColor, officialMainColor } from '@/src/tokens/intents';
 import {
 	measureSupportContrast,
 	supportColorFor,
 	supportColorNames,
 	supportMainColors,
-} from '#src/tokens/support-colors.ts';
-import type { SupportColor, SupportContrastMeasure } from '#src/tokens/support-colors.ts';
-import { surfaceLayers } from '#src/tokens/surface-layers.ts';
+} from '@/src/tokens/support-colors';
+import type { SupportColor, SupportContrastMeasure } from '@/src/tokens/support-colors';
+import { surfaceLayers } from '@/src/tokens/surface-layers';
 
 describe('support colors', (): void => {
 	it('publish the exact values of the v2 palette', (): void => {

@@ -1,7 +1,7 @@
 // Stand-in for the backend of the dashboard: an asynchronous function with latency and failures, over the demo data.
 // Replace it with a real request; the page only depends on `fetchDashboard` and its types.
-import { monthlyRevenue, orders, regions } from '#src/dashboard/demo-data.ts';
-import type { MonthlyRevenue, Order, Region } from '#src/dashboard/demo-data.ts';
+import { monthlyRevenue, orders, regions } from '@/src/dashboard/demo-data';
+import type { MonthlyRevenue, Order, Region } from '@/src/dashboard/demo-data';
 
 /** How the fake backend answers: with data, never, with nothing or with an error. */
 export type DemoScenario = 'live' | 'loading' | 'empty' | 'error';

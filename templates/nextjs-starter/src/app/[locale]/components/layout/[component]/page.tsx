@@ -1,8 +1,8 @@
 // The pages of the components of `@midnight-indigo/ui/layout`, served at `/[locale]/components/<slug>` by the proxy:
 // see `explorer/component-page.tsx`.
-import { layoutBindings } from '#src/explorer/bindings/layout.tsx';
-import { createComponentRoute } from '#src/explorer/component-page.tsx';
-import type { ComponentRoute } from '#src/explorer/component-page.tsx';
+import { layoutBindings } from '@/src/explorer/bindings/layout';
+import { createComponentRoute } from '@/src/explorer/component-page';
+import type { ComponentRoute } from '@/src/explorer/component-page';
 
 const route: ComponentRoute = createComponentRoute('layout', layoutBindings);
 

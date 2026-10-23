@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { createFormatters, FormattersConfigurationError } from '#src/i18n/formatters.ts';
-import type { Formatters } from '#src/i18n/formatters.ts';
+import { createFormatters, FormattersConfigurationError } from '@/src/i18n/formatters';
+import type { Formatters } from '@/src/i18n/formatters';
 
 const originalTimeZone: string | undefined = process.env.TZ;
 

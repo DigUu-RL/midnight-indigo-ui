@@ -1,15 +1,15 @@
 // The complete design token set: base groups plus intents derived from their sources. Dark-only by design.
-import { translucent } from '#src/tokens/color.ts';
-import type { HexColor } from '#src/tokens/color.ts';
+import { translucent } from '@/src/tokens/color';
+import type { HexColor } from '@/src/tokens/color';
 import {
 	brandMainColor,
 	defaultIntentSources,
 	deriveIntentPalette,
 	officialMainColor,
-} from '#src/tokens/intents.ts';
-import type { IntentDerivationContext, IntentPalette, IntentSources } from '#src/tokens/intents.ts';
-import { deriveSupportTokens, supportMainColors } from '#src/tokens/support-colors.ts';
-import type { SupportTokens } from '#src/tokens/support-colors.ts';
+} from '@/src/tokens/intents';
+import type { IntentDerivationContext, IntentPalette, IntentSources } from '@/src/tokens/intents';
+import { deriveSupportTokens, supportMainColors } from '@/src/tokens/support-colors';
+import type { SupportTokens } from '@/src/tokens/support-colors';
 
 /** Steps of the pink and indigo scales, from the lightest (`50`) to the darkest (`950`). */
 export const colorScaleSteps = [

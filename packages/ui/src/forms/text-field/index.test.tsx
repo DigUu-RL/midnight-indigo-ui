@@ -6,8 +6,8 @@ import { useState } from 'react';
 import type { ReactElement } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { expectNoAxeViolations, styleRulesOf } from '#test/component-harness.ts';
-import { TextField } from '#src/forms/text-field/index.tsx';
+import { expectNoAxeViolations, styleRulesOf } from '@/test/component-harness';
+import { TextField } from '@/src/forms/text-field/index';
 
 afterEach((): void => {
 	cleanup();

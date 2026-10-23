@@ -7,10 +7,10 @@ import type { ReactElement } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { Mock } from 'vitest';
 
-import { expectNoAxeViolations } from '#test/component-harness.ts';
-import { Button } from '#src/buttons/button/index.tsx';
-import { ConfirmDialog } from '#src/feedback/confirm-dialog/index.tsx';
-import type { ConfirmDialogProps } from '#src/feedback/confirm-dialog/index.tsx';
+import { expectNoAxeViolations } from '@/test/component-harness';
+import { Button } from '@/src/buttons/button/index';
+import { ConfirmDialog } from '@/src/feedback/confirm-dialog/index';
+import type { ConfirmDialogProps } from '@/src/feedback/confirm-dialog/index';
 
 afterEach((): void => {
 	cleanup();

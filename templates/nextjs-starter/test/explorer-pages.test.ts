@@ -6,14 +6,14 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { after, before, describe, test } from 'node:test';
 
-import { readStreamedPage, startStarter, starterRoot } from '#test/support/starter-server.ts';
-import type { StarterServer, StreamedPage } from '#test/support/starter-server.ts';
-import { exampleFileOf, explorerComponents, slugOf, subpathGroups } from '#src/explorer/catalog.ts';
-import type { ExplorerComponent, SubpathGroup } from '#src/explorer/catalog.ts';
-import { generatedApi, propTranslations } from '#src/explorer/component-api.ts';
-import type { ComponentProp } from '#src/explorer/component-api.ts';
-import { routeSegmentOf } from '#src/explorer/routes.ts';
-import { sampleCodes } from '#src/explorer/sample-code.ts';
+import { readStreamedPage, startStarter, starterRoot } from '@/test/support/starter-server';
+import type { StarterServer, StreamedPage } from '@/test/support/starter-server';
+import { exampleFileOf, explorerComponents, slugOf, subpathGroups } from '@/src/explorer/catalog';
+import type { ExplorerComponent, SubpathGroup } from '@/src/explorer/catalog';
+import { generatedApi, propTranslations } from '@/src/explorer/component-api';
+import type { ComponentProp } from '@/src/explorer/component-api';
+import { routeSegmentOf } from '@/src/explorer/routes';
+import { sampleCodes } from '@/src/explorer/sample-code';
 
 const entities: Readonly<Record<string, string>> = {
 	'&amp;': '&',

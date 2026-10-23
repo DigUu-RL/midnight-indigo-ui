@@ -3,7 +3,7 @@
 import { styled } from '@mui/material/styles';
 import type { ComponentPropsWithRef, ReactElement } from 'react';
 
-import { themeVariables } from '#src/theme/theme-variables.ts';
+import { themeVariables } from '@/src/theme/theme-variables';
 
 const { fontFamily, fontWeight, radius, surface, border, text }: typeof themeVariables =
 	themeVariables;

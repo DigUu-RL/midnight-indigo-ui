@@ -4,8 +4,8 @@ import { userEvent } from '@testing-library/user-event';
 import type { UserEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { expectNoAxeViolations } from '#test/component-harness.ts';
-import { PasswordField } from '#src/forms/password-field/index.tsx';
+import { expectNoAxeViolations } from '@/test/component-harness';
+import { PasswordField } from '@/src/forms/password-field/index';
 
 afterEach((): void => {
 	cleanup();

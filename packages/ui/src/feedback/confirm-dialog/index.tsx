@@ -3,12 +3,12 @@
 import { useRef, useState } from 'react';
 import type { ReactElement, ReactNode, RefObject } from 'react';
 
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { Button } from '#src/buttons/button/index.tsx';
-import type { SemanticIntent } from '#src/tokens/index.ts';
-import { Dialog } from '#src/feedback/dialog/index.tsx';
-import type { DialogProps, DialogSize } from '#src/feedback/dialog/index.tsx';
-import type { ModalOverlayProps } from '#src/feedback/modal-layer/index.tsx';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { Button } from '@/src/buttons/button/index';
+import type { SemanticIntent } from '@/src/tokens/index';
+import { Dialog } from '@/src/feedback/dialog/index';
+import type { DialogProps, DialogSize } from '@/src/feedback/dialog/index';
+import type { ModalOverlayProps } from '@/src/feedback/modal-layer/index';
 
 /** Texts of the confirmation dialog. Name the action instead of the defaults: `'Delete report'`, `'Keep editing'`. */
 export interface ConfirmDialogLabels {

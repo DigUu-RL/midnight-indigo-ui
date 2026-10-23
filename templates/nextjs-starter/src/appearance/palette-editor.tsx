@@ -26,7 +26,7 @@ import type { ContrastResult, SemanticIntent } from '@midnight-indigo/ui/tokens'
 import { useMemo, useState } from 'react';
 import type { ChangeEvent, ReactElement, ReactNode } from 'react';
 
-import { theme as applicationTheme } from '#src/theme.ts';
+import { theme as applicationTheme } from '@/src/theme';
 
 type MainColors = Readonly<Record<SemanticIntent, string>>;
 

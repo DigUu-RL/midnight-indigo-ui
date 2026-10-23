@@ -6,8 +6,8 @@
 // `pnpm --filter @midnight-indigo/browser-tests test:visual:update` (see the wiki, "Testes e integração contínua").
 import type { CDPSession, Locator, Page } from '@playwright/test';
 
-import { expectNoAxeViolations } from '#test/support/accessibility.ts';
-import { expect, test } from '#test/support/fixtures.ts';
+import { expectNoAxeViolations } from '@/test/support/accessibility';
+import { expect, test } from '@/test/support/fixtures';
 
 // `border.default`, the color of the scrollbar thumb, and `surface.field`, as browsers serialize them.
 const borderDefault: string = 'rgb(44, 37, 88)';

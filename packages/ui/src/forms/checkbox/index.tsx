@@ -10,11 +10,11 @@ import type {
 	RefObject,
 } from 'react';
 
-import { mergeReferences } from '#src/shared/merge-references.ts';
-import { ChoiceInput, ChoiceRow, switchIndent } from '#src/forms/choice-control/index.tsx';
-import type { ChoiceKind } from '#src/forms/choice-control/index.tsx';
-import { hasContent, joinIds, useFieldMessages } from '#src/forms/form-field/index.tsx';
-import type { FieldProps } from '#src/forms/form-field/index.tsx';
+import { mergeReferences } from '@/src/shared/merge-references';
+import { ChoiceInput, ChoiceRow, switchIndent } from '@/src/forms/choice-control/index';
+import type { ChoiceKind } from '@/src/forms/choice-control/index';
+import { hasContent, joinIds, useFieldMessages } from '@/src/forms/form-field/index';
+import type { FieldProps } from '@/src/forms/form-field/index';
 
 /** Attributes of `<input>` that reach the element, `ref` included; `className` and `style` go to the row. */
 export type NativeChoiceAttributes = Omit<

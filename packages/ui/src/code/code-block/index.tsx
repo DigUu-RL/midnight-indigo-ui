@@ -5,16 +5,16 @@ import { styled } from '@mui/material/styles';
 import type { CSSObject } from '@mui/material/styles';
 import type { ComponentPropsWithRef, ReactElement } from 'react';
 
-import { CopyButton } from '#src/buttons/copy-button/index.tsx';
-import { plainCode } from '#src/code/highlighted-code.ts';
-import type { CodeLine, CodeToken, HighlightedCode } from '#src/code/highlighted-code.ts';
-import { tabStyles } from '#src/navigation/tab-appearance/index.ts';
-import { useTabList } from '#src/navigation/tab-list/index.ts';
-import type { TabList } from '#src/navigation/tab-list/index.ts';
-import { forwardAllBut } from '#src/shared/appearance.ts';
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { hiddenScrollbarStyles } from '#src/theme/native-styles.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
+import { CopyButton } from '@/src/buttons/copy-button/index';
+import { plainCode } from '@/src/code/highlighted-code';
+import type { CodeLine, CodeToken, HighlightedCode } from '@/src/code/highlighted-code';
+import { tabStyles } from '@/src/navigation/tab-appearance/index';
+import { useTabList } from '@/src/navigation/tab-list/index';
+import type { TabList } from '@/src/navigation/tab-list/index';
+import { forwardAllBut } from '@/src/shared/appearance';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { hiddenScrollbarStyles } from '@/src/theme/native-styles';
+import { themeVariables } from '@/src/theme/theme-variables';
 
 const {
 	spacing,

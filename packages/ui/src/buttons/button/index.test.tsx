@@ -5,12 +5,12 @@ import type { UserEvent } from '@testing-library/user-event';
 import type { ReactElement } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { declarationsOf, expectNoAxeViolations, styleRulesOf } from '#test/component-harness.ts';
-import { Icon } from '#src/icons/icon/index.tsx';
-import type { Appearance } from '#src/shared/appearance.ts';
-import { semanticIntents } from '#src/tokens/index.ts';
-import type { SemanticIntent } from '#src/tokens/index.ts';
-import { Button } from '#src/buttons/button/index.tsx';
+import { declarationsOf, expectNoAxeViolations, styleRulesOf } from '@/test/component-harness';
+import { Icon } from '@/src/icons/icon/index';
+import type { Appearance } from '@/src/shared/appearance';
+import { semanticIntents } from '@/src/tokens/index';
+import type { SemanticIntent } from '@/src/tokens/index';
+import { Button } from '@/src/buttons/button/index';
 
 const appearances: readonly Appearance[] = ['solid', 'soft', 'outline', 'ghost'];
 const plusIcon: ReactElement = <path d='M11 5h2v14h-2zM5 11h14v2H5z' />;

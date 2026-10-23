@@ -4,9 +4,9 @@ import { userEvent } from '@testing-library/user-event';
 import type { UserEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { Combobox } from '#src/forms/combobox/index.tsx';
-import type { ComboboxOption } from '#src/forms/combobox/index.tsx';
-import { expectNoAxeViolations } from '#test/component-harness.ts';
+import { Combobox } from '@/src/forms/combobox/index';
+import type { ComboboxOption } from '@/src/forms/combobox/index';
+import { expectNoAxeViolations } from '@/test/component-harness';
 
 const cities: readonly ComboboxOption[] = [
 	{ value: 'rec', label: 'Recife' },

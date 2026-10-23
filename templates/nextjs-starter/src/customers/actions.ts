@@ -5,10 +5,10 @@
 import type { FormErrors } from '@midnight-indigo/ui/forms';
 import type { TFunction } from 'i18next';
 
-import { regions } from '#src/dashboard/demo-data.ts';
-import type { Region } from '#src/dashboard/demo-data.ts';
-import { defaultLocaleSegment, isLocaleSegment } from '#src/i18n/locales.ts';
-import { getTranslator } from '#src/i18n/server.ts';
+import { regions } from '@/src/dashboard/demo-data';
+import type { Region } from '@/src/dashboard/demo-data';
+import { defaultLocaleSegment, isLocaleSegment } from '@/src/i18n/locales';
+import { getTranslator } from '@/src/i18n/server';
 
 /** Addresses already registered, to show an error that only the server can find. */
 const registeredEmails: ReadonlySet<string> = new Set<string>([

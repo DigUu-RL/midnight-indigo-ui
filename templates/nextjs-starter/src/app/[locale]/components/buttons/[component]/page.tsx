@@ -1,8 +1,8 @@
 // The pages of the components of `@midnight-indigo/ui/buttons`, served at `/[locale]/components/<slug>` by the proxy:
 // see `explorer/component-page.tsx`.
-import { buttonsBindings } from '#src/explorer/bindings/buttons.tsx';
-import { createComponentRoute } from '#src/explorer/component-page.tsx';
-import type { ComponentRoute } from '#src/explorer/component-page.tsx';
+import { buttonsBindings } from '@/src/explorer/bindings/buttons';
+import { createComponentRoute } from '@/src/explorer/component-page';
+import type { ComponentRoute } from '@/src/explorer/component-page';
 
 const route: ComponentRoute = createComponentRoute('buttons', buttonsBindings);
 

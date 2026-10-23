@@ -5,17 +5,17 @@ import type { Locale } from 'date-fns';
 import { useId } from 'react';
 import type { ReactElement, ReactNode } from 'react';
 
-import { IconButton } from '#src/buttons/icon-button/index.tsx';
-import { Glyph } from '#src/shared/glyphs/index.tsx';
-import type { GlyphName } from '#src/shared/glyphs/index.tsx';
-import { fieldPlaceholderOf } from '#src/forms/date-pickers/date-format.ts';
-import type { FieldPattern } from '#src/forms/date-pickers/date-format.ts';
-import type { DatePickerLabels } from '#src/forms/date-pickers/labels.ts';
-import { PickerInput, PickerPopup, PickerWrapper } from '#src/forms/date-pickers/picker-field.tsx';
-import type { PickerFieldProps, PickerState } from '#src/forms/date-pickers/picker-field.tsx';
-import { FormField } from '#src/forms/form-field/index.tsx';
-import type { FormFieldControlProps } from '#src/forms/form-field/index.tsx';
-import { InputFrame } from '#src/forms/input-frame/index.tsx';
+import { IconButton } from '@/src/buttons/icon-button/index';
+import { Glyph } from '@/src/shared/glyphs/index';
+import type { GlyphName } from '@/src/shared/glyphs/index';
+import { fieldPlaceholderOf } from '@/src/forms/date-pickers/date-format';
+import type { FieldPattern } from '@/src/forms/date-pickers/date-format';
+import type { DatePickerLabels } from '@/src/forms/date-pickers/labels';
+import { PickerInput, PickerPopup, PickerWrapper } from '@/src/forms/date-pickers/picker-field';
+import type { PickerFieldProps, PickerState } from '@/src/forms/date-pickers/picker-field';
+import { FormField } from '@/src/forms/form-field/index';
+import type { FormFieldControlProps } from '@/src/forms/form-field/index';
+import { InputFrame } from '@/src/forms/input-frame/index';
 
 export interface SinglePickerProps extends Omit<PickerFieldProps, 'labels'> {
 	state: PickerState;

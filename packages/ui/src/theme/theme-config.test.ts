@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { parseUiThemeConfig, UiThemeConfigError } from '#src/theme/theme-config.ts';
-import type { ThemeConfigIssue } from '#src/theme/theme-config.ts';
+import { parseUiThemeConfig, UiThemeConfigError } from '@/src/theme/theme-config';
+import type { ThemeConfigIssue } from '@/src/theme/theme-config';
 
 const issuesOf = (value: unknown): ThemeConfigIssue[] => {
 	try {

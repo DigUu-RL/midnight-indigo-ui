@@ -4,9 +4,9 @@ import { userEvent } from '@testing-library/user-event';
 import type { UserEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { expectNoAxeViolations, styleRulesOf } from '#test/component-harness.ts';
-import type { ChoiceOption } from '#src/forms/choice-control/index.tsx';
-import { RadioGroup } from '#src/forms/radio-group/index.tsx';
+import { expectNoAxeViolations, styleRulesOf } from '@/test/component-harness';
+import type { ChoiceOption } from '@/src/forms/choice-control/index';
+import { RadioGroup } from '@/src/forms/radio-group/index';
 
 const plans: readonly ChoiceOption[] = [
 	{ value: 'free', label: 'Free' },

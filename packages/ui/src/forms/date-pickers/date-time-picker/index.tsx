@@ -16,28 +16,28 @@ import type { Locale } from 'date-fns';
 import { useState } from 'react';
 import type { ReactElement } from 'react';
 
-import { CalendarView } from '#src/forms/date-pickers/calendar/calendar-view.tsx';
+import { CalendarView } from '@/src/forms/date-pickers/calendar/calendar-view';
 import {
 	defaultDatePresets,
 	isDayDisabled,
 	isSameDate,
-} from '#src/forms/date-pickers/calendar/dates.ts';
-import type { DateConstraints, DatePreset } from '#src/forms/date-pickers/calendar/dates.ts';
-import type { DaySelection } from '#src/forms/date-pickers/calendar/month-grid.tsx';
-import { PickerPanel } from '#src/forms/date-pickers/calendar/picker-panel.tsx';
-import type { PanelPreset } from '#src/forms/date-pickers/calendar/picker-panel.tsx';
-import { TimeColumns } from '#src/forms/date-pickers/calendar/time-columns.tsx';
-import { fieldPatternOf, meridiemTextsOf } from '#src/forms/date-pickers/date-format.ts';
-import type { FieldPattern } from '#src/forms/date-pickers/date-format.ts';
-import { usePickersLocale } from '#src/forms/date-pickers/date-pickers-provider/index.tsx';
-import type { DatePickerLabels } from '#src/forms/date-pickers/labels.ts';
+} from '@/src/forms/date-pickers/calendar/dates';
+import type { DateConstraints, DatePreset } from '@/src/forms/date-pickers/calendar/dates';
+import type { DaySelection } from '@/src/forms/date-pickers/calendar/month-grid';
+import { PickerPanel } from '@/src/forms/date-pickers/calendar/picker-panel';
+import type { PanelPreset } from '@/src/forms/date-pickers/calendar/picker-panel';
+import { TimeColumns } from '@/src/forms/date-pickers/calendar/time-columns';
+import { fieldPatternOf, meridiemTextsOf } from '@/src/forms/date-pickers/date-format';
+import type { FieldPattern } from '@/src/forms/date-pickers/date-format';
+import { usePickersLocale } from '@/src/forms/date-pickers/date-pickers-provider/index';
+import type { DatePickerLabels } from '@/src/forms/date-pickers/labels';
 import {
 	usePickerLabels,
 	usePickerState,
 	usePickerValue,
-} from '#src/forms/date-pickers/picker-field.tsx';
-import type { PickerFieldProps, PickerState } from '#src/forms/date-pickers/picker-field.tsx';
-import { SinglePicker } from '#src/forms/date-pickers/single-picker.tsx';
+} from '@/src/forms/date-pickers/picker-field';
+import type { PickerFieldProps, PickerState } from '@/src/forms/date-pickers/picker-field';
+import { SinglePicker } from '@/src/forms/date-pickers/single-picker';
 
 export interface DateTimePickerProps extends PickerFieldProps, DateConstraints {
 	/** Chosen instant, when the parent controls it; `null` for none. */

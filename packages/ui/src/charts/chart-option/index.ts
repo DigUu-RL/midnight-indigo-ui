@@ -18,15 +18,15 @@ import type {
 	ValueAxisConfig,
 	ValueFormatter,
 	ZoomWindow,
-} from '#src/charts/chart-factories/index.ts';
+} from '@/src/charts/chart-factories/index';
 import type {
 	CartesianModel,
 	ChartModel,
 	GaugeModel,
 	ModelSeries,
 	PieModel,
-} from '#src/charts/chart-model/index.ts';
-import type { DesignTokens } from '#src/tokens/index.ts';
+} from '@/src/charts/chart-model/index';
+import type { DesignTokens } from '@/src/tokens/index';
 
 export type EngineOption = ComposeOption<
 	| BarSeriesOption

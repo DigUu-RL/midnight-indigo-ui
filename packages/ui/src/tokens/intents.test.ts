@@ -1,26 +1,21 @@
 import { describe, expect, it } from 'vitest';
 
-import { contrastRatio } from '#src/tokens/color.ts';
-import {
-	createDesignTokens,
-	surfaceTokens,
-	textTokens,
-	tokens,
-} from '#src/tokens/design-tokens.ts';
+import { contrastRatio } from '@/src/tokens/color';
+import { createDesignTokens, surfaceTokens, textTokens, tokens } from '@/src/tokens/design-tokens';
 import {
 	brandMainColor,
 	defaultIntentSources,
 	deriveIntentTokens,
 	officialMainColor,
 	semanticIntents,
-} from '#src/tokens/intents.ts';
-import type { DesignTokens } from '#src/tokens/design-tokens.ts';
+} from '@/src/tokens/intents';
+import type { DesignTokens } from '@/src/tokens/design-tokens';
 import type {
 	IntentDerivationContext,
 	IntentSources,
 	IntentTokens,
 	SemanticIntent,
-} from '#src/tokens/intents.ts';
+} from '@/src/tokens/intents';
 
 // Source value: `keyword` in `tools/theme/theme-palette.ts` of the Midnight Indigo repository.
 // This literal is intentionally duplicated: changing the brand pink must fail here.

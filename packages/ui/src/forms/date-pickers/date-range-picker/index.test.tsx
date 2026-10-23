@@ -4,8 +4,8 @@ import { userEvent } from '@testing-library/user-event';
 import type { UserEvent } from '@testing-library/user-event';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { DatePickersProvider } from '#src/forms/date-pickers/date-pickers-provider/index.tsx';
-import { DateRangePicker } from '#src/forms/date-pickers/date-range-picker/index.tsx';
+import { DatePickersProvider } from '@/src/forms/date-pickers/date-pickers-provider/index';
+import { DateRangePicker } from '@/src/forms/date-pickers/date-range-picker/index';
 
 beforeEach((): void => {
 	vi.useFakeTimers({ now: new Date(2026, 9, 21, 10), shouldAdvanceTime: true });

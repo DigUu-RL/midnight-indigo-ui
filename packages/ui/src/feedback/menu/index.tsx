@@ -3,11 +3,11 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import type { KeyboardEvent, ReactElement, RefObject } from 'react';
 
-import { cloneTrigger } from '#src/feedback/anchored-overlay/index.ts';
-import type { AnchoredPlacement, TriggerProps } from '#src/feedback/anchored-overlay/index.ts';
-import { MenuSurface } from '#src/feedback/menu-surface/index.tsx';
-import type { MenuEntry, MenuInitialFocus } from '#src/feedback/menu-surface/index.tsx';
-import type { OverlayContainer } from '#src/feedback/portal/index.tsx';
+import { cloneTrigger } from '@/src/feedback/anchored-overlay/index';
+import type { AnchoredPlacement, TriggerProps } from '@/src/feedback/anchored-overlay/index';
+import { MenuSurface } from '@/src/feedback/menu-surface/index';
+import type { MenuEntry, MenuInitialFocus } from '@/src/feedback/menu-surface/index';
+import type { OverlayContainer } from '@/src/feedback/portal/index';
 
 export type MenuPlacement = AnchoredPlacement;
 

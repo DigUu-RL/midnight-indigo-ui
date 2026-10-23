@@ -6,20 +6,20 @@ import type { ReactElement } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { Mock } from 'vitest';
 
-import { expectNoAxeViolations, styleRulesOf } from '#test/component-harness.ts';
+import { expectNoAxeViolations, styleRulesOf } from '@/test/component-harness';
 import {
 	applyViewportStyles,
 	resetViewport,
 	resizeViewport,
 	setViewportWidth,
-} from '#test/viewport.ts';
-import { DashboardLayout } from '#src/dashboard/dashboard-layout/index.tsx';
+} from '@/test/viewport';
+import { DashboardLayout } from '@/src/dashboard/dashboard-layout/index';
 import type {
 	DashboardLayoutProps,
 	DashboardNavigation,
-} from '#src/dashboard/dashboard-layout/index.tsx';
-import { Breadcrumbs } from '#src/navigation/breadcrumbs/index.tsx';
-import { ComponentLabelsProvider } from '#src/shared/component-labels/index.tsx';
+} from '@/src/dashboard/dashboard-layout/index';
+import { Breadcrumbs } from '@/src/navigation/breadcrumbs/index';
+import { ComponentLabelsProvider } from '@/src/shared/component-labels/index';
 
 afterEach((): void => {
 	cleanup();

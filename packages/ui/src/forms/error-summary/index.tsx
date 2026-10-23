@@ -11,11 +11,11 @@ import type {
 	RefObject,
 } from 'react';
 
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { focusRingStyles } from '#src/shared/appearance.ts';
-import { Glyph } from '#src/shared/glyphs/index.tsx';
-import { mergeReferences } from '#src/shared/merge-references.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { focusRingStyles } from '@/src/shared/appearance';
+import { Glyph } from '@/src/shared/glyphs/index';
+import { mergeReferences } from '@/src/shared/merge-references';
+import { themeVariables } from '@/src/theme/theme-variables';
 
 const { spacing, typography, radius, surface, text, intent }: typeof themeVariables =
 	themeVariables;

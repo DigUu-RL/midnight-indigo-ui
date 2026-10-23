@@ -2,7 +2,7 @@
 // from its set registered on the server.
 import type { IconifyIconData } from '@midnight-indigo/ui/icons';
 
-import type { IconSetEntry } from '#src/icons/icon-sets.ts';
+import type { IconSetEntry } from '@/src/icons/icon-sets';
 
 const toCamelCase = (text: string): string => {
 	return text

@@ -2,9 +2,9 @@
 // (`node scripts/generate-explorer-api.ts`; a test fails when it is stale). The descriptions are the TSDoc of the
 // library, in English; `prop-descriptions.pt-br.json` translates each one and keeps the English text it translates, so
 // a test finds the translations a change of the TSDoc made stale.
-import type { LocaleSegment } from '#src/i18n/locales.ts';
-import componentApi from '#src/explorer/component-api.json' with { type: 'json' };
-import brazilianPortugueseDescriptions from '#src/explorer/prop-descriptions.pt-br.json' with { type: 'json' };
+import type { LocaleSegment } from '@/src/i18n/locales';
+import componentApi from '@/src/explorer/component-api.json' with { type: 'json' };
+import brazilianPortugueseDescriptions from '@/src/explorer/prop-descriptions.pt-br.json' with { type: 'json' };
 
 /** How the playground edits a prop: a choice, a switch, a text or a number; `other` props have no control. */
 export type PropKind = 'enum' | 'boolean' | 'string' | 'number' | 'node' | 'other';

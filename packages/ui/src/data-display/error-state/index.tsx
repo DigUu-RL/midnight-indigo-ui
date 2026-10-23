@@ -2,12 +2,12 @@
 // Tells that content could not be loaded, and offers to try again.
 import type { ReactElement } from 'react';
 
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { Button } from '#src/buttons/button/index.tsx';
-import { Glyph, intentGlyphs } from '#src/shared/glyphs/index.tsx';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { StateMessage } from '#src/data-display/state-message/index.tsx';
-import type { StateMessageContentProps } from '#src/data-display/state-message/index.tsx';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { Button } from '@/src/buttons/button/index';
+import { Glyph, intentGlyphs } from '@/src/shared/glyphs/index';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { StateMessage } from '@/src/data-display/state-message/index';
+import type { StateMessageContentProps } from '@/src/data-display/state-message/index';
 
 /** Texts of the error state. Translate them with the rest of the interface. */
 export interface ErrorStateLabels {

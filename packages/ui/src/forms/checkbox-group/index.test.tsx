@@ -4,9 +4,9 @@ import { userEvent } from '@testing-library/user-event';
 import type { UserEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { expectNoAxeViolations } from '#test/component-harness.ts';
-import type { ChoiceOption } from '#src/forms/choice-control/index.tsx';
-import { CheckboxGroup } from '#src/forms/checkbox-group/index.tsx';
+import { expectNoAxeViolations } from '@/test/component-harness';
+import type { ChoiceOption } from '@/src/forms/choice-control/index';
+import { CheckboxGroup } from '@/src/forms/checkbox-group/index';
 
 const channels: readonly ChoiceOption[] = [
 	{ value: 'email', label: 'Email' },

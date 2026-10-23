@@ -1,13 +1,13 @@
 // Text alternatives of a chart: the summary read by assistive technologies, the description of one point reached by
 // the keyboard, and the rows of the data table. Every sentence comes whole from the labels, so it can be translated.
-import type { ChartLabels } from '#src/charts/chart-labels/index.ts';
+import type { ChartLabels } from '@/src/charts/chart-labels/index';
 import type {
 	CartesianModel,
 	ChartModel,
 	ModelSeries,
 	PieModel,
 	PieSlice,
-} from '#src/charts/chart-model/index.ts';
+} from '@/src/charts/chart-model/index';
 
 export interface DataTableContent {
 	headers: readonly string[];

@@ -5,8 +5,8 @@ import { spawn } from 'node:child_process';
 import type { ChildProcess } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
-import { checkPhases, runCheckGate } from '#scripts/check-gate.ts';
-import type { StepResult } from '#scripts/check-gate.ts';
+import { checkPhases, runCheckGate } from '@/scripts/check-gate';
+import type { StepResult } from '@/scripts/check-gate';
 
 const repositoryRoot: string = fileURLToPath(new URL('..', import.meta.url));
 

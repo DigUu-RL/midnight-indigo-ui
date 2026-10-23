@@ -1,8 +1,8 @@
 // Texts of the components as i18next resources, in a namespace of their own so they never collide with the keys of
 // the application.
-import type { ComponentName } from '#src/shared/component-labels/index.tsx';
-import { englishMessages } from '#src/i18n/messages/en-us.ts';
-import { brazilianPortugueseMessages } from '#src/i18n/messages/pt-br.ts';
+import type { ComponentName } from '@/src/shared/component-labels/index';
+import { englishMessages } from '@/src/i18n/messages/en-us';
+import { brazilianPortugueseMessages } from '@/src/i18n/messages/pt-br';
 
 /** JSON messages of one namespace: strings, possibly grouped in nested objects. */
 export interface Messages {

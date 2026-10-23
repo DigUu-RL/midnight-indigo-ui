@@ -7,11 +7,11 @@ import { styled } from '@mui/material/styles';
 import { useEffect, useId, useRef, useState } from 'react';
 import type { FocusEvent, KeyboardEvent, ReactElement, RefObject, UIEvent } from 'react';
 
-import { colorTransitionStyles, focusRingStyles } from '#src/shared/appearance.ts';
-import { Glyph } from '#src/shared/glyphs/index.tsx';
-import { scrollbarStyles } from '#src/theme/native-styles.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { HiddenText } from '#src/forms/form-field/index.tsx';
+import { colorTransitionStyles, focusRingStyles } from '@/src/shared/appearance';
+import { Glyph } from '@/src/shared/glyphs/index';
+import { scrollbarStyles } from '@/src/theme/native-styles';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { HiddenText } from '@/src/forms/form-field/index';
 
 const {
 	spacing,

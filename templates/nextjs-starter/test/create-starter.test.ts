@@ -6,13 +6,12 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { after, before, test } from 'node:test';
 
-import { createStarter, readCatalog } from '#scripts/create-starter.ts';
-import { starterRoot } from '#test/support/starter-server.ts';
+import { createStarter, readCatalog } from '@/scripts/create-starter';
+import { starterRoot } from '@/test/support/starter-server';
 
 interface PackageManifest {
 	name: string;
 	version: string;
-	imports?: Record<string, string>;
 	scripts?: Record<string, string>;
 	dependencies?: Record<string, string>;
 	devDependencies?: Record<string, string>;
@@ -90,7 +89,6 @@ test('the manifest has versions an installation outside the monorepo resolves', 
 	assert.equal(dependencies.next, catalog.get('next'));
 	assert.equal(manifest.devDependencies?.typescript, catalog.get('typescript'));
 	assert.equal(manifest.scripts?.test, undefined);
-	assert.deepEqual(manifest.imports, { '#src/*': './src/*' });
 });
 
 test('the TypeScript configuration stands on its own', (): void => {
@@ -103,6 +101,7 @@ test('the TypeScript configuration stands on its own', (): void => {
 	assert.equal(configuration.extends, undefined);
 	assert.equal(compilerOptions.strict, true);
 	assert.equal(compilerOptions.moduleResolution, 'Bundler');
+	assert.deepEqual(compilerOptions.paths, { '@/*': ['./*'] });
 
 	assert.deepEqual(configuration.include, [
 		'next-env.d.ts',

@@ -10,12 +10,12 @@ import type {
 	ReactNode,
 } from 'react';
 
-import type { ControlSize } from '#src/shared/appearance.ts';
-import { Glyph } from '#src/shared/glyphs/index.tsx';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { FormField } from '#src/forms/form-field/index.tsx';
-import type { FieldProps, FormFieldControlProps } from '#src/forms/form-field/index.tsx';
-import { controlResetStyles, InputFrame } from '#src/forms/input-frame/index.tsx';
+import type { ControlSize } from '@/src/shared/appearance';
+import { Glyph } from '@/src/shared/glyphs/index';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { FormField } from '@/src/forms/form-field/index';
+import type { FieldProps, FormFieldControlProps } from '@/src/forms/form-field/index';
+import { controlResetStyles, InputFrame } from '@/src/forms/input-frame/index';
 
 const { spacing, surface, text, iconSize }: typeof themeVariables = themeVariables;
 

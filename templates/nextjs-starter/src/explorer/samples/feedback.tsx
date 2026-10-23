@@ -2,9 +2,9 @@
 import { Button, IconButton } from '@midnight-indigo/ui/buttons';
 import { Card, CardHeader } from '@midnight-indigo/ui/data-display';
 
-import { sampleCrewMenuItems } from '#src/explorer/sample-code.ts';
-import { plusIcon } from '#src/explorer/samples.tsx';
-import type { SubpathSamples } from '#src/explorer/samples.tsx';
+import { sampleCrewMenuItems } from '@/src/explorer/sample-code';
+import { plusIcon } from '@/src/explorer/samples';
+import type { SubpathSamples } from '@/src/explorer/samples';
 
 export const feedbackSamples: SubpathSamples<'feedback'> = {
 	addCrewButton: <IconButton label='Add crew member'>{plusIcon}</IconButton>,

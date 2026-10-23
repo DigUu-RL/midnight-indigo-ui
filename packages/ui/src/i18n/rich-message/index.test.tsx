@@ -4,11 +4,11 @@ import type { ReactElement, ReactNode } from 'react';
 import { renderToString } from 'react-dom/server';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { I18nProvider, useI18n } from '#src/i18n/i18n-provider/index.tsx';
-import type { I18nProviderProps, I18nValue } from '#src/i18n/i18n-provider/index.tsx';
-import type { I18nResources } from '#src/i18n/library-messages.ts';
-import { RichMessage } from '#src/i18n/rich-message/index.tsx';
-import type { MalformedMessageHandler, RichTags } from '#src/i18n/rich-text.ts';
+import { I18nProvider, useI18n } from '@/src/i18n/i18n-provider/index';
+import type { I18nProviderProps, I18nValue } from '@/src/i18n/i18n-provider/index';
+import type { I18nResources } from '@/src/i18n/library-messages';
+import { RichMessage } from '@/src/i18n/rich-message/index';
+import type { MalformedMessageHandler, RichTags } from '@/src/i18n/rich-text';
 
 const resources: I18nResources = {
 	'en-US': {

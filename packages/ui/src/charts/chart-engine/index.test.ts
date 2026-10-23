@@ -4,8 +4,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { MockInstance } from 'vitest';
 
-import { createChartInstance } from '#src/charts/chart-engine/index.ts';
-import type { ChartEngineInstance } from '#src/charts/chart-engine/index.ts';
+import { createChartInstance } from '@/src/charts/chart-engine/index';
+import type { ChartEngineInstance } from '@/src/charts/chart-engine/index';
 import {
 	createAreaChart,
 	createBarChart,
@@ -13,12 +13,12 @@ import {
 	createGaugeChart,
 	createLineChart,
 	createPieChart,
-} from '#src/charts/chart-factories/index.ts';
-import type { ChartDefinition } from '#src/charts/chart-factories/index.ts';
-import { createChartModel } from '#src/charts/chart-model/index.ts';
-import { toEngineOption } from '#src/charts/chart-option/index.ts';
-import type { ChartAppearance, EngineOption } from '#src/charts/chart-option/index.ts';
-import { tokens } from '#src/tokens/index.ts';
+} from '@/src/charts/chart-factories/index';
+import type { ChartDefinition } from '@/src/charts/chart-factories/index';
+import { createChartModel } from '@/src/charts/chart-model/index';
+import { toEngineOption } from '@/src/charts/chart-option/index';
+import type { ChartAppearance, EngineOption } from '@/src/charts/chart-option/index';
+import { tokens } from '@/src/tokens/index';
 
 interface Sale {
 	month: string;

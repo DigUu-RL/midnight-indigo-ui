@@ -25,20 +25,20 @@ import type { Locale } from 'date-fns';
 import { useEffect, useRef, useState } from 'react';
 import type { KeyboardEvent, ReactElement, RefObject } from 'react';
 
-import { IconButton } from '#src/buttons/icon-button/index.tsx';
-import { Glyph } from '#src/shared/glyphs/index.tsx';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { CalendarSelect } from '#src/forms/date-pickers/calendar/calendar-select.tsx';
-import type { CalendarSelectOption } from '#src/forms/date-pickers/calendar/calendar-select.tsx';
+import { IconButton } from '@/src/buttons/icon-button/index';
+import { Glyph } from '@/src/shared/glyphs/index';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { CalendarSelect } from '@/src/forms/date-pickers/calendar/calendar-select';
+import type { CalendarSelectOption } from '@/src/forms/date-pickers/calendar/calendar-select';
 import {
 	isMonthOutOfBounds,
 	monthNamesOf,
 	weekStartOf,
-} from '#src/forms/date-pickers/calendar/dates.ts';
-import type { DateConstraints } from '#src/forms/date-pickers/calendar/dates.ts';
-import { dayKeyOf, MonthGrid } from '#src/forms/date-pickers/calendar/month-grid.tsx';
-import type { DaySelection } from '#src/forms/date-pickers/calendar/month-grid.tsx';
-import type { DatePickerLabels } from '#src/forms/date-pickers/labels.ts';
+} from '@/src/forms/date-pickers/calendar/dates';
+import type { DateConstraints } from '@/src/forms/date-pickers/calendar/dates';
+import { dayKeyOf, MonthGrid } from '@/src/forms/date-pickers/calendar/month-grid';
+import type { DaySelection } from '@/src/forms/date-pickers/calendar/month-grid';
+import type { DatePickerLabels } from '@/src/forms/date-pickers/labels';
 
 const { spacing, border, controlHeight, motion }: typeof themeVariables = themeVariables;
 

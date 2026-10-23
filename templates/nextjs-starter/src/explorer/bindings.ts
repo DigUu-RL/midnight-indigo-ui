@@ -10,10 +10,10 @@ import type {
 	ExampleId,
 	ExplorerSubpath,
 	SubpathComponentName,
-} from '#src/explorer/catalog.ts';
-import type { PlaygroundComponent } from '#src/explorer/playground.tsx';
-import type { SampleName } from '#src/explorer/sample-code.ts';
-import type { SampleValue, SubpathSamples } from '#src/explorer/samples.tsx';
+} from '@/src/explorer/catalog';
+import type { PlaygroundComponent } from '@/src/explorer/playground';
+import type { SampleName } from '@/src/explorer/sample-code';
+import type { SampleValue, SubpathSamples } from '@/src/explorer/samples';
 
 /** Any component: the page gives it only props the catalog and the generated API describe. */
 export type AnyComponent = (props: never) => ReactElement | null;

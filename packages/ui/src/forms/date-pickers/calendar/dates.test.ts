@@ -11,13 +11,13 @@ import {
 	nextRange,
 	weekdayNamesOf,
 	weeksOfMonth,
-} from '#src/forms/date-pickers/calendar/dates.ts';
+} from '@/src/forms/date-pickers/calendar/dates';
 import type {
 	DateRange,
 	DateRangePreset,
 	WeekdayName,
-} from '#src/forms/date-pickers/calendar/dates.ts';
-import { defaultDatePickerLabels } from '#src/forms/date-pickers/labels.ts';
+} from '@/src/forms/date-pickers/calendar/dates';
+import { defaultDatePickerLabels } from '@/src/forms/date-pickers/labels';
 
 const today: Date = new Date(2026, 9, 21);
 

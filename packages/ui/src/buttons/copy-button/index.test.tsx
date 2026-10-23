@@ -5,9 +5,9 @@ import type { UserEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { Mock } from 'vitest';
 
-import { expectNoAxeViolations, styleRulesOf } from '#test/component-harness.ts';
-import { CopyButton } from '#src/buttons/copy-button/index.tsx';
-import { ComponentLabelsProvider } from '#src/shared/component-labels/index.tsx';
+import { expectNoAxeViolations, styleRulesOf } from '@/test/component-harness';
+import { CopyButton } from '@/src/buttons/copy-button/index';
+import { ComponentLabelsProvider } from '@/src/shared/component-labels/index';
 
 afterEach((): void => {
 	cleanup();

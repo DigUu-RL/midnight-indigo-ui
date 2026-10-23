@@ -2,7 +2,7 @@
 // `/[locale]/components/<slug>`, its texts in `messages/*.json` (`explorer.components.<key>`), its examples in
 // `explorer/examples/<slug>/` and its props in `component-api.json`, generated from the types of the library
 // (`node scripts/generate-explorer-api.ts`). Plain data, so the scripts and the tests of the starter read it too.
-import type { SampleName } from '#src/explorer/sample-code.ts';
+import type { SampleName } from '@/src/explorer/sample-code';
 
 /** A value the playground can give to a prop. */
 export type PlaygroundValue = string | number | boolean;

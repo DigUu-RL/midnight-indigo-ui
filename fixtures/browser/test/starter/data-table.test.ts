@@ -1,7 +1,7 @@
 // The invoices table of the starter: filtering, sorting and paging on the client, each announced to screen readers.
 import type { Locator } from '@playwright/test';
 
-import { expect, test } from '#test/support/fixtures.ts';
+import { expect, test } from '@/test/support/fixtures';
 
 const cityColumn: number = 2;
 

@@ -5,13 +5,13 @@ import {
 	formatContrastRatio,
 	isHexColor,
 	isTranslucentColor,
-} from '#src/tokens/color.ts';
-import { listTokenEntries } from '#src/tokens/css-variables.ts';
-import type { DesignTokens } from '#src/tokens/design-tokens.ts';
-import { semanticIntents } from '#src/tokens/intents.ts';
-import type { IntentTokens, SemanticIntent } from '#src/tokens/intents.ts';
-import { supportColorNames } from '#src/tokens/support-colors.ts';
-import type { SupportColor } from '#src/tokens/support-colors.ts';
+} from '@/src/tokens/color';
+import { listTokenEntries } from '@/src/tokens/css-variables';
+import type { DesignTokens } from '@/src/tokens/design-tokens';
+import { semanticIntents } from '@/src/tokens/intents';
+import type { IntentTokens, SemanticIntent } from '@/src/tokens/intents';
+import { supportColorNames } from '@/src/tokens/support-colors';
+import type { SupportColor } from '@/src/tokens/support-colors';
 
 /** Minimum ratios: 4.5:1 for normal text; 3:1 for large text (headings) and required non-text indicators. */
 export const contrastMinimums = {

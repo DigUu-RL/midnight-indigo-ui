@@ -5,11 +5,11 @@ import type { CSSObject } from '@mui/material/styles';
 import { useId } from 'react';
 import type { ComponentPropsWithRef, ReactElement, ReactNode } from 'react';
 
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { forwardAllBut, visuallyHiddenStyles } from '#src/shared/appearance.ts';
-import { Glyph } from '#src/shared/glyphs/index.tsx';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { useFormError } from '#src/forms/form-context.ts';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { forwardAllBut, visuallyHiddenStyles } from '@/src/shared/appearance';
+import { Glyph } from '@/src/shared/glyphs/index';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { useFormError } from '@/src/forms/form-context';
 
 const { spacing, typography, text, intent, state }: typeof themeVariables = themeVariables;
 

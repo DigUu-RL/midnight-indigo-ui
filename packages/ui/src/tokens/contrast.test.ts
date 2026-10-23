@@ -10,16 +10,16 @@ import {
 	findUnauditedColorTokens,
 	formatContrastReport,
 	resolveTokenPath,
-} from '#src/tokens/contrast.ts';
-import type { ContrastException, ContrastPair, ContrastResult } from '#src/tokens/contrast.ts';
-import { createDesignTokens, tokens } from '#src/tokens/design-tokens.ts';
+} from '@/src/tokens/contrast';
+import type { ContrastException, ContrastPair, ContrastResult } from '@/src/tokens/contrast';
+import { createDesignTokens, tokens } from '@/src/tokens/design-tokens';
 import type {
 	AccentTokens,
 	BorderTokens,
 	DesignTokens,
 	SurfaceTokens,
-} from '#src/tokens/design-tokens.ts';
-import { defaultIntentSources } from '#src/tokens/intents.ts';
+} from '@/src/tokens/design-tokens';
+import { defaultIntentSources } from '@/src/tokens/intents';
 
 describe('official contrast pairs', (): void => {
 	const namedResults: [string, ContrastResult][] = auditContrast(tokens).map(

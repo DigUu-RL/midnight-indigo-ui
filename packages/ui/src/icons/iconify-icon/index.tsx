@@ -3,12 +3,12 @@
 import { useId } from 'react';
 import type { ReactElement } from 'react';
 
-import { Icon } from '#src/icons/icon/index.tsx';
-import type { IconAccessibility, IconProps } from '#src/icons/icon/index.tsx';
-import { renderIconData, scopeIdentifiers } from '#src/icons/icon-data/index.ts';
-import type { IconifyIconData, IconName, RenderedIcon } from '#src/icons/icon-data/index.ts';
-import { resolveIconName } from '#src/icons/icon-registry/index.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
+import { Icon } from '@/src/icons/icon/index';
+import type { IconAccessibility, IconProps } from '@/src/icons/icon/index';
+import { renderIconData, scopeIdentifiers } from '@/src/icons/icon-data/index';
+import type { IconifyIconData, IconName, RenderedIcon } from '@/src/icons/icon-data/index';
+import { resolveIconName } from '@/src/icons/icon-registry/index';
+import { themeVariables } from '@/src/theme/theme-variables';
 
 // `Omit` flattens the union of `IconAccessibility`, so it is added back.
 export type IconifyIconProps = Omit<IconProps, 'children' | 'viewBox' | 'label' | 'decorative'> &

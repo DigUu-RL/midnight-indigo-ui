@@ -1,12 +1,12 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { highlightCode } from '#src/code/highlight-code/index.ts';
-import { codeLanguages, plainCode } from '#src/code/highlighted-code.ts';
-import type { CodeLanguage, CodeToken, HighlightedCode } from '#src/code/highlighted-code.ts';
-import { syntaxColors } from '#src/code/syntax-theme.ts';
+import { highlightCode } from '@/src/code/highlight-code/index';
+import { codeLanguages, plainCode } from '@/src/code/highlighted-code';
+import type { CodeLanguage, CodeToken, HighlightedCode } from '@/src/code/highlighted-code';
+import { syntaxColors } from '@/src/code/syntax-theme';
 
 afterEach((): void => {
-	vi.doUnmock('#src/code/highlighter/index.ts');
+	vi.doUnmock('@/src/code/highlighter/index');
 	vi.resetModules();
 });
 
@@ -96,12 +96,12 @@ describe('highlightCode', (): void => {
 	});
 
 	it('explains how to install Shiki when it is missing', async (): Promise<void> => {
-		vi.doMock('#src/code/highlighter/index.ts', (): never => {
+		vi.doMock('@/src/code/highlighter/index', (): never => {
 			throw new Error('Cannot find package shiki');
 		});
 
 		const module: { highlightCode: typeof highlightCode } =
-			await import('#src/code/highlight-code/index.ts');
+			await import('@/src/code/highlight-code/index');
 
 		await expect(module.highlightCode('const a = 1;', 'typescript')).rejects.toThrow(
 			/optional peer dependency shiki/,

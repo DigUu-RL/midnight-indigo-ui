@@ -2,10 +2,6 @@
 	"name": "midnight-indigo-ui-monorepo",
 	"private": true,
 	"type": "module",
-	"imports": {
-		"#eslint-rules/*": "./eslint-rules/*",
-		"#scripts/*": "./scripts/*"
-	},
 	"packageManager": "pnpm@12.11.2",
 	"engines": {
 		"node": ">=22.18.0"
@@ -31,6 +27,7 @@
 	},
 	"devDependencies": {
 		"@eslint/js": "catalog:",
+		"@midnight-indigo/node-aliases": "workspace:*",
 		"@stylistic/eslint-plugin": "catalog:",
 		"@types/estree": "catalog:",
 		"@types/node": "catalog:",

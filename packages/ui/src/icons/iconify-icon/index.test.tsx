@@ -4,22 +4,22 @@ import type { ReactElement } from 'react';
 import { renderToString } from 'react-dom/server';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { expectNoAxeViolations } from '#test/component-harness.ts';
-import { Button } from '#src/buttons/button/index.tsx';
-import { IconButton } from '#src/buttons/icon-button/index.tsx';
-import { Chip } from '#src/data-display/chip/index.tsx';
-import { Alert } from '#src/feedback/alert/index.tsx';
-import { ToastProvider, useToast } from '#src/feedback/toast/index.tsx';
-import type { ToastApi } from '#src/feedback/toast/index.tsx';
-import { TextField } from '#src/forms/text-field/index.tsx';
-import type { IconifyCollection, IconifyIconData } from '#src/icons/icon-data/index.ts';
+import { expectNoAxeViolations } from '@/test/component-harness';
+import { Button } from '@/src/buttons/button/index';
+import { IconButton } from '@/src/buttons/icon-button/index';
+import { Chip } from '@/src/data-display/chip/index';
+import { Alert } from '@/src/feedback/alert/index';
+import { ToastProvider, useToast } from '@/src/feedback/toast/index';
+import type { ToastApi } from '@/src/feedback/toast/index';
+import { TextField } from '@/src/forms/text-field/index';
+import type { IconifyCollection, IconifyIconData } from '@/src/icons/icon-data/index';
 import {
 	listRegisteredIconCollections,
 	registerIconCollection,
 	unregisterIconCollection,
-} from '#src/icons/icon-registry/index.ts';
-import { IconifyIcon } from '#src/icons/iconify-icon/index.tsx';
-import { Tabs } from '#src/navigation/tabs/index.tsx';
+} from '@/src/icons/icon-registry/index';
+import { IconifyIcon } from '@/src/icons/iconify-icon/index';
+import { Tabs } from '@/src/navigation/tabs/index';
 
 const rocket: IconifyIconData = {
 	width: 24,

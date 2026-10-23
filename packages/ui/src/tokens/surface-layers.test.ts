@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
-import { tokens } from '#src/tokens/design-tokens.ts';
-import { measureSurfaceLayers, surfaceLayers } from '#src/tokens/surface-layers.ts';
-import type { SurfaceLayerMeasure } from '#src/tokens/surface-layers.ts';
+import { tokens } from '@/src/tokens/design-tokens';
+import { measureSurfaceLayers, surfaceLayers } from '@/src/tokens/surface-layers';
+import type { SurfaceLayerMeasure } from '@/src/tokens/surface-layers';
 
 describe('surfaceLayers', (): void => {
 	it('lists every surface token exactly once', (): void => {

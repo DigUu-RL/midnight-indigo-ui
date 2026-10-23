@@ -5,13 +5,13 @@ import { styled } from '@mui/material/styles';
 import { useDeferredValue, useMemo, useState } from 'react';
 import type { ComponentPropsWithRef, ReactElement, ReactNode } from 'react';
 
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { visuallyHiddenStyles } from '#src/shared/appearance.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { Pagination } from '#src/navigation/pagination/index.tsx';
-import type { PaginationLabels } from '#src/navigation/pagination/index.tsx';
-import { EmptyState } from '#src/data-display/empty-state/index.tsx';
-import { ErrorState } from '#src/data-display/error-state/index.tsx';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { visuallyHiddenStyles } from '@/src/shared/appearance';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { Pagination } from '@/src/navigation/pagination/index';
+import type { PaginationLabels } from '@/src/navigation/pagination/index';
+import { EmptyState } from '@/src/data-display/empty-state/index';
+import { ErrorState } from '@/src/data-display/error-state/index';
 import {
 	createRowCollator,
 	createSearchIndex,
@@ -19,13 +19,9 @@ import {
 	pageCountOf,
 	pageRows,
 	sortRows,
-} from '#src/data-display/row-processing/index.ts';
-import type {
-	SortDirection,
-	SortState,
-	SortValue,
-} from '#src/data-display/row-processing/index.ts';
-import { Skeleton } from '#src/data-display/skeleton/index.tsx';
+} from '@/src/data-display/row-processing/index';
+import type { SortDirection, SortState, SortValue } from '@/src/data-display/row-processing/index';
+import { Skeleton } from '@/src/data-display/skeleton/index';
 import {
 	Table,
 	TableBody,
@@ -33,8 +29,8 @@ import {
 	TableHead,
 	TableHeaderCell,
 	TableRow,
-} from '#src/data-display/table/index.tsx';
-import type { TableCellAlign, TableDensity } from '#src/data-display/table/index.tsx';
+} from '@/src/data-display/table/index';
+import type { TableCellAlign, TableDensity } from '@/src/data-display/table/index';
 
 export interface DataTableColumn<Row> {
 	/** Stable identifier, used by `SortState`. */

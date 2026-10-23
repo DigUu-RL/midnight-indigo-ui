@@ -3,7 +3,7 @@ import type { ReactElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
-import { Icon, iconAccessibilityProps } from '#src/icons/icon/index.tsx';
+import { Icon, iconAccessibilityProps } from '@/src/icons/icon/index';
 
 const checkPath: ReactElement = <path d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z' />;
 

@@ -2,8 +2,8 @@
 // first row load the engine only when they come into view.
 import type { Locator } from '@playwright/test';
 
-import { expectNoAxeViolations } from '#test/support/accessibility.ts';
-import { expect, test } from '#test/support/fixtures.ts';
+import { expectNoAxeViolations } from '@/test/support/accessibility';
+import { expect, test } from '@/test/support/fixtures';
 
 const chartNames: readonly string[] = [
 	'Orders by status',

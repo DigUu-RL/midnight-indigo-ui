@@ -2,7 +2,7 @@
 // interactive without being replaced.
 import type { JSHandle } from '@playwright/test';
 
-import { expect, test } from '#test/support/fixtures.ts';
+import { expect, test } from '@/test/support/fixtures';
 
 test('hydrates without errors and the server markup becomes interactive', async ({
 	page,

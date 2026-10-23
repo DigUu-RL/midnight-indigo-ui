@@ -5,9 +5,9 @@ import type { UserEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { MockInstance } from 'vitest';
 
-import { expectNoAxeViolations, materialRulesOf } from '#test/component-harness.ts';
-import { IconButton } from '#src/buttons/icon-button/index.tsx';
-import { Tooltip } from '#src/feedback/tooltip/index.tsx';
+import { expectNoAxeViolations, materialRulesOf } from '@/test/component-harness';
+import { IconButton } from '@/src/buttons/icon-button/index';
+import { Tooltip } from '@/src/feedback/tooltip/index';
 
 afterEach((): void => {
 	cleanup();

@@ -6,12 +6,12 @@ import type { ReactElement } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { Mock } from 'vitest';
 
-import { declarationsOf, expectNoAxeViolations, styleRulesOf } from '#test/component-harness.ts';
-import { Button } from '#src/buttons/button/index.tsx';
-import { Alert } from '#src/feedback/alert/index.tsx';
-import type { AlertVariant } from '#src/feedback/alert/index.tsx';
-import { semanticIntents } from '#src/tokens/index.ts';
-import type { SemanticIntent } from '#src/tokens/index.ts';
+import { declarationsOf, expectNoAxeViolations, styleRulesOf } from '@/test/component-harness';
+import { Button } from '@/src/buttons/button/index';
+import { Alert } from '@/src/feedback/alert/index';
+import type { AlertVariant } from '@/src/feedback/alert/index';
+import { semanticIntents } from '@/src/tokens/index';
+import type { SemanticIntent } from '@/src/tokens/index';
 
 afterEach((): void => {
 	cleanup();

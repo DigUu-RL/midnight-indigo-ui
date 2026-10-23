@@ -7,11 +7,11 @@ import { useState } from 'react';
 import type { ReactElement } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { expectNoAxeViolations } from '#test/component-harness.ts';
-import { applyViewportStyles, resetViewport, setViewportWidth } from '#test/viewport.ts';
-import { DataTable } from '#src/data-display/data-table/index.tsx';
-import type { DataTableColumn, DataTableProps } from '#src/data-display/data-table/index.tsx';
-import type { SortState, SortValue } from '#src/data-display/row-processing/index.ts';
+import { expectNoAxeViolations } from '@/test/component-harness';
+import { applyViewportStyles, resetViewport, setViewportWidth } from '@/test/viewport';
+import { DataTable } from '@/src/data-display/data-table/index';
+import type { DataTableColumn, DataTableProps } from '@/src/data-display/data-table/index';
+import type { SortState, SortValue } from '@/src/data-display/row-processing/index';
 
 interface Order {
 	id: string;

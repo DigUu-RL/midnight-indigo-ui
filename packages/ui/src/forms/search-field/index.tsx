@@ -3,12 +3,12 @@
 import { useRef, useState } from 'react';
 import type { ChangeEvent, KeyboardEvent, ReactElement, RefObject } from 'react';
 
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { IconButton } from '#src/buttons/icon-button/index.tsx';
-import { Glyph } from '#src/shared/glyphs/index.tsx';
-import { mergeReferences, setNativeValue } from '#src/shared/merge-references.ts';
-import { TextFieldBase } from '#src/forms/text-field-base/index.tsx';
-import type { TextControlProps } from '#src/forms/text-field-base/index.tsx';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { IconButton } from '@/src/buttons/icon-button/index';
+import { Glyph } from '@/src/shared/glyphs/index';
+import { mergeReferences, setNativeValue } from '@/src/shared/merge-references';
+import { TextFieldBase } from '@/src/forms/text-field-base/index';
+import type { TextControlProps } from '@/src/forms/text-field-base/index';
 
 /** Texts of the search field. Translate them with the rest of the interface. */
 export interface SearchFieldLabels {

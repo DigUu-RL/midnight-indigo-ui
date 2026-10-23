@@ -1,18 +1,18 @@
 import type { CSSObject } from '@mui/material/styles';
 import { describe, expect, it } from 'vitest';
 
-import { topbarHeight } from '#src/shared/layout-metrics.ts';
-import { createUiTheme } from '#src/theme/create-ui-theme.ts';
-import type { UiTheme } from '#src/theme/create-ui-theme.ts';
+import { topbarHeight } from '@/src/shared/layout-metrics';
+import { createUiTheme } from '@/src/theme/create-ui-theme';
+import type { UiTheme } from '@/src/theme/create-ui-theme';
 import {
 	createNativeBaselineStyles,
 	glyphImage,
 	nativeBaselineStyles,
 	nativeControlSelector,
-} from '#src/theme/native-baseline.ts';
-import { autofillStyles, forcedColorsMediaQuery } from '#src/theme/native-styles.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { tokens } from '#src/tokens/index.ts';
+} from '@/src/theme/native-baseline';
+import { autofillStyles, forcedColorsMediaQuery } from '@/src/theme/native-styles';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { tokens } from '@/src/tokens/index';
 
 const {
 	border,

@@ -4,12 +4,12 @@ import { styled } from '@mui/material/styles';
 import type { CSSObject } from '@mui/material/styles';
 import type { ComponentPropsWithRef, ReactElement, ReactNode } from 'react';
 
-import { colorTransitionStyles, controlRadii, forwardAllBut } from '#src/shared/appearance.ts';
-import type { ControlSize } from '#src/shared/appearance.ts';
-import { CircularIndicator } from '#src/shared/circular-indicator/index.tsx';
-import { autofillStyles } from '#src/theme/native-styles.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { hasContent } from '#src/forms/form-field/index.tsx';
+import { colorTransitionStyles, controlRadii, forwardAllBut } from '@/src/shared/appearance';
+import type { ControlSize } from '@/src/shared/appearance';
+import { CircularIndicator } from '@/src/shared/circular-indicator/index';
+import { autofillStyles } from '@/src/theme/native-styles';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { hasContent } from '@/src/forms/form-field/index';
 
 const {
 	spacing,

@@ -6,12 +6,12 @@ import type { ReactElement } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { Mock } from 'vitest';
 
-import { expectNoAxeViolations, styleRulesOf } from '#test/component-harness.ts';
-import { TableOfContents } from '#src/navigation/table-of-contents/index.tsx';
+import { expectNoAxeViolations, styleRulesOf } from '@/test/component-harness';
+import { TableOfContents } from '@/src/navigation/table-of-contents/index';
 import type {
 	TableOfContentsItem,
 	TableOfContentsProps,
-} from '#src/navigation/table-of-contents/index.tsx';
+} from '@/src/navigation/table-of-contents/index';
 
 afterEach((): void => {
 	cleanup();

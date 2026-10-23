@@ -8,14 +8,14 @@ import {
 	createLineChart,
 	createPieChart,
 	isCartesian,
-} from '#src/charts/chart-factories/index.ts';
+} from '@/src/charts/chart-factories/index';
 import type {
 	BarChartDefinition,
 	ChartSeries,
 	FieldOf,
 	LineChartDefinition,
 	PointValue,
-} from '#src/charts/chart-factories/index.ts';
+} from '@/src/charts/chart-factories/index';
 
 interface Sale {
 	month: string;

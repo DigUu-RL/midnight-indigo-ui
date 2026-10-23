@@ -1,7 +1,7 @@
 // The figures of the reports, computed once from the demo data. Plain data without texts: the page translates the
 // labels and formats the values in the locale.
-import { monthlyRevenue, orders, orderStatuses, regions } from '#src/dashboard/demo-data.ts';
-import type { MonthlyRevenue, Order, OrderStatus, Region } from '#src/dashboard/demo-data.ts';
+import { monthlyRevenue, orders, orderStatuses, regions } from '@/src/dashboard/demo-data';
+import type { MonthlyRevenue, Order, OrderStatus, Region } from '@/src/dashboard/demo-data';
 
 export interface MonthlyOrders {
 	/** First day of the month, ISO 8601. */

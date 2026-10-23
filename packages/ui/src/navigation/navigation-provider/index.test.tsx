@@ -5,14 +5,14 @@ import type { UserEvent } from '@testing-library/user-event';
 import type { MouseEvent, ReactElement } from 'react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { applyViewportStyles, resetViewport, setViewportWidth } from '#test/viewport.ts';
-import { Breadcrumbs } from '#src/navigation/breadcrumbs/index.tsx';
-import { Link } from '#src/navigation/link/index.tsx';
-import { NavigationProvider } from '#src/navigation/navigation-provider/index.tsx';
-import type { LinkComponentProps } from '#src/navigation/navigation-provider/index.tsx';
-import { Pagination } from '#src/navigation/pagination/index.tsx';
-import { Sidebar } from '#src/navigation/sidebar/index.tsx';
-import { TabNavigation } from '#src/navigation/tab-navigation/index.tsx';
+import { applyViewportStyles, resetViewport, setViewportWidth } from '@/test/viewport';
+import { Breadcrumbs } from '@/src/navigation/breadcrumbs/index';
+import { Link } from '@/src/navigation/link/index';
+import { NavigationProvider } from '@/src/navigation/navigation-provider/index';
+import type { LinkComponentProps } from '@/src/navigation/navigation-provider/index';
+import { Pagination } from '@/src/navigation/pagination/index';
+import { Sidebar } from '@/src/navigation/sidebar/index';
+import { TabNavigation } from '@/src/navigation/tab-navigation/index';
 
 afterEach((): void => {
 	cleanup();

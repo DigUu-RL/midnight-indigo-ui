@@ -5,9 +5,9 @@ import type { UserEvent } from '@testing-library/user-event';
 import type { ReactElement } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { declarationsOf, expectNoAxeViolations } from '#test/component-harness.ts';
-import { Icon } from '#src/icons/icon/index.tsx';
-import { IconButton } from '#src/buttons/icon-button/index.tsx';
+import { declarationsOf, expectNoAxeViolations } from '@/test/component-harness';
+import { Icon } from '@/src/icons/icon/index';
+import { IconButton } from '@/src/buttons/icon-button/index';
 
 const plusIcon: ReactElement = <path d='M11 5h2v14h-2zM5 11h14v2H5z' />;
 

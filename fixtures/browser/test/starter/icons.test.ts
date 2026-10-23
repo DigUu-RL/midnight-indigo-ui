@@ -2,8 +2,8 @@
 // attribution page, all audited by axe (contrast included). The icons arrive as inline SVG; no request fetches them.
 import type { Locator, Request } from '@playwright/test';
 
-import { expectNoAxeViolations } from '#test/support/accessibility.ts';
-import { expect, test } from '#test/support/fixtures.ts';
+import { expectNoAxeViolations } from '@/test/support/accessibility';
+import { expect, test } from '@/test/support/fixtures';
 
 test('searches every set and shows an icon with the code to use it', async ({
 	page,

@@ -1,0 +1,17 @@
+{
+	"name": "@midnight-indigo/node-aliases",
+	"private": true,
+	"description": "Teaches Node to resolve the `@/` alias and extensionless imports of the workspaces. Loaded into every Node process started by pnpm (`nodeOptions` in pnpm-workspace.yaml).",
+	"type": "module",
+	"exports": {
+		".": "./src/register.ts"
+	},
+	"scripts": {
+		"typecheck": "tsc -p tsconfig.json",
+		"test": "node --test \"src/**/*.test.ts\""
+	},
+	"devDependencies": {
+		"@types/node": "catalog:",
+		"typescript": "catalog:"
+	}
+}

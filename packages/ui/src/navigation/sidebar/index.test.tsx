@@ -7,15 +7,15 @@ import type { ReactElement } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { Mock } from 'vitest';
 
-import { expectNoAxeViolations, styleRulesOf } from '#test/component-harness.ts';
+import { expectNoAxeViolations, styleRulesOf } from '@/test/component-harness';
 import {
 	applyViewportStyles,
 	resetViewport,
 	resizeViewport,
 	setViewportWidth,
-} from '#test/viewport.ts';
-import { Sidebar, SidebarMenuButton } from '#src/navigation/sidebar/index.tsx';
-import type { SidebarEntry, SidebarProps } from '#src/navigation/sidebar/index.tsx';
+} from '@/test/viewport';
+import { Sidebar, SidebarMenuButton } from '@/src/navigation/sidebar/index';
+import type { SidebarEntry, SidebarProps } from '@/src/navigation/sidebar/index';
 
 afterEach((): void => {
 	cleanup();

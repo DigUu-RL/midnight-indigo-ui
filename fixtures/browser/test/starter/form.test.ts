@@ -2,7 +2,7 @@
 // and a valid submission reports success.
 import type { Locator } from '@playwright/test';
 
-import { expect, test } from '#test/support/fixtures.ts';
+import { expect, test } from '@/test/support/fixtures';
 
 test('blocks an invalid submission, then saves once every error is fixed', async ({
 	page,

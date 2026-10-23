@@ -5,10 +5,10 @@ import { styled } from '@mui/material/styles';
 import { useId } from 'react';
 import type { ReactElement, ReactNode } from 'react';
 
-import { Button } from '#src/buttons/button/index.tsx';
-import { scrollbarStyles } from '#src/theme/native-styles.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import type { DatePickerLabels } from '#src/forms/date-pickers/labels.ts';
+import { Button } from '@/src/buttons/button/index';
+import { scrollbarStyles } from '@/src/theme/native-styles';
+import { themeVariables } from '@/src/theme/theme-variables';
+import type { DatePickerLabels } from '@/src/forms/date-pickers/labels';
 
 const {
 	spacing,

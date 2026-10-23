@@ -15,11 +15,11 @@ import type { TFunction } from 'i18next';
 import type { Metadata } from 'next';
 import type { ReactElement, ReactNode } from 'react';
 
-import type { LocaleSegment } from '#src/i18n/locales.ts';
-import { getTranslator, localeOf } from '#src/i18n/server.ts';
-import type { LocaleParams } from '#src/i18n/server.ts';
-import { iconSets } from '#src/icons/icon-sets.ts';
-import type { IconSetEntry } from '#src/icons/icon-sets.ts';
+import type { LocaleSegment } from '@/src/i18n/locales';
+import { getTranslator, localeOf } from '@/src/i18n/server';
+import type { LocaleParams } from '@/src/i18n/server';
+import { iconSets } from '@/src/icons/icon-sets';
+import type { IconSetEntry } from '@/src/icons/icon-sets';
 
 export const generateMetadata = async (props: LocaleParams): Promise<Metadata> => {
 	const translate: TFunction = await getTranslator(await localeOf(props));

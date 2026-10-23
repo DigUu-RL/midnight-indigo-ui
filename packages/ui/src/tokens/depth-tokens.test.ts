@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest';
 
-import { contrastRatio, relativeLuminance } from '#src/tokens/color.ts';
-import { contrastMinimums } from '#src/tokens/contrast.ts';
-import { toCssVariables } from '#src/tokens/css-variables.ts';
-import { createDesignTokens, tokens } from '#src/tokens/design-tokens.ts';
-import type { DesignTokens } from '#src/tokens/design-tokens.ts';
-import { defaultIntentSources } from '#src/tokens/intents.ts';
+import { contrastRatio, relativeLuminance } from '@/src/tokens/color';
+import { contrastMinimums } from '@/src/tokens/contrast';
+import { toCssVariables } from '@/src/tokens/css-variables';
+import { createDesignTokens, tokens } from '@/src/tokens/design-tokens';
+import type { DesignTokens } from '@/src/tokens/design-tokens';
+import { defaultIntentSources } from '@/src/tokens/intents';
 
 // Values of the v2 standard. Intentionally duplicated: changing a surface, border or state must fail here.
 describe('surface tokens', (): void => {

@@ -1,11 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { getIconData, renderIconData, scopeIdentifiers } from '#src/icons/icon-data/index.ts';
-import type {
-	IconifyCollection,
-	IconifyIconData,
-	RenderedIcon,
-} from '#src/icons/icon-data/index.ts';
+import { getIconData, renderIconData, scopeIdentifiers } from '@/src/icons/icon-data/index';
+import type { IconifyCollection, IconifyIconData, RenderedIcon } from '@/src/icons/icon-data/index';
 
 const collection: IconifyCollection = {
 	prefix: 'test',

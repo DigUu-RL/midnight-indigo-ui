@@ -2,14 +2,14 @@
 import type { TFunction } from 'i18next';
 import type { ReactElement, ReactNode } from 'react';
 
-import { camelCaseOf, slugOf, subpathGroups } from '#src/explorer/catalog.ts';
-import type { ExplorerComponent, SubpathGroup } from '#src/explorer/catalog.ts';
-import { ExplorerNavigation } from '#src/explorer/explorer-navigation.tsx';
-import type { NavigationComponent, NavigationGroup } from '#src/explorer/explorer-navigation.tsx';
-import { routeSegmentOf } from '#src/explorer/routes.ts';
-import type { LocaleSegment } from '#src/i18n/locales.ts';
-import { getTranslator, localeOf } from '#src/i18n/server.ts';
-import type { LocaleParams } from '#src/i18n/server.ts';
+import { camelCaseOf, slugOf, subpathGroups } from '@/src/explorer/catalog';
+import type { ExplorerComponent, SubpathGroup } from '@/src/explorer/catalog';
+import { ExplorerNavigation } from '@/src/explorer/explorer-navigation';
+import type { NavigationComponent, NavigationGroup } from '@/src/explorer/explorer-navigation';
+import { routeSegmentOf } from '@/src/explorer/routes';
+import type { LocaleSegment } from '@/src/i18n/locales';
+import { getTranslator, localeOf } from '@/src/i18n/server';
+import type { LocaleParams } from '@/src/i18n/server';
 
 interface ExplorerLayoutProps extends LocaleParams {
 	children: ReactNode;

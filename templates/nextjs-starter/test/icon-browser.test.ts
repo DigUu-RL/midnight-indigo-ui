@@ -4,10 +4,10 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { after, before, describe, test } from 'node:test';
 
-import { readStreamedPage, startStarter } from '#test/support/starter-server.ts';
-import type { StarterServer, StreamedPage } from '#test/support/starter-server.ts';
-import { excludedIconSets, iconSets } from '#src/icons/icon-sets.ts';
-import type { ExcludedIconSet, IconSetEntry } from '#src/icons/icon-sets.ts';
+import { readStreamedPage, startStarter } from '@/test/support/starter-server';
+import type { StarterServer, StreamedPage } from '@/test/support/starter-server';
+import { excludedIconSets, iconSets } from '@/src/icons/icon-sets';
+import type { ExcludedIconSet, IconSetEntry } from '@/src/icons/icon-sets';
 
 interface PackageManifest {
 	dependencies: Record<string, string>;

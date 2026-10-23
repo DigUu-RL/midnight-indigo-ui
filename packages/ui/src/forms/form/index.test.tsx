@@ -4,13 +4,13 @@ import { userEvent } from '@testing-library/user-event';
 import type { UserEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { CheckboxGroup } from '#src/forms/checkbox-group/index.tsx';
-import type { FormErrors } from '#src/forms/form-context.ts';
-import { Form } from '#src/forms/form/index.tsx';
-import { FormActions } from '#src/forms/form-actions/index.tsx';
-import { SubmitButton } from '#src/forms/submit-button/index.tsx';
-import { TextField } from '#src/forms/text-field/index.tsx';
-import { expectNoAxeViolations } from '#test/component-harness.ts';
+import { CheckboxGroup } from '@/src/forms/checkbox-group/index';
+import type { FormErrors } from '@/src/forms/form-context';
+import { Form } from '@/src/forms/form/index';
+import { FormActions } from '@/src/forms/form-actions/index';
+import { SubmitButton } from '@/src/forms/submit-button/index';
+import { TextField } from '@/src/forms/text-field/index';
+import { expectNoAxeViolations } from '@/test/component-harness';
 
 afterEach((): void => {
 	cleanup();

@@ -14,11 +14,11 @@ import type { I18nValue } from '@midnight-indigo/ui/i18n';
 import { createElement, useId, useState } from 'react';
 import type { ComponentType, ReactElement } from 'react';
 
-import type { HookTrigger, Opener, PlaygroundValue, SampleWidth } from '#src/explorer/catalog.ts';
-import type { ComponentProp } from '#src/explorer/component-api.ts';
-import type { SampleCode } from '#src/explorer/sample-code.ts';
-import type { SampleValue } from '#src/explorer/samples.tsx';
-import { snippetOf } from '#src/explorer/snippet.ts';
+import type { HookTrigger, Opener, PlaygroundValue, SampleWidth } from '@/src/explorer/catalog';
+import type { ComponentProp } from '@/src/explorer/component-api';
+import type { SampleCode } from '@/src/explorer/sample-code';
+import type { SampleValue } from '@/src/explorer/samples';
+import { snippetOf } from '@/src/explorer/snippet';
 
 /** A prop that takes an element or an object: the sample, rendered on the server, and its code. */
 export interface PlaygroundSlot {

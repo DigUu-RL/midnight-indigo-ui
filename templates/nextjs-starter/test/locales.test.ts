@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
-import { localeOfPath, localizePath, negotiateLocale } from '#src/i18n/locales.ts';
+import { localeOfPath, localizePath, negotiateLocale } from '@/src/i18n/locales';
 
 test('the locale of a path is its first segment, when it is one of the locales', (): void => {
 	assert.equal(localeOfPath('/pt-br/orders'), 'pt-br');

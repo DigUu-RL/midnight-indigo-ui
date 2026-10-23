@@ -8,11 +8,11 @@ import type { Locale } from 'date-fns';
 import { useMemo } from 'react';
 import type { KeyboardEvent, ReactElement } from 'react';
 
-import { colorTransitionStyles } from '#src/shared/appearance.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { weekdayNamesOf, weeksOfMonth } from '#src/forms/date-pickers/calendar/dates.ts';
-import type { WeekdayName } from '#src/forms/date-pickers/calendar/dates.ts';
-import { HiddenText } from '#src/forms/form-field/index.tsx';
+import { colorTransitionStyles } from '@/src/shared/appearance';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { weekdayNamesOf, weeksOfMonth } from '@/src/forms/date-pickers/calendar/dates';
+import type { WeekdayName } from '@/src/forms/date-pickers/calendar/dates';
+import { HiddenText } from '@/src/forms/form-field/index';
 
 const {
 	spacing,

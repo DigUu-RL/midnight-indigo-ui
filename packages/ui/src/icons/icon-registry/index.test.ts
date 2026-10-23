@@ -1,12 +1,12 @@
 import { afterEach, describe, expect, it } from 'vitest';
 
-import type { IconifyCollection } from '#src/icons/icon-data/index.ts';
+import type { IconifyCollection } from '@/src/icons/icon-data/index';
 import {
 	listRegisteredIconCollections,
 	registerIconCollection,
 	resolveIconName,
 	unregisterIconCollection,
-} from '#src/icons/icon-registry/index.ts';
+} from '@/src/icons/icon-registry/index';
 
 const collection: IconifyCollection = {
 	prefix: 'test',

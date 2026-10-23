@@ -9,12 +9,12 @@ import {
 	focusRingStyles,
 	forwardAllBut,
 	visuallyHiddenStyles,
-} from '#src/shared/appearance.ts';
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { Glyph } from '#src/shared/glyphs/index.tsx';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { useLinkAs } from '#src/navigation/navigation-provider/index.tsx';
-import type { LinkComponent } from '#src/navigation/navigation-provider/index.tsx';
+} from '@/src/shared/appearance';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { Glyph } from '@/src/shared/glyphs/index';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { useLinkAs } from '@/src/navigation/navigation-provider/index';
+import type { LinkComponent } from '@/src/navigation/navigation-provider/index';
 
 const { accent, fontWeight, radius }: typeof themeVariables = themeVariables;
 

@@ -3,12 +3,12 @@
 import { useRef } from 'react';
 import type { ChangeEvent, ReactElement, RefObject } from 'react';
 
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { IconButton } from '#src/buttons/icon-button/index.tsx';
-import { Glyph } from '#src/shared/glyphs/index.tsx';
-import { mergeReferences } from '#src/shared/merge-references.ts';
-import { TextFieldBase } from '#src/forms/text-field-base/index.tsx';
-import type { TextControlBaseProps } from '#src/forms/text-field-base/index.tsx';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { IconButton } from '@/src/buttons/icon-button/index';
+import { Glyph } from '@/src/shared/glyphs/index';
+import { mergeReferences } from '@/src/shared/merge-references';
+import { TextFieldBase } from '@/src/forms/text-field-base/index';
+import type { TextControlBaseProps } from '@/src/forms/text-field-base/index';
 
 /** Texts of the number field. Translate them with the rest of the interface. */
 export interface NumberFieldLabels {

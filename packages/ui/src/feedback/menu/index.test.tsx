@@ -7,11 +7,11 @@ import type { ReactElement } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { Mock } from 'vitest';
 
-import { expectNoAxeViolations, materialRulesOf } from '#test/component-harness.ts';
-import { Button } from '#src/buttons/button/index.tsx';
-import { Dialog } from '#src/feedback/dialog/index.tsx';
-import { Menu } from '#src/feedback/menu/index.tsx';
-import type { MenuEntry } from '#src/feedback/menu-surface/index.tsx';
+import { expectNoAxeViolations, materialRulesOf } from '@/test/component-harness';
+import { Button } from '@/src/buttons/button/index';
+import { Dialog } from '@/src/feedback/dialog/index';
+import { Menu } from '@/src/feedback/menu/index';
+import type { MenuEntry } from '@/src/feedback/menu-surface/index';
 
 afterEach((): void => {
 	cleanup();

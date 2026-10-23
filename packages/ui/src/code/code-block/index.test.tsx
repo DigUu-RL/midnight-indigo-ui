@@ -5,12 +5,12 @@ import type { UserEvent } from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { Mock } from 'vitest';
 
-import { expectNoAxeViolations, styleRulesOf } from '#test/component-harness.ts';
-import { CodeBlock } from '#src/code/code-block/index.tsx';
-import type { CodeFile } from '#src/code/code-block/index.tsx';
-import type { HighlightedCode } from '#src/code/highlighted-code.ts';
-import { syntaxColors } from '#src/code/syntax-theme.ts';
-import { ComponentLabelsProvider } from '#src/shared/component-labels/index.tsx';
+import { expectNoAxeViolations, styleRulesOf } from '@/test/component-harness';
+import { CodeBlock } from '@/src/code/code-block/index';
+import type { CodeFile } from '@/src/code/code-block/index';
+import type { HighlightedCode } from '@/src/code/highlighted-code';
+import { syntaxColors } from '@/src/code/syntax-theme';
+import { ComponentLabelsProvider } from '@/src/shared/component-labels/index';
 
 afterEach((): void => {
 	cleanup();

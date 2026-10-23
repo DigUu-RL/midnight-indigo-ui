@@ -11,31 +11,31 @@ import type {
 	RefObject,
 } from 'react';
 
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { focusRingStyles, prettyWrapStyles, visuallyHiddenStyles } from '#src/shared/appearance.ts';
-import { Glyph } from '#src/shared/glyphs/index.tsx';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { useUiTheme } from '#src/theme/ui-provider.tsx';
-import { usePrefersReducedMotion } from '#src/theme/use-prefers-reduced-motion.ts';
-import { Button } from '#src/buttons/button/index.tsx';
-import { IconButton } from '#src/buttons/icon-button/index.tsx';
-import { EmptyState } from '#src/data-display/empty-state/index.tsx';
-import { ErrorState } from '#src/data-display/error-state/index.tsx';
-import { Skeleton } from '#src/data-display/skeleton/index.tsx';
-import type * as ChartEngineModule from '#src/charts/chart-engine/index.ts';
-import type { ChartEngineInstance } from '#src/charts/chart-engine/index.ts';
-import { ChartDataTable } from '#src/charts/chart-data-table/index.tsx';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { focusRingStyles, prettyWrapStyles, visuallyHiddenStyles } from '@/src/shared/appearance';
+import { Glyph } from '@/src/shared/glyphs/index';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { useUiTheme } from '@/src/theme/ui-provider';
+import { usePrefersReducedMotion } from '@/src/theme/use-prefers-reduced-motion';
+import { Button } from '@/src/buttons/button/index';
+import { IconButton } from '@/src/buttons/icon-button/index';
+import { EmptyState } from '@/src/data-display/empty-state/index';
+import { ErrorState } from '@/src/data-display/error-state/index';
+import { Skeleton } from '@/src/data-display/skeleton/index';
+import type * as ChartEngineModule from '@/src/charts/chart-engine/index';
+import type { ChartEngineInstance } from '@/src/charts/chart-engine/index';
+import { ChartDataTable } from '@/src/charts/chart-data-table/index';
 import type {
 	ChartDefinition,
 	ChartRenderer,
 	ZoomWindow,
-} from '#src/charts/chart-factories/index.ts';
-import { defaultChartLabels } from '#src/charts/chart-labels/index.ts';
-import type { ChartLabels } from '#src/charts/chart-labels/index.ts';
-import { ChartLegend } from '#src/charts/chart-legend/index.tsx';
-import type { LegendItem } from '#src/charts/chart-legend/index.tsx';
-import { createChartModel, isEmptyModel, pointCountOf } from '#src/charts/chart-model/index.ts';
-import type { ChartModel, ModelSeries, PieSlice } from '#src/charts/chart-model/index.ts';
+} from '@/src/charts/chart-factories/index';
+import { defaultChartLabels } from '@/src/charts/chart-labels/index';
+import type { ChartLabels } from '@/src/charts/chart-labels/index';
+import { ChartLegend } from '@/src/charts/chart-legend/index';
+import type { LegendItem } from '@/src/charts/chart-legend/index';
+import { createChartModel, isEmptyModel, pointCountOf } from '@/src/charts/chart-model/index';
+import type { ChartModel, ModelSeries, PieSlice } from '@/src/charts/chart-model/index';
 import {
 	cyclic,
 	seriesDashes,
@@ -43,9 +43,9 @@ import {
 	seriesPatterns,
 	toEngineOption,
 	toViewOption,
-} from '#src/charts/chart-option/index.ts';
-import type { ChartAppearance, ChartViewState } from '#src/charts/chart-option/index.ts';
-import { describePoint, summarizeChart } from '#src/charts/chart-summary/index.ts';
+} from '@/src/charts/chart-option/index';
+import type { ChartAppearance, ChartViewState } from '@/src/charts/chart-option/index';
+import { describePoint, summarizeChart } from '@/src/charts/chart-summary/index';
 
 const { spacing, typography, fontWeight, text, intent }: typeof themeVariables = themeVariables;
 
@@ -125,7 +125,7 @@ let enginePromise: Promise<EngineModule> | undefined;
 
 /** Loads the engine once for every chart; a failed load is tried again by the next chart. */
 const loadChartEngine = (): Promise<EngineModule> => {
-	enginePromise ??= import('#src/charts/chart-engine/index.ts').catch((error: unknown): never => {
+	enginePromise ??= import('@/src/charts/chart-engine/index').catch((error: unknown): never => {
 		enginePromise = undefined;
 		throw error;
 	});

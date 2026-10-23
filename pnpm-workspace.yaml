@@ -3,6 +3,10 @@ packages:
   - apps/*
   - templates/*
   - fixtures/*
+  - tools/*
+
+# Every Node process started by pnpm resolves the `@/` alias and extensionless imports (tools/node-aliases).
+nodeOptions: --import=@midnight-indigo/node-aliases
 
 # Versions shared across workspaces. Revalidate before every release (see D08).
 # TypeScript stays on 6.0.x because typescript-eslint still requires `typescript <6.1.0`.

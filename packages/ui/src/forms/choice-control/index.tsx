@@ -9,14 +9,14 @@ import {
 	focusRingStyles,
 	forwardAllBut,
 	reducedMotion,
-} from '#src/shared/appearance.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
+} from '@/src/shared/appearance';
+import { themeVariables } from '@/src/theme/theme-variables';
 import {
 	FieldDescription,
 	FieldError,
 	hasContent,
 	RequiredMark,
-} from '#src/forms/form-field/index.tsx';
+} from '@/src/forms/form-field/index';
 
 const {
 	spacing,

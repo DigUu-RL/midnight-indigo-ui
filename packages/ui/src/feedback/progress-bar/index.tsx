@@ -6,14 +6,11 @@ import type { ComponentPropsWithRef, ReactElement } from 'react';
 
 type Keyframes = ReturnType<typeof keyframes>;
 
-import { assertLabel, forwardAllBut, reducedMotion } from '#src/shared/appearance.ts';
-import type { ControlSize } from '#src/shared/appearance.ts';
-import {
-	CircularIndicator,
-	indeterminatePulseStyles,
-} from '#src/shared/circular-indicator/index.tsx';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import type { SemanticIntent } from '#src/tokens/index.ts';
+import { assertLabel, forwardAllBut, reducedMotion } from '@/src/shared/appearance';
+import type { ControlSize } from '@/src/shared/appearance';
+import { CircularIndicator, indeterminatePulseStyles } from '@/src/shared/circular-indicator/index';
+import { themeVariables } from '@/src/theme/theme-variables';
+import type { SemanticIntent } from '@/src/tokens/index';
 
 const { radius, motion, intent: intentVariables }: typeof themeVariables = themeVariables;
 

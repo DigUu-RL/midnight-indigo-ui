@@ -4,8 +4,8 @@ import { styled } from '@mui/material/styles';
 import type { CSSObject } from '@mui/material/styles';
 import type { ComponentPropsWithRef, ReactElement } from 'react';
 
-import { forwardAllBut } from '#src/shared/appearance.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
+import { forwardAllBut } from '@/src/shared/appearance';
+import { themeVariables } from '@/src/theme/theme-variables';
 
 export type DividerOrientation = 'horizontal' | 'vertical';
 

@@ -2,9 +2,9 @@
 import { cleanup, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { expectNoAxeViolations } from '#test/component-harness.ts';
-import { TextField } from '#src/forms/text-field/index.tsx';
-import { Fieldset } from '#src/forms/fieldset/index.tsx';
+import { expectNoAxeViolations } from '@/test/component-harness';
+import { TextField } from '@/src/forms/text-field/index';
+import { Fieldset } from '@/src/forms/fieldset/index';
 
 afterEach((): void => {
 	cleanup();

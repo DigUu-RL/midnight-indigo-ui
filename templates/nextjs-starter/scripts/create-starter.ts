@@ -17,7 +17,6 @@ interface PackageManifest {
 	name: string;
 	version: string;
 	description?: string;
-	imports?: Record<string, string>;
 	scripts?: Record<string, string>;
 	dependencies?: DependencyMap;
 	devDependencies?: DependencyMap;
@@ -140,13 +139,6 @@ const writeManifest = (target: string, libraryRange: string): void => {
 		),
 	);
 
-	// `#test/*` and `#scripts/*` point to folders the copy leaves out.
-	const imports: Record<string, string> = Object.fromEntries(
-		Object.entries(manifest.imports ?? {}).filter(([, path]: [string, string]): boolean => {
-			return !excludedEntries.has(path.split('/')[1] ?? '');
-		}),
-	);
-
 	// The empty `name` and `version` only keep the two fields at the top of the file.
 	writeJson(
 		join(target, 'package.json'),
@@ -154,7 +146,6 @@ const writeManifest = (target: string, libraryRange: string): void => {
 			name: packageNameOf(target),
 			version: '0.1.0',
 			description: 'Next.js application made with Midnight Indigo: UI.',
-			imports,
 			scripts,
 			dependencies: resolveDependencies(manifest.dependencies, catalog, libraryRange),
 			devDependencies: resolveDependencies(manifest.devDependencies, catalog, libraryRange),

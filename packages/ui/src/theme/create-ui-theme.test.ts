@@ -1,15 +1,11 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import { tokens } from '#src/tokens/index.ts';
-import type { HexColor } from '#src/tokens/index.ts';
-import {
-	createThemeStylesheet,
-	createUiTheme,
-	defaultUiTheme,
-} from '#src/theme/create-ui-theme.ts';
-import type { UiTheme } from '#src/theme/create-ui-theme.ts';
-import { UiThemeConfigError } from '#src/theme/theme-config.ts';
-import type { UiThemeConfig } from '#src/theme/theme-config.ts';
+import { tokens } from '@/src/tokens/index';
+import type { HexColor } from '@/src/tokens/index';
+import { createThemeStylesheet, createUiTheme, defaultUiTheme } from '@/src/theme/create-ui-theme';
+import type { UiTheme } from '@/src/theme/create-ui-theme';
+import { UiThemeConfigError } from '@/src/theme/theme-config';
+import type { UiThemeConfig } from '@/src/theme/theme-config';
 
 const silent = { onWarning: (): void => undefined };
 const customPink: HexColor = '#E0409F';

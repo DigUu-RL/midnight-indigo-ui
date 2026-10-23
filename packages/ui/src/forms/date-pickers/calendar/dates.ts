@@ -21,7 +21,7 @@ import {
 } from 'date-fns';
 import type { Day, Locale } from 'date-fns';
 
-import type { DatePickerLabels } from '#src/forms/date-pickers/labels.ts';
+import type { DatePickerLabels } from '@/src/forms/date-pickers/labels';
 
 /** A range of days; either end is `null` until it is chosen. */
 export interface DateRange {

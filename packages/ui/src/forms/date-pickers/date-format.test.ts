@@ -9,9 +9,9 @@ import {
 	formatFieldValue,
 	maskFieldText,
 	parseFieldText,
-} from '#src/forms/date-pickers/date-format.ts';
-import type { FieldPattern } from '#src/forms/date-pickers/date-format.ts';
-import { defaultDatePickerLabels } from '#src/forms/date-pickers/labels.ts';
+} from '@/src/forms/date-pickers/date-format';
+import type { FieldPattern } from '@/src/forms/date-pickers/date-format';
+import { defaultDatePickerLabels } from '@/src/forms/date-pickers/labels';
 
 const reference: Date = new Date(2026, 9, 21);
 

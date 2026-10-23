@@ -11,8 +11,8 @@ import {
 	headOf,
 	readStreamedPage,
 	startStarter,
-} from '#test/support/starter-server.ts';
-import type { StarterServer, StreamedPage } from '#test/support/starter-server.ts';
+} from '@/test/support/starter-server';
+import type { StarterServer, StreamedPage } from '@/test/support/starter-server';
 
 interface ThemeConfiguration {
 	palette: { official: { main: string } };

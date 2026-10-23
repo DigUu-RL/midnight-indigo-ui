@@ -6,20 +6,16 @@ import type { CSSObject } from '@mui/material/styles';
 import { useCallback, useId, useRef, useState } from 'react';
 import type { ComponentPropsWithRef, MouseEvent, ReactElement, ReactNode, RefObject } from 'react';
 
-import { useComponentLabels } from '#src/shared/component-labels/index.tsx';
-import { Container } from '#src/layout/container/index.tsx';
-import type { ContainerSize } from '#src/layout/container/index.tsx';
-import {
-	defaultSidebarLabels,
-	Sidebar,
-	SidebarMenuButton,
-} from '#src/navigation/sidebar/index.tsx';
-import type { SidebarEntry, SidebarLabels } from '#src/navigation/sidebar/index.tsx';
-import { forwardAllBut, visuallyHiddenStyles } from '#src/shared/appearance.ts';
-import { stickyTopbarAttribute, topbarHeight } from '#src/shared/layout-metrics.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
-import { breakpointMediaQuery } from '#src/tokens/index.ts';
-import type { Breakpoint } from '#src/tokens/index.ts';
+import { useComponentLabels } from '@/src/shared/component-labels/index';
+import { Container } from '@/src/layout/container/index';
+import type { ContainerSize } from '@/src/layout/container/index';
+import { defaultSidebarLabels, Sidebar, SidebarMenuButton } from '@/src/navigation/sidebar/index';
+import type { SidebarEntry, SidebarLabels } from '@/src/navigation/sidebar/index';
+import { forwardAllBut, visuallyHiddenStyles } from '@/src/shared/appearance';
+import { stickyTopbarAttribute, topbarHeight } from '@/src/shared/layout-metrics';
+import { themeVariables } from '@/src/theme/theme-variables';
+import { breakpointMediaQuery } from '@/src/tokens/index';
+import type { Breakpoint } from '@/src/tokens/index';
 
 const {
 	spacing,

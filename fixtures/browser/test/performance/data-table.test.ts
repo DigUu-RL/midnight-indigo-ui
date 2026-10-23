@@ -1,15 +1,15 @@
 // The data table in the browser, on the production build: rendering and interactions with large datasets.
 import type { Locator } from '@playwright/test';
 
-import { expect, test } from '#test/support/fixtures.ts';
+import { expect, test } from '@/test/support/fixtures';
 import {
 	budget,
 	goodInteractionLatency,
 	measureInteraction,
 	openScenario,
 	recordInteractions,
-} from '#test/support/performance.ts';
-import type { InteractionMeasurement } from '#test/support/performance.ts';
+} from '@/test/support/performance';
+import type { InteractionMeasurement } from '@/test/support/performance';
 
 test.beforeEach(async ({ page }): Promise<void> => {
 	await recordInteractions(page);

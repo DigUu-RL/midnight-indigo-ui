@@ -220,12 +220,12 @@ test('the highlighter module depends only on Shiki subpaths', (): void => {
 	assert.deepEqual(highlighterPackages.toSorted(), ['shiki/core', 'shiki/engine/javascript']);
 });
 
-test('compiled files keep no subpath import of the source tree', (): void => {
+test('compiled files keep no `@/` alias of the source tree', (): void => {
 	const leaked: string[] = lightEntries
 		.concat(optionalEntries.map(([specifier]: [string, RegExp]): string => specifier))
 		.concat(['@midnight-indigo/ui/dashboard', '@midnight-indigo/ui/code'])
 		.flatMap((specifier: string): string[] => importGraphOf(specifier).packages)
-		.filter((name: string): boolean => name.startsWith('#'));
+		.filter((name: string): boolean => name.startsWith('@/'));
 
 	assert.deepEqual(leaked, []);
 });

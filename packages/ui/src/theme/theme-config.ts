@@ -1,6 +1,6 @@
 // Theme configuration: the typed input of `createUiTheme` and the validation of its JSON-serializable form.
-import { isHexColor, officialMainColor, semanticIntents } from '#src/tokens/index.ts';
-import type { IntentSource, SemanticIntent } from '#src/tokens/index.ts';
+import { isHexColor, officialMainColor, semanticIntents } from '@/src/tokens/index';
+import type { IntentSource, SemanticIntent } from '@/src/tokens/index';
 
 /** Configuration of one intent. Every field is optional: an omitted `main` falls back to the default color. */
 export type IntentConfig = Partial<IntentSource>;

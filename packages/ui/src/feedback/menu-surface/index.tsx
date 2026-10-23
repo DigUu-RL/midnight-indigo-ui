@@ -8,15 +8,15 @@ import type { CSSObject, Theme } from '@mui/material/styles';
 import { useRef } from 'react';
 import type { ReactElement, ReactNode, RefObject } from 'react';
 
-import { forwardAllBut } from '#src/shared/appearance.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
+import { forwardAllBut } from '@/src/shared/appearance';
+import { themeVariables } from '@/src/theme/theme-variables';
 import {
 	anchoredRootStyles,
 	anchoredSurfaceStyles,
 	anchorOrigins,
-} from '#src/feedback/anchored-overlay/index.ts';
-import type { AnchoredPlacement, AnchorOrigins } from '#src/feedback/anchored-overlay/index.ts';
-import type { OverlayContainer } from '#src/feedback/portal/index.tsx';
+} from '@/src/feedback/anchored-overlay/index';
+import type { AnchoredPlacement, AnchorOrigins } from '@/src/feedback/anchored-overlay/index';
+import type { OverlayContainer } from '@/src/feedback/portal/index';
 
 const {
 	spacing,

@@ -3,18 +3,18 @@
 export {
 	DashboardLayout,
 	defaultDashboardLayoutLabels,
-} from '#src/dashboard/dashboard-layout/index.tsx';
+} from '@/src/dashboard/dashboard-layout/index';
 export type {
 	DashboardLayoutLabels,
 	DashboardLayoutProps,
 	DashboardNavigation,
 	DashboardSidebarVariant,
-} from '#src/dashboard/dashboard-layout/index.tsx';
-export { DashboardPanel } from '#src/dashboard/dashboard-panel/index.tsx';
-export type { DashboardPanelProps } from '#src/dashboard/dashboard-panel/index.tsx';
-export { defaultFilterBarLabels, FilterBar } from '#src/dashboard/filter-bar/index.tsx';
-export type { FilterBarLabels, FilterBarProps } from '#src/dashboard/filter-bar/index.tsx';
-export { KpiGrid } from '#src/dashboard/kpi-grid/index.tsx';
-export type { KpiGridProps, KpiItem } from '#src/dashboard/kpi-grid/index.tsx';
-export { PageHeader } from '#src/dashboard/page-header/index.tsx';
-export type { PageHeaderHeadingLevel, PageHeaderProps } from '#src/dashboard/page-header/index.tsx';
+} from '@/src/dashboard/dashboard-layout/index';
+export { DashboardPanel } from '@/src/dashboard/dashboard-panel/index';
+export type { DashboardPanelProps } from '@/src/dashboard/dashboard-panel/index';
+export { defaultFilterBarLabels, FilterBar } from '@/src/dashboard/filter-bar/index';
+export type { FilterBarLabels, FilterBarProps } from '@/src/dashboard/filter-bar/index';
+export { KpiGrid } from '@/src/dashboard/kpi-grid/index';
+export type { KpiGridProps, KpiItem } from '@/src/dashboard/kpi-grid/index';
+export { PageHeader } from '@/src/dashboard/page-header/index';
+export type { PageHeaderHeadingLevel, PageHeaderProps } from '@/src/dashboard/page-header/index';

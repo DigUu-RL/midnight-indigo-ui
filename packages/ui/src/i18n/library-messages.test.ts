@@ -1,48 +1,48 @@
 import type { i18n as I18nInstance } from 'i18next';
 import { describe, expect, it } from 'vitest';
 
-import { defaultCopyButtonLabels } from '#src/buttons/copy-button/index.tsx';
-import { defaultChartLabels } from '#src/charts/chart-labels/index.ts';
-import { defaultCodeBlockLabels } from '#src/code/code-block/index.tsx';
-import { defaultDashboardLayoutLabels } from '#src/dashboard/dashboard-layout/index.tsx';
-import { defaultFilterBarLabels } from '#src/dashboard/filter-bar/index.tsx';
-import { defaultCarouselLabels } from '#src/data-display/carousel/index.tsx';
-import { defaultDataTableLabels } from '#src/data-display/data-table/index.tsx';
-import { defaultErrorStateLabels } from '#src/data-display/error-state/index.tsx';
-import { defaultLoadingLabel } from '#src/data-display/loading-status/index.tsx';
-import { defaultStatCardLabels } from '#src/data-display/stat-card/index.tsx';
-import { defaultAlertLabels } from '#src/feedback/alert/index.tsx';
-import { defaultConfirmDialogLabels } from '#src/feedback/confirm-dialog/index.tsx';
-import { defaultDialogLabels } from '#src/feedback/dialog/index.tsx';
-import { defaultDrawerLabels } from '#src/feedback/drawer/index.tsx';
-import { defaultToastLabels } from '#src/feedback/toast/index.tsx';
-import { defaultComboboxLabels } from '#src/forms/combobox/index.tsx';
-import { defaultDatePickerLabels } from '#src/forms/date-pickers/labels.ts';
-import { defaultErrorSummaryLabels } from '#src/forms/error-summary/index.tsx';
-import { defaultFileUploadLabels } from '#src/forms/file-upload/index.tsx';
-import type { FileLimits } from '#src/forms/file-upload/index.tsx';
-import { defaultFormLabels } from '#src/forms/form/index.tsx';
-import { defaultFormFieldLabels } from '#src/forms/form-field/index.tsx';
-import { defaultNumberFieldLabels } from '#src/forms/number-field/index.tsx';
-import { defaultPasswordFieldLabels } from '#src/forms/password-field/index.tsx';
-import { defaultSearchFieldLabels } from '#src/forms/search-field/index.tsx';
-import { defaultTextAreaLabels } from '#src/forms/text-area/index.tsx';
-import { defaultBreadcrumbsLabels } from '#src/navigation/breadcrumbs/index.tsx';
-import { defaultLinkLabels } from '#src/navigation/link/index.tsx';
-import { defaultPaginationLabels } from '#src/navigation/pagination/index.tsx';
-import { defaultSidebarLabels } from '#src/navigation/sidebar/index.tsx';
-import { defaultTableOfContentsLabels } from '#src/navigation/table-of-contents/index.tsx';
+import { defaultCopyButtonLabels } from '@/src/buttons/copy-button/index';
+import { defaultChartLabels } from '@/src/charts/chart-labels/index';
+import { defaultCodeBlockLabels } from '@/src/code/code-block/index';
+import { defaultDashboardLayoutLabels } from '@/src/dashboard/dashboard-layout/index';
+import { defaultFilterBarLabels } from '@/src/dashboard/filter-bar/index';
+import { defaultCarouselLabels } from '@/src/data-display/carousel/index';
+import { defaultDataTableLabels } from '@/src/data-display/data-table/index';
+import { defaultErrorStateLabels } from '@/src/data-display/error-state/index';
+import { defaultLoadingLabel } from '@/src/data-display/loading-status/index';
+import { defaultStatCardLabels } from '@/src/data-display/stat-card/index';
+import { defaultAlertLabels } from '@/src/feedback/alert/index';
+import { defaultConfirmDialogLabels } from '@/src/feedback/confirm-dialog/index';
+import { defaultDialogLabels } from '@/src/feedback/dialog/index';
+import { defaultDrawerLabels } from '@/src/feedback/drawer/index';
+import { defaultToastLabels } from '@/src/feedback/toast/index';
+import { defaultComboboxLabels } from '@/src/forms/combobox/index';
+import { defaultDatePickerLabels } from '@/src/forms/date-pickers/labels';
+import { defaultErrorSummaryLabels } from '@/src/forms/error-summary/index';
+import { defaultFileUploadLabels } from '@/src/forms/file-upload/index';
+import type { FileLimits } from '@/src/forms/file-upload/index';
+import { defaultFormLabels } from '@/src/forms/form/index';
+import { defaultFormFieldLabels } from '@/src/forms/form-field/index';
+import { defaultNumberFieldLabels } from '@/src/forms/number-field/index';
+import { defaultPasswordFieldLabels } from '@/src/forms/password-field/index';
+import { defaultSearchFieldLabels } from '@/src/forms/search-field/index';
+import { defaultTextAreaLabels } from '@/src/forms/text-area/index';
+import { defaultBreadcrumbsLabels } from '@/src/navigation/breadcrumbs/index';
+import { defaultLinkLabels } from '@/src/navigation/link/index';
+import { defaultPaginationLabels } from '@/src/navigation/pagination/index';
+import { defaultSidebarLabels } from '@/src/navigation/sidebar/index';
+import { defaultTableOfContentsLabels } from '@/src/navigation/table-of-contents/index';
 import type {
 	ComponentLabels,
 	ComponentLabelTypes,
 	ComponentName,
-} from '#src/shared/component-labels/index.tsx';
-import { createComponentLabels } from '#src/i18n/component-labels.ts';
-import { createI18n } from '#src/i18n/create-i18n.ts';
-import { createFormatters } from '#src/i18n/formatters.ts';
-import { libraryNamespace, libraryResources } from '#src/i18n/library-messages.ts';
-import type { LibraryMessages, Messages } from '#src/i18n/library-messages.ts';
-import { englishMessages } from '#src/i18n/messages/en-us.ts';
+} from '@/src/shared/component-labels/index';
+import { createComponentLabels } from '@/src/i18n/component-labels';
+import { createI18n } from '@/src/i18n/create-i18n';
+import { createFormatters } from '@/src/i18n/formatters';
+import { libraryNamespace, libraryResources } from '@/src/i18n/library-messages';
+import type { LibraryMessages, Messages } from '@/src/i18n/library-messages';
+import { englishMessages } from '@/src/i18n/messages/en-us';
 
 type Defaults = { [Name in ComponentName]: Readonly<ComponentLabelTypes[Name]> };
 

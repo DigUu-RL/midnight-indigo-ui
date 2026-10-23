@@ -16,7 +16,7 @@ import {
 } from '@midnight-indigo/ui';
 import type { ReactElement } from 'react';
 
-import { FilterChips } from '#src/gallery/filter-chips.tsx';
+import { FilterChips } from '@/src/gallery/filter-chips';
 
 // Icons are slots: any SVG fits, here through the library's `Icon`. Inside a named control they are decorative.
 const plusIcon: ReactElement = (

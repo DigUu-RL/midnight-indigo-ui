@@ -6,8 +6,8 @@ import {
 	forcedColorsMediaQuery,
 	hiddenScrollbarStyles,
 	scrollbarStyles,
-} from '#src/theme/native-styles.ts';
-import { themeVariables } from '#src/theme/theme-variables.ts';
+} from '@/src/theme/native-styles';
+import { themeVariables } from '@/src/theme/theme-variables';
 
 const { border, text, surface }: typeof themeVariables = themeVariables;
 

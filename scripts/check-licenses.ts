@@ -6,7 +6,7 @@ import type { SpawnSyncReturns } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
-import { isAllowedLicense } from '#scripts/license-policy.ts';
+import { isAllowedLicense } from '@/scripts/license-policy';
 
 interface LicensedPackage {
 	name: string;

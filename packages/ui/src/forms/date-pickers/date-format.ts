@@ -4,7 +4,7 @@
 import { format, isValid, parse } from 'date-fns';
 import type { Locale } from 'date-fns';
 
-import type { DatePickerLabels } from '#src/forms/date-pickers/labels.ts';
+import type { DatePickerLabels } from '@/src/forms/date-pickers/labels';
 
 export type FieldKind = 'date' | 'time' | 'dateTime';
 
