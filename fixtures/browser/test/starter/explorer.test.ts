@@ -301,6 +301,68 @@ test('a form of the playground summarizes its errors, then announces the success
 	await expect(playground.locator('pre')).toContainText("successMessage='Welcome aboard.'");
 });
 
+// The layout of the route of the pickers gives them the locale of the page; the day is a sample the page passes on. A
+// click in the field opens the panel while focus stays there, and the choice reaches the field only with Apply.
+test('a date picker of the playground follows the locale of the page and applies the choice of its panel', async ({
+	page,
+}): Promise<void> => {
+	await page.goto('/pt-br/components/date-picker');
+	const playground: Locator = page.locator('.playground');
+	const field: Locator = playground.locator('.playground-stage').getByRole('combobox');
+
+	await expect(field).toHaveValue('15/06/2071');
+	await field.click();
+	const panel: Locator = page.getByRole('dialog', { name: 'Calendário' });
+
+	await expect(panel.getByRole('grid', { name: 'junho 2071' })).toBeVisible();
+	await expect(field).toBeFocused();
+
+	await expect(panel.getByLabel(/^\S+, 15 de junho de 2071$/).locator('..')).toHaveAttribute(
+		'aria-selected',
+		'true',
+	);
+
+	await panel.getByLabel(/^\S+, 20 de junho de 2071$/).click();
+	await panel.getByRole('button', { name: 'Aplicar' }).click();
+
+	await expect(panel).toBeHidden();
+	await expect(field).toHaveValue('20/06/2071');
+	await playground.getByRole('switch', { name: 'disableFuture' }).click();
+
+	await expect(playground.locator('pre')).toContainText(
+		"<DatePicker label='Departure day' disableFuture defaultValue={new Date(2071, 5, 15, 12)} />",
+	);
+});
+
+// Two months side by side; the first click starts the range and the second ends it.
+test('a range picker chooses its ends across two months and fills both fields', async ({
+	page,
+}): Promise<void> => {
+	await page.goto('/en-us/components/date-range-picker');
+	const stage: Locator = page.locator('.playground .playground-stage');
+
+	await stage.getByRole('button', { name: 'Choose a date' }).click();
+	const panel: Locator = page.getByRole('dialog', { name: 'Choose a period' });
+
+	await expect(panel.getByRole('grid')).toHaveCount(2);
+
+	await expect(page.locator(':focus')).toHaveAttribute(
+		'aria-label',
+		/June 15th, 2071, start of the period$/,
+	);
+
+	await panel.getByRole('button', { name: 'Show the next month' }).click();
+	await panel.getByLabel('Wednesday, July 22nd, 2071').click();
+	await panel.getByLabel('Tuesday, August 4th, 2071').click();
+	await panel.getByRole('button', { name: 'Apply' }).click();
+
+	await expect(stage.getByRole('combobox', { name: 'Shore leave Start' })).toHaveValue(
+		'07/22/2071',
+	);
+
+	await expect(stage.getByRole('combobox', { name: 'Shore leave End' })).toHaveValue('08/04/2071');
+});
+
 test('a required text left blank keeps its initial value', async ({ page }): Promise<void> => {
 	await page.goto('/en-us/components/avatar');
 	const playground: Locator = page.locator('.playground');

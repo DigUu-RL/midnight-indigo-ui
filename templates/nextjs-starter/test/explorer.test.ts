@@ -23,6 +23,7 @@ import {
 import type { ExplorerComponent, HookTrigger, PlaygroundValue } from '#src/explorer/catalog.ts';
 import { generatedApi, propTranslations } from '#src/explorer/component-api.ts';
 import type { ComponentProp } from '#src/explorer/component-api.ts';
+import { routeSegmentOf } from '#src/explorer/routes.ts';
 import { sampleCodes } from '#src/explorer/sample-code.ts';
 import type { SampleCode, SampleName } from '#src/explorer/sample-code.ts';
 import { snippetOf } from '#src/explorer/snippet.ts';
@@ -129,7 +130,7 @@ describe('the catalog', (): void => {
 				const key: string = `explorer.components.${camelCaseOf(component.name)}`;
 
 				const paths: string[] = [
-					`explorer.subpaths.${camelCaseOf(component.subpath)}`,
+					`explorer.subpaths.${camelCaseOf(routeSegmentOf(component.subpath))}`,
 					`${key}.summary`,
 					`${key}.description`,
 					...component.examples.flatMap((id: string): string[] => {
@@ -163,15 +164,22 @@ describe('the examples', (): void => {
 		});
 	});
 
-	// The code shown is meant to be copied: it can import nothing that only exists in the starter.
-	test('import only the public subpaths of the library and React', (): void => {
+	// The code shown is meant to be copied: it can import nothing that only exists in the starter. The locales the
+	// `DatePickersProvider` takes come from its optional peer, date-fns.
+	test('import only the public subpaths of the library, React and the locales of the date pickers', (): void => {
+		const allowed: readonly RegExp[] = [
+			/^@midnight-indigo\/ui\//,
+			/^react$/,
+			/^date-fns\/locale\/[\w-]+$/,
+		];
+
 		const others: string[] = exampleFiles.flatMap((file: string): string[] => {
 			const source: string = readFileSync(join(examplesDirectory, file), 'utf8');
 
 			return [...source.matchAll(importPattern)]
 				.map((match: RegExpExecArray): string => match[1] ?? '')
 				.filter((specifier: string): boolean => {
-					return !specifier.startsWith('@midnight-indigo/ui/') && specifier !== 'react';
+					return !allowed.some((pattern: RegExp): boolean => pattern.test(specifier));
 				})
 				.map((specifier: string): string => `${file}: ${specifier}`);
 		});

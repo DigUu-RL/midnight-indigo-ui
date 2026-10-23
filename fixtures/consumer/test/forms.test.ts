@@ -66,6 +66,12 @@ test('the compiled date picker renders on the server inside its provider', (): v
 		createElement(DatePickersProvider, null, createElement(DatePicker, { label: 'Due date' })),
 	);
 
-	assert.match(html, /Due date/);
-	assert.match(html, /role="spinbutton"/);
+	assert.match(html, /<label[^>]*>Due date<\/label>/);
+
+	assert.match(
+		html,
+		/<input(?=[^>]*role="combobox")(?=[^>]*placeholder="mm\/dd\/yyyy")(?=[^>]*inputMode="numeric")/,
+	);
+
+	assert.match(html, /<button[^>]*aria-haspopup="dialog"[^>]*aria-label="Choose a date"/);
 });

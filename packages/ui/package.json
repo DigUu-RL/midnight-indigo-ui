@@ -96,7 +96,6 @@
 		"@emotion/react": "^11.14.0",
 		"@emotion/styled": "^11.14.0",
 		"@mui/material": "^9.5.0",
-		"@mui/x-date-pickers": "^9.14.0",
 		"date-fns": "^4.0.0",
 		"echarts": "^6.0.0",
 		"i18next": "^26.2.0",
@@ -107,9 +106,6 @@
 		"shiki": "^4.0.0"
 	},
 	"peerDependenciesMeta": {
-		"@mui/x-date-pickers": {
-			"optional": true
-		},
 		"date-fns": {
 			"optional": true
 		},
@@ -135,7 +131,6 @@
 		"@emotion/styled": "catalog:",
 		"@iconify-json/tabler": "catalog:",
 		"@mui/material": "catalog:",
-		"@mui/x-date-pickers": "catalog:",
 		"@testing-library/dom": "catalog:",
 		"@testing-library/react": "catalog:",
 		"@testing-library/user-event": "catalog:",

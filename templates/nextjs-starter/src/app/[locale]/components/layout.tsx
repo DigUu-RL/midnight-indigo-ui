@@ -6,6 +6,7 @@ import { camelCaseOf, slugOf, subpathGroups } from '#src/explorer/catalog.ts';
 import type { ExplorerComponent, SubpathGroup } from '#src/explorer/catalog.ts';
 import { ExplorerNavigation } from '#src/explorer/explorer-navigation.tsx';
 import type { NavigationComponent, NavigationGroup } from '#src/explorer/explorer-navigation.tsx';
+import { routeSegmentOf } from '#src/explorer/routes.ts';
 import type { LocaleSegment } from '#src/i18n/locales.ts';
 import { getTranslator, localeOf } from '#src/i18n/server.ts';
 import type { LocaleParams } from '#src/i18n/server.ts';
@@ -21,7 +22,7 @@ const ExplorerLayout = async ({ children, params }: ExplorerLayoutProps): Promis
 	const groups: NavigationGroup[] = subpathGroups().map((group: SubpathGroup): NavigationGroup => {
 		return {
 			subpath: group.subpath,
-			label: translate(`explorer.subpaths.${camelCaseOf(group.subpath)}`),
+			label: translate(`explorer.subpaths.${camelCaseOf(routeSegmentOf(group.subpath))}`),
 			components: group.components.map((component: ExplorerComponent): NavigationComponent => {
 				return { name: component.name, slug: slugOf(component) };
 			}),

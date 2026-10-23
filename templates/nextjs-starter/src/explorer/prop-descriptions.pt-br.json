@@ -2244,5 +2244,421 @@
 			"source": "Name of the control to focus, looked up in the enclosing form when there is no `targetId`.",
 			"translation": "Nome do controle a focar, procurado no formulário que contém o resumo quando não há `targetId`."
 		}
+	},
+	"DatePicker": {
+		"value": {
+			"source": "Chosen date, when the parent controls it; `null` for none.",
+			"translation": "Data escolhida, quando o pai a controla; `null` para nenhuma."
+		},
+		"defaultValue": {
+			"source": "Initial date when uncontrolled.",
+			"translation": "Data inicial quando não controlado."
+		},
+		"onValueChange": {
+			"source": "Called with the new date, or `null` when cleared or while the typed date is incomplete.",
+			"translation": "Chamada com a nova data, ou `null` quando limpa ou enquanto a data digitada está incompleta."
+		},
+		"presets": {
+			"source": "Dates offered beside the calendar, or `false` for none. Defaults to today, tomorrow and in 7, 15, 30, 60 and 90 days, with the texts of `labels`.",
+			"translation": "Datas oferecidas ao lado do calendário, ou `false` para nenhuma. Padrão: hoje, amanhã e em 7, 15, 30, 60 e 90 dias, com os textos de `labels`."
+		},
+		"calendars": {
+			"source": "Months shown side by side. Defaults to `1`.",
+			"translation": "Meses mostrados lado a lado. Padrão: `1`."
+		},
+		"label": {
+			"source": "Visible, persistent label; a placeholder never replaces it.",
+			"translation": "Rótulo visível e persistente; um placeholder nunca o substitui."
+		},
+		"hideLabel": {
+			"source": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a filter bar).",
+			"translation": "Mantém o rótulo só para tecnologias assistivas, quando o contexto já o mostra (por exemplo uma barra de filtros)."
+		},
+		"description": {
+			"source": "Help text, read after the label.",
+			"translation": "Texto de ajuda, lido depois do rótulo."
+		},
+		"error": {
+			"source": "Error message, shown with an icon; inside a `Form`, the error of `name` is used when omitted.",
+			"translation": "Mensagem de erro, mostrada com um ícone; dentro de um `Form`, o erro de `name` é usado quando omitida."
+		},
+		"required": {
+			"source": "Marks the label with an asterisk and the control as `required`.",
+			"translation": "Marca o rótulo com um asterisco e o controle como `required`."
+		},
+		"disabled": {
+			"source": "Unavailable: skipped by Tab and not submitted.",
+			"translation": "Indisponível: pulado pelo Tab e não enviado."
+		},
+		"readOnly": {
+			"source": "Focusable and submitted, but not editable: the panel does not open.",
+			"translation": "Focável e enviado, mas não editável: o painel não abre."
+		},
+		"name": {
+			"source": "Submitted with the text of the field, as it is shown.",
+			"translation": "Enviado com o texto do campo, como é mostrado."
+		},
+		"id": {
+			"source": "Id of the field, the target of its label.",
+			"translation": "Id do campo, o alvo do seu rótulo."
+		},
+		"size": {
+			"source": "32, 40 or 48 px high, like the buttons. Defaults to `'medium'`.",
+			"translation": "32, 40 ou 48 px de altura, como os botões. Padrão: `'medium'`."
+		},
+		"labels": {
+			"source": "Overrides some or all of `defaultDatePickerLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultDatePickerLabels`."
+		},
+		"className": {
+			"source": "Class of the root of the field.",
+			"translation": "Classe da raiz do campo."
+		},
+		"style": {
+			"source": "Style of the root of the field.",
+			"translation": "Estilo da raiz do campo."
+		},
+		"minDate": {
+			"source": "First day that can be chosen.",
+			"translation": "Primeiro dia que pode ser escolhido."
+		},
+		"maxDate": {
+			"source": "Last day that can be chosen.",
+			"translation": "Último dia que pode ser escolhido."
+		},
+		"disablePast": {
+			"source": "Days before today cannot be chosen.",
+			"translation": "Os dias antes de hoje não podem ser escolhidos."
+		},
+		"disableFuture": {
+			"source": "Days after today cannot be chosen.",
+			"translation": "Os dias depois de hoje não podem ser escolhidos."
+		},
+		"shouldDisableDate": {
+			"source": "Called with each day; `true` keeps it from being chosen, e.g. a weekend.",
+			"translation": "Chamada com cada dia; `true` impede que seja escolhido, por exemplo um fim de semana."
+		}
+	},
+	"TimePicker": {
+		"value": {
+			"source": "Chosen time, when the parent controls it, on any day; `null` for none.",
+			"translation": "Horário escolhido, quando o pai o controla, em qualquer dia; `null` para nenhum."
+		},
+		"defaultValue": {
+			"source": "Initial time when uncontrolled.",
+			"translation": "Horário inicial quando não controlado."
+		},
+		"onValueChange": {
+			"source": "Called with the new time, on the day of the value (else today), or `null` while the typed one is incomplete.",
+			"translation": "Chamada com o novo horário, no dia do valor (senão hoje), ou `null` enquanto o digitado está incompleto."
+		},
+		"minTime": {
+			"source": "Earliest time that can be chosen; only its hours and minutes count.",
+			"translation": "Horário mais cedo que pode ser escolhido; só suas horas e minutos contam."
+		},
+		"maxTime": {
+			"source": "Latest time that can be chosen; only its hours and minutes count.",
+			"translation": "Horário mais tarde que pode ser escolhido; só suas horas e minutos contam."
+		},
+		"ampm": {
+			"source": "12-hour clock with AM and PM (`true`) or 24-hour clock (`false`). Defaults to the clock of the locale.",
+			"translation": "Relógio de 12 horas com AM e PM (`true`) ou de 24 horas (`false`). Padrão: o relógio do idioma."
+		},
+		"minuteStep": {
+			"source": "Minutes between two options of the list of the minutes. Defaults to `5`.",
+			"translation": "Minutos entre duas opções da lista dos minutos. Padrão: `5`."
+		},
+		"label": {
+			"source": "Visible, persistent label; a placeholder never replaces it.",
+			"translation": "Rótulo visível e persistente; um placeholder nunca o substitui."
+		},
+		"hideLabel": {
+			"source": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a filter bar).",
+			"translation": "Mantém o rótulo só para tecnologias assistivas, quando o contexto já o mostra (por exemplo uma barra de filtros)."
+		},
+		"description": {
+			"source": "Help text, read after the label.",
+			"translation": "Texto de ajuda, lido depois do rótulo."
+		},
+		"error": {
+			"source": "Error message, shown with an icon; inside a `Form`, the error of `name` is used when omitted.",
+			"translation": "Mensagem de erro, mostrada com um ícone; dentro de um `Form`, o erro de `name` é usado quando omitida."
+		},
+		"required": {
+			"source": "Marks the label with an asterisk and the control as `required`.",
+			"translation": "Marca o rótulo com um asterisco e o controle como `required`."
+		},
+		"disabled": {
+			"source": "Unavailable: skipped by Tab and not submitted.",
+			"translation": "Indisponível: pulado pelo Tab e não enviado."
+		},
+		"readOnly": {
+			"source": "Focusable and submitted, but not editable: the panel does not open.",
+			"translation": "Focável e enviado, mas não editável: o painel não abre."
+		},
+		"name": {
+			"source": "Submitted with the text of the field, as it is shown.",
+			"translation": "Enviado com o texto do campo, como é mostrado."
+		},
+		"id": {
+			"source": "Id of the field, the target of its label.",
+			"translation": "Id do campo, o alvo do seu rótulo."
+		},
+		"size": {
+			"source": "32, 40 or 48 px high, like the buttons. Defaults to `'medium'`.",
+			"translation": "32, 40 ou 48 px de altura, como os botões. Padrão: `'medium'`."
+		},
+		"labels": {
+			"source": "Overrides some or all of `defaultDatePickerLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultDatePickerLabels`."
+		},
+		"className": {
+			"source": "Class of the root of the field.",
+			"translation": "Classe da raiz do campo."
+		},
+		"style": {
+			"source": "Style of the root of the field.",
+			"translation": "Estilo da raiz do campo."
+		}
+	},
+	"DateTimePicker": {
+		"value": {
+			"source": "Chosen instant, when the parent controls it; `null` for none.",
+			"translation": "Instante escolhido, quando o pai o controla; `null` para nenhum."
+		},
+		"defaultValue": {
+			"source": "Initial instant when uncontrolled.",
+			"translation": "Instante inicial quando não controlado."
+		},
+		"onValueChange": {
+			"source": "Called with the new instant, or `null` when cleared or while the typed one is incomplete.",
+			"translation": "Chamada com o novo instante, ou `null` quando limpo ou enquanto o digitado está incompleto."
+		},
+		"ampm": {
+			"source": "12-hour clock with AM and PM (`true`) or 24-hour clock (`false`). Defaults to the clock of the locale.",
+			"translation": "Relógio de 12 horas com AM e PM (`true`) ou de 24 horas (`false`). Padrão: o relógio do idioma."
+		},
+		"minuteStep": {
+			"source": "Minutes between two options of the list of the minutes. Defaults to `5`.",
+			"translation": "Minutos entre duas opções da lista dos minutos. Padrão: `5`."
+		},
+		"presets": {
+			"source": "Dates offered beside the calendar, which keep the chosen time, or `false` for none. Defaults to today, tomorrow and in 7, 15, 30, 60 and 90 days.",
+			"translation": "Datas oferecidas ao lado do calendário, que mantêm o horário escolhido, ou `false` para nenhuma. Padrão: hoje, amanhã e em 7, 15, 30, 60 e 90 dias."
+		},
+		"label": {
+			"source": "Visible, persistent label; a placeholder never replaces it.",
+			"translation": "Rótulo visível e persistente; um placeholder nunca o substitui."
+		},
+		"hideLabel": {
+			"source": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a filter bar).",
+			"translation": "Mantém o rótulo só para tecnologias assistivas, quando o contexto já o mostra (por exemplo uma barra de filtros)."
+		},
+		"description": {
+			"source": "Help text, read after the label.",
+			"translation": "Texto de ajuda, lido depois do rótulo."
+		},
+		"error": {
+			"source": "Error message, shown with an icon; inside a `Form`, the error of `name` is used when omitted.",
+			"translation": "Mensagem de erro, mostrada com um ícone; dentro de um `Form`, o erro de `name` é usado quando omitida."
+		},
+		"required": {
+			"source": "Marks the label with an asterisk and the control as `required`.",
+			"translation": "Marca o rótulo com um asterisco e o controle como `required`."
+		},
+		"disabled": {
+			"source": "Unavailable: skipped by Tab and not submitted.",
+			"translation": "Indisponível: pulado pelo Tab e não enviado."
+		},
+		"readOnly": {
+			"source": "Focusable and submitted, but not editable: the panel does not open.",
+			"translation": "Focável e enviado, mas não editável: o painel não abre."
+		},
+		"name": {
+			"source": "Submitted with the text of the field, as it is shown.",
+			"translation": "Enviado com o texto do campo, como é mostrado."
+		},
+		"id": {
+			"source": "Id of the field, the target of its label.",
+			"translation": "Id do campo, o alvo do seu rótulo."
+		},
+		"size": {
+			"source": "32, 40 or 48 px high, like the buttons. Defaults to `'medium'`.",
+			"translation": "32, 40 ou 48 px de altura, como os botões. Padrão: `'medium'`."
+		},
+		"labels": {
+			"source": "Overrides some or all of `defaultDatePickerLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultDatePickerLabels`."
+		},
+		"className": {
+			"source": "Class of the root of the field.",
+			"translation": "Classe da raiz do campo."
+		},
+		"style": {
+			"source": "Style of the root of the field.",
+			"translation": "Estilo da raiz do campo."
+		},
+		"minDate": {
+			"source": "First day that can be chosen.",
+			"translation": "Primeiro dia que pode ser escolhido."
+		},
+		"maxDate": {
+			"source": "Last day that can be chosen.",
+			"translation": "Último dia que pode ser escolhido."
+		},
+		"disablePast": {
+			"source": "Days before today cannot be chosen.",
+			"translation": "Os dias antes de hoje não podem ser escolhidos."
+		},
+		"disableFuture": {
+			"source": "Days after today cannot be chosen.",
+			"translation": "Os dias depois de hoje não podem ser escolhidos."
+		},
+		"shouldDisableDate": {
+			"source": "Called with each day; `true` keeps it from being chosen, e.g. a weekend.",
+			"translation": "Chamada com cada dia; `true` impede que seja escolhido, por exemplo um fim de semana."
+		}
+	},
+	"DatePickersProvider": {
+		"locale": {
+			"source": "date-fns locale: order of the parts of the fields, month and day names, first day of the week, 12 or 24-hour clock. Defaults to `en-US`. Import only the locales you use, e.g. `import { ptBR } from 'date-fns/locale/pt-BR'`.",
+			"translation": "Locale do date-fns: ordem das partes dos campos, nomes dos meses e dos dias, primeiro dia da semana, relógio de 12 ou 24 horas. Padrão: `en-US`. Importe só os locales que usar, por exemplo `import { ptBR } from 'date-fns/locale/pt-BR'`."
+		},
+		"children": {
+			"source": "The application, or the part of it with pickers.",
+			"translation": "A aplicação, ou a parte dela com seletores."
+		}
+	},
+	"DateRangePicker": {
+		"value": {
+			"source": "Chosen range, when the parent controls it; either end is `null` until it is chosen.",
+			"translation": "Intervalo escolhido, quando o pai o controla; cada ponta é `null` até ser escolhida."
+		},
+		"defaultValue": {
+			"source": "Initial range when uncontrolled.",
+			"translation": "Intervalo inicial quando não controlado."
+		},
+		"onValueChange": {
+			"source": "Called with the new range; an end typed in part is `null`.",
+			"translation": "Chamada com o novo intervalo; uma ponta digitada em parte é `null`."
+		},
+		"startName": {
+			"source": "Submitted with the text of the first day; inside a `Form`, its error is shown.",
+			"translation": "Enviado com o texto do primeiro dia; dentro de um `Form`, seu erro é mostrado."
+		},
+		"endName": {
+			"source": "Submitted with the text of the last day; inside a `Form`, its error is shown.",
+			"translation": "Enviado com o texto do último dia; dentro de um `Form`, seu erro é mostrado."
+		},
+		"id": {
+			"source": "Id of the field of the first day, the target of the label.",
+			"translation": "Id do campo do primeiro dia, o alvo do rótulo."
+		},
+		"presets": {
+			"source": "Periods offered beside the calendars, or `false` for none. Defaults to today, tomorrow, the next 7, 15, 30, 60 and 90 days, this month, and the next month, quarter and year, with the texts of `labels`.",
+			"translation": "Períodos oferecidos ao lado dos calendários, ou `false` para nenhum. Padrão: hoje, amanhã, os próximos 7, 15, 30, 60 e 90 dias, este mês, e o próximo mês, trimestre e ano, com os textos de `labels`."
+		},
+		"calendars": {
+			"source": "Months shown side by side. Defaults to `2`.",
+			"translation": "Meses mostrados lado a lado. Padrão: `2`."
+		},
+		"maxDays": {
+			"source": "Most days of a range, both ends included: the days further from the start cannot be its end.",
+			"translation": "Máximo de dias de um intervalo, as duas pontas incluídas: os dias mais distantes do início não podem ser seu fim."
+		},
+		"label": {
+			"source": "Visible, persistent label; a placeholder never replaces it.",
+			"translation": "Rótulo visível e persistente; um placeholder nunca o substitui."
+		},
+		"style": {
+			"source": "Style of the root of the field.",
+			"translation": "Estilo da raiz do campo."
+		},
+		"disabled": {
+			"source": "Unavailable: skipped by Tab and not submitted.",
+			"translation": "Indisponível: pulado pelo Tab e não enviado."
+		},
+		"className": {
+			"source": "Class of the root of the field.",
+			"translation": "Classe da raiz do campo."
+		},
+		"error": {
+			"source": "Error message, shown with an icon; inside a `Form`, the error of `name` is used when omitted.",
+			"translation": "Mensagem de erro, mostrada com um ícone; dentro de um `Form`, o erro de `name` é usado quando omitida."
+		},
+		"description": {
+			"source": "Help text, read after the label.",
+			"translation": "Texto de ajuda, lido depois do rótulo."
+		},
+		"size": {
+			"source": "32, 40 or 48 px high, like the buttons. Defaults to `'medium'`.",
+			"translation": "32, 40 ou 48 px de altura, como os botões. Padrão: `'medium'`."
+		},
+		"required": {
+			"source": "Marks the label with an asterisk and the control as `required`.",
+			"translation": "Marca o rótulo com um asterisco e o controle como `required`."
+		},
+		"readOnly": {
+			"source": "Focusable and submitted, but not editable: the panel does not open.",
+			"translation": "Focável e enviado, mas não editável: o painel não abre."
+		},
+		"hideLabel": {
+			"source": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a filter bar).",
+			"translation": "Mantém o rótulo só para tecnologias assistivas, quando o contexto já o mostra (por exemplo uma barra de filtros)."
+		},
+		"labels": {
+			"source": "Overrides some or all of `defaultDatePickerLabels`.",
+			"translation": "Substitui alguns ou todos os textos de `defaultDatePickerLabels`."
+		},
+		"minDate": {
+			"source": "First day that can be chosen.",
+			"translation": "Primeiro dia que pode ser escolhido."
+		},
+		"maxDate": {
+			"source": "Last day that can be chosen.",
+			"translation": "Último dia que pode ser escolhido."
+		},
+		"disablePast": {
+			"source": "Days before today cannot be chosen.",
+			"translation": "Os dias antes de hoje não podem ser escolhidos."
+		},
+		"disableFuture": {
+			"source": "Days after today cannot be chosen.",
+			"translation": "Os dias depois de hoje não podem ser escolhidos."
+		},
+		"shouldDisableDate": {
+			"source": "Called with each day; `true` keeps it from being chosen, e.g. a weekend.",
+			"translation": "Chamada com cada dia; `true` impede que seja escolhido, por exemplo um fim de semana."
+		}
+	},
+	"DatePreset": {
+		"label": {
+			"source": "Text of the preset in the panel.",
+			"translation": "Texto do período no painel."
+		},
+		"value": {
+			"source": "The date, from the start of today.",
+			"translation": "A data, a partir do início de hoje."
+		}
+	},
+	"DateRange": {
+		"start": {
+			"source": "First day; `null` until it is chosen.",
+			"translation": "Primeiro dia; `null` até ser escolhido."
+		},
+		"end": {
+			"source": "Last day; `null` until it is chosen.",
+			"translation": "Último dia; `null` até ser escolhido."
+		}
+	},
+	"DateRangePreset": {
+		"label": {
+			"source": "Text of the preset in the panel.",
+			"translation": "Texto do período no painel."
+		},
+		"range": {
+			"source": "The first and the last day, from the start of today.",
+			"translation": "O primeiro e o último dia, a partir do início de hoje."
+		}
 	}
 }

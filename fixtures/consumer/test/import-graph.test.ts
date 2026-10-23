@@ -91,7 +91,7 @@ for (const specifier of lightEntries) {
 
 // The optional integrations reach their own peers, and only them, besides React and Material UI.
 const optionalEntries: readonly [string, RegExp][] = [
-	['@midnight-indigo/ui/forms/date-pickers', /^(@mui\/x-date-pickers\/[\w/]+|date-fns)$/],
+	['@midnight-indigo/ui/forms/date-pickers', /^date-fns(\/locale\/[\w-]+)?$/],
 	['@midnight-indigo/ui/forms/react-hook-form', /^react-hook-form$/],
 	['@midnight-indigo/ui/i18n', /^(i18next|react-i18next)$/],
 ];

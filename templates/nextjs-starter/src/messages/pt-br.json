@@ -341,6 +341,7 @@
 			"dataDisplay": "Exibição de dados",
 			"feedback": "Feedback",
 			"forms": "Formulários",
+			"formsDatePickers": "Seletores de data e horário",
 			"layout": "Layout"
 		},
 		"page": {
@@ -1358,6 +1359,108 @@
 					"keyboard": "O Tab chega ao botão, e Enter ou Espaço abre o diálogo do sistema; remover um arquivo devolve o foco ao botão.",
 					"limits": "Os limites são lidos com o campo, então são conhecidos antes da escolha.",
 					"rejections": "Os arquivos deixados de fora são listados numa mensagem de status educada, uma vez por escolha."
+				}
+			},
+			"datePicker": {
+				"summary": "Campo de data com painel de calendário, datas predefinidas e rodapé para aplicar a escolha.",
+				"description": "Um campo da biblioteca cuja data é digitada na ordem do idioma (os separadores vêm sozinhos) ou escolhida num painel: datas predefinidas ao lado, um calendário com listas do mês e do ano, e um rodapé com Limpar, Cancelar e Aplicar. `onValueChange` recebe um `Date`, ou `null` enquanto a data digitada está incompleta; `minDate`, `maxDate`, `disablePast`, `disableFuture` e `shouldDisableDate` deixam dias de fora. Precisa estar dentro de `DatePickersProvider`.",
+				"types": {
+					"datePreset": "Uma data oferecida ao lado do calendário: seu texto, e a data a partir do início de hoje."
+				},
+				"examples": {
+					"workdays": {
+						"title": "Só dias úteis",
+						"description": "`disablePast` e `shouldDisableDate` deixam os dias passados e os fins de semana fora do calendário e dos períodos."
+					},
+					"trip": {
+						"title": "Uma ida e uma volta",
+						"description": "O `minDate` da volta acompanha a ida, controlada por `value` e `onValueChange`; um `DateRangePicker` faz o mesmo num só campo."
+					}
+				},
+				"accessibility": {
+					"typing": "Um clique no campo abre o painel e mantém o foco nele, então a data ainda pode ser digitada; Baixo leva o foco ao calendário.",
+					"calendar": "As setas andam de dia em dia e de semana em semana, Home e End até as pontas da semana, Page Up e Page Down de mês em mês, com Shift de ano em ano.",
+					"apply": "A escolha só chega ao campo com Aplicar; Cancelar, Esc ou um clique fora devolvem o foco ao campo sem ela."
+				}
+			},
+			"dateRangePicker": {
+				"summary": "Intervalo de datas com dois meses lado a lado e períodos predefinidos.",
+				"description": "O primeiro e o último dia são dois campos num mesmo quadro, digitados ou escolhidos num painel de dois meses (`calendars`) com períodos predefinidos: hoje, amanhã, os próximos 7 a 90 dias, este mês e o próximo mês, trimestre e ano. O primeiro clique começa o intervalo, o segundo o termina, e os dias entre eles acompanham o ponteiro. `maxDays` limita seu tamanho. Precisa estar dentro de `DatePickersProvider`.",
+				"types": {
+					"dateRange": "O valor: seu primeiro e seu último dia, cada um `null` até ser escolhido.",
+					"dateRangePreset": "Um período oferecido ao lado dos calendários: seu texto, e seu primeiro e último dia a partir do início de hoje."
+				},
+				"examples": {
+					"shoreLeave": {
+						"title": "No máximo duas semanas",
+						"description": "Com `maxDays={14}`, os dias mais distantes do início não podem terminar o intervalo; o texto sob o campo conta seus dias."
+					},
+					"presets": {
+						"title": "Períodos da aplicação",
+						"description": "`presets` substitui os períodos do painel, e `calendars={1}` mostra um só mês."
+					}
+				},
+				"accessibility": {
+					"names": "Cada campo é nomeado pelo rótulo e pela sua ponta, `Início` ou `Fim`, para que se distingam.",
+					"choice": "As pontas do intervalo escolhido dizem isso nos seus nomes, e os dias entre elas são marcados como selecionados.",
+					"preview": "O intervalo sob o ponteiro é só uma prévia: o teclado escolhe o fim com Enter, como o ponteiro faz com um clique."
+				}
+			},
+			"timePicker": {
+				"summary": "Campo de horário digitado ou escolhido em listas das horas e dos minutos.",
+				"description": "Horas e minutos (e AM ou PM num relógio de 12 horas) digitados no campo ou escolhidos em listas, aplicados pelo rodapé do painel. `minTime`, `maxTime`, `ampm` e `minuteStep` dão forma às listas. Precisa estar dentro de `DatePickersProvider`.",
+				"examples": {
+					"briefing": {
+						"title": "Horário de trabalho",
+						"description": "`minTime` e `maxTime` deixam as horas antes das 8h e depois das 18h fora das listas e do campo."
+					},
+					"docking": {
+						"title": "A cada quarto de hora",
+						"description": "`ampm={false}` define um relógio de 24 horas qualquer que seja o idioma, e `minuteStep={15}` lista os minutos de 15 em 15."
+					}
+				},
+				"accessibility": {
+					"typing": "O horário pode ser digitado no campo; num relógio de 12 horas, a ou p o termina com AM ou PM.",
+					"lists": "Cada lista é um listbox: as setas mudam sua escolha, Page Up e Page Down de cinco em cinco, Home e End até as pontas.",
+					"clock": "Sem `ampm`, o relógio segue o idioma: 12 horas em inglês americano, 24 em português do Brasil."
+				}
+			},
+			"dateTimePicker": {
+				"summary": "Um campo para data e horário juntos.",
+				"description": "Um instante digitado num só campo ou escolhido num painel com um calendário ao lado das listas do horário, com os períodos e o rodapé do `DatePicker`. `minDate` e `maxDate` limitam o instante, não só o dia. Use-o quando o instante é uma só resposta, como uma reunião; senão, um `DatePicker` e um `TimePicker` são mais simples. Precisa estar dentro de `DatePickersProvider`.",
+				"examples": {
+					"rendezvous": {
+						"title": "Controlado",
+						"description": "`onValueChange` recebe um `Date` quando a data e o horário estão completos; o texto sob o campo o mostra."
+					},
+					"window": {
+						"title": "Uma janela de tempo",
+						"description": "`minDate` e `maxDate` limitam o instante: no primeiro e no último dia, só as horas dentro da janela podem ser escolhidas."
+					}
+				},
+				"accessibility": {
+					"typing": "Data e horário são digitados num só campo, na ordem do idioma, e informados só quando completos.",
+					"panel": "O Tab vai do calendário às listas das horas e dos minutos, depois ao rodapé.",
+					"split": "Quando a data e o horário são perguntas separadas, um `DatePicker` e um `TimePicker` são mais fáceis de ler e de preencher."
+				}
+			},
+			"datePickersProvider": {
+				"summary": "Idioma dos seletores de data e horário.",
+				"description": "Coloque-o uma vez em volta dos seletores, junto ao `UiProvider`: o `locale` do date-fns dá a ordem das partes dos campos, os nomes dos meses e dos dias, o primeiro dia da semana e o relógio. Seus textos são labels de componente, traduzidos pelo `I18nProvider`. Nesta página o layout dá aos seletores o idioma da página; o playground mostra o provider com seu padrão, o inglês americano.",
+				"examples": {
+					"brazilianPortuguese": {
+						"title": "Português do Brasil",
+						"description": "O `ptBR` do date-fns ordena dia, mês e ano, começa a semana no domingo e usa um relógio de 24 horas."
+					},
+					"britishEnglish": {
+						"title": "Inglês britânico",
+						"description": "O `enGB` do date-fns põe o dia primeiro e começa a semana na segunda-feira; os textos continuam em inglês."
+					}
+				},
+				"accessibility": {
+					"language": "Dê a ele o idioma da página, para que os nomes dos dias e dos meses sejam lidos no idioma de quem lê.",
+					"server": "O idioma é passado, nunca adivinhado pelo navegador, para que o servidor e o navegador mostrem o mesmo texto.",
+					"timeZone": "Ele não define fuso horário: um `Date` é mostrado no fuso do navegador, que pode não ser o do servidor."
 				}
 			},
 			"container": {

@@ -220,6 +220,52 @@ const chartLabels = ({ text, message }: Translator): Partial<ComponentLabelTypes
 	});
 };
 
+const datePickerLabels = ({
+	text,
+	message,
+}: Translator): Partial<ComponentLabelTypes['datePicker']> => {
+	const counted = (key: string): ((count: number) => string) | undefined => {
+		return message(key, { count: 2 }, (count: number): InterpolationValues => ({ count }));
+	};
+
+	return defined<'datePicker'>({
+		openCalendar: text('datePicker.openCalendar'),
+		openTime: text('datePicker.openTime'),
+		dialog: text('datePicker.dialog'),
+		rangeDialog: text('datePicker.rangeDialog'),
+		timeDialog: text('datePicker.timeDialog'),
+		previousMonth: text('datePicker.previousMonth'),
+		nextMonth: text('datePicker.nextMonth'),
+		month: text('datePicker.month'),
+		year: text('datePicker.year'),
+		presets: text('datePicker.presets'),
+		today: text('datePicker.today'),
+		tomorrow: text('datePicker.tomorrow'),
+		inDays: counted('datePicker.inDays'),
+		nextDays: counted('datePicker.nextDays'),
+		thisMonth: text('datePicker.thisMonth'),
+		followingMonth: text('datePicker.followingMonth'),
+		followingQuarter: text('datePicker.followingQuarter'),
+		followingYear: text('datePicker.followingYear'),
+		clear: text('datePicker.clear'),
+		cancel: text('datePicker.cancel'),
+		apply: text('datePicker.apply'),
+		start: text('datePicker.start'),
+		end: text('datePicker.end'),
+		rangeStart: text('datePicker.rangeStart'),
+		rangeEnd: text('datePicker.rangeEnd'),
+		hours: text('datePicker.hours'),
+		minutes: text('datePicker.minutes'),
+		meridiem: text('datePicker.meridiem'),
+		dayPlaceholder: text('datePicker.dayPlaceholder'),
+		monthPlaceholder: text('datePicker.monthPlaceholder'),
+		yearPlaceholder: text('datePicker.yearPlaceholder'),
+		hourPlaceholder: text('datePicker.hourPlaceholder'),
+		minutePlaceholder: text('datePicker.minutePlaceholder'),
+		invalid: text('datePicker.invalid'),
+	});
+};
+
 /** The labels of every component for `locale`, from the `midnight-indigo` namespace of `instance`. */
 export const createComponentLabels = (
 	instance: I18nInstance,
@@ -328,6 +374,7 @@ export const createComponentLabels = (
 				return { caption };
 			}),
 		}),
+		datePicker: datePickerLabels(translator),
 		dialog: defined<'dialog'>({ close: text('dialog.close') }),
 		drawer: defined<'drawer'>({ close: text('drawer.close') }),
 		errorState: defined<'errorState'>({ retry: text('errorState.retry') }),

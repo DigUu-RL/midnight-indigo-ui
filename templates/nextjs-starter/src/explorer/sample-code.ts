@@ -443,6 +443,18 @@ export const sampleCodes = {
 		imports: {},
 		code: 'null',
 	},
+	departureDay: {
+		imports: {},
+		code: 'new Date(2071, 5, 15, 12)',
+	},
+	leaveRange: {
+		imports: {},
+		code: '{ start: new Date(2071, 5, 15, 12), end: new Date(2071, 5, 20, 12) }',
+	},
+	departurePicker: {
+		imports: { 'forms/date-pickers': ['DatePicker'] },
+		code: "<DatePicker label='Departure day' />",
+	},
 } as const satisfies Readonly<Record<string, SampleCode>>;
 
 export type SampleName = keyof typeof sampleCodes;

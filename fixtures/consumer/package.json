@@ -11,7 +11,6 @@
 		"@emotion/styled": "catalog:",
 		"@midnight-indigo/ui": "workspace:*",
 		"@mui/material": "catalog:",
-		"@mui/x-date-pickers": "catalog:",
 		"date-fns": "catalog:",
 		"echarts": "catalog:",
 		"i18next": "catalog:",
@@ -25,7 +24,6 @@
 		"@types/node": "catalog:",
 		"@types/react": "catalog:",
 		"@types/react-dom": "catalog:",
-		"@types/react-transition-group": "catalog:",
 		"typescript": "catalog:"
 	}
 }

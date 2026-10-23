@@ -27,14 +27,14 @@
 		},
 		"@midnight-indigo/ui/forms": {
 			"initial": {
-				"baseline": 18346,
+				"baseline": 18350,
 				"budget": 20224
 			}
 		},
 		"@midnight-indigo/ui/forms/date-pickers": {
 			"initial": {
-				"baseline": 6485,
-				"budget": 7168
+				"baseline": 19642,
+				"budget": 21760
 			}
 		},
 		"@midnight-indigo/ui/forms/react-hook-form": {
@@ -79,8 +79,8 @@
 		},
 		"@midnight-indigo/ui/i18n": {
 			"initial": {
-				"baseline": 8263,
-				"budget": 9216
+				"baseline": 9117,
+				"budget": 10240
 			}
 		},
 		"@midnight-indigo/ui/dashboard": {
@@ -97,11 +97,11 @@
 		},
 		"@midnight-indigo/ui/code": {
 			"initial": {
-				"baseline": 11269,
+				"baseline": 11270,
 				"budget": 12544
 			},
 			"onDemand": {
-				"baseline": 1239,
+				"baseline": 1255,
 				"budget": 1536
 			}
 		},
@@ -113,62 +113,62 @@
 		},
 		"starter: /en-us": {
 			"initial": {
-				"baseline": 309952,
-				"budget": 340992
+				"baseline": 314560,
+				"budget": 346112
 			}
 		},
 		"starter: /en-us/orders": {
 			"initial": {
-				"baseline": 298689,
-				"budget": 328704
+				"baseline": 303436,
+				"budget": 333824
 			}
 		},
 		"starter: /en-us/reports": {
 			"initial": {
-				"baseline": 303753,
-				"budget": 334336
+				"baseline": 308459,
+				"budget": 339456
 			}
 		},
 		"starter: /en-us/customers/new": {
 			"initial": {
-				"baseline": 297534,
-				"budget": 327424
+				"baseline": 302605,
+				"budget": 333056
 			}
 		},
 		"starter: /en-us/settings/appearance": {
 			"initial": {
-				"baseline": 294402,
-				"budget": 324096
+				"baseline": 299125,
+				"budget": 329216
 			}
 		},
 		"starter: /en-us/icons": {
 			"initial": {
-				"baseline": 293584,
-				"budget": 323072
+				"baseline": 298307,
+				"budget": 328192
 			}
 		},
 		"starter: /en-us/components": {
 			"initial": {
-				"baseline": 292132,
-				"budget": 321536
+				"baseline": 296880,
+				"budget": 326656
 			}
 		},
 		"starter: /en-us/components/chip": {
 			"initial": {
-				"baseline": 313632,
-				"budget": 345088
+				"baseline": 318479,
+				"budget": 350464
 			}
 		},
 		"starter: /en-us/components/dialog": {
 			"initial": {
-				"baseline": 324955,
-				"budget": 357632
+				"baseline": 329856,
+				"budget": 363008
 			}
 		},
 		"starter: /gallery": {
 			"initial": {
-				"baseline": 324520,
-				"budget": 357120
+				"baseline": 326371,
+				"budget": 359168
 			}
 		},
 		"starter: chart engine": {

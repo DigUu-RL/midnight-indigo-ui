@@ -3,6 +3,7 @@
 // in `samples/<subpath>.tsx`, which only the route of that subpath reaches; a sample missing there fails the type check.
 import type { DataTableColumn, StatChange } from '@midnight-indigo/ui/data-display';
 import type { FormFieldControlProps } from '@midnight-indigo/ui/forms';
+import type { DateRange } from '@midnight-indigo/ui/forms/date-pickers';
 import { Icon } from '@midnight-indigo/ui/icons';
 import type { ReactElement } from 'react';
 
@@ -16,13 +17,15 @@ import type {
 
 /**
  * An element, a list of them (each one a child of its own, e.g. a slide of a `Carousel`, which a fragment would merge
- * into one), a text or an object a Server Component can pass to a Client Component, `null`, or what a client module
- * exports (the columns of a `DataTable` and its function of the row ids, or the control a `FormField` renders, which
- * are functions).
+ * into one), a text, a date or an object a Server Component can pass to a Client Component, `null`, or what a client
+ * module exports (the columns of a `DataTable` and its function of the row ids, or the control a `FormField` renders,
+ * which are functions).
  */
 export type SampleValue =
 	| string
 	| readonly string[]
+	| Date
+	| DateRange
 	| ReactElement
 	| readonly ReactElement[]
 	| StatChange

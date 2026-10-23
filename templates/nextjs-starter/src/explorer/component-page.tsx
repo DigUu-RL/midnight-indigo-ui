@@ -1,10 +1,10 @@
 // Page of a component in the explorer (Server Component, built once per component and locale): what it is for, its
 // import, every variant and state, a playground, realistic examples with their code, its props (and the fields of the
 // types it takes) and its accessibility. Each subpath serves its pages from a route of its own,
-// `app/[locale]/components/<subpath>/[component]/page.tsx`, made by `createComponentRoute` with the bindings of that
-// subpath alone: Next loads every client module a route reaches, so one route for every component would make each
-// page load the client code of every subpath. The proxy serves the public path `/[locale]/components/<slug>` from it
-// (`explorer/routes.ts`).
+// `app/[locale]/components/<segment>/[component]/page.tsx` (`forms-date-pickers` for `forms/date-pickers`), made by
+// `createComponentRoute` with the bindings of that subpath alone: Next loads every client module a route reaches, so
+// one route for every component would make each page load the client code of every subpath. The proxy serves the
+// public path `/[locale]/components/<slug>` from it (`explorer/routes.ts`).
 import { CodeBlock, highlightCode } from '@midnight-indigo/ui/code';
 import type { HighlightedCode } from '@midnight-indigo/ui/code';
 import { PageHeader } from '@midnight-indigo/ui/dashboard';

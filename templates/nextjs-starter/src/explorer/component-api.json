@@ -5773,6 +5773,1022 @@
 			"options": []
 		}
 	],
+	"DatePicker": [
+		{
+			"name": "value",
+			"type": "Date | null",
+			"required": false,
+			"defaultValue": null,
+			"description": "Chosen date, when the parent controls it; `null` for none.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "defaultValue",
+			"type": "Date | null",
+			"required": false,
+			"defaultValue": null,
+			"description": "Initial date when uncontrolled.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "onValueChange",
+			"type": "(value: Date | null) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the new date, or `null` when cleared or while the typed date is incomplete.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "presets",
+			"type": "readonly DatePreset[] | false",
+			"required": false,
+			"defaultValue": null,
+			"description": "Dates offered beside the calendar, or `false` for none. Defaults to today, tomorrow and in 7, 15, 30, 60 and 90 days, with the texts of `labels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "calendars",
+			"type": "1 | 2",
+			"required": false,
+			"defaultValue": "1",
+			"description": "Months shown side by side. Defaults to `1`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "label",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Visible, persistent label; a placeholder never replaces it.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "hideLabel",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a filter bar).",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Help text, read after the label.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "error",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Error message, shown with an icon; inside a `Form`, the error of `name` is used when omitted.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "required",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Marks the label with an asterisk and the control as `required`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Unavailable: skipped by Tab and not submitted.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "readOnly",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Focusable and submitted, but not editable: the panel does not open.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Submitted with the text of the field, as it is shown.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "id",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Id of the field, the target of its label.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "size",
+			"type": "ControlSize",
+			"required": false,
+			"defaultValue": "'medium'",
+			"description": "32, 40 or 48 px high, like the buttons. Defaults to `'medium'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["small", "medium", "large"]
+		},
+		{
+			"name": "labels",
+			"type": "Partial<DatePickerLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultDatePickerLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "className",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Class of the root of the field.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "style",
+			"type": "CSSProperties",
+			"required": false,
+			"defaultValue": null,
+			"description": "Style of the root of the field.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "minDate",
+			"type": "Date",
+			"required": false,
+			"defaultValue": null,
+			"description": "First day that can be chosen.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "maxDate",
+			"type": "Date",
+			"required": false,
+			"defaultValue": null,
+			"description": "Last day that can be chosen.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "disablePast",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Days before today cannot be chosen.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "disableFuture",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Days after today cannot be chosen.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "shouldDisableDate",
+			"type": "(day: Date) => boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with each day; `true` keeps it from being chosen, e.g. a weekend.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"DatePreset": [
+		{
+			"name": "label",
+			"type": "string",
+			"required": true,
+			"defaultValue": null,
+			"description": "Text of the preset in the panel.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "value",
+			"type": "(today: Date) => Date",
+			"required": true,
+			"defaultValue": null,
+			"description": "The date, from the start of today.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"DateRangePicker": [
+		{
+			"name": "value",
+			"type": "DateRange",
+			"required": false,
+			"defaultValue": null,
+			"description": "Chosen range, when the parent controls it; either end is `null` until it is chosen.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "defaultValue",
+			"type": "DateRange",
+			"required": false,
+			"defaultValue": null,
+			"description": "Initial range when uncontrolled.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "onValueChange",
+			"type": "(value: DateRange) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the new range; an end typed in part is `null`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "startName",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Submitted with the text of the first day; inside a `Form`, its error is shown.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "endName",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Submitted with the text of the last day; inside a `Form`, its error is shown.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "id",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Id of the field of the first day, the target of the label.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "presets",
+			"type": "readonly DateRangePreset[] | false",
+			"required": false,
+			"defaultValue": null,
+			"description": "Periods offered beside the calendars, or `false` for none. Defaults to today, tomorrow, the next 7, 15, 30, 60 and 90 days, this month, and the next month, quarter and year, with the texts of `labels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "calendars",
+			"type": "1 | 2",
+			"required": false,
+			"defaultValue": "2",
+			"description": "Months shown side by side. Defaults to `2`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "maxDays",
+			"type": "number",
+			"required": false,
+			"defaultValue": null,
+			"description": "Most days of a range, both ends included: the days further from the start cannot be its end.",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "label",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Visible, persistent label; a placeholder never replaces it.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "style",
+			"type": "CSSProperties",
+			"required": false,
+			"defaultValue": null,
+			"description": "Style of the root of the field.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Unavailable: skipped by Tab and not submitted.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "className",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Class of the root of the field.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "error",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Error message, shown with an icon; inside a `Form`, the error of `name` is used when omitted.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Help text, read after the label.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "size",
+			"type": "ControlSize",
+			"required": false,
+			"defaultValue": "'medium'",
+			"description": "32, 40 or 48 px high, like the buttons. Defaults to `'medium'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["small", "medium", "large"]
+		},
+		{
+			"name": "required",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Marks the label with an asterisk and the control as `required`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "readOnly",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Focusable and submitted, but not editable: the panel does not open.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "hideLabel",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a filter bar).",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "labels",
+			"type": "Partial<DatePickerLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultDatePickerLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "minDate",
+			"type": "Date",
+			"required": false,
+			"defaultValue": null,
+			"description": "First day that can be chosen.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "maxDate",
+			"type": "Date",
+			"required": false,
+			"defaultValue": null,
+			"description": "Last day that can be chosen.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "disablePast",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Days before today cannot be chosen.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "disableFuture",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Days after today cannot be chosen.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "shouldDisableDate",
+			"type": "(day: Date) => boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with each day; `true` keeps it from being chosen, e.g. a weekend.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"DateRange": [
+		{
+			"name": "start",
+			"type": "Date | null",
+			"required": true,
+			"defaultValue": null,
+			"description": "First day; `null` until it is chosen.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "end",
+			"type": "Date | null",
+			"required": true,
+			"defaultValue": null,
+			"description": "Last day; `null` until it is chosen.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"DateRangePreset": [
+		{
+			"name": "label",
+			"type": "string",
+			"required": true,
+			"defaultValue": null,
+			"description": "Text of the preset in the panel.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "range",
+			"type": "(today: Date) => { start: Date; end: Date; }",
+			"required": true,
+			"defaultValue": null,
+			"description": "The first and the last day, from the start of today.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"TimePicker": [
+		{
+			"name": "value",
+			"type": "Date | null",
+			"required": false,
+			"defaultValue": null,
+			"description": "Chosen time, when the parent controls it, on any day; `null` for none.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "defaultValue",
+			"type": "Date | null",
+			"required": false,
+			"defaultValue": null,
+			"description": "Initial time when uncontrolled.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "onValueChange",
+			"type": "(value: Date | null) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the new time, on the day of the value (else today), or `null` while the typed one is incomplete.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "minTime",
+			"type": "Date",
+			"required": false,
+			"defaultValue": null,
+			"description": "Earliest time that can be chosen; only its hours and minutes count.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "maxTime",
+			"type": "Date",
+			"required": false,
+			"defaultValue": null,
+			"description": "Latest time that can be chosen; only its hours and minutes count.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "ampm",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "12-hour clock with AM and PM (`true`) or 24-hour clock (`false`). Defaults to the clock of the locale.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "minuteStep",
+			"type": "number",
+			"required": false,
+			"defaultValue": "5",
+			"description": "Minutes between two options of the list of the minutes. Defaults to `5`.",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "label",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Visible, persistent label; a placeholder never replaces it.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "hideLabel",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a filter bar).",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Help text, read after the label.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "error",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Error message, shown with an icon; inside a `Form`, the error of `name` is used when omitted.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "required",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Marks the label with an asterisk and the control as `required`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Unavailable: skipped by Tab and not submitted.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "readOnly",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Focusable and submitted, but not editable: the panel does not open.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Submitted with the text of the field, as it is shown.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "id",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Id of the field, the target of its label.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "size",
+			"type": "ControlSize",
+			"required": false,
+			"defaultValue": "'medium'",
+			"description": "32, 40 or 48 px high, like the buttons. Defaults to `'medium'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["small", "medium", "large"]
+		},
+		{
+			"name": "labels",
+			"type": "Partial<DatePickerLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultDatePickerLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "className",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Class of the root of the field.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "style",
+			"type": "CSSProperties",
+			"required": false,
+			"defaultValue": null,
+			"description": "Style of the root of the field.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"DateTimePicker": [
+		{
+			"name": "value",
+			"type": "Date | null",
+			"required": false,
+			"defaultValue": null,
+			"description": "Chosen instant, when the parent controls it; `null` for none.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "defaultValue",
+			"type": "Date | null",
+			"required": false,
+			"defaultValue": null,
+			"description": "Initial instant when uncontrolled.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "onValueChange",
+			"type": "(value: Date | null) => void",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with the new instant, or `null` when cleared or while the typed one is incomplete.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "ampm",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "12-hour clock with AM and PM (`true`) or 24-hour clock (`false`). Defaults to the clock of the locale.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "minuteStep",
+			"type": "number",
+			"required": false,
+			"defaultValue": "5",
+			"description": "Minutes between two options of the list of the minutes. Defaults to `5`.",
+			"native": false,
+			"kind": "number",
+			"options": []
+		},
+		{
+			"name": "presets",
+			"type": "readonly DatePreset[] | false",
+			"required": false,
+			"defaultValue": null,
+			"description": "Dates offered beside the calendar, which keep the chosen time, or `false` for none. Defaults to today, tomorrow and in 7, 15, 30, 60 and 90 days.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "label",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "Visible, persistent label; a placeholder never replaces it.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "hideLabel",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Keeps the label for assistive technologies only, when the context already shows it (e.g. a filter bar).",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "description",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Help text, read after the label.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "error",
+			"type": "ReactNode",
+			"required": false,
+			"defaultValue": null,
+			"description": "Error message, shown with an icon; inside a `Form`, the error of `name` is used when omitted.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		},
+		{
+			"name": "required",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Marks the label with an asterisk and the control as `required`.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "disabled",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Unavailable: skipped by Tab and not submitted.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "readOnly",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Focusable and submitted, but not editable: the panel does not open.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Submitted with the text of the field, as it is shown.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "id",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Id of the field, the target of its label.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "size",
+			"type": "ControlSize",
+			"required": false,
+			"defaultValue": "'medium'",
+			"description": "32, 40 or 48 px high, like the buttons. Defaults to `'medium'`.",
+			"native": false,
+			"kind": "enum",
+			"options": ["small", "medium", "large"]
+		},
+		{
+			"name": "labels",
+			"type": "Partial<DatePickerLabels>",
+			"required": false,
+			"defaultValue": null,
+			"description": "Overrides some or all of `defaultDatePickerLabels`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "className",
+			"type": "string",
+			"required": false,
+			"defaultValue": null,
+			"description": "Class of the root of the field.",
+			"native": false,
+			"kind": "string",
+			"options": []
+		},
+		{
+			"name": "style",
+			"type": "CSSProperties",
+			"required": false,
+			"defaultValue": null,
+			"description": "Style of the root of the field.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "minDate",
+			"type": "Date",
+			"required": false,
+			"defaultValue": null,
+			"description": "First day that can be chosen.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "maxDate",
+			"type": "Date",
+			"required": false,
+			"defaultValue": null,
+			"description": "Last day that can be chosen.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "disablePast",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Days before today cannot be chosen.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "disableFuture",
+			"type": "boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Days after today cannot be chosen.",
+			"native": false,
+			"kind": "boolean",
+			"options": []
+		},
+		{
+			"name": "shouldDisableDate",
+			"type": "(day: Date) => boolean",
+			"required": false,
+			"defaultValue": null,
+			"description": "Called with each day; `true` keeps it from being chosen, e.g. a weekend.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		}
+	],
+	"DatePickersProvider": [
+		{
+			"name": "locale",
+			"type": "Locale",
+			"required": false,
+			"defaultValue": "en-US",
+			"description": "date-fns locale: order of the parts of the fields, month and day names, first day of the week, 12 or 24-hour clock. Defaults to `en-US`. Import only the locales you use, e.g. `import { ptBR } from 'date-fns/locale/pt-BR'`.",
+			"native": false,
+			"kind": "other",
+			"options": []
+		},
+		{
+			"name": "children",
+			"type": "ReactNode",
+			"required": true,
+			"defaultValue": null,
+			"description": "The application, or the part of it with pickers.",
+			"native": false,
+			"kind": "node",
+			"options": []
+		}
+	],
 	"Container": [
 		{
 			"name": "as",

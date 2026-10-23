@@ -8,6 +8,7 @@ import type { ReactElement } from 'react';
 
 import { camelCaseOf, slugOf, subpathGroups } from '#src/explorer/catalog.ts';
 import type { ExplorerComponent, SubpathGroup } from '#src/explorer/catalog.ts';
+import { routeSegmentOf } from '#src/explorer/routes.ts';
 import type { LocaleSegment } from '#src/i18n/locales.ts';
 import { getTranslator, localeOf } from '#src/i18n/server.ts';
 import type { LocaleParams } from '#src/i18n/server.ts';
@@ -29,12 +30,13 @@ const ExplorerHome = async ({ params }: LocaleParams): Promise<ReactElement> => 
 			/>
 
 			{subpathGroups().map((group: SubpathGroup): ReactElement => {
-				const headingId: string = `subpath-${group.subpath}`;
+				const segment: string = routeSegmentOf(group.subpath);
+				const headingId: string = `subpath-${segment}`;
 
 				return (
 					<section key={group.subpath} className='explorer-section' aria-labelledby={headingId}>
 						<h2 id={headingId} style={themeVariables.typography.headingMedium}>
-							{translate(`explorer.subpaths.${camelCaseOf(group.subpath)}`)}
+							{translate(`explorer.subpaths.${camelCaseOf(segment)}`)}
 						</h2>
 
 						<code className='explorer-subpath'>@midnight-indigo/ui/{group.subpath}</code>
